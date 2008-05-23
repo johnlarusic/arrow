@@ -1,0 +1,9 @@
+autom4te.cache
+config.log
+config.status
+stamp.h1
+*.a
+.DS_Store
+*.Po
+*.o
+*.Tpo

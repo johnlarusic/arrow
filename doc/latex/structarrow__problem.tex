@@ -1,0 +1,97 @@
+\hypertarget{structarrow__problem}{
+\section{arrow\_\-problem Struct Reference}
+\label{structarrow__problem}\index{arrow\_\-problem@{arrow\_\-problem}}
+}
+Problem data structure.  
+
+
+{\tt \#include $<$arrow.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+int \hyperlink{structarrow__problem_de8573ddc391d06b08b65923fca693ec}{size}
+\item 
+CCdatagroup \hyperlink{structarrow__problem_5f04fe51bf6438b8f844c8cc06eb5ba0}{data}
+\item 
+int \hyperlink{structarrow__problem_8c3f4f7794c1430440658d69151b296d}{shallow}
+\item 
+char $\ast$ \hyperlink{structarrow__problem_4463422357e42b021b77b6e166eaf308}{name}
+\item 
+int($\ast$ \hyperlink{structarrow__problem_4f1f4c9ef90f240b248e8f39360da769}{get\_\-cost} )(struct \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$this, int i, int j)
+\begin{CompactList}\small\item\em Returns the cost between node i and node j. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Problem data structure. 
+
+Definition at line 45 of file arrow.h.
+
+\subsection{Field Documentation}
+\hypertarget{structarrow__problem_de8573ddc391d06b08b65923fca693ec}{
+\index{arrow\_\-problem@{arrow\_\-problem}!size@{size}}
+\index{size@{size}!arrow_problem@{arrow\_\-problem}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-problem::size}}}
+\label{structarrow__problem_de8573ddc391d06b08b65923fca693ec}
+
+
+problem size 
+
+Definition at line 47 of file arrow.h.
+
+Referenced by arrow\_\-bbssp\_\-biconnected(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-print(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), find\_\-art\_\-points(), and main().\hypertarget{structarrow__problem_5f04fe51bf6438b8f844c8cc06eb5ba0}{
+\index{arrow\_\-problem@{arrow\_\-problem}!data@{data}}
+\index{data@{data}!arrow_problem@{arrow\_\-problem}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CCdatagroup {\bf arrow\_\-problem::data}}}
+\label{structarrow__problem_5f04fe51bf6438b8f844c8cc06eb5ba0}
+
+
+Concorde data structure for problem. 
+
+Definition at line 48 of file arrow.h.
+
+Referenced by arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-exact\_\-solve(), and concorde\_\-get\_\-cost().\hypertarget{structarrow__problem_8c3f4f7794c1430440658d69151b296d}{
+\index{arrow\_\-problem@{arrow\_\-problem}!shallow@{shallow}}
+\index{shallow@{shallow}!arrow_problem@{arrow\_\-problem}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-problem::shallow}}}
+\label{structarrow__problem_8c3f4f7794c1430440658d69151b296d}
+
+
+indicates use of shallow copy of data 
+
+Definition at line 49 of file arrow.h.
+
+Referenced by arrow\_\-problem\_\-read().\hypertarget{structarrow__problem_4463422357e42b021b77b6e166eaf308}{
+\index{arrow\_\-problem@{arrow\_\-problem}!name@{name}}
+\index{name@{name}!arrow_problem@{arrow\_\-problem}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf arrow\_\-problem::name}}}
+\label{structarrow__problem_4463422357e42b021b77b6e166eaf308}
+
+
+name of problem (can be NULL) 
+
+Definition at line 50 of file arrow.h.
+
+Referenced by arrow\_\-problem\_\-read(), and arrow\_\-tsp\_\-exact\_\-solve().\hypertarget{structarrow__problem_4f1f4c9ef90f240b248e8f39360da769}{
+\index{arrow\_\-problem@{arrow\_\-problem}!get\_\-cost@{get\_\-cost}}
+\index{get\_\-cost@{get\_\-cost}!arrow_problem@{arrow\_\-problem}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf arrow\_\-problem::get\_\-cost})(struct {\bf arrow\_\-problem} $\ast$this, int i, int j)}}
+\label{structarrow__problem_4f1f4c9ef90f240b248e8f39360da769}
+
+
+Returns the cost between node i and node j. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em this}]\mbox{[}in\mbox{]} problem data \item[{\em i}]\mbox{[}in\mbox{]} node i \item[{\em j}]\mbox{[}in\mbox{]} node j \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]cost between node i and j. \end{Desc}
+
+
+Referenced by arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-print(), arrow\_\-problem\_\-read(), find\_\-art\_\-points(), and main().
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+lib/\hyperlink{arrow_8h}{arrow.h}\end{CompactItemize}
