@@ -17,7 +17,7 @@ arrow_util_create_int_array(int size, int **array)
     if((*array = malloc(size * sizeof(int))) == NULL)
     {
         arrow_print_error("Error allocating memory for int array.");
-        array = NULL;
+        *array = NULL;
         return ARROW_ERROR_FATAL;
     }
     return ARROW_SUCCESS;

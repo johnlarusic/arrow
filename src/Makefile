@@ -30,8 +30,9 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-bin_PROGRAMS = bbssp$(EXEEXT) btsp$(EXEEXT) histogram_data$(EXEEXT) \
-	linkern$(EXEEXT) tsp$(EXEEXT)
+bin_PROGRAMS = bbssp$(EXEEXT) btsp$(EXEEXT) cbtsp$(EXEEXT) \
+	histogram_data$(EXEEXT) linkern$(EXEEXT) tour_info$(EXEEXT) \
+	tsp$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -55,6 +56,11 @@ btsp_OBJECTS = $(am_btsp_OBJECTS)
 btsp_LDADD = $(LDADD)
 btsp_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(top_builddir)/lib/libarrow.a
+am_cbtsp_OBJECTS = cbtsp.$(OBJEXT)
+cbtsp_OBJECTS = $(am_cbtsp_OBJECTS)
+cbtsp_LDADD = $(LDADD)
+cbtsp_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+	$(top_builddir)/lib/libarrow.a
 am_histogram_data_OBJECTS = histogram_data.$(OBJEXT)
 histogram_data_OBJECTS = $(am_histogram_data_OBJECTS)
 histogram_data_LDADD = $(LDADD)
@@ -64,6 +70,11 @@ am_linkern_OBJECTS = linkern.$(OBJEXT)
 linkern_OBJECTS = $(am_linkern_OBJECTS)
 linkern_LDADD = $(LDADD)
 linkern_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+	$(top_builddir)/lib/libarrow.a
+am_tour_info_OBJECTS = tour_info.$(OBJEXT)
+tour_info_OBJECTS = $(am_tour_info_OBJECTS)
+tour_info_LDADD = $(LDADD)
+tour_info_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(top_builddir)/lib/libarrow.a
 am_tsp_OBJECTS = tsp.$(OBJEXT)
 tsp_OBJECTS = $(am_tsp_OBJECTS)
@@ -77,25 +88,27 @@ COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(bbssp_SOURCES) $(btsp_SOURCES) $(histogram_data_SOURCES) \
-	$(linkern_SOURCES) $(tsp_SOURCES)
-DIST_SOURCES = $(bbssp_SOURCES) $(btsp_SOURCES) \
-	$(histogram_data_SOURCES) $(linkern_SOURCES) $(tsp_SOURCES)
+SOURCES = $(bbssp_SOURCES) $(btsp_SOURCES) $(cbtsp_SOURCES) \
+	$(histogram_data_SOURCES) $(linkern_SOURCES) \
+	$(tour_info_SOURCES) $(tsp_SOURCES)
+DIST_SOURCES = $(bbssp_SOURCES) $(btsp_SOURCES) $(cbtsp_SOURCES) \
+	$(histogram_data_SOURCES) $(linkern_SOURCES) \
+	$(tour_info_SOURCES) $(tsp_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /Users/johnlarusic/Dev/arrow2/config/missing --run aclocal-1.10
-AMTAR = ${SHELL} /Users/johnlarusic/Dev/arrow2/config/missing --run tar
-AUTOCONF = ${SHELL} /Users/johnlarusic/Dev/arrow2/config/missing --run autoconf
-AUTOHEADER = ${SHELL} /Users/johnlarusic/Dev/arrow2/config/missing --run autoheader
-AUTOMAKE = ${SHELL} /Users/johnlarusic/Dev/arrow2/config/missing --run automake-1.10
+ACLOCAL = ${SHELL} /Users/johnlarusic/Dev/arrow/btspc/config/missing --run aclocal-1.10
+AMTAR = ${SHELL} /Users/johnlarusic/Dev/arrow/btspc/config/missing --run tar
+AUTOCONF = ${SHELL} /Users/johnlarusic/Dev/arrow/btspc/config/missing --run autoconf
+AUTOHEADER = ${SHELL} /Users/johnlarusic/Dev/arrow/btspc/config/missing --run autoheader
+AUTOMAKE = ${SHELL} /Users/johnlarusic/Dev/arrow/btspc/config/missing --run automake-1.10
 AWK = awk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
-CONCORDE_CFLAGS = -I/Users/johnlarusic/Dev/arrow2/external
-CONCORDE_LIB = /Users/johnlarusic/Dev/arrow2/external/concorde.a /Users/johnlarusic/Dev/arrow2/external/qsopt.a 
-CONCORDE_PREFIX = /Users/johnlarusic/Dev/arrow2/external
+CONCORDE_CFLAGS = -I/Users/johnlarusic/Dev/packages
+CONCORDE_LIB = /Users/johnlarusic/Dev/packages/concorde.a /Users/johnlarusic/Dev/packages/qsopt.a 
+CONCORDE_PREFIX = /Users/johnlarusic/Dev/packages
 CPP = gcc -E
 CPPFLAGS = 
 CYGPATH_W = echo
@@ -116,7 +129,7 @@ LDFLAGS =
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /Users/johnlarusic/Dev/arrow2/config/missing --run makeinfo
+MAKEINFO = ${SHELL} /Users/johnlarusic/Dev/arrow/btspc/config/missing --run makeinfo
 MKDIR_P = ../config/install-sh -c -d
 OBJEXT = o
 PACKAGE = arrow
@@ -131,10 +144,10 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = 
 VERSION = 2.0
-abs_builddir = /Users/johnlarusic/Dev/arrow2/src
-abs_srcdir = /Users/johnlarusic/Dev/arrow2/src
-abs_top_builddir = /Users/johnlarusic/Dev/arrow2
-abs_top_srcdir = /Users/johnlarusic/Dev/arrow2
+abs_builddir = /Users/johnlarusic/Dev/arrow/btspc/src
+abs_srcdir = /Users/johnlarusic/Dev/arrow/btspc/src
+abs_top_builddir = /Users/johnlarusic/Dev/arrow/btspc
+abs_top_srcdir = /Users/johnlarusic/Dev/arrow/btspc
 ac_ct_CC = gcc
 am__include = include
 am__leading_dot = .
@@ -153,7 +166,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = $(SHELL) /Users/johnlarusic/Dev/arrow2/config/install-sh
+install_sh = $(SHELL) /Users/johnlarusic/Dev/arrow/btspc/config/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -176,8 +189,10 @@ LDADD = $(CONCORDE_LIB) $(top_builddir)/lib/libarrow.a
 AM_CPPFLAGS = $(CONCORDE_CFLAGS) -I$(top_builddir)/lib -g -Wall
 bbssp_SOURCES = bbssp.c
 btsp_SOURCES = btsp.c
+cbtsp_SOURCES = cbtsp.c
 histogram_data_SOURCES = histogram_data.c
 linkern_SOURCES = linkern.c
+tour_info_SOURCES = tour_info.c
 tsp_SOURCES = tsp.c
 all: all-am
 
@@ -241,12 +256,18 @@ bbssp$(EXEEXT): $(bbssp_OBJECTS) $(bbssp_DEPENDENCIES)
 btsp$(EXEEXT): $(btsp_OBJECTS) $(btsp_DEPENDENCIES) 
 	@rm -f btsp$(EXEEXT)
 	$(LINK) $(btsp_OBJECTS) $(btsp_LDADD) $(LIBS)
+cbtsp$(EXEEXT): $(cbtsp_OBJECTS) $(cbtsp_DEPENDENCIES) 
+	@rm -f cbtsp$(EXEEXT)
+	$(LINK) $(cbtsp_OBJECTS) $(cbtsp_LDADD) $(LIBS)
 histogram_data$(EXEEXT): $(histogram_data_OBJECTS) $(histogram_data_DEPENDENCIES) 
 	@rm -f histogram_data$(EXEEXT)
 	$(LINK) $(histogram_data_OBJECTS) $(histogram_data_LDADD) $(LIBS)
 linkern$(EXEEXT): $(linkern_OBJECTS) $(linkern_DEPENDENCIES) 
 	@rm -f linkern$(EXEEXT)
 	$(LINK) $(linkern_OBJECTS) $(linkern_LDADD) $(LIBS)
+tour_info$(EXEEXT): $(tour_info_OBJECTS) $(tour_info_DEPENDENCIES) 
+	@rm -f tour_info$(EXEEXT)
+	$(LINK) $(tour_info_OBJECTS) $(tour_info_LDADD) $(LIBS)
 tsp$(EXEEXT): $(tsp_OBJECTS) $(tsp_DEPENDENCIES) 
 	@rm -f tsp$(EXEEXT)
 	$(LINK) $(tsp_OBJECTS) $(tsp_LDADD) $(LIBS)
@@ -259,8 +280,10 @@ distclean-compile:
 
 include ./$(DEPDIR)/bbssp.Po
 include ./$(DEPDIR)/btsp.Po
+include ./$(DEPDIR)/cbtsp.Po
 include ./$(DEPDIR)/histogram_data.Po
 include ./$(DEPDIR)/linkern.Po
+include ./$(DEPDIR)/tour_info.Po
 include ./$(DEPDIR)/tsp.Po
 
 .c.o:

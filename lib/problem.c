@@ -9,11 +9,6 @@
  ****************************************************************************/
 #include "arrow.h"
 
-/****************************************************************************
- * Private function prototypes
- ****************************************************************************/
-
-
 
 /****************************************************************************
  * Public function implemenations
@@ -150,4 +145,13 @@ inline int
 arrow_problem_get_cost(arrow_problem *problem, int i, int j)
 {
     return problem->data.edgelen(i, j, &(problem->data));
+}
+
+int
+arrow_problem_read_tour(char *file_name, int size, int *tour)
+{
+    if(CCutil_getcycle_tsplib(size, file_name, tour) == CONCORDE_SUCCESS)
+        return ARROW_SUCCESS;
+    else
+        return ARROW_ERROR_FATAL;
 }

@@ -1,7 +1,7 @@
 /**********************************************************doxygen*//** @file
- * @brief   Bottleneck TSP heuristic.
+ * @brief   Constrained Bottleneck TSP heuristic.
  *
- * Runs the Bottleneck TSP heuristic on the given input file.  
+ * Runs the Constrained Bottleneck TSP heuristic on the given input file.  
  *
  * @author  John LaRusic
  * @ingroup bin
@@ -33,9 +33,20 @@ print_usage();
 void 
 read_args(int argc, char *argv[]);
 
+/**
+ *  @brief  Prints output in XML format.
+ */
+void 
+print_xml_output(arrow_btsp_result *result, double max_length, 
+                 int lower_bound, double lower_bound_time, double total_time,
+                 int argc, char *argv[]);
+
 /* Program options */
 char *program_name;             /**< Program name */
 char *input_file;               /**< Given input TSPLIB file */
+int xml_output = ARROW_FALSE;   /**< Output output in XML format (or not) */
+
+double length = DBL_MAX;
 
 int random_restarts = -1;
 int stall_count = -1;
@@ -56,6 +67,7 @@ int
 main(int argc, char *argv[])
 {   
     int ret = EXIT_SUCCESS;
+    int stdout_id;
     double start_time, end_time, bbssp_time;
     
     start_time = arrow_util_zeit();
@@ -64,6 +76,10 @@ main(int argc, char *argv[])
     /* Read program arguments */
     program_name = argv[0];
     read_args(argc, argv);
+    
+    /* Supress output if required */
+    if(xml_output) 
+        arrow_util_redirect_stdout_to_file(ARROW_DEV_NULL, &stdout_id);
         
     /* Try and read the problem file and its info */
     arrow_problem problem;
@@ -83,15 +99,16 @@ main(int argc, char *argv[])
     if(random_restarts >= 0)    lk_params.random_restarts  = random_restarts;
     if(stall_count >= 0)        lk_params.stall_count      = stall_count;
     if(kicks >= 0)              lk_params.kicks            = kicks;
+    lk_params.length_bound = length;
     
     /* Setup necessary function structures */
-    arrow_btsp_fun fun_basic;
-    if(arrow_btsp_fun_basic_shallow(&fun_basic) != ARROW_SUCCESS)
+    arrow_btsp_fun fun_constrained;
+    if(arrow_btsp_fun_constrained_shallow(&fun_constrained) != ARROW_SUCCESS)
         return EXIT_FAILURE;
     
     arrow_btsp_solve_plan steps[] = {
-       {ARROW_BTSP_SOLVE_PLAN_BASIC, ARROW_FALSE, 
-           fun_basic, lk_params, 0.0, ARROW_TRUE, basic_attempts}
+       {ARROW_BTSP_SOLVE_PLAN_CONSTRAINED, ARROW_FALSE, 
+           fun_constrained, lk_params, length, ARROW_FALSE, basic_attempts}
     };
     
     /* Determine if we need to call the BBSSP to find a lower bound */
@@ -106,7 +123,7 @@ main(int argc, char *argv[])
         }
         lower_bound = bbssp_result.obj_value;
         bbssp_time = bbssp_result.total_time;
-        printf("done!  BBSSP lower bound is %d\n.", lower_bound);
+        printf("done!  BBSSP lower bound is %d.\n", lower_bound);
     }
     
     /* Setup BTSP parameters structure */
@@ -135,29 +152,45 @@ main(int argc, char *argv[])
     end_time = arrow_util_zeit() - start_time;
     
     /* Final output */
-    printf("\nFound Tour: %s\n", (result.found_tour ? "Yes" : "No"));
-    printf("Max. Cost: %d\n", result.obj_value);
-    printf("Tour Length: %.0f\n", result.tour_length);
-    printf("Initial Lower Bound: %d\n", lower_bound);
-    if(bbssp_time >= 0.0)
-        printf("BBSSP Time: %.2f\n", bbssp_time);        
-    printf("Optimal?: %s\n", (result.optimal == ARROW_TRUE ? "Yes" : "???"));
-    printf("Binary Search Steps: %d\n", result.bin_search_steps);
-    printf("Lin-Kernighan Calls: %d\n", result.linkern_attempts);
-    if(result.linkern_attempts > 0)
-        printf("Avg. Lin-Kernighan Time: %.2f\n", 
-            result.linkern_time / (result.linkern_attempts * 1.0));
-    printf("Exact TSP Calls: %d\n", result.exact_attempts);
-    if(result.exact_attempts > 0)
-        printf("Avg. Exact TSP Time: %.2f\n", 
-            result.exact_time / (result.exact_attempts * 1.0));
-    printf("Total BTSP Time: %.2f\n", result.total_time);
-    printf("Total Time: %.2f\n", end_time);
+    
+    
+    /* Output result */
+    if(xml_output)
+    {
+        arrow_util_restore_stdout(stdout_id);
+        print_xml_output(&result, length, lower_bound, bbssp_time, end_time, 
+                         argc, argv);
+    }
+    else
+    {
+        printf("\nFound Tour: %s\n", (result.found_tour ? "Yes" : "No"));
+        if(result.found_tour)
+        {
+            printf("Max. Cost: %d\n", result.obj_value);
+            printf("Tour Length: %.0f\n", result.tour_length);
+        }
+        printf("Initial Lower Bound: %d\n", lower_bound);
+        if(bbssp_time >= 0.0)
+            printf("BBSSP Time: %.2f\n", bbssp_time);        
+        printf("Optimal?: %s\n", 
+            (result.optimal == ARROW_TRUE ? "Yes" : "???"));
+        printf("Binary Search Steps: %d\n", result.bin_search_steps);
+        printf("Lin-Kernighan Calls: %d\n", result.linkern_attempts);
+        if(result.linkern_attempts > 0)
+            printf("Avg. Lin-Kernighan Time: %.2f\n", 
+                result.linkern_time / (result.linkern_attempts * 1.0));
+        printf("Exact TSP Calls: %d\n", result.exact_attempts);
+        if(result.exact_attempts > 0)
+            printf("Avg. Exact TSP Time: %.2f\n", 
+                result.exact_time / (result.exact_attempts * 1.0));
+        printf("Total BTSP Time: %.2f\n", result.total_time);
+        printf("Total Time: %.2f\n", end_time);
+    }
     
 CLEANUP:
     arrow_btsp_result_destruct(&result);
     arrow_btsp_params_destruct(&btsp_params);
-    arrow_btsp_fun_destruct(&fun_basic);
+    arrow_btsp_fun_destruct(&fun_constrained);
     arrow_btsp_params_destruct(&btsp_params);
     arrow_tsp_lk_params_destruct(&lk_params);
     arrow_problem_destruct(&problem);
@@ -206,11 +239,14 @@ read_args(int argc, char *argv[])
 {
     int opt_idx;
     char opt;
-    char *short_options = "hVr:s:k:ceSl:u:";
+    char *short_options = "hVxL:r:s:k:ceSl:u:";
     struct option long_options[] =
     {
         {"help",                no_argument,        0, 'h'},
         {"version",             no_argument,        0, 'V'},
+        {"xml",                 no_argument,        0, 'x'},
+        
+        {"length",              required_argument,  0, 'L'},
         
         {"restarts",            required_argument,  0, 'r'},
         {"stalls",              required_argument,  0, 's'},
@@ -240,7 +276,14 @@ read_args(int argc, char *argv[])
                 print_version(argv[0]);
                 exit(EXIT_SUCCESS);
                 break;
-                
+            case 'x':
+                xml_output = ARROW_TRUE;
+                break;
+            
+            case 'L':
+                length = atof(optarg);
+                break;
+            
             case 'r':
                 random_restarts = atoi(optarg);
                 break;
@@ -291,4 +334,49 @@ read_args(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
     input_file = argv[optind];    
+}
+
+void 
+print_xml_output(arrow_btsp_result *result, double max_length, 
+                 int lower_bound, double lower_bound_time, double total_time,
+                 int argc, char *argv[])
+{
+    printf("<arrow_cbtsp problem_file=\"%s\" command_args=\"", input_file);
+    int i;
+    for(i = 0; i < argc; i++)
+    {
+        if(i > 0) printf(" ");
+        printf("%s", argv[i]);
+    }
+    printf("\">\n");
+    printf("    <max_length>%.0f</max_length>\n", max_length);
+    
+    printf("    <found_tour>%s</found_tour>\n", 
+           (result->found_tour ? "true" : "false"));
+    printf("    <objective_value>%d</objective_value>\n", 
+           (result->found_tour ? result->obj_value : -1));
+    printf("    <tour_length>%.0f</tour_length>\n", 
+           (result->found_tour ? result->tour_length : -1.0));
+    printf("    <optimal>%s</optimal>\n", 
+           (result->optimal ? "true" : "false"));
+    printf("    <lower_bound>%d</lower_bound>\n", 
+           lower_bound);
+    printf("    <lower_bound_time>%.2f</lower_bound_time>\n",
+           lower_bound_time);
+    printf("    <binary_search_steps>%d</binary_search_steps>\n",
+           result->bin_search_steps);
+    printf("    <linkern_attempts>%d</linkern_attempts>\n",
+           result->linkern_attempts);
+    printf("    <linkkern_avg_time>%.2f</linkkern_avg_time>\n", 
+           (result->linkern_attempts > 0 ? 
+            result->linkern_time / (result->linkern_attempts * 1.0) : 0.0));
+    printf("    <exact_tsp_attempts>%d</exact_tsp_attempts>\n",
+           result->exact_attempts);
+    printf("    <exact_tsp_time>%.2f</exact_tsp_avg_time>\n", 
+           (result->exact_attempts > 0 ? 
+            result->exact_time / (result->exact_attempts * 1.0) : 0.0));
+    printf("    <btsp_total_time>%.2f</btsp_total_time>\n",
+           result->total_time);
+    printf("    <total_time>%.2f</total_time>\n", total_time);
+    printf("</<arrow_cbtsp>\n");
 }

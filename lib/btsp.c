@@ -39,6 +39,7 @@ arrow_btsp_result_init(arrow_problem *problem, arrow_btsp_result *result)
     }
     result->found_tour = ARROW_FALSE;
     result->obj_value = INT_MAX;
+    result->tour_length = DBL_MAX;
     result->bin_search_steps = 0;
     result->linkern_attempts = 0;
     result->linkern_time = 0.0;
@@ -83,6 +84,7 @@ void
 arrow_btsp_solve_plan_init(arrow_btsp_solve_plan *plan)
 {
     plan->plan_type = -1;
+    plan->feasible_length = 0;
     plan->attempts = 0;
 }
 
@@ -102,8 +104,10 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
     double start_time = arrow_util_zeit();
     
     arrow_btsp_result cur_result;
-    arrow_btsp_result_init(problem, &cur_result);    
+    arrow_btsp_result_init(problem, &cur_result);
+    
     result->optimal = ARROW_FALSE;
+    result->found_tour = ARROW_FALSE;
 
     /* Print out debug information */
     arrow_debug("Confirm solution?: %s\n", 
@@ -133,6 +137,7 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
     {
         arrow_debug("A tour was found!  Nothing left to do here.\n");
         result->optimal = ARROW_TRUE;
+        result->found_tour = ARROW_TRUE;
         goto CLEANUP;
     }
     
@@ -178,6 +183,7 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
         if(tour_exists == ARROW_TRUE)
         {
             arrow_debug("A tour was found!\n");
+            result->found_tour = ARROW_TRUE;
             
             /* Check to see if we found a smaller solution than our median */
             if(cur_result.obj_value < median_val)
@@ -195,11 +201,12 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
             
             /* Copy over new best objective value and tour */
             result->obj_value = cur_result.obj_value;
+            result->tour_length = cur_result.tour_length;
             if(result->tour != NULL)
             {
                 for(i = 0; i < problem->size; i++)
                     result->tour[i] = cur_result.tour[i];
-            }
+            }   
         }
         else
         {
@@ -224,6 +231,8 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
                         result->tour[i] = cur_result.tour[i];
                 }
             }
+            
+            if(low > high) low = high;
         }
         
         /* Copy over other important information */
@@ -237,8 +246,10 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
 CLEANUP:
     /* See if we've reached the lower bound to guarantee optimality */
     if(result->obj_value == params->lower_bound)
+    {
         result->optimal = ARROW_TRUE;
-    result->found_tour = ARROW_TRUE;
+        result->found_tour = ARROW_TRUE;
+    }
     result->total_time = arrow_util_zeit() - start_time;
 
     arrow_btsp_result_destruct(&cur_result);
@@ -254,9 +265,13 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
          int delta, int *tour_exists, arrow_btsp_result *result)
 {
     int ret = ARROW_SUCCESS;
+    int u, v, cost, max_cost;
+    double len;
     
     *tour_exists = ARROW_FALSE;
+    result->found_tour = ARROW_FALSE;
     result->obj_value = INT_MAX;
+    result->tour_length = DBL_MAX;
     result->linkern_attempts = 0;
     result->linkern_time = 0.0;
     result->exact_attempts = 0;
@@ -276,6 +291,7 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
                 
         arrow_debug("Step %d of %d (Type %d): ", i + 1, num_steps, 
                     plan->plan_type);
+        arrow_debug("Want tours of length <= %.0f\n", plan->feasible_length);
         
         for(j = 1; j <= plan->attempts; j++)
         {
@@ -284,7 +300,7 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
             /* Create a new problem based upon the solve plan */
             arrow_problem new_problem;
             arrow_btsp_fun_apply(fun, problem, delta, &new_problem);
-            
+                        
             /* Call LK or Exact TSP solver on new problem */      
             if(plan->use_exact_solver == ARROW_TRUE)
             {
@@ -307,32 +323,42 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
                 goto CLEANUP;   
             }
             
-            /* Determine if we have found a tour of length 0 or not */
+            /* Determine if we have found a tour of feasible length or not */
             arrow_debug("   - found a tour of length %.0f\n", 
                         tsp_result.obj_value);
-            if(tsp_result.obj_value == 0)
+            if(tsp_result.obj_value <= plan->feasible_length)
             {
                 /* Set this tour to the output variables then exit */
+                arrow_debug("   - tour found is feasible.\n");
                 *tour_exists = ARROW_TRUE;
                 result->obj_value = delta;
-                if(result->tour != NULL)
+
+                len = 0.0;
+                for(k = 0; k < problem->size; k++)
                 {
-                    for(k = 0; k < problem->size; k++)
+                    u = tsp_result.tour[k];
+                    v = tsp_result.tour[(k + 1) % problem->size];
+                    len += problem->get_cost(problem, u, v);
+                    if(result->tour != NULL)
                         result->tour[k] = tsp_result.tour[k];
                 }
+                arrow_debug("   - actual tour is of length %.0f\n", len);
+                result->tour_length = len;
+                    
                 arrow_debug("   - finished feasibility question.\n");
                 goto CLEANUP;
             }
-            else
+            else if(plan->upper_bound_update == ARROW_TRUE)
             {
                 /* Check to see if we found a better upper bound */
-                int u, v, cost;
-                int max_cost = INT_MIN;
+                max_cost = INT_MIN;
+                len = 0.0;
                 for(k = 0; k < problem->size; k++)
                 {
                     u = tsp_result.tour[k];
                     v = tsp_result.tour[(k + 1) % problem->size];
                     cost = problem->get_cost(problem, u, v);
+                    len += cost;
                     if(cost > max_cost) max_cost = cost;
                 }
                 
@@ -341,6 +367,8 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
                     arrow_debug("   - tour is the best one found so far.\n");
                     arrow_debug("   - max. cost is %d\n", max_cost);
                     result->obj_value = max_cost;
+                    arrow_debug("   - actual tour is of length %.0f\n", len);
+                    result->tour_length = len;
                     if(result->tour != NULL)
                     {
                         for(k = 0; k < problem->size; k++)

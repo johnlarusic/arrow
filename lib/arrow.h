@@ -19,6 +19,7 @@ extern "C" {
 #include <errno.h>
 #include <limits.h>
 #include <unistd.h>
+#include <float.h>
 
 #include "concorde.h"
 
@@ -44,6 +45,7 @@ extern "C" {
 #define ARROW_FALSE 0
 
 #define ARROW_BTSP_SOLVE_PLAN_BASIC 1
+#define ARROW_BTSP_SOLVE_PLAN_CONSTRAINED 2
 
 #define ARROW_DEFAULT_BASIC_ATTEMPTS 3
 
@@ -160,6 +162,7 @@ typedef struct arrow_btsp_result
 {
     int found_tour;         /**< true if a tour was found, false otherwise */
     int obj_value;          /**< objective value (largest cost in tour) */
+    double tour_length;     /**< length of the tour found */
     int *tour;              /**< tour that was found in node-node format */
     int optimal;            /**< indicates if the solution is optimal */
     int bin_search_steps;   /**< number of steps in binary search */
@@ -203,6 +206,9 @@ typedef struct arrow_btsp_solve_plan
     int use_exact_solver;          /**< use exact TSP solver? */
     arrow_btsp_fun fun;            /**< the cost matrix function to apply */
     arrow_tsp_lk_params lk_params; /**< LK params to use */
+    double feasible_length;        /**< Length we say tour is feasible
+                                        (normally length 0) */
+    int upper_bound_update;        /**< Check for better upper bound?*/
     int attempts;                  /**< number of attempts to perform */
 } arrow_btsp_solve_plan;
 
@@ -373,6 +379,13 @@ arrow_btsp_fun_destruct(arrow_btsp_fun *fun);
 int
 arrow_btsp_fun_basic_shallow(arrow_btsp_fun *fun);
 
+/**
+ *  @brief  Constrained BTSP to TSP function using a shallow structure.
+ *  @param  fun [out] function structure
+ */
+int
+arrow_btsp_fun_constrained_shallow(arrow_btsp_fun *fun);
+
 
 /****************************************************************************
  *  problem.c
@@ -423,6 +436,15 @@ arrow_problem_print(arrow_problem *problem);
  */
 inline int 
 arrow_problem_get_cost(arrow_problem *problem, int i, int j);
+
+/**
+ *  @brief  Reads a TSPLIB tour file
+ *  @param  file_name [in] the TSPLIB tour file to read
+ *  @param  size [in] the number of cities in the tour
+ *  @param  tour [out] an array to hold the tour in node-node format
+ */
+int
+arrow_problem_read_tour(char *file_name, int size, int *tour);
 
 
 /****************************************************************************
