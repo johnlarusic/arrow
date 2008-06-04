@@ -8,12 +8,15 @@ stamp.h1
 *.o
 *.Tpo
 
-src/bbssp
-src/btsp
-src/cbtsp
-src/histogram_data
-src/linkern
-src/tour_info
-src/tsp
+bbssp
+btsp
+cbtsp
+histogram_data
+linkern
+tour_info
+tsp
 
 *~
+
+.sconsign.dblite
+build/*
