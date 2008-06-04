@@ -381,10 +381,11 @@ arrow_btsp_fun_basic_shallow(arrow_btsp_fun *fun);
 
 /**
  *  @brief  Constrained BTSP to TSP function using a shallow structure.
+ *  @param  infinity [in] value to use as "infinity"
  *  @param  fun [out] function structure
  */
 int
-arrow_btsp_fun_constrained_shallow(arrow_btsp_fun *fun);
+arrow_btsp_fun_constrained_shallow(int infinity, arrow_btsp_fun *fun);
 
 
 /****************************************************************************

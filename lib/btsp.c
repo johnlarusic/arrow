@@ -158,10 +158,19 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
     }
     arrow_debug(" done!\n");
     
-    arrow_debug("Looking for upper bound %d in cost list...", 
-                result->obj_value);
-    ret = arrow_util_binary_search(info->cost_list, info->cost_list_length,
-                                   result->obj_value, &high);
+    int upper_bound = params->upper_bound;
+    if(result->obj_value < upper_bound) upper_bound = result->obj_value;
+    arrow_debug("Looking for upper bound %d in cost list...", upper_bound);
+    if(upper_bound == INT_MAX)
+    {
+        arrow_debug("Take largest cost as upperbound...");
+        high = info->cost_list_length - 1;
+    }
+    else
+    {
+        ret = arrow_util_binary_search(info->cost_list, info->cost_list_length,
+                                       upper_bound, &high);
+    }
     arrow_debug(" done!\n");
     
     arrow_debug("Starting binary search.\n");
@@ -300,7 +309,7 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
             /* Create a new problem based upon the solve plan */
             arrow_problem new_problem;
             arrow_btsp_fun_apply(fun, problem, delta, &new_problem);
-                        
+                                    
             /* Call LK or Exact TSP solver on new problem */      
             if(plan->use_exact_solver == ARROW_TRUE)
             {

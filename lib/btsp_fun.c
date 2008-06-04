@@ -115,11 +115,11 @@ constrained_shallow_destruct(arrow_btsp_fun *fun);
  *  @brief  Constrained BTSP cost transformation
  *  @param  cost [in] the old cost
  *  @param  delta [in] delta parameter
- *  @param  size [in] number of cities in problem
+ *  @param  infinity [in] value to use as infinity
  *  @return The transformed cost C[i,j] between nodes i and j
  */
 static int
-constrained_cost(int cost, int delta, int size);
+constrained_cost(int cost, int delta, int infinity);
 
 /**
  *  @brief  Constrained BTSP edge length function for Euclidean data (EUC_2D)
@@ -291,9 +291,14 @@ arrow_btsp_fun_basic_shallow(arrow_btsp_fun *fun)
 }
 
 int
-arrow_btsp_fun_constrained_shallow(arrow_btsp_fun *fun)
+arrow_btsp_fun_constrained_shallow(int infinity, arrow_btsp_fun *fun)
 {
-    fun->data = NULL;
+    if((fun->data = malloc(sizeof(int))) == NULL)
+    {
+        arrow_print_error("Error allocating memory for fun->data (int).");
+        return ARROW_ERROR_FATAL;
+    }
+    *((int*)fun->data) = infinity;
     fun->shallow = ARROW_TRUE;
     fun->apply = constrained_shallow_apply;
     fun->destruct = constrained_shallow_destruct;
@@ -315,7 +320,6 @@ basic_shallow_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
     {
         case CC_EUCLIDEAN: 
             arrow_debug("EUC_2D cost matrix\n");
-            //new_data->edgelen = btsp_euclid_edgelen; 
             (new_problem->data).edgelen = basic_euclid_edgelen;
             break;
         case CC_GEOGRAPHIC: 
@@ -429,18 +433,24 @@ constrained_shallow_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
     
     arrow_debug("Delta is %d\n", delta);
     new_data->dsjrand_param = delta;
-    new_data->default_len = old_problem->size;
+    new_data->default_len = *((int*)(fun->data));
     return ARROW_SUCCESS;
 }
 
 void
 constrained_shallow_destruct(arrow_btsp_fun *fun)
-{ }
+{ 
+    if((int*)(fun->data) != NULL)
+    {
+        free((int*)(fun->data));
+        (int*)(fun->data) = NULL;
+    }
+}
 
 static int
-constrained_cost(int cost, int delta, int size)
+constrained_cost(int cost, int delta, int infinity)
 {
-    return (cost <= delta ? cost : (size * delta) + 1);
+    return (cost <= delta ? cost : infinity);
 }
 
 static int 

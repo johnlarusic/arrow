@@ -7,3 +7,13 @@ stamp.h1
 *.Po
 *.o
 *.Tpo
+
+src/bbssp
+src/btsp
+src/cbtsp
+src/histogram_data
+src/linkern
+src/tour_info
+src/tsp
+
+*~

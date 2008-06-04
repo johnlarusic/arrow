@@ -103,11 +103,14 @@ main(int argc, char *argv[])
     
     /* Setup necessary function structures */
     arrow_btsp_fun fun_constrained;
-    if(arrow_btsp_fun_constrained_shallow(&fun_constrained) != ARROW_SUCCESS)
+    if(arrow_btsp_fun_constrained_shallow(length + 1, 
+                                          &fun_constrained) != ARROW_SUCCESS)
+    {
         return EXIT_FAILURE;
+    }
     
     arrow_btsp_solve_plan steps[] = {
-       {ARROW_BTSP_SOLVE_PLAN_CONSTRAINED, ARROW_FALSE, 
+       {ARROW_BTSP_SOLVE_PLAN_CONSTRAINED, ARROW_FALSE,//ARROW_FALSE, 
            fun_constrained, lk_params, length, ARROW_FALSE, basic_attempts}
     };
     
@@ -151,7 +154,27 @@ main(int argc, char *argv[])
     
     end_time = arrow_util_zeit() - start_time;
     
-    /* Final output */
+    int k, u, v;
+    int cost, max_cost = INT_MIN;
+    double len = 0.0;
+    if(result.found_tour)
+    {
+        for(k = 0; k < problem.size; k++)
+        {
+            u = result.tour[k];
+            v = result.tour[(k + 1) % problem.size];
+            cost = problem.get_cost(&problem, u, v);
+            len += cost;
+            if(cost > max_cost) max_cost = cost;
+            if(cost > result.obj_value)
+            {
+                fprintf(stderr, "FUCK. %s\n", input_file);
+                return EXIT_FAILURE;
+            }
+        }
+        printf("\nCHECK Tour Length: %.0f\n", len);
+        printf("CHECK Max Cost: %d\n\n", max_cost);
+    }
     
     
     /* Output result */
@@ -189,8 +212,7 @@ main(int argc, char *argv[])
     
 CLEANUP:
     arrow_btsp_result_destruct(&result);
-    arrow_btsp_params_destruct(&btsp_params);
-    arrow_btsp_fun_destruct(&fun_constrained);
+    /*arrow_btsp_fun_destruct(&fun_constrained);*/
     arrow_btsp_params_destruct(&btsp_params);
     arrow_tsp_lk_params_destruct(&lk_params);
     arrow_problem_destruct(&problem);
@@ -239,7 +261,7 @@ read_args(int argc, char *argv[])
 {
     int opt_idx;
     char opt;
-    char *short_options = "hVxL:r:s:k:ceSl:u:";
+    char *short_options = "hVxL:r:s:k:ceSl:u:e:";
     struct option long_options[] =
     {
         {"help",                no_argument,        0, 'h'},
@@ -367,16 +389,16 @@ print_xml_output(arrow_btsp_result *result, double max_length,
            result->bin_search_steps);
     printf("    <linkern_attempts>%d</linkern_attempts>\n",
            result->linkern_attempts);
-    printf("    <linkkern_avg_time>%.2f</linkkern_avg_time>\n", 
+    printf("    <linkern_avg_time>%.2f</linkern_avg_time>\n", 
            (result->linkern_attempts > 0 ? 
             result->linkern_time / (result->linkern_attempts * 1.0) : 0.0));
     printf("    <exact_tsp_attempts>%d</exact_tsp_attempts>\n",
            result->exact_attempts);
-    printf("    <exact_tsp_time>%.2f</exact_tsp_avg_time>\n", 
+    printf("    <exact_tsp_avg_time>%.2f</exact_tsp_avg_time>\n", 
            (result->exact_attempts > 0 ? 
             result->exact_time / (result->exact_attempts * 1.0) : 0.0));
     printf("    <btsp_total_time>%.2f</btsp_total_time>\n",
            result->total_time);
     printf("    <total_time>%.2f</total_time>\n", total_time);
-    printf("</<arrow_cbtsp>\n");
+    printf("</arrow_cbtsp>\n");
 }
