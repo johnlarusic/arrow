@@ -14,7 +14,7 @@
  ****************************************************************************/
 /**
  *  @brief  Applies basic BTSP function to the cost matrix of the old problem
- *          to create the new problem
+ *          to create the new problem (shallow copy).
  *  @param  fun [in] the cost matrix function
  *  @param  old_problem [in] the problem to apply the function to
  *  @param  delta [in] delta parameter
@@ -25,11 +25,35 @@ basic_shallow_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
                     int delta, arrow_problem *new_problem);
                     
 /**
+ *  @brief  Applies basic BTSP function to the cost matrix of the old problem
+ *          to create the new problem (deep copy).
+ *  @param  fun [in] the cost matrix function
+ *  @param  old_problem [in] the problem to apply the function to
+ *  @param  delta [in] delta parameter
+ *  @param  new_problem [out] the resulting new problem
+ */
+int
+basic_deep_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
+                 int delta, arrow_problem *new_problem);
+                    
+/**
  *  @brief  Destructs a basic BTSP function structure
  *  @param  fun [out] the function structure to destruct
  */
 void
-basic_shallow_destruct(arrow_btsp_fun *fun);
+basic_destruct(arrow_btsp_fun *fun);
+
+/**
+ *  @brief  Determines if the given tour is feasible or not.
+ *  @param  fun [in] function structure
+ *  @param  problem [in] the problem to check against
+ *  @param  tour_length [in] the length of the given tour
+ *  @param  tour [in] the tour in node-node format
+ *  @return ARROW_TRUE if the tour is feasible, ARROW_FALSE if not
+ */
+int
+basic_feasible(arrow_btsp_fun *fun, arrow_problem *problem, 
+               double tour_length, int *tour);
 
 /**
  *  @brief  BTSP to TSP cost transformation
@@ -94,7 +118,7 @@ basic_matrix_edgelen(int i, int j, CCdatagroup *dat);
 
 /**
  *  @brief  Applies constrained BTSP function to the cost matrix of the old 
- *          problem to create the new problem
+ *          problem to create the new problem (shallow copy)
  *  @param  fun [in] the cost matrix function
  *  @param  old_problem [in] the problem to apply the function to
  *  @param  delta [in] delta parameter
@@ -103,13 +127,25 @@ basic_matrix_edgelen(int i, int j, CCdatagroup *dat);
 int
 constrained_shallow_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
                           int delta, arrow_problem *new_problem);
-                    
+
+/**
+ *  @brief  Applies constrained BTSP function to the cost matrix of the old 
+ *          problem to create the new problem (deep copy)
+ *  @param  fun [in] the cost matrix function
+ *  @param  old_problem [in] the problem to apply the function to
+ *  @param  delta [in] delta parameter
+ *  @param  new_problem [out] the resulting new problem
+ */
+int
+constrained_deep_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
+                       int delta, arrow_problem *new_problem);
+
 /**
  *  @brief  Destructs constrained BTSP function structure
  *  @param  fun [out] the function structure to destruct
  */
 void
-constrained_shallow_destruct(arrow_btsp_fun *fun);
+constrained_destruct(arrow_btsp_fun *fun);
 
 /**
  *  @brief  Constrained BTSP cost transformation
@@ -174,7 +210,6 @@ constrained_att_edgelen(int i, int j, CCdatagroup *dat);
  */
 static int
 constrained_matrix_edgelen(int i, int j, CCdatagroup *dat);
-
 
 /* These functions are essentially copies of those found in Concorde for
  * computing edge lengths.  Until such time Concorde makes it easy for
@@ -264,8 +299,11 @@ arrow_btsp_fun_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
     else
     {
         /* Create structure to hold new cost matrix */
-        arrow_print_error("Not yet implemented");
-        return ARROW_ERROR_FATAL;
+        int ret;
+        ret = arrow_util_CCdatagroup_init_matrix(old_problem->size, 
+                                                 &(new_problem->data));
+        if(ret != ARROW_SUCCESS)
+            return ARROW_ERROR_FATAL;
     }
     
     /* Apply the function to the cost matrix */
@@ -281,17 +319,29 @@ arrow_btsp_fun_destruct(arrow_btsp_fun *fun)
 }
 
 int
-arrow_btsp_fun_basic_shallow(arrow_btsp_fun *fun)
+arrow_btsp_fun_basic(int shallow, arrow_btsp_fun *fun)
 {
     fun->data = NULL;
-    fun->shallow = ARROW_TRUE;
-    fun->apply = basic_shallow_apply;
-    fun->destruct = basic_shallow_destruct;
+    if(shallow == ARROW_TRUE)
+    {
+        fun->shallow = ARROW_TRUE;
+        fun->apply = basic_shallow_apply;
+    }
+    else
+    {
+        fun->shallow = ARROW_FALSE;
+        fun->apply = basic_deep_apply;
+    }
+    fun->feasible_length = 0;
+    
+    fun->destruct = basic_destruct;
+    fun->feasible = basic_feasible;
+    
     return ARROW_SUCCESS;
 }
 
 int
-arrow_btsp_fun_constrained_shallow(int infinity, arrow_btsp_fun *fun)
+arrow_btsp_fun_constrained(int shallow, int infinity, arrow_btsp_fun *fun)
 {
     if((fun->data = malloc(sizeof(int))) == NULL)
     {
@@ -299,14 +349,27 @@ arrow_btsp_fun_constrained_shallow(int infinity, arrow_btsp_fun *fun)
         return ARROW_ERROR_FATAL;
     }
     *((int*)fun->data) = infinity;
-    fun->shallow = ARROW_TRUE;
-    fun->apply = constrained_shallow_apply;
-    fun->destruct = constrained_shallow_destruct;
+    
+    if(shallow == ARROW_TRUE)
+    {
+        fun->shallow = ARROW_TRUE;
+        fun->apply = constrained_shallow_apply;
+    }
+    else
+    {
+        fun->shallow = ARROW_TRUE;
+        fun->apply = constrained_deep_apply;
+    }
+
+    fun->destruct = constrained_destruct;
+    fun->feasible = basic_feasible;
+    
     return ARROW_SUCCESS;
 }
 
+
 /****************************************************************************
- * Public function implemenations
+ * Private function implemenations
  ****************************************************************************/
 int
 basic_shallow_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
@@ -349,9 +412,28 @@ basic_shallow_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
     return ARROW_SUCCESS;
 }
 
+int
+basic_deep_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
+                 int delta, arrow_problem *new_problem)
+{
+    int i, j;
+    for(i = 0; i < new_problem->size; i++)
+        for(j = 0; j <= i; j++)
+            new_problem->data.adj[i][j] = 
+                basic_cost(old_problem->get_cost(old_problem, i, j), delta);
+    return ARROW_SUCCESS;
+}
+
 void
-basic_shallow_destruct(arrow_btsp_fun *fun)
+basic_destruct(arrow_btsp_fun *fun)
 { }
+
+int
+basic_feasible(arrow_btsp_fun *fun, arrow_problem *problem,
+               double tour_length, int *tour)
+{
+    return (tour_length <= fun->feasible_length ? ARROW_TRUE : ARROW_FALSE);
+}
 
 static int
 basic_cost(int cost, int delta)
@@ -437,13 +519,26 @@ constrained_shallow_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
     return ARROW_SUCCESS;
 }
 
+int
+constrained_deep_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
+                       int delta, arrow_problem *new_problem)
+{
+    int i, j;
+    for(i = 0; i < new_problem->size; i++)
+        for(j = 0; j <= i; j++)
+            new_problem->data.adj[i][j] = 
+                constrained_cost(old_problem->get_cost(old_problem, i, j), 
+                                 delta, *((int*)(fun->data)));
+    return ARROW_SUCCESS;
+}
+
 void
-constrained_shallow_destruct(arrow_btsp_fun *fun)
+constrained_destruct(arrow_btsp_fun *fun)
 { 
     if((int*)(fun->data) != NULL)
     {
         free((int*)(fun->data));
-        (int*)(fun->data) = NULL;
+        ((int*)(fun->data)) = NULL;
     }
 }
 

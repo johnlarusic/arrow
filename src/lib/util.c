@@ -83,6 +83,36 @@ arrow_util_CCdatagroup_shallow_copy(CCdatagroup *from, CCdatagroup *to)
 }
 
 int
+arrow_util_CCdatagroup_init_matrix(int size, CCdatagroup *dat)
+{    
+    CCutil_init_datagroup(dat);
+    if(CCutil_dat_setnorm(dat, CC_MATRIXNORM))
+    {
+        arrow_print_error("Couldn't set norm to MATRIXNORM");
+        return ARROW_ERROR_FATAL;
+    }
+    
+    dat->adj = CC_SAFE_MALLOC(size, int *);
+    dat->adjspace = CC_SAFE_MALLOC(size * (size + 1) / 2, int);
+    
+    if(dat->adj == (int **)NULL || dat->adjspace == (int *)NULL)
+    {
+        CCutil_freedatagroup(dat);
+        arrow_print_error("Couldn't create adj/adjspace arrays");
+        return ARROW_ERROR_FATAL;
+    }
+    
+    int i, j;
+    for(i = 0, j = 0; i < size; i++)
+    {
+        dat->adj[i] = dat->adjspace + j;
+        j += (i + 1);
+    }
+    
+    return ARROW_SUCCESS;
+}
+
+int
 arrow_util_binary_search(int *array, int size, int element, int *pos)
 {
     int low = 0;
@@ -112,4 +142,33 @@ arrow_util_binary_search(int *array, int size, int element, int *pos)
         return ARROW_ERROR_FATAL;
     else        
         return ARROW_SUCCESS;
+}
+
+int
+arrow_util_regex_match(char *string, char *pattern)
+{
+    regex_t re;
+    int match;
+    int status;
+ 
+    if((status = regcomp(&re, pattern, REG_EXTENDED)) != 0)
+        return ARROW_FALSE;
+    match = regexec(&re, string, 0, NULL, 0);
+    regfree(&re);
+    
+    if(match == 0)
+        return ARROW_TRUE;
+    else
+        return ARROW_FALSE;
+}
+
+void
+arrow_util_print_program_args(int argc, char *argv[], FILE *out)
+{
+    int i;
+    for(i = 0; i < argc; i++)
+    {
+        if(i > 0) fprintf(out, " ");
+        fprintf(out, "%s", argv[i]);
+    }
 }

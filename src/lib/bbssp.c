@@ -65,7 +65,7 @@ arrow_bbssp_solve(arrow_problem *problem, arrow_problem_info *info,
         if(ret == ARROW_ERROR_FATAL)
         {
             result->obj_value = -1;
-            return ARROW_ERROR_FATAL;
+            return ARROW_FAILURE;
         }  
         else
         {

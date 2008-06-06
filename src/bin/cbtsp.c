@@ -110,7 +110,7 @@ main(int argc, char *argv[])
     }
     
     arrow_btsp_solve_plan steps[] = {
-       {ARROW_BTSP_SOLVE_PLAN_CONSTRAINED, ARROW_FALSE,//ARROW_FALSE, 
+       {ARROW_BTSP_SOLVE_PLAN_CONSTRAINED, ARROW_FALSE, 
            fun_constrained, lk_params, length, ARROW_FALSE, basic_attempts}
     };
     

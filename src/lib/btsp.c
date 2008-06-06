@@ -84,7 +84,6 @@ void
 arrow_btsp_solve_plan_init(arrow_btsp_solve_plan *plan)
 {
     plan->plan_type = -1;
-    plan->feasible_length = 0;
     plan->attempts = 0;
 }
 
@@ -142,6 +141,7 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
     }
     
     /* Start enhanced binary search threshold heuristic */
+    //if(params->supress_ebst) goto CLEANUP;
     arrow_debug("Starting enhanced binary search threshold heuristic.\n");
     int i, low, high, median, median_val;
     
@@ -274,6 +274,7 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
          int delta, int *tour_exists, arrow_btsp_result *result)
 {
     int ret = ARROW_SUCCESS;
+    int feasible = ARROW_FALSE;
     int u, v, cost, max_cost;
     double len;
     
@@ -300,7 +301,6 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
                 
         arrow_debug("Step %d of %d (Type %d): ", i + 1, num_steps, 
                     plan->plan_type);
-        arrow_debug("Want tours of length <= %.0f\n", plan->feasible_length);
         
         for(j = 1; j <= plan->attempts; j++)
         {
@@ -335,7 +335,9 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
             /* Determine if we have found a tour of feasible length or not */
             arrow_debug("   - found a tour of length %.0f\n", 
                         tsp_result.obj_value);
-            if(tsp_result.obj_value <= plan->feasible_length)
+            feasible = fun->feasible(fun, problem, tsp_result.obj_value, 
+                                     tsp_result.tour);
+            if(feasible == ARROW_TRUE)
             {
                 /* Set this tour to the output variables then exit */
                 arrow_debug("   - tour found is feasible.\n");

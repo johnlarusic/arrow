@@ -20,6 +20,8 @@ extern "C" {
 #include <limits.h>
 #include <unistd.h>
 #include <float.h>
+#include <regex.h>
+#include <getopt.h>
 
 #include "concorde.h"
 
@@ -36,8 +38,12 @@ extern "C" {
 /****************************************************************************
  *  Global Constants
  ****************************************************************************/
+#define ARROW_VERSION "1.0"
 #define ARROW_DEV_NULL "/dev/null"
+
 #define ARROW_SUCCESS 1
+#define ARROW_FAILURE 0
+
 #define ARROW_ERROR_INPUT 0
 #define ARROW_ERROR_FATAL -1
 #define ARROW_ERROR_NON_FATAL -2
@@ -48,6 +54,10 @@ extern "C" {
 #define ARROW_BTSP_SOLVE_PLAN_CONSTRAINED 2
 
 #define ARROW_DEFAULT_BASIC_ATTEMPTS 3
+
+#define ARROW_OPTION_INT 1
+#define ARROW_OPTION_DOUBLE 2
+#define ARROW_OPTION_STRING 3
 
 #define CONCORDE_SUCCESS 0
 #define CONCORDE_FAILURE 1
@@ -178,8 +188,9 @@ typedef struct arrow_btsp_result
  */
 typedef struct arrow_btsp_fun
 {
-    void *data;     /**< data required by function */
-    int shallow;    /**< indicates use of shallow copy of data */
+    void *data;             /**< data required by function */
+    int shallow;            /**< indicates use of shallow copy of data */
+    int feasible_length;    /**< the length of a feasible tour (normally 0) */
     
     /**
      *  @brief  Applies the function to the given problem
@@ -195,6 +206,18 @@ typedef struct arrow_btsp_fun
      */
     void 
     (*destruct)(struct arrow_btsp_fun *fun);
+    
+    /**
+     *  @brief  Determines if the given tour is feasible or not.
+     *  @param  fun [in] function structure
+     *  @param  problem [in] the problem to check against
+     *  @param  tour_length [in] the length of the given tour
+     *  @param  tour [in] the tour in node-node format
+     *  @return ARROW_TRUE if the tour is feasible, ARROW_FALSE if not
+     */
+    int
+    (*feasible)(struct arrow_btsp_fun *fun, arrow_problem *problem,
+                double tour_length, int *tour);
 } arrow_btsp_fun;
 
 /**
@@ -206,8 +229,6 @@ typedef struct arrow_btsp_solve_plan
     int use_exact_solver;          /**< use exact TSP solver? */
     arrow_btsp_fun fun;            /**< the cost matrix function to apply */
     arrow_tsp_lk_params lk_params; /**< LK params to use */
-    double feasible_length;        /**< Length we say tour is feasible
-                                        (normally length 0) */
     int upper_bound_update;        /**< Check for better upper bound?*/
     int attempts;                  /**< number of attempts to perform */
 } arrow_btsp_solve_plan;
@@ -226,6 +247,23 @@ typedef struct arrow_btsp_params
     arrow_btsp_solve_plan *steps;   /**< solve plan steps */
 } arrow_btsp_params;
 
+/**
+ *  @brief  Program options structure
+ */
+typedef struct arrow_option
+{
+    char short_option;              /**< short option (flag) */
+    const char *long_option;        /**< long option */
+    const char *help_message;       /**< help message to display for option */
+    int data_type;                  /**< one of ARROW_OPTION_INT, 
+                                         ARROW_OPTION_DOUBLE, 
+                                        ARROW_OPTION_STRING */
+    void *data_ptr;          /**< pointer to variable to hold parameter */
+    int opt_required;       /**< if true ensures option is present */
+    int arg_required;       /**< if true, ensures argument for parameter
+                                 passed, otherwise puts 1 into data_ptr if
+                                 parameter is present */
+} arrow_option;
 
 /****************************************************************************
  *  bbssp.c
@@ -373,19 +411,29 @@ void
 arrow_btsp_fun_destruct(arrow_btsp_fun *fun);
 
 /**
- *  @brief  Basic BTSP to TSP function using a shallow structure.
+ *  @brief  Basic BTSP to TSP function.
+ *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
  *  @param  fun [out] function structure
  */
 int
-arrow_btsp_fun_basic_shallow(arrow_btsp_fun *fun);
+arrow_btsp_fun_basic(int shallow, arrow_btsp_fun *fun);
 
 /**
- *  @brief  Constrained BTSP to TSP function using a shallow structure.
+ *  @brief  Constrained BTSP to TSP function
+ *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
  *  @param  infinity [in] value to use as "infinity"
  *  @param  fun [out] function structure
  */
 int
-arrow_btsp_fun_constrained_shallow(int infinity, arrow_btsp_fun *fun);
+arrow_btsp_fun_constrained(int shallow, int infinity, arrow_btsp_fun *fun);
+
+
+/****************************************************************************
+ *  options.c
+ ****************************************************************************/
+int
+arrow_options_parse(int num_opts, arrow_option options[],  char *description, 
+                    char *usage, int argc, char *argv[], int *opt_ind);
 
 
 /****************************************************************************
@@ -446,6 +494,17 @@ arrow_problem_get_cost(arrow_problem *problem, int i, int j);
  */
 int
 arrow_problem_read_tour(char *file_name, int size, int *tour);
+
+/**
+ *	@brief	Transforms an asymmetric BTSP problem of n nodes into a symmetric
+ *			BTSP problem with 2n nodes.
+ *  @param  old_problem [in] the asymmetric problem
+ *	@param	infinity [in] value to use as "infinity"
+ *	@param	new_problem [out] the new symmetric problem
+ */
+int
+arrow_problem_abtsp_to_sbtsp(arrow_problem *old_problem, int infinity, 
+                             arrow_problem *new_problem);
 
 
 /****************************************************************************
@@ -563,6 +622,15 @@ void
 arrow_util_CCdatagroup_shallow_copy(CCdatagroup *from, CCdatagroup *to);
 
 /**
+ *  @brief  Initializes an upper-diagonal matrix norm structure for
+ *          Concorde that is ready to be filled in with values.
+ *  @param  size [in] the number of cities/vertices
+ *  @param  dat [out] the CCdatagroup structure to create
+ */
+int
+arrow_util_CCdatagroup_init_matrix(int size, CCdatagroup *dat);
+
+/**
  *  @brief  Performs a binary search to find the wanted element in a
  *          sorted integer array.
  *  @param  array [in] the array to search (note: must be sorted in
@@ -573,6 +641,25 @@ arrow_util_CCdatagroup_shallow_copy(CCdatagroup *from, CCdatagroup *to);
  */
 int
 arrow_util_binary_search(int *array, int size, int element, int *pos);
+
+/**
+ *	@brief	Determines if the given string turns up a match for the given
+ *			regular expression pattern.
+ *	@param	string [in] the string to match against
+ *	@param	pattern [in] the regular expression pattern to match
+ *	@return	ARROW_TRUE if a match is found, ARROW_FALSE if not.
+ */
+int
+arrow_util_regex_match(char *string, char *pattern);
+
+/**
+ *  @brief  Prints out the given program arguments to the specified file.
+ *  @param  argc [in] the number of arguments
+ *  @param  argv [in] the program arugment array
+ *  @param  out [in] the file handle to print out to
+ */
+void
+arrow_util_print_program_args(int argc, char *argv[], FILE *out);
 
 
 #ifdef __cplusplus
