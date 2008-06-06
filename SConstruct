@@ -38,7 +38,7 @@ env_bin.BuildDir(bin_build, bin_src)
 
 env_bin.Program('bbssp', bin_build + '/bbssp.c')
 env_bin.Program('btsp', bin_build + '/btsp.c')
-#env_bin.Program('cbtsp', bin_build + '/cbtsp.c')
+env_bin.Program('cbtsp', bin_build + '/cbtsp.c')
 env_bin.Program('histogram_data', bin_build + '/histogram_data.c')
 #env_bin.Program('linkern', bin_build + '/linkern.c')
 #env_bin.Program('tsp', bin_build + '/tsp.c')

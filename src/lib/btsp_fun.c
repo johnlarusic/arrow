@@ -283,14 +283,13 @@ int
 arrow_btsp_fun_apply(arrow_btsp_fun *fun, arrow_problem *old_problem, 
                      int delta, arrow_problem *new_problem)
 {
-    
     CCutil_init_datagroup(&(new_problem->data));
     new_problem->size = old_problem->size;
     new_problem->name = old_problem->name;
     new_problem->shallow = fun->shallow;
     new_problem->get_cost = old_problem->get_cost;
     
-    if(fun->shallow == ARROW_TRUE)
+    if(fun->shallow)
     {
         /* Create a shallow copy of the data */
         arrow_util_CCdatagroup_shallow_copy(&(old_problem->data), 
@@ -322,7 +321,7 @@ int
 arrow_btsp_fun_basic(int shallow, arrow_btsp_fun *fun)
 {
     fun->data = NULL;
-    if(shallow == ARROW_TRUE)
+    if(shallow)
     {
         fun->shallow = ARROW_TRUE;
         fun->apply = basic_shallow_apply;
@@ -333,7 +332,6 @@ arrow_btsp_fun_basic(int shallow, arrow_btsp_fun *fun)
         fun->apply = basic_deep_apply;
     }
     fun->feasible_length = 0;
-    
     fun->destruct = basic_destruct;
     fun->feasible = basic_feasible;
     
@@ -341,7 +339,8 @@ arrow_btsp_fun_basic(int shallow, arrow_btsp_fun *fun)
 }
 
 int
-arrow_btsp_fun_constrained(int shallow, int infinity, arrow_btsp_fun *fun)
+arrow_btsp_fun_constrained(int shallow, int feasible_length, int infinity, 
+                           arrow_btsp_fun *fun)
 {
     if((fun->data = malloc(sizeof(int))) == NULL)
     {
@@ -350,17 +349,17 @@ arrow_btsp_fun_constrained(int shallow, int infinity, arrow_btsp_fun *fun)
     }
     *((int*)fun->data) = infinity;
     
-    if(shallow == ARROW_TRUE)
+    if(shallow)
     {
         fun->shallow = ARROW_TRUE;
         fun->apply = constrained_shallow_apply;
     }
     else
     {
-        fun->shallow = ARROW_TRUE;
+        fun->shallow = ARROW_FALSE;
         fun->apply = constrained_deep_apply;
     }
-
+    fun->feasible_length = feasible_length;
     fun->destruct = constrained_destruct;
     fun->feasible = basic_feasible;
     
@@ -528,7 +527,7 @@ constrained_deep_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
         for(j = 0; j <= i; j++)
             new_problem->data.adj[i][j] = 
                 constrained_cost(old_problem->get_cost(old_problem, i, j), 
-                                 delta, *((int*)(fun->data)));
+                    delta, *((int*)(fun->data)));
     return ARROW_SUCCESS;
 }
 

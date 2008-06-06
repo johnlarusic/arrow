@@ -102,7 +102,7 @@ main(int argc, char *argv[])
     if(kicks >= 0)              lk_params.kicks            = kicks;
         
     /* Setup necessary function structures */
-    if(arrow_btsp_fun_basic(ARROW_FALSE, &fun_basic) != ARROW_SUCCESS)
+    if(arrow_btsp_fun_basic(ARROW_TRUE, &fun_basic) != ARROW_SUCCESS)
         return EXIT_FAILURE;
     #define SOLVE_STEPS 1
     arrow_btsp_solve_plan steps[SOLVE_STEPS] = 

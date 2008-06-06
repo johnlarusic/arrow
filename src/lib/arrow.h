@@ -421,11 +421,13 @@ arrow_btsp_fun_basic(int shallow, arrow_btsp_fun *fun);
 /**
  *  @brief  Constrained BTSP to TSP function
  *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
+ *  @param  feasible_length [in] length of feasible tour
  *  @param  infinity [in] value to use as "infinity"
  *  @param  fun [out] function structure
  */
 int
-arrow_btsp_fun_constrained(int shallow, int infinity, arrow_btsp_fun *fun);
+arrow_btsp_fun_constrained(int shallow, int feasible_length, int infinity, 
+                           arrow_btsp_fun *fun);
 
 
 /****************************************************************************
