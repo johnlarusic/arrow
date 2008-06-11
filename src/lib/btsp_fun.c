@@ -118,7 +118,7 @@ typedef struct basic_data
      *  @param  j [in] node j
      *  @param  dat [in] Concorde data structure.
      */
-    int  *dat (int i, int j, struct CCdatagroup *dat);
+    int  (*old_edgelen) (int i, int j, struct CCdatagroup *dat);
     int delta;      /**< delta value */
 } basic_data;
 
