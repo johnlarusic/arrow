@@ -91,13 +91,17 @@ arrow_problem_read(char *file_name, arrow_problem *problem)
 void
 arrow_problem_destruct(arrow_problem *problem)
 {
-    /* Free Concorde's data structure */
-    if(problem->shallow == ARROW_FALSE)
+    if(!problem->shallow)
     {
         if(&(problem->data) != NULL)
         {
             CCutil_freedatagroup(&(problem->data));
         }
+    }
+    else
+    {
+        if(problem->data.userdat.data != NULL)
+            free(problem->data.userdat.data);
     }
 }
 

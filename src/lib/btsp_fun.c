@@ -56,64 +56,14 @@ basic_feasible(arrow_btsp_fun *fun, arrow_problem *problem,
                double tour_length, int *tour);
 
 /**
- *  @brief  BTSP to TSP cost transformation
- *  @param  cost [in] the old cost
- *  @param  delta [in] delta parameter
- *  @return The transformed cost C[i,j] between nodes i and j
- */
-static int
-basic_cost(int cost, int delta);
-
-/**
- *  @brief  Basic BTSP edge length function for Euclidean data (EUC_2D)
+ *  @brief  Concorde edge length function for the basic cost matrix function.
+ *          Returns the cost C[i,j].
  *  @param  i [in] node i
  *  @param  j [in] node j
- *  @param  dat [in] Concorde problem data structure
- *  @return The cost C[i,j] between nodes i and j
+ *  @param  dat [in] Concorde data structure.
  */
-static int
-basic_euclid_edgelen(int i, int j, CCdatagroup *dat);
-
-/**
- *  @brief  Basic BTSP edge length function for 2D Euclidean distances 
- *          rounded up  (EUC_2D)
- *  @param  i [in] node i
- *  @param  j [in] node j
- *  @param  dat [in] Concorde problem data structure
- *  @return The cost C[i,j] between nodes i and j
- */
-static int
-basic_euclid_ceiling_edgelen(int i, int j, CCdatagroup *dat);
-
-/**
- *  @brief  Basic BTSP edge length function for geographical distances (GEO)
- *  @param  i [in] node i
- *  @param  j [in] node j
- *  @param  dat [in] Concorde problem data structure
- *  @return The cost C[i,j] between nodes i and j
- */
-static int
-basic_geographic_edgelen(int i, int j, CCdatagroup *dat);
-
-/**
- *  @brief  Basic BTSP edge length function for att48/att532 problems (ATT)
- *  @param  i [in] node i
- *  @param  j [in] node j
- *  @param  dat [in] Concorde problem data structure
- *  @return The cost C[i,j] between nodes i and j
- */
-static int
-basic_att_edgelen(int i, int j, CCdatagroup *dat);
-
-/**
- *  @brief  Basic BTSP edge length function for explict matrix data (EXPLICIT)
- *  @param  i [in] node i
- *  @param  j [in] node j
- *  @param  dat [in] Concorde problem data structure
- *  @return The cost C[i,j] between nodes i and j
- */
-static int
-basic_matrix_edgelen(int i, int j, CCdatagroup *dat);
+static int 
+basic_edgelen(int i, int j, struct CCdatagroup *dat);
 
 
 /**
@@ -148,132 +98,45 @@ void
 constrained_destruct(arrow_btsp_fun *fun);
 
 /**
- *  @brief  Constrained BTSP cost transformation
- *  @param  cost [in] the old cost
- *  @param  delta [in] delta parameter
- *  @param  infinity [in] value to use as infinity
- *  @return The transformed cost C[i,j] between nodes i and j
- */
-static int
-constrained_cost(int cost, int delta, int infinity);
-
-/**
- *  @brief  Constrained BTSP edge length function for Euclidean data (EUC_2D)
+ *  @brief  Concorde edge length function for the constrained cost matrix 
+ *          function.  Returns the cost C[i,j].
  *  @param  i [in] node i
  *  @param  j [in] node j
- *  @param  dat [in] Concorde problem data structure
- *  @return The cost C[i,j] between nodes i and j
+ *  @param  dat [in] Concorde data structure.
  */
-static int
-constrained_euclid_edgelen(int i, int j, CCdatagroup *dat);
+static int 
+constrained_edgelen(int i, int j, struct CCdatagroup *dat);
 
 /**
- *  @brief  Constrained BTSP edge length function for 2D Euclidean distances 
- *          rounded up  (EUC_2D)
- *  @param  i [in] node i
- *  @param  j [in] node j
- *  @param  dat [in] Concorde problem data structure
- *  @return The cost C[i,j] between nodes i and j
+ *  @brief  Concorde userdat structure for basic cost matrix function.
  */
-static int
-constrained_euclid_ceiling_edgelen(int i, int j, CCdatagroup *dat);
+typedef struct basic_data
+{
+    /**
+     *  @brief  Previous Concorde edge length function.
+     *  @param  i [in] node i
+     *  @param  j [in] node j
+     *  @param  dat [in] Concorde data structure.
+     */
+    int  *dat (int i, int j, struct CCdatagroup *dat);
+    int delta;      /**< delta value */
+} basic_data;
 
 /**
- *  @brief  Constrained BTSP edge length function for geographical distances 
- *          (GEO)
- *  @param  i [in] node i
- *  @param  j [in] node j
- *  @param  dat [in] Concorde problem data structure
- *  @return The cost C[i,j] between nodes i and j
+ *  @brief  Concorde userdat structure for constrained cost matrix function.
  */
-static int
-constrained_geographic_edgelen(int i, int j, CCdatagroup *dat);
-
-/**
- *  @brief  Constrained BTSP edge length function for att48/att532 problems 
- *          (ATT)
- *  @param  i [in] node i
- *  @param  j [in] node j
- *  @param  dat [in] Concorde problem data structure
- *  @return The cost C[i,j] between nodes i and j
- */
-static int
-constrained_att_edgelen(int i, int j, CCdatagroup *dat);
-
-/**
- *  @brief  Constrained BTSP edge length function for explict matrix data 
- *          (EXPLICIT)
- *  @param  i [in] node i
- *  @param  j [in] node j
- *  @param  dat [in] Concorde problem data structure
- *  @return The cost C[i,j] between nodes i and j
- */
-static int
-constrained_matrix_edgelen(int i, int j, CCdatagroup *dat);
-
-/* These functions are essentially copies of those found in Concorde for
- * computing edge lengths.  Until such time Concorde makes it easy for
- * user-defined edge length functions to be used, we have to live with the
- * pain of redefining these functions for every TSPLIB type.
- */
-/**
- *  @brief  Truncates decimal places from a given floating point number.
- *  @param  x [in] the floating point number to truncate
- *  @return The truncated number.
- */
-static double
-dtrunc(double x);
-
-/**
- *  @brief  Edge length function for Euclidean data (EUC_2D)
- *  @param  i [in] node i
- *  @param  j [in] node j
- *  @param  dat [in] Concorde problem data structure
- *  @return The cost C[i,j] between nodes i and j
- */
-static int
-euclid_edgelen(int i, int j, CCdatagroup *dat);
-
-/**
- *  @brief  Edge length function for 2D Euclidean distances rounded up 
- *          (EUC_2D)
- *  @param  i [in] node i
- *  @param  j [in] node j
- *  @param  dat [in] Concorde problem data structure
- *  @return The cost C[i,j] between nodes i and j
- */
-static int
-euclid_ceiling_edgelen(int i, int j, CCdatagroup *dat);
-
-/**
- *  @brief  Edge length function for geographical distances (GEO)
- *  @param  i [in] node i
- *  @param  j [in] node j
- *  @param  dat [in] Concorde problem data structure
- *  @return The cost C[i,j] between nodes i and j
- */
-static int
-geographic_edgelen(int i, int j, CCdatagroup *dat);
-
-/**
- *  @brief  Edge length function for att48 and att532 problems (ATT)
- *  @param  i [in] node i
- *  @param  j [in] node j
- *  @param  dat [in] Concorde problem data structure
- *  @return The cost C[i,j] between nodes i and j
- */
-static int
-att_edgelen(int i, int j, CCdatagroup *dat);
-
-/**
- *  @brief  Edge length function for explict matrix data (EXPLICIT)
- *  @param  i [in] node i
- *  @param  j [in] node j
- *  @param  dat [in] Concorde problem data structure
- *  @return The cost C[i,j] between nodes i and j
- */
-static int
-matrix_edgelen(int i, int j, CCdatagroup *dat);
+typedef struct constrained_data
+{
+    /**
+     *  @brief  Previous Concorde edge length function.
+     *  @param  i [in] node i
+     *  @param  j [in] node j
+     *  @param  dat [in] Concorde data structure.
+     */
+    int  (*old_edgelen) (int i, int j, struct CCdatagroup *dat);
+    int infinity;   /**< value to use for "infinity" */
+    int delta;      /**< delta value */
+} constrained_data;
 
 
 /****************************************************************************
@@ -339,7 +202,7 @@ arrow_btsp_fun_basic(int shallow, arrow_btsp_fun *fun)
 }
 
 int
-arrow_btsp_fun_constrained(int shallow, int feasible_length, int infinity, 
+arrow_btsp_fun_constrained(int shallow, double feasible_length, int infinity, 
                            arrow_btsp_fun *fun)
 {
     if((fun->data = malloc(sizeof(int))) == NULL)
@@ -374,40 +237,23 @@ int
 basic_shallow_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
                     int delta, arrow_problem *new_problem)
 {
-    int norm;
     CCdatagroup *old_data = &(old_problem->data);
     CCdatagroup *new_data = &(new_problem->data);
-    CCutil_dat_getnorm(old_data, &norm);
-    switch(norm)
-    {
-        case CC_EUCLIDEAN: 
-            arrow_debug("EUC_2D cost matrix\n");
-            (new_problem->data).edgelen = basic_euclid_edgelen;
-            break;
-        case CC_GEOGRAPHIC: 
-            arrow_debug("GEO cost matrix\n");
-            new_data->edgelen = basic_geographic_edgelen; 
-            break;
-        case CC_ATT:
-            arrow_debug("ATT cost matrix\n");
-            new_data->edgelen = basic_att_edgelen; 
-            break;
-        case CC_MATRIXNORM:
-            arrow_debug("EXPLICIT cost matrix\n");
-            new_data->edgelen = basic_matrix_edgelen; 
-            break;
-        case CC_EUCLIDEAN_CEIL:
-            arrow_debug("CEIL_2D cost matrix\n");
-            new_data->edgelen = basic_euclid_ceiling_edgelen; 
-            break;
-        default:
-            arrow_print_error("Edge weight type not supported\n");
-            return ARROW_ERROR_FATAL;
-            break;
-    }
+    basic_data *user;
     
-    arrow_debug("Delta is %d\n", delta);
-    new_data->dsjrand_param = delta;
+    if((new_data->userdat.data = malloc(sizeof(basic_data))) == NULL)
+    {
+        arrow_print_error("Error allocating memory for basic_data.");
+        return ARROW_FAILURE;
+    }
+    user = (basic_data *)(new_data->userdat.data);
+    user->delta = delta;
+    user->old_edgelen = old_data->edgelen;
+    
+    new_data->userdat.edgelen = basic_edgelen;
+    
+    CCutil_dat_setnorm(new_data, CC_USER);
+    
     return ARROW_SUCCESS;
 }
 
@@ -415,11 +261,15 @@ int
 basic_deep_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
                  int delta, arrow_problem *new_problem)
 {
-    int i, j;
+    int i, j, cost;
     for(i = 0; i < new_problem->size; i++)
+    {
         for(j = 0; j <= i; j++)
-            new_problem->data.adj[i][j] = 
-                basic_cost(old_problem->get_cost(old_problem, i, j), delta);
+        {
+            cost = old_problem->get_cost(old_problem, i, j);
+            new_problem->data.adj[i][j] = (cost <= delta ? 0 : cost);
+        }
+    }
     return ARROW_SUCCESS;
 }
 
@@ -428,93 +278,44 @@ basic_destruct(arrow_btsp_fun *fun)
 { }
 
 int
-basic_feasible(arrow_btsp_fun *fun, arrow_problem *problem,
+basic_feasible(arrow_btsp_fun *fun, arrow_problem *problem, 
                double tour_length, int *tour)
 {
+    arrow_debug("Checking feasibility: %.0f vs %.0f? %s\n",
+        tour_length, fun->feasible_length, 
+        (tour_length <= fun->feasible_length ? "Yes" : "No"));
     return (tour_length <= fun->feasible_length ? ARROW_TRUE : ARROW_FALSE);
 }
 
-static int
-basic_cost(int cost, int delta)
-{
-    return (cost <= delta ? 0 : cost);
-}
-
 static int 
-basic_euclid_edgelen(int i, int j, CCdatagroup *dat)
+basic_edgelen(int i, int j, struct CCdatagroup *dat)
 {
-    return basic_cost(euclid_edgelen(i, j, dat),
-                      dat->dsjrand_param);
+    basic_data *user = (basic_data *)(dat->userdat.data);
+    int old_cost = user->old_edgelen(i, j, dat);
+    return (old_cost <= user->delta ? 0 : old_cost);
 }
-
-static int
-basic_euclid_ceiling_edgelen(int i, int j, CCdatagroup *dat)
-{
-    return basic_cost(euclid_ceiling_edgelen(i, j, dat),
-                      dat->dsjrand_param);
-}
-
-static int
-basic_geographic_edgelen(int i, int j, CCdatagroup *dat)
-{
-    return basic_cost(geographic_edgelen(i, j, dat),
-                      dat->dsjrand_param);
-}
-
-static int
-basic_att_edgelen(int i, int j, CCdatagroup *dat)
-{
-    return basic_cost(att_edgelen(i, j, dat),
-                      dat->dsjrand_param);
-}
-
-static int
-basic_matrix_edgelen(int i, int j, CCdatagroup *dat)
-{
-    return basic_cost(matrix_edgelen(i, j, dat),
-                      dat->dsjrand_param);  
-}
-
 
 int
 constrained_shallow_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
                           int delta, arrow_problem *new_problem)
 {
-    int norm;
     CCdatagroup *old_data = &(old_problem->data);
     CCdatagroup *new_data = &(new_problem->data);
-    CCutil_dat_getnorm(old_data, &norm);
-    switch(norm)
-    {
-        case CC_EUCLIDEAN: 
-            arrow_debug("EUC_2D cost matrix\n"); 
-            new_data->edgelen = constrained_euclid_edgelen;
-            break;
-        case CC_GEOGRAPHIC: 
-            arrow_debug("GEO cost matrix\n");
-            new_data->edgelen = constrained_geographic_edgelen; 
-            break;
-        case CC_ATT:
-            arrow_debug("ATT cost matrix\n");
-            new_data->edgelen = constrained_att_edgelen; 
-            break;
-        case CC_MATRIXNORM:
-            arrow_debug("EXPLICIT cost matrix\n");
-            new_data->edgelen = constrained_matrix_edgelen; 
-            break;
-        case CC_EUCLIDEAN_CEIL:
-            arrow_debug("CEIL_2D cost matrix\n");
-            new_data->edgelen = constrained_euclid_ceiling_edgelen; 
-            break;
-        default:
-            arrow_print_error("Edge weight type not supported\n");
-            return ARROW_ERROR_FATAL;
-            break;
-    }
+    constrained_data *user;
     
-    arrow_debug("Delta is %d\n", delta);
-    new_data->dsjrand_param = delta;
-    new_data->default_len = *((int*)(fun->data));
+    if((new_data->userdat.data = malloc(sizeof(constrained_data))) == NULL)
+    {
+        arrow_print_error("Error allocating memory for constrained_data.");
+        return ARROW_FAILURE;
+    }
+    user = (constrained_data *)(new_data->userdat.data);
+    user->delta = delta;
+    user->infinity = *((int*)(fun->data));
+    user->old_edgelen = old_data->edgelen;
+    
+    new_data->userdat.edgelen = constrained_edgelen;
+    CCutil_dat_setnorm(new_data, CC_USER);
+    
     return ARROW_SUCCESS;
 }
 
@@ -522,12 +323,17 @@ int
 constrained_deep_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
                        int delta, arrow_problem *new_problem)
 {
-    int i, j;
+    int i, j, cost;
+    int infinity = *((int*)(fun->data));
     for(i = 0; i < new_problem->size; i++)
+    {
         for(j = 0; j <= i; j++)
-            new_problem->data.adj[i][j] = 
-                constrained_cost(old_problem->get_cost(old_problem, i, j), 
-                    delta, *((int*)(fun->data)));
+        {
+            cost = old_problem->get_cost(old_problem, i, j);
+            new_problem->data.adj[i][j] = (cost <= delta ? cost : infinity);
+        }
+    }
+
     return ARROW_SUCCESS;
 }
 
@@ -537,123 +343,14 @@ constrained_destruct(arrow_btsp_fun *fun)
     if((int*)(fun->data) != NULL)
     {
         free((int*)(fun->data));
-        ((int*)(fun->data)) = NULL;
+        fun->data = NULL;
     }
 }
 
-static int
-constrained_cost(int cost, int delta, int infinity)
-{
-    return (cost <= delta ? cost : infinity);
-}
-
 static int 
-constrained_euclid_edgelen(int i, int j, CCdatagroup *dat)
+constrained_edgelen(int i, int j, struct CCdatagroup *dat)
 {
-    return constrained_cost(euclid_edgelen(i, j, dat), 
-                            dat->dsjrand_param, dat->default_len);
-}
-
-static int
-constrained_euclid_ceiling_edgelen(int i, int j, CCdatagroup *dat)
-{
-    return constrained_cost(euclid_ceiling_edgelen(i, j, dat), 
-                            dat->dsjrand_param, dat->default_len);
-}
-
-static int
-constrained_geographic_edgelen(int i, int j, CCdatagroup *dat)
-{
-    return constrained_cost(geographic_edgelen(i, j, dat), 
-                            dat->dsjrand_param, dat->default_len);
-}
-
-static int
-constrained_att_edgelen(int i, int j, CCdatagroup *dat)
-{
-    return constrained_cost(att_edgelen(i, j, dat), 
-                            dat->dsjrand_param, dat->default_len);
-}
-
-static int
-constrained_matrix_edgelen(int i, int j, CCdatagroup *dat)
-{
-    return constrained_cost(matrix_edgelen(i, j, dat), 
-                            dat->dsjrand_param, dat->default_len);
-}
-
-
-static double dtrunc(double x)
-{
-    int k;
-    k = (int) x;
-    x = (double) k;
-    return x;
-}
-
-static int 
-euclid_edgelen(int i, int j, CCdatagroup *dat)
-{
-    double t1 = dat->x[i] - dat->x[j], t2 = dat->y[i] - dat->y[j];
-    return (int) (sqrt (t1 * t1 + t2 * t2) + 0.5);
-}
-
-static int
-euclid_ceiling_edgelen(int i, int j, CCdatagroup *dat)
-{
-    double t1 = dat->x[i] - dat->x[j], t2 = dat->y[i] - dat->y[j];
-    return (int) (ceil (sqrt (t1 * t1 + t2 * t2)));
-}
-
-#define GH_PI (3.141592)
-static int
-geographic_edgelen(int i, int j, CCdatagroup *dat)
-{
-    double deg, min;
-    double lati, latj, longi, longj;
-    double q1, q2, q3;
-    int val;
-    double x1 = dat->x[i], x2 = dat->x[j], yy1 = dat->y[i], yy2 = dat->y[j];
-
-    deg = dtrunc (x1);
-    min = x1 - deg;
-    lati = GH_PI * (deg + 5.0 * min / 3.0) / 180.0;
-    deg = dtrunc (x2);
-    min = x2 - deg;
-    latj = GH_PI * (deg + 5.0 * min / 3.0) / 180.0;
-
-    deg = dtrunc (yy1);
-    min = yy1 - deg;
-    longi = GH_PI * (deg + 5.0 * min / 3.0) / 180.0;
-    deg = dtrunc (yy2);
-    min = yy2 - deg;
-    longj = GH_PI * (deg + 5.0 * min / 3.0) / 180.0;
-
-    q1 = cos (longi - longj);
-    q2 = cos (lati - latj);
-    q3 = cos (lati + latj);
-    return (int) (6378.388 * acos (0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3))
-                + 1.0);
-}
-
-static int
-att_edgelen(int i, int j, CCdatagroup *dat)
-{
-    double xd = dat->x[i] - dat->x[j];
-    double yd = dat->y[i] - dat->y[j];
-    double rij = sqrt ((xd * xd + yd * yd) / 10.0);
-    double tij = dtrunc (rij);
-    int val;
-
-    if (tij < rij)
-        val = (int) tij + 1;
-    else
-        val = (int) tij;
-    return val;
-}
-
-static int
-matrix_edgelen(int i, int j, CCdatagroup *dat)
-{
-    return (i > j ? (dat->adj[i])[j] : (dat->adj[j])[i]);
+    constrained_data *user = (constrained_data *)(dat->userdat.data);
+    int old_cost = user->old_edgelen(i, j, dat);
+    return (old_cost <= user->delta ? old_cost : user->infinity);
 }

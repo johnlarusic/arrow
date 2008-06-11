@@ -130,8 +130,7 @@ main(int argc, char *argv[])
     
     /* Setup BTSP results structure */
     arrow_btsp_result_init(&problem, &result);
-    ret = arrow_btsp_solve(&problem, &info, &btsp_params, &result);
-    if(ret != ARROW_SUCCESS)
+    if(!arrow_btsp_solve(&problem, &info, &btsp_params, &result))
     {
         arrow_print_error("Could not solve BTSP on file.\n");
         ret = EXIT_FAILURE;

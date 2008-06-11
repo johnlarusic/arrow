@@ -94,10 +94,8 @@ arrow_tsp_exact_solve(arrow_problem *problem, int *initial_tour,
         
     if(result->found_tour && success)
         return ARROW_SUCCESS;
-    else if(!result->found_tour && success)
-        return ARROW_ERROR_NON_FATAL;
     else
-        return ARROW_ERROR_FATAL;
+        return ARROW_FAILURE;
 }
 
 int
@@ -149,13 +147,13 @@ arrow_tsp_lk_solve(arrow_problem *problem, arrow_tsp_lk_params *params,
     if(cyc == NULL)
     {
         arrow_print_error("Out of memory for cyc");
-        return ARROW_ERROR_FATAL;
+        return ARROW_FAILURE;
     }
     bestcyc = CC_SAFE_MALLOC(problem->size, int);
     if(cyc == NULL)
     {
         arrow_print_error("Out of memory for bestcyc");
-        return ARROW_ERROR_FATAL;
+        return ARROW_FAILURE;
     }
     
     /* We start by building up a set of "good" edges for the heuristic
@@ -168,7 +166,7 @@ arrow_tsp_lk_solve(arrow_problem *problem, arrow_tsp_lk_params *params,
     if(cc_ret == CONCORDE_FAILURE)
     {
         arrow_print_error("CCedgegen_edges failed");
-        ret = ARROW_ERROR_FATAL;
+        ret = ARROW_FAILURE;
         goto CLEANUP;
     }
     plan.quadnearest = 0;
@@ -197,7 +195,7 @@ arrow_tsp_lk_solve(arrow_problem *problem, arrow_tsp_lk_params *params,
     if(cc_ret == CONCORDE_FAILURE)
     {
         arrow_print_error("CClinkern_tour failed");
-        ret = ARROW_ERROR_FATAL;
+        ret = ARROW_FAILURE;
         goto CLEANUP;
     }
     
@@ -216,7 +214,7 @@ arrow_tsp_lk_solve(arrow_problem *problem, arrow_tsp_lk_params *params,
         if(cc_ret == CONCORDE_FAILURE)
         {
             arrow_print_error("CClinkern_tour failed");
-            ret = ARROW_ERROR_FATAL;
+            ret = ARROW_FAILURE;
             goto CLEANUP;
         }
         if (val < bestval) {
@@ -239,20 +237,27 @@ arrow_tsp_lk_solve(arrow_problem *problem, arrow_tsp_lk_params *params,
         if(cc_ret == CONCORDE_FAILURE)
         {
             arrow_print_error("CClinkern_tour failed");
-            ret = ARROW_ERROR_FATAL;
+            ret = ARROW_FAILURE;
             goto CLEANUP;
         }
     }
     else
     {
-        for (i = 0; i < problem->size; i++) {
-            result->tour[i] = bestcyc[i];
-        }
+        printf("Copying over found tour\n");
         result->obj_value = bestval;
+        if(result->tour != NULL)
+        {
+            for (i = 0; i < problem->size; i++)
+            {
+                result->tour[i] = bestcyc[i];
+            }
+        }
+        else
+            arrow_debug("tour is NULL\n");
     }
-    
+
 CLEANUP:
-    if(ret = ARROW_SUCCESS) result->found_tour = ARROW_TRUE;
+    if(ret) result->found_tour = ARROW_TRUE;
     end_time = arrow_util_zeit();
     result->total_time = end_time - start_time;
     
@@ -279,12 +284,12 @@ build_initial_tour(arrow_problem *problem, CCedgegengroup *plan,
     if(cc_ret == CONCORDE_FAILURE)
     {
         arrow_print_error("CCedgegen_edges failed");
-        ret = ARROW_ERROR_FATAL;
+        ret = ARROW_FAILURE;
         goto CLEANUP;
     }
     if(tcount != problem->size) {
         arrow_print_error("Wrong edgeset from CCedgegen_edges");
-        ret = ARROW_ERROR_FATAL;
+        ret = ARROW_FAILURE;
         goto CLEANUP;
     }
 
@@ -292,12 +297,12 @@ build_initial_tour(arrow_problem *problem, CCedgegengroup *plan,
     if(cc_ret == CONCORDE_FAILURE)
     {
         arrow_print_error("CCutil_edge_to_cycle failed");
-        ret = ARROW_ERROR_FATAL;
+        ret = ARROW_FAILURE;
         goto CLEANUP;
     }
     if(istour == ARROW_FALSE) {
         arrow_print_error("Starting tour has an error\n");
-        ret = ARROW_ERROR_FATAL;
+        ret = ARROW_FAILURE;
         goto CLEANUP;
     }
     

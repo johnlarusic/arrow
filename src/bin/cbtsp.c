@@ -115,7 +115,7 @@ main(int argc, char *argv[])
            ARROW_FALSE,                       /* use_exact_solver? */
            fun_con,                           /* fun (cost matrix function) */
            lk_params,                         /* LK parameters */
-           ARROW_TRUE,                        /* upper_bound_update? */
+           ARROW_FALSE,                       /* upper_bound_update? */
            basic_attempts                     /* attempts */
        }
     };

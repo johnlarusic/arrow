@@ -190,7 +190,7 @@ typedef struct arrow_btsp_fun
 {
     void *data;             /**< data required by function */
     int shallow;            /**< indicates use of shallow copy of data */
-    int feasible_length;    /**< the length of a feasible tour (normally 0) */
+    double feasible_length; /**< the length of a feasible tour (normally 0) */
     
     /**
      *  @brief  Applies the function to the given problem
@@ -426,9 +426,11 @@ arrow_btsp_fun_basic(int shallow, arrow_btsp_fun *fun);
  *  @param  fun [out] function structure
  */
 int
-arrow_btsp_fun_constrained(int shallow, int feasible_length, int infinity, 
+arrow_btsp_fun_constrained(int shallow, double feasible_length, int infinity,
                            arrow_btsp_fun *fun);
 
+int
+arrow_btsp_fun_basic_plus(int shallow, arrow_btsp_fun *fun);
 
 /****************************************************************************
  *  options.c
