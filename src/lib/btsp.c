@@ -369,7 +369,6 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
                     u = tsp_result.tour[k];
                     v = tsp_result.tour[(k + 1) % problem->size];
                     cost = problem->get_cost(problem, u, v);
-                    printf("C[%d,%d] = %d\n", u, v, cost);
                     len += cost;
                     if(cost > max_cost) max_cost = cost;
                 }

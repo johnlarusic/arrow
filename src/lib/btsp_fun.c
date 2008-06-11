@@ -112,14 +112,8 @@ constrained_edgelen(int i, int j, struct CCdatagroup *dat);
  */
 typedef struct basic_data
 {
-    /**
-     *  @brief  Previous Concorde edge length function.
-     *  @param  i [in] node i
-     *  @param  j [in] node j
-     *  @param  dat [in] Concorde data structure.
-     */
-    int  (*old_edgelen) (int i, int j, struct CCdatagroup *dat);
-    int delta;      /**< delta value */
+    CCdatagroup *dat;   /**< existing Concorde data structure */
+    int delta;          /**< delta value */
 } basic_data;
 
 /**
@@ -127,15 +121,9 @@ typedef struct basic_data
  */
 typedef struct constrained_data
 {
-    /**
-     *  @brief  Previous Concorde edge length function.
-     *  @param  i [in] node i
-     *  @param  j [in] node j
-     *  @param  dat [in] Concorde data structure.
-     */
-    int  (*old_edgelen) (int i, int j, struct CCdatagroup *dat);
-    int infinity;   /**< value to use for "infinity" */
-    int delta;      /**< delta value */
+    CCdatagroup *dat;   /**< existing Concorde data structure */
+    int infinity;       /**< value to use for "infinity" */
+    int delta;          /**< delta value */
 } constrained_data;
 
 
@@ -152,13 +140,7 @@ arrow_btsp_fun_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
     new_problem->shallow = fun->shallow;
     new_problem->get_cost = old_problem->get_cost;
     
-    if(fun->shallow)
-    {
-        /* Create a shallow copy of the data */
-        arrow_util_CCdatagroup_shallow_copy(&(old_problem->data), 
-                                            &(new_problem->data));
-    }
-    else
+    if(!fun->shallow)
     {
         /* Create structure to hold new cost matrix */
         int ret;
@@ -247,11 +229,10 @@ basic_shallow_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
         return ARROW_FAILURE;
     }
     user = (basic_data *)(new_data->userdat.data);
+    user->dat = old_data;
     user->delta = delta;
-    user->old_edgelen = old_data->edgelen;
-    
+        
     new_data->userdat.edgelen = basic_edgelen;
-    
     CCutil_dat_setnorm(new_data, CC_USER);
     
     return ARROW_SUCCESS;
@@ -291,7 +272,7 @@ static int
 basic_edgelen(int i, int j, struct CCdatagroup *dat)
 {
     basic_data *user = (basic_data *)(dat->userdat.data);
-    int old_cost = user->old_edgelen(i, j, dat);
+    int old_cost = user->dat->edgelen(i, j, user->dat);
     return (old_cost <= user->delta ? 0 : old_cost);
 }
 
@@ -309,9 +290,9 @@ constrained_shallow_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
         return ARROW_FAILURE;
     }
     user = (constrained_data *)(new_data->userdat.data);
+    user->dat = old_data;
     user->delta = delta;
     user->infinity = *((int*)(fun->data));
-    user->old_edgelen = old_data->edgelen;
     
     new_data->userdat.edgelen = constrained_edgelen;
     CCutil_dat_setnorm(new_data, CC_USER);
@@ -351,6 +332,6 @@ static int
 constrained_edgelen(int i, int j, struct CCdatagroup *dat)
 {
     constrained_data *user = (constrained_data *)(dat->userdat.data);
-    int old_cost = user->old_edgelen(i, j, dat);
+    int old_cost = user->dat->edgelen(i, j, user->dat);
     return (old_cost <= user->delta ? old_cost : user->infinity);
 }
