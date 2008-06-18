@@ -100,12 +100,13 @@ def main(argv=None):
             for i in range(1, trials + 1):
                 file_trial = "%s/%s.%02d" % (output_dir, problem_name, i)
                 xml_file = "%s.xml" % file_trial
+                tour_file = "%s.tour" % file_trial
                 stdout_file = "%s.txt" % file_trial
                 
                 print "echo \"%s (%d of %d for problem, %d of %d total or %.1f percent)\"" % \
                     (problem_name, i, trials, total_done, total, total_per)
-                print "%s -i %s -L %d -l %d -x %s > %s" % \
-                    (program, problem, L_param, btsp_obj, xml_file, stdout_file)
+                print "%s -i %s -L %d -l %d -x %s -T %s > %s" % \
+                    (program, problem, L_param, btsp_obj, xml_file, tour_file, stdout_file)
                 total_per += total_each
                 total_done += 1
             print ""
