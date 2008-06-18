@@ -102,6 +102,12 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
     int tour_exists;
     double start_time = arrow_util_zeit();
     
+    if(!problem->symmetric)
+    {
+        arrow_print_error("Solver only works on symmetric cost matrices.");
+        return ARROW_FAILURE;
+    }
+    
     arrow_btsp_result cur_result;
     arrow_btsp_result_init(problem, &cur_result);
     
@@ -121,6 +127,7 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
     {
         arrow_debug("Total solve steps: %d\n", params->num_steps);
     }
+    arrow_debug("\n");
     
     /* Start enhanced threshold heuristic */
     arrow_debug("Starting enhanced threshold heuristic\n");
@@ -141,29 +148,24 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
     }
     
     /* Start enhanced binary search threshold heuristic */
-    //if(params->supress_ebst) goto CLEANUP;
-    arrow_debug("Starting enhanced binary search threshold heuristic.\n");
+    if(params->supress_ebst) goto CLEANUP;
+    arrow_debug("\nStarting enhanced binary search threshold heuristic.\n");
     int i, low, high, median, median_val;
-    
-    /* We start by finding our lower and upper bounds in the cost list */
-    arrow_debug("Looking for lower bound %d in cost list...", 
-                params->lower_bound);
+
     ret = arrow_util_binary_search(info->cost_list, info->cost_list_length,
                                    params->lower_bound, &low);
-    if(ret != ARROW_SUCCESS)
+    if(!ret)
     {
-        arrow_debug("\nLower bound not in cost list, so pick next lowest\n");
         low--;
+        arrow_debug("Lower bound not in cost list, so pick next lowest\n");
         arrow_debug("Next lowest cost is %d...", info->cost_list[low]);
     }
-    arrow_debug(" done!\n");
     
     int upper_bound = params->upper_bound;
     if(result->obj_value < upper_bound) upper_bound = result->obj_value;
-    arrow_debug("Looking for upper bound %d in cost list...", upper_bound);
     if(upper_bound == INT_MAX)
     {
-        arrow_debug("Take largest cost as upperbound...");
+        arrow_debug("Taking largest cost as upperbound...\n");
         high = info->cost_list_length - 1;
     }
     else
@@ -171,7 +173,6 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
         ret = arrow_util_binary_search(info->cost_list, info->cost_list_length,
                                        upper_bound, &high);
     }
-    arrow_debug(" done!\n");
     
     arrow_debug("Starting binary search.\n");
     while(low != high)
@@ -197,7 +198,7 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
             /* Check to see if we found a smaller solution than our median */
             if(cur_result.obj_value < median_val)
             {
-                arrow_debug("Found a smaller solution than our median: %d\n",
+                arrow_debug(" - Found a smaller solution than our median: %d\n",
                             cur_result.obj_value);
                 arrow_util_binary_search(info->cost_list, 
                                          info->cost_list_length,
@@ -225,9 +226,9 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
             /* Check to see if we found a smaller solution than our median */
             if(cur_result.obj_value < median_val)
             {
-                arrow_debug("Found a smaller solution than our best: %d\n",
+                arrow_debug(" - Found a smaller solution than our best: %d\n",
                             cur_result.obj_value);
-                arrow_debug("Lower upper bound to this value\n");
+                arrow_debug(" - Lower upper bound to this value\n");
                 arrow_util_binary_search(info->cost_list, 
                                          info->cost_list_length,
                                          cur_result.obj_value, &high);
@@ -243,6 +244,7 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
             
             if(low > high) low = high;
         }
+        arrow_debug("\n");
         
         /* Copy over other important information */
         result->bin_search_steps++;
@@ -299,16 +301,20 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
         arrow_btsp_solve_plan *plan = &(steps[i]);
         arrow_btsp_fun *fun = &(plan->fun);
                 
-        arrow_debug("Step %d of %d (Type %d): ", i + 1, num_steps, 
+        arrow_debug("Step %d of %d (Type %d):\n", i + 1, num_steps, 
                     plan->plan_type);
         
         for(j = 1; j <= plan->attempts; j++)
         {
-            arrow_debug("- Attempt %d of %d:\n", j, plan->attempts);
+            arrow_debug("Attempt %d of %d:\n", j, plan->attempts);
             
             /* Create a new problem based upon the solve plan */
             arrow_problem new_problem;
-            arrow_btsp_fun_apply(fun, problem, delta, &new_problem);
+            if(!arrow_btsp_fun_apply(fun, problem, delta, &new_problem))
+            {
+                ret = ARROW_FAILURE;
+                goto CLEANUP;
+            }
                                                     
             /* Call LK or Exact TSP solver on new problem */      
             if(plan->use_exact_solver)
@@ -333,14 +339,14 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
             }
             
             /* Determine if we have found a tour of feasible length or not */
-            arrow_debug("   - found a tour of length %.0f\n", 
+            arrow_debug("Found a tour of length %.0f\n", 
                         tsp_result.obj_value);
             feasible = fun->feasible(fun, problem, tsp_result.obj_value, 
                                      tsp_result.tour);
             if(feasible)
             {
                 /* Set this tour to the output variables then exit */
-                arrow_debug("   - tour found is feasible.\n");
+                arrow_debug(" - tour found is feasible.\n");
                 *tour_exists = ARROW_TRUE;
                 result->obj_value = delta;
 
@@ -353,10 +359,10 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
                     if(result->tour != NULL)
                         result->tour[k] = tsp_result.tour[k];
                 }
-                arrow_debug("   - actual tour is of length %.0f\n", len);
+                arrow_debug(" - actual tour is of length %.0f\n", len);
                 result->tour_length = len;
                     
-                arrow_debug("   - finished feasibility question.\n");
+                arrow_debug("Finished feasibility question.\n");
                 goto CLEANUP;
             }
             else if(plan->upper_bound_update)
@@ -375,10 +381,10 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
                 
                 if(max_cost < result->obj_value)
                 {
-                    arrow_debug("   - tour is the best one found so far.\n");
-                    arrow_debug("   - max. cost is %d\n", max_cost);
+                    arrow_debug(" - tour is the best one found so far.\n");
+                    arrow_debug(" - max. cost is %d\n", max_cost);
                     result->obj_value = max_cost;
-                    arrow_debug("   - actual tour is of length %.0f\n", len);
+                    arrow_debug(" - actual tour is of length %.0f\n", len);
                     result->tour_length = len;
                     if(result->tour != NULL)
                     {

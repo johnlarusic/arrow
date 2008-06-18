@@ -64,6 +64,7 @@ main(int argc, char *argv[])
     arrow_tsp_lk_params lk_params;
     arrow_btsp_fun fun_basic;
     arrow_btsp_result result;
+    arrow_btsp_params btsp_params;
     
     double start_time = arrow_util_zeit();
     double end_time;
@@ -73,26 +74,34 @@ main(int argc, char *argv[])
     if(!arrow_options_parse(NUM_OPTS, options, desc, usage, argc, argv, NULL))
         return EXIT_FAILURE;
         
-    /* Try and read the problem file and its info */
+    /* Try and read the problem file */
     if(!arrow_problem_read(input_file, &problem))
         return EXIT_FAILURE;
+    if(!problem.symmetric)
+    {
+        arrow_print_error("Solver only works on symmetric matrices.");
+        return EXIT_FAILURE;
+    }
+    
+    /* Gather basic info about the problem */
     if(!arrow_problem_info_get(&problem, &info))
         return EXIT_FAILURE;
+    printf("Number of unique costs: %d\n", info.cost_list_length);
 
     /* Determine if we need to call the BBSSP to find a lower bound */
     if(lower_bound < 0)
     {
-        printf("Solving BBSSP to find a lower bound... ");
+        printf("Solving BBSSP to find a lower bound\n");
         arrow_bbssp_result bbssp_result;
         if(!arrow_bbssp_solve(&problem, &info, &bbssp_result))
         {
             arrow_print_error("Could not solve BBSSP on file.\n");
-            ret = EXIT_FAILURE;
-            goto CLEANUP;
+            arrow_problem_destruct(&problem);
+            return EXIT_FAILURE;
         }
         lower_bound = bbssp_result.obj_value;
         bbssp_time = bbssp_result.total_time;
-        printf("done!  BBSSP lower bound is %d\n.", lower_bound);
+        printf("BBSSP lower bound is %d\n.", lower_bound);
     }
     
     /* Setup LK parameters structure */
@@ -118,7 +127,6 @@ main(int argc, char *argv[])
     };
     
     /* Setup BTSP parameters structure */
-    arrow_btsp_params btsp_params;
     arrow_btsp_params_init(&btsp_params);
     btsp_params.confirm_sol         = confirm_sol;
     btsp_params.supress_ebst        = supress_ebst;
@@ -212,7 +220,7 @@ CLEANUP:
     arrow_btsp_params_destruct(&btsp_params);
     arrow_btsp_fun_destruct(&fun_basic);
     arrow_btsp_params_destruct(&btsp_params);
-    arrow_tsp_lk_params_destruct(&lk_params);
+    arrow_tsp_lk_params_destruct(&lk_params); 
     arrow_problem_destruct(&problem);
     return ret;
 }

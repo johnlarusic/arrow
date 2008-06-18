@@ -52,6 +52,7 @@ extern "C" {
 
 #define ARROW_BTSP_SOLVE_PLAN_BASIC 1
 #define ARROW_BTSP_SOLVE_PLAN_CONSTRAINED 2
+#define ARROW_BTSP_SOLVE_PLAN_CONSTRAINED_SHAKE 3
 
 #define ARROW_DEFAULT_BASIC_ATTEMPTS 3
 
@@ -111,7 +112,7 @@ typedef struct arrow_problem
     int symmetric;      /**< indicates if cost matrix is symmetric */
     CCdatagroup data;   /**< Concorde data structure for problem. */
     int shallow;        /**< indicates use of shallow copy of data */
-    char *name;         /**< name of problem (can be NULL) */
+    char name[64];      /**< name of problem (can be NULL) */
     
     /**
      *  @brief  Returns the cost between node i and node j.
@@ -429,8 +430,23 @@ int
 arrow_btsp_fun_constrained(int shallow, double feasible_length, int infinity,
                            arrow_btsp_fun *fun);
 
+/**
+ *  @brief  Constrained "Shake" BTSP to TSP function
+ *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
+ *  @param  feasible_length [in] length of feasible tour
+ *  @param  infinity [in] value to use as "infinity"
+ *  @param  rand_min [in] minimum random value to generate
+ *  @param  rand_max [in] maximum random value to generate
+ *  @param  problem [in] the problem the shake is based upon
+ *  @param  info [in] information about the original problem
+ *  @param  fun [out] function structure
+ */
 int
-arrow_btsp_fun_basic_plus(int shallow, arrow_btsp_fun *fun);
+arrow_btsp_fun_constrained_shake(int shallow, double feasible_length, 
+                                 int infinity, int rand_min, int rand_max,
+                                 arrow_problem *problem, 
+                                 arrow_problem_info *info, 
+                                 arrow_btsp_fun *fun);
 
 /****************************************************************************
  *  options.c
@@ -664,6 +680,35 @@ arrow_util_regex_match(char *string, char *pattern);
  */
 void
 arrow_util_print_program_args(int argc, char *argv[], FILE *out);
+
+/**
+ *  @brief  Seeds the random number generator.  Pass a value of 0 to seed
+ *          with the current time.
+ *  @param  seed [in] the random number seed.
+ */
+void
+arrow_util_random_seed(int seed);
+
+/**
+ *  @brief  Returns a random number between 0 and RAND_MAX (normally,
+ *          RAND_MAX = INT_MAX).
+ *  @return a random integer.
+ */
+inline int
+arrow_util_random();
+
+/**
+ *  @brief  Returns a random number between min and max.
+ *  @param  min [in] the minimum random number to return
+ *  @param  max [in] the maximum random number to return
+ *  @return a random integer in the range [min, max]
+ */
+inline int
+arrow_util_random_between(int min, int max);
+
+void
+arrow_util_write_tour(arrow_problem *problem, char *comment, int *tour, 
+                      FILE *out);
 
 
 #ifdef __cplusplus

@@ -120,25 +120,25 @@ arrow_tsp_lk_solve(arrow_problem *problem, arrow_tsp_lk_params *params,
     
     /* Some of the following code is heavily copied from the find_tour
        method in Concorde's TSP/concorde.c */
-    arrow_debug("\nEntering arrow_tsp_lk_solve\n");
+    arrow_debug("Entering arrow_tsp_lk_solve\n");
     
     /* Set default params if none are passed */
     if(params == NULL)
     {
-        arrow_debug("No parameters set, so using default.\n");
+        arrow_debug(" - No parameters set, so using default.\n");
         arrow_tsp_lk_params_init(problem, &lk_params);
     }
     else
     {
-        arrow_debug("Using passed parameters.\n");
+        arrow_debug(" - Using passed parameters.\n");
         lk_params = *params;
     }
-    arrow_debug(" - random_restarts = %d\n", lk_params.random_restarts);
-    arrow_debug(" - stall_count = %d\n", lk_params.stall_count);
-    arrow_debug(" - kicks = %d\n", lk_params.kicks);
-    arrow_debug(" - kick_type = %d\n", lk_params.kick_type);
-    arrow_debug(" - time_bound = %1.2f\n", lk_params.time_bound);
-    arrow_debug(" - length_bound = %.0f\n", lk_params.length_bound);
+    arrow_debug("     - random_restarts = %d\n", lk_params.random_restarts);
+    arrow_debug("     - stall_count = %d\n", lk_params.stall_count);
+    arrow_debug("     - kicks = %d\n", lk_params.kicks);
+    arrow_debug("     - kick_type = %d\n", lk_params.kick_type);
+    arrow_debug("     - time_bound = %1.2f\n", lk_params.time_bound);
+    arrow_debug("     - length_bound = %.0f\n", lk_params.length_bound);
     
     CCutil_sprand((int)CCutil_real_zeit(), &rstate);
     
@@ -158,7 +158,7 @@ arrow_tsp_lk_solve(arrow_problem *problem, arrow_tsp_lk_params *params,
     
     /* We start by building up a set of "good" edges for the heuristic
        to chew upon */
-    arrow_debug("Building set of 'good' edges... ");
+    arrow_debug(" - Building set of 'good' edges... ");
     CCedgegen_init_edgegengroup(&plan);
     plan.quadnearest = 2;
     cc_ret = CCedgegen_edges(&plan, problem->size, &(problem->data), 
@@ -175,7 +175,7 @@ arrow_tsp_lk_solve(arrow_problem *problem, arrow_tsp_lk_params *params,
     /* If none is passed, we construct an initial starting tour */
     if(lk_params.initial_tour == NULL)
     {
-        arrow_debug("Building initial tour... ");
+        arrow_debug(" - Building initial tour... ");
         build_initial_tour(problem, &plan, &rstate, cyc);
         arrow_debug("done.\n");
     }
@@ -185,13 +185,13 @@ arrow_tsp_lk_solve(arrow_problem *problem, arrow_tsp_lk_params *params,
     }
     
     /* Initial LK call */
-    arrow_debug("Initial call to the LK algorithm...\n");
+    arrow_debug(" - Initial call to the LK algorithm...\n");
     cc_ret = CClinkern_tour(problem->size, &(problem->data), ecount, elist, 
                             params->stall_count, params->kicks,
                             cyc, bestcyc, &bestval, 1, 
                             params->time_bound, params->length_bound,
                             (char *) NULL, params->kick_type, &rstate);
-    arrow_debug("Found tour of length '%.0f'.\n", bestval);
+    arrow_debug("     - Found tour of length '%.0f'.\n", bestval);
     if(cc_ret == CONCORDE_FAILURE)
     {
         arrow_print_error("CClinkern_tour failed");
@@ -203,14 +203,14 @@ arrow_tsp_lk_solve(arrow_problem *problem, arrow_tsp_lk_params *params,
     for(i = 0; (i < lk_params.random_restarts) 
         && (bestval > lk_params.length_bound); i++)
     {
-        arrow_debug("Trial %d of %d to LK algorithm...\n", i + 1, 
+        arrow_debug(" - Trial %d of %d to LK algorithm...\n", i + 1, 
                     lk_params.random_restarts);
         cc_ret = CClinkern_tour(problem->size, &(problem->data), ecount, 
                                 elist, params->stall_count, params->kicks,
                                 (int *) NULL, cyc, &val, 1, 
                                 params->time_bound, params->length_bound,
                                 (char *) NULL, params->kick_type, &rstate);
-        arrow_debug("Found tour of length '%.0f'.\n", val);
+        arrow_debug("     - Found tour of length '%.0f'.\n", val);
         if(cc_ret == CONCORDE_FAILURE)
         {
             arrow_print_error("CClinkern_tour failed");
@@ -218,7 +218,7 @@ arrow_tsp_lk_solve(arrow_problem *problem, arrow_tsp_lk_params *params,
             goto CLEANUP;
         }
         if (val < bestval) {
-            arrow_debug("Found a better tour (%.0f vs %.0f) so swap\n",
+            arrow_debug("     - Found a better tour (%.0f vs %.0f) so swap\n",
                         val, bestval);
             CC_SWAP (cyc, bestcyc, tmp);
             bestval = val;
@@ -227,13 +227,13 @@ arrow_tsp_lk_solve(arrow_problem *problem, arrow_tsp_lk_params *params,
     
     if((lk_params.random_restarts > 0) && (bestval > lk_params.length_bound))
     {
-        arrow_debug("Final attempt to find tour...\n");
+        arrow_debug(" - Final attempt to find tour...\n");
         cc_ret = CClinkern_tour(problem->size, &(problem->data), ecount, 
                                 elist, params->stall_count, 2 * params->kicks,
                                 bestcyc, result->tour, &(result->obj_value),
                                 1, params->time_bound, params->length_bound,
                                 (char *) NULL, params->kick_type, &rstate);
-        arrow_debug("Found tour of length '%.0f'.\n", result->obj_value);
+        arrow_debug("     - Found tour of length '%.0f'.\n", result->obj_value);
         if(cc_ret == CONCORDE_FAILURE)
         {
             arrow_print_error("CClinkern_tour failed");
@@ -243,7 +243,7 @@ arrow_tsp_lk_solve(arrow_problem *problem, arrow_tsp_lk_params *params,
     }
     else
     {
-        printf("Copying over found tour\n");
+        printf(" - Copying over found tour\n");
         result->obj_value = bestval;
         if(result->tour != NULL)
         {
@@ -261,11 +261,11 @@ CLEANUP:
     end_time = arrow_util_zeit();
     result->total_time = end_time - start_time;
     
-    arrow_debug("Cleaning up...");
+    arrow_debug(" - Cleaning up...");
     CC_IFFREE(cyc, int);
     CC_IFFREE(elist, int);
     if(params == NULL) arrow_tsp_lk_params_destruct(&lk_params);
-    arrow_debug("done.\n");
+    arrow_debug("done.\nLeaving arrow_tsp_lk_solve\n");
     return ret;
 }
 

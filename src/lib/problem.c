@@ -81,8 +81,14 @@ arrow_problem_read(char *file_name, arrow_problem *problem)
         return ARROW_FAILURE;
     }
     
+    /* Strip out the problem file name from the path */
+    char *s = strrchr(file_name, '/');
+    if(s != NULL)
+        sprintf(problem->name, "%s", s + 1);
+    else
+        sprintf(problem->name, "%s", file_name);
+    
     problem->shallow = ARROW_FALSE;
-    problem->name = NULL;
     problem->get_cost = arrow_problem_get_cost;
     
     return ARROW_SUCCESS;
@@ -223,7 +229,7 @@ arrow_problem_abtsp_to_sbtsp(arrow_problem *old_problem, int infinity,
     int n = old_problem->size;
     int ret = ARROW_SUCCESS;
 
-    new_problem->name = old_problem->name;
+    sprintf(new_problem->name, "%s", old_problem->name);
     new_problem->shallow = ARROW_FALSE;
     new_problem->size = n * 2;
     new_problem->symmetric = ARROW_TRUE;
@@ -234,7 +240,7 @@ arrow_problem_abtsp_to_sbtsp(arrow_problem *old_problem, int infinity,
     ret = arrow_util_CCdatagroup_init_matrix(n * 2, dat);
     if(ret != ARROW_SUCCESS)
     {
-        return ARROW_ERROR_FATAL;
+        return ARROW_FAILURE;
     }
 
     for(i = 0; i < new_problem->size; i++)
@@ -275,7 +281,7 @@ is_asymmetric(char *file_name)
 int
 read_atsp(char *file_name, arrow_problem *problem)
 {
-    /* This code is mostly borrowed (stolen? ha!) from Concorde's routine,
+    /* This code is mostly borrowed (stolen?) from Concorde's routine,
        so credit to the Concorde guys who dealing with the pain of reading
        TSPLIB files in C. */
     char buf[256], key[256], field[256];

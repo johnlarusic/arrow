@@ -18,7 +18,7 @@ arrow_util_create_int_array(int size, int **array)
     {
         arrow_print_error("Error allocating memory for int array.");
         *array = NULL;
-        return ARROW_ERROR_FATAL;
+        return ARROW_FAILURE;
     }
     return ARROW_SUCCESS;
 }
@@ -88,7 +88,7 @@ arrow_util_CCdatagroup_init_matrix(int size, CCdatagroup *dat)
     if(CCutil_dat_setnorm(dat, CC_MATRIXNORM))
     {
         arrow_print_error("Couldn't set norm to MATRIXNORM");
-        return ARROW_ERROR_FATAL;
+        return ARROW_FAILURE;
     }
     
     dat->adj = CC_SAFE_MALLOC(size, int *);
@@ -98,7 +98,7 @@ arrow_util_CCdatagroup_init_matrix(int size, CCdatagroup *dat)
     {
         CCutil_freedatagroup(dat);
         arrow_print_error("Couldn't create adj/adjspace arrays");
-        return ARROW_ERROR_FATAL;
+        return ARROW_FAILURE;
     }
     
     int i, j;
@@ -138,7 +138,7 @@ arrow_util_binary_search(int *array, int size, int element, int *pos)
     
     *pos = low;
     if(array[low] != element)
-        return ARROW_ERROR_FATAL;
+        return ARROW_FAILURE;
     else        
         return ARROW_SUCCESS;
 }
@@ -170,4 +170,44 @@ arrow_util_print_program_args(int argc, char *argv[], FILE *out)
         if(i > 0) fprintf(out, " ");
         fprintf(out, "%s", argv[i]);
     }
+}
+
+void
+arrow_util_random_seed(int seed)
+{
+    if(seed == 0)
+        srand(time(0));
+    else
+        srand((unsigned int)seed);
+}
+
+inline int
+arrow_util_random()
+{
+    return rand();
+}
+
+inline int
+arrow_util_random_between(int min, int max)
+{
+    return (rand() % (max - min)) + min;
+}
+
+void
+arrow_util_write_tour(arrow_problem *problem, char *comment, int *tour, 
+                      FILE *out)
+{
+    int i;
+    
+    fprintf(out, "NAME : %s\n", problem->name);
+    fprintf(out, "TYPE : TOUR\n");    
+    fprintf(out, "DIMENSION: %d\n", problem->size);
+    
+    if(comment != NULL)
+        fprintf(out, "COMMENT : %s\n", comment);
+    
+    fprintf(out, "TOUR_SECTION\n");
+    for(i = 0; i < problem->size; i++)
+        fprintf(out, "%d\n", tour[i]);
+    fprintf(out, "-1\n");
 }

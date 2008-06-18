@@ -11,6 +11,7 @@
 /* Global variables */
 char *input_file = NULL;
 char *xml_file = NULL;
+char *tour_file = NULL;
 double length = DBL_MAX;
 int random_restarts = -1;
 int stall_count = -1;
@@ -20,16 +21,24 @@ int supress_ebst = ARROW_FALSE;
 int find_short_tour = ARROW_FALSE;
 int lower_bound = -1;
 int upper_bound = INT_MAX;
-int basic_attempts = ARROW_DEFAULT_BASIC_ATTEMPTS;
+int basic_attempts = 3;
+int shake_attempts = 2;
+int shake_rand_min = 0;
+int shake_rand_max = -1;
+int random_seed = 0;
+
 
 /* Program options */
-#define NUM_OPTS 12
+#define NUM_OPTS 17
 arrow_option options[NUM_OPTS] = 
 {
     {'i', "input", "TSPLIB input file", 
         ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE},
     {'x', "xml", "file to write XML output to",
         ARROW_OPTION_STRING, &xml_file, ARROW_FALSE, ARROW_TRUE},
+    {'T', "tour", "file to write tour to",
+        ARROW_OPTION_STRING, &tour_file, ARROW_FALSE, ARROW_TRUE},
+        
     {'L', "length", "maximum tour length",
         ARROW_OPTION_DOUBLE, &length, ARROW_TRUE, ARROW_TRUE},
     
@@ -50,8 +59,19 @@ arrow_option options[NUM_OPTS] =
         ARROW_OPTION_INT, &lower_bound, ARROW_FALSE, ARROW_TRUE},
     {'u', "upper-bound", "initial upper bound",
         ARROW_OPTION_INT, &upper_bound, ARROW_FALSE, ARROW_TRUE},
+        
     {'a', "basic-attempts", "number of basic attempts",
-        ARROW_OPTION_INT, &basic_attempts, ARROW_FALSE, ARROW_TRUE}
+        ARROW_OPTION_INT, &basic_attempts, ARROW_FALSE, ARROW_TRUE},
+        
+    {'b', "shake-attempts", "number of shake attempts",
+        ARROW_OPTION_INT, &shake_attempts, ARROW_FALSE, ARROW_TRUE},
+    {'1', "shake-rand-min", "min value for shake random numbers",
+        ARROW_OPTION_INT, &shake_rand_min, ARROW_FALSE, ARROW_TRUE},
+    {'2', "shake-rand-max", "max value for shake random numbers",
+        ARROW_OPTION_INT, &shake_rand_max, ARROW_FALSE, ARROW_TRUE},
+        
+    {'g', "random-seed", "random number generator seed",
+        ARROW_OPTION_INT, &random_seed, ARROW_FALSE, ARROW_TRUE}
 };
 char *desc = "Bottleneck traveling salesman problem (BTSP) solver";
 char *usage = "-i tsplib.tsp -L max_length [options]";
@@ -66,6 +86,7 @@ main(int argc, char *argv[])
     arrow_problem_info info;
     arrow_tsp_lk_params lk_params;
     arrow_btsp_fun fun_con;
+    arrow_btsp_fun fun_con_shake;
     arrow_btsp_result result;
     
     double start_time = arrow_util_zeit();
@@ -81,6 +102,18 @@ main(int argc, char *argv[])
         return EXIT_FAILURE;
     if(!arrow_problem_info_get(&problem, &info))
         return EXIT_FAILURE;
+        
+    /* Extra processing for arguments */
+    if(shake_rand_max < 0) shake_rand_max = 
+        (problem.size * problem.size) + shake_rand_min;
+    if(shake_rand_max - shake_rand_min < info.cost_list_length)
+    {
+        arrow_print_error("shake random interval not large enough");
+        return EXIT_FAILURE;
+    }
+    
+    /* Initialize random number generator */
+    arrow_util_random_seed(random_seed);
     
     /* Determine if we need to call the BBSSP to find a lower bound */
     if(lower_bound < 0)
@@ -107,7 +140,13 @@ main(int argc, char *argv[])
     /* Setup necessary function structures */
     if(!arrow_btsp_fun_constrained(ARROW_FALSE, length, length + 1, &fun_con))
         return EXIT_FAILURE;
-    #define SOLVE_STEPS 1
+        
+    if(!arrow_btsp_fun_constrained_shake(ARROW_FALSE, length, length + 1, 
+                                         shake_rand_min, shake_rand_max, 
+                                         &problem, &info, &fun_con_shake))
+        return EXIT_FAILURE;
+    
+    #define SOLVE_STEPS 2
     arrow_btsp_solve_plan steps[SOLVE_STEPS] = 
     {
        {
@@ -117,6 +156,14 @@ main(int argc, char *argv[])
            lk_params,                         /* LK parameters */
            ARROW_FALSE,                       /* upper_bound_update? */
            basic_attempts                     /* attempts */
+       },
+       {
+           ARROW_BTSP_SOLVE_PLAN_CONSTRAINED_SHAKE,
+           ARROW_FALSE,
+           fun_con_shake,
+           lk_params,
+           ARROW_FALSE,
+           shake_attempts
        }
     };
     
@@ -128,7 +175,7 @@ main(int argc, char *argv[])
     btsp_params.find_short_tour     = find_short_tour;
     btsp_params.lower_bound         = lower_bound;
     btsp_params.upper_bound         = upper_bound;
-    btsp_params.num_steps           = 1;
+    btsp_params.num_steps           = SOLVE_STEPS;
     btsp_params.steps               = steps;
     
     /* Setup BTSP results structure */
@@ -159,8 +206,8 @@ main(int argc, char *argv[])
                 return EXIT_FAILURE;
             }
         }
-        printf("\nCHECK Tour Length: %.0f\n", len);
-        printf("CHECK Max Cost: %d\n\n", max_cost);
+        printf("CHECK Tour Length: %.0f\n", len);
+        printf("CHECK Max Cost: %d\n", max_cost);
     }
 
     /* Output result */
@@ -186,6 +233,27 @@ main(int argc, char *argv[])
             result.exact_time / (result.exact_attempts * 1.0));
     printf("Total BTSP Time: %.2f\n", result.total_time);
     printf("Total Time: %.2f\n", end_time);
+    
+    /* Tour output */
+    if((result.found_tour) && (tour_file != NULL))
+    {
+        FILE *tour;
+        char comment[256];
+        
+        if(!(tour = fopen(tour_file, "w")))
+        {
+            arrow_print_error("Could not open tour file for writing");
+            ret = ARROW_FAILURE;
+            goto CLEANUP;
+        }
+        
+        sprintf(comment, "CBTSP Tour (k= %.0f); Length %.0f, Max Cost %d.",
+            length, result.tour_length, result.obj_value);
+        
+        arrow_util_write_tour(&problem, comment, result.tour, tour);
+        
+        fclose(tour);
+    }
     
     /* Xml output */
     if(xml_file != NULL)

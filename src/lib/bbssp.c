@@ -49,6 +49,12 @@ arrow_bbssp_solve(arrow_problem *problem, arrow_problem_info *info,
     int connected;
     double start_time, end_time;
     
+    if(!problem->symmetric)
+    {
+        arrow_print_error("Solver only works on symmetric cost matrices.");
+        return ARROW_FAILURE;
+    }
+    
     /* Start binary search */
     start_time = arrow_util_zeit();
     low = 0;
