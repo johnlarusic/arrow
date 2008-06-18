@@ -341,8 +341,8 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
             /* Determine if we have found a tour of feasible length or not */
             arrow_debug("Found a tour of length %.0f\n", 
                         tsp_result.obj_value);
-            feasible = fun->feasible(fun, problem, tsp_result.obj_value, 
-                                     tsp_result.tour);
+            feasible = fun->feasible(fun, problem, delta, 
+                                     tsp_result.obj_value, tsp_result.tour);
             if(feasible)
             {
                 /* Set this tour to the output variables then exit */

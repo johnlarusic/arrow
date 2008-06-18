@@ -47,13 +47,14 @@ basic_destruct(arrow_btsp_fun *fun);
  *  @brief  Determines if the given tour is feasible or not.
  *  @param  fun [in] function structure
  *  @param  problem [in] the problem to check against
+ *  @param  delta [in] delta parameter
  *  @param  tour_length [in] the length of the given tour
  *  @param  tour [in] the tour in node-node format
  *  @return ARROW_TRUE if the tour is feasible, ARROW_FALSE if not
  */
 int
 basic_feasible(arrow_btsp_fun *fun, arrow_problem *problem, 
-               double tour_length, int *tour);
+               int delta, double tour_length, int *tour);
 
 /**
  *  @brief  Concorde edge length function for the basic cost matrix function.
@@ -130,13 +131,14 @@ constrained_shake_destruct(arrow_btsp_fun *fun);
  *  @brief  Determines if the given tour is feasible or not.
  *  @param  fun [in] function structure
  *  @param  problem [in] the problem to check against
+ *  @param  delta [in] delta parameter
  *  @param  tour_length [in] the length of the given tour
  *  @param  tour [in] the tour in node-node format
  *  @return ARROW_TRUE if the tour is feasible, ARROW_FALSE if not
  */
 int
 constrained_shake_feasible(arrow_btsp_fun *fun, arrow_problem *problem, 
-                           double tour_length, int *tour);
+                           int delta, double tour_length, int *tour);
 
 /**
  *  @brief  Concorde userdat structure for basic cost matrix function.
@@ -350,7 +352,7 @@ basic_destruct(arrow_btsp_fun *fun)
 
 int
 basic_feasible(arrow_btsp_fun *fun, arrow_problem *problem, 
-               double tour_length, int *tour)
+               int delta, double tour_length, int *tour)
 {
     return (tour_length <= fun->feasible_length ? ARROW_TRUE : ARROW_FALSE);
 }
@@ -496,9 +498,9 @@ constrained_shake_destruct(arrow_btsp_fun *fun)
 
 int
 constrained_shake_feasible(arrow_btsp_fun *fun, arrow_problem *problem, 
-                           double tour_length, int *tour)
+                           int delta, double tour_length, int *tour)
 {
-    int i, u, v;
+    int i, u, v, cost;
     arrow_problem *old_problem = 
         ((constrained_shake_data *)(fun->data))->problem;
     double actual_length = 0.0;
@@ -506,8 +508,15 @@ constrained_shake_feasible(arrow_btsp_fun *fun, arrow_problem *problem,
     {
         u = tour[i];
         v = tour[(i + 1) % old_problem->size];
-        actual_length += old_problem->get_cost(old_problem, u, v);
+        cost = old_problem->get_cost(old_problem, u, v);
+        
+        if(cost > delta)
+            return ARROW_FALSE;
+        
+        actual_length += cost;
+        if(actual_length > fun->feasible_length)
+            return ARROW_FALSE;
     }
         
-    return (actual_length <= fun->feasible_length ? ARROW_TRUE : ARROW_FALSE);
+    return ARROW_TRUE;
 }

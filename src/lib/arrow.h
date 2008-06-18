@@ -212,13 +212,14 @@ typedef struct arrow_btsp_fun
      *  @brief  Determines if the given tour is feasible or not.
      *  @param  fun [in] function structure
      *  @param  problem [in] the problem to check against
+     *  @param  delta [in] the delta parameter
      *  @param  tour_length [in] the length of the given tour
      *  @param  tour [in] the tour in node-node format
      *  @return ARROW_TRUE if the tour is feasible, ARROW_FALSE if not
      */
     int
     (*feasible)(struct arrow_btsp_fun *fun, arrow_problem *problem,
-                double tour_length, int *tour);
+                int delta, double tour_length, int *tour);
 } arrow_btsp_fun;
 
 /**
