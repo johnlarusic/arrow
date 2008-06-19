@@ -421,6 +421,14 @@ int
 arrow_btsp_fun_basic(int shallow, arrow_btsp_fun *fun);
 
 /**
+ *  @brief  Basic BTSP to TSP function for asymmetric problem instances.
+ *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
+ *  @param  fun [out] function structure
+ */
+int
+arrow_btsp_fun_basic_atsp(int shallow, arrow_btsp_fun *fun);
+
+/**
  *  @brief  Constrained BTSP to TSP function
  *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
  *  @param  feasible_length [in] length of feasible tour

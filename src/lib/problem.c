@@ -129,14 +129,17 @@ arrow_problem_info_get(arrow_problem *problem, arrow_problem_info *info)
         j = (problem->symmetric == ARROW_TRUE ? i + 1 : 0);
         for(; j < problem->size; j++)
         {
-            /* Add to binary tree */
-            cost = problem->get_cost(problem, i, j);
-            ret = arrow_bintree_insert(&tree, cost);
-            if(ret != ARROW_SUCCESS) goto CLEANUP;
+            if(i != j)
+            {
+                /* Add to binary tree */
+                cost = problem->get_cost(problem, i, j);
+                ret = arrow_bintree_insert(&tree, cost);
+                if(ret != ARROW_SUCCESS) goto CLEANUP;
             
-            /* Determine min and max costs */
-            if(cost < min_cost) min_cost = cost;
-            if(cost > max_cost) max_cost = cost;
+                /* Determine min and max costs */
+                if(cost < min_cost) min_cost = cost;
+                if(cost > max_cost) max_cost = cost;
+            }
         }
     }
     

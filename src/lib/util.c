@@ -84,7 +84,8 @@ arrow_util_CCdatagroup_shallow_copy(CCdatagroup *from, CCdatagroup *to)
 
 int
 arrow_util_CCdatagroup_init_matrix(int size, CCdatagroup *dat)
-{    
+{   
+    CCutil_init_datagroup(dat);
     if(CCutil_dat_setnorm(dat, CC_MATRIXNORM))
     {
         arrow_print_error("Couldn't set norm to MATRIXNORM");

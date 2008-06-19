@@ -7,8 +7,10 @@ stamp.h1
 *.Po
 *.o
 *.Tpo
+*.exe
 
 bbssp
+abtsp
 btsp
 cbtsp
 histogram_data
