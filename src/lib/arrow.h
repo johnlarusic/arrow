@@ -719,6 +719,9 @@ void
 arrow_util_write_tour(arrow_problem *problem, char *comment, int *tour, 
                       FILE *out);
 
+void
+arrow_util_sbtsp_to_abstp_tour(arrow_problem *problem, int *old_tour,
+                               int *new_tour);
 
 #ifdef __cplusplus
 }

@@ -255,12 +255,13 @@ arrow_problem_abtsp_to_sbtsp(arrow_problem *old_problem, int infinity,
             else if(i == j + n)
                 dat->adj[i][j] = -1 * infinity;
             else
-                dat->adj[i][j] = old_problem->get_cost(old_problem, i - n, j);
+                dat->adj[i][j] = old_problem->get_cost(old_problem, j, i - n);
         }
     }
     
     return ret;
 }
+
 
 /****************************************************************************
  * Private function implementations

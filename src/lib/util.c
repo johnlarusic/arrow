@@ -212,3 +212,27 @@ arrow_util_write_tour(arrow_problem *problem, char *comment, int *tour,
         fprintf(out, "%d\n", tour[i]);
     fprintf(out, "-1\n");
 }
+
+void
+arrow_util_sbtsp_to_abstp_tour(arrow_problem *problem, int *old_tour,
+                               int *new_tour)
+{
+    int i, u, v, cost;
+    int n = problem->size / 2;
+    int dir = problem->get_cost(problem, old_tour[0], old_tour[1]);
+    
+    for(i = 0; i < problem->size; i++)
+    {
+        u = old_tour[i];
+        v = old_tour[(i + 1) % problem->size];
+        cost = problem->get_cost(problem, u, v);
+    }
+    
+    for(i = 0; i < n; i++)
+    {
+        if(dir >= 0)
+            new_tour[i] = old_tour[2 * i];
+        else
+            new_tour[n - i - 1] = old_tour[2 * i];
+    }
+}

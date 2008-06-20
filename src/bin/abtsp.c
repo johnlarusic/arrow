@@ -89,11 +89,6 @@ main(int argc, char *argv[])
     if(!arrow_problem_info_get(&atsp_problem, &info))
         return EXIT_FAILURE;
     printf("Number of unique costs: %d\n", info.cost_list_length);
-    printf("Unique cost list: ");
-    int i;
-    for(i = 0; i < info.cost_list_length; i++)
-        printf("%d, ", info.cost_list[i]);
-    printf("EOL\n");
     
     /* Create transformed problem */
     infinity = info.max_cost * atsp_problem.size + 1;
@@ -104,7 +99,7 @@ main(int argc, char *argv[])
         arrow_problem_destruct(&atsp_problem);
         return EXIT_FAILURE;
     }
-
+    
     /* Determine if we need to call the BBSSP to find a lower bound */
     if(lower_bound < 0)
     {
@@ -121,6 +116,7 @@ main(int argc, char *argv[])
     if(random_restarts >= 0)    lk_params.random_restarts  = random_restarts;
     if(stall_count >= 0)        lk_params.stall_count      = stall_count;
     if(kicks >= 0)              lk_params.kicks            = kicks;
+    lk_params.length_bound = infinity * atsp_problem.size * -1;
         
     /* Setup necessary function structures */
     if(arrow_btsp_fun_basic_atsp(ARROW_FALSE, &fun_basic) != ARROW_SUCCESS)
@@ -162,6 +158,41 @@ main(int argc, char *argv[])
     if(result.found_tour)
     {
         result.tour_length += atsp_problem.size * infinity;
+        
+        int *actual_tour;
+        if(!arrow_util_create_int_array(atsp_problem.size, &actual_tour))
+        {
+            arrow_print_error("Could not create actual_tour array.\n");
+            ret = EXIT_FAILURE;
+            goto CLEANUP;
+        }
+        arrow_util_sbtsp_to_abstp_tour(&problem, result.tour, actual_tour);
+        
+        /* Sanity check */
+        int i, u, v, cost, costp;
+        for(i = 0; i < atsp_problem.size; i++)
+        {
+            u = actual_tour[i];
+            v = actual_tour[(i + 1) % atsp_problem.size];
+            cost = atsp_problem.get_cost(&atsp_problem, u, v);
+            
+            if(cost > result.obj_value)
+            {
+                arrow_print_error("Found tour is no good! WTF?\n");
+                fprintf(stderr, "C[%d,%d] = %d, ", u, v, cost);
+                ret = EXIT_FAILURE;
+                goto CLEANUP;
+            }
+            else if(cost < 0)
+            {
+                arrow_print_error("Negative edge in tour! WTF?\n");
+                fprintf(stderr, "C[%d,%d] = %d, ", u, v, cost);
+                ret = EXIT_FAILURE;
+                goto CLEANUP;
+            }
+        }
+        printf("Tour passes sanity check\n");
+        free(actual_tour);
     }
     
     /* Final output */
@@ -194,7 +225,7 @@ main(int argc, char *argv[])
         if(!(xml = fopen(xml_file, "w")))
         {
             arrow_print_error("Could not open xml file for writing");
-            ret = ARROW_FAILURE;
+            ret = EXIT_FAILURE;
             goto CLEANUP;
         }
         
