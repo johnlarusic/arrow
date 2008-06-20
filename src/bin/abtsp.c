@@ -11,6 +11,7 @@
 /* Global variables */
 char *input_file = NULL;
 char *xml_file = NULL;
+char *tour_file = NULL;
 int random_restarts = -1;
 int stall_count = -1;
 int kicks = -1;
@@ -22,13 +23,15 @@ int upper_bound = INT_MAX;
 int basic_attempts = ARROW_DEFAULT_BASIC_ATTEMPTS;
 
 /* Program options */
-#define NUM_OPTS 11
+#define NUM_OPTS 12
 arrow_option options[NUM_OPTS] = 
 {
     {'i', "input", "TSPLIB input file", 
         ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE},
     {'x', "xml", "file to write XML output to",
         ARROW_OPTION_STRING, &xml_file, ARROW_FALSE, ARROW_TRUE},
+    {'T', "tour", "file to write tour to",
+        ARROW_OPTION_STRING, &tour_file, ARROW_FALSE, ARROW_TRUE},
         
     {'r', "restarts", "number of random restarts",
         ARROW_OPTION_INT, &random_restarts, ARROW_FALSE, ARROW_TRUE},
@@ -192,6 +195,28 @@ main(int argc, char *argv[])
             }
         }
         printf("Tour passes sanity check\n");
+        
+        /* Tour output */
+        if(tour_file != NULL)
+        {
+            FILE *tour;
+            char comment[256];
+        
+            if(!(tour = fopen(tour_file, "w")))
+            {
+                arrow_print_error("Could not open tour file for writing");
+                ret = ARROW_FAILURE;
+                goto CLEANUP;
+            }
+        
+            sprintf(comment, "ABTSP Tour; Length %.0f, Max Cost %d.",
+                result.tour_length, result.obj_value);
+        
+            arrow_util_write_tour(&atsp_problem, comment, actual_tour, tour);
+        
+            fclose(tour);
+        }
+        
         free(actual_tour);
     }
     
