@@ -449,31 +449,23 @@ basic_atsp_feasible(arrow_btsp_fun *fun, arrow_problem *problem,
     int i, u, v, cost;
     int trans_edges = 0;
     
-    printf("Checking feasibility of tour...\n");
     for(i = 0; i < problem->size; i++)
     {
         u = tour[i];
         v = tour[(i + 1) % problem->size];
         cost = problem->get_cost(problem, u, v);
         
-        printf("C[%d,%d] = %d, ", u, v, cost); fflush(stdin);
-        
         if(cost > delta)
-        {
-            printf("...found cost > delta (%d)\n", delta);
             return ARROW_FALSE;
-        }
             
         if(cost < 0)
             trans_edges++;
     }
-    printf("EOL\n");
     
     
     /* If an edge's cost is strictly less than 0, then it was introduced into
        the transformation from asymmetric to symmetric.  Any tour we find must
        use each of these edges in order for the tour to be valid. */
-    printf("# trans. edges: %d\n", trans_edges);
     if(trans_edges == (problem->size / 2))
         return ARROW_TRUE;
     else
