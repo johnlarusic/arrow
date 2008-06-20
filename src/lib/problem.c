@@ -243,6 +243,7 @@ arrow_problem_abtsp_to_sbtsp(arrow_problem *old_problem, int infinity,
     ret = arrow_util_CCdatagroup_init_matrix(n * 2, dat);
     if(ret != ARROW_SUCCESS)
     {
+        arrow_print_error("Could not create CCdatagroup matrix");
         return ARROW_FAILURE;
     }
 

@@ -47,10 +47,30 @@ main(int argc, char *argv[])
         return EXIT_FAILURE;
     
     /* Solve BBSSP */
-    if(!arrow_bbssp_solve(&problem, &info, &result))
+    if(problem.symmetric)
     {
-        arrow_print_error("Could not solve BBSSP on file.\n");
-        return EXIT_FAILURE;
+        if(!arrow_bbssp_solve(&problem, &info, &result))
+        {
+            arrow_print_error("Could not solve BBSSP on file.");
+            return EXIT_FAILURE;
+        }
+    }
+    else
+    {
+        /* Create symmetric transformation first */
+        arrow_problem sym_problem;
+        int infinity = info.max_cost * problem.size + 1;
+        if(!arrow_problem_abtsp_to_sbtsp(&problem, infinity, &sym_problem))
+        {
+            arrow_print_error("Could not create transformation.");
+            return EXIT_FAILURE;
+        }
+        if(!arrow_bbssp_solve(&sym_problem, &info, &result))
+        {
+            arrow_print_error("Could not solve BBSSP on file.");
+            return EXIT_FAILURE;
+        }
+        arrow_problem_destruct(&sym_problem);
     }
     
     printf("\nBBSSP Solution: %d\n", result.obj_value);
