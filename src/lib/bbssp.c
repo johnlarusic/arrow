@@ -42,7 +42,7 @@ find_art_points(arrow_problem *problem, int max_cost, int node, int depth_num,
  ****************************************************************************/
 int
 arrow_bbssp_solve(arrow_problem *problem, arrow_problem_info *info, 
-                  arrow_bbssp_result *result)
+                  arrow_bound_result *result)
 {
     int ret;
     int low, high, median;

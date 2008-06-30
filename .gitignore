@@ -9,10 +9,12 @@ stamp.h1
 *.Tpo
 *.exe
 
+bap
 bbssp
 abtsp
 btsp
 cbtsp
+hash
 histogram_data
 linkern
 tour_info

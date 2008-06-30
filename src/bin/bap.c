@@ -1,8 +1,7 @@
 /**********************************************************doxygen*//** @file
- * @brief   Bottleneck Biconnected Spanning Subgraph solver.
+ * @brief   Bottleneck Assignment Problem solver.
  *
- * Solves the bottleneck biconnected spanning subgraph problem (BBSSP) problem
- * on the given input file.
+ * Solves the bottleneck assignment problem (BAP) on the given input file.
  *
  * @author  John LaRusic
  * @ingroup bin
@@ -23,7 +22,7 @@ arrow_option options[NUM_OPTS] =
     {'x', "xml", "File to write XML output to",
         ARROW_OPTION_STRING, &xml_file, ARROW_FALSE, ARROW_TRUE}
 };
-char *desc = "Bottleneck biconnected spanning subgraph solver";
+char *desc = "Bottleneck assignment problem solver";
 char *usage = "-i tsplib.tsp [options] ";
 
 /* Main method */
@@ -46,34 +45,14 @@ main(int argc, char *argv[])
     if(!arrow_problem_info_get(&problem, &info))
         return EXIT_FAILURE;
     
-    /* Solve BBSSP */
-    if(problem.symmetric)
+    /* Solve BAP */
+    if(!arrow_bap_solve(&problem, &info, &result))
     {
-        if(!arrow_bbssp_solve(&problem, &info, &result))
-        {
-            arrow_print_error("Could not solve BBSSP on file.");
-            return EXIT_FAILURE;
-        }
-    }
-    else
-    {
-        /* Create symmetric transformation first */
-        arrow_problem sym_problem;
-        int infinity = info.max_cost * problem.size + 1;
-        if(!arrow_problem_abtsp_to_sbtsp(&problem, infinity, &sym_problem))
-        {
-            arrow_print_error("Could not create transformation.");
-            return EXIT_FAILURE;
-        }
-        if(!arrow_bbssp_solve(&sym_problem, &info, &result))
-        {
-            arrow_print_error("Could not solve BBSSP on file.");
-            return EXIT_FAILURE;
-        }
-        arrow_problem_destruct(&sym_problem);
+        arrow_print_error("Could not solve BAP on file.");
+        return EXIT_FAILURE;
     }
     
-    printf("\nBBSSP Solution: %d\n", result.obj_value);
+    printf("\nBAP Solution: %d\n", result.obj_value);
     printf("Total Time: %5.2f\n", result.total_time);
     
     /* Print out XML file if required */
@@ -87,7 +66,8 @@ main(int argc, char *argv[])
             goto CLEANUP;
         }
         
-        fprintf(xml, "<arrow_bbssp problem_file=\"%s\"", input_file);
+        fprintf(xml, "<arrow_bound type=\"BAP\" ");
+        fprintf(xml, "problem_file=\"%s\"", input_file);
         fprintf(xml, " command_args=\"");
         arrow_util_print_program_args(argc, argv, xml);
         fprintf(xml, "\">\n");
@@ -95,7 +75,7 @@ main(int argc, char *argv[])
                 result.obj_value);
         fprintf(xml, "    <total_time>%5.2f</total_time>\n", 
                 result.total_time);
-        fprintf(xml, "</arrow_bbssp>\n");
+        fprintf(xml, "</arrow_bound>\n");
         
         fclose(xml);
     }

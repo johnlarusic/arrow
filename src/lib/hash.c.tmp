@@ -1,0 +1,78 @@
+/**********************************************************doxygen*//** @file
+ * @brief   Minimal perfect hashing functions
+ *
+ * Methods for generating a minimal perfect hash.
+ *
+ * @author  John LaRusic
+ * @ingroup lib
+ ****************************************************************************/
+#include "arrow.h"
+#include <cmph.h>
+#define MAX_INT_LEN 12
+/*
+int
+arrow_hash_init(int *array, int size, arrow_hash *hash)
+{
+    int i, j;
+    cmph_uint32 nkeys = (cmph_uint32)size;
+    arrow_debug("arrow_hash_init: number of keys: %u\n", nkeys);
+    
+    char **vector;
+    char *vector_space;
+    
+    if((vector = malloc(size * sizeof(char *))) == NULL)
+    {
+        arrow_print_error("Error allocating memory for vector.");
+        return ARROW_FAILURE;
+    }
+    if((vector_space = malloc(size * sizeof(int) * MAX_INT_LEN)) == NULL)
+    {
+        arrow_print_error("Error allocating memory for vector_space");
+        free(vector);
+        return ARROW_FAILURE;
+    }
+    
+    arrow_debug("arrow_hash_init: create vector\n");
+    for(i = 0, j = 0; i < size; i++)
+    {
+        vector[i] = vector_space + j;
+        sprintf(vector[i], "\"%d\"", array[i]);
+        j += MAX_INT_LEN;
+    }
+    
+    arrow_debug("arrow_hash_init: test vector\n");
+    for(i = 0; i < size; i++)
+        printf("%s, ", vector[i]);
+    printf("EOL\n");
+    
+    arrow_debug("arrow_hash_init: create hash source\n");
+    hash->source = cmph_io_vector_adapter((char **)vector, nkeys);
+    arrow_debug("arrow_hash_init: create hash config\n");
+    cmph_config_t *config = cmph_config_new(hash->source);
+    cmph_config_set_algo(config, CMPH_BRZ);
+    arrow_debug("arrow_hash_init: create hash data\n");
+    hash->data = cmph_new(config);
+
+    arrow_debug("arrow_hash_init: cleanup\n");
+    cmph_config_destroy(config);
+    //free(vector_space);
+    //free(vector);
+    return ARROW_SUCCESS;
+}
+
+void
+arrow_hash_destruct(arrow_hash *hash)
+{
+    cmph_destroy(hash->data);
+    cmph_io_vector_adapter_destroy(hash->source);
+}
+
+int
+arrow_hash_search(arrow_hash *hash, int key)
+{
+    char key_str[MAX_INT_LEN];
+    sprintf(key_str, "%d", key);
+    return cmph_search(hash->data, key_str, (cmph_uint32)strlen(key_str));
+}
+*/
+

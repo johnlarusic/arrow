@@ -23,6 +23,35 @@ arrow_util_create_int_array(int size, int **array)
     return ARROW_SUCCESS;
 }
 
+inline int
+arrow_util_create_int_matrix(int rows, int cols, int ***matrix, int **space)
+{
+    int i;
+    
+    if((*matrix = malloc(rows * sizeof(int *))) == NULL)
+    {
+        arrow_print_error("Could not allocate int * array for matrix.");
+        *matrix = NULL;
+        *space = NULL;
+        return ARROW_FAILURE;
+    }
+ 
+    if(!arrow_util_create_int_array(rows * cols, space))
+    {
+        arrow_print_error("Could not allocate int array for matrix space.");
+        free(*matrix);
+        *matrix = NULL;
+        return ARROW_FAILURE;
+    }
+ 
+    for(i = 0; i < rows; i++)
+    {
+        (*matrix)[i] = (*space) + (i * cols);
+    }
+    
+    return ARROW_SUCCESS;
+}
+
 inline void
 arrow_util_print_error(const char *file_name, int line_num,
                        const char *message)

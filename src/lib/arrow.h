@@ -74,13 +74,13 @@ extern "C" {
  *  Data Structures
  ****************************************************************************/
 /**
- *  @brief  BBSSP solver result
+ *  @brief  A lower bound result
  */
-typedef struct arrow_bbssp_result
+typedef struct arrow_bound_result
 {
     int obj_value;          /**< objective value */
     double total_time;      /**< total time */
-} arrow_bbssp_result;
+} arrow_bound_result;
 
 /**
  *  @brief  Binary tree data structure.
@@ -278,7 +278,7 @@ typedef struct arrow_option
  */
 int
 arrow_bbssp_solve(arrow_problem *problem, arrow_problem_info *info, 
-                  arrow_bbssp_result *result);
+                  arrow_bound_result *result);
 
 /**
  *  @brief  Determines if the graph is biconnected using only edges with costs
@@ -607,6 +607,16 @@ arrow_tsp_lk_solve(arrow_problem *problem, arrow_tsp_lk_params *params,
  */
 inline int
 arrow_util_create_int_array(int size, int **array);
+
+/**
+ *  @brief  Creates a full integer matrix.
+ *  @param  rows [in] number of rows
+ *  @param  cols [in] number of columns
+ *  @param  matrix [out] pointer to matrix that will be created
+ *  @param  space [out] pointer to matrix space that will be created
+ */
+inline int
+arrow_util_create_int_matrix(int rows, int cols, int ***matrix, int **space);
 
 /**
  *  @brief  Prints an error message to stderr with consistent formatting.

@@ -92,7 +92,7 @@ main(int argc, char *argv[])
     if(lower_bound < 0)
     {
         printf("Solving BBSSP to find a lower bound\n");
-        arrow_bbssp_result bbssp_result;
+        arrow_bound_result bbssp_result;
         if(!arrow_bbssp_solve(&problem, &info, &bbssp_result))
         {
             arrow_print_error("Could not solve BBSSP on file.\n");
