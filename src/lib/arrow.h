@@ -274,6 +274,7 @@ typedef struct arrow_option
  *  @brief  Solves the bottleneck biconnected spanning subgraph problem 
  *          (BBSSP) on the given problem.
  *  @param  problem [in] problem data
+ *  @param  info [in] problem info
  *  @param  result [out] BBSSP solution
  */
 int
@@ -331,6 +332,20 @@ arrow_bintree_to_array(arrow_bintree *tree, int **array);
 void
 arrow_bintree_print(arrow_bintree *tree);
 
+
+/****************************************************************************
+ *  bscssp.c
+ ****************************************************************************/
+/**
+ *  @brief  Solves the bottleneck strongly connected spanning subgraph problem
+ *          (BSCSSP) on the given graph.
+ *  @param  problem [in] problem data
+ *  @param  info [in] problem info
+ *  @param  result [out] BSCSSP solution
+ */
+int
+arrow_bscssp_solve(arrow_problem *problem, arrow_problem_info *info, 
+                   arrow_bound_result *result);
 
 /****************************************************************************
  *  btsp.c
