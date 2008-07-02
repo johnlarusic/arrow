@@ -36,6 +36,7 @@ env_bin.Append(LIBS = [File(env_bin.subst('$concorde_a'))])
 env_bin.Append(LIBS = [File(env_bin.subst('$qsopt_a'))])
 env_bin.BuildDir(bin_build, bin_src)
 
+env_bin.Program('2mb', bin_build + '/2mb.c')
 env_bin.Program('bap', bin_build + '/bap.c')
 env_bin.Program('bbssp', bin_build + '/bbssp.c')
 env_bin.Program('bscssp', bin_build + '/bscssp.c')
