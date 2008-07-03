@@ -10,48 +10,55 @@ Header file for the Arrow callable library.
 {\tt \#include $<$errno.h$>$}\par
 {\tt \#include $<$limits.h$>$}\par
 {\tt \#include $<$unistd.h$>$}\par
+{\tt \#include $<$float.h$>$}\par
+{\tt \#include $<$regex.h$>$}\par
+{\tt \#include $<$getopt.h$>$}\par
 {\tt \#include \char`\"{}concorde.h\char`\"{}}\par
 
 
-Include dependency graph for arrow.h:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=257pt]{arrow_8h__incl}
-\end{center}
-\end{figure}
+Include dependency graph for arrow.h:
 
-
-This graph shows which files directly or indirectly include this file:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=319pt]{arrow_8h__dep__incl}
-\end{center}
-\end{figure}
-\subsection*{Data Structures}
+This graph shows which files directly or indirectly include this file:\subsection*{Data Structures}
 \begin{CompactItemize}
 \item 
-struct \hyperlink{structarrow__problem}{arrow\_\-problem}
-\begin{CompactList}\small\item\em Problem data structure. \item\end{CompactList}\item 
-struct \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info}
-\begin{CompactList}\small\item\em Problem information data structure. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result}
+\begin{CompactList}\small\item\em A lower bound result. \item\end{CompactList}\item 
 struct \hyperlink{structarrow__bintree}{arrow\_\-bintree}
 \begin{CompactList}\small\item\em Binary tree data structure. \item\end{CompactList}\item 
 struct \hyperlink{structarrow__bintree__node}{arrow\_\-bintree\_\-node}
 \begin{CompactList}\small\item\em Binary tree node. \item\end{CompactList}\item 
-struct \hyperlink{structarrow__bbssp__result}{arrow\_\-bbssp\_\-result}
-\begin{CompactList}\small\item\em BBSSP solver result. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__problem}{arrow\_\-problem}
+\begin{CompactList}\small\item\em Problem data structure. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info}
+\begin{CompactList}\small\item\em Problem information data structure. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__tsp__lk__params}{arrow\_\-tsp\_\-lk\_\-params}
+\begin{CompactList}\small\item\em LK algorithm parameters. \item\end{CompactList}\item 
 struct \hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result}
 \begin{CompactList}\small\item\em TSP result (including result from LK heuristic). \item\end{CompactList}\item 
-struct \hyperlink{structarrow__tsp__lk__params}{arrow\_\-tsp\_\-lk\_\-params}
-\begin{CompactList}\small\item\em LK algorithm parameters. \item\end{CompactList}\end{CompactItemize}
+struct \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result}
+\begin{CompactList}\small\item\em BTSP result. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun}
+\begin{CompactList}\small\item\em BTSP Cost matrix function definition. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__btsp__solve__plan}{arrow\_\-btsp\_\-solve\_\-plan}
+\begin{CompactList}\small\item\em BTSP feasibility solve step plan. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params}
+\begin{CompactList}\small\item\em BTSP algorithm parameters. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__option}{arrow\_\-option}
+\begin{CompactList}\small\item\em Program options structure. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Defines}
 \begin{CompactItemize}
+\item 
+\#define \hyperlink{arrow_8h_3057840b0de9d217fdcedddc615295ad}{ARROW\_\-DEBUG}
+\item 
+\#define \hyperlink{arrow_8h_84ee1610187a79fbe4cdefeafffff4e8}{arrow\_\-debug}~printf
+\item 
+\#define \hyperlink{arrow_8h_73a3fc48edc73ab8c510034d6c6dd2e1}{ARROW\_\-VERSION}~\char`\"{}1.0\char`\"{}
 \item 
 \#define \hyperlink{arrow_8h_0be07738336b219a8057fb867ed386c1}{ARROW\_\-DEV\_\-NULL}~\char`\"{}/dev/null\char`\"{}
 \item 
 \#define \hyperlink{arrow_8h_21afcc3dc34f8488ad437841f58225c4}{ARROW\_\-SUCCESS}~1
+\item 
+\#define \hyperlink{arrow_8h_a50e8b8f74e48535271458079c7506cb}{ARROW\_\-FAILURE}~0
 \item 
 \#define \hyperlink{arrow_8h_4a768d7e7c23ac0605a6e93ca16aaae2}{ARROW\_\-ERROR\_\-INPUT}~0
 \item 
@@ -63,12 +70,34 @@ struct \hyperlink{structarrow__tsp__lk__params}{arrow\_\-tsp\_\-lk\_\-params}
 \item 
 \#define \hyperlink{arrow_8h_518134a9986d0e6bf31ec2480116ac76}{ARROW\_\-FALSE}~0
 \item 
+\#define \hyperlink{arrow_8h_08ba7f1d633a842ae065d926e13e99d1}{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-BASIC}~1
+\item 
+\#define \hyperlink{arrow_8h_eb59f80d427163919e8f7b3542fd9784}{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED}~2
+\item 
+\#define \hyperlink{arrow_8h_a7f468f2633f855fbee81d70dea0f5ed}{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED\_\-SHAKE}~3
+\item 
+\#define \hyperlink{arrow_8h_803ded0eb51e5d8750d08ab33e618af4}{ARROW\_\-DEFAULT\_\-BASIC\_\-ATTEMPTS}~3
+\item 
+\#define \hyperlink{arrow_8h_627f37797cc57afbe5bd43c2bc18ef0a}{ARROW\_\-OPTION\_\-INT}~1
+\item 
+\#define \hyperlink{arrow_8h_6ae7aa7a4dfd9359283ca22c51d40902}{ARROW\_\-OPTION\_\-DOUBLE}~2
+\item 
+\#define \hyperlink{arrow_8h_a5af4b3dd40c1687deb0e897317fac3d}{ARROW\_\-OPTION\_\-STRING}~3
+\item 
+\#define \hyperlink{arrow_8h_5bc042a0d5e4aee532d2841342766d29}{CONCORDE\_\-SUCCESS}~0
+\item 
+\#define \hyperlink{arrow_8h_c85ff6ed8837999e4553ffde8af02756}{CONCORDE\_\-FAILURE}~1
+\item 
 \#define \hyperlink{arrow_8h_2bc89592b4a27c03c1129b8e4b876a51}{arrow\_\-print\_\-error}(message)~arrow\_\-util\_\-print\_\-error(\_\-\_\-FILE\_\-\_\-, \_\-\_\-LINE\_\-\_\-, message)
 \end{CompactItemize}
 \subsection*{Functions}
 \begin{CompactItemize}
 \item 
-int \hyperlink{arrow_8h_d6098d008ef724a58c6960d8f28bf925}{arrow\_\-bbssp\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__bbssp__result}{arrow\_\-bbssp\_\-result} $\ast$result)
+int \hyperlink{arrow_8h_a3ac7f6280e1eaea38fafbe78375b13f}{arrow\_\-2mb\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves the 2-max bound (2MB) on the given problem. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_ad3367474556148e376254886b71947d}{arrow\_\-dcbpb\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves the degree constrained bottleneck paths bound (DCBPB). \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_ff7006ace4173927265facbe5f895cf0}{arrow\_\-bbssp\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
 \begin{CompactList}\small\item\em Solves the bottleneck biconnected spanning subgraph problem (BBSSP) on the given problem. \item\end{CompactList}\item 
 int \hyperlink{arrow_8h_727cb19dd9cfa6315e1155796daef833}{arrow\_\-bbssp\_\-biconnected} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int max\_\-cost, int $\ast$result)
 \begin{CompactList}\small\item\em Determines if the graph is biconnected using only edges with costs less than or equal to the given value. \item\end{CompactList}\item 
@@ -82,6 +111,36 @@ int \hyperlink{arrow_8h_37fe2e7fbd64399611ba819ccfd5d4a2}{arrow\_\-bintree\_\-to
 \begin{CompactList}\small\item\em Initializes the binary tree data structure. \item\end{CompactList}\item 
 void \hyperlink{arrow_8h_3804a3bce6fc22ef6d5ea0ac5776a2bb}{arrow\_\-bintree\_\-print} (\hyperlink{structarrow__bintree}{arrow\_\-bintree} $\ast$tree)
 \begin{CompactList}\small\item\em Prints out the values of the binary tree. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_624fe95ca7b7eb623ee636c2f8cb1409}{arrow\_\-bscssp\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on the given graph. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_b78b71959db64c692a9e16832df9c096}{arrow\_\-btsp\_\-result\_\-init} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Initializes the BTSP result structure. \item\end{CompactList}\item 
+void \hyperlink{arrow_8h_11d150bd3219a6ba3d9ccd3f0c952b2a}{arrow\_\-btsp\_\-result\_\-destruct} (\hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Destructs a BTSP result structure. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_3c6427a5ad0c0f5157d2c1a903f823c4}{arrow\_\-btsp\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params} $\ast$params, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves TSP with Concorde's exact solver. \item\end{CompactList}\item 
+void \hyperlink{arrow_8h_9ee14515eed23a56303e338258725b7c}{arrow\_\-btsp\_\-params\_\-init} (\hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params} $\ast$params)
+\begin{CompactList}\small\item\em Inititalizes BTSP parameter structure. \item\end{CompactList}\item 
+void \hyperlink{arrow_8h_c5c69eb958340aba441e75dfbb6d941b}{arrow\_\-btsp\_\-params\_\-destruct} (\hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params} $\ast$params)
+\begin{CompactList}\small\item\em Destructs a BTSP parameters structure. \item\end{CompactList}\item 
+void \hyperlink{arrow_8h_a5f73647dedc4bcd1b5df2bf9e3edab4}{arrow\_\-btsp\_\-solve\_\-plan\_\-init} (\hyperlink{structarrow__btsp__solve__plan}{arrow\_\-btsp\_\-solve\_\-plan} $\ast$plan)
+\begin{CompactList}\small\item\em Inititalizes BTSP solve plan structure. \item\end{CompactList}\item 
+void \hyperlink{arrow_8h_e1d667017d467f926e8371a0823d9d7a}{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct} (\hyperlink{structarrow__btsp__solve__plan}{arrow\_\-btsp\_\-solve\_\-plan} $\ast$plan)
+\begin{CompactList}\small\item\em Destructs a BTSP solve plan structure. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_d9cf4e03bd60c7efc575dd29868456bf}{arrow\_\-btsp\_\-fun\_\-apply} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int delta, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
+\begin{CompactList}\small\item\em Applies the given function to the given problem to create a new problem. \item\end{CompactList}\item 
+void \hyperlink{arrow_8h_f0b2cce4c9dced6fe48fbc29877bbd8d}{arrow\_\-btsp\_\-fun\_\-destruct} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Destructs a function structure. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_a8030d26d0cc61ba064d0baedf766552}{arrow\_\-btsp\_\-fun\_\-basic} (int shallow, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Basic BTSP to TSP function. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_4b7ad8f9778197ef3f6b88ed6abf259a}{arrow\_\-btsp\_\-fun\_\-basic\_\-atsp} (int shallow, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Basic BTSP to TSP function for asymmetric problem instances. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_835bc4e51debcb5eeb721c65b1804fa9}{arrow\_\-btsp\_\-fun\_\-constrained} (int shallow, double feasible\_\-length, int infinity, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Constrained BTSP to TSP function. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_c45130e6af4d03bb2ea580b6490f45e1}{arrow\_\-btsp\_\-fun\_\-constrained\_\-shake} (int shallow, double feasible\_\-length, int infinity, int rand\_\-min, int rand\_\-max, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Constrained \char`\"{}Shake\char`\"{} BTSP to TSP function. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_e187e044872b9130dc8451a7cbfd3f8d}{arrow\_\-options\_\-parse} (int num\_\-opts, \hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{histogram__data_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{[}$\,$\mbox{]}, char $\ast$description, char $\ast$\hyperlink{histogram__data_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage}, int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, int $\ast$opt\_\-ind)
+\item 
 int \hyperlink{arrow_8h_b5b9bae9f92630983d3b3d39d86198f8}{arrow\_\-problem\_\-read} (char $\ast$file\_\-name, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem)
 \begin{CompactList}\small\item\em Reads a problem from a TSPLIB file. \item\end{CompactList}\item 
 void \hyperlink{arrow_8h_a702972ab510dcc6354d7679759611d1}{arrow\_\-problem\_\-destruct} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem)
@@ -92,18 +151,30 @@ void \hyperlink{arrow_8h_09a5ba81556412e281fe6b863a6f08db}{arrow\_\-problem\_\-i
 \begin{CompactList}\small\item\em Deallocates problem info data structure. \item\end{CompactList}\item 
 void \hyperlink{arrow_8h_ce6b857eab0a7a887262d033b7e5cf22}{arrow\_\-problem\_\-print} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem)
 \begin{CompactList}\small\item\em Prints out information about a problem. \item\end{CompactList}\item 
-void \hyperlink{arrow_8h_107b3fa0e8b3eeab9e04320d30654ec5}{arrow\_\-tsp\_\-result\_\-init} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result} $\ast$result)
+int \hyperlink{arrow_8h_cd0bca6159ba920a6039ba06e82c1440}{arrow\_\-problem\_\-get\_\-cost} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int i, int j)
+\begin{CompactList}\small\item\em Retrieves cost between nodes i and j. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_b0ae70bd19a75c7f3164b81e4ed092ad}{arrow\_\-problem\_\-read\_\-tour} (char $\ast$file\_\-name, int size, int $\ast$tour)
+\begin{CompactList}\small\item\em Reads a TSPLIB tour file. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_1fd00c671b95d81b8309bac580635d51}{arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int infinity, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
+\begin{CompactList}\small\item\em Transforms an asymmetric BTSP problem of n nodes into a symmetric BTSP problem with 2n nodes. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_124a14a04e51fdd8e05f0aed7dfdd44c}{arrow\_\-tsp\_\-result\_\-init} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result} $\ast$result)
 \begin{CompactList}\small\item\em Initializes the TSP result structure. \item\end{CompactList}\item 
 void \hyperlink{arrow_8h_0665c82047dc78f8d08f12ecf5a9eef8}{arrow\_\-tsp\_\-result\_\-destruct} (\hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result} $\ast$result)
 \begin{CompactList}\small\item\em Destructs a TSP result structure. \item\end{CompactList}\item 
-void \hyperlink{arrow_8h_a20fdb653581bbcfcd08784900b19218}{arrow\_\-tsp\_\-lk\_\-params\_\-default} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__tsp__lk__params}{arrow\_\-tsp\_\-lk\_\-params} $\ast$params)
+void \hyperlink{arrow_8h_b6916d874aabb28c782ec4b37448851a}{arrow\_\-tsp\_\-lk\_\-params\_\-init} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__tsp__lk__params}{arrow\_\-tsp\_\-lk\_\-params} $\ast$params)
 \begin{CompactList}\small\item\em Sets default parameters for Lin-Kernighan heuristic:\begin{itemize}
-\item stall\_\-count = problem-$>$size\item kicks = 0\item kick\_\-type = CC\_\-LK\_\-GEOMETRIC\_\-KICK\item time\_\-bound = 0.0\item length\_\-bound = 0.0\item initial\_\-tour = NULL. \end{itemize}
+\item random\_\-restarts = 0\item stall\_\-count = problem-$>$size\item kicks = (problem-$>$size / 2), at least 500\item kick\_\-type = CC\_\-LK\_\-GEOMETRIC\_\-KICK\item time\_\-bound = 0.0\item length\_\-bound = 0.0\item initial\_\-tour = NULL. \end{itemize}
 \item\end{CompactList}\item 
-int \hyperlink{arrow_8h_0cc68200bf38d20fe0dd3c388674d215}{arrow\_\-tsp\_\-exact\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int $\ast$in\_\-tour, \hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result} $\ast$result)
+void \hyperlink{arrow_8h_67dd9d24c1d45e49152c4f9b6a3e7836}{arrow\_\-tsp\_\-lk\_\-params\_\-destruct} (\hyperlink{structarrow__tsp__lk__params}{arrow\_\-tsp\_\-lk\_\-params} $\ast$params)
+\begin{CompactList}\small\item\em Destructs a LK parameters structure. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_e678a3a4a87c4db0ab8493e7edfb6119}{arrow\_\-tsp\_\-exact\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int $\ast$initial\_\-tour, \hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result} $\ast$result)
 \begin{CompactList}\small\item\em Solves TSP with Concorde's exact solver. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_85727209bce9c643d61ac3a5f9d79c95}{arrow\_\-tsp\_\-lk\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__tsp__lk__params}{arrow\_\-tsp\_\-lk\_\-params} $\ast$params, \hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves TSP with Concorde's Lin-Kernighan heuristic. \item\end{CompactList}\item 
 int \hyperlink{arrow_8h_4aea68dfc908d08522baccb148251ae7}{arrow\_\-util\_\-create\_\-int\_\-array} (int size, int $\ast$$\ast$array)
 \begin{CompactList}\small\item\em Creates an integer array. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_2801c2cc414251180545168ba9abe911}{arrow\_\-util\_\-create\_\-int\_\-matrix} (int rows, int cols, int $\ast$$\ast$$\ast$matrix, int $\ast$$\ast$space)
+\begin{CompactList}\small\item\em Creates a full integer matrix. \item\end{CompactList}\item 
 void \hyperlink{arrow_8h_3bd7042ebd6e97b5790a8708c91be5b4}{arrow\_\-util\_\-print\_\-error} (const char $\ast$file\_\-name, int line\_\-num, const char $\ast$message)
 \begin{CompactList}\small\item\em Prints an error message to stderr with consistent formatting. \item\end{CompactList}\item 
 double \hyperlink{arrow_8h_05b2e96c9991c51368c1f8d5a77d3ccf}{arrow\_\-util\_\-zeit} ()
@@ -111,7 +182,27 @@ double \hyperlink{arrow_8h_05b2e96c9991c51368c1f8d5a77d3ccf}{arrow\_\-util\_\-ze
 void \hyperlink{arrow_8h_8a9cef270a8d9d4fb22483dc986aa792}{arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file} (const char $\ast$filename, int $\ast$old\_\-stream)
 \begin{CompactList}\small\item\em Redirects STDOUT stream to a file (can be used to completely surpress output by directing to /dev/null). \item\end{CompactList}\item 
 void \hyperlink{arrow_8h_65b9ba02b0c557fe9b15f5315a6953db}{arrow\_\-util\_\-restore\_\-stdout} (int old\_\-stream)
-\begin{CompactList}\small\item\em Restores STDOUT stream that's been redirected. \item\end{CompactList}\end{CompactItemize}
+\begin{CompactList}\small\item\em Restores STDOUT stream that's been redirected. \item\end{CompactList}\item 
+void \hyperlink{arrow_8h_b2e3326bacca581ca01013678d664cdb}{arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy} (CCdatagroup $\ast$from, CCdatagroup $\ast$to)
+\begin{CompactList}\small\item\em Makes a shallow copy of the Concorde CCdatagroup structure. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_3052203501efe0814bbe98548394b978}{arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix} (int size, CCdatagroup $\ast$dat)
+\begin{CompactList}\small\item\em Initializes an upper-diagonal matrix norm structure for Concorde that is ready to be filled in with values. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_7a32a3f10516726b76ba6f87d96d2903}{arrow\_\-util\_\-binary\_\-search} (int $\ast$array, int size, int element, int $\ast$pos)
+\begin{CompactList}\small\item\em Performs a binary search to find the wanted element in a sorted integer array. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_f9436128a70bfe493e200175d7eaf93b}{arrow\_\-util\_\-regex\_\-match} (char $\ast$string, char $\ast$pattern)
+\begin{CompactList}\small\item\em Determines if the given string turns up a match for the given regular expression pattern. \item\end{CompactList}\item 
+void \hyperlink{arrow_8h_0bf303aee0600136e1720be7e6c60021}{arrow\_\-util\_\-print\_\-program\_\-args} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, FILE $\ast$out)
+\begin{CompactList}\small\item\em Prints out the given program arguments to the specified file. \item\end{CompactList}\item 
+void \hyperlink{arrow_8h_448b71093a175c0f40f9cbe612b1c709}{arrow\_\-util\_\-random\_\-seed} (int seed)
+\begin{CompactList}\small\item\em Seeds the random number generator. Pass a value of 0 to seed with the current time. \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_f2635504f3a222a0ced821917131c44c}{arrow\_\-util\_\-random} ()
+\begin{CompactList}\small\item\em Returns a random number between 0 and RAND\_\-MAX (normally, RAND\_\-MAX = INT\_\-MAX). \item\end{CompactList}\item 
+int \hyperlink{arrow_8h_529c872ac72eaf0046ad149abf7b6179}{arrow\_\-util\_\-random\_\-between} (int min, int max)
+\begin{CompactList}\small\item\em Returns a random number between min and max. \item\end{CompactList}\item 
+void \hyperlink{arrow_8h_6921d887eca515c1ad59629e25a0c237}{arrow\_\-util\_\-write\_\-tour} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, char $\ast$comment, int $\ast$tour, FILE $\ast$out)
+\item 
+void \hyperlink{arrow_8h_8a7327192a37674e2559d82448a565b1}{arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int $\ast$old\_\-tour, int $\ast$new\_\-tour)
+\end{CompactItemize}
 
 
 \subsection{Detailed Description}
@@ -126,7 +217,69 @@ Function prototypes and structures exposed by the callable library.
 Definition in file \hyperlink{arrow_8h-source}{arrow.h}.
 
 \subsection{Define Documentation}
-\hypertarget{arrow_8h_0be07738336b219a8057fb867ed386c1}{
+\hypertarget{arrow_8h_08ba7f1d633a842ae065d926e13e99d1}{
+\index{arrow.h@{arrow.h}!ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-BASIC@{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-BASIC}}
+\index{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-BASIC@{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-BASIC}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-BASIC~1}}
+\label{arrow_8h_08ba7f1d633a842ae065d926e13e99d1}
+
+
+
+
+Definition at line 53 of file arrow.h.
+
+Referenced by main().\hypertarget{arrow_8h_eb59f80d427163919e8f7b3542fd9784}{
+\index{arrow.h@{arrow.h}!ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED@{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED}}
+\index{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED@{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED~2}}
+\label{arrow_8h_eb59f80d427163919e8f7b3542fd9784}
+
+
+
+
+Definition at line 54 of file arrow.h.
+
+Referenced by main().\hypertarget{arrow_8h_a7f468f2633f855fbee81d70dea0f5ed}{
+\index{arrow.h@{arrow.h}!ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED\_\-SHAKE@{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED\_\-SHAKE}}
+\index{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED\_\-SHAKE@{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED\_\-SHAKE}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED\_\-SHAKE~3}}
+\label{arrow_8h_a7f468f2633f855fbee81d70dea0f5ed}
+
+
+
+
+Definition at line 55 of file arrow.h.
+
+Referenced by main().\hypertarget{arrow_8h_84ee1610187a79fbe4cdefeafffff4e8}{
+\index{arrow.h@{arrow.h}!arrow\_\-debug@{arrow\_\-debug}}
+\index{arrow\_\-debug@{arrow\_\-debug}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define arrow\_\-debug~printf}}
+\label{arrow_8h_84ee1610187a79fbe4cdefeafffff4e8}
+
+
+
+
+Definition at line 33 of file arrow.h.
+
+Referenced by arrow\_\-btsp\_\-solve(), arrow\_\-problem\_\-print(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-lk\_\-solve(), feasible(), main(), and read\_\-atsp().\hypertarget{arrow_8h_3057840b0de9d217fdcedddc615295ad}{
+\index{arrow.h@{arrow.h}!ARROW\_\-DEBUG@{ARROW\_\-DEBUG}}
+\index{ARROW\_\-DEBUG@{ARROW\_\-DEBUG}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-DEBUG}}
+\label{arrow_8h_3057840b0de9d217fdcedddc615295ad}
+
+
+
+
+Definition at line 31 of file arrow.h.\hypertarget{arrow_8h_803ded0eb51e5d8750d08ab33e618af4}{
+\index{arrow.h@{arrow.h}!ARROW\_\-DEFAULT\_\-BASIC\_\-ATTEMPTS@{ARROW\_\-DEFAULT\_\-BASIC\_\-ATTEMPTS}}
+\index{ARROW\_\-DEFAULT\_\-BASIC\_\-ATTEMPTS@{ARROW\_\-DEFAULT\_\-BASIC\_\-ATTEMPTS}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-DEFAULT\_\-BASIC\_\-ATTEMPTS~3}}
+\label{arrow_8h_803ded0eb51e5d8750d08ab33e618af4}
+
+
+
+
+Definition at line 57 of file arrow.h.\hypertarget{arrow_8h_0be07738336b219a8057fb867ed386c1}{
 \index{arrow.h@{arrow.h}!ARROW\_\-DEV\_\-NULL@{ARROW\_\-DEV\_\-NULL}}
 \index{ARROW\_\-DEV\_\-NULL@{ARROW\_\-DEV\_\-NULL}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-DEV\_\-NULL~\char`\"{}/dev/null\char`\"{}}}
@@ -135,7 +288,7 @@ Definition in file \hyperlink{arrow_8h-source}{arrow.h}.
 
 
 
-Definition at line 24 of file arrow.h.
+Definition at line 42 of file arrow.h.
 
 Referenced by main().\hypertarget{arrow_8h_3db3c8a03b898dcf83be87b8f8ef6419}{
 \index{arrow.h@{arrow.h}!ARROW\_\-ERROR\_\-FATAL@{ARROW\_\-ERROR\_\-FATAL}}
@@ -146,9 +299,9 @@ Referenced by main().\hypertarget{arrow_8h_3db3c8a03b898dcf83be87b8f8ef6419}{
 
 
 
-Definition at line 27 of file arrow.h.
+Definition at line 48 of file arrow.h.
 
-Referenced by arrow\_\-bbssp\_\-biconnected(), arrow\_\-bbssp\_\-solve(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-util\_\-create\_\-int\_\-array(), construct\_\-node(), and insert\_\-at().\hypertarget{arrow_8h_4a768d7e7c23ac0605a6e93ca16aaae2}{
+Referenced by arrow\_\-bbssp\_\-biconnected(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-constrained(), arrow\_\-problem\_\-read\_\-tour(), arrow\_\-tsp\_\-result\_\-init(), construct\_\-node(), insert\_\-at(), read\_\-atsp(), and strongly\_\-connected().\hypertarget{arrow_8h_4a768d7e7c23ac0605a6e93ca16aaae2}{
 \index{arrow.h@{arrow.h}!ARROW\_\-ERROR\_\-INPUT@{ARROW\_\-ERROR\_\-INPUT}}
 \index{ARROW\_\-ERROR\_\-INPUT@{ARROW\_\-ERROR\_\-INPUT}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-ERROR\_\-INPUT~0}}
@@ -157,7 +310,7 @@ Referenced by arrow\_\-bbssp\_\-biconnected(), arrow\_\-bbssp\_\-solve(), arrow\
 
 
 
-Definition at line 26 of file arrow.h.\hypertarget{arrow_8h_4635c151cf4dcc2f2ed67fed822bb51e}{
+Definition at line 47 of file arrow.h.\hypertarget{arrow_8h_4635c151cf4dcc2f2ed67fed822bb51e}{
 \index{arrow.h@{arrow.h}!ARROW\_\-ERROR\_\-NON\_\-FATAL@{ARROW\_\-ERROR\_\-NON\_\-FATAL}}
 \index{ARROW\_\-ERROR\_\-NON\_\-FATAL@{ARROW\_\-ERROR\_\-NON\_\-FATAL}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-ERROR\_\-NON\_\-FATAL~-2}}
@@ -166,9 +319,18 @@ Definition at line 26 of file arrow.h.\hypertarget{arrow_8h_4635c151cf4dcc2f2ed6
 
 
 
-Definition at line 28 of file arrow.h.
+Definition at line 49 of file arrow.h.\hypertarget{arrow_8h_a50e8b8f74e48535271458079c7506cb}{
+\index{arrow.h@{arrow.h}!ARROW\_\-FAILURE@{ARROW\_\-FAILURE}}
+\index{ARROW\_\-FAILURE@{ARROW\_\-FAILURE}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-FAILURE~0}}
+\label{arrow_8h_a50e8b8f74e48535271458079c7506cb}
 
-Referenced by arrow\_\-tsp\_\-exact\_\-solve().\hypertarget{arrow_8h_518134a9986d0e6bf31ec2480116ac76}{
+
+
+
+Definition at line 45 of file arrow.h.
+
+Referenced by arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-basic\_\-atsp(), arrow\_\-btsp\_\-fun\_\-constrained\_\-shake(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-options\_\-parse(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-tsp\_\-lk\_\-solve(), arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix(), arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-create\_\-int\_\-matrix(), basic\_\-shallow\_\-apply(), build\_\-initial\_\-tour(), constrained\_\-shake\_\-deep\_\-apply(), constrained\_\-shallow\_\-apply(), feasible(), and main().\hypertarget{arrow_8h_518134a9986d0e6bf31ec2480116ac76}{
 \index{arrow.h@{arrow.h}!ARROW\_\-FALSE@{ARROW\_\-FALSE}}
 \index{ARROW\_\-FALSE@{ARROW\_\-FALSE}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-FALSE~0}}
@@ -177,9 +339,42 @@ Referenced by arrow\_\-tsp\_\-exact\_\-solve().\hypertarget{arrow_8h_518134a9986
 
 
 
-Definition at line 30 of file arrow.h.
+Definition at line 51 of file arrow.h.
 
-Referenced by arrow\_\-bbssp\_\-biconnected(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-result\_\-init(), construct\_\-node(), and insert\_\-at().\hypertarget{arrow_8h_2bc89592b4a27c03c1129b8e4b876a51}{
+Referenced by arrow\_\-bbssp\_\-biconnected(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-basic\_\-atsp(), arrow\_\-btsp\_\-fun\_\-constrained(), arrow\_\-btsp\_\-fun\_\-constrained\_\-shake(), arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), arrow\_\-options\_\-parse(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-util\_\-regex\_\-match(), basic\_\-atsp\_\-feasible(), basic\_\-feasible(), build\_\-initial\_\-tour(), constrained\_\-shake\_\-feasible(), construct\_\-node(), feasible(), ford\_\-fulkerson\_\-labeling(), insert\_\-at(), main(), shortest\_\-augmenting\_\-path(), and strongly\_\-connected().\hypertarget{arrow_8h_6ae7aa7a4dfd9359283ca22c51d40902}{
+\index{arrow.h@{arrow.h}!ARROW\_\-OPTION\_\-DOUBLE@{ARROW\_\-OPTION\_\-DOUBLE}}
+\index{ARROW\_\-OPTION\_\-DOUBLE@{ARROW\_\-OPTION\_\-DOUBLE}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-OPTION\_\-DOUBLE~2}}
+\label{arrow_8h_6ae7aa7a4dfd9359283ca22c51d40902}
+
+
+
+
+Definition at line 60 of file arrow.h.
+
+Referenced by arrow\_\-options\_\-parse().\hypertarget{arrow_8h_627f37797cc57afbe5bd43c2bc18ef0a}{
+\index{arrow.h@{arrow.h}!ARROW\_\-OPTION\_\-INT@{ARROW\_\-OPTION\_\-INT}}
+\index{ARROW\_\-OPTION\_\-INT@{ARROW\_\-OPTION\_\-INT}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-OPTION\_\-INT~1}}
+\label{arrow_8h_627f37797cc57afbe5bd43c2bc18ef0a}
+
+
+
+
+Definition at line 59 of file arrow.h.
+
+Referenced by arrow\_\-options\_\-parse().\hypertarget{arrow_8h_a5af4b3dd40c1687deb0e897317fac3d}{
+\index{arrow.h@{arrow.h}!ARROW\_\-OPTION\_\-STRING@{ARROW\_\-OPTION\_\-STRING}}
+\index{ARROW\_\-OPTION\_\-STRING@{ARROW\_\-OPTION\_\-STRING}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-OPTION\_\-STRING~3}}
+\label{arrow_8h_a5af4b3dd40c1687deb0e897317fac3d}
+
+
+
+
+Definition at line 61 of file arrow.h.
+
+Referenced by arrow\_\-options\_\-parse().\hypertarget{arrow_8h_2bc89592b4a27c03c1129b8e4b876a51}{
 \index{arrow.h@{arrow.h}!arrow\_\-print\_\-error@{arrow\_\-print\_\-error}}
 \index{arrow\_\-print\_\-error@{arrow\_\-print\_\-error}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define arrow\_\-print\_\-error(message)~arrow\_\-util\_\-print\_\-error(\_\-\_\-FILE\_\-\_\-, \_\-\_\-LINE\_\-\_\-, message)}}
@@ -188,9 +383,9 @@ Referenced by arrow\_\-bbssp\_\-biconnected(), arrow\_\-problem\_\-read(), arrow
 
 
 
-Definition at line 36 of file arrow.h.
+Definition at line 70 of file arrow.h.
 
-Referenced by arrow\_\-util\_\-create\_\-int\_\-array(), construct\_\-node(), main(), and read\_\-args().\hypertarget{arrow_8h_21afcc3dc34f8488ad437841f58225c4}{
+Referenced by arrow\_\-bbssp\_\-solve(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-basic\_\-atsp(), arrow\_\-btsp\_\-fun\_\-constrained(), arrow\_\-btsp\_\-fun\_\-constrained\_\-shake(), arrow\_\-btsp\_\-solve(), arrow\_\-options\_\-parse(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-lk\_\-solve(), arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix(), arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-create\_\-int\_\-matrix(), basic\_\-shallow\_\-apply(), build\_\-initial\_\-tour(), constrained\_\-shake\_\-deep\_\-apply(), constrained\_\-shallow\_\-apply(), construct\_\-node(), main(), read\_\-args(), and read\_\-atsp().\hypertarget{arrow_8h_21afcc3dc34f8488ad437841f58225c4}{
 \index{arrow.h@{arrow.h}!ARROW\_\-SUCCESS@{ARROW\_\-SUCCESS}}
 \index{ARROW\_\-SUCCESS@{ARROW\_\-SUCCESS}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-SUCCESS~1}}
@@ -199,9 +394,9 @@ Referenced by arrow\_\-util\_\-create\_\-int\_\-array(), construct\_\-node(), ma
 
 
 
-Definition at line 25 of file arrow.h.
+Definition at line 44 of file arrow.h.
 
-Referenced by arrow\_\-bbssp\_\-solve(), arrow\_\-bintree\_\-to\_\-array(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-util\_\-create\_\-int\_\-array(), construct\_\-node(), find\_\-art\_\-points(), and insert\_\-at().\hypertarget{arrow_8h_42c447b913ad11889bf816691e423644}{
+Referenced by arrow\_\-2mb\_\-solve(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bintree\_\-to\_\-array(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-basic\_\-atsp(), arrow\_\-btsp\_\-fun\_\-constrained(), arrow\_\-btsp\_\-fun\_\-constrained\_\-shake(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-options\_\-parse(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read(), arrow\_\-problem\_\-read\_\-tour(), arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-tsp\_\-lk\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix(), arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-create\_\-int\_\-matrix(), basic\_\-atsp\_\-deep\_\-apply(), basic\_\-deep\_\-apply(), basic\_\-shallow\_\-apply(), build\_\-initial\_\-tour(), constrained\_\-deep\_\-apply(), constrained\_\-shake\_\-deep\_\-apply(), constrained\_\-shallow\_\-apply(), construct\_\-node(), feasible(), find\_\-art\_\-points(), insert\_\-at(), main(), read\_\-atsp(), shortest\_\-augmenting\_\-path(), and strongly\_\-connected().\hypertarget{arrow_8h_42c447b913ad11889bf816691e423644}{
 \index{arrow.h@{arrow.h}!ARROW\_\-TRUE@{ARROW\_\-TRUE}}
 \index{ARROW\_\-TRUE@{ARROW\_\-TRUE}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-TRUE~1}}
@@ -210,12 +405,65 @@ Referenced by arrow\_\-bbssp\_\-solve(), arrow\_\-bintree\_\-to\_\-array(), arro
 
 
 
-Definition at line 29 of file arrow.h.
+Definition at line 50 of file arrow.h.
 
-Referenced by arrow\_\-bbssp\_\-biconnected(), arrow\_\-bbssp\_\-solve(), destruct\_\-node(), insert\_\-at(), and read\_\-args().
+Referenced by arrow\_\-bbssp\_\-biconnected(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-constrained(), arrow\_\-btsp\_\-solve(), arrow\_\-options\_\-parse(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-lk\_\-solve(), arrow\_\-util\_\-regex\_\-match(), basic\_\-atsp\_\-feasible(), basic\_\-feasible(), constrained\_\-shake\_\-feasible(), destruct\_\-node(), feasible(), ford\_\-fulkerson\_\-labeling(), insert\_\-at(), main(), shortest\_\-augmenting\_\-path(), strongly\_\-connected(), and strongly\_\-connected\_\-dfs().\hypertarget{arrow_8h_73a3fc48edc73ab8c510034d6c6dd2e1}{
+\index{arrow.h@{arrow.h}!ARROW\_\-VERSION@{ARROW\_\-VERSION}}
+\index{ARROW\_\-VERSION@{ARROW\_\-VERSION}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-VERSION~\char`\"{}1.0\char`\"{}}}
+\label{arrow_8h_73a3fc48edc73ab8c510034d6c6dd2e1}
+
+
+
+
+Definition at line 41 of file arrow.h.
+
+Referenced by print\_\-version().\hypertarget{arrow_8h_c85ff6ed8837999e4553ffde8af02756}{
+\index{arrow.h@{arrow.h}!CONCORDE\_\-FAILURE@{CONCORDE\_\-FAILURE}}
+\index{CONCORDE\_\-FAILURE@{CONCORDE\_\-FAILURE}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define CONCORDE\_\-FAILURE~1}}
+\label{arrow_8h_c85ff6ed8837999e4553ffde8af02756}
+
+
+
+
+Definition at line 64 of file arrow.h.
+
+Referenced by arrow\_\-tsp\_\-lk\_\-solve(), and build\_\-initial\_\-tour().\hypertarget{arrow_8h_5bc042a0d5e4aee532d2841342766d29}{
+\index{arrow.h@{arrow.h}!CONCORDE\_\-SUCCESS@{CONCORDE\_\-SUCCESS}}
+\index{CONCORDE\_\-SUCCESS@{CONCORDE\_\-SUCCESS}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define CONCORDE\_\-SUCCESS~0}}
+\label{arrow_8h_5bc042a0d5e4aee532d2841342766d29}
+
+
+
+
+Definition at line 63 of file arrow.h.
+
+Referenced by arrow\_\-problem\_\-read\_\-tour().
 
 \subsection{Function Documentation}
-\hypertarget{arrow_8h_727cb19dd9cfa6315e1155796daef833}{
+\hypertarget{arrow_8h_a3ac7f6280e1eaea38fafbe78375b13f}{
+\index{arrow.h@{arrow.h}!arrow\_\-2mb\_\-solve@{arrow\_\-2mb\_\-solve}}
+\index{arrow\_\-2mb\_\-solve@{arrow\_\-2mb\_\-solve}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-2mb\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
+\label{arrow_8h_a3ac7f6280e1eaea38fafbe78375b13f}
+
+
+Solves the 2-max bound (2MB) on the given problem. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em info}]\mbox{[}in\mbox{]} problem info \item[{\em result}]\mbox{[}out\mbox{]} 2MB solution \end{description}
+\end{Desc}
+
+
+Definition at line 16 of file 2mb.c.
+
+References ARROW\_\-SUCCESS, arrow\_\-util\_\-zeit(), arrow\_\-problem::get\_\-cost, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-problem::symmetric, and arrow\_\-bound\_\-result::total\_\-time.
+
+Referenced by main().\hypertarget{arrow_8h_727cb19dd9cfa6315e1155796daef833}{
 \index{arrow.h@{arrow.h}!arrow\_\-bbssp\_\-biconnected@{arrow\_\-bbssp\_\-biconnected}}
 \index{arrow\_\-bbssp\_\-biconnected@{arrow\_\-bbssp\_\-biconnected}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bbssp\_\-biconnected ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em max\_\-cost}, \/  int $\ast$ {\em result})}}
@@ -231,15 +479,15 @@ Determines if the graph is biconnected using only edges with costs less than or 
 \end{Desc}
 
 
-Definition at line 88 of file bbssp.c.
+Definition at line 94 of file bbssp.c.
 
 References ARROW\_\-ERROR\_\-FATAL, ARROW\_\-FALSE, ARROW\_\-TRUE, arrow\_\-util\_\-create\_\-int\_\-array(), find\_\-art\_\-points(), and arrow\_\-problem::size.
 
-Referenced by arrow\_\-bbssp\_\-solve().\hypertarget{arrow_8h_d6098d008ef724a58c6960d8f28bf925}{
+Referenced by arrow\_\-bbssp\_\-solve().\hypertarget{arrow_8h_ff7006ace4173927265facbe5f895cf0}{
 \index{arrow.h@{arrow.h}!arrow\_\-bbssp\_\-solve@{arrow\_\-bbssp\_\-solve}}
 \index{arrow\_\-bbssp\_\-solve@{arrow\_\-bbssp\_\-solve}!arrow.h@{arrow.h}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bbssp\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-bbssp\_\-result} $\ast$ {\em result})}}
-\label{arrow_8h_d6098d008ef724a58c6960d8f28bf925}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bbssp\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
+\label{arrow_8h_ff7006ace4173927265facbe5f895cf0}
 
 
 Solves the bottleneck biconnected spanning subgraph problem (BBSSP) on the given problem. 
@@ -247,13 +495,13 @@ Solves the bottleneck biconnected spanning subgraph problem (BBSSP) on the given
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em result}]\mbox{[}out\mbox{]} BBSSP solution \end{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em info}]\mbox{[}in\mbox{]} problem info \item[{\em result}]\mbox{[}out\mbox{]} BBSSP solution \end{description}
 \end{Desc}
 
 
 Definition at line 44 of file bbssp.c.
 
-References arrow\_\-bbssp\_\-biconnected(), ARROW\_\-ERROR\_\-FATAL, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-util\_\-zeit(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-bbssp\_\-result::obj\_\-value, and arrow\_\-bbssp\_\-result::total\_\-time.
+References arrow\_\-bbssp\_\-biconnected(), ARROW\_\-ERROR\_\-FATAL, ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-util\_\-zeit(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::symmetric, and arrow\_\-bound\_\-result::total\_\-time.
 
 Referenced by main().\hypertarget{arrow_8h_ca9875422bf132eb9f5a4a2d10053207}{
 \index{arrow.h@{arrow.h}!arrow\_\-bintree\_\-destruct@{arrow\_\-bintree\_\-destruct}}
@@ -275,7 +523,7 @@ Definition at line 59 of file bintree.c.
 
 References destruct\_\-node(), arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
 
-Referenced by arrow\_\-problem\_\-info\_\-get().\hypertarget{arrow_8h_b28bc6559b228f0aa65cc671f67b9a09}{
+Referenced by arrow\_\-problem\_\-info\_\-get(), and constrained\_\-shake\_\-deep\_\-apply().\hypertarget{arrow_8h_b28bc6559b228f0aa65cc671f67b9a09}{
 \index{arrow.h@{arrow.h}!arrow\_\-bintree\_\-init@{arrow\_\-bintree\_\-init}}
 \index{arrow\_\-bintree\_\-init@{arrow\_\-bintree\_\-init}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-bintree\_\-init ({\bf arrow\_\-bintree} $\ast$ {\em tree})}}
@@ -295,7 +543,7 @@ Definition at line 52 of file bintree.c.
 
 References arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
 
-Referenced by arrow\_\-problem\_\-info\_\-get().\hypertarget{arrow_8h_75b4ee03b9667bd0e13e6cc71043e0a9}{
+Referenced by arrow\_\-problem\_\-info\_\-get(), and constrained\_\-shake\_\-deep\_\-apply().\hypertarget{arrow_8h_75b4ee03b9667bd0e13e6cc71043e0a9}{
 \index{arrow.h@{arrow.h}!arrow\_\-bintree\_\-insert@{arrow\_\-bintree\_\-insert}}
 \index{arrow\_\-bintree\_\-insert@{arrow\_\-bintree\_\-insert}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bintree\_\-insert ({\bf arrow\_\-bintree} $\ast$ {\em tree}, \/  int {\em value})}}
@@ -315,7 +563,7 @@ Definition at line 66 of file bintree.c.
 
 References construct\_\-node(), insert\_\-at(), arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
 
-Referenced by arrow\_\-problem\_\-info\_\-get().\hypertarget{arrow_8h_3804a3bce6fc22ef6d5ea0ac5776a2bb}{
+Referenced by arrow\_\-problem\_\-info\_\-get(), and constrained\_\-shake\_\-deep\_\-apply().\hypertarget{arrow_8h_3804a3bce6fc22ef6d5ea0ac5776a2bb}{
 \index{arrow.h@{arrow.h}!arrow\_\-bintree\_\-print@{arrow\_\-bintree\_\-print}}
 \index{arrow\_\-bintree\_\-print@{arrow\_\-bintree\_\-print}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-bintree\_\-print ({\bf arrow\_\-bintree} $\ast$ {\em tree})}}
@@ -349,7 +597,338 @@ Definition at line 86 of file bintree.c.
 
 References ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), fill\_\-array(), arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
 
-Referenced by arrow\_\-problem\_\-info\_\-get().\hypertarget{arrow_8h_a702972ab510dcc6354d7679759611d1}{
+Referenced by arrow\_\-problem\_\-info\_\-get(), and constrained\_\-shake\_\-deep\_\-apply().\hypertarget{arrow_8h_624fe95ca7b7eb623ee636c2f8cb1409}{
+\index{arrow.h@{arrow.h}!arrow\_\-bscssp\_\-solve@{arrow\_\-bscssp\_\-solve}}
+\index{arrow\_\-bscssp\_\-solve@{arrow\_\-bscssp\_\-solve}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bscssp\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
+\label{arrow_8h_624fe95ca7b7eb623ee636c2f8cb1409}
+
+
+Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on the given graph. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em info}]\mbox{[}in\mbox{]} problem info \item[{\em result}]\mbox{[}out\mbox{]} BSCSSP solution \end{description}
+\end{Desc}
+
+
+Definition at line 43 of file bscssp.c.
+
+References ARROW\_\-ERROR\_\-FATAL, ARROW\_\-FAILURE, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-util\_\-zeit(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-bound\_\-result::obj\_\-value, strongly\_\-connected(), and arrow\_\-bound\_\-result::total\_\-time.
+
+Referenced by main().\hypertarget{arrow_8h_d9cf4e03bd60c7efc575dd29868456bf}{
+\index{arrow.h@{arrow.h}!arrow\_\-btsp\_\-fun\_\-apply@{arrow\_\-btsp\_\-fun\_\-apply}}
+\index{arrow\_\-btsp\_\-fun\_\-apply@{arrow\_\-btsp\_\-fun\_\-apply}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-apply ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em delta}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
+\label{arrow_8h_d9cf4e03bd60c7efc575dd29868456bf}
+
+
+Applies the given function to the given problem to create a new problem. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em old\_\-problem}]\mbox{[}in\mbox{]} existing problem \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em new\_\-problem}]\mbox{[}out\mbox{]} new problem to create \end{description}
+\end{Desc}
+
+
+Definition at line 213 of file btsp\_\-fun.c.
+
+References arrow\_\-btsp\_\-fun::apply, ARROW\_\-ERROR\_\-FATAL, ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix(), arrow\_\-problem::data, arrow\_\-problem::get\_\-cost, arrow\_\-problem::name, arrow\_\-btsp\_\-fun::shallow, arrow\_\-problem::shallow, and arrow\_\-problem::size.
+
+Referenced by feasible().\hypertarget{arrow_8h_a8030d26d0cc61ba064d0baedf766552}{
+\index{arrow.h@{arrow.h}!arrow\_\-btsp\_\-fun\_\-basic@{arrow\_\-btsp\_\-fun\_\-basic}}
+\index{arrow\_\-btsp\_\-fun\_\-basic@{arrow\_\-btsp\_\-fun\_\-basic}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-basic (int {\em shallow}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{arrow_8h_a8030d26d0cc61ba064d0baedf766552}
+
+
+Basic BTSP to TSP function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 249 of file btsp\_\-fun.c.
+
+References arrow\_\-btsp\_\-fun::apply, ARROW\_\-FALSE, ARROW\_\-SUCCESS, ARROW\_\-TRUE, basic\_\-deep\_\-apply(), basic\_\-destruct(), basic\_\-feasible(), basic\_\-shallow\_\-apply(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::feasible\_\-length, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{arrow_8h_4b7ad8f9778197ef3f6b88ed6abf259a}{
+\index{arrow.h@{arrow.h}!arrow\_\-btsp\_\-fun\_\-basic\_\-atsp@{arrow\_\-btsp\_\-fun\_\-basic\_\-atsp}}
+\index{arrow\_\-btsp\_\-fun\_\-basic\_\-atsp@{arrow\_\-btsp\_\-fun\_\-basic\_\-atsp}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-basic\_\-atsp (int {\em shallow}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{arrow_8h_4b7ad8f9778197ef3f6b88ed6abf259a}
+
+
+Basic BTSP to TSP function for asymmetric problem instances. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 270 of file btsp\_\-fun.c.
+
+References arrow\_\-btsp\_\-fun::apply, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, basic\_\-atsp\_\-deep\_\-apply(), basic\_\-atsp\_\-destruct(), basic\_\-atsp\_\-feasible(), arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::feasible\_\-length, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{arrow_8h_835bc4e51debcb5eeb721c65b1804fa9}{
+\index{arrow.h@{arrow.h}!arrow\_\-btsp\_\-fun\_\-constrained@{arrow\_\-btsp\_\-fun\_\-constrained}}
+\index{arrow\_\-btsp\_\-fun\_\-constrained@{arrow\_\-btsp\_\-fun\_\-constrained}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-constrained (int {\em shallow}, \/  double {\em feasible\_\-length}, \/  int {\em infinity}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{arrow_8h_835bc4e51debcb5eeb721c65b1804fa9}
+
+
+Constrained BTSP to TSP function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em feasible\_\-length}]\mbox{[}in\mbox{]} length of feasible tour \item[{\em infinity}]\mbox{[}in\mbox{]} value to use as \char`\"{}infinity\char`\"{} \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 291 of file btsp\_\-fun.c.
+
+References arrow\_\-btsp\_\-fun::apply, ARROW\_\-ERROR\_\-FATAL, ARROW\_\-FALSE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, ARROW\_\-TRUE, basic\_\-feasible(), constrained\_\-deep\_\-apply(), constrained\_\-destruct(), constrained\_\-shallow\_\-apply(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::feasible\_\-length, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{arrow_8h_c45130e6af4d03bb2ea580b6490f45e1}{
+\index{arrow.h@{arrow.h}!arrow\_\-btsp\_\-fun\_\-constrained\_\-shake@{arrow\_\-btsp\_\-fun\_\-constrained\_\-shake}}
+\index{arrow\_\-btsp\_\-fun\_\-constrained\_\-shake@{arrow\_\-btsp\_\-fun\_\-constrained\_\-shake}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-constrained\_\-shake (int {\em shallow}, \/  double {\em feasible\_\-length}, \/  int {\em infinity}, \/  int {\em rand\_\-min}, \/  int {\em rand\_\-max}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{arrow_8h_c45130e6af4d03bb2ea580b6490f45e1}
+
+
+Constrained \char`\"{}Shake\char`\"{} BTSP to TSP function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em feasible\_\-length}]\mbox{[}in\mbox{]} length of feasible tour \item[{\em infinity}]\mbox{[}in\mbox{]} value to use as \char`\"{}infinity\char`\"{} \item[{\em rand\_\-min}]\mbox{[}in\mbox{]} minimum random value to generate \item[{\em rand\_\-max}]\mbox{[}in\mbox{]} maximum random value to generate \item[{\em problem}]\mbox{[}in\mbox{]} the problem the shake is based upon \item[{\em info}]\mbox{[}in\mbox{]} information about the original problem \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 319 of file btsp\_\-fun.c.
+
+References arrow\_\-btsp\_\-fun::apply, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, constrained\_\-shake\_\-deep\_\-apply(), constrained\_\-shake\_\-destruct(), constrained\_\-shake\_\-feasible(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::feasible\_\-length, constrained\_\-shake\_\-data::infinity, constrained\_\-shake\_\-data::info, constrained\_\-shake\_\-data::problem, constrained\_\-shake\_\-data::rand\_\-max, constrained\_\-shake\_\-data::rand\_\-min, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{arrow_8h_f0b2cce4c9dced6fe48fbc29877bbd8d}{
+\index{arrow.h@{arrow.h}!arrow\_\-btsp\_\-fun\_\-destruct@{arrow\_\-btsp\_\-fun\_\-destruct}}
+\index{arrow\_\-btsp\_\-fun\_\-destruct@{arrow\_\-btsp\_\-fun\_\-destruct}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-fun\_\-destruct ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{arrow_8h_f0b2cce4c9dced6fe48fbc29877bbd8d}
+
+
+Destructs a function structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 243 of file btsp\_\-fun.c.
+
+References arrow\_\-btsp\_\-fun::destruct.
+
+Referenced by arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), and main().\hypertarget{arrow_8h_c5c69eb958340aba441e75dfbb6d941b}{
+\index{arrow.h@{arrow.h}!arrow\_\-btsp\_\-params\_\-destruct@{arrow\_\-btsp\_\-params\_\-destruct}}
+\index{arrow\_\-btsp\_\-params\_\-destruct@{arrow\_\-btsp\_\-params\_\-destruct}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-params\_\-destruct ({\bf arrow\_\-btsp\_\-params} $\ast$ {\em params})}}
+\label{arrow_8h_c5c69eb958340aba441e75dfbb6d941b}
+
+
+Destructs a BTSP parameters structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em result}]\mbox{[}out\mbox{]} BTSP parameters structure \end{description}
+\end{Desc}
+
+
+Definition at line 71 of file btsp.c.
+
+References arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), arrow\_\-btsp\_\-params::num\_\-steps, and arrow\_\-btsp\_\-params::steps.
+
+Referenced by main().\hypertarget{arrow_8h_9ee14515eed23a56303e338258725b7c}{
+\index{arrow.h@{arrow.h}!arrow\_\-btsp\_\-params\_\-init@{arrow\_\-btsp\_\-params\_\-init}}
+\index{arrow\_\-btsp\_\-params\_\-init@{arrow\_\-btsp\_\-params\_\-init}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-params\_\-init ({\bf arrow\_\-btsp\_\-params} $\ast$ {\em params})}}
+\label{arrow_8h_9ee14515eed23a56303e338258725b7c}
+
+
+Inititalizes BTSP parameter structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em params}]\mbox{[}out\mbox{]} BTSP parameters structure \end{description}
+\end{Desc}
+
+
+Definition at line 60 of file btsp.c.
+
+References ARROW\_\-FALSE, arrow\_\-btsp\_\-params::confirm\_\-sol, arrow\_\-btsp\_\-params::find\_\-short\_\-tour, arrow\_\-btsp\_\-params::lower\_\-bound, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-btsp\_\-params::supress\_\-ebst, and arrow\_\-btsp\_\-params::upper\_\-bound.
+
+Referenced by main().\hypertarget{arrow_8h_11d150bd3219a6ba3d9ccd3f0c952b2a}{
+\index{arrow.h@{arrow.h}!arrow\_\-btsp\_\-result\_\-destruct@{arrow\_\-btsp\_\-result\_\-destruct}}
+\index{arrow\_\-btsp\_\-result\_\-destruct@{arrow\_\-btsp\_\-result\_\-destruct}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-result\_\-destruct ({\bf arrow\_\-btsp\_\-result} $\ast$ {\em result})}}
+\label{arrow_8h_11d150bd3219a6ba3d9ccd3f0c952b2a}
+
+
+Destructs a BTSP result structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em result}]\mbox{[}out\mbox{]} BTSP result structure \end{description}
+\end{Desc}
+
+
+Definition at line 53 of file btsp.c.
+
+References arrow\_\-btsp\_\-result::tour.
+
+Referenced by arrow\_\-btsp\_\-solve(), and main().\hypertarget{arrow_8h_b78b71959db64c692a9e16832df9c096}{
+\index{arrow.h@{arrow.h}!arrow\_\-btsp\_\-result\_\-init@{arrow\_\-btsp\_\-result\_\-init}}
+\index{arrow\_\-btsp\_\-result\_\-init@{arrow\_\-btsp\_\-result\_\-init}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-result\_\-init ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em result})}}
+\label{arrow_8h_b78b71959db64c692a9e16832df9c096}
+
+
+Initializes the BTSP result structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em result}]\mbox{[}out\mbox{]} BTSP result structure \end{description}
+\end{Desc}
+
+
+Definition at line 33 of file btsp.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-result::exact\_\-attempts, arrow\_\-btsp\_\-result::exact\_\-time, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-result::linkern\_\-attempts, arrow\_\-btsp\_\-result::linkern\_\-time, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, and arrow\_\-btsp\_\-result::tour\_\-length.
+
+Referenced by arrow\_\-btsp\_\-solve(), and main().\hypertarget{arrow_8h_3c6427a5ad0c0f5157d2c1a903f823c4}{
+\index{arrow.h@{arrow.h}!arrow\_\-btsp\_\-solve@{arrow\_\-btsp\_\-solve}}
+\index{arrow\_\-btsp\_\-solve@{arrow\_\-btsp\_\-solve}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-btsp\_\-params} $\ast$ {\em params}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em result})}}
+\label{arrow_8h_3c6427a5ad0c0f5157d2c1a903f823c4}
+
+
+Solves TSP with Concorde's exact solver. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em info}]\mbox{[}in\mbox{]} extra problem info \item[{\em params}]\mbox{[}in\mbox{]} parameters for solver (can be NULL) \item[{\em result}]\mbox{[}out\mbox{]} BTSP solution \end{description}
+\end{Desc}
+
+
+Definition at line 98 of file btsp.c.
+
+References arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-zeit(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-params::confirm\_\-sol, arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-result::exact\_\-attempts, arrow\_\-btsp\_\-result::exact\_\-time, feasible(), arrow\_\-btsp\_\-params::find\_\-short\_\-tour, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-result::linkern\_\-attempts, arrow\_\-btsp\_\-result::linkern\_\-time, arrow\_\-btsp\_\-params::lower\_\-bound, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-btsp\_\-result::optimal, arrow\_\-problem::size, arrow\_\-btsp\_\-params::steps, arrow\_\-btsp\_\-params::supress\_\-ebst, arrow\_\-problem::symmetric, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, arrow\_\-btsp\_\-result::tour\_\-length, upper\_\-bound, and arrow\_\-btsp\_\-params::upper\_\-bound.
+
+Referenced by main().\hypertarget{arrow_8h_e1d667017d467f926e8371a0823d9d7a}{
+\index{arrow.h@{arrow.h}!arrow\_\-btsp\_\-solve\_\-plan\_\-destruct@{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct}}
+\index{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct@{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-solve\_\-plan\_\-destruct ({\bf arrow\_\-btsp\_\-solve\_\-plan} $\ast$ {\em plan})}}
+\label{arrow_8h_e1d667017d467f926e8371a0823d9d7a}
+
+
+Destructs a BTSP solve plan structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em result}]\mbox{[}out\mbox{]} BTSP solve plan structure \end{description}
+\end{Desc}
+
+
+Definition at line 91 of file btsp.c.
+
+References arrow\_\-btsp\_\-fun\_\-destruct(), arrow\_\-tsp\_\-lk\_\-params\_\-destruct(), arrow\_\-btsp\_\-solve\_\-plan::fun, and arrow\_\-btsp\_\-solve\_\-plan::lk\_\-params.
+
+Referenced by arrow\_\-btsp\_\-params\_\-destruct().\hypertarget{arrow_8h_a5f73647dedc4bcd1b5df2bf9e3edab4}{
+\index{arrow.h@{arrow.h}!arrow\_\-btsp\_\-solve\_\-plan\_\-init@{arrow\_\-btsp\_\-solve\_\-plan\_\-init}}
+\index{arrow\_\-btsp\_\-solve\_\-plan\_\-init@{arrow\_\-btsp\_\-solve\_\-plan\_\-init}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-solve\_\-plan\_\-init ({\bf arrow\_\-btsp\_\-solve\_\-plan} $\ast$ {\em plan})}}
+\label{arrow_8h_a5f73647dedc4bcd1b5df2bf9e3edab4}
+
+
+Inititalizes BTSP solve plan structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em params}]\mbox{[}out\mbox{]} BTSP solve plan structure \end{description}
+\end{Desc}
+
+
+Definition at line 84 of file btsp.c.
+
+References arrow\_\-btsp\_\-solve\_\-plan::attempts, and arrow\_\-btsp\_\-solve\_\-plan::plan\_\-type.\hypertarget{arrow_8h_ad3367474556148e376254886b71947d}{
+\index{arrow.h@{arrow.h}!arrow\_\-dcbpb\_\-solve@{arrow\_\-dcbpb\_\-solve}}
+\index{arrow\_\-dcbpb\_\-solve@{arrow\_\-dcbpb\_\-solve}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-dcbpb\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
+\label{arrow_8h_ad3367474556148e376254886b71947d}
+
+
+Solves the degree constrained bottleneck paths bound (DCBPB). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em info}]\mbox{[}in\mbox{]} problem info \item[{\em result}]\mbox{[}out\mbox{]} BPB solution \end{description}
+\end{Desc}
+
+
+Definition at line 29 of file dcbpb.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-matrix(), arrow\_\-util\_\-zeit(), bottleneck\_\-paths(), arrow\_\-problem::get\_\-cost, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, and arrow\_\-bound\_\-result::total\_\-time.
+
+Referenced by main().\hypertarget{arrow_8h_e187e044872b9130dc8451a7cbfd3f8d}{
+\index{arrow.h@{arrow.h}!arrow\_\-options\_\-parse@{arrow\_\-options\_\-parse}}
+\index{arrow\_\-options\_\-parse@{arrow\_\-options\_\-parse}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-options\_\-parse (int {\em num\_\-opts}, \/  {\bf arrow\_\-option} {\em options}\mbox{[}$\,$\mbox{]}, \/  char $\ast$ {\em description}, \/  char $\ast$ {\em usage}, \/  int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]}, \/  int $\ast$ {\em opt\_\-ind})}}
+\label{arrow_8h_e187e044872b9130dc8451a7cbfd3f8d}
+
+
+
+
+Definition at line 24 of file options.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-OPTION\_\-DOUBLE, ARROW\_\-OPTION\_\-INT, ARROW\_\-OPTION\_\-STRING, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-option::long\_\-option, print\_\-help(), print\_\-usage(), print\_\-version(), and arrow\_\-option::short\_\-option.
+
+Referenced by main().\hypertarget{arrow_8h_1fd00c671b95d81b8309bac580635d51}{
+\index{arrow.h@{arrow.h}!arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp@{arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp}}
+\index{arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp@{arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp ({\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em infinity}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
+\label{arrow_8h_1fd00c671b95d81b8309bac580635d51}
+
+
+Transforms an asymmetric BTSP problem of n nodes into a symmetric BTSP problem with 2n nodes. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em old\_\-problem}]\mbox{[}in\mbox{]} the asymmetric problem \item[{\em infinity}]\mbox{[}in\mbox{]} value to use as \char`\"{}infinity\char`\"{} \item[{\em new\_\-problem}]\mbox{[}out\mbox{]} the new symmetric problem \end{description}
+\end{Desc}
+
+
+Definition at line 228 of file problem.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, arrow\_\-problem\_\-get\_\-cost(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix(), arrow\_\-problem::data, arrow\_\-problem::get\_\-cost, arrow\_\-problem::name, arrow\_\-problem::shallow, arrow\_\-problem::size, and arrow\_\-problem::symmetric.
+
+Referenced by main().\hypertarget{arrow_8h_a702972ab510dcc6354d7679759611d1}{
 \index{arrow.h@{arrow.h}!arrow\_\-problem\_\-destruct@{arrow\_\-problem\_\-destruct}}
 \index{arrow\_\-problem\_\-destruct@{arrow\_\-problem\_\-destruct}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-problem\_\-destruct ({\bf arrow\_\-problem} $\ast$ {\em problem})}}
@@ -361,15 +940,37 @@ Deallocates problem data structure.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em problem}]\mbox{[}in\mbox{]} problem data structure \end{description}
+\item[{\em problem}]\mbox{[}out\mbox{]} problem data structure \end{description}
 \end{Desc}
 
 
-Definition at line 50 of file problem.c.
+Definition at line 98 of file problem.c.
+
+References arrow\_\-problem::data, and arrow\_\-problem::shallow.
+
+Referenced by feasible(), and main().\hypertarget{arrow_8h_cd0bca6159ba920a6039ba06e82c1440}{
+\index{arrow.h@{arrow.h}!arrow\_\-problem\_\-get\_\-cost@{arrow\_\-problem\_\-get\_\-cost}}
+\index{arrow\_\-problem\_\-get\_\-cost@{arrow\_\-problem\_\-get\_\-cost}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-get\_\-cost ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em i}, \/  int {\em j})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{arrow_8h_cd0bca6159ba920a6039ba06e82c1440}
+
+
+Retrieves cost between nodes i and j. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} pointer to \hyperlink{structarrow__problem}{arrow\_\-problem} structure \item[{\em i}]\mbox{[}in\mbox{]} id of starting node \item[{\em j}]\mbox{[}in\mbox{]} id of ending node \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]cost between node i and node j \end{Desc}
+
+
+Definition at line 213 of file problem.c.
 
 References arrow\_\-problem::data.
 
-Referenced by main().\hypertarget{arrow_8h_09a5ba81556412e281fe6b863a6f08db}{
+Referenced by arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), and arrow\_\-problem\_\-read().\hypertarget{arrow_8h_09a5ba81556412e281fe6b863a6f08db}{
 \index{arrow.h@{arrow.h}!arrow\_\-problem\_\-info\_\-destruct@{arrow\_\-problem\_\-info\_\-destruct}}
 \index{arrow\_\-problem\_\-info\_\-destruct@{arrow\_\-problem\_\-info\_\-destruct}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-problem\_\-info\_\-destruct ({\bf arrow\_\-problem\_\-info} $\ast$ {\em info})}}
@@ -385,7 +986,7 @@ Deallocates problem info data structure.
 \end{Desc}
 
 
-Definition at line 99 of file problem.c.
+Definition at line 158 of file problem.c.
 
 References arrow\_\-problem\_\-info::cost\_\-list.
 
@@ -405,9 +1006,9 @@ Builds ordered cost list and finds min/max cost in a problem.
 \end{Desc}
 
 
-Definition at line 60 of file problem.c.
+Definition at line 115 of file problem.c.
 
-References arrow\_\-bintree\_\-destruct(), arrow\_\-bintree\_\-init(), arrow\_\-bintree\_\-insert(), arrow\_\-bintree\_\-to\_\-array(), ARROW\_\-SUCCESS, arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-problem::get\_\-cost, arrow\_\-problem\_\-info::max\_\-cost, arrow\_\-problem\_\-info::min\_\-cost, arrow\_\-bintree::size, and arrow\_\-problem::size.
+References arrow\_\-bintree\_\-destruct(), arrow\_\-bintree\_\-init(), arrow\_\-bintree\_\-insert(), arrow\_\-bintree\_\-to\_\-array(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-problem::get\_\-cost, arrow\_\-problem\_\-info::max\_\-cost, arrow\_\-problem\_\-info::min\_\-cost, arrow\_\-bintree::size, arrow\_\-problem::size, and arrow\_\-problem::symmetric.
 
 Referenced by main().\hypertarget{arrow_8h_ce6b857eab0a7a887262d033b7e5cf22}{
 \index{arrow.h@{arrow.h}!arrow\_\-problem\_\-print@{arrow\_\-problem\_\-print}}
@@ -425,9 +1026,9 @@ Prints out information about a problem.
 \end{Desc}
 
 
-Definition at line 106 of file problem.c.
+Definition at line 165 of file problem.c.
 
-References arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.\hypertarget{arrow_8h_b5b9bae9f92630983d3b3d39d86198f8}{
+References arrow\_\-debug, arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.\hypertarget{arrow_8h_b5b9bae9f92630983d3b3d39d86198f8}{
 \index{arrow.h@{arrow.h}!arrow\_\-problem\_\-read@{arrow\_\-problem\_\-read}}
 \index{arrow\_\-problem\_\-read@{arrow\_\-problem\_\-read}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-read (char $\ast$ {\em file\_\-name}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem})}}
@@ -443,15 +1044,35 @@ Reads a problem from a TSPLIB file.
 \end{Desc}
 
 
-Definition at line 30 of file problem.c.
+Definition at line 54 of file problem.c.
 
-References ARROW\_\-ERROR\_\-FATAL, ARROW\_\-FALSE, ARROW\_\-SUCCESS, concorde\_\-get\_\-cost(), arrow\_\-problem::data, arrow\_\-problem::get\_\-cost, arrow\_\-problem::name, arrow\_\-problem::shallow, and arrow\_\-problem::size.
+References arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, arrow\_\-problem\_\-get\_\-cost(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-problem::data, arrow\_\-problem::get\_\-cost, is\_\-asymmetric(), is\_\-symmetric(), arrow\_\-problem::name, read\_\-atsp(), arrow\_\-problem::shallow, arrow\_\-problem::size, and arrow\_\-problem::symmetric.
 
-Referenced by main().\hypertarget{arrow_8h_0cc68200bf38d20fe0dd3c388674d215}{
+Referenced by main().\hypertarget{arrow_8h_b0ae70bd19a75c7f3164b81e4ed092ad}{
+\index{arrow.h@{arrow.h}!arrow\_\-problem\_\-read\_\-tour@{arrow\_\-problem\_\-read\_\-tour}}
+\index{arrow\_\-problem\_\-read\_\-tour@{arrow\_\-problem\_\-read\_\-tour}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-read\_\-tour (char $\ast$ {\em file\_\-name}, \/  int {\em size}, \/  int $\ast$ {\em tour})}}
+\label{arrow_8h_b0ae70bd19a75c7f3164b81e4ed092ad}
+
+
+Reads a TSPLIB tour file. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em file\_\-name}]\mbox{[}in\mbox{]} the TSPLIB tour file to read \item[{\em size}]\mbox{[}in\mbox{]} the number of cities in the tour \item[{\em tour}]\mbox{[}out\mbox{]} an array to hold the tour in node-node format \end{description}
+\end{Desc}
+
+
+Definition at line 219 of file problem.c.
+
+References ARROW\_\-ERROR\_\-FATAL, ARROW\_\-SUCCESS, and CONCORDE\_\-SUCCESS.
+
+Referenced by main().\hypertarget{arrow_8h_e678a3a4a87c4db0ab8493e7edfb6119}{
 \index{arrow.h@{arrow.h}!arrow\_\-tsp\_\-exact\_\-solve@{arrow\_\-tsp\_\-exact\_\-solve}}
 \index{arrow\_\-tsp\_\-exact\_\-solve@{arrow\_\-tsp\_\-exact\_\-solve}!arrow.h@{arrow.h}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-exact\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int $\ast$ {\em in\_\-tour}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
-\label{arrow_8h_0cc68200bf38d20fe0dd3c388674d215}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-exact\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int $\ast$ {\em initial\_\-tour}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
+\label{arrow_8h_e678a3a4a87c4db0ab8493e7edfb6119}
 
 
 Solves TSP with Concorde's exact solver. 
@@ -463,17 +1084,39 @@ Solves TSP with Concorde's exact solver.
 \end{Desc}
 
 
-Definition at line 36 of file tsp.c.
+Definition at line 66 of file tsp.c.
 
-References ARROW\_\-ERROR\_\-FATAL, ARROW\_\-ERROR\_\-NON\_\-FATAL, ARROW\_\-SUCCESS, arrow\_\-util\_\-zeit(), arrow\_\-problem::data, arrow\_\-tsp\_\-result::found\_\-tour, arrow\_\-problem::name, arrow\_\-problem::size, arrow\_\-tsp\_\-result::total\_\-time, arrow\_\-tsp\_\-result::tour, and arrow\_\-tsp\_\-result::tour\_\-length.\hypertarget{arrow_8h_a20fdb653581bbcfcd08784900b19218}{
-\index{arrow.h@{arrow.h}!arrow\_\-tsp\_\-lk\_\-params\_\-default@{arrow\_\-tsp\_\-lk\_\-params\_\-default}}
-\index{arrow\_\-tsp\_\-lk\_\-params\_\-default@{arrow\_\-tsp\_\-lk\_\-params\_\-default}!arrow.h@{arrow.h}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-lk\_\-params\_\-default ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-lk\_\-params} $\ast$ {\em params})}}
-\label{arrow_8h_a20fdb653581bbcfcd08784900b19218}
+References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, arrow\_\-util\_\-zeit(), arrow\_\-problem::data, arrow\_\-tsp\_\-result::found\_\-tour, arrow\_\-problem::name, arrow\_\-tsp\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-tsp\_\-result::total\_\-time, and arrow\_\-tsp\_\-result::tour.
+
+Referenced by feasible(), and main().\hypertarget{arrow_8h_67dd9d24c1d45e49152c4f9b6a3e7836}{
+\index{arrow.h@{arrow.h}!arrow\_\-tsp\_\-lk\_\-params\_\-destruct@{arrow\_\-tsp\_\-lk\_\-params\_\-destruct}}
+\index{arrow\_\-tsp\_\-lk\_\-params\_\-destruct@{arrow\_\-tsp\_\-lk\_\-params\_\-destruct}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-lk\_\-params\_\-destruct ({\bf arrow\_\-tsp\_\-lk\_\-params} $\ast$ {\em params})}}
+\label{arrow_8h_67dd9d24c1d45e49152c4f9b6a3e7836}
+
+
+Destructs a LK parameters structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em result}]\mbox{[}out\mbox{]} LK parameters structure \end{description}
+\end{Desc}
+
+
+Definition at line 59 of file tsp.c.
+
+References arrow\_\-tsp\_\-lk\_\-params::initial\_\-tour.
+
+Referenced by arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), arrow\_\-tsp\_\-lk\_\-solve(), and main().\hypertarget{arrow_8h_b6916d874aabb28c782ec4b37448851a}{
+\index{arrow.h@{arrow.h}!arrow\_\-tsp\_\-lk\_\-params\_\-init@{arrow\_\-tsp\_\-lk\_\-params\_\-init}}
+\index{arrow\_\-tsp\_\-lk\_\-params\_\-init@{arrow\_\-tsp\_\-lk\_\-params\_\-init}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-lk\_\-params\_\-init ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-lk\_\-params} $\ast$ {\em params})}}
+\label{arrow_8h_b6916d874aabb28c782ec4b37448851a}
 
 
 Sets default parameters for Lin-Kernighan heuristic:\begin{itemize}
-\item stall\_\-count = problem-$>$size\item kicks = 0\item kick\_\-type = CC\_\-LK\_\-GEOMETRIC\_\-KICK\item time\_\-bound = 0.0\item length\_\-bound = 0.0\item initial\_\-tour = NULL. \end{itemize}
+\item random\_\-restarts = 0\item stall\_\-count = problem-$>$size\item kicks = (problem-$>$size / 2), at least 500\item kick\_\-type = CC\_\-LK\_\-GEOMETRIC\_\-KICK\item time\_\-bound = 0.0\item length\_\-bound = 0.0\item initial\_\-tour = NULL. \end{itemize}
 
 
 \begin{Desc}
@@ -483,7 +1126,31 @@ Sets default parameters for Lin-Kernighan heuristic:\begin{itemize}
 \end{Desc}
 
 
-Definition at line 29 of file tsp.c.\hypertarget{arrow_8h_0665c82047dc78f8d08f12ecf5a9eef8}{
+Definition at line 47 of file tsp.c.
+
+References arrow\_\-tsp\_\-lk\_\-params::initial\_\-tour, arrow\_\-tsp\_\-lk\_\-params::kick\_\-type, arrow\_\-tsp\_\-lk\_\-params::kicks, arrow\_\-tsp\_\-lk\_\-params::length\_\-bound, arrow\_\-tsp\_\-lk\_\-params::random\_\-restarts, arrow\_\-problem::size, arrow\_\-tsp\_\-lk\_\-params::stall\_\-count, and arrow\_\-tsp\_\-lk\_\-params::time\_\-bound.
+
+Referenced by arrow\_\-tsp\_\-lk\_\-solve(), and main().\hypertarget{arrow_8h_85727209bce9c643d61ac3a5f9d79c95}{
+\index{arrow.h@{arrow.h}!arrow\_\-tsp\_\-lk\_\-solve@{arrow\_\-tsp\_\-lk\_\-solve}}
+\index{arrow\_\-tsp\_\-lk\_\-solve@{arrow\_\-tsp\_\-lk\_\-solve}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-lk\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-lk\_\-params} $\ast$ {\em params}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
+\label{arrow_8h_85727209bce9c643d61ac3a5f9d79c95}
+
+
+Solves TSP with Concorde's Lin-Kernighan heuristic. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em params}]\mbox{[}in\mbox{]} Lin-Kernighan params (can be NULL) \item[{\em result}]\mbox{[}out\mbox{]} TSP solution \end{description}
+\end{Desc}
+
+
+Definition at line 102 of file tsp.c.
+
+References arrow\_\-debug, ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-tsp\_\-lk\_\-params\_\-destruct(), arrow\_\-tsp\_\-lk\_\-params\_\-init(), arrow\_\-util\_\-zeit(), build\_\-initial\_\-tour(), CONCORDE\_\-FAILURE, arrow\_\-problem::data, arrow\_\-tsp\_\-result::found\_\-tour, arrow\_\-tsp\_\-lk\_\-params::initial\_\-tour, arrow\_\-tsp\_\-lk\_\-params::kick\_\-type, arrow\_\-tsp\_\-lk\_\-params::kicks, arrow\_\-tsp\_\-lk\_\-params::length\_\-bound, arrow\_\-tsp\_\-result::obj\_\-value, arrow\_\-tsp\_\-lk\_\-params::random\_\-restarts, arrow\_\-problem::size, arrow\_\-tsp\_\-lk\_\-params::stall\_\-count, arrow\_\-tsp\_\-lk\_\-params::time\_\-bound, arrow\_\-tsp\_\-result::total\_\-time, and arrow\_\-tsp\_\-result::tour.
+
+Referenced by feasible(), and main().\hypertarget{arrow_8h_0665c82047dc78f8d08f12ecf5a9eef8}{
 \index{arrow.h@{arrow.h}!arrow\_\-tsp\_\-result\_\-destruct@{arrow\_\-tsp\_\-result\_\-destruct}}
 \index{arrow\_\-tsp\_\-result\_\-destruct@{arrow\_\-tsp\_\-result\_\-destruct}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-result\_\-destruct ({\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
@@ -499,13 +1166,15 @@ Destructs a TSP result structure.
 \end{Desc}
 
 
-Definition at line 22 of file tsp.c.
+Definition at line 37 of file tsp.c.
 
-References arrow\_\-tsp\_\-result::tour.\hypertarget{arrow_8h_107b3fa0e8b3eeab9e04320d30654ec5}{
+References arrow\_\-tsp\_\-result::tour.
+
+Referenced by feasible(), and main().\hypertarget{arrow_8h_124a14a04e51fdd8e05f0aed7dfdd44c}{
 \index{arrow.h@{arrow.h}!arrow\_\-tsp\_\-result\_\-init@{arrow\_\-tsp\_\-result\_\-init}}
 \index{arrow\_\-tsp\_\-result\_\-init@{arrow\_\-tsp\_\-result\_\-init}!arrow.h@{arrow.h}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-result\_\-init ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
-\label{arrow_8h_107b3fa0e8b3eeab9e04320d30654ec5}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-result\_\-init ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
+\label{arrow_8h_124a14a04e51fdd8e05f0aed7dfdd44c}
 
 
 Initializes the TSP result structure. 
@@ -517,9 +1186,67 @@ Initializes the TSP result structure.
 \end{Desc}
 
 
-Definition at line 12 of file tsp.c.
+Definition at line 23 of file tsp.c.
 
-References ARROW\_\-FALSE, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-tsp\_\-result::found\_\-tour, arrow\_\-problem::size, arrow\_\-tsp\_\-result::total\_\-time, arrow\_\-tsp\_\-result::tour, and arrow\_\-tsp\_\-result::tour\_\-length.\hypertarget{arrow_8h_4aea68dfc908d08522baccb148251ae7}{
+References ARROW\_\-ERROR\_\-FATAL, ARROW\_\-FALSE, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-tsp\_\-result::found\_\-tour, arrow\_\-tsp\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-tsp\_\-result::total\_\-time, and arrow\_\-tsp\_\-result::tour.
+
+Referenced by feasible(), and main().\hypertarget{arrow_8h_7a32a3f10516726b76ba6f87d96d2903}{
+\index{arrow.h@{arrow.h}!arrow\_\-util\_\-binary\_\-search@{arrow\_\-util\_\-binary\_\-search}}
+\index{arrow\_\-util\_\-binary\_\-search@{arrow\_\-util\_\-binary\_\-search}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-binary\_\-search (int $\ast$ {\em array}, \/  int {\em size}, \/  int {\em element}, \/  int $\ast$ {\em pos})}}
+\label{arrow_8h_7a32a3f10516726b76ba6f87d96d2903}
+
+
+Performs a binary search to find the wanted element in a sorted integer array. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em array}]\mbox{[}in\mbox{]} the array to search (note: must be sorted in non-increasing order) \item[{\em size}]\mbox{[}in\mbox{]} size of the array \item[{\em element}]\mbox{[}in\mbox{]} the element to find in the array \item[{\em pos}]\mbox{[}out\mbox{]} the index where the element can be found in the array \end{description}
+\end{Desc}
+
+
+Definition at line 145 of file util.c.
+
+References ARROW\_\-FAILURE, and ARROW\_\-SUCCESS.
+
+Referenced by arrow\_\-btsp\_\-solve(), and constrained\_\-shake\_\-deep\_\-apply().\hypertarget{arrow_8h_3052203501efe0814bbe98548394b978}{
+\index{arrow.h@{arrow.h}!arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix@{arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix}}
+\index{arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix@{arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix (int {\em size}, \/  CCdatagroup $\ast$ {\em dat})}}
+\label{arrow_8h_3052203501efe0814bbe98548394b978}
+
+
+Initializes an upper-diagonal matrix norm structure for Concorde that is ready to be filled in with values. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em size}]\mbox{[}in\mbox{]} the number of cities/vertices \item[{\em dat}]\mbox{[}out\mbox{]} the CCdatagroup structure to create \end{description}
+\end{Desc}
+
+
+Definition at line 115 of file util.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, and ARROW\_\-SUCCESS.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-apply(), and arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp().\hypertarget{arrow_8h_b2e3326bacca581ca01013678d664cdb}{
+\index{arrow.h@{arrow.h}!arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy@{arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy}}
+\index{arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy@{arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy (CCdatagroup $\ast$ {\em from}, \/  CCdatagroup $\ast$ {\em to})}}
+\label{arrow_8h_b2e3326bacca581ca01013678d664cdb}
+
+
+Makes a shallow copy of the Concorde CCdatagroup structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em from}]\mbox{[}in\mbox{]} the CCdatagroup structure to copy from  to \mbox{[}out\mbox{]} the CCdatagroup structure to copy to \end{description}
+\end{Desc}
+
+
+Definition at line 89 of file util.c.\hypertarget{arrow_8h_4aea68dfc908d08522baccb148251ae7}{
 \index{arrow.h@{arrow.h}!arrow\_\-util\_\-create\_\-int\_\-array@{arrow\_\-util\_\-create\_\-int\_\-array}}
 \index{arrow\_\-util\_\-create\_\-int\_\-array@{arrow\_\-util\_\-create\_\-int\_\-array}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-create\_\-int\_\-array (int {\em size}, \/  int $\ast$$\ast$ {\em array})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
@@ -537,9 +1264,29 @@ Creates an integer array.
 
 Definition at line 15 of file util.c.
 
-References ARROW\_\-ERROR\_\-FATAL, arrow\_\-print\_\-error, and ARROW\_\-SUCCESS.
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, and ARROW\_\-SUCCESS.
 
-Referenced by arrow\_\-bbssp\_\-biconnected(), arrow\_\-bintree\_\-to\_\-array(), and arrow\_\-tsp\_\-result\_\-init().\hypertarget{arrow_8h_3bd7042ebd6e97b5790a8708c91be5b4}{
+Referenced by arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-biconnected(), arrow\_\-bintree\_\-to\_\-array(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-util\_\-create\_\-int\_\-matrix(), main(), and strongly\_\-connected().\hypertarget{arrow_8h_2801c2cc414251180545168ba9abe911}{
+\index{arrow.h@{arrow.h}!arrow\_\-util\_\-create\_\-int\_\-matrix@{arrow\_\-util\_\-create\_\-int\_\-matrix}}
+\index{arrow\_\-util\_\-create\_\-int\_\-matrix@{arrow\_\-util\_\-create\_\-int\_\-matrix}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-create\_\-int\_\-matrix (int {\em rows}, \/  int {\em cols}, \/  int $\ast$$\ast$$\ast$ {\em matrix}, \/  int $\ast$$\ast$ {\em space})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{arrow_8h_2801c2cc414251180545168ba9abe911}
+
+
+Creates a full integer matrix. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em rows}]\mbox{[}in\mbox{]} number of rows \item[{\em cols}]\mbox{[}in\mbox{]} number of columns \item[{\em matrix}]\mbox{[}out\mbox{]} pointer to matrix that will be created \item[{\em space}]\mbox{[}out\mbox{]} pointer to matrix space that will be created \end{description}
+\end{Desc}
+
+
+Definition at line 27 of file util.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, and arrow\_\-util\_\-create\_\-int\_\-array().
+
+Referenced by arrow\_\-bap\_\-solve(), and arrow\_\-dcbpb\_\-solve().\hypertarget{arrow_8h_3bd7042ebd6e97b5790a8708c91be5b4}{
 \index{arrow.h@{arrow.h}!arrow\_\-util\_\-print\_\-error@{arrow\_\-util\_\-print\_\-error}}
 \index{arrow\_\-util\_\-print\_\-error@{arrow\_\-util\_\-print\_\-error}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-print\_\-error (const char $\ast$ {\em file\_\-name}, \/  int {\em line\_\-num}, \/  const char $\ast$ {\em message})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
@@ -555,7 +1302,76 @@ Prints an error message to stderr with consistent formatting.
 \end{Desc}
 
 
-Definition at line 27 of file util.c.\hypertarget{arrow_8h_8a9cef270a8d9d4fb22483dc986aa792}{
+Definition at line 56 of file util.c.\hypertarget{arrow_8h_0bf303aee0600136e1720be7e6c60021}{
+\index{arrow.h@{arrow.h}!arrow\_\-util\_\-print\_\-program\_\-args@{arrow\_\-util\_\-print\_\-program\_\-args}}
+\index{arrow\_\-util\_\-print\_\-program\_\-args@{arrow\_\-util\_\-print\_\-program\_\-args}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-print\_\-program\_\-args (int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]}, \/  FILE $\ast$ {\em out})}}
+\label{arrow_8h_0bf303aee0600136e1720be7e6c60021}
+
+
+Prints out the given program arguments to the specified file. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em argc}]\mbox{[}in\mbox{]} the number of arguments \item[{\em argv}]\mbox{[}in\mbox{]} the program arugment array \item[{\em out}]\mbox{[}in\mbox{]} the file handle to print out to \end{description}
+\end{Desc}
+
+
+Definition at line 195 of file util.c.
+
+Referenced by main().\hypertarget{arrow_8h_f2635504f3a222a0ced821917131c44c}{
+\index{arrow.h@{arrow.h}!arrow\_\-util\_\-random@{arrow\_\-util\_\-random}}
+\index{arrow\_\-util\_\-random@{arrow\_\-util\_\-random}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-random ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{arrow_8h_f2635504f3a222a0ced821917131c44c}
+
+
+Returns a random number between 0 and RAND\_\-MAX (normally, RAND\_\-MAX = INT\_\-MAX). 
+
+\begin{Desc}
+\item[Returns:]a random integer. \end{Desc}
+
+
+Definition at line 215 of file util.c.\hypertarget{arrow_8h_529c872ac72eaf0046ad149abf7b6179}{
+\index{arrow.h@{arrow.h}!arrow\_\-util\_\-random\_\-between@{arrow\_\-util\_\-random\_\-between}}
+\index{arrow\_\-util\_\-random\_\-between@{arrow\_\-util\_\-random\_\-between}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-random\_\-between (int {\em min}, \/  int {\em max})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{arrow_8h_529c872ac72eaf0046ad149abf7b6179}
+
+
+Returns a random number between min and max. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em min}]\mbox{[}in\mbox{]} the minimum random number to return \item[{\em max}]\mbox{[}in\mbox{]} the maximum random number to return \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a random integer in the range \mbox{[}min, max\mbox{]} \end{Desc}
+
+
+Definition at line 221 of file util.c.
+
+Referenced by constrained\_\-shake\_\-deep\_\-apply().\hypertarget{arrow_8h_448b71093a175c0f40f9cbe612b1c709}{
+\index{arrow.h@{arrow.h}!arrow\_\-util\_\-random\_\-seed@{arrow\_\-util\_\-random\_\-seed}}
+\index{arrow\_\-util\_\-random\_\-seed@{arrow\_\-util\_\-random\_\-seed}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-random\_\-seed (int {\em seed})}}
+\label{arrow_8h_448b71093a175c0f40f9cbe612b1c709}
+
+
+Seeds the random number generator. Pass a value of 0 to seed with the current time. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em seed}]\mbox{[}in\mbox{]} the random number seed. \end{description}
+\end{Desc}
+
+
+Definition at line 206 of file util.c.
+
+Referenced by main().\hypertarget{arrow_8h_8a9cef270a8d9d4fb22483dc986aa792}{
 \index{arrow.h@{arrow.h}!arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file@{arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file}}
 \index{arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file@{arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file (const char $\ast$ {\em filename}, \/  int $\ast$ {\em old\_\-stream})}}
@@ -571,9 +1387,31 @@ Redirects STDOUT stream to a file (can be used to completely surpress output by 
 \end{Desc}
 
 
-Definition at line 40 of file util.c.
+Definition at line 69 of file util.c.
 
-Referenced by main().\hypertarget{arrow_8h_65b9ba02b0c557fe9b15f5315a6953db}{
+Referenced by main().\hypertarget{arrow_8h_f9436128a70bfe493e200175d7eaf93b}{
+\index{arrow.h@{arrow.h}!arrow\_\-util\_\-regex\_\-match@{arrow\_\-util\_\-regex\_\-match}}
+\index{arrow\_\-util\_\-regex\_\-match@{arrow\_\-util\_\-regex\_\-match}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-regex\_\-match (char $\ast$ {\em string}, \/  char $\ast$ {\em pattern})}}
+\label{arrow_8h_f9436128a70bfe493e200175d7eaf93b}
+
+
+Determines if the given string turns up a match for the given regular expression pattern. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em string}]\mbox{[}in\mbox{]} the string to match against \item[{\em pattern}]\mbox{[}in\mbox{]} the regular expression pattern to match \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]ARROW\_\-TRUE if a match is found, ARROW\_\-FALSE if not. \end{Desc}
+
+
+Definition at line 177 of file util.c.
+
+References ARROW\_\-FALSE, and ARROW\_\-TRUE.
+
+Referenced by is\_\-asymmetric(), and is\_\-symmetric().\hypertarget{arrow_8h_65b9ba02b0c557fe9b15f5315a6953db}{
 \index{arrow.h@{arrow.h}!arrow\_\-util\_\-restore\_\-stdout@{arrow\_\-util\_\-restore\_\-stdout}}
 \index{arrow\_\-util\_\-restore\_\-stdout@{arrow\_\-util\_\-restore\_\-stdout}!arrow.h@{arrow.h}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-restore\_\-stdout (int {\em old\_\-stream})}}
@@ -589,7 +1427,33 @@ Restores STDOUT stream that's been redirected.
 \end{Desc}
 
 
-Definition at line 49 of file util.c.
+Definition at line 78 of file util.c.
+
+Referenced by main().\hypertarget{arrow_8h_8a7327192a37674e2559d82448a565b1}{
+\index{arrow.h@{arrow.h}!arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour@{arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour}}
+\index{arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour@{arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int $\ast$ {\em old\_\-tour}, \/  int $\ast$ {\em new\_\-tour})}}
+\label{arrow_8h_8a7327192a37674e2559d82448a565b1}
+
+
+
+
+Definition at line 246 of file util.c.
+
+References arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
+
+Referenced by main().\hypertarget{arrow_8h_6921d887eca515c1ad59629e25a0c237}{
+\index{arrow.h@{arrow.h}!arrow\_\-util\_\-write\_\-tour@{arrow\_\-util\_\-write\_\-tour}}
+\index{arrow\_\-util\_\-write\_\-tour@{arrow\_\-util\_\-write\_\-tour}!arrow.h@{arrow.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-write\_\-tour ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  char $\ast$ {\em comment}, \/  int $\ast$ {\em tour}, \/  FILE $\ast$ {\em out})}}
+\label{arrow_8h_6921d887eca515c1ad59629e25a0c237}
+
+
+
+
+Definition at line 227 of file util.c.
+
+References arrow\_\-problem::name, and arrow\_\-problem::size.
 
 Referenced by main().\hypertarget{arrow_8h_05b2e96c9991c51368c1f8d5a77d3ccf}{
 \index{arrow.h@{arrow.h}!arrow\_\-util\_\-zeit@{arrow\_\-util\_\-zeit}}
@@ -604,6 +1468,6 @@ Used to measure timings.
 \item[Returns:]a value representing the CPU time in seconds \end{Desc}
 
 
-Definition at line 34 of file util.c.
+Definition at line 63 of file util.c.
 
-Referenced by arrow\_\-bbssp\_\-solve(), and arrow\_\-tsp\_\-exact\_\-solve().
+Referenced by arrow\_\-2mb\_\-solve(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-tsp\_\-lk\_\-solve(), and main().

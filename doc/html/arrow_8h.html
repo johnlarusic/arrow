@@ -9,7 +9,6 @@
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
-      <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="annotated.html"><span>Data&nbsp;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -24,6 +23,9 @@
 <code>#include &lt;errno.h&gt;</code><br>
 <code>#include &lt;limits.h&gt;</code><br>
 <code>#include &lt;unistd.h&gt;</code><br>
+<code>#include &lt;float.h&gt;</code><br>
+<code>#include &lt;regex.h&gt;</code><br>
+<code>#include &lt;getopt.h&gt;</code><br>
 <code>#include &quot;concorde.h&quot;</code><br>
 
 <p>
@@ -39,38 +41,61 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dynsection">
 <p><center><img src="arrow_8h__dep__incl.png" border="0" usemap="#lib/arrow.hdep_map" alt=""></center>
 <map name="lib/arrow.hdep_map">
-<area shape="rect" href="bin_2bbssp_8c.html" title="Bottleneck Biconnected Spanning Subgraph solver." alt="" coords="6,80,96,107"><area shape="rect" href="histogram__data_8c.html" title="Edge length histogram data collector." alt="" coords="120,80,270,107"><area shape="rect" href="lib_2bbssp_8c.html" title="Bottleneck biconnected spanning subgraph problem implemenation." alt="" coords="294,80,379,107"><area shape="rect" href="bintree_8c.html" title="Binary tree implementation." alt="" coords="403,80,494,107"><area shape="rect" href="problem_8c.html" title="Functions for working with problem data." alt="" coords="518,80,616,107"><area shape="rect" href="tsp_8c.html" title="TSP solver and Lin&#45;Kernighan heuristic." alt="" coords="640,80,707,107"><area shape="rect" href="util_8c.html" title="Useful utility functions." alt="" coords="731,80,798,107"></map>
+<area shape="rect" href="bin_22mb_8c.html" title="2&#45;Max Bound solver." alt="" coords="5,80,85,107"><area shape="rect" href="abtsp_8c.html" title="Asymmetric Bottleneck TSP heuristic." alt="" coords="109,80,197,107"><area shape="rect" href="bin_2bap_8c.html" title="Bottleneck Assignment Problem solver." alt="" coords="221,80,299,107"><area shape="rect" href="bin_2bbssp_8c.html" title="Bottleneck Biconnected Spanning Subgraph solver." alt="" coords="323,80,413,107"><area shape="rect" href="bin_2bscssp_8c.html" title="Bottleneck strongly connected spanning subgraph problem solver." alt="" coords="437,80,533,107"><area shape="rect" href="bin_2btsp_8c.html" title="Bottleneck TSP heuristic." alt="" coords="557,80,637,107"><area shape="rect" href="cbtsp_8c.html" title="Constrained Bottleneck TSP heuristic." alt="" coords="661,80,747,107"><area shape="rect" href="bin_2dcbpb_8c.html" title="Degree Constrained Bottleneck Path Bound solver." alt="" coords="771,80,861,107"><area shape="rect" href="hash_8c.html" title="Hash testing." alt="" coords="885,80,968,107"><area shape="rect" href="histogram__data_8c.html" title="Edge length histogram data collector." alt="" coords="992,80,1141,107"><area shape="rect" href="linkern_8c.html" title="Lin&#45;Kernighan TSP heuristic." alt="" coords="1165,80,1261,107"><area shape="rect" href="tour__info_8c.html" title="Tour information." alt="" coords="1285,80,1392,107"><area shape="rect" href="bin_2tsp_8c.html" title="Traveling Salesman Problem solver." alt="" coords="1416,80,1488,107"><area shape="rect" href="lib_22mb_8c.html" title="2&#45;max bound implemenation." alt="" coords="1512,80,1587,107"><area shape="rect" href="lib_2bap_8c.html" title="Bottleneck assignment problem (BAP) implemenation." alt="" coords="1611,80,1683,107"><area shape="rect" href="lib_2bbssp_8c.html" title="Bottleneck biconnected spanning subgraph problem implemenation." alt="" coords="1707,80,1792,107"><area shape="rect" href="bintree_8c.html" title="Binary tree implementation." alt="" coords="1816,80,1907,107"><area shape="rect" href="lib_2bscssp_8c.html" title="Bottleneck strongly connected spanning subgraph problem implemenation." alt="" coords="1931,80,2021,107"><area shape="rect" href="lib_2btsp_8c.html" title="Bottleneck traveling salesman problem (BTSP) methods." alt="" coords="2045,80,2120,107"><area shape="rect" href="btsp__fun_8c.html" title="Cost matrix transformation functions." alt="" coords="2144,80,2245,107"><area shape="rect" href="lib_2dcbpb_8c.html" title="Degree constarined bottleneck paths bound." alt="" coords="2269,80,2355,107"><area shape="rect" href="options_8c.html" title="Helper for parsing program options." alt="" coords="2379,80,2472,107"><area shape="rect" href="problem_8c.html" title="Functions for working with problem data." alt="" coords="2496,80,2595,107"><area shape="rect" href="lib_2tsp_8c.html" title="TSP solver and Lin&#45;Kernighan heuristic." alt="" coords="2619,80,2685,107"><area shape="rect" href="util_8c.html" title="Useful utility functions." alt="" coords="2709,80,2776,107"></map>
 </div>
 
 <p>
 <a href="arrow_8h-source.html">Go to the source code of this file.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Data Structures</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__problem.html">arrow_problem</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__bound__result.html">arrow_bound_result</a></td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Problem data structure.  <a href="structarrow__problem.html#_details">More...</a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__problem__info.html">arrow_problem_info</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Problem information data structure.  <a href="structarrow__problem__info.html#_details">More...</a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A lower bound result.  <a href="structarrow__bound__result.html#_details">More...</a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__bintree.html">arrow_bintree</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Binary tree data structure.  <a href="structarrow__bintree.html#_details">More...</a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__bintree__node.html">arrow_bintree_node</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Binary tree node.  <a href="structarrow__bintree__node.html#_details">More...</a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__bbssp__result.html">arrow_bbssp_result</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__problem.html">arrow_problem</a></td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">BBSSP solver result.  <a href="structarrow__bbssp__result.html#_details">More...</a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__tsp__result.html">arrow_tsp_result</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Problem data structure.  <a href="structarrow__problem.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__problem__info.html">arrow_problem_info</a></td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">TSP result (including result from LK heuristic).  <a href="structarrow__tsp__result.html#_details">More...</a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Problem information data structure.  <a href="structarrow__problem__info.html#_details">More...</a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__tsp__lk__params.html">arrow_tsp_lk_params</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">LK algorithm parameters.  <a href="structarrow__tsp__lk__params.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__tsp__result.html">arrow_tsp_result</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">TSP result (including result from LK heuristic).  <a href="structarrow__tsp__result.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__result.html">arrow_btsp_result</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">BTSP result.  <a href="structarrow__btsp__result.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">BTSP Cost matrix function definition.  <a href="structarrow__btsp__fun.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__solve__plan.html">arrow_btsp_solve_plan</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">BTSP feasibility solve step plan.  <a href="structarrow__btsp__solve__plan.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__params.html">arrow_btsp_params</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">BTSP algorithm parameters.  <a href="structarrow__btsp__params.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__option.html">arrow_option</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Program options structure.  <a href="structarrow__option.html#_details">More...</a><br></td></tr>
 <tr><td colspan="2"><br><h2>Defines</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#3057840b0de9d217fdcedddc615295ad">ARROW_DEBUG</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#84ee1610187a79fbe4cdefeafffff4e8">arrow_debug</a>&nbsp;&nbsp;&nbsp;printf</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#73a3fc48edc73ab8c510034d6c6dd2e1">ARROW_VERSION</a>&nbsp;&nbsp;&nbsp;&quot;1.0&quot;</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#0be07738336b219a8057fb867ed386c1">ARROW_DEV_NULL</a>&nbsp;&nbsp;&nbsp;&quot;/dev/null&quot;</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#21afcc3dc34f8488ad437841f58225c4">ARROW_SUCCESS</a>&nbsp;&nbsp;&nbsp;1</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#a50e8b8f74e48535271458079c7506cb">ARROW_FAILURE</a>&nbsp;&nbsp;&nbsp;0</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#4a768d7e7c23ac0605a6e93ca16aaae2">ARROW_ERROR_INPUT</a>&nbsp;&nbsp;&nbsp;0</td></tr>
 
@@ -82,12 +107,36 @@ This graph shows which files directly or indirectly include this file:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>&nbsp;&nbsp;&nbsp;0</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#08ba7f1d633a842ae065d926e13e99d1">ARROW_BTSP_SOLVE_PLAN_BASIC</a>&nbsp;&nbsp;&nbsp;1</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#eb59f80d427163919e8f7b3542fd9784">ARROW_BTSP_SOLVE_PLAN_CONSTRAINED</a>&nbsp;&nbsp;&nbsp;2</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#a7f468f2633f855fbee81d70dea0f5ed">ARROW_BTSP_SOLVE_PLAN_CONSTRAINED_SHAKE</a>&nbsp;&nbsp;&nbsp;3</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#803ded0eb51e5d8750d08ab33e618af4">ARROW_DEFAULT_BASIC_ATTEMPTS</a>&nbsp;&nbsp;&nbsp;3</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>&nbsp;&nbsp;&nbsp;1</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#6ae7aa7a4dfd9359283ca22c51d40902">ARROW_OPTION_DOUBLE</a>&nbsp;&nbsp;&nbsp;2</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#a5af4b3dd40c1687deb0e897317fac3d">ARROW_OPTION_STRING</a>&nbsp;&nbsp;&nbsp;3</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#5bc042a0d5e4aee532d2841342766d29">CONCORDE_SUCCESS</a>&nbsp;&nbsp;&nbsp;0</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#c85ff6ed8837999e4553ffde8af02756">CONCORDE_FAILURE</a>&nbsp;&nbsp;&nbsp;1</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#2bc89592b4a27c03c1129b8e4b876a51">arrow_print_error</a>(message)&nbsp;&nbsp;&nbsp;arrow_util_print_error(__FILE__, __LINE__, message)</td></tr>
 
 <tr><td colspan="2"><br><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#d6098d008ef724a58c6960d8f28bf925">arrow_bbssp_solve</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *info, <a class="el" href="structarrow__bbssp__result.html">arrow_bbssp_result</a> *result)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#a3ac7f6280e1eaea38fafbe78375b13f">arrow_2mb_solve</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__bound__result.html">arrow_bound_result</a> *result)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solves the bottleneck biconnected spanning subgraph problem (BBSSP) on the given problem.  <a href="#d6098d008ef724a58c6960d8f28bf925"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solves the 2-max bound (2MB) on the given problem.  <a href="#a3ac7f6280e1eaea38fafbe78375b13f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#ad3367474556148e376254886b71947d">arrow_dcbpb_solve</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__bound__result.html">arrow_bound_result</a> *result)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solves the degree constrained bottleneck paths bound (DCBPB).  <a href="#ad3367474556148e376254886b71947d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#ff7006ace4173927265facbe5f895cf0">arrow_bbssp_solve</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *info, <a class="el" href="structarrow__bound__result.html">arrow_bound_result</a> *result)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solves the bottleneck biconnected spanning subgraph problem (BBSSP) on the given problem.  <a href="#ff7006ace4173927265facbe5f895cf0"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#727cb19dd9cfa6315e1155796daef833">arrow_bbssp_biconnected</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int max_cost, int *result)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determines if the graph is biconnected using only edges with costs less than or equal to the given value.  <a href="#727cb19dd9cfa6315e1155796daef833"></a><br></td></tr>
@@ -106,6 +155,50 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#3804a3bce6fc22ef6d5ea0ac5776a2bb">arrow_bintree_print</a> (<a class="el" href="structarrow__bintree.html">arrow_bintree</a> *tree)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prints out the values of the binary tree.  <a href="#3804a3bce6fc22ef6d5ea0ac5776a2bb"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#624fe95ca7b7eb623ee636c2f8cb1409">arrow_bscssp_solve</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *info, <a class="el" href="structarrow__bound__result.html">arrow_bound_result</a> *result)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on the given graph.  <a href="#624fe95ca7b7eb623ee636c2f8cb1409"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#b78b71959db64c692a9e16832df9c096">arrow_btsp_result_init</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__btsp__result.html">arrow_btsp_result</a> *result)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initializes the BTSP result structure.  <a href="#b78b71959db64c692a9e16832df9c096"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#11d150bd3219a6ba3d9ccd3f0c952b2a">arrow_btsp_result_destruct</a> (<a class="el" href="structarrow__btsp__result.html">arrow_btsp_result</a> *result)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructs a BTSP result structure.  <a href="#11d150bd3219a6ba3d9ccd3f0c952b2a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#3c6427a5ad0c0f5157d2c1a903f823c4">arrow_btsp_solve</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *info, <a class="el" href="structarrow__btsp__params.html">arrow_btsp_params</a> *params, <a class="el" href="structarrow__btsp__result.html">arrow_btsp_result</a> *result)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solves TSP with Concorde's exact solver.  <a href="#3c6427a5ad0c0f5157d2c1a903f823c4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#9ee14515eed23a56303e338258725b7c">arrow_btsp_params_init</a> (<a class="el" href="structarrow__btsp__params.html">arrow_btsp_params</a> *params)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Inititalizes BTSP parameter structure.  <a href="#9ee14515eed23a56303e338258725b7c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#c5c69eb958340aba441e75dfbb6d941b">arrow_btsp_params_destruct</a> (<a class="el" href="structarrow__btsp__params.html">arrow_btsp_params</a> *params)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructs a BTSP parameters structure.  <a href="#c5c69eb958340aba441e75dfbb6d941b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#a5f73647dedc4bcd1b5df2bf9e3edab4">arrow_btsp_solve_plan_init</a> (<a class="el" href="structarrow__btsp__solve__plan.html">arrow_btsp_solve_plan</a> *plan)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Inititalizes BTSP solve plan structure.  <a href="#a5f73647dedc4bcd1b5df2bf9e3edab4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#e1d667017d467f926e8371a0823d9d7a">arrow_btsp_solve_plan_destruct</a> (<a class="el" href="structarrow__btsp__solve__plan.html">arrow_btsp_solve_plan</a> *plan)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructs a BTSP solve plan structure.  <a href="#e1d667017d467f926e8371a0823d9d7a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#d9cf4e03bd60c7efc575dd29868456bf">arrow_btsp_fun_apply</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *old_problem, int delta, <a class="el" href="structarrow__problem.html">arrow_problem</a> *new_problem)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Applies the given function to the given problem to create a new problem.  <a href="#d9cf4e03bd60c7efc575dd29868456bf"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#f0b2cce4c9dced6fe48fbc29877bbd8d">arrow_btsp_fun_destruct</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructs a function structure.  <a href="#f0b2cce4c9dced6fe48fbc29877bbd8d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#a8030d26d0cc61ba064d0baedf766552">arrow_btsp_fun_basic</a> (int shallow, <a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Basic BTSP to TSP function.  <a href="#a8030d26d0cc61ba064d0baedf766552"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#4b7ad8f9778197ef3f6b88ed6abf259a">arrow_btsp_fun_basic_atsp</a> (int shallow, <a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Basic BTSP to TSP function for asymmetric problem instances.  <a href="#4b7ad8f9778197ef3f6b88ed6abf259a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#835bc4e51debcb5eeb721c65b1804fa9">arrow_btsp_fun_constrained</a> (int shallow, double feasible_length, int infinity, <a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constrained BTSP to TSP function.  <a href="#835bc4e51debcb5eeb721c65b1804fa9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#c45130e6af4d03bb2ea580b6490f45e1">arrow_btsp_fun_constrained_shake</a> (int shallow, double feasible_length, int infinity, int rand_min, int rand_max, <a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *info, <a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constrained "Shake" BTSP to TSP function.  <a href="#c45130e6af4d03bb2ea580b6490f45e1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#e187e044872b9130dc8451a7cbfd3f8d">arrow_options_parse</a> (int num_opts, <a class="el" href="structarrow__option.html">arrow_option</a> <a class="el" href="histogram__data_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>[], char *description, char *<a class="el" href="histogram__data_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a>, int argc, char *argv[], int *opt_ind)</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#b5b9bae9f92630983d3b3d39d86198f8">arrow_problem_read</a> (char *file_name, <a class="el" href="structarrow__problem.html">arrow_problem</a> *problem)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reads a problem from a TSPLIB file.  <a href="#b5b9bae9f92630983d3b3d39d86198f8"></a><br></td></tr>
@@ -121,23 +214,41 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#ce6b857eab0a7a887262d033b7e5cf22">arrow_problem_print</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prints out information about a problem.  <a href="#ce6b857eab0a7a887262d033b7e5cf22"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#107b3fa0e8b3eeab9e04320d30654ec5">arrow_tsp_result_init</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__tsp__result.html">arrow_tsp_result</a> *result)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#cd0bca6159ba920a6039ba06e82c1440">arrow_problem_get_cost</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int i, int j)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initializes the TSP result structure.  <a href="#107b3fa0e8b3eeab9e04320d30654ec5"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieves cost between nodes i and j.  <a href="#cd0bca6159ba920a6039ba06e82c1440"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#b0ae70bd19a75c7f3164b81e4ed092ad">arrow_problem_read_tour</a> (char *file_name, int size, int *tour)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reads a TSPLIB tour file.  <a href="#b0ae70bd19a75c7f3164b81e4ed092ad"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#1fd00c671b95d81b8309bac580635d51">arrow_problem_abtsp_to_sbtsp</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *old_problem, int infinity, <a class="el" href="structarrow__problem.html">arrow_problem</a> *new_problem)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Transforms an asymmetric BTSP problem of n nodes into a symmetric BTSP problem with 2n nodes.  <a href="#1fd00c671b95d81b8309bac580635d51"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#124a14a04e51fdd8e05f0aed7dfdd44c">arrow_tsp_result_init</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__tsp__result.html">arrow_tsp_result</a> *result)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initializes the TSP result structure.  <a href="#124a14a04e51fdd8e05f0aed7dfdd44c"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#0665c82047dc78f8d08f12ecf5a9eef8">arrow_tsp_result_destruct</a> (<a class="el" href="structarrow__tsp__result.html">arrow_tsp_result</a> *result)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructs a TSP result structure.  <a href="#0665c82047dc78f8d08f12ecf5a9eef8"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#a20fdb653581bbcfcd08784900b19218">arrow_tsp_lk_params_default</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__tsp__lk__params.html">arrow_tsp_lk_params</a> *params)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#b6916d874aabb28c782ec4b37448851a">arrow_tsp_lk_params_init</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__tsp__lk__params.html">arrow_tsp_lk_params</a> *params)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets default parameters for Lin-Kernighan heuristic:<ul>
-<li>stall_count = problem-&gt;size</li><li>kicks = 0</li><li>kick_type = CC_LK_GEOMETRIC_KICK</li><li>time_bound = 0.0</li><li>length_bound = 0.0</li><li>initial_tour = NULL. </li></ul>
- <a href="#a20fdb653581bbcfcd08784900b19218"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#0cc68200bf38d20fe0dd3c388674d215">arrow_tsp_exact_solve</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int *in_tour, <a class="el" href="structarrow__tsp__result.html">arrow_tsp_result</a> *result)</td></tr>
+<li>random_restarts = 0</li><li>stall_count = problem-&gt;size</li><li>kicks = (problem-&gt;size / 2), at least 500</li><li>kick_type = CC_LK_GEOMETRIC_KICK</li><li>time_bound = 0.0</li><li>length_bound = 0.0</li><li>initial_tour = NULL. </li></ul>
+ <a href="#b6916d874aabb28c782ec4b37448851a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#67dd9d24c1d45e49152c4f9b6a3e7836">arrow_tsp_lk_params_destruct</a> (<a class="el" href="structarrow__tsp__lk__params.html">arrow_tsp_lk_params</a> *params)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solves TSP with Concorde's exact solver.  <a href="#0cc68200bf38d20fe0dd3c388674d215"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructs a LK parameters structure.  <a href="#67dd9d24c1d45e49152c4f9b6a3e7836"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#e678a3a4a87c4db0ab8493e7edfb6119">arrow_tsp_exact_solve</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int *initial_tour, <a class="el" href="structarrow__tsp__result.html">arrow_tsp_result</a> *result)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solves TSP with Concorde's exact solver.  <a href="#e678a3a4a87c4db0ab8493e7edfb6119"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#85727209bce9c643d61ac3a5f9d79c95">arrow_tsp_lk_solve</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__tsp__lk__params.html">arrow_tsp_lk_params</a> *params, <a class="el" href="structarrow__tsp__result.html">arrow_tsp_result</a> *result)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solves TSP with Concorde's Lin-Kernighan heuristic.  <a href="#85727209bce9c643d61ac3a5f9d79c95"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#4aea68dfc908d08522baccb148251ae7">arrow_util_create_int_array</a> (int size, int **array)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates an integer array.  <a href="#4aea68dfc908d08522baccb148251ae7"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#2801c2cc414251180545168ba9abe911">arrow_util_create_int_matrix</a> (int rows, int cols, int ***matrix, int **space)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a full integer matrix.  <a href="#2801c2cc414251180545168ba9abe911"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#3bd7042ebd6e97b5790a8708c91be5b4">arrow_util_print_error</a> (const char *file_name, int line_num, const char *message)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prints an error message to stderr with consistent formatting.  <a href="#3bd7042ebd6e97b5790a8708c91be5b4"></a><br></td></tr>
@@ -150,6 +261,34 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#65b9ba02b0c557fe9b15f5315a6953db">arrow_util_restore_stdout</a> (int old_stream)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Restores STDOUT stream that's been redirected.  <a href="#65b9ba02b0c557fe9b15f5315a6953db"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#b2e3326bacca581ca01013678d664cdb">arrow_util_CCdatagroup_shallow_copy</a> (CCdatagroup *from, CCdatagroup *to)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Makes a shallow copy of the Concorde CCdatagroup structure.  <a href="#b2e3326bacca581ca01013678d664cdb"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#3052203501efe0814bbe98548394b978">arrow_util_CCdatagroup_init_matrix</a> (int size, CCdatagroup *dat)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initializes an upper-diagonal matrix norm structure for Concorde that is ready to be filled in with values.  <a href="#3052203501efe0814bbe98548394b978"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#7a32a3f10516726b76ba6f87d96d2903">arrow_util_binary_search</a> (int *array, int size, int element, int *pos)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Performs a binary search to find the wanted element in a sorted integer array.  <a href="#7a32a3f10516726b76ba6f87d96d2903"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#f9436128a70bfe493e200175d7eaf93b">arrow_util_regex_match</a> (char *string, char *pattern)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determines if the given string turns up a match for the given regular expression pattern.  <a href="#f9436128a70bfe493e200175d7eaf93b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#0bf303aee0600136e1720be7e6c60021">arrow_util_print_program_args</a> (int argc, char *argv[], FILE *out)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prints out the given program arguments to the specified file.  <a href="#0bf303aee0600136e1720be7e6c60021"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#448b71093a175c0f40f9cbe612b1c709">arrow_util_random_seed</a> (int seed)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Seeds the random number generator. Pass a value of 0 to seed with the current time.  <a href="#448b71093a175c0f40f9cbe612b1c709"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#f2635504f3a222a0ced821917131c44c">arrow_util_random</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a random number between 0 and RAND_MAX (normally, RAND_MAX = INT_MAX).  <a href="#f2635504f3a222a0ced821917131c44c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#529c872ac72eaf0046ad149abf7b6179">arrow_util_random_between</a> (int min, int max)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a random number between min and max.  <a href="#529c872ac72eaf0046ad149abf7b6179"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#6921d887eca515c1ad59629e25a0c237">arrow_util_write_tour</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, char *comment, int *tour, FILE *out)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="arrow_8h.html#8a7327192a37674e2559d82448a565b1">arrow_util_sbtsp_to_abstp_tour</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int *old_tour, int *new_tour)</td></tr>
+
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Header file for the Arrow callable library. 
@@ -159,6 +298,116 @@ Function prototypes and structures exposed by the callable library.<p>
 
 <p>Definition in file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
 <hr><h2>Define Documentation</h2>
+<a class="anchor" name="08ba7f1d633a842ae065d926e13e99d1"></a><!-- doxytag: member="arrow.h::ARROW_BTSP_SOLVE_PLAN_BASIC" ref="08ba7f1d633a842ae065d926e13e99d1" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ARROW_BTSP_SOLVE_PLAN_BASIC&nbsp;&nbsp;&nbsp;1          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00053">53</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+<p>Referenced by <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="eb59f80d427163919e8f7b3542fd9784"></a><!-- doxytag: member="arrow.h::ARROW_BTSP_SOLVE_PLAN_CONSTRAINED" ref="eb59f80d427163919e8f7b3542fd9784" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ARROW_BTSP_SOLVE_PLAN_CONSTRAINED&nbsp;&nbsp;&nbsp;2          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00054">54</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+<p>Referenced by <a class="el" href="cbtsp_8c-source.html#l00081">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a7f468f2633f855fbee81d70dea0f5ed"></a><!-- doxytag: member="arrow.h::ARROW_BTSP_SOLVE_PLAN_CONSTRAINED_SHAKE" ref="a7f468f2633f855fbee81d70dea0f5ed" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ARROW_BTSP_SOLVE_PLAN_CONSTRAINED_SHAKE&nbsp;&nbsp;&nbsp;3          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00055">55</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+<p>Referenced by <a class="el" href="cbtsp_8c-source.html#l00081">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="84ee1610187a79fbe4cdefeafffff4e8"></a><!-- doxytag: member="arrow.h::arrow_debug" ref="84ee1610187a79fbe4cdefeafffff4e8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define arrow_debug&nbsp;&nbsp;&nbsp;printf          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00033">33</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00098">arrow_btsp_solve()</a>, <a class="el" href="problem_8c-source.html#l00165">arrow_problem_print()</a>, <a class="el" href="problem_8c-source.html#l00054">arrow_problem_read()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>, <a class="el" href="abtsp_8c-source.html#l00061">main()</a>, and <a class="el" href="problem_8c-source.html#l00287">read_atsp()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3057840b0de9d217fdcedddc615295ad"></a><!-- doxytag: member="arrow.h::ARROW_DEBUG" ref="3057840b0de9d217fdcedddc615295ad" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ARROW_DEBUG          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00031">31</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="803ded0eb51e5d8750d08ab33e618af4"></a><!-- doxytag: member="arrow.h::ARROW_DEFAULT_BASIC_ATTEMPTS" ref="803ded0eb51e5d8750d08ab33e618af4" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ARROW_DEFAULT_BASIC_ATTEMPTS&nbsp;&nbsp;&nbsp;3          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00057">57</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="0be07738336b219a8057fb867ed386c1"></a><!-- doxytag: member="arrow.h::ARROW_DEV_NULL" ref="0be07738336b219a8057fb867ed386c1" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -172,9 +421,9 @@ Function prototypes and structures exposed by the callable library.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00024">24</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00042">42</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_2bbssp_8c-source.html#l00052">main()</a>.</p>
+<p>Referenced by <a class="el" href="histogram__data_8c-source.html#l00028">main()</a>.</p>
 
 </div>
 </div><p>
@@ -191,9 +440,9 @@ Function prototypes and structures exposed by the callable library.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00027">27</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00048">48</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2bbssp_8c-source.html#l00088">arrow_bbssp_biconnected()</a>, <a class="el" href="lib_2bbssp_8c-source.html#l00044">arrow_bbssp_solve()</a>, <a class="el" href="problem_8c-source.html#l00030">arrow_problem_read()</a>, <a class="el" href="tsp_8c-source.html#l00036">arrow_tsp_exact_solve()</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="bintree_8c-source.html#l00104">construct_node()</a>, and <a class="el" href="bintree_8c-source.html#l00140">insert_at()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2bbssp_8c-source.html#l00094">arrow_bbssp_biconnected()</a>, <a class="el" href="lib_2bbssp_8c-source.html#l00044">arrow_bbssp_solve()</a>, <a class="el" href="lib_2bscssp_8c-source.html#l00043">arrow_bscssp_solve()</a>, <a class="el" href="btsp__fun_8c-source.html#l00213">arrow_btsp_fun_apply()</a>, <a class="el" href="btsp__fun_8c-source.html#l00291">arrow_btsp_fun_constrained()</a>, <a class="el" href="problem_8c-source.html#l00219">arrow_problem_read_tour()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00023">arrow_tsp_result_init()</a>, <a class="el" href="bintree_8c-source.html#l00104">construct_node()</a>, <a class="el" href="bintree_8c-source.html#l00140">insert_at()</a>, <a class="el" href="problem_8c-source.html#l00287">read_atsp()</a>, and <a class="el" href="lib_2bscssp_8c-source.html#l00086">strongly_connected()</a>.</p>
 
 </div>
 </div><p>
@@ -210,7 +459,7 @@ Function prototypes and structures exposed by the callable library.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00026">26</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00047">47</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
 
 </div>
 </div><p>
@@ -227,9 +476,26 @@ Function prototypes and structures exposed by the callable library.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00028">28</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00049">49</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
 
-<p>Referenced by <a class="el" href="tsp_8c-source.html#l00036">arrow_tsp_exact_solve()</a>.</p>
+</div>
+</div><p>
+<a class="anchor" name="a50e8b8f74e48535271458079c7506cb"></a><!-- doxytag: member="arrow.h::ARROW_FAILURE" ref="a50e8b8f74e48535271458079c7506cb" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ARROW_FAILURE&nbsp;&nbsp;&nbsp;0          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00045">45</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2bap_8c-source.html#l00067">arrow_bap_solve()</a>, <a class="el" href="lib_2bbssp_8c-source.html#l00044">arrow_bbssp_solve()</a>, <a class="el" href="lib_2bscssp_8c-source.html#l00043">arrow_bscssp_solve()</a>, <a class="el" href="btsp__fun_8c-source.html#l00213">arrow_btsp_fun_apply()</a>, <a class="el" href="btsp__fun_8c-source.html#l00270">arrow_btsp_fun_basic_atsp()</a>, <a class="el" href="btsp__fun_8c-source.html#l00319">arrow_btsp_fun_constrained_shake()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00033">arrow_btsp_result_init()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00098">arrow_btsp_solve()</a>, <a class="el" href="lib_2dcbpb_8c-source.html#l00029">arrow_dcbpb_solve()</a>, <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>, <a class="el" href="problem_8c-source.html#l00228">arrow_problem_abtsp_to_sbtsp()</a>, <a class="el" href="problem_8c-source.html#l00054">arrow_problem_read()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00066">arrow_tsp_exact_solve()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, <a class="el" href="util_8c-source.html#l00145">arrow_util_binary_search()</a>, <a class="el" href="util_8c-source.html#l00115">arrow_util_CCdatagroup_init_matrix()</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="util_8c-source.html#l00027">arrow_util_create_int_matrix()</a>, <a class="el" href="btsp__fun_8c-source.html#l00364">basic_shallow_apply()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00273">build_initial_tour()</a>, <a class="el" href="btsp__fun_8c-source.html#l00536">constrained_shake_deep_apply()</a>, <a class="el" href="btsp__fun_8c-source.html#l00476">constrained_shallow_apply()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>, and <a class="el" href="bin_22mb_8c-source.html#l00030">main()</a>.</p>
 
 </div>
 </div><p>
@@ -246,9 +512,66 @@ Function prototypes and structures exposed by the callable library.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00030">30</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00051">51</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2bbssp_8c-source.html#l00088">arrow_bbssp_biconnected()</a>, <a class="el" href="problem_8c-source.html#l00030">arrow_problem_read()</a>, <a class="el" href="tsp_8c-source.html#l00012">arrow_tsp_result_init()</a>, <a class="el" href="bintree_8c-source.html#l00104">construct_node()</a>, and <a class="el" href="bintree_8c-source.html#l00140">insert_at()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2bbssp_8c-source.html#l00094">arrow_bbssp_biconnected()</a>, <a class="el" href="btsp__fun_8c-source.html#l00249">arrow_btsp_fun_basic()</a>, <a class="el" href="btsp__fun_8c-source.html#l00270">arrow_btsp_fun_basic_atsp()</a>, <a class="el" href="btsp__fun_8c-source.html#l00291">arrow_btsp_fun_constrained()</a>, <a class="el" href="btsp__fun_8c-source.html#l00319">arrow_btsp_fun_constrained_shake()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00060">arrow_btsp_params_init()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00033">arrow_btsp_result_init()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00098">arrow_btsp_solve()</a>, <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>, <a class="el" href="problem_8c-source.html#l00228">arrow_problem_abtsp_to_sbtsp()</a>, <a class="el" href="problem_8c-source.html#l00054">arrow_problem_read()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00023">arrow_tsp_result_init()</a>, <a class="el" href="util_8c-source.html#l00177">arrow_util_regex_match()</a>, <a class="el" href="btsp__fun_8c-source.html#l00446">basic_atsp_feasible()</a>, <a class="el" href="btsp__fun_8c-source.html#l00407">basic_feasible()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00273">build_initial_tour()</a>, <a class="el" href="btsp__fun_8c-source.html#l00607">constrained_shake_feasible()</a>, <a class="el" href="bintree_8c-source.html#l00104">construct_node()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>, <a class="el" href="lib_2bap_8c-source.html#l00251">ford_fulkerson_labeling()</a>, <a class="el" href="bintree_8c-source.html#l00140">insert_at()</a>, <a class="el" href="abtsp_8c-source.html#l00061">main()</a>, <a class="el" href="lib_2bap_8c-source.html#l00193">shortest_augmenting_path()</a>, and <a class="el" href="lib_2bscssp_8c-source.html#l00086">strongly_connected()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6ae7aa7a4dfd9359283ca22c51d40902"></a><!-- doxytag: member="arrow.h::ARROW_OPTION_DOUBLE" ref="6ae7aa7a4dfd9359283ca22c51d40902" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ARROW_OPTION_DOUBLE&nbsp;&nbsp;&nbsp;2          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00060">60</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+<p>Referenced by <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="627f37797cc57afbe5bd43c2bc18ef0a"></a><!-- doxytag: member="arrow.h::ARROW_OPTION_INT" ref="627f37797cc57afbe5bd43c2bc18ef0a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ARROW_OPTION_INT&nbsp;&nbsp;&nbsp;1          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00059">59</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+<p>Referenced by <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a5af4b3dd40c1687deb0e897317fac3d"></a><!-- doxytag: member="arrow.h::ARROW_OPTION_STRING" ref="a5af4b3dd40c1687deb0e897317fac3d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ARROW_OPTION_STRING&nbsp;&nbsp;&nbsp;3          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00061">61</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+<p>Referenced by <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>.</p>
 
 </div>
 </div><p>
@@ -270,9 +593,9 @@ Function prototypes and structures exposed by the callable library.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00036">36</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00070">70</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
 
-<p>Referenced by <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="bintree_8c-source.html#l00104">construct_node()</a>, <a class="el" href="bin_2bbssp_8c-source.html#l00052">main()</a>, and <a class="el" href="bin_2bbssp_8c-source.html#l00137">read_args()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2bbssp_8c-source.html#l00044">arrow_bbssp_solve()</a>, <a class="el" href="btsp__fun_8c-source.html#l00213">arrow_btsp_fun_apply()</a>, <a class="el" href="btsp__fun_8c-source.html#l00270">arrow_btsp_fun_basic_atsp()</a>, <a class="el" href="btsp__fun_8c-source.html#l00291">arrow_btsp_fun_constrained()</a>, <a class="el" href="btsp__fun_8c-source.html#l00319">arrow_btsp_fun_constrained_shake()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00098">arrow_btsp_solve()</a>, <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>, <a class="el" href="problem_8c-source.html#l00228">arrow_problem_abtsp_to_sbtsp()</a>, <a class="el" href="problem_8c-source.html#l00054">arrow_problem_read()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, <a class="el" href="util_8c-source.html#l00115">arrow_util_CCdatagroup_init_matrix()</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="util_8c-source.html#l00027">arrow_util_create_int_matrix()</a>, <a class="el" href="btsp__fun_8c-source.html#l00364">basic_shallow_apply()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00273">build_initial_tour()</a>, <a class="el" href="btsp__fun_8c-source.html#l00536">constrained_shake_deep_apply()</a>, <a class="el" href="btsp__fun_8c-source.html#l00476">constrained_shallow_apply()</a>, <a class="el" href="bintree_8c-source.html#l00104">construct_node()</a>, <a class="el" href="bin_22mb_8c-source.html#l00030">main()</a>, <a class="el" href="linkern_8c-source.html#l00126">read_args()</a>, and <a class="el" href="problem_8c-source.html#l00287">read_atsp()</a>.</p>
 
 </div>
 </div><p>
@@ -289,9 +612,9 @@ Function prototypes and structures exposed by the callable library.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00025">25</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00044">44</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2bbssp_8c-source.html#l00044">arrow_bbssp_solve()</a>, <a class="el" href="bintree_8c-source.html#l00086">arrow_bintree_to_array()</a>, <a class="el" href="problem_8c-source.html#l00060">arrow_problem_info_get()</a>, <a class="el" href="problem_8c-source.html#l00030">arrow_problem_read()</a>, <a class="el" href="tsp_8c-source.html#l00036">arrow_tsp_exact_solve()</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="bintree_8c-source.html#l00104">construct_node()</a>, <a class="el" href="lib_2bbssp_8c-source.html#l00162">find_art_points()</a>, and <a class="el" href="bintree_8c-source.html#l00140">insert_at()</a>.</p>
+<p>Referenced by <a class="el" href="lib_22mb_8c-source.html#l00016">arrow_2mb_solve()</a>, <a class="el" href="lib_2bap_8c-source.html#l00067">arrow_bap_solve()</a>, <a class="el" href="lib_2bbssp_8c-source.html#l00044">arrow_bbssp_solve()</a>, <a class="el" href="bintree_8c-source.html#l00086">arrow_bintree_to_array()</a>, <a class="el" href="lib_2bscssp_8c-source.html#l00043">arrow_bscssp_solve()</a>, <a class="el" href="btsp__fun_8c-source.html#l00213">arrow_btsp_fun_apply()</a>, <a class="el" href="btsp__fun_8c-source.html#l00249">arrow_btsp_fun_basic()</a>, <a class="el" href="btsp__fun_8c-source.html#l00270">arrow_btsp_fun_basic_atsp()</a>, <a class="el" href="btsp__fun_8c-source.html#l00291">arrow_btsp_fun_constrained()</a>, <a class="el" href="btsp__fun_8c-source.html#l00319">arrow_btsp_fun_constrained_shake()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00033">arrow_btsp_result_init()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00098">arrow_btsp_solve()</a>, <a class="el" href="lib_2dcbpb_8c-source.html#l00029">arrow_dcbpb_solve()</a>, <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>, <a class="el" href="problem_8c-source.html#l00228">arrow_problem_abtsp_to_sbtsp()</a>, <a class="el" href="problem_8c-source.html#l00115">arrow_problem_info_get()</a>, <a class="el" href="problem_8c-source.html#l00054">arrow_problem_read()</a>, <a class="el" href="problem_8c-source.html#l00219">arrow_problem_read_tour()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00066">arrow_tsp_exact_solve()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00023">arrow_tsp_result_init()</a>, <a class="el" href="util_8c-source.html#l00145">arrow_util_binary_search()</a>, <a class="el" href="util_8c-source.html#l00115">arrow_util_CCdatagroup_init_matrix()</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="util_8c-source.html#l00027">arrow_util_create_int_matrix()</a>, <a class="el" href="btsp__fun_8c-source.html#l00422">basic_atsp_deep_apply()</a>, <a class="el" href="btsp__fun_8c-source.html#l00387">basic_deep_apply()</a>, <a class="el" href="btsp__fun_8c-source.html#l00364">basic_shallow_apply()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00273">build_initial_tour()</a>, <a class="el" href="btsp__fun_8c-source.html#l00500">constrained_deep_apply()</a>, <a class="el" href="btsp__fun_8c-source.html#l00536">constrained_shake_deep_apply()</a>, <a class="el" href="btsp__fun_8c-source.html#l00476">constrained_shallow_apply()</a>, <a class="el" href="bintree_8c-source.html#l00104">construct_node()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>, <a class="el" href="lib_2bbssp_8c-source.html#l00168">find_art_points()</a>, <a class="el" href="bintree_8c-source.html#l00140">insert_at()</a>, <a class="el" href="bin_22mb_8c-source.html#l00030">main()</a>, <a class="el" href="problem_8c-source.html#l00287">read_atsp()</a>, <a class="el" href="lib_2bap_8c-source.html#l00193">shortest_augmenting_path()</a>, and <a class="el" href="lib_2bscssp_8c-source.html#l00086">strongly_connected()</a>.</p>
 
 </div>
 </div><p>
@@ -308,13 +631,114 @@ Function prototypes and structures exposed by the callable library.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00029">29</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00050">50</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2bbssp_8c-source.html#l00088">arrow_bbssp_biconnected()</a>, <a class="el" href="lib_2bbssp_8c-source.html#l00044">arrow_bbssp_solve()</a>, <a class="el" href="bintree_8c-source.html#l00123">destruct_node()</a>, <a class="el" href="bintree_8c-source.html#l00140">insert_at()</a>, and <a class="el" href="bin_2bbssp_8c-source.html#l00137">read_args()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2bbssp_8c-source.html#l00094">arrow_bbssp_biconnected()</a>, <a class="el" href="lib_2bbssp_8c-source.html#l00044">arrow_bbssp_solve()</a>, <a class="el" href="lib_2bscssp_8c-source.html#l00043">arrow_bscssp_solve()</a>, <a class="el" href="btsp__fun_8c-source.html#l00249">arrow_btsp_fun_basic()</a>, <a class="el" href="btsp__fun_8c-source.html#l00291">arrow_btsp_fun_constrained()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00098">arrow_btsp_solve()</a>, <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>, <a class="el" href="problem_8c-source.html#l00228">arrow_problem_abtsp_to_sbtsp()</a>, <a class="el" href="problem_8c-source.html#l00115">arrow_problem_info_get()</a>, <a class="el" href="problem_8c-source.html#l00054">arrow_problem_read()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, <a class="el" href="util_8c-source.html#l00177">arrow_util_regex_match()</a>, <a class="el" href="btsp__fun_8c-source.html#l00446">basic_atsp_feasible()</a>, <a class="el" href="btsp__fun_8c-source.html#l00407">basic_feasible()</a>, <a class="el" href="btsp__fun_8c-source.html#l00607">constrained_shake_feasible()</a>, <a class="el" href="bintree_8c-source.html#l00123">destruct_node()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>, <a class="el" href="lib_2bap_8c-source.html#l00251">ford_fulkerson_labeling()</a>, <a class="el" href="bintree_8c-source.html#l00140">insert_at()</a>, <a class="el" href="abtsp_8c-source.html#l00061">main()</a>, <a class="el" href="lib_2bap_8c-source.html#l00193">shortest_augmenting_path()</a>, <a class="el" href="lib_2bscssp_8c-source.html#l00086">strongly_connected()</a>, and <a class="el" href="lib_2bscssp_8c-source.html#l00133">strongly_connected_dfs()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="73a3fc48edc73ab8c510034d6c6dd2e1"></a><!-- doxytag: member="arrow.h::ARROW_VERSION" ref="73a3fc48edc73ab8c510034d6c6dd2e1" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ARROW_VERSION&nbsp;&nbsp;&nbsp;&quot;1.0&quot;          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00041">41</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+<p>Referenced by <a class="el" href="options_8c-source.html#l00192">print_version()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c85ff6ed8837999e4553ffde8af02756"></a><!-- doxytag: member="arrow.h::CONCORDE_FAILURE" ref="c85ff6ed8837999e4553ffde8af02756" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CONCORDE_FAILURE&nbsp;&nbsp;&nbsp;1          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00064">64</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, and <a class="el" href="lib_2tsp_8c-source.html#l00273">build_initial_tour()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5bc042a0d5e4aee532d2841342766d29"></a><!-- doxytag: member="arrow.h::CONCORDE_SUCCESS" ref="5bc042a0d5e4aee532d2841342766d29" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CONCORDE_SUCCESS&nbsp;&nbsp;&nbsp;0          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00063">63</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+<p>Referenced by <a class="el" href="problem_8c-source.html#l00219">arrow_problem_read_tour()</a>.</p>
 
 </div>
 </div><p>
 <hr><h2>Function Documentation</h2>
+<a class="anchor" name="a3ac7f6280e1eaea38fafbe78375b13f"></a><!-- doxytag: member="arrow.h::arrow_2mb_solve" ref="a3ac7f6280e1eaea38fafbe78375b13f" args="(arrow_problem *problem, arrow_bound_result *result)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_2mb_solve           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__bound__result.html">arrow_bound_result</a> *&nbsp;</td>
+          <td class="paramname"> <em>result</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Solves the 2-max bound (2MB) on the given problem. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] problem data </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>info</em>&nbsp;</td><td>[in] problem info </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>result</em>&nbsp;</td><td>[out] 2MB solution </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="lib_22mb_8c-source.html#l00016">16</a> of file <a class="el" href="lib_22mb_8c-source.html">2mb.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="arrow_8h-source.html#l00081">arrow_bound_result::obj_value</a>, <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>, <a class="el" href="arrow_8h-source.html#l00112">arrow_problem::symmetric</a>, and <a class="el" href="arrow_8h-source.html#l00082">arrow_bound_result::total_time</a>.</p>
+
+<p>Referenced by <a class="el" href="bin_22mb_8c-source.html#l00030">main()</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="727cb19dd9cfa6315e1155796daef833"></a><!-- doxytag: member="arrow.h::arrow_bbssp_biconnected" ref="727cb19dd9cfa6315e1155796daef833" args="(arrow_problem *problem, int max_cost, int *result)" -->
 <div class="memitem">
 <div class="memproto">
@@ -357,15 +781,15 @@ Determines if the graph is biconnected using only edges with costs less than or 
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="lib_2bbssp_8c-source.html#l00088">88</a> of file <a class="el" href="lib_2bbssp_8c-source.html">bbssp.c</a>.</p>
+<p>Definition at line <a class="el" href="lib_2bbssp_8c-source.html#l00094">94</a> of file <a class="el" href="lib_2bbssp_8c-source.html">bbssp.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00027">ARROW_ERROR_FATAL</a>, <a class="el" href="arrow_8h-source.html#l00030">ARROW_FALSE</a>, <a class="el" href="arrow_8h-source.html#l00029">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="lib_2bbssp_8c-source.html#l00162">find_art_points()</a>, and <a class="el" href="arrow_8h-source.html#l00047">arrow_problem::size</a>.</p>
+<p>References <a class="el" href="arrow_8h-source.html#l00048">ARROW_ERROR_FATAL</a>, <a class="el" href="arrow_8h-source.html#l00051">ARROW_FALSE</a>, <a class="el" href="arrow_8h-source.html#l00050">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="lib_2bbssp_8c-source.html#l00168">find_art_points()</a>, and <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>.</p>
 
 <p>Referenced by <a class="el" href="lib_2bbssp_8c-source.html#l00044">arrow_bbssp_solve()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="d6098d008ef724a58c6960d8f28bf925"></a><!-- doxytag: member="arrow.h::arrow_bbssp_solve" ref="d6098d008ef724a58c6960d8f28bf925" args="(arrow_problem *problem, arrow_problem_info *info, arrow_bbssp_result *result)" -->
+<a class="anchor" name="ff7006ace4173927265facbe5f895cf0"></a><!-- doxytag: member="arrow.h::arrow_bbssp_solve" ref="ff7006ace4173927265facbe5f895cf0" args="(arrow_problem *problem, arrow_problem_info *info, arrow_bound_result *result)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -384,7 +808,7 @@ Determines if the graph is biconnected using only edges with costs less than or 
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structarrow__bbssp__result.html">arrow_bbssp_result</a> *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="structarrow__bound__result.html">arrow_bound_result</a> *&nbsp;</td>
           <td class="paramname"> <em>result</em></td><td>&nbsp;</td>
         </tr>
         <tr>
@@ -402,15 +826,16 @@ Solves the bottleneck biconnected spanning subgraph problem (BBSSP) on the given
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] problem data </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>info</em>&nbsp;</td><td>[in] problem info </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>result</em>&nbsp;</td><td>[out] BBSSP solution </td></tr>
   </table>
 </dl>
 
 <p>Definition at line <a class="el" href="lib_2bbssp_8c-source.html#l00044">44</a> of file <a class="el" href="lib_2bbssp_8c-source.html">bbssp.c</a>.</p>
 
-<p>References <a class="el" href="lib_2bbssp_8c-source.html#l00088">arrow_bbssp_biconnected()</a>, <a class="el" href="arrow_8h-source.html#l00027">ARROW_ERROR_FATAL</a>, <a class="el" href="arrow_8h-source.html#l00025">ARROW_SUCCESS</a>, <a class="el" href="arrow_8h-source.html#l00029">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00034">arrow_util_zeit()</a>, <a class="el" href="arrow_8h-source.html#l00067">arrow_problem_info::cost_list</a>, <a class="el" href="arrow_8h-source.html#l00068">arrow_problem_info::cost_list_length</a>, <a class="el" href="arrow_8h-source.html#l00103">arrow_bbssp_result::obj_value</a>, and <a class="el" href="arrow_8h-source.html#l00104">arrow_bbssp_result::total_time</a>.</p>
+<p>References <a class="el" href="lib_2bbssp_8c-source.html#l00094">arrow_bbssp_biconnected()</a>, <a class="el" href="arrow_8h-source.html#l00048">ARROW_ERROR_FATAL</a>, <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="arrow_8h-source.html#l00050">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="arrow_8h-source.html#l00133">arrow_problem_info::cost_list</a>, <a class="el" href="arrow_8h-source.html#l00134">arrow_problem_info::cost_list_length</a>, <a class="el" href="arrow_8h-source.html#l00081">arrow_bound_result::obj_value</a>, <a class="el" href="arrow_8h-source.html#l00112">arrow_problem::symmetric</a>, and <a class="el" href="arrow_8h-source.html#l00082">arrow_bound_result::total_time</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_2bbssp_8c-source.html#l00052">main()</a>.</p>
+<p>Referenced by <a class="el" href="bin_2bbssp_8c-source.html#l00031">main()</a>.</p>
 
 </div>
 </div><p>
@@ -441,9 +866,9 @@ Destructs a binary tree data structure.
 
 <p>Definition at line <a class="el" href="bintree_8c-source.html#l00059">59</a> of file <a class="el" href="bintree_8c-source.html">bintree.c</a>.</p>
 
-<p>References <a class="el" href="bintree_8c-source.html#l00123">destruct_node()</a>, <a class="el" href="arrow_8h-source.html#l00078">arrow_bintree::root_node</a>, and <a class="el" href="arrow_8h-source.html#l00079">arrow_bintree::size</a>.</p>
+<p>References <a class="el" href="bintree_8c-source.html#l00123">destruct_node()</a>, <a class="el" href="arrow_8h-source.html#l00090">arrow_bintree::root_node</a>, and <a class="el" href="arrow_8h-source.html#l00091">arrow_bintree::size</a>.</p>
 
-<p>Referenced by <a class="el" href="problem_8c-source.html#l00060">arrow_problem_info_get()</a>.</p>
+<p>Referenced by <a class="el" href="problem_8c-source.html#l00115">arrow_problem_info_get()</a>, and <a class="el" href="btsp__fun_8c-source.html#l00536">constrained_shake_deep_apply()</a>.</p>
 
 </div>
 </div><p>
@@ -474,9 +899,9 @@ Initializes the binary tree data structure.
 
 <p>Definition at line <a class="el" href="bintree_8c-source.html#l00052">52</a> of file <a class="el" href="bintree_8c-source.html">bintree.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00078">arrow_bintree::root_node</a>, and <a class="el" href="arrow_8h-source.html#l00079">arrow_bintree::size</a>.</p>
+<p>References <a class="el" href="arrow_8h-source.html#l00090">arrow_bintree::root_node</a>, and <a class="el" href="arrow_8h-source.html#l00091">arrow_bintree::size</a>.</p>
 
-<p>Referenced by <a class="el" href="problem_8c-source.html#l00060">arrow_problem_info_get()</a>.</p>
+<p>Referenced by <a class="el" href="problem_8c-source.html#l00115">arrow_problem_info_get()</a>, and <a class="el" href="btsp__fun_8c-source.html#l00536">constrained_shake_deep_apply()</a>.</p>
 
 </div>
 </div><p>
@@ -517,9 +942,9 @@ Inserts a value into the binary tree.
 
 <p>Definition at line <a class="el" href="bintree_8c-source.html#l00066">66</a> of file <a class="el" href="bintree_8c-source.html">bintree.c</a>.</p>
 
-<p>References <a class="el" href="bintree_8c-source.html#l00104">construct_node()</a>, <a class="el" href="bintree_8c-source.html#l00140">insert_at()</a>, <a class="el" href="arrow_8h-source.html#l00078">arrow_bintree::root_node</a>, and <a class="el" href="arrow_8h-source.html#l00079">arrow_bintree::size</a>.</p>
+<p>References <a class="el" href="bintree_8c-source.html#l00104">construct_node()</a>, <a class="el" href="bintree_8c-source.html#l00140">insert_at()</a>, <a class="el" href="arrow_8h-source.html#l00090">arrow_bintree::root_node</a>, and <a class="el" href="arrow_8h-source.html#l00091">arrow_bintree::size</a>.</p>
 
-<p>Referenced by <a class="el" href="problem_8c-source.html#l00060">arrow_problem_info_get()</a>.</p>
+<p>Referenced by <a class="el" href="problem_8c-source.html#l00115">arrow_problem_info_get()</a>, and <a class="el" href="btsp__fun_8c-source.html#l00536">constrained_shake_deep_apply()</a>.</p>
 
 </div>
 </div><p>
@@ -587,9 +1012,799 @@ Initializes the binary tree data structure.
 
 <p>Definition at line <a class="el" href="bintree_8c-source.html#l00086">86</a> of file <a class="el" href="bintree_8c-source.html">bintree.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00025">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="bintree_8c-source.html#l00189">fill_array()</a>, <a class="el" href="arrow_8h-source.html#l00078">arrow_bintree::root_node</a>, and <a class="el" href="arrow_8h-source.html#l00079">arrow_bintree::size</a>.</p>
+<p>References <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="bintree_8c-source.html#l00189">fill_array()</a>, <a class="el" href="arrow_8h-source.html#l00090">arrow_bintree::root_node</a>, and <a class="el" href="arrow_8h-source.html#l00091">arrow_bintree::size</a>.</p>
 
-<p>Referenced by <a class="el" href="problem_8c-source.html#l00060">arrow_problem_info_get()</a>.</p>
+<p>Referenced by <a class="el" href="problem_8c-source.html#l00115">arrow_problem_info_get()</a>, and <a class="el" href="btsp__fun_8c-source.html#l00536">constrained_shake_deep_apply()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="624fe95ca7b7eb623ee636c2f8cb1409"></a><!-- doxytag: member="arrow.h::arrow_bscssp_solve" ref="624fe95ca7b7eb623ee636c2f8cb1409" args="(arrow_problem *problem, arrow_problem_info *info, arrow_bound_result *result)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_bscssp_solve           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *&nbsp;</td>
+          <td class="paramname"> <em>info</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__bound__result.html">arrow_bound_result</a> *&nbsp;</td>
+          <td class="paramname"> <em>result</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on the given graph. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] problem data </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>info</em>&nbsp;</td><td>[in] problem info </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>result</em>&nbsp;</td><td>[out] BSCSSP solution </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="lib_2bscssp_8c-source.html#l00043">43</a> of file <a class="el" href="lib_2bscssp_8c-source.html">bscssp.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00048">ARROW_ERROR_FATAL</a>, <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="arrow_8h-source.html#l00050">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="arrow_8h-source.html#l00133">arrow_problem_info::cost_list</a>, <a class="el" href="arrow_8h-source.html#l00134">arrow_problem_info::cost_list_length</a>, <a class="el" href="arrow_8h-source.html#l00081">arrow_bound_result::obj_value</a>, <a class="el" href="lib_2bscssp_8c-source.html#l00086">strongly_connected()</a>, and <a class="el" href="arrow_8h-source.html#l00082">arrow_bound_result::total_time</a>.</p>
+
+<p>Referenced by <a class="el" href="bin_2bscssp_8c-source.html#l00031">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d9cf4e03bd60c7efc575dd29868456bf"></a><!-- doxytag: member="arrow.h::arrow_btsp_fun_apply" ref="d9cf4e03bd60c7efc575dd29868456bf" args="(arrow_btsp_fun *fun, arrow_problem *old_problem, int delta, arrow_problem *new_problem)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_btsp_fun_apply           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *&nbsp;</td>
+          <td class="paramname"> <em>fun</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>old_problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>delta</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>new_problem</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Applies the given function to the given problem to create a new problem. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>fun</em>&nbsp;</td><td>[in] function structure </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>old_problem</em>&nbsp;</td><td>[in] existing problem </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>delta</em>&nbsp;</td><td>[in] delta parameter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>new_problem</em>&nbsp;</td><td>[out] new problem to create </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="btsp__fun_8c-source.html#l00213">213</a> of file <a class="el" href="btsp__fun_8c-source.html">btsp_fun.c</a>.</p>
+
+<p>References <a class="el" href="structarrow__btsp__fun.html#7736b2d3059ece3dc94433af0763b47a">arrow_btsp_fun::apply</a>, <a class="el" href="arrow_8h-source.html#l00048">ARROW_ERROR_FATAL</a>, <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00115">arrow_util_CCdatagroup_init_matrix()</a>, <a class="el" href="arrow_8h-source.html#l00113">arrow_problem::data</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="arrow_8h-source.html#l00115">arrow_problem::name</a>, <a class="el" href="arrow_8h-source.html#l00193">arrow_btsp_fun::shallow</a>, <a class="el" href="arrow_8h-source.html#l00114">arrow_problem::shallow</a>, and <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a8030d26d0cc61ba064d0baedf766552"></a><!-- doxytag: member="arrow.h::arrow_btsp_fun_basic" ref="a8030d26d0cc61ba064d0baedf766552" args="(int shallow, arrow_btsp_fun *fun)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_btsp_fun_basic           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>shallow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *&nbsp;</td>
+          <td class="paramname"> <em>fun</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Basic BTSP to TSP function. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>shallow</em>&nbsp;</td><td>[in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>fun</em>&nbsp;</td><td>[out] function structure </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="btsp__fun_8c-source.html#l00249">249</a> of file <a class="el" href="btsp__fun_8c-source.html">btsp_fun.c</a>.</p>
+
+<p>References <a class="el" href="structarrow__btsp__fun.html#7736b2d3059ece3dc94433af0763b47a">arrow_btsp_fun::apply</a>, <a class="el" href="arrow_8h-source.html#l00051">ARROW_FALSE</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="arrow_8h-source.html#l00050">ARROW_TRUE</a>, <a class="el" href="btsp__fun_8c-source.html#l00387">basic_deep_apply()</a>, <a class="el" href="btsp__fun_8c-source.html#l00403">basic_destruct()</a>, <a class="el" href="btsp__fun_8c-source.html#l00407">basic_feasible()</a>, <a class="el" href="btsp__fun_8c-source.html#l00364">basic_shallow_apply()</a>, <a class="el" href="arrow_8h-source.html#l00192">arrow_btsp_fun::data</a>, <a class="el" href="structarrow__btsp__fun.html#6c66b7591252728aaa441139c623446a">arrow_btsp_fun::destruct</a>, <a class="el" href="structarrow__btsp__fun.html#a64a29d588b40b0d04db43e23a22d1a9">arrow_btsp_fun::feasible</a>, <a class="el" href="arrow_8h-source.html#l00194">arrow_btsp_fun::feasible_length</a>, and <a class="el" href="arrow_8h-source.html#l00193">arrow_btsp_fun::shallow</a>.</p>
+
+<p>Referenced by <a class="el" href="bin_2btsp_8c-source.html#l00058">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4b7ad8f9778197ef3f6b88ed6abf259a"></a><!-- doxytag: member="arrow.h::arrow_btsp_fun_basic_atsp" ref="4b7ad8f9778197ef3f6b88ed6abf259a" args="(int shallow, arrow_btsp_fun *fun)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_btsp_fun_basic_atsp           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>shallow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *&nbsp;</td>
+          <td class="paramname"> <em>fun</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Basic BTSP to TSP function for asymmetric problem instances. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>shallow</em>&nbsp;</td><td>[in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>fun</em>&nbsp;</td><td>[out] function structure </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="btsp__fun_8c-source.html#l00270">270</a> of file <a class="el" href="btsp__fun_8c-source.html">btsp_fun.c</a>.</p>
+
+<p>References <a class="el" href="structarrow__btsp__fun.html#7736b2d3059ece3dc94433af0763b47a">arrow_btsp_fun::apply</a>, <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00051">ARROW_FALSE</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="btsp__fun_8c-source.html#l00422">basic_atsp_deep_apply()</a>, <a class="el" href="btsp__fun_8c-source.html#l00442">basic_atsp_destruct()</a>, <a class="el" href="btsp__fun_8c-source.html#l00446">basic_atsp_feasible()</a>, <a class="el" href="structarrow__btsp__fun.html#6c66b7591252728aaa441139c623446a">arrow_btsp_fun::destruct</a>, <a class="el" href="structarrow__btsp__fun.html#a64a29d588b40b0d04db43e23a22d1a9">arrow_btsp_fun::feasible</a>, <a class="el" href="arrow_8h-source.html#l00194">arrow_btsp_fun::feasible_length</a>, and <a class="el" href="arrow_8h-source.html#l00193">arrow_btsp_fun::shallow</a>.</p>
+
+<p>Referenced by <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="835bc4e51debcb5eeb721c65b1804fa9"></a><!-- doxytag: member="arrow.h::arrow_btsp_fun_constrained" ref="835bc4e51debcb5eeb721c65b1804fa9" args="(int shallow, double feasible_length, int infinity, arrow_btsp_fun *fun)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_btsp_fun_constrained           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>shallow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>feasible_length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>infinity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *&nbsp;</td>
+          <td class="paramname"> <em>fun</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constrained BTSP to TSP function. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>shallow</em>&nbsp;</td><td>[in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>feasible_length</em>&nbsp;</td><td>[in] length of feasible tour </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>infinity</em>&nbsp;</td><td>[in] value to use as "infinity" </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>fun</em>&nbsp;</td><td>[out] function structure </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="btsp__fun_8c-source.html#l00291">291</a> of file <a class="el" href="btsp__fun_8c-source.html">btsp_fun.c</a>.</p>
+
+<p>References <a class="el" href="structarrow__btsp__fun.html#7736b2d3059ece3dc94433af0763b47a">arrow_btsp_fun::apply</a>, <a class="el" href="arrow_8h-source.html#l00048">ARROW_ERROR_FATAL</a>, <a class="el" href="arrow_8h-source.html#l00051">ARROW_FALSE</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="arrow_8h-source.html#l00050">ARROW_TRUE</a>, <a class="el" href="btsp__fun_8c-source.html#l00407">basic_feasible()</a>, <a class="el" href="btsp__fun_8c-source.html#l00500">constrained_deep_apply()</a>, <a class="el" href="btsp__fun_8c-source.html#l00518">constrained_destruct()</a>, <a class="el" href="btsp__fun_8c-source.html#l00476">constrained_shallow_apply()</a>, <a class="el" href="arrow_8h-source.html#l00192">arrow_btsp_fun::data</a>, <a class="el" href="structarrow__btsp__fun.html#6c66b7591252728aaa441139c623446a">arrow_btsp_fun::destruct</a>, <a class="el" href="structarrow__btsp__fun.html#a64a29d588b40b0d04db43e23a22d1a9">arrow_btsp_fun::feasible</a>, <a class="el" href="arrow_8h-source.html#l00194">arrow_btsp_fun::feasible_length</a>, and <a class="el" href="arrow_8h-source.html#l00193">arrow_btsp_fun::shallow</a>.</p>
+
+<p>Referenced by <a class="el" href="cbtsp_8c-source.html#l00081">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c45130e6af4d03bb2ea580b6490f45e1"></a><!-- doxytag: member="arrow.h::arrow_btsp_fun_constrained_shake" ref="c45130e6af4d03bb2ea580b6490f45e1" args="(int shallow, double feasible_length, int infinity, int rand_min, int rand_max, arrow_problem *problem, arrow_problem_info *info, arrow_btsp_fun *fun)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_btsp_fun_constrained_shake           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>shallow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>feasible_length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>infinity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>rand_min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>rand_max</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *&nbsp;</td>
+          <td class="paramname"> <em>info</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *&nbsp;</td>
+          <td class="paramname"> <em>fun</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constrained "Shake" BTSP to TSP function. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>shallow</em>&nbsp;</td><td>[in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>feasible_length</em>&nbsp;</td><td>[in] length of feasible tour </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>infinity</em>&nbsp;</td><td>[in] value to use as "infinity" </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>rand_min</em>&nbsp;</td><td>[in] minimum random value to generate </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>rand_max</em>&nbsp;</td><td>[in] maximum random value to generate </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] the problem the shake is based upon </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>info</em>&nbsp;</td><td>[in] information about the original problem </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>fun</em>&nbsp;</td><td>[out] function structure </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="btsp__fun_8c-source.html#l00319">319</a> of file <a class="el" href="btsp__fun_8c-source.html">btsp_fun.c</a>.</p>
+
+<p>References <a class="el" href="structarrow__btsp__fun.html#7736b2d3059ece3dc94433af0763b47a">arrow_btsp_fun::apply</a>, <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00051">ARROW_FALSE</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="btsp__fun_8c-source.html#l00536">constrained_shake_deep_apply()</a>, <a class="el" href="btsp__fun_8c-source.html#l00597">constrained_shake_destruct()</a>, <a class="el" href="btsp__fun_8c-source.html#l00607">constrained_shake_feasible()</a>, <a class="el" href="arrow_8h-source.html#l00192">arrow_btsp_fun::data</a>, <a class="el" href="structarrow__btsp__fun.html#6c66b7591252728aaa441139c623446a">arrow_btsp_fun::destruct</a>, <a class="el" href="structarrow__btsp__fun.html#a64a29d588b40b0d04db43e23a22d1a9">arrow_btsp_fun::feasible</a>, <a class="el" href="arrow_8h-source.html#l00194">arrow_btsp_fun::feasible_length</a>, <a class="el" href="btsp__fun_8c-source.html#l00205">constrained_shake_data::infinity</a>, <a class="el" href="btsp__fun_8c-source.html#l00201">constrained_shake_data::info</a>, <a class="el" href="btsp__fun_8c-source.html#l00200">constrained_shake_data::problem</a>, <a class="el" href="btsp__fun_8c-source.html#l00203">constrained_shake_data::rand_max</a>, <a class="el" href="btsp__fun_8c-source.html#l00202">constrained_shake_data::rand_min</a>, and <a class="el" href="arrow_8h-source.html#l00193">arrow_btsp_fun::shallow</a>.</p>
+
+<p>Referenced by <a class="el" href="cbtsp_8c-source.html#l00081">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f0b2cce4c9dced6fe48fbc29877bbd8d"></a><!-- doxytag: member="arrow.h::arrow_btsp_fun_destruct" ref="f0b2cce4c9dced6fe48fbc29877bbd8d" args="(arrow_btsp_fun *fun)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arrow_btsp_fun_destruct           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *&nbsp;</td>
+          <td class="paramname"> <em>fun</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Destructs a function structure. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>fun</em>&nbsp;</td><td>[out] function structure </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="btsp__fun_8c-source.html#l00243">243</a> of file <a class="el" href="btsp__fun_8c-source.html">btsp_fun.c</a>.</p>
+
+<p>References <a class="el" href="structarrow__btsp__fun.html#6c66b7591252728aaa441139c623446a">arrow_btsp_fun::destruct</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00091">arrow_btsp_solve_plan_destruct()</a>, and <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c5c69eb958340aba441e75dfbb6d941b"></a><!-- doxytag: member="arrow.h::arrow_btsp_params_destruct" ref="c5c69eb958340aba441e75dfbb6d941b" args="(arrow_btsp_params *params)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arrow_btsp_params_destruct           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__btsp__params.html">arrow_btsp_params</a> *&nbsp;</td>
+          <td class="paramname"> <em>params</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Destructs a BTSP parameters structure. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>result</em>&nbsp;</td><td>[out] BTSP parameters structure </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="lib_2btsp_8c-source.html#l00071">71</a> of file <a class="el" href="lib_2btsp_8c-source.html">btsp.c</a>.</p>
+
+<p>References <a class="el" href="lib_2btsp_8c-source.html#l00091">arrow_btsp_solve_plan_destruct()</a>, <a class="el" href="arrow_8h-source.html#l00248">arrow_btsp_params::num_steps</a>, and <a class="el" href="arrow_8h-source.html#l00249">arrow_btsp_params::steps</a>.</p>
+
+<p>Referenced by <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9ee14515eed23a56303e338258725b7c"></a><!-- doxytag: member="arrow.h::arrow_btsp_params_init" ref="9ee14515eed23a56303e338258725b7c" args="(arrow_btsp_params *params)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arrow_btsp_params_init           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__btsp__params.html">arrow_btsp_params</a> *&nbsp;</td>
+          <td class="paramname"> <em>params</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Inititalizes BTSP parameter structure. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>params</em>&nbsp;</td><td>[out] BTSP parameters structure </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="lib_2btsp_8c-source.html#l00060">60</a> of file <a class="el" href="lib_2btsp_8c-source.html">btsp.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00051">ARROW_FALSE</a>, <a class="el" href="arrow_8h-source.html#l00243">arrow_btsp_params::confirm_sol</a>, <a class="el" href="arrow_8h-source.html#l00245">arrow_btsp_params::find_short_tour</a>, <a class="el" href="arrow_8h-source.html#l00246">arrow_btsp_params::lower_bound</a>, <a class="el" href="arrow_8h-source.html#l00248">arrow_btsp_params::num_steps</a>, <a class="el" href="arrow_8h-source.html#l00244">arrow_btsp_params::supress_ebst</a>, and <a class="el" href="arrow_8h-source.html#l00247">arrow_btsp_params::upper_bound</a>.</p>
+
+<p>Referenced by <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="11d150bd3219a6ba3d9ccd3f0c952b2a"></a><!-- doxytag: member="arrow.h::arrow_btsp_result_destruct" ref="11d150bd3219a6ba3d9ccd3f0c952b2a" args="(arrow_btsp_result *result)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arrow_btsp_result_destruct           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__btsp__result.html">arrow_btsp_result</a> *&nbsp;</td>
+          <td class="paramname"> <em>result</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Destructs a BTSP result structure. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>result</em>&nbsp;</td><td>[out] BTSP result structure </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="lib_2btsp_8c-source.html#l00053">53</a> of file <a class="el" href="lib_2btsp_8c-source.html">btsp.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00177">arrow_btsp_result::tour</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00098">arrow_btsp_solve()</a>, and <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b78b71959db64c692a9e16832df9c096"></a><!-- doxytag: member="arrow.h::arrow_btsp_result_init" ref="b78b71959db64c692a9e16832df9c096" args="(arrow_problem *problem, arrow_btsp_result *result)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_btsp_result_init           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__btsp__result.html">arrow_btsp_result</a> *&nbsp;</td>
+          <td class="paramname"> <em>result</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initializes the BTSP result structure. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] problem to solve </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>result</em>&nbsp;</td><td>[out] BTSP result structure </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="lib_2btsp_8c-source.html#l00033">33</a> of file <a class="el" href="lib_2btsp_8c-source.html">btsp.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00051">ARROW_FALSE</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="arrow_8h-source.html#l00179">arrow_btsp_result::bin_search_steps</a>, <a class="el" href="arrow_8h-source.html#l00182">arrow_btsp_result::exact_attempts</a>, <a class="el" href="arrow_8h-source.html#l00183">arrow_btsp_result::exact_time</a>, <a class="el" href="arrow_8h-source.html#l00174">arrow_btsp_result::found_tour</a>, <a class="el" href="arrow_8h-source.html#l00180">arrow_btsp_result::linkern_attempts</a>, <a class="el" href="arrow_8h-source.html#l00181">arrow_btsp_result::linkern_time</a>, <a class="el" href="arrow_8h-source.html#l00175">arrow_btsp_result::obj_value</a>, <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>, <a class="el" href="arrow_8h-source.html#l00184">arrow_btsp_result::total_time</a>, <a class="el" href="arrow_8h-source.html#l00177">arrow_btsp_result::tour</a>, and <a class="el" href="arrow_8h-source.html#l00176">arrow_btsp_result::tour_length</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00098">arrow_btsp_solve()</a>, and <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3c6427a5ad0c0f5157d2c1a903f823c4"></a><!-- doxytag: member="arrow.h::arrow_btsp_solve" ref="3c6427a5ad0c0f5157d2c1a903f823c4" args="(arrow_problem *problem, arrow_problem_info *info, arrow_btsp_params *params, arrow_btsp_result *result)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_btsp_solve           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *&nbsp;</td>
+          <td class="paramname"> <em>info</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__btsp__params.html">arrow_btsp_params</a> *&nbsp;</td>
+          <td class="paramname"> <em>params</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__btsp__result.html">arrow_btsp_result</a> *&nbsp;</td>
+          <td class="paramname"> <em>result</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Solves TSP with Concorde's exact solver. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] problem to solve </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>info</em>&nbsp;</td><td>[in] extra problem info </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>params</em>&nbsp;</td><td>[in] parameters for solver (can be NULL) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>result</em>&nbsp;</td><td>[out] BTSP solution </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="lib_2btsp_8c-source.html#l00098">98</a> of file <a class="el" href="lib_2btsp_8c-source.html">btsp.c</a>.</p>
+
+<p>References <a class="el" href="lib_2btsp_8c-source.html#l00053">arrow_btsp_result_destruct()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00033">arrow_btsp_result_init()</a>, <a class="el" href="arrow_8h-source.html#l00033">arrow_debug</a>, <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00051">ARROW_FALSE</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="arrow_8h-source.html#l00050">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00145">arrow_util_binary_search()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="arrow_8h-source.html#l00179">arrow_btsp_result::bin_search_steps</a>, <a class="el" href="arrow_8h-source.html#l00243">arrow_btsp_params::confirm_sol</a>, <a class="el" href="arrow_8h-source.html#l00133">arrow_problem_info::cost_list</a>, <a class="el" href="arrow_8h-source.html#l00134">arrow_problem_info::cost_list_length</a>, <a class="el" href="arrow_8h-source.html#l00182">arrow_btsp_result::exact_attempts</a>, <a class="el" href="arrow_8h-source.html#l00183">arrow_btsp_result::exact_time</a>, <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>, <a class="el" href="arrow_8h-source.html#l00245">arrow_btsp_params::find_short_tour</a>, <a class="el" href="arrow_8h-source.html#l00174">arrow_btsp_result::found_tour</a>, <a class="el" href="arrow_8h-source.html#l00180">arrow_btsp_result::linkern_attempts</a>, <a class="el" href="arrow_8h-source.html#l00181">arrow_btsp_result::linkern_time</a>, <a class="el" href="arrow_8h-source.html#l00246">arrow_btsp_params::lower_bound</a>, <a class="el" href="arrow_8h-source.html#l00248">arrow_btsp_params::num_steps</a>, <a class="el" href="arrow_8h-source.html#l00175">arrow_btsp_result::obj_value</a>, <a class="el" href="arrow_8h-source.html#l00178">arrow_btsp_result::optimal</a>, <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>, <a class="el" href="arrow_8h-source.html#l00249">arrow_btsp_params::steps</a>, <a class="el" href="arrow_8h-source.html#l00244">arrow_btsp_params::supress_ebst</a>, <a class="el" href="arrow_8h-source.html#l00112">arrow_problem::symmetric</a>, <a class="el" href="arrow_8h-source.html#l00184">arrow_btsp_result::total_time</a>, <a class="el" href="arrow_8h-source.html#l00177">arrow_btsp_result::tour</a>, <a class="el" href="arrow_8h-source.html#l00176">arrow_btsp_result::tour_length</a>, <a class="el" href="abtsp_8c-source.html#l00022">upper_bound</a>, and <a class="el" href="arrow_8h-source.html#l00247">arrow_btsp_params::upper_bound</a>.</p>
+
+<p>Referenced by <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e1d667017d467f926e8371a0823d9d7a"></a><!-- doxytag: member="arrow.h::arrow_btsp_solve_plan_destruct" ref="e1d667017d467f926e8371a0823d9d7a" args="(arrow_btsp_solve_plan *plan)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arrow_btsp_solve_plan_destruct           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__btsp__solve__plan.html">arrow_btsp_solve_plan</a> *&nbsp;</td>
+          <td class="paramname"> <em>plan</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Destructs a BTSP solve plan structure. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>result</em>&nbsp;</td><td>[out] BTSP solve plan structure </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="lib_2btsp_8c-source.html#l00091">91</a> of file <a class="el" href="lib_2btsp_8c-source.html">btsp.c</a>.</p>
+
+<p>References <a class="el" href="btsp__fun_8c-source.html#l00243">arrow_btsp_fun_destruct()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00059">arrow_tsp_lk_params_destruct()</a>, <a class="el" href="arrow_8h-source.html#l00232">arrow_btsp_solve_plan::fun</a>, and <a class="el" href="arrow_8h-source.html#l00233">arrow_btsp_solve_plan::lk_params</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00071">arrow_btsp_params_destruct()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a5f73647dedc4bcd1b5df2bf9e3edab4"></a><!-- doxytag: member="arrow.h::arrow_btsp_solve_plan_init" ref="a5f73647dedc4bcd1b5df2bf9e3edab4" args="(arrow_btsp_solve_plan *plan)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arrow_btsp_solve_plan_init           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__btsp__solve__plan.html">arrow_btsp_solve_plan</a> *&nbsp;</td>
+          <td class="paramname"> <em>plan</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Inititalizes BTSP solve plan structure. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>params</em>&nbsp;</td><td>[out] BTSP solve plan structure </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="lib_2btsp_8c-source.html#l00084">84</a> of file <a class="el" href="lib_2btsp_8c-source.html">btsp.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00235">arrow_btsp_solve_plan::attempts</a>, and <a class="el" href="arrow_8h-source.html#l00230">arrow_btsp_solve_plan::plan_type</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ad3367474556148e376254886b71947d"></a><!-- doxytag: member="arrow.h::arrow_dcbpb_solve" ref="ad3367474556148e376254886b71947d" args="(arrow_problem *problem, arrow_bound_result *result)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_dcbpb_solve           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__bound__result.html">arrow_bound_result</a> *&nbsp;</td>
+          <td class="paramname"> <em>result</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Solves the degree constrained bottleneck paths bound (DCBPB). 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] problem data </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>info</em>&nbsp;</td><td>[in] problem info </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>result</em>&nbsp;</td><td>[out] BPB solution </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="lib_2dcbpb_8c-source.html#l00029">29</a> of file <a class="el" href="lib_2dcbpb_8c-source.html">dcbpb.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00027">arrow_util_create_int_matrix()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="lib_2dcbpb_8c-source.html#l00109">bottleneck_paths()</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="arrow_8h-source.html#l00081">arrow_bound_result::obj_value</a>, <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>, and <a class="el" href="arrow_8h-source.html#l00082">arrow_bound_result::total_time</a>.</p>
+
+<p>Referenced by <a class="el" href="bin_2dcbpb_8c-source.html#l00031">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e187e044872b9130dc8451a7cbfd3f8d"></a><!-- doxytag: member="arrow.h::arrow_options_parse" ref="e187e044872b9130dc8451a7cbfd3f8d" args="(int num_opts, arrow_option options[], char *description, char *usage, int argc, char *argv[], int *opt_ind)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_options_parse           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>num_opts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__option.html">arrow_option</a>&nbsp;</td>
+          <td class="paramname"> <em>options</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>description</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>usage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>argv</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>opt_ind</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="options_8c-source.html#l00024">24</a> of file <a class="el" href="options_8c-source.html">options.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00051">ARROW_FALSE</a>, <a class="el" href="arrow_8h-source.html#l00060">ARROW_OPTION_DOUBLE</a>, <a class="el" href="arrow_8h-source.html#l00059">ARROW_OPTION_INT</a>, <a class="el" href="arrow_8h-source.html#l00061">ARROW_OPTION_STRING</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="arrow_8h-source.html#l00050">ARROW_TRUE</a>, <a class="el" href="arrow_8h-source.html#l00258">arrow_option::long_option</a>, <a class="el" href="linkern_8c-source.html#l00090">print_help()</a>, <a class="el" href="linkern_8c-source.html#l00120">print_usage()</a>, <a class="el" href="linkern_8c-source.html#l00105">print_version()</a>, and <a class="el" href="arrow_8h-source.html#l00257">arrow_option::short_option</a>.</p>
+
+<p>Referenced by <a class="el" href="bin_22mb_8c-source.html#l00030">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="1fd00c671b95d81b8309bac580635d51"></a><!-- doxytag: member="arrow.h::arrow_problem_abtsp_to_sbtsp" ref="1fd00c671b95d81b8309bac580635d51" args="(arrow_problem *old_problem, int infinity, arrow_problem *new_problem)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_problem_abtsp_to_sbtsp           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>old_problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>infinity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>new_problem</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Transforms an asymmetric BTSP problem of n nodes into a symmetric BTSP problem with 2n nodes. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>old_problem</em>&nbsp;</td><td>[in] the asymmetric problem </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>infinity</em>&nbsp;</td><td>[in] value to use as "infinity" </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>new_problem</em>&nbsp;</td><td>[out] the new symmetric problem </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00228">228</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00051">ARROW_FALSE</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="problem_8c-source.html#l00213">arrow_problem_get_cost()</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="arrow_8h-source.html#l00050">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00115">arrow_util_CCdatagroup_init_matrix()</a>, <a class="el" href="arrow_8h-source.html#l00113">arrow_problem::data</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="arrow_8h-source.html#l00115">arrow_problem::name</a>, <a class="el" href="arrow_8h-source.html#l00114">arrow_problem::shallow</a>, <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>, and <a class="el" href="arrow_8h-source.html#l00112">arrow_problem::symmetric</a>.</p>
+
+<p>Referenced by <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
 
 </div>
 </div><p>
@@ -614,15 +1829,66 @@ Deallocates problem data structure.
 <p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] problem data structure </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[out] problem data structure </td></tr>
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="problem_8c-source.html#l00050">50</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00098">98</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00048">arrow_problem::data</a>.</p>
+<p>References <a class="el" href="arrow_8h-source.html#l00113">arrow_problem::data</a>, and <a class="el" href="arrow_8h-source.html#l00114">arrow_problem::shallow</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_2bbssp_8c-source.html#l00052">main()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>, and <a class="el" href="bin_22mb_8c-source.html#l00030">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cd0bca6159ba920a6039ba06e82c1440"></a><!-- doxytag: member="arrow.h::arrow_problem_get_cost" ref="cd0bca6159ba920a6039ba06e82c1440" args="(arrow_problem *problem, int i, int j)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_problem_get_cost           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>j</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retrieves cost between nodes i and j. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] pointer to <a class="el" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> structure </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>[in] id of starting node </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>j</em>&nbsp;</td><td>[in] id of ending node </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>cost between node i and node j </dd></dl>
+
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00213">213</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00113">arrow_problem::data</a>.</p>
+
+<p>Referenced by <a class="el" href="problem_8c-source.html#l00228">arrow_problem_abtsp_to_sbtsp()</a>, and <a class="el" href="problem_8c-source.html#l00054">arrow_problem_read()</a>.</p>
 
 </div>
 </div><p>
@@ -651,11 +1917,11 @@ Deallocates problem info data structure.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="problem_8c-source.html#l00099">99</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00158">158</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00067">arrow_problem_info::cost_list</a>.</p>
+<p>References <a class="el" href="arrow_8h-source.html#l00133">arrow_problem_info::cost_list</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_2bbssp_8c-source.html#l00052">main()</a>.</p>
+<p>Referenced by <a class="el" href="bin_2bap_8c-source.html#l00030">main()</a>.</p>
 
 </div>
 </div><p>
@@ -694,11 +1960,11 @@ Builds ordered cost list and finds min/max cost in a problem.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="problem_8c-source.html#l00060">60</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00115">115</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
 
-<p>References <a class="el" href="bintree_8c-source.html#l00059">arrow_bintree_destruct()</a>, <a class="el" href="bintree_8c-source.html#l00052">arrow_bintree_init()</a>, <a class="el" href="bintree_8c-source.html#l00066">arrow_bintree_insert()</a>, <a class="el" href="bintree_8c-source.html#l00086">arrow_bintree_to_array()</a>, <a class="el" href="arrow_8h-source.html#l00025">ARROW_SUCCESS</a>, <a class="el" href="arrow_8h-source.html#l00067">arrow_problem_info::cost_list</a>, <a class="el" href="arrow_8h-source.html#l00068">arrow_problem_info::cost_list_length</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_problem_info::max_cost</a>, <a class="el" href="arrow_8h-source.html#l00069">arrow_problem_info::min_cost</a>, <a class="el" href="arrow_8h-source.html#l00079">arrow_bintree::size</a>, and <a class="el" href="arrow_8h-source.html#l00047">arrow_problem::size</a>.</p>
+<p>References <a class="el" href="bintree_8c-source.html#l00059">arrow_bintree_destruct()</a>, <a class="el" href="bintree_8c-source.html#l00052">arrow_bintree_init()</a>, <a class="el" href="bintree_8c-source.html#l00066">arrow_bintree_insert()</a>, <a class="el" href="bintree_8c-source.html#l00086">arrow_bintree_to_array()</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="arrow_8h-source.html#l00050">ARROW_TRUE</a>, <a class="el" href="arrow_8h-source.html#l00133">arrow_problem_info::cost_list</a>, <a class="el" href="arrow_8h-source.html#l00134">arrow_problem_info::cost_list_length</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="arrow_8h-source.html#l00136">arrow_problem_info::max_cost</a>, <a class="el" href="arrow_8h-source.html#l00135">arrow_problem_info::min_cost</a>, <a class="el" href="arrow_8h-source.html#l00091">arrow_bintree::size</a>, <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>, and <a class="el" href="arrow_8h-source.html#l00112">arrow_problem::symmetric</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_2bbssp_8c-source.html#l00052">main()</a>.</p>
+<p>Referenced by <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
 
 </div>
 </div><p>
@@ -727,9 +1993,9 @@ Prints out information about a problem.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="problem_8c-source.html#l00106">106</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00165">165</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
 
-<p>References <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, and <a class="el" href="arrow_8h-source.html#l00047">arrow_problem::size</a>.</p>
+<p>References <a class="el" href="arrow_8h-source.html#l00033">arrow_debug</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, and <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>.</p>
 
 </div>
 </div><p>
@@ -768,15 +2034,65 @@ Reads a problem from a TSPLIB file.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="problem_8c-source.html#l00030">30</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00054">54</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00027">ARROW_ERROR_FATAL</a>, <a class="el" href="arrow_8h-source.html#l00030">ARROW_FALSE</a>, <a class="el" href="arrow_8h-source.html#l00025">ARROW_SUCCESS</a>, <a class="el" href="problem_8c-source.html#l00155">concorde_get_cost()</a>, <a class="el" href="arrow_8h-source.html#l00048">arrow_problem::data</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="arrow_8h-source.html#l00050">arrow_problem::name</a>, <a class="el" href="arrow_8h-source.html#l00049">arrow_problem::shallow</a>, and <a class="el" href="arrow_8h-source.html#l00047">arrow_problem::size</a>.</p>
+<p>References <a class="el" href="arrow_8h-source.html#l00033">arrow_debug</a>, <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00051">ARROW_FALSE</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="problem_8c-source.html#l00213">arrow_problem_get_cost()</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="arrow_8h-source.html#l00050">ARROW_TRUE</a>, <a class="el" href="arrow_8h-source.html#l00113">arrow_problem::data</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="problem_8c-source.html#l00281">is_asymmetric()</a>, <a class="el" href="problem_8c-source.html#l00275">is_symmetric()</a>, <a class="el" href="arrow_8h-source.html#l00115">arrow_problem::name</a>, <a class="el" href="problem_8c-source.html#l00287">read_atsp()</a>, <a class="el" href="arrow_8h-source.html#l00114">arrow_problem::shallow</a>, <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>, and <a class="el" href="arrow_8h-source.html#l00112">arrow_problem::symmetric</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_2bbssp_8c-source.html#l00052">main()</a>.</p>
+<p>Referenced by <a class="el" href="bin_22mb_8c-source.html#l00030">main()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="0cc68200bf38d20fe0dd3c388674d215"></a><!-- doxytag: member="arrow.h::arrow_tsp_exact_solve" ref="0cc68200bf38d20fe0dd3c388674d215" args="(arrow_problem *problem, int *in_tour, arrow_tsp_result *result)" -->
+<a class="anchor" name="b0ae70bd19a75c7f3164b81e4ed092ad"></a><!-- doxytag: member="arrow.h::arrow_problem_read_tour" ref="b0ae70bd19a75c7f3164b81e4ed092ad" args="(char *file_name, int size, int *tour)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_problem_read_tour           </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>file_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>tour</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Reads a TSPLIB tour file. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>file_name</em>&nbsp;</td><td>[in] the TSPLIB tour file to read </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>[in] the number of cities in the tour </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>tour</em>&nbsp;</td><td>[out] an array to hold the tour in node-node format </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00219">219</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00048">ARROW_ERROR_FATAL</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, and <a class="el" href="arrow_8h-source.html#l00063">CONCORDE_SUCCESS</a>.</p>
+
+<p>Referenced by <a class="el" href="tour__info_8c-source.html#l00053">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e678a3a4a87c4db0ab8493e7edfb6119"></a><!-- doxytag: member="arrow.h::arrow_tsp_exact_solve" ref="e678a3a4a87c4db0ab8493e7edfb6119" args="(arrow_problem *problem, int *initial_tour, arrow_tsp_result *result)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -790,7 +2106,7 @@ Reads a problem from a TSPLIB file.
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int *&nbsp;</td>
-          <td class="paramname"> <em>in_tour</em>, </td>
+          <td class="paramname"> <em>initial_tour</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -818,18 +2134,53 @@ Solves TSP with Concorde's exact solver.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="tsp_8c-source.html#l00036">36</a> of file <a class="el" href="tsp_8c-source.html">tsp.c</a>.</p>
+<p>Definition at line <a class="el" href="lib_2tsp_8c-source.html#l00066">66</a> of file <a class="el" href="lib_2tsp_8c-source.html">tsp.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00027">ARROW_ERROR_FATAL</a>, <a class="el" href="arrow_8h-source.html#l00028">ARROW_ERROR_NON_FATAL</a>, <a class="el" href="arrow_8h-source.html#l00025">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00034">arrow_util_zeit()</a>, <a class="el" href="arrow_8h-source.html#l00048">arrow_problem::data</a>, <a class="el" href="arrow_8h-source.html#l00218">arrow_tsp_result::found_tour</a>, <a class="el" href="arrow_8h-source.html#l00050">arrow_problem::name</a>, <a class="el" href="arrow_8h-source.html#l00047">arrow_problem::size</a>, <a class="el" href="arrow_8h-source.html#l00221">arrow_tsp_result::total_time</a>, <a class="el" href="arrow_8h-source.html#l00220">arrow_tsp_result::tour</a>, and <a class="el" href="arrow_8h-source.html#l00219">arrow_tsp_result::tour_length</a>.</p>
+<p>References <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="arrow_8h-source.html#l00113">arrow_problem::data</a>, <a class="el" href="arrow_8h-source.html#l00163">arrow_tsp_result::found_tour</a>, <a class="el" href="arrow_8h-source.html#l00115">arrow_problem::name</a>, <a class="el" href="arrow_8h-source.html#l00164">arrow_tsp_result::obj_value</a>, <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>, <a class="el" href="arrow_8h-source.html#l00166">arrow_tsp_result::total_time</a>, and <a class="el" href="arrow_8h-source.html#l00165">arrow_tsp_result::tour</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>, and <a class="el" href="bin_2tsp_8c-source.html#l00046">main()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="a20fdb653581bbcfcd08784900b19218"></a><!-- doxytag: member="arrow.h::arrow_tsp_lk_params_default" ref="a20fdb653581bbcfcd08784900b19218" args="(arrow_problem *problem, arrow_tsp_lk_params *params)" -->
+<a class="anchor" name="67dd9d24c1d45e49152c4f9b6a3e7836"></a><!-- doxytag: member="arrow.h::arrow_tsp_lk_params_destruct" ref="67dd9d24c1d45e49152c4f9b6a3e7836" args="(arrow_tsp_lk_params *params)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void arrow_tsp_lk_params_default           </td>
+          <td class="memname">void arrow_tsp_lk_params_destruct           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__tsp__lk__params.html">arrow_tsp_lk_params</a> *&nbsp;</td>
+          <td class="paramname"> <em>params</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Destructs a LK parameters structure. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>result</em>&nbsp;</td><td>[out] LK parameters structure </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="lib_2tsp_8c-source.html#l00059">59</a> of file <a class="el" href="lib_2tsp_8c-source.html">tsp.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00155">arrow_tsp_lk_params::initial_tour</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00091">arrow_btsp_solve_plan_destruct()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, and <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b6916d874aabb28c782ec4b37448851a"></a><!-- doxytag: member="arrow.h::arrow_tsp_lk_params_init" ref="b6916d874aabb28c782ec4b37448851a" args="(arrow_problem *problem, arrow_tsp_lk_params *params)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arrow_tsp_lk_params_init           </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
           <td class="paramname"> <em>problem</em>, </td>
@@ -851,7 +2202,7 @@ Solves TSP with Concorde's exact solver.
 
 <p>
 Sets default parameters for Lin-Kernighan heuristic:<ul>
-<li>stall_count = problem-&gt;size</li><li>kicks = 0</li><li>kick_type = CC_LK_GEOMETRIC_KICK</li><li>time_bound = 0.0</li><li>length_bound = 0.0</li><li>initial_tour = NULL. </li></ul>
+<li>random_restarts = 0</li><li>stall_count = problem-&gt;size</li><li>kicks = (problem-&gt;size / 2), at least 500</li><li>kick_type = CC_LK_GEOMETRIC_KICK</li><li>time_bound = 0.0</li><li>length_bound = 0.0</li><li>initial_tour = NULL. </li></ul>
 
 <p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
@@ -861,7 +2212,61 @@ Sets default parameters for Lin-Kernighan heuristic:<ul>
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="tsp_8c-source.html#l00029">29</a> of file <a class="el" href="tsp_8c-source.html">tsp.c</a>.</p>
+<p>Definition at line <a class="el" href="lib_2tsp_8c-source.html#l00047">47</a> of file <a class="el" href="lib_2tsp_8c-source.html">tsp.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00155">arrow_tsp_lk_params::initial_tour</a>, <a class="el" href="arrow_8h-source.html#l00148">arrow_tsp_lk_params::kick_type</a>, <a class="el" href="arrow_8h-source.html#l00147">arrow_tsp_lk_params::kicks</a>, <a class="el" href="arrow_8h-source.html#l00153">arrow_tsp_lk_params::length_bound</a>, <a class="el" href="arrow_8h-source.html#l00144">arrow_tsp_lk_params::random_restarts</a>, <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>, <a class="el" href="arrow_8h-source.html#l00145">arrow_tsp_lk_params::stall_count</a>, and <a class="el" href="arrow_8h-source.html#l00151">arrow_tsp_lk_params::time_bound</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, and <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="85727209bce9c643d61ac3a5f9d79c95"></a><!-- doxytag: member="arrow.h::arrow_tsp_lk_solve" ref="85727209bce9c643d61ac3a5f9d79c95" args="(arrow_problem *problem, arrow_tsp_lk_params *params, arrow_tsp_result *result)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_tsp_lk_solve           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__tsp__lk__params.html">arrow_tsp_lk_params</a> *&nbsp;</td>
+          <td class="paramname"> <em>params</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__tsp__result.html">arrow_tsp_result</a> *&nbsp;</td>
+          <td class="paramname"> <em>result</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Solves TSP with Concorde's Lin-Kernighan heuristic. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] problem to solve </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>params</em>&nbsp;</td><td>[in] Lin-Kernighan params (can be NULL) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>result</em>&nbsp;</td><td>[out] TSP solution </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="lib_2tsp_8c-source.html#l00102">102</a> of file <a class="el" href="lib_2tsp_8c-source.html">tsp.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00033">arrow_debug</a>, <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="arrow_8h-source.html#l00050">ARROW_TRUE</a>, <a class="el" href="lib_2tsp_8c-source.html#l00059">arrow_tsp_lk_params_destruct()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00047">arrow_tsp_lk_params_init()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00273">build_initial_tour()</a>, <a class="el" href="arrow_8h-source.html#l00064">CONCORDE_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00113">arrow_problem::data</a>, <a class="el" href="arrow_8h-source.html#l00163">arrow_tsp_result::found_tour</a>, <a class="el" href="arrow_8h-source.html#l00155">arrow_tsp_lk_params::initial_tour</a>, <a class="el" href="arrow_8h-source.html#l00148">arrow_tsp_lk_params::kick_type</a>, <a class="el" href="arrow_8h-source.html#l00147">arrow_tsp_lk_params::kicks</a>, <a class="el" href="arrow_8h-source.html#l00153">arrow_tsp_lk_params::length_bound</a>, <a class="el" href="arrow_8h-source.html#l00164">arrow_tsp_result::obj_value</a>, <a class="el" href="arrow_8h-source.html#l00144">arrow_tsp_lk_params::random_restarts</a>, <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>, <a class="el" href="arrow_8h-source.html#l00145">arrow_tsp_lk_params::stall_count</a>, <a class="el" href="arrow_8h-source.html#l00151">arrow_tsp_lk_params::time_bound</a>, <a class="el" href="arrow_8h-source.html#l00166">arrow_tsp_result::total_time</a>, and <a class="el" href="arrow_8h-source.html#l00165">arrow_tsp_result::tour</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>, and <a class="el" href="linkern_8c-source.html#l00049">main()</a>.</p>
 
 </div>
 </div><p>
@@ -890,18 +2295,20 @@ Destructs a TSP result structure.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="tsp_8c-source.html#l00022">22</a> of file <a class="el" href="tsp_8c-source.html">tsp.c</a>.</p>
+<p>Definition at line <a class="el" href="lib_2tsp_8c-source.html#l00037">37</a> of file <a class="el" href="lib_2tsp_8c-source.html">tsp.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00220">arrow_tsp_result::tour</a>.</p>
+<p>References <a class="el" href="arrow_8h-source.html#l00165">arrow_tsp_result::tour</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>, and <a class="el" href="linkern_8c-source.html#l00049">main()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="107b3fa0e8b3eeab9e04320d30654ec5"></a><!-- doxytag: member="arrow.h::arrow_tsp_result_init" ref="107b3fa0e8b3eeab9e04320d30654ec5" args="(arrow_problem *problem, arrow_tsp_result *result)" -->
+<a class="anchor" name="124a14a04e51fdd8e05f0aed7dfdd44c"></a><!-- doxytag: member="arrow.h::arrow_tsp_result_init" ref="124a14a04e51fdd8e05f0aed7dfdd44c" args="(arrow_problem *problem, arrow_tsp_result *result)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void arrow_tsp_result_init           </td>
+          <td class="memname">int arrow_tsp_result_init           </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
           <td class="paramname"> <em>problem</em>, </td>
@@ -931,9 +2338,149 @@ Initializes the TSP result structure.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="tsp_8c-source.html#l00012">12</a> of file <a class="el" href="tsp_8c-source.html">tsp.c</a>.</p>
+<p>Definition at line <a class="el" href="lib_2tsp_8c-source.html#l00023">23</a> of file <a class="el" href="lib_2tsp_8c-source.html">tsp.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00030">ARROW_FALSE</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="arrow_8h-source.html#l00218">arrow_tsp_result::found_tour</a>, <a class="el" href="arrow_8h-source.html#l00047">arrow_problem::size</a>, <a class="el" href="arrow_8h-source.html#l00221">arrow_tsp_result::total_time</a>, <a class="el" href="arrow_8h-source.html#l00220">arrow_tsp_result::tour</a>, and <a class="el" href="arrow_8h-source.html#l00219">arrow_tsp_result::tour_length</a>.</p>
+<p>References <a class="el" href="arrow_8h-source.html#l00048">ARROW_ERROR_FATAL</a>, <a class="el" href="arrow_8h-source.html#l00051">ARROW_FALSE</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="arrow_8h-source.html#l00163">arrow_tsp_result::found_tour</a>, <a class="el" href="arrow_8h-source.html#l00164">arrow_tsp_result::obj_value</a>, <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>, <a class="el" href="arrow_8h-source.html#l00166">arrow_tsp_result::total_time</a>, and <a class="el" href="arrow_8h-source.html#l00165">arrow_tsp_result::tour</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>, and <a class="el" href="linkern_8c-source.html#l00049">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7a32a3f10516726b76ba6f87d96d2903"></a><!-- doxytag: member="arrow.h::arrow_util_binary_search" ref="7a32a3f10516726b76ba6f87d96d2903" args="(int *array, int size, int element, int *pos)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_util_binary_search           </td>
+          <td>(</td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>element</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>pos</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Performs a binary search to find the wanted element in a sorted integer array. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>array</em>&nbsp;</td><td>[in] the array to search (note: must be sorted in non-increasing order) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>[in] size of the array </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>element</em>&nbsp;</td><td>[in] the element to find in the array </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>pos</em>&nbsp;</td><td>[out] the index where the element can be found in the array </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="util_8c-source.html#l00145">145</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, and <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00098">arrow_btsp_solve()</a>, and <a class="el" href="btsp__fun_8c-source.html#l00536">constrained_shake_deep_apply()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3052203501efe0814bbe98548394b978"></a><!-- doxytag: member="arrow.h::arrow_util_CCdatagroup_init_matrix" ref="3052203501efe0814bbe98548394b978" args="(int size, CCdatagroup *dat)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_util_CCdatagroup_init_matrix           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CCdatagroup *&nbsp;</td>
+          <td class="paramname"> <em>dat</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initializes an upper-diagonal matrix norm structure for Concorde that is ready to be filled in with values. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>[in] the number of cities/vertices </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>dat</em>&nbsp;</td><td>[out] the CCdatagroup structure to create </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="util_8c-source.html#l00115">115</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, and <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>.</p>
+
+<p>Referenced by <a class="el" href="btsp__fun_8c-source.html#l00213">arrow_btsp_fun_apply()</a>, and <a class="el" href="problem_8c-source.html#l00228">arrow_problem_abtsp_to_sbtsp()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b2e3326bacca581ca01013678d664cdb"></a><!-- doxytag: member="arrow.h::arrow_util_CCdatagroup_shallow_copy" ref="b2e3326bacca581ca01013678d664cdb" args="(CCdatagroup *from, CCdatagroup *to)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arrow_util_CCdatagroup_shallow_copy           </td>
+          <td>(</td>
+          <td class="paramtype">CCdatagroup *&nbsp;</td>
+          <td class="paramname"> <em>from</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CCdatagroup *&nbsp;</td>
+          <td class="paramname"> <em>to</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Makes a shallow copy of the Concorde CCdatagroup structure. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>from</em>&nbsp;</td><td>[in] the CCdatagroup structure to copy from  to [out] the CCdatagroup structure to copy to </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="util_8c-source.html#l00089">89</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
 
 </div>
 </div><p>
@@ -974,9 +2521,66 @@ Creates an integer array.
 
 <p>Definition at line <a class="el" href="util_8c-source.html#l00015">15</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00027">ARROW_ERROR_FATAL</a>, <a class="el" href="arrow_8h-source.html#l00036">arrow_print_error</a>, and <a class="el" href="arrow_8h-source.html#l00025">ARROW_SUCCESS</a>.</p>
+<p>References <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, and <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2bbssp_8c-source.html#l00088">arrow_bbssp_biconnected()</a>, <a class="el" href="bintree_8c-source.html#l00086">arrow_bintree_to_array()</a>, and <a class="el" href="tsp_8c-source.html#l00012">arrow_tsp_result_init()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2bap_8c-source.html#l00067">arrow_bap_solve()</a>, <a class="el" href="lib_2bbssp_8c-source.html#l00094">arrow_bbssp_biconnected()</a>, <a class="el" href="bintree_8c-source.html#l00086">arrow_bintree_to_array()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00033">arrow_btsp_result_init()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00023">arrow_tsp_result_init()</a>, <a class="el" href="util_8c-source.html#l00027">arrow_util_create_int_matrix()</a>, <a class="el" href="abtsp_8c-source.html#l00061">main()</a>, and <a class="el" href="lib_2bscssp_8c-source.html#l00086">strongly_connected()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2801c2cc414251180545168ba9abe911"></a><!-- doxytag: member="arrow.h::arrow_util_create_int_matrix" ref="2801c2cc414251180545168ba9abe911" args="(int rows, int cols, int ***matrix, int **space)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_util_create_int_matrix           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>rows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>cols</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int ***&nbsp;</td>
+          <td class="paramname"> <em>matrix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int **&nbsp;</td>
+          <td class="paramname"> <em>space</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Creates a full integer matrix. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>rows</em>&nbsp;</td><td>[in] number of rows </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>cols</em>&nbsp;</td><td>[in] number of columns </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>matrix</em>&nbsp;</td><td>[out] pointer to matrix that will be created </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>space</em>&nbsp;</td><td>[out] pointer to matrix space that will be created </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="util_8c-source.html#l00027">27</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, and <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2bap_8c-source.html#l00067">arrow_bap_solve()</a>, and <a class="el" href="lib_2dcbpb_8c-source.html#l00029">arrow_dcbpb_solve()</a>.</p>
 
 </div>
 </div><p>
@@ -1022,7 +2626,152 @@ Prints an error message to stderr with consistent formatting.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="util_8c-source.html#l00027">27</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
+<p>Definition at line <a class="el" href="util_8c-source.html#l00056">56</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="0bf303aee0600136e1720be7e6c60021"></a><!-- doxytag: member="arrow.h::arrow_util_print_program_args" ref="0bf303aee0600136e1720be7e6c60021" args="(int argc, char *argv[], FILE *out)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arrow_util_print_program_args           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>argv</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *&nbsp;</td>
+          <td class="paramname"> <em>out</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Prints out the given program arguments to the specified file. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>argc</em>&nbsp;</td><td>[in] the number of arguments </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>argv</em>&nbsp;</td><td>[in] the program arugment array </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>out</em>&nbsp;</td><td>[in] the file handle to print out to </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="util_8c-source.html#l00195">195</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
+
+<p>Referenced by <a class="el" href="bin_22mb_8c-source.html#l00030">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f2635504f3a222a0ced821917131c44c"></a><!-- doxytag: member="arrow.h::arrow_util_random" ref="f2635504f3a222a0ced821917131c44c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_util_random           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Returns a random number between 0 and RAND_MAX (normally, RAND_MAX = INT_MAX). 
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>a random integer. </dd></dl>
+
+<p>Definition at line <a class="el" href="util_8c-source.html#l00215">215</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="529c872ac72eaf0046ad149abf7b6179"></a><!-- doxytag: member="arrow.h::arrow_util_random_between" ref="529c872ac72eaf0046ad149abf7b6179" args="(int min, int max)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_util_random_between           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>max</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Returns a random number between min and max. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>min</em>&nbsp;</td><td>[in] the minimum random number to return </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>max</em>&nbsp;</td><td>[in] the maximum random number to return </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>a random integer in the range [min, max] </dd></dl>
+
+<p>Definition at line <a class="el" href="util_8c-source.html#l00221">221</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
+
+<p>Referenced by <a class="el" href="btsp__fun_8c-source.html#l00536">constrained_shake_deep_apply()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="448b71093a175c0f40f9cbe612b1c709"></a><!-- doxytag: member="arrow.h::arrow_util_random_seed" ref="448b71093a175c0f40f9cbe612b1c709" args="(int seed)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arrow_util_random_seed           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>seed</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Seeds the random number generator. Pass a value of 0 to seed with the current time. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>seed</em>&nbsp;</td><td>[in] the random number seed. </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="util_8c-source.html#l00206">206</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
+
+<p>Referenced by <a class="el" href="cbtsp_8c-source.html#l00081">main()</a>.</p>
 
 </div>
 </div><p>
@@ -1061,9 +2810,53 @@ Redirects STDOUT stream to a file (can be used to completely surpress output by 
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="util_8c-source.html#l00040">40</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
+<p>Definition at line <a class="el" href="util_8c-source.html#l00069">69</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_2bbssp_8c-source.html#l00052">main()</a>.</p>
+<p>Referenced by <a class="el" href="histogram__data_8c-source.html#l00028">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f9436128a70bfe493e200175d7eaf93b"></a><!-- doxytag: member="arrow.h::arrow_util_regex_match" ref="f9436128a70bfe493e200175d7eaf93b" args="(char *string, char *pattern)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_util_regex_match           </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>string</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>pattern</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Determines if the given string turns up a match for the given regular expression pattern. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>string</em>&nbsp;</td><td>[in] the string to match against </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>pattern</em>&nbsp;</td><td>[in] the regular expression pattern to match </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>ARROW_TRUE if a match is found, ARROW_FALSE if not. </dd></dl>
+
+<p>Definition at line <a class="el" href="util_8c-source.html#l00177">177</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00051">ARROW_FALSE</a>, and <a class="el" href="arrow_8h-source.html#l00050">ARROW_TRUE</a>.</p>
+
+<p>Referenced by <a class="el" href="problem_8c-source.html#l00281">is_asymmetric()</a>, and <a class="el" href="problem_8c-source.html#l00275">is_symmetric()</a>.</p>
 
 </div>
 </div><p>
@@ -1092,9 +2885,97 @@ Restores STDOUT stream that's been redirected.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="util_8c-source.html#l00049">49</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
+<p>Definition at line <a class="el" href="util_8c-source.html#l00078">78</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_2bbssp_8c-source.html#l00052">main()</a>.</p>
+<p>Referenced by <a class="el" href="histogram__data_8c-source.html#l00028">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8a7327192a37674e2559d82448a565b1"></a><!-- doxytag: member="arrow.h::arrow_util_sbtsp_to_abstp_tour" ref="8a7327192a37674e2559d82448a565b1" args="(arrow_problem *problem, int *old_tour, int *new_tour)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arrow_util_sbtsp_to_abstp_tour           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>old_tour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>new_tour</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="util_8c-source.html#l00246">246</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
+
+<p>References <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, and <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>.</p>
+
+<p>Referenced by <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6921d887eca515c1ad59629e25a0c237"></a><!-- doxytag: member="arrow.h::arrow_util_write_tour" ref="6921d887eca515c1ad59629e25a0c237" args="(arrow_problem *problem, char *comment, int *tour, FILE *out)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arrow_util_write_tour           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>comment</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>tour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *&nbsp;</td>
+          <td class="paramname"> <em>out</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="util_8c-source.html#l00227">227</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
+
+<p>References <a class="el" href="arrow_8h-source.html#l00115">arrow_problem::name</a>, and <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>.</p>
+
+<p>Referenced by <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
 
 </div>
 </div><p>
@@ -1118,14 +2999,14 @@ Used to measure timings.
 <p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>a value representing the CPU time in seconds </dd></dl>
 
-<p>Definition at line <a class="el" href="util_8c-source.html#l00034">34</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
+<p>Definition at line <a class="el" href="util_8c-source.html#l00063">63</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2bbssp_8c-source.html#l00044">arrow_bbssp_solve()</a>, and <a class="el" href="tsp_8c-source.html#l00036">arrow_tsp_exact_solve()</a>.</p>
+<p>Referenced by <a class="el" href="lib_22mb_8c-source.html#l00016">arrow_2mb_solve()</a>, <a class="el" href="lib_2bap_8c-source.html#l00067">arrow_bap_solve()</a>, <a class="el" href="lib_2bbssp_8c-source.html#l00044">arrow_bbssp_solve()</a>, <a class="el" href="lib_2bscssp_8c-source.html#l00043">arrow_bscssp_solve()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00098">arrow_btsp_solve()</a>, <a class="el" href="lib_2dcbpb_8c-source.html#l00029">arrow_dcbpb_solve()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00066">arrow_tsp_exact_solve()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, and <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 11 20:47:16 2008 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Thu Jul 3 00:09:14 2008 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

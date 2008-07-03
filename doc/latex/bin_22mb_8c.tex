@@ -1,0 +1,152 @@
+\hypertarget{bin_22mb_8c}{
+\section{bin/2mb.c File Reference}
+\label{bin_22mb_8c}\index{bin/2mb.c@{bin/2mb.c}}
+}
+2-Max Bound solver. 
+
+{\tt \#include \char`\"{}arrow.h\char`\"{}}\par
+
+
+Include dependency graph for 2mb.c:\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{bin_22mb_8c_9b58b2c4af931c8486a986c9deca40f5}{NUM\_\-OPTS}~2
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{bin_22mb_8c_0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+char $\ast$ \hyperlink{bin_22mb_8c_289c5900d90626d909f0a85d5a0ed61d}{program\_\-name}
+\item 
+char $\ast$ \hyperlink{bin_22mb_8c_a4f3a15de34c409bdec6ceacf93078ed}{input\_\-file} = NULL
+\item 
+char $\ast$ \hyperlink{bin_22mb_8c_bf4e392494984c6ef8259268eb1fe421}{xml\_\-file} = NULL
+\item 
+\hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{bin_22mb_8c_cea6a9709d519c143f30db401a0d0c72}{options} \mbox{[}NUM\_\-OPTS\mbox{]}
+\item 
+char $\ast$ \hyperlink{bin_22mb_8c_3aad16fd4bea1b9717f232ea75ad6449}{desc} = \char`\"{}2-Max Bound solver\char`\"{}
+\item 
+char $\ast$ \hyperlink{bin_22mb_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage} = \char`\"{}-i tsplib.tsp \mbox{[}\hyperlink{histogram__data_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{]} \char`\"{}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+2-Max Bound solver. 
+
+Solves the 2-max bound (2MB) on the given input file.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{bin_22mb_8c-source}{2mb.c}.
+
+\subsection{Define Documentation}
+\hypertarget{bin_22mb_8c_9b58b2c4af931c8486a986c9deca40f5}{
+\index{bin/2mb.c@{bin/2mb.c}!NUM\_\-OPTS@{NUM\_\-OPTS}}
+\index{NUM\_\-OPTS@{NUM\_\-OPTS}!bin/2mb.c@{bin/2mb.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define NUM\_\-OPTS~2}}
+\label{bin_22mb_8c_9b58b2c4af931c8486a986c9deca40f5}
+
+
+
+
+Definition at line 17 of file 2mb.c.
+
+Referenced by main().
+
+\subsection{Function Documentation}
+\hypertarget{bin_22mb_8c_0ddf1224851353fc92bfbff6f499fa97}{
+\index{bin/2mb.c@{bin/2mb.c}!main@{main}}
+\index{main@{main}!bin/2mb.c@{bin/2mb.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]})}}
+\label{bin_22mb_8c_0ddf1224851353fc92bfbff6f499fa97}
+
+
+
+
+Definition at line 30 of file 2mb.c.
+
+References arrow\_\-2mb\_\-solve(), ARROW\_\-FAILURE, arrow\_\-options\_\-parse(), arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-read(), ARROW\_\-SUCCESS, arrow\_\-util\_\-print\_\-program\_\-args(), desc, input\_\-file, NUM\_\-OPTS, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-bound\_\-result::total\_\-time, usage, and xml\_\-file.
+
+\subsection{Variable Documentation}
+\hypertarget{bin_22mb_8c_3aad16fd4bea1b9717f232ea75ad6449}{
+\index{bin/2mb.c@{bin/2mb.c}!desc@{desc}}
+\index{desc@{desc}!bin/2mb.c@{bin/2mb.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf desc} = \char`\"{}2-Max Bound solver\char`\"{}}}
+\label{bin_22mb_8c_3aad16fd4bea1b9717f232ea75ad6449}
+
+
+
+
+Definition at line 25 of file 2mb.c.
+
+Referenced by main().\hypertarget{bin_22mb_8c_a4f3a15de34c409bdec6ceacf93078ed}{
+\index{bin/2mb.c@{bin/2mb.c}!input\_\-file@{input\_\-file}}
+\index{input\_\-file@{input\_\-file}!bin/2mb.c@{bin/2mb.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf input\_\-file} = NULL}}
+\label{bin_22mb_8c_a4f3a15de34c409bdec6ceacf93078ed}
+
+
+Given input TSPLIB file 
+
+Definition at line 13 of file 2mb.c.
+
+Referenced by main(), and read\_\-args().\hypertarget{bin_22mb_8c_cea6a9709d519c143f30db401a0d0c72}{
+\index{bin/2mb.c@{bin/2mb.c}!options@{options}}
+\index{options@{options}!bin/2mb.c@{bin/2mb.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf arrow\_\-option} {\bf options}\mbox{[}NUM\_\-OPTS\mbox{]}}}
+\label{bin_22mb_8c_cea6a9709d519c143f30db401a0d0c72}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} 
+{
+    {'i', "input", "TSPLIB input file", 
+        ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE},
+    {'x', "xml", "File to write XML output to",
+        ARROW_OPTION_STRING, &xml_file, ARROW_FALSE, ARROW_TRUE}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 18 of file 2mb.c.\hypertarget{bin_22mb_8c_289c5900d90626d909f0a85d5a0ed61d}{
+\index{bin/2mb.c@{bin/2mb.c}!program\_\-name@{program\_\-name}}
+\index{program\_\-name@{program\_\-name}!bin/2mb.c@{bin/2mb.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf program\_\-name}}}
+\label{bin_22mb_8c_289c5900d90626d909f0a85d5a0ed61d}
+
+
+Program name 
+
+Definition at line 12 of file 2mb.c.
+
+Referenced by main(), print\_\-help(), print\_\-usage(), and print\_\-version().\hypertarget{bin_22mb_8c_adebe2487a2c5240ab6cd02c83add0bf}{
+\index{bin/2mb.c@{bin/2mb.c}!usage@{usage}}
+\index{usage@{usage}!bin/2mb.c@{bin/2mb.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf usage} = \char`\"{}-i tsplib.tsp \mbox{[}{\bf options}\mbox{]} \char`\"{}}}
+\label{bin_22mb_8c_adebe2487a2c5240ab6cd02c83add0bf}
+
+
+
+
+Definition at line 26 of file 2mb.c.
+
+Referenced by main().\hypertarget{bin_22mb_8c_bf4e392494984c6ef8259268eb1fe421}{
+\index{bin/2mb.c@{bin/2mb.c}!xml\_\-file@{xml\_\-file}}
+\index{xml\_\-file@{xml\_\-file}!bin/2mb.c@{bin/2mb.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf xml\_\-file} = NULL}}
+\label{bin_22mb_8c_bf4e392494984c6ef8259268eb1fe421}
+
+
+
+
+Definition at line 14 of file 2mb.c.
+
+Referenced by main().

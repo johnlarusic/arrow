@@ -1,0 +1,292 @@
+\hypertarget{abtsp_8c}{
+\section{bin/abtsp.c File Reference}
+\label{abtsp_8c}\index{bin/abtsp.c@{bin/abtsp.c}}
+}
+Asymmetric Bottleneck TSP heuristic. 
+
+{\tt \#include \char`\"{}arrow.h\char`\"{}}\par
+
+
+Include dependency graph for abtsp.c:\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{abtsp_8c_9b58b2c4af931c8486a986c9deca40f5}{NUM\_\-OPTS}~12
+\item 
+\#define \hyperlink{abtsp_8c_ceebcce8f411269df7b99e78247d7497}{SOLVE\_\-STEPS}~1
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{abtsp_8c_0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+char $\ast$ \hyperlink{abtsp_8c_a4f3a15de34c409bdec6ceacf93078ed}{input\_\-file} = NULL
+\item 
+char $\ast$ \hyperlink{abtsp_8c_bf4e392494984c6ef8259268eb1fe421}{xml\_\-file} = NULL
+\item 
+char $\ast$ \hyperlink{abtsp_8c_b818a82f867be75d7c4d92d792b0943e}{tour\_\-file} = NULL
+\item 
+int \hyperlink{abtsp_8c_e6a9db0fe5c8a0407d62dec2f7a14959}{random\_\-restarts} = -1
+\item 
+int \hyperlink{abtsp_8c_a1641a28cf3ea572a56763e84518c17b}{stall\_\-count} = -1
+\item 
+int \hyperlink{abtsp_8c_b8f057ba1ad6b7f0c46f8140b25b3467}{kicks} = -1
+\item 
+int \hyperlink{abtsp_8c_5f4aa75866b44d2dc5f30ee0175d44ff}{confirm\_\-sol} = ARROW\_\-FALSE
+\item 
+int \hyperlink{abtsp_8c_502a0aac74d070b870b1c096d9d8520d}{supress\_\-ebst} = ARROW\_\-FALSE
+\item 
+int \hyperlink{abtsp_8c_ed48edf71a0207dcdec06e399c24df88}{find\_\-short\_\-tour} = ARROW\_\-FALSE
+\item 
+int \hyperlink{abtsp_8c_ed7394fd8e0c2796b26b9654fd10fd9d}{lower\_\-bound} = -1
+\item 
+int \hyperlink{abtsp_8c_f5a34eb1d01ffd792adcadc9627ffcb8}{upper\_\-bound} = INT\_\-MAX
+\item 
+int \hyperlink{abtsp_8c_227b7ec968925f365b96a92ace419c56}{basic\_\-attempts} = ARROW\_\-DEFAULT\_\-BASIC\_\-ATTEMPTS
+\item 
+\hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{abtsp_8c_cea6a9709d519c143f30db401a0d0c72}{options} \mbox{[}NUM\_\-OPTS\mbox{]}
+\item 
+char $\ast$ \hyperlink{abtsp_8c_3aad16fd4bea1b9717f232ea75ad6449}{desc} = \char`\"{}Bottleneck traveling salesman problem (BTSP) solver\char`\"{}
+\item 
+char $\ast$ \hyperlink{abtsp_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage} = \char`\"{}-i tsplib.tsp \mbox{[}\hyperlink{histogram__data_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{]}\char`\"{}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Asymmetric Bottleneck TSP heuristic. 
+
+Runs the Bottleneck TSP heuristic on the given asymmetric input file.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{abtsp_8c-source}{abtsp.c}.
+
+\subsection{Define Documentation}
+\hypertarget{abtsp_8c_9b58b2c4af931c8486a986c9deca40f5}{
+\index{abtsp.c@{abtsp.c}!NUM\_\-OPTS@{NUM\_\-OPTS}}
+\index{NUM\_\-OPTS@{NUM\_\-OPTS}!abtsp.c@{abtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define NUM\_\-OPTS~12}}
+\label{abtsp_8c_9b58b2c4af931c8486a986c9deca40f5}
+
+
+
+
+Definition at line 26 of file abtsp.c.\hypertarget{abtsp_8c_ceebcce8f411269df7b99e78247d7497}{
+\index{abtsp.c@{abtsp.c}!SOLVE\_\-STEPS@{SOLVE\_\-STEPS}}
+\index{SOLVE\_\-STEPS@{SOLVE\_\-STEPS}!abtsp.c@{abtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define SOLVE\_\-STEPS~1}}
+\label{abtsp_8c_ceebcce8f411269df7b99e78247d7497}
+
+
+
+
+Referenced by main().
+
+\subsection{Function Documentation}
+\hypertarget{abtsp_8c_0ddf1224851353fc92bfbff6f499fa97}{
+\index{abtsp.c@{abtsp.c}!main@{main}}
+\index{main@{main}!abtsp.c@{abtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]})}}
+\label{abtsp_8c_0ddf1224851353fc92bfbff6f499fa97}
+
+
+
+
+Definition at line 61 of file abtsp.c.
+
+References arrow\_\-btsp\_\-fun\_\-basic\_\-atsp(), arrow\_\-btsp\_\-fun\_\-destruct(), arrow\_\-btsp\_\-params\_\-destruct(), arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-BASIC, arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-options\_\-parse(), arrow\_\-print\_\-error, arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-tsp\_\-lk\_\-params\_\-destruct(), arrow\_\-tsp\_\-lk\_\-params\_\-init(), arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-print\_\-program\_\-args(), arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour(), arrow\_\-util\_\-write\_\-tour(), arrow\_\-util\_\-zeit(), basic\_\-attempts, arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, confirm\_\-sol, arrow\_\-btsp\_\-params::confirm\_\-sol, arrow\_\-problem\_\-info::cost\_\-list\_\-length, desc, arrow\_\-btsp\_\-result::exact\_\-attempts, arrow\_\-btsp\_\-result::exact\_\-time, find\_\-short\_\-tour, arrow\_\-btsp\_\-params::find\_\-short\_\-tour, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-problem::get\_\-cost, input\_\-file, arrow\_\-tsp\_\-lk\_\-params::kicks, kicks, arrow\_\-tsp\_\-lk\_\-params::length\_\-bound, arrow\_\-btsp\_\-result::linkern\_\-attempts, arrow\_\-btsp\_\-result::linkern\_\-time, arrow\_\-btsp\_\-params::lower\_\-bound, lower\_\-bound, arrow\_\-problem\_\-info::max\_\-cost, arrow\_\-problem\_\-info::min\_\-cost, NUM\_\-OPTS, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-btsp\_\-result::optimal, arrow\_\-tsp\_\-lk\_\-params::random\_\-restarts, random\_\-restarts, arrow\_\-problem::size, SOLVE\_\-STEPS, arrow\_\-tsp\_\-lk\_\-params::stall\_\-count, stall\_\-count, arrow\_\-btsp\_\-params::steps, supress\_\-ebst, arrow\_\-btsp\_\-params::supress\_\-ebst, arrow\_\-problem::symmetric, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, tour\_\-file, arrow\_\-btsp\_\-result::tour\_\-length, arrow\_\-btsp\_\-params::upper\_\-bound, upper\_\-bound, usage, and xml\_\-file.
+
+\subsection{Variable Documentation}
+\hypertarget{abtsp_8c_227b7ec968925f365b96a92ace419c56}{
+\index{abtsp.c@{abtsp.c}!basic\_\-attempts@{basic\_\-attempts}}
+\index{basic\_\-attempts@{basic\_\-attempts}!abtsp.c@{abtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf basic\_\-attempts} = ARROW\_\-DEFAULT\_\-BASIC\_\-ATTEMPTS}}
+\label{abtsp_8c_227b7ec968925f365b96a92ace419c56}
+
+
+
+
+Definition at line 23 of file abtsp.c.
+
+Referenced by main().\hypertarget{abtsp_8c_5f4aa75866b44d2dc5f30ee0175d44ff}{
+\index{abtsp.c@{abtsp.c}!confirm\_\-sol@{confirm\_\-sol}}
+\index{confirm\_\-sol@{confirm\_\-sol}!abtsp.c@{abtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf confirm\_\-sol} = ARROW\_\-FALSE}}
+\label{abtsp_8c_5f4aa75866b44d2dc5f30ee0175d44ff}
+
+
+
+
+Definition at line 18 of file abtsp.c.
+
+Referenced by main().\hypertarget{abtsp_8c_3aad16fd4bea1b9717f232ea75ad6449}{
+\index{abtsp.c@{abtsp.c}!desc@{desc}}
+\index{desc@{desc}!abtsp.c@{abtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf desc} = \char`\"{}Bottleneck traveling salesman problem (BTSP) solver\char`\"{}}}
+\label{abtsp_8c_3aad16fd4bea1b9717f232ea75ad6449}
+
+
+
+
+Definition at line 56 of file abtsp.c.\hypertarget{abtsp_8c_ed48edf71a0207dcdec06e399c24df88}{
+\index{abtsp.c@{abtsp.c}!find\_\-short\_\-tour@{find\_\-short\_\-tour}}
+\index{find\_\-short\_\-tour@{find\_\-short\_\-tour}!abtsp.c@{abtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf find\_\-short\_\-tour} = ARROW\_\-FALSE}}
+\label{abtsp_8c_ed48edf71a0207dcdec06e399c24df88}
+
+
+
+
+Definition at line 20 of file abtsp.c.
+
+Referenced by main().\hypertarget{abtsp_8c_a4f3a15de34c409bdec6ceacf93078ed}{
+\index{abtsp.c@{abtsp.c}!input\_\-file@{input\_\-file}}
+\index{input\_\-file@{input\_\-file}!abtsp.c@{abtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf input\_\-file} = NULL}}
+\label{abtsp_8c_a4f3a15de34c409bdec6ceacf93078ed}
+
+
+
+
+Definition at line 12 of file abtsp.c.\hypertarget{abtsp_8c_b8f057ba1ad6b7f0c46f8140b25b3467}{
+\index{abtsp.c@{abtsp.c}!kicks@{kicks}}
+\index{kicks@{kicks}!abtsp.c@{abtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf kicks} = -1}}
+\label{abtsp_8c_b8f057ba1ad6b7f0c46f8140b25b3467}
+
+
+
+
+Definition at line 17 of file abtsp.c.
+
+Referenced by main(), and read\_\-args().\hypertarget{abtsp_8c_ed7394fd8e0c2796b26b9654fd10fd9d}{
+\index{abtsp.c@{abtsp.c}!lower\_\-bound@{lower\_\-bound}}
+\index{lower\_\-bound@{lower\_\-bound}!abtsp.c@{abtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf lower\_\-bound} = -1}}
+\label{abtsp_8c_ed7394fd8e0c2796b26b9654fd10fd9d}
+
+
+
+
+Definition at line 21 of file abtsp.c.
+
+Referenced by main().\hypertarget{abtsp_8c_cea6a9709d519c143f30db401a0d0c72}{
+\index{abtsp.c@{abtsp.c}!options@{options}}
+\index{options@{options}!abtsp.c@{abtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf arrow\_\-option} {\bf options}\mbox{[}NUM\_\-OPTS\mbox{]}}}
+\label{abtsp_8c_cea6a9709d519c143f30db401a0d0c72}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} 
+{
+    {'i', "input", "TSPLIB input file", 
+        ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE},
+    {'x', "xml", "file to write XML output to",
+        ARROW_OPTION_STRING, &xml_file, ARROW_FALSE, ARROW_TRUE},
+    {'T', "tour", "file to write tour to",
+        ARROW_OPTION_STRING, &tour_file, ARROW_FALSE, ARROW_TRUE},
+        
+    {'r', "restarts", "number of random restarts",
+        ARROW_OPTION_INT, &random_restarts, ARROW_FALSE, ARROW_TRUE},
+    {'s', "stall-count", "max number of 4-swaps w/o progress",
+        ARROW_OPTION_INT, &stall_count, ARROW_FALSE, ARROW_TRUE},
+    {'k', "kicks", "number of 4-swap kicks",
+        ARROW_OPTION_INT, &kicks, ARROW_FALSE, ARROW_TRUE},
+    {'c', "confirm-solution", "confirm solution with exact solver",
+        ARROW_OPTION_INT, &confirm_sol, ARROW_FALSE, ARROW_FALSE},
+    {'e', "supress-ebst", "supress binary search",
+        ARROW_OPTION_INT, &supress_ebst, ARROW_FALSE, ARROW_FALSE},
+    {'S', "find-short-tour", "finds a (relatively) short BTSP tour",
+        ARROW_OPTION_INT, &find_short_tour, ARROW_FALSE, ARROW_FALSE},
+        
+    {'l', "lower-bound", "initial lower bound",
+        ARROW_OPTION_INT, &lower_bound, ARROW_FALSE, ARROW_TRUE},
+    {'u', "upper-bound", "initial upper bound",
+        ARROW_OPTION_INT, &upper_bound, ARROW_FALSE, ARROW_TRUE},
+    {'a', "basic-attempts", "number of basic attempts",
+        ARROW_OPTION_INT, &basic_attempts, ARROW_FALSE, ARROW_TRUE}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 27 of file abtsp.c.\hypertarget{abtsp_8c_e6a9db0fe5c8a0407d62dec2f7a14959}{
+\index{abtsp.c@{abtsp.c}!random\_\-restarts@{random\_\-restarts}}
+\index{random\_\-restarts@{random\_\-restarts}!abtsp.c@{abtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf random\_\-restarts} = -1}}
+\label{abtsp_8c_e6a9db0fe5c8a0407d62dec2f7a14959}
+
+
+
+
+Definition at line 15 of file abtsp.c.
+
+Referenced by main(), and read\_\-args().\hypertarget{abtsp_8c_a1641a28cf3ea572a56763e84518c17b}{
+\index{abtsp.c@{abtsp.c}!stall\_\-count@{stall\_\-count}}
+\index{stall\_\-count@{stall\_\-count}!abtsp.c@{abtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf stall\_\-count} = -1}}
+\label{abtsp_8c_a1641a28cf3ea572a56763e84518c17b}
+
+
+
+
+Definition at line 16 of file abtsp.c.
+
+Referenced by main(), and read\_\-args().\hypertarget{abtsp_8c_502a0aac74d070b870b1c096d9d8520d}{
+\index{abtsp.c@{abtsp.c}!supress\_\-ebst@{supress\_\-ebst}}
+\index{supress\_\-ebst@{supress\_\-ebst}!abtsp.c@{abtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf supress\_\-ebst} = ARROW\_\-FALSE}}
+\label{abtsp_8c_502a0aac74d070b870b1c096d9d8520d}
+
+
+
+
+Definition at line 19 of file abtsp.c.
+
+Referenced by main().\hypertarget{abtsp_8c_b818a82f867be75d7c4d92d792b0943e}{
+\index{abtsp.c@{abtsp.c}!tour\_\-file@{tour\_\-file}}
+\index{tour\_\-file@{tour\_\-file}!abtsp.c@{abtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf tour\_\-file} = NULL}}
+\label{abtsp_8c_b818a82f867be75d7c4d92d792b0943e}
+
+
+
+
+Definition at line 14 of file abtsp.c.
+
+Referenced by main(), and print\_\-xml\_\-output().\hypertarget{abtsp_8c_f5a34eb1d01ffd792adcadc9627ffcb8}{
+\index{abtsp.c@{abtsp.c}!upper\_\-bound@{upper\_\-bound}}
+\index{upper\_\-bound@{upper\_\-bound}!abtsp.c@{abtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf upper\_\-bound} = INT\_\-MAX}}
+\label{abtsp_8c_f5a34eb1d01ffd792adcadc9627ffcb8}
+
+
+
+
+Definition at line 22 of file abtsp.c.
+
+Referenced by arrow\_\-btsp\_\-solve(), and main().\hypertarget{abtsp_8c_adebe2487a2c5240ab6cd02c83add0bf}{
+\index{abtsp.c@{abtsp.c}!usage@{usage}}
+\index{usage@{usage}!abtsp.c@{abtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf usage} = \char`\"{}-i tsplib.tsp \mbox{[}{\bf options}\mbox{]}\char`\"{}}}
+\label{abtsp_8c_adebe2487a2c5240ab6cd02c83add0bf}
+
+
+
+
+Definition at line 57 of file abtsp.c.\hypertarget{abtsp_8c_bf4e392494984c6ef8259268eb1fe421}{
+\index{abtsp.c@{abtsp.c}!xml\_\-file@{xml\_\-file}}
+\index{xml\_\-file@{xml\_\-file}!abtsp.c@{abtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf xml\_\-file} = NULL}}
+\label{abtsp_8c_bf4e392494984c6ef8259268eb1fe421}
+
+
+
+
+Definition at line 13 of file abtsp.c.

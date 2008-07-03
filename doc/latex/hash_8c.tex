@@ -1,0 +1,127 @@
+\hypertarget{hash_8c}{
+\section{bin/hash.c File Reference}
+\label{hash_8c}\index{bin/hash.c@{bin/hash.c}}
+}
+Hash testing. 
+
+{\tt \#include \char`\"{}arrow.h\char`\"{}}\par
+
+
+Include dependency graph for hash.c:\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{hash_8c_9b58b2c4af931c8486a986c9deca40f5}{NUM\_\-OPTS}~1
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{hash_8c_0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+char $\ast$ \hyperlink{hash_8c_289c5900d90626d909f0a85d5a0ed61d}{program\_\-name}
+\item 
+char $\ast$ \hyperlink{hash_8c_a4f3a15de34c409bdec6ceacf93078ed}{input\_\-file} = NULL
+\item 
+\hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{hash_8c_cea6a9709d519c143f30db401a0d0c72}{options} \mbox{[}NUM\_\-OPTS\mbox{]}
+\item 
+char $\ast$ \hyperlink{hash_8c_3aad16fd4bea1b9717f232ea75ad6449}{desc} = \char`\"{}Tests the hashing functions.\char`\"{}
+\item 
+char $\ast$ \hyperlink{hash_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage} = \char`\"{}-i tsplib.tsp\char`\"{}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Hash testing. 
+
+Tests hashing functions.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{hash_8c-source}{hash.c}.
+
+\subsection{Define Documentation}
+\hypertarget{hash_8c_9b58b2c4af931c8486a986c9deca40f5}{
+\index{hash.c@{hash.c}!NUM\_\-OPTS@{NUM\_\-OPTS}}
+\index{NUM\_\-OPTS@{NUM\_\-OPTS}!hash.c@{hash.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define NUM\_\-OPTS~1}}
+\label{hash_8c_9b58b2c4af931c8486a986c9deca40f5}
+
+
+
+
+Definition at line 16 of file hash.c.
+
+\subsection{Function Documentation}
+\hypertarget{hash_8c_0ddf1224851353fc92bfbff6f499fa97}{
+\index{hash.c@{hash.c}!main@{main}}
+\index{main@{main}!hash.c@{hash.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]})}}
+\label{hash_8c_0ddf1224851353fc92bfbff6f499fa97}
+
+
+
+
+Definition at line 27 of file hash.c.
+
+References arrow\_\-options\_\-parse(), arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-destruct(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, desc, arrow\_\-problem::get\_\-cost, input\_\-file, NUM\_\-OPTS, arrow\_\-problem::size, and usage.
+
+\subsection{Variable Documentation}
+\hypertarget{hash_8c_3aad16fd4bea1b9717f232ea75ad6449}{
+\index{hash.c@{hash.c}!desc@{desc}}
+\index{desc@{desc}!hash.c@{hash.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf desc} = \char`\"{}Tests the hashing functions.\char`\"{}}}
+\label{hash_8c_3aad16fd4bea1b9717f232ea75ad6449}
+
+
+
+
+Definition at line 22 of file hash.c.\hypertarget{hash_8c_a4f3a15de34c409bdec6ceacf93078ed}{
+\index{hash.c@{hash.c}!input\_\-file@{input\_\-file}}
+\index{input\_\-file@{input\_\-file}!hash.c@{hash.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf input\_\-file} = NULL}}
+\label{hash_8c_a4f3a15de34c409bdec6ceacf93078ed}
+
+
+Given input TSPLIB file 
+
+Definition at line 13 of file hash.c.\hypertarget{hash_8c_cea6a9709d519c143f30db401a0d0c72}{
+\index{hash.c@{hash.c}!options@{options}}
+\index{options@{options}!hash.c@{hash.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf arrow\_\-option} {\bf options}\mbox{[}NUM\_\-OPTS\mbox{]}}}
+\label{hash_8c_cea6a9709d519c143f30db401a0d0c72}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} 
+{
+    {'i', "input", "TSPLIB input file", 
+        ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 17 of file hash.c.\hypertarget{hash_8c_289c5900d90626d909f0a85d5a0ed61d}{
+\index{hash.c@{hash.c}!program\_\-name@{program\_\-name}}
+\index{program\_\-name@{program\_\-name}!hash.c@{hash.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf program\_\-name}}}
+\label{hash_8c_289c5900d90626d909f0a85d5a0ed61d}
+
+
+Program name 
+
+Definition at line 12 of file hash.c.\hypertarget{hash_8c_adebe2487a2c5240ab6cd02c83add0bf}{
+\index{hash.c@{hash.c}!usage@{usage}}
+\index{usage@{usage}!hash.c@{hash.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf usage} = \char`\"{}-i tsplib.tsp\char`\"{}}}
+\label{hash_8c_adebe2487a2c5240ab6cd02c83add0bf}
+
+
+
+
+Definition at line 23 of file hash.c.

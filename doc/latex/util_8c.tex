@@ -7,18 +7,13 @@ Useful utility functions.
 {\tt \#include \char`\"{}arrow.h\char`\"{}}\par
 
 
-Include dependency graph for util.c:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=257pt]{util_8c__incl}
-\end{center}
-\end{figure}
-\subsection*{Functions}
+Include dependency graph for util.c:\subsection*{Functions}
 \begin{CompactItemize}
 \item 
 int \hyperlink{util_8c_4aea68dfc908d08522baccb148251ae7}{arrow\_\-util\_\-create\_\-int\_\-array} (int size, int $\ast$$\ast$array)
 \begin{CompactList}\small\item\em Creates an integer array. \item\end{CompactList}\item 
+int \hyperlink{util_8c_2801c2cc414251180545168ba9abe911}{arrow\_\-util\_\-create\_\-int\_\-matrix} (int rows, int cols, int $\ast$$\ast$$\ast$matrix, int $\ast$$\ast$space)
+\begin{CompactList}\small\item\em Creates a full integer matrix. \item\end{CompactList}\item 
 void \hyperlink{util_8c_3bd7042ebd6e97b5790a8708c91be5b4}{arrow\_\-util\_\-print\_\-error} (const char $\ast$file\_\-name, int line\_\-num, const char $\ast$message)
 \begin{CompactList}\small\item\em Prints an error message to stderr with consistent formatting. \item\end{CompactList}\item 
 double \hyperlink{util_8c_05b2e96c9991c51368c1f8d5a77d3ccf}{arrow\_\-util\_\-zeit} ()
@@ -26,7 +21,27 @@ double \hyperlink{util_8c_05b2e96c9991c51368c1f8d5a77d3ccf}{arrow\_\-util\_\-zei
 void \hyperlink{util_8c_8a9cef270a8d9d4fb22483dc986aa792}{arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file} (const char $\ast$filename, int $\ast$old\_\-stream)
 \begin{CompactList}\small\item\em Redirects STDOUT stream to a file (can be used to completely surpress output by directing to /dev/null). \item\end{CompactList}\item 
 void \hyperlink{util_8c_65b9ba02b0c557fe9b15f5315a6953db}{arrow\_\-util\_\-restore\_\-stdout} (int old\_\-stream)
-\begin{CompactList}\small\item\em Restores STDOUT stream that's been redirected. \item\end{CompactList}\end{CompactItemize}
+\begin{CompactList}\small\item\em Restores STDOUT stream that's been redirected. \item\end{CompactList}\item 
+void \hyperlink{util_8c_b2e3326bacca581ca01013678d664cdb}{arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy} (CCdatagroup $\ast$from, CCdatagroup $\ast$to)
+\begin{CompactList}\small\item\em Makes a shallow copy of the Concorde CCdatagroup structure. \item\end{CompactList}\item 
+int \hyperlink{util_8c_3052203501efe0814bbe98548394b978}{arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix} (int size, CCdatagroup $\ast$dat)
+\begin{CompactList}\small\item\em Initializes an upper-diagonal matrix norm structure for Concorde that is ready to be filled in with values. \item\end{CompactList}\item 
+int \hyperlink{util_8c_7a32a3f10516726b76ba6f87d96d2903}{arrow\_\-util\_\-binary\_\-search} (int $\ast$array, int size, int element, int $\ast$pos)
+\begin{CompactList}\small\item\em Performs a binary search to find the wanted element in a sorted integer array. \item\end{CompactList}\item 
+int \hyperlink{util_8c_f9436128a70bfe493e200175d7eaf93b}{arrow\_\-util\_\-regex\_\-match} (char $\ast$string, char $\ast$pattern)
+\begin{CompactList}\small\item\em Determines if the given string turns up a match for the given regular expression pattern. \item\end{CompactList}\item 
+void \hyperlink{util_8c_0bf303aee0600136e1720be7e6c60021}{arrow\_\-util\_\-print\_\-program\_\-args} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, FILE $\ast$out)
+\begin{CompactList}\small\item\em Prints out the given program arguments to the specified file. \item\end{CompactList}\item 
+void \hyperlink{util_8c_448b71093a175c0f40f9cbe612b1c709}{arrow\_\-util\_\-random\_\-seed} (int seed)
+\begin{CompactList}\small\item\em Seeds the random number generator. Pass a value of 0 to seed with the current time. \item\end{CompactList}\item 
+int \hyperlink{util_8c_f2635504f3a222a0ced821917131c44c}{arrow\_\-util\_\-random} ()
+\begin{CompactList}\small\item\em Returns a random number between 0 and RAND\_\-MAX (normally, RAND\_\-MAX = INT\_\-MAX). \item\end{CompactList}\item 
+int \hyperlink{util_8c_529c872ac72eaf0046ad149abf7b6179}{arrow\_\-util\_\-random\_\-between} (int min, int max)
+\begin{CompactList}\small\item\em Returns a random number between min and max. \item\end{CompactList}\item 
+void \hyperlink{util_8c_6921d887eca515c1ad59629e25a0c237}{arrow\_\-util\_\-write\_\-tour} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, char $\ast$comment, int $\ast$tour, FILE $\ast$out)
+\item 
+void \hyperlink{util_8c_8a7327192a37674e2559d82448a565b1}{arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int $\ast$old\_\-tour, int $\ast$new\_\-tour)
+\end{CompactItemize}
 
 
 \subsection{Detailed Description}
@@ -41,7 +56,63 @@ Useful utility functions that have general purpose throughout the library.
 Definition in file \hyperlink{util_8c-source}{util.c}.
 
 \subsection{Function Documentation}
-\hypertarget{util_8c_4aea68dfc908d08522baccb148251ae7}{
+\hypertarget{util_8c_7a32a3f10516726b76ba6f87d96d2903}{
+\index{util.c@{util.c}!arrow\_\-util\_\-binary\_\-search@{arrow\_\-util\_\-binary\_\-search}}
+\index{arrow\_\-util\_\-binary\_\-search@{arrow\_\-util\_\-binary\_\-search}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-binary\_\-search (int $\ast$ {\em array}, \/  int {\em size}, \/  int {\em element}, \/  int $\ast$ {\em pos})}}
+\label{util_8c_7a32a3f10516726b76ba6f87d96d2903}
+
+
+Performs a binary search to find the wanted element in a sorted integer array. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em array}]\mbox{[}in\mbox{]} the array to search (note: must be sorted in non-increasing order) \item[{\em size}]\mbox{[}in\mbox{]} size of the array \item[{\em element}]\mbox{[}in\mbox{]} the element to find in the array \item[{\em pos}]\mbox{[}out\mbox{]} the index where the element can be found in the array \end{description}
+\end{Desc}
+
+
+Definition at line 145 of file util.c.
+
+References ARROW\_\-FAILURE, and ARROW\_\-SUCCESS.
+
+Referenced by arrow\_\-btsp\_\-solve(), and constrained\_\-shake\_\-deep\_\-apply().\hypertarget{util_8c_3052203501efe0814bbe98548394b978}{
+\index{util.c@{util.c}!arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix@{arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix}}
+\index{arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix@{arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix (int {\em size}, \/  CCdatagroup $\ast$ {\em dat})}}
+\label{util_8c_3052203501efe0814bbe98548394b978}
+
+
+Initializes an upper-diagonal matrix norm structure for Concorde that is ready to be filled in with values. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em size}]\mbox{[}in\mbox{]} the number of cities/vertices \item[{\em dat}]\mbox{[}out\mbox{]} the CCdatagroup structure to create \end{description}
+\end{Desc}
+
+
+Definition at line 115 of file util.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, and ARROW\_\-SUCCESS.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-apply(), and arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp().\hypertarget{util_8c_b2e3326bacca581ca01013678d664cdb}{
+\index{util.c@{util.c}!arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy@{arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy}}
+\index{arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy@{arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy (CCdatagroup $\ast$ {\em from}, \/  CCdatagroup $\ast$ {\em to})}}
+\label{util_8c_b2e3326bacca581ca01013678d664cdb}
+
+
+Makes a shallow copy of the Concorde CCdatagroup structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em from}]\mbox{[}in\mbox{]} the CCdatagroup structure to copy from  to \mbox{[}out\mbox{]} the CCdatagroup structure to copy to \end{description}
+\end{Desc}
+
+
+Definition at line 89 of file util.c.\hypertarget{util_8c_4aea68dfc908d08522baccb148251ae7}{
 \index{util.c@{util.c}!arrow\_\-util\_\-create\_\-int\_\-array@{arrow\_\-util\_\-create\_\-int\_\-array}}
 \index{arrow\_\-util\_\-create\_\-int\_\-array@{arrow\_\-util\_\-create\_\-int\_\-array}!util.c@{util.c}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-create\_\-int\_\-array (int {\em size}, \/  int $\ast$$\ast$ {\em array})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
@@ -59,9 +130,29 @@ Creates an integer array.
 
 Definition at line 15 of file util.c.
 
-References ARROW\_\-ERROR\_\-FATAL, arrow\_\-print\_\-error, and ARROW\_\-SUCCESS.
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, and ARROW\_\-SUCCESS.
 
-Referenced by arrow\_\-bbssp\_\-biconnected(), arrow\_\-bintree\_\-to\_\-array(), and arrow\_\-tsp\_\-result\_\-init().\hypertarget{util_8c_3bd7042ebd6e97b5790a8708c91be5b4}{
+Referenced by arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-biconnected(), arrow\_\-bintree\_\-to\_\-array(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-util\_\-create\_\-int\_\-matrix(), main(), and strongly\_\-connected().\hypertarget{util_8c_2801c2cc414251180545168ba9abe911}{
+\index{util.c@{util.c}!arrow\_\-util\_\-create\_\-int\_\-matrix@{arrow\_\-util\_\-create\_\-int\_\-matrix}}
+\index{arrow\_\-util\_\-create\_\-int\_\-matrix@{arrow\_\-util\_\-create\_\-int\_\-matrix}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-create\_\-int\_\-matrix (int {\em rows}, \/  int {\em cols}, \/  int $\ast$$\ast$$\ast$ {\em matrix}, \/  int $\ast$$\ast$ {\em space})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{util_8c_2801c2cc414251180545168ba9abe911}
+
+
+Creates a full integer matrix. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em rows}]\mbox{[}in\mbox{]} number of rows \item[{\em cols}]\mbox{[}in\mbox{]} number of columns \item[{\em matrix}]\mbox{[}out\mbox{]} pointer to matrix that will be created \item[{\em space}]\mbox{[}out\mbox{]} pointer to matrix space that will be created \end{description}
+\end{Desc}
+
+
+Definition at line 27 of file util.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, and arrow\_\-util\_\-create\_\-int\_\-array().
+
+Referenced by arrow\_\-bap\_\-solve(), and arrow\_\-dcbpb\_\-solve().\hypertarget{util_8c_3bd7042ebd6e97b5790a8708c91be5b4}{
 \index{util.c@{util.c}!arrow\_\-util\_\-print\_\-error@{arrow\_\-util\_\-print\_\-error}}
 \index{arrow\_\-util\_\-print\_\-error@{arrow\_\-util\_\-print\_\-error}!util.c@{util.c}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-print\_\-error (const char $\ast$ {\em file\_\-name}, \/  int {\em line\_\-num}, \/  const char $\ast$ {\em message})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
@@ -77,7 +168,76 @@ Prints an error message to stderr with consistent formatting.
 \end{Desc}
 
 
-Definition at line 27 of file util.c.\hypertarget{util_8c_8a9cef270a8d9d4fb22483dc986aa792}{
+Definition at line 56 of file util.c.\hypertarget{util_8c_0bf303aee0600136e1720be7e6c60021}{
+\index{util.c@{util.c}!arrow\_\-util\_\-print\_\-program\_\-args@{arrow\_\-util\_\-print\_\-program\_\-args}}
+\index{arrow\_\-util\_\-print\_\-program\_\-args@{arrow\_\-util\_\-print\_\-program\_\-args}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-print\_\-program\_\-args (int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]}, \/  FILE $\ast$ {\em out})}}
+\label{util_8c_0bf303aee0600136e1720be7e6c60021}
+
+
+Prints out the given program arguments to the specified file. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em argc}]\mbox{[}in\mbox{]} the number of arguments \item[{\em argv}]\mbox{[}in\mbox{]} the program arugment array \item[{\em out}]\mbox{[}in\mbox{]} the file handle to print out to \end{description}
+\end{Desc}
+
+
+Definition at line 195 of file util.c.
+
+Referenced by main().\hypertarget{util_8c_f2635504f3a222a0ced821917131c44c}{
+\index{util.c@{util.c}!arrow\_\-util\_\-random@{arrow\_\-util\_\-random}}
+\index{arrow\_\-util\_\-random@{arrow\_\-util\_\-random}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-random ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{util_8c_f2635504f3a222a0ced821917131c44c}
+
+
+Returns a random number between 0 and RAND\_\-MAX (normally, RAND\_\-MAX = INT\_\-MAX). 
+
+\begin{Desc}
+\item[Returns:]a random integer. \end{Desc}
+
+
+Definition at line 215 of file util.c.\hypertarget{util_8c_529c872ac72eaf0046ad149abf7b6179}{
+\index{util.c@{util.c}!arrow\_\-util\_\-random\_\-between@{arrow\_\-util\_\-random\_\-between}}
+\index{arrow\_\-util\_\-random\_\-between@{arrow\_\-util\_\-random\_\-between}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-random\_\-between (int {\em min}, \/  int {\em max})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{util_8c_529c872ac72eaf0046ad149abf7b6179}
+
+
+Returns a random number between min and max. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em min}]\mbox{[}in\mbox{]} the minimum random number to return \item[{\em max}]\mbox{[}in\mbox{]} the maximum random number to return \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a random integer in the range \mbox{[}min, max\mbox{]} \end{Desc}
+
+
+Definition at line 221 of file util.c.
+
+Referenced by constrained\_\-shake\_\-deep\_\-apply().\hypertarget{util_8c_448b71093a175c0f40f9cbe612b1c709}{
+\index{util.c@{util.c}!arrow\_\-util\_\-random\_\-seed@{arrow\_\-util\_\-random\_\-seed}}
+\index{arrow\_\-util\_\-random\_\-seed@{arrow\_\-util\_\-random\_\-seed}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-random\_\-seed (int {\em seed})}}
+\label{util_8c_448b71093a175c0f40f9cbe612b1c709}
+
+
+Seeds the random number generator. Pass a value of 0 to seed with the current time. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em seed}]\mbox{[}in\mbox{]} the random number seed. \end{description}
+\end{Desc}
+
+
+Definition at line 206 of file util.c.
+
+Referenced by main().\hypertarget{util_8c_8a9cef270a8d9d4fb22483dc986aa792}{
 \index{util.c@{util.c}!arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file@{arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file}}
 \index{arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file@{arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file}!util.c@{util.c}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file (const char $\ast$ {\em filename}, \/  int $\ast$ {\em old\_\-stream})}}
@@ -93,9 +253,31 @@ Redirects STDOUT stream to a file (can be used to completely surpress output by 
 \end{Desc}
 
 
-Definition at line 40 of file util.c.
+Definition at line 69 of file util.c.
 
-Referenced by main().\hypertarget{util_8c_65b9ba02b0c557fe9b15f5315a6953db}{
+Referenced by main().\hypertarget{util_8c_f9436128a70bfe493e200175d7eaf93b}{
+\index{util.c@{util.c}!arrow\_\-util\_\-regex\_\-match@{arrow\_\-util\_\-regex\_\-match}}
+\index{arrow\_\-util\_\-regex\_\-match@{arrow\_\-util\_\-regex\_\-match}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-regex\_\-match (char $\ast$ {\em string}, \/  char $\ast$ {\em pattern})}}
+\label{util_8c_f9436128a70bfe493e200175d7eaf93b}
+
+
+Determines if the given string turns up a match for the given regular expression pattern. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em string}]\mbox{[}in\mbox{]} the string to match against \item[{\em pattern}]\mbox{[}in\mbox{]} the regular expression pattern to match \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]ARROW\_\-TRUE if a match is found, ARROW\_\-FALSE if not. \end{Desc}
+
+
+Definition at line 177 of file util.c.
+
+References ARROW\_\-FALSE, and ARROW\_\-TRUE.
+
+Referenced by is\_\-asymmetric(), and is\_\-symmetric().\hypertarget{util_8c_65b9ba02b0c557fe9b15f5315a6953db}{
 \index{util.c@{util.c}!arrow\_\-util\_\-restore\_\-stdout@{arrow\_\-util\_\-restore\_\-stdout}}
 \index{arrow\_\-util\_\-restore\_\-stdout@{arrow\_\-util\_\-restore\_\-stdout}!util.c@{util.c}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-restore\_\-stdout (int {\em old\_\-stream})}}
@@ -111,7 +293,33 @@ Restores STDOUT stream that's been redirected.
 \end{Desc}
 
 
-Definition at line 49 of file util.c.
+Definition at line 78 of file util.c.
+
+Referenced by main().\hypertarget{util_8c_8a7327192a37674e2559d82448a565b1}{
+\index{util.c@{util.c}!arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour@{arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour}}
+\index{arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour@{arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int $\ast$ {\em old\_\-tour}, \/  int $\ast$ {\em new\_\-tour})}}
+\label{util_8c_8a7327192a37674e2559d82448a565b1}
+
+
+
+
+Definition at line 246 of file util.c.
+
+References arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
+
+Referenced by main().\hypertarget{util_8c_6921d887eca515c1ad59629e25a0c237}{
+\index{util.c@{util.c}!arrow\_\-util\_\-write\_\-tour@{arrow\_\-util\_\-write\_\-tour}}
+\index{arrow\_\-util\_\-write\_\-tour@{arrow\_\-util\_\-write\_\-tour}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-write\_\-tour ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  char $\ast$ {\em comment}, \/  int $\ast$ {\em tour}, \/  FILE $\ast$ {\em out})}}
+\label{util_8c_6921d887eca515c1ad59629e25a0c237}
+
+
+
+
+Definition at line 227 of file util.c.
+
+References arrow\_\-problem::name, and arrow\_\-problem::size.
 
 Referenced by main().\hypertarget{util_8c_05b2e96c9991c51368c1f8d5a77d3ccf}{
 \index{util.c@{util.c}!arrow\_\-util\_\-zeit@{arrow\_\-util\_\-zeit}}
@@ -126,6 +334,6 @@ Used to measure timings.
 \item[Returns:]a value representing the CPU time in seconds \end{Desc}
 
 
-Definition at line 34 of file util.c.
+Definition at line 63 of file util.c.
 
-Referenced by arrow\_\-bbssp\_\-solve(), and arrow\_\-tsp\_\-exact\_\-solve().
+Referenced by arrow\_\-2mb\_\-solve(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-tsp\_\-lk\_\-solve(), and main().

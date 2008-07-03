@@ -10,6 +10,8 @@ LK algorithm parameters.
 \subsection*{Data Fields}
 \begin{CompactItemize}
 \item 
+int \hyperlink{structarrow__tsp__lk__params_ad3822d8c0e5d78b09618dbf716c3a4a}{random\_\-restarts}
+\item 
 int \hyperlink{structarrow__tsp__lk__params_ec5d500e1f1d7dabbbe0d1aae2abfcf8}{stall\_\-count}
 \item 
 int \hyperlink{structarrow__tsp__lk__params_9744a2fb89bca6b678fec9a6a17255ea}{kicks}
@@ -27,10 +29,21 @@ int $\ast$ \hyperlink{structarrow__tsp__lk__params_1684519ac0bb6e529707b59f6cd7d
 \subsection{Detailed Description}
 LK algorithm parameters. 
 
-Definition at line 227 of file arrow.h.
+Definition at line 142 of file arrow.h.
 
 \subsection{Field Documentation}
-\hypertarget{structarrow__tsp__lk__params_ec5d500e1f1d7dabbbe0d1aae2abfcf8}{
+\hypertarget{structarrow__tsp__lk__params_ad3822d8c0e5d78b09618dbf716c3a4a}{
+\index{arrow\_\-tsp\_\-lk\_\-params@{arrow\_\-tsp\_\-lk\_\-params}!random\_\-restarts@{random\_\-restarts}}
+\index{random\_\-restarts@{random\_\-restarts}!arrow_tsp_lk_params@{arrow\_\-tsp\_\-lk\_\-params}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-tsp\_\-lk\_\-params::random\_\-restarts}}}
+\label{structarrow__tsp__lk__params_ad3822d8c0e5d78b09618dbf716c3a4a}
+
+
+the number of random restarts to perform 
+
+Definition at line 144 of file arrow.h.
+
+Referenced by arrow\_\-tsp\_\-lk\_\-params\_\-init(), arrow\_\-tsp\_\-lk\_\-solve(), and main().\hypertarget{structarrow__tsp__lk__params_ec5d500e1f1d7dabbbe0d1aae2abfcf8}{
 \index{arrow\_\-tsp\_\-lk\_\-params@{arrow\_\-tsp\_\-lk\_\-params}!stall\_\-count@{stall\_\-count}}
 \index{stall\_\-count@{stall\_\-count}!arrow_tsp_lk_params@{arrow\_\-tsp\_\-lk\_\-params}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-tsp\_\-lk\_\-params::stall\_\-count}}}
@@ -39,7 +52,9 @@ Definition at line 227 of file arrow.h.
 
 the max number of 4-swap kicks to perform without making progress 
 
-Definition at line 229 of file arrow.h.\hypertarget{structarrow__tsp__lk__params_9744a2fb89bca6b678fec9a6a17255ea}{
+Definition at line 145 of file arrow.h.
+
+Referenced by arrow\_\-tsp\_\-lk\_\-params\_\-init(), arrow\_\-tsp\_\-lk\_\-solve(), and main().\hypertarget{structarrow__tsp__lk__params_9744a2fb89bca6b678fec9a6a17255ea}{
 \index{arrow\_\-tsp\_\-lk\_\-params@{arrow\_\-tsp\_\-lk\_\-params}!kicks@{kicks}}
 \index{kicks@{kicks}!arrow_tsp_lk_params@{arrow\_\-tsp\_\-lk\_\-params}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-tsp\_\-lk\_\-params::kicks}}}
@@ -48,7 +63,9 @@ Definition at line 229 of file arrow.h.\hypertarget{structarrow__tsp__lk__params
 
 the number of 4-swap kicks to perform 
 
-Definition at line 231 of file arrow.h.\hypertarget{structarrow__tsp__lk__params_5b724dc268faa478b5b3e14c19abdc2a}{
+Definition at line 147 of file arrow.h.
+
+Referenced by arrow\_\-tsp\_\-lk\_\-params\_\-init(), arrow\_\-tsp\_\-lk\_\-solve(), and main().\hypertarget{structarrow__tsp__lk__params_5b724dc268faa478b5b3e14c19abdc2a}{
 \index{arrow\_\-tsp\_\-lk\_\-params@{arrow\_\-tsp\_\-lk\_\-params}!kick\_\-type@{kick\_\-type}}
 \index{kick\_\-type@{kick\_\-type}!arrow_tsp_lk_params@{arrow\_\-tsp\_\-lk\_\-params}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-tsp\_\-lk\_\-params::kick\_\-type}}}
@@ -57,7 +74,9 @@ Definition at line 231 of file arrow.h.\hypertarget{structarrow__tsp__lk__params
 
 the type of kick: one of CC\_\-LK\_\-RANDOM\_\-KICK, CC\_\-LK\_\-GEOMETRIC\_\-KICK, or CC\_\-LK\_\-CLOSE\_\-KICK; see Concorde documentation for more info 
 
-Definition at line 232 of file arrow.h.\hypertarget{structarrow__tsp__lk__params_22355808165edb6033ca771b88917cf5}{
+Definition at line 148 of file arrow.h.
+
+Referenced by arrow\_\-tsp\_\-lk\_\-params\_\-init(), and arrow\_\-tsp\_\-lk\_\-solve().\hypertarget{structarrow__tsp__lk__params_22355808165edb6033ca771b88917cf5}{
 \index{arrow\_\-tsp\_\-lk\_\-params@{arrow\_\-tsp\_\-lk\_\-params}!time\_\-bound@{time\_\-bound}}
 \index{time\_\-bound@{time\_\-bound}!arrow_tsp_lk_params@{arrow\_\-tsp\_\-lk\_\-params}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}double {\bf arrow\_\-tsp\_\-lk\_\-params::time\_\-bound}}}
@@ -66,7 +85,9 @@ Definition at line 232 of file arrow.h.\hypertarget{structarrow__tsp__lk__params
 
 stop after this running time reached; set to 0 to have no time bound, must be positive 
 
-Definition at line 235 of file arrow.h.\hypertarget{structarrow__tsp__lk__params_36fb446a90e9b4c76702bd93f00357ea}{
+Definition at line 151 of file arrow.h.
+
+Referenced by arrow\_\-tsp\_\-lk\_\-params\_\-init(), and arrow\_\-tsp\_\-lk\_\-solve().\hypertarget{structarrow__tsp__lk__params_36fb446a90e9b4c76702bd93f00357ea}{
 \index{arrow\_\-tsp\_\-lk\_\-params@{arrow\_\-tsp\_\-lk\_\-params}!length\_\-bound@{length\_\-bound}}
 \index{length\_\-bound@{length\_\-bound}!arrow_tsp_lk_params@{arrow\_\-tsp\_\-lk\_\-params}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}double {\bf arrow\_\-tsp\_\-lk\_\-params::length\_\-bound}}}
@@ -75,7 +96,9 @@ Definition at line 235 of file arrow.h.\hypertarget{structarrow__tsp__lk__params
 
 stop after finding tour of this length; must be non-negative 
 
-Definition at line 237 of file arrow.h.\hypertarget{structarrow__tsp__lk__params_1684519ac0bb6e529707b59f6cd7d528}{
+Definition at line 153 of file arrow.h.
+
+Referenced by arrow\_\-tsp\_\-lk\_\-params\_\-init(), arrow\_\-tsp\_\-lk\_\-solve(), and main().\hypertarget{structarrow__tsp__lk__params_1684519ac0bb6e529707b59f6cd7d528}{
 \index{arrow\_\-tsp\_\-lk\_\-params@{arrow\_\-tsp\_\-lk\_\-params}!initial\_\-tour@{initial\_\-tour}}
 \index{initial\_\-tour@{initial\_\-tour}!arrow_tsp_lk_params@{arrow\_\-tsp\_\-lk\_\-params}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ {\bf arrow\_\-tsp\_\-lk\_\-params::initial\_\-tour}}}
@@ -84,7 +107,9 @@ Definition at line 237 of file arrow.h.\hypertarget{structarrow__tsp__lk__params
 
 initial tour (may be NULL) 
 
-Definition at line 239 of file arrow.h.
+Definition at line 155 of file arrow.h.
+
+Referenced by arrow\_\-tsp\_\-lk\_\-params\_\-destruct(), arrow\_\-tsp\_\-lk\_\-params\_\-init(), and arrow\_\-tsp\_\-lk\_\-solve().
 
 The documentation for this struct was generated from the following file:\begin{CompactItemize}
 \item 

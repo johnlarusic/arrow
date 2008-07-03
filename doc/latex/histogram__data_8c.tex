@@ -5,27 +5,16 @@
 Edge length histogram data collector. 
 
 {\tt \#include \char`\"{}arrow.h\char`\"{}}\par
-{\tt \#include $<$getopt.h$>$}\par
 
 
-Include dependency graph for histogram\_\-data.c:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=257pt]{histogram__data_8c__incl}
-\end{center}
-\end{figure}
+Include dependency graph for histogram\_\-data.c:\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{histogram__data_8c_9b58b2c4af931c8486a986c9deca40f5}{NUM\_\-OPTS}~1
+\end{CompactItemize}
 \subsection*{Functions}
 \begin{CompactItemize}
 \item 
-void \hyperlink{histogram__data_8c_853216ac51aa181669ff4d3de74058a7}{print\_\-help} ()
-\begin{CompactList}\small\item\em Prints help/usage message. \item\end{CompactList}\item 
-void \hyperlink{histogram__data_8c_6302aaae12249e8ea16bfdc7de892f21}{print\_\-version} ()
-\begin{CompactList}\small\item\em Prints version message. \item\end{CompactList}\item 
-void \hyperlink{histogram__data_8c_e5ad5cbeccaedc03a48d3c7eaa803e79}{print\_\-usage} ()
-\begin{CompactList}\small\item\em Prints usage message. \item\end{CompactList}\item 
-void \hyperlink{histogram__data_8c_72d0810dad1a2062df342005c15106b9}{read\_\-args} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
-\begin{CompactList}\small\item\em Reads program arguments. \item\end{CompactList}\item 
 int \hyperlink{histogram__data_8c_0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
 \end{CompactItemize}
 \subsection*{Variables}
@@ -33,7 +22,13 @@ int \hyperlink{histogram__data_8c_0ddf1224851353fc92bfbff6f499fa97}{main} (int a
 \item 
 char $\ast$ \hyperlink{histogram__data_8c_289c5900d90626d909f0a85d5a0ed61d}{program\_\-name}
 \item 
-char $\ast$ \hyperlink{histogram__data_8c_a4f3a15de34c409bdec6ceacf93078ed}{input\_\-file}
+char $\ast$ \hyperlink{histogram__data_8c_a4f3a15de34c409bdec6ceacf93078ed}{input\_\-file} = NULL
+\item 
+\hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{histogram__data_8c_cea6a9709d519c143f30db401a0d0c72}{options} \mbox{[}NUM\_\-OPTS\mbox{]}
+\item 
+char $\ast$ \hyperlink{histogram__data_8c_3aad16fd4bea1b9717f232ea75ad6449}{desc} = \char`\"{}Prints a list of every cost in problem (for histogram.py)\char`\"{}
+\item 
+char $\ast$ \hyperlink{histogram__data_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage} = \char`\"{}-i tsplib.tsp\char`\"{}
 \end{CompactItemize}
 
 
@@ -48,6 +43,18 @@ Prints out a list of every edge length present in given problem. Used in conjunc
 
 Definition in file \hyperlink{histogram__data_8c-source}{histogram\_\-data.c}.
 
+\subsection{Define Documentation}
+\hypertarget{histogram__data_8c_9b58b2c4af931c8486a986c9deca40f5}{
+\index{histogram\_\-data.c@{histogram\_\-data.c}!NUM\_\-OPTS@{NUM\_\-OPTS}}
+\index{NUM\_\-OPTS@{NUM\_\-OPTS}!histogram_data.c@{histogram\_\-data.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define NUM\_\-OPTS~1}}
+\label{histogram__data_8c_9b58b2c4af931c8486a986c9deca40f5}
+
+
+
+
+Definition at line 17 of file histogram\_\-data.c.
+
 \subsection{Function Documentation}
 \hypertarget{histogram__data_8c_0ddf1224851353fc92bfbff6f499fa97}{
 \index{histogram\_\-data.c@{histogram\_\-data.c}!main@{main}}
@@ -58,57 +65,48 @@ Definition in file \hyperlink{histogram__data_8c-source}{histogram\_\-data.c}.
 
 
 
-Definition at line 45 of file histogram\_\-data.c.
+Definition at line 28 of file histogram\_\-data.c.
 
-References ARROW\_\-DEV\_\-NULL, arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-read(), arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file(), arrow\_\-util\_\-restore\_\-stdout(), arrow\_\-problem::get\_\-cost, input\_\-file, program\_\-name, read\_\-args(), and arrow\_\-problem::size.\hypertarget{histogram__data_8c_853216ac51aa181669ff4d3de74058a7}{
-\index{histogram\_\-data.c@{histogram\_\-data.c}!print\_\-help@{print\_\-help}}
-\index{print\_\-help@{print\_\-help}!histogram_data.c@{histogram\_\-data.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void print\_\-help ()}}
-\label{histogram__data_8c_853216ac51aa181669ff4d3de74058a7}
-
-
-Prints help/usage message. 
-
-\hypertarget{histogram__data_8c_e5ad5cbeccaedc03a48d3c7eaa803e79}{
-\index{histogram\_\-data.c@{histogram\_\-data.c}!print\_\-usage@{print\_\-usage}}
-\index{print\_\-usage@{print\_\-usage}!histogram_data.c@{histogram\_\-data.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void print\_\-usage ()}}
-\label{histogram__data_8c_e5ad5cbeccaedc03a48d3c7eaa803e79}
-
-
-Prints usage message. 
-
-\hypertarget{histogram__data_8c_6302aaae12249e8ea16bfdc7de892f21}{
-\index{histogram\_\-data.c@{histogram\_\-data.c}!print\_\-version@{print\_\-version}}
-\index{print\_\-version@{print\_\-version}!histogram_data.c@{histogram\_\-data.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void print\_\-version ()}}
-\label{histogram__data_8c_6302aaae12249e8ea16bfdc7de892f21}
-
-
-Prints version message. 
-
-\hypertarget{histogram__data_8c_72d0810dad1a2062df342005c15106b9}{
-\index{histogram\_\-data.c@{histogram\_\-data.c}!read\_\-args@{read\_\-args}}
-\index{read\_\-args@{read\_\-args}!histogram_data.c@{histogram\_\-data.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void read\_\-args (int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]})}}
-\label{histogram__data_8c_72d0810dad1a2062df342005c15106b9}
-
-
-Reads program arguments. 
-
-
+References ARROW\_\-DEV\_\-NULL, arrow\_\-options\_\-parse(), arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-read(), arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file(), arrow\_\-util\_\-restore\_\-stdout(), desc, arrow\_\-problem::get\_\-cost, input\_\-file, NUM\_\-OPTS, arrow\_\-problem::size, and usage.
 
 \subsection{Variable Documentation}
-\hypertarget{histogram__data_8c_a4f3a15de34c409bdec6ceacf93078ed}{
+\hypertarget{histogram__data_8c_3aad16fd4bea1b9717f232ea75ad6449}{
+\index{histogram\_\-data.c@{histogram\_\-data.c}!desc@{desc}}
+\index{desc@{desc}!histogram_data.c@{histogram\_\-data.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf desc} = \char`\"{}Prints a list of every cost in problem (for histogram.py)\char`\"{}}}
+\label{histogram__data_8c_3aad16fd4bea1b9717f232ea75ad6449}
+
+
+
+
+Definition at line 23 of file histogram\_\-data.c.\hypertarget{histogram__data_8c_a4f3a15de34c409bdec6ceacf93078ed}{
 \index{histogram\_\-data.c@{histogram\_\-data.c}!input\_\-file@{input\_\-file}}
 \index{input\_\-file@{input\_\-file}!histogram_data.c@{histogram\_\-data.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf input\_\-file}}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf input\_\-file} = NULL}}
 \label{histogram__data_8c_a4f3a15de34c409bdec6ceacf93078ed}
 
 
 Given input TSPLIB file 
 
-Definition at line 39 of file histogram\_\-data.c.\hypertarget{histogram__data_8c_289c5900d90626d909f0a85d5a0ed61d}{
+Definition at line 14 of file histogram\_\-data.c.\hypertarget{histogram__data_8c_cea6a9709d519c143f30db401a0d0c72}{
+\index{histogram\_\-data.c@{histogram\_\-data.c}!options@{options}}
+\index{options@{options}!histogram_data.c@{histogram\_\-data.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf arrow\_\-option} {\bf options}\mbox{[}NUM\_\-OPTS\mbox{]}}}
+\label{histogram__data_8c_cea6a9709d519c143f30db401a0d0c72}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} 
+{
+    {'i', "input", "TSPLIB input file", 
+        ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 18 of file histogram\_\-data.c.\hypertarget{histogram__data_8c_289c5900d90626d909f0a85d5a0ed61d}{
 \index{histogram\_\-data.c@{histogram\_\-data.c}!program\_\-name@{program\_\-name}}
 \index{program\_\-name@{program\_\-name}!histogram_data.c@{histogram\_\-data.c}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf program\_\-name}}}
@@ -117,4 +115,13 @@ Definition at line 39 of file histogram\_\-data.c.\hypertarget{histogram__data_8
 
 Program name 
 
-Definition at line 38 of file histogram\_\-data.c.
+Definition at line 13 of file histogram\_\-data.c.\hypertarget{histogram__data_8c_adebe2487a2c5240ab6cd02c83add0bf}{
+\index{histogram\_\-data.c@{histogram\_\-data.c}!usage@{usage}}
+\index{usage@{usage}!histogram_data.c@{histogram\_\-data.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf usage} = \char`\"{}-i tsplib.tsp\char`\"{}}}
+\label{histogram__data_8c_adebe2487a2c5240ab6cd02c83add0bf}
+
+
+
+
+Definition at line 24 of file histogram\_\-data.c.

@@ -1,0 +1,120 @@
+\hypertarget{structarrow__btsp__fun}{
+\section{arrow\_\-btsp\_\-fun Struct Reference}
+\label{structarrow__btsp__fun}\index{arrow\_\-btsp\_\-fun@{arrow\_\-btsp\_\-fun}}
+}
+BTSP Cost matrix function definition.  
+
+
+{\tt \#include $<$arrow.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+void $\ast$ \hyperlink{structarrow__btsp__fun_9c1a276685fb0cac372faef2dd2ba99a}{data}
+\item 
+int \hyperlink{structarrow__btsp__fun_1950686e4862a4b1bd68d1ada85e2c79}{shallow}
+\item 
+double \hyperlink{structarrow__btsp__fun_bc871d7af05237e477a340eff4eeda9f}{feasible\_\-length}
+\item 
+int($\ast$ \hyperlink{structarrow__btsp__fun_7736b2d3059ece3dc94433af0763b47a}{apply} )(struct \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int delta, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
+\begin{CompactList}\small\item\em Applies the function to the given problem. \item\end{CompactList}\item 
+void($\ast$ \hyperlink{structarrow__btsp__fun_6c66b7591252728aaa441139c623446a}{destruct} )(struct \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Destructs the function structure. \item\end{CompactList}\item 
+int($\ast$ \hyperlink{structarrow__btsp__fun_a64a29d588b40b0d04db43e23a22d1a9}{feasible} )(struct \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int delta, double tour\_\-length, int $\ast$tour)
+\begin{CompactList}\small\item\em Determines if the given tour is feasible or not. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+BTSP Cost matrix function definition. 
+
+Definition at line 190 of file arrow.h.
+
+\subsection{Field Documentation}
+\hypertarget{structarrow__btsp__fun_9c1a276685fb0cac372faef2dd2ba99a}{
+\index{arrow\_\-btsp\_\-fun@{arrow\_\-btsp\_\-fun}!data@{data}}
+\index{data@{data}!arrow_btsp_fun@{arrow\_\-btsp\_\-fun}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ {\bf arrow\_\-btsp\_\-fun::data}}}
+\label{structarrow__btsp__fun_9c1a276685fb0cac372faef2dd2ba99a}
+
+
+data required by function 
+
+Definition at line 192 of file arrow.h.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-constrained(), arrow\_\-btsp\_\-fun\_\-constrained\_\-shake(), constrained\_\-deep\_\-apply(), constrained\_\-destruct(), constrained\_\-shake\_\-deep\_\-apply(), constrained\_\-shake\_\-destruct(), constrained\_\-shake\_\-feasible(), and constrained\_\-shallow\_\-apply().\hypertarget{structarrow__btsp__fun_1950686e4862a4b1bd68d1ada85e2c79}{
+\index{arrow\_\-btsp\_\-fun@{arrow\_\-btsp\_\-fun}!shallow@{shallow}}
+\index{shallow@{shallow}!arrow_btsp_fun@{arrow\_\-btsp\_\-fun}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-btsp\_\-fun::shallow}}}
+\label{structarrow__btsp__fun_1950686e4862a4b1bd68d1ada85e2c79}
+
+
+indicates use of shallow copy of data 
+
+Definition at line 193 of file arrow.h.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-basic\_\-atsp(), arrow\_\-btsp\_\-fun\_\-constrained(), and arrow\_\-btsp\_\-fun\_\-constrained\_\-shake().\hypertarget{structarrow__btsp__fun_bc871d7af05237e477a340eff4eeda9f}{
+\index{arrow\_\-btsp\_\-fun@{arrow\_\-btsp\_\-fun}!feasible\_\-length@{feasible\_\-length}}
+\index{feasible\_\-length@{feasible\_\-length}!arrow_btsp_fun@{arrow\_\-btsp\_\-fun}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}double {\bf arrow\_\-btsp\_\-fun::feasible\_\-length}}}
+\label{structarrow__btsp__fun_bc871d7af05237e477a340eff4eeda9f}
+
+
+the length of a feasible tour (normally 0) 
+
+Definition at line 194 of file arrow.h.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-basic\_\-atsp(), arrow\_\-btsp\_\-fun\_\-constrained(), arrow\_\-btsp\_\-fun\_\-constrained\_\-shake(), and constrained\_\-shake\_\-feasible().\hypertarget{structarrow__btsp__fun_7736b2d3059ece3dc94433af0763b47a}{
+\index{arrow\_\-btsp\_\-fun@{arrow\_\-btsp\_\-fun}!apply@{apply}}
+\index{apply@{apply}!arrow_btsp_fun@{arrow\_\-btsp\_\-fun}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf arrow\_\-btsp\_\-fun::apply})(struct {\bf arrow\_\-btsp\_\-fun} $\ast$fun, {\bf arrow\_\-problem} $\ast$old\_\-problem, int delta, {\bf arrow\_\-problem} $\ast$new\_\-problem)}}
+\label{structarrow__btsp__fun_7736b2d3059ece3dc94433af0763b47a}
+
+
+Applies the function to the given problem. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Referenced by arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-basic\_\-atsp(), arrow\_\-btsp\_\-fun\_\-constrained(), and arrow\_\-btsp\_\-fun\_\-constrained\_\-shake().\hypertarget{structarrow__btsp__fun_6c66b7591252728aaa441139c623446a}{
+\index{arrow\_\-btsp\_\-fun@{arrow\_\-btsp\_\-fun}!destruct@{destruct}}
+\index{destruct@{destruct}!arrow_btsp_fun@{arrow\_\-btsp\_\-fun}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ {\bf arrow\_\-btsp\_\-fun::destruct})(struct {\bf arrow\_\-btsp\_\-fun} $\ast$fun)}}
+\label{structarrow__btsp__fun_6c66b7591252728aaa441139c623446a}
+
+
+Destructs the function structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Referenced by arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-basic\_\-atsp(), arrow\_\-btsp\_\-fun\_\-constrained(), arrow\_\-btsp\_\-fun\_\-constrained\_\-shake(), and arrow\_\-btsp\_\-fun\_\-destruct().\hypertarget{structarrow__btsp__fun_a64a29d588b40b0d04db43e23a22d1a9}{
+\index{arrow\_\-btsp\_\-fun@{arrow\_\-btsp\_\-fun}!feasible@{feasible}}
+\index{feasible@{feasible}!arrow_btsp_fun@{arrow\_\-btsp\_\-fun}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf arrow\_\-btsp\_\-fun::feasible})(struct {\bf arrow\_\-btsp\_\-fun} $\ast$fun, {\bf arrow\_\-problem} $\ast$problem, int delta, double tour\_\-length, int $\ast$tour)}}
+\label{structarrow__btsp__fun_a64a29d588b40b0d04db43e23a22d1a9}
+
+
+Determines if the given tour is feasible or not. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em problem}]\mbox{[}in\mbox{]} the problem to check against \item[{\em delta}]\mbox{[}in\mbox{]} the delta parameter \item[{\em tour\_\-length}]\mbox{[}in\mbox{]} the length of the given tour \item[{\em tour}]\mbox{[}in\mbox{]} the tour in node-node format \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]ARROW\_\-TRUE if the tour is feasible, ARROW\_\-FALSE if not \end{Desc}
+
+
+Referenced by arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-basic\_\-atsp(), arrow\_\-btsp\_\-fun\_\-constrained(), arrow\_\-btsp\_\-fun\_\-constrained\_\-shake(), and feasible().
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+lib/\hyperlink{arrow_8h}{arrow.h}\end{CompactItemize}

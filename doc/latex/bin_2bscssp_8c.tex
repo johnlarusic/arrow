@@ -1,0 +1,140 @@
+\hypertarget{bin_2bscssp_8c}{
+\section{bin/bscssp.c File Reference}
+\label{bin_2bscssp_8c}\index{bin/bscssp.c@{bin/bscssp.c}}
+}
+Bottleneck strongly connected spanning subgraph problem solver. 
+
+{\tt \#include \char`\"{}arrow.h\char`\"{}}\par
+
+
+Include dependency graph for bscssp.c:\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{bin_2bscssp_8c_9b58b2c4af931c8486a986c9deca40f5}{NUM\_\-OPTS}~2
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{bin_2bscssp_8c_0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+char $\ast$ \hyperlink{bin_2bscssp_8c_289c5900d90626d909f0a85d5a0ed61d}{program\_\-name}
+\item 
+char $\ast$ \hyperlink{bin_2bscssp_8c_a4f3a15de34c409bdec6ceacf93078ed}{input\_\-file} = NULL
+\item 
+char $\ast$ \hyperlink{bin_2bscssp_8c_bf4e392494984c6ef8259268eb1fe421}{xml\_\-file} = NULL
+\item 
+\hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{bin_2bscssp_8c_cea6a9709d519c143f30db401a0d0c72}{options} \mbox{[}NUM\_\-OPTS\mbox{]}
+\item 
+char $\ast$ \hyperlink{bin_2bscssp_8c_3aad16fd4bea1b9717f232ea75ad6449}{desc} = \char`\"{}Bottleneck strongly connected spanning subgraph problem solver\char`\"{}
+\item 
+char $\ast$ \hyperlink{bin_2bscssp_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage} = \char`\"{}-i tsplib.tsp \mbox{[}\hyperlink{histogram__data_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{]} \char`\"{}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Bottleneck strongly connected spanning subgraph problem solver. 
+
+Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on the given input file.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{bin_2bscssp_8c-source}{bscssp.c}.
+
+\subsection{Define Documentation}
+\hypertarget{bin_2bscssp_8c_9b58b2c4af931c8486a986c9deca40f5}{
+\index{bin/bscssp.c@{bin/bscssp.c}!NUM\_\-OPTS@{NUM\_\-OPTS}}
+\index{NUM\_\-OPTS@{NUM\_\-OPTS}!bin/bscssp.c@{bin/bscssp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define NUM\_\-OPTS~2}}
+\label{bin_2bscssp_8c_9b58b2c4af931c8486a986c9deca40f5}
+
+
+
+
+Definition at line 18 of file bscssp.c.
+
+\subsection{Function Documentation}
+\hypertarget{bin_2bscssp_8c_0ddf1224851353fc92bfbff6f499fa97}{
+\index{bin/bscssp.c@{bin/bscssp.c}!main@{main}}
+\index{main@{main}!bin/bscssp.c@{bin/bscssp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]})}}
+\label{bin_2bscssp_8c_0ddf1224851353fc92bfbff6f499fa97}
+
+
+
+
+Definition at line 31 of file bscssp.c.
+
+References arrow\_\-bscssp\_\-solve(), ARROW\_\-FAILURE, arrow\_\-options\_\-parse(), arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-destruct(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read(), ARROW\_\-SUCCESS, arrow\_\-util\_\-print\_\-program\_\-args(), desc, input\_\-file, NUM\_\-OPTS, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-bound\_\-result::total\_\-time, usage, and xml\_\-file.
+
+\subsection{Variable Documentation}
+\hypertarget{bin_2bscssp_8c_3aad16fd4bea1b9717f232ea75ad6449}{
+\index{bin/bscssp.c@{bin/bscssp.c}!desc@{desc}}
+\index{desc@{desc}!bin/bscssp.c@{bin/bscssp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf desc} = \char`\"{}Bottleneck strongly connected spanning subgraph problem solver\char`\"{}}}
+\label{bin_2bscssp_8c_3aad16fd4bea1b9717f232ea75ad6449}
+
+
+
+
+Definition at line 26 of file bscssp.c.\hypertarget{bin_2bscssp_8c_a4f3a15de34c409bdec6ceacf93078ed}{
+\index{bin/bscssp.c@{bin/bscssp.c}!input\_\-file@{input\_\-file}}
+\index{input\_\-file@{input\_\-file}!bin/bscssp.c@{bin/bscssp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf input\_\-file} = NULL}}
+\label{bin_2bscssp_8c_a4f3a15de34c409bdec6ceacf93078ed}
+
+
+Given input TSPLIB file 
+
+Definition at line 14 of file bscssp.c.\hypertarget{bin_2bscssp_8c_cea6a9709d519c143f30db401a0d0c72}{
+\index{bin/bscssp.c@{bin/bscssp.c}!options@{options}}
+\index{options@{options}!bin/bscssp.c@{bin/bscssp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf arrow\_\-option} {\bf options}\mbox{[}NUM\_\-OPTS\mbox{]}}}
+\label{bin_2bscssp_8c_cea6a9709d519c143f30db401a0d0c72}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} 
+{
+    {'i', "input", "TSPLIB input file", 
+        ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE},
+    {'x', "xml", "File to write XML output to",
+        ARROW_OPTION_STRING, &xml_file, ARROW_FALSE, ARROW_TRUE}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 19 of file bscssp.c.\hypertarget{bin_2bscssp_8c_289c5900d90626d909f0a85d5a0ed61d}{
+\index{bin/bscssp.c@{bin/bscssp.c}!program\_\-name@{program\_\-name}}
+\index{program\_\-name@{program\_\-name}!bin/bscssp.c@{bin/bscssp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf program\_\-name}}}
+\label{bin_2bscssp_8c_289c5900d90626d909f0a85d5a0ed61d}
+
+
+Program name 
+
+Definition at line 13 of file bscssp.c.\hypertarget{bin_2bscssp_8c_adebe2487a2c5240ab6cd02c83add0bf}{
+\index{bin/bscssp.c@{bin/bscssp.c}!usage@{usage}}
+\index{usage@{usage}!bin/bscssp.c@{bin/bscssp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf usage} = \char`\"{}-i tsplib.tsp \mbox{[}{\bf options}\mbox{]} \char`\"{}}}
+\label{bin_2bscssp_8c_adebe2487a2c5240ab6cd02c83add0bf}
+
+
+
+
+Definition at line 27 of file bscssp.c.\hypertarget{bin_2bscssp_8c_bf4e392494984c6ef8259268eb1fe421}{
+\index{bin/bscssp.c@{bin/bscssp.c}!xml\_\-file@{xml\_\-file}}
+\index{xml\_\-file@{xml\_\-file}!bin/bscssp.c@{bin/bscssp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf xml\_\-file} = NULL}}
+\label{bin_2bscssp_8c_bf4e392494984c6ef8259268eb1fe421}
+
+
+
+
+Definition at line 15 of file bscssp.c.

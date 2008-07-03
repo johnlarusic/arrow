@@ -12,11 +12,13 @@ Problem data structure.
 \item 
 int \hyperlink{structarrow__problem_de8573ddc391d06b08b65923fca693ec}{size}
 \item 
+int \hyperlink{structarrow__problem_168ab92e9d7a873740a2550f4d3510d9}{symmetric}
+\item 
 CCdatagroup \hyperlink{structarrow__problem_5f04fe51bf6438b8f844c8cc06eb5ba0}{data}
 \item 
 int \hyperlink{structarrow__problem_8c3f4f7794c1430440658d69151b296d}{shallow}
 \item 
-char $\ast$ \hyperlink{structarrow__problem_4463422357e42b021b77b6e166eaf308}{name}
+char \hyperlink{structarrow__problem_49462b24d5f3de4c973bfcf868d7b606}{name} \mbox{[}64\mbox{]}
 \item 
 int($\ast$ \hyperlink{structarrow__problem_4f1f4c9ef90f240b248e8f39360da769}{get\_\-cost} )(struct \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$this, int i, int j)
 \begin{CompactList}\small\item\em Returns the cost between node i and node j. \item\end{CompactList}\end{CompactItemize}
@@ -25,7 +27,7 @@ int($\ast$ \hyperlink{structarrow__problem_4f1f4c9ef90f240b248e8f39360da769}{get
 \subsection{Detailed Description}
 Problem data structure. 
 
-Definition at line 45 of file arrow.h.
+Definition at line 109 of file arrow.h.
 
 \subsection{Field Documentation}
 \hypertarget{structarrow__problem_de8573ddc391d06b08b65923fca693ec}{
@@ -37,9 +39,20 @@ Definition at line 45 of file arrow.h.
 
 problem size 
 
-Definition at line 47 of file arrow.h.
+Definition at line 111 of file arrow.h.
 
-Referenced by arrow\_\-bbssp\_\-biconnected(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-print(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), find\_\-art\_\-points(), and main().\hypertarget{structarrow__problem_5f04fe51bf6438b8f844c8cc06eb5ba0}{
+Referenced by arrow\_\-2mb\_\-solve(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-biconnected(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-print(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-tsp\_\-lk\_\-params\_\-init(), arrow\_\-tsp\_\-lk\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour(), arrow\_\-util\_\-write\_\-tour(), basic\_\-atsp\_\-deep\_\-apply(), basic\_\-atsp\_\-feasible(), basic\_\-deep\_\-apply(), bottleneck\_\-paths(), build\_\-initial\_\-tour(), constrained\_\-deep\_\-apply(), constrained\_\-shake\_\-deep\_\-apply(), constrained\_\-shake\_\-feasible(), feasible(), find\_\-art\_\-points(), initialize\_\-flow\_\-data(), main(), read\_\-atsp(), strongly\_\-connected(), and strongly\_\-connected\_\-dfs().\hypertarget{structarrow__problem_168ab92e9d7a873740a2550f4d3510d9}{
+\index{arrow\_\-problem@{arrow\_\-problem}!symmetric@{symmetric}}
+\index{symmetric@{symmetric}!arrow_problem@{arrow\_\-problem}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-problem::symmetric}}}
+\label{structarrow__problem_168ab92e9d7a873740a2550f4d3510d9}
+
+
+indicates if cost matrix is symmetric 
+
+Definition at line 112 of file arrow.h.
+
+Referenced by arrow\_\-2mb\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-btsp\_\-solve(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read(), and main().\hypertarget{structarrow__problem_5f04fe51bf6438b8f844c8cc06eb5ba0}{
 \index{arrow\_\-problem@{arrow\_\-problem}!data@{data}}
 \index{data@{data}!arrow_problem@{arrow\_\-problem}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}CCdatagroup {\bf arrow\_\-problem::data}}}
@@ -48,9 +61,9 @@ Referenced by arrow\_\-bbssp\_\-biconnected(), arrow\_\-problem\_\-info\_\-get()
 
 Concorde data structure for problem. 
 
-Definition at line 48 of file arrow.h.
+Definition at line 113 of file arrow.h.
 
-Referenced by arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-exact\_\-solve(), and concorde\_\-get\_\-cost().\hypertarget{structarrow__problem_8c3f4f7794c1430440658d69151b296d}{
+Referenced by arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-get\_\-cost(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-tsp\_\-lk\_\-solve(), basic\_\-atsp\_\-deep\_\-apply(), basic\_\-deep\_\-apply(), basic\_\-shallow\_\-apply(), build\_\-initial\_\-tour(), constrained\_\-deep\_\-apply(), constrained\_\-shake\_\-deep\_\-apply(), constrained\_\-shallow\_\-apply(), and read\_\-atsp().\hypertarget{structarrow__problem_8c3f4f7794c1430440658d69151b296d}{
 \index{arrow\_\-problem@{arrow\_\-problem}!shallow@{shallow}}
 \index{shallow@{shallow}!arrow_problem@{arrow\_\-problem}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-problem::shallow}}}
@@ -59,20 +72,20 @@ Referenced by arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-read(), arrow\
 
 indicates use of shallow copy of data 
 
-Definition at line 49 of file arrow.h.
+Definition at line 114 of file arrow.h.
 
-Referenced by arrow\_\-problem\_\-read().\hypertarget{structarrow__problem_4463422357e42b021b77b6e166eaf308}{
+Referenced by arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-destruct(), and arrow\_\-problem\_\-read().\hypertarget{structarrow__problem_49462b24d5f3de4c973bfcf868d7b606}{
 \index{arrow\_\-problem@{arrow\_\-problem}!name@{name}}
 \index{name@{name}!arrow_problem@{arrow\_\-problem}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf arrow\_\-problem::name}}}
-\label{structarrow__problem_4463422357e42b021b77b6e166eaf308}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char {\bf arrow\_\-problem::name}\mbox{[}64\mbox{]}}}
+\label{structarrow__problem_49462b24d5f3de4c973bfcf868d7b606}
 
 
 name of problem (can be NULL) 
 
-Definition at line 50 of file arrow.h.
+Definition at line 115 of file arrow.h.
 
-Referenced by arrow\_\-problem\_\-read(), and arrow\_\-tsp\_\-exact\_\-solve().\hypertarget{structarrow__problem_4f1f4c9ef90f240b248e8f39360da769}{
+Referenced by arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-exact\_\-solve(), and arrow\_\-util\_\-write\_\-tour().\hypertarget{structarrow__problem_4f1f4c9ef90f240b248e8f39360da769}{
 \index{arrow\_\-problem@{arrow\_\-problem}!get\_\-cost@{get\_\-cost}}
 \index{get\_\-cost@{get\_\-cost}!arrow_problem@{arrow\_\-problem}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf arrow\_\-problem::get\_\-cost})(struct {\bf arrow\_\-problem} $\ast$this, int i, int j)}}
@@ -90,7 +103,7 @@ Returns the cost between node i and node j.
 \item[Returns:]cost between node i and j. \end{Desc}
 
 
-Referenced by arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-print(), arrow\_\-problem\_\-read(), find\_\-art\_\-points(), and main().
+Referenced by arrow\_\-2mb\_\-solve(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-dcbpb\_\-solve(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-print(), arrow\_\-problem\_\-read(), arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour(), basic\_\-atsp\_\-deep\_\-apply(), basic\_\-atsp\_\-feasible(), basic\_\-deep\_\-apply(), bottleneck\_\-paths(), constrained\_\-deep\_\-apply(), constrained\_\-shake\_\-deep\_\-apply(), constrained\_\-shake\_\-feasible(), feasible(), find\_\-art\_\-points(), initialize\_\-flow\_\-data(), main(), and strongly\_\-connected\_\-dfs().
 
 The documentation for this struct was generated from the following file:\begin{CompactItemize}
 \item 

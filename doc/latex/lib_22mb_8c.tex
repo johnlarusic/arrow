@@ -1,0 +1,49 @@
+\hypertarget{lib_22mb_8c}{
+\section{lib/2mb.c File Reference}
+\label{lib_22mb_8c}\index{lib/2mb.c@{lib/2mb.c}}
+}
+2-max bound implemenation. 
+
+{\tt \#include \char`\"{}arrow.h\char`\"{}}\par
+
+
+Include dependency graph for 2mb.c:\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{lib_22mb_8c_a3ac7f6280e1eaea38fafbe78375b13f}{arrow\_\-2mb\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves the 2-max bound (2MB) on the given problem. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+2-max bound implemenation. 
+
+Implemenation of the 2-max bound (2MB) used as a lower bound for the Bottleneck TSP objective value.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{lib_22mb_8c-source}{2mb.c}.
+
+\subsection{Function Documentation}
+\hypertarget{lib_22mb_8c_a3ac7f6280e1eaea38fafbe78375b13f}{
+\index{lib/2mb.c@{lib/2mb.c}!arrow\_\-2mb\_\-solve@{arrow\_\-2mb\_\-solve}}
+\index{arrow\_\-2mb\_\-solve@{arrow\_\-2mb\_\-solve}!lib/2mb.c@{lib/2mb.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-2mb\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
+\label{lib_22mb_8c_a3ac7f6280e1eaea38fafbe78375b13f}
+
+
+Solves the 2-max bound (2MB) on the given problem. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em info}]\mbox{[}in\mbox{]} problem info \item[{\em result}]\mbox{[}out\mbox{]} 2MB solution \end{description}
+\end{Desc}
+
+
+Definition at line 16 of file 2mb.c.
+
+References ARROW\_\-SUCCESS, arrow\_\-util\_\-zeit(), arrow\_\-problem::get\_\-cost, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-problem::symmetric, and arrow\_\-bound\_\-result::total\_\-time.
+
+Referenced by main().

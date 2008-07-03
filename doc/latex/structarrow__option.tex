@@ -1,0 +1,106 @@
+\hypertarget{structarrow__option}{
+\section{arrow\_\-option Struct Reference}
+\label{structarrow__option}\index{arrow\_\-option@{arrow\_\-option}}
+}
+Program options structure.  
+
+
+{\tt \#include $<$arrow.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+char \hyperlink{structarrow__option_f47f3010fcddb84f4a67920db03d7233}{short\_\-option}
+\item 
+const char $\ast$ \hyperlink{structarrow__option_3d8ddc7b0d627a15c7108e21a16cb51a}{long\_\-option}
+\item 
+const char $\ast$ \hyperlink{structarrow__option_48bfe5bda71cd04d92067b203ffb92ce}{help\_\-message}
+\item 
+int \hyperlink{structarrow__option_c97df040be0b7c76e92556087be21ff8}{data\_\-type}
+\item 
+void $\ast$ \hyperlink{structarrow__option_0b4e8cc50fdb7d8fbb1e63db30cd172d}{data\_\-ptr}
+\item 
+int \hyperlink{structarrow__option_2e7290d4b7088eab30df5f3bfc34ce93}{opt\_\-required}
+\item 
+int \hyperlink{structarrow__option_59aa495c8bd2e4d57014e4d9278020ed}{arg\_\-required}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Program options structure. 
+
+Definition at line 255 of file arrow.h.
+
+\subsection{Field Documentation}
+\hypertarget{structarrow__option_f47f3010fcddb84f4a67920db03d7233}{
+\index{arrow\_\-option@{arrow\_\-option}!short\_\-option@{short\_\-option}}
+\index{short\_\-option@{short\_\-option}!arrow_option@{arrow\_\-option}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char {\bf arrow\_\-option::short\_\-option}}}
+\label{structarrow__option_f47f3010fcddb84f4a67920db03d7233}
+
+
+short option (flag) 
+
+Definition at line 257 of file arrow.h.
+
+Referenced by arrow\_\-options\_\-parse().\hypertarget{structarrow__option_3d8ddc7b0d627a15c7108e21a16cb51a}{
+\index{arrow\_\-option@{arrow\_\-option}!long\_\-option@{long\_\-option}}
+\index{long\_\-option@{long\_\-option}!arrow_option@{arrow\_\-option}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ {\bf arrow\_\-option::long\_\-option}}}
+\label{structarrow__option_3d8ddc7b0d627a15c7108e21a16cb51a}
+
+
+long option 
+
+Definition at line 258 of file arrow.h.
+
+Referenced by arrow\_\-options\_\-parse().\hypertarget{structarrow__option_48bfe5bda71cd04d92067b203ffb92ce}{
+\index{arrow\_\-option@{arrow\_\-option}!help\_\-message@{help\_\-message}}
+\index{help\_\-message@{help\_\-message}!arrow_option@{arrow\_\-option}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ {\bf arrow\_\-option::help\_\-message}}}
+\label{structarrow__option_48bfe5bda71cd04d92067b203ffb92ce}
+
+
+help message to display for option 
+
+Definition at line 259 of file arrow.h.\hypertarget{structarrow__option_c97df040be0b7c76e92556087be21ff8}{
+\index{arrow\_\-option@{arrow\_\-option}!data\_\-type@{data\_\-type}}
+\index{data\_\-type@{data\_\-type}!arrow_option@{arrow\_\-option}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-option::data\_\-type}}}
+\label{structarrow__option_c97df040be0b7c76e92556087be21ff8}
+
+
+one of ARROW\_\-OPTION\_\-INT, ARROW\_\-OPTION\_\-DOUBLE, ARROW\_\-OPTION\_\-STRING 
+
+Definition at line 260 of file arrow.h.\hypertarget{structarrow__option_0b4e8cc50fdb7d8fbb1e63db30cd172d}{
+\index{arrow\_\-option@{arrow\_\-option}!data\_\-ptr@{data\_\-ptr}}
+\index{data\_\-ptr@{data\_\-ptr}!arrow_option@{arrow\_\-option}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ {\bf arrow\_\-option::data\_\-ptr}}}
+\label{structarrow__option_0b4e8cc50fdb7d8fbb1e63db30cd172d}
+
+
+pointer to variable to hold parameter 
+
+Definition at line 263 of file arrow.h.\hypertarget{structarrow__option_2e7290d4b7088eab30df5f3bfc34ce93}{
+\index{arrow\_\-option@{arrow\_\-option}!opt\_\-required@{opt\_\-required}}
+\index{opt\_\-required@{opt\_\-required}!arrow_option@{arrow\_\-option}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-option::opt\_\-required}}}
+\label{structarrow__option_2e7290d4b7088eab30df5f3bfc34ce93}
+
+
+if true ensures option is present 
+
+Definition at line 264 of file arrow.h.\hypertarget{structarrow__option_59aa495c8bd2e4d57014e4d9278020ed}{
+\index{arrow\_\-option@{arrow\_\-option}!arg\_\-required@{arg\_\-required}}
+\index{arg\_\-required@{arg\_\-required}!arrow_option@{arrow\_\-option}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-option::arg\_\-required}}}
+\label{structarrow__option_59aa495c8bd2e4d57014e4d9278020ed}
+
+
+if true, ensures argument for parameter passed, otherwise puts 1 into data\_\-ptr if parameter is present 
+
+Definition at line 265 of file arrow.h.
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+lib/\hyperlink{arrow_8h}{arrow.h}\end{CompactItemize}

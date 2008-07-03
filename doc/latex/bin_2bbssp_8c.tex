@@ -5,29 +5,16 @@
 Bottleneck Biconnected Spanning Subgraph solver. 
 
 {\tt \#include \char`\"{}arrow.h\char`\"{}}\par
-{\tt \#include $<$getopt.h$>$}\par
 
 
-Include dependency graph for bbssp.c:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=257pt]{bin_2bbssp_8c__incl}
-\end{center}
-\end{figure}
+Include dependency graph for bbssp.c:\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{bin_2bbssp_8c_9b58b2c4af931c8486a986c9deca40f5}{NUM\_\-OPTS}~2
+\end{CompactItemize}
 \subsection*{Functions}
 \begin{CompactItemize}
 \item 
-void \hyperlink{bin_2bbssp_8c_853216ac51aa181669ff4d3de74058a7}{print\_\-help} ()
-\begin{CompactList}\small\item\em Prints help/usage message. \item\end{CompactList}\item 
-void \hyperlink{bin_2bbssp_8c_6302aaae12249e8ea16bfdc7de892f21}{print\_\-version} ()
-\begin{CompactList}\small\item\em Prints version message. \item\end{CompactList}\item 
-void \hyperlink{bin_2bbssp_8c_e5ad5cbeccaedc03a48d3c7eaa803e79}{print\_\-usage} ()
-\begin{CompactList}\small\item\em Prints usage message. \item\end{CompactList}\item 
-void \hyperlink{bin_2bbssp_8c_72d0810dad1a2062df342005c15106b9}{read\_\-args} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
-\begin{CompactList}\small\item\em Reads program arguments. \item\end{CompactList}\item 
-void \hyperlink{bin_2bbssp_8c_f8424468968336a39cad523e50f3b65a}{print\_\-xml\_\-output} (int obj\_\-value, double total\_\-time, int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
-\begin{CompactList}\small\item\em Prints output in XML format. \item\end{CompactList}\item 
 int \hyperlink{bin_2bbssp_8c_0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
 \end{CompactItemize}
 \subsection*{Variables}
@@ -35,22 +22,40 @@ int \hyperlink{bin_2bbssp_8c_0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, 
 \item 
 char $\ast$ \hyperlink{bin_2bbssp_8c_289c5900d90626d909f0a85d5a0ed61d}{program\_\-name}
 \item 
-char $\ast$ \hyperlink{bin_2bbssp_8c_a4f3a15de34c409bdec6ceacf93078ed}{input\_\-file}
+char $\ast$ \hyperlink{bin_2bbssp_8c_a4f3a15de34c409bdec6ceacf93078ed}{input\_\-file} = NULL
 \item 
-int \hyperlink{bin_2bbssp_8c_78435df485756d3c16e77edcd8f6b938}{xml\_\-output} = ARROW\_\-FALSE
+char $\ast$ \hyperlink{bin_2bbssp_8c_bf4e392494984c6ef8259268eb1fe421}{xml\_\-file} = NULL
+\item 
+\hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{bin_2bbssp_8c_cea6a9709d519c143f30db401a0d0c72}{options} \mbox{[}NUM\_\-OPTS\mbox{]}
+\item 
+char $\ast$ \hyperlink{bin_2bbssp_8c_3aad16fd4bea1b9717f232ea75ad6449}{desc} = \char`\"{}Bottleneck biconnected spanning subgraph solver\char`\"{}
+\item 
+char $\ast$ \hyperlink{bin_2bbssp_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage} = \char`\"{}-i tsplib.tsp \mbox{[}\hyperlink{histogram__data_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{]} \char`\"{}
 \end{CompactItemize}
 
 
 \subsection{Detailed Description}
 Bottleneck Biconnected Spanning Subgraph solver. 
 
-Solves the bottleneck biconnected spanning subgraph problem (BBSSP) problem on the given input files.
+Solves the bottleneck biconnected spanning subgraph problem (BBSSP) problem on the given input file.
 
 \begin{Desc}
 \item[Author:]John LaRusic \end{Desc}
 
 
 Definition in file \hyperlink{bin_2bbssp_8c-source}{bbssp.c}.
+
+\subsection{Define Documentation}
+\hypertarget{bin_2bbssp_8c_9b58b2c4af931c8486a986c9deca40f5}{
+\index{bin/bbssp.c@{bin/bbssp.c}!NUM\_\-OPTS@{NUM\_\-OPTS}}
+\index{NUM\_\-OPTS@{NUM\_\-OPTS}!bin/bbssp.c@{bin/bbssp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define NUM\_\-OPTS~2}}
+\label{bin_2bbssp_8c_9b58b2c4af931c8486a986c9deca40f5}
+
+
+
+
+Definition at line 18 of file bbssp.c.
 
 \subsection{Function Documentation}
 \hypertarget{bin_2bbssp_8c_0ddf1224851353fc92bfbff6f499fa97}{
@@ -62,98 +67,50 @@ Definition in file \hyperlink{bin_2bbssp_8c-source}{bbssp.c}.
 
 
 
-Definition at line 52 of file bbssp.c.
+Definition at line 31 of file bbssp.c.
 
-References arrow\_\-bbssp\_\-solve(), ARROW\_\-DEV\_\-NULL, arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-destruct(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read(), arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file(), arrow\_\-util\_\-restore\_\-stdout(), input\_\-file, arrow\_\-bbssp\_\-result::obj\_\-value, print\_\-xml\_\-output(), program\_\-name, read\_\-args(), arrow\_\-bbssp\_\-result::total\_\-time, and xml\_\-output.\hypertarget{bin_2bbssp_8c_853216ac51aa181669ff4d3de74058a7}{
-\index{bin/bbssp.c@{bin/bbssp.c}!print\_\-help@{print\_\-help}}
-\index{print\_\-help@{print\_\-help}!bin/bbssp.c@{bin/bbssp.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void print\_\-help ()}}
-\label{bin_2bbssp_8c_853216ac51aa181669ff4d3de74058a7}
-
-
-Prints help/usage message. 
-
-
-
-Definition at line 100 of file bbssp.c.
-
-References print\_\-usage(), and program\_\-name.
-
-Referenced by read\_\-args().\hypertarget{bin_2bbssp_8c_e5ad5cbeccaedc03a48d3c7eaa803e79}{
-\index{bin/bbssp.c@{bin/bbssp.c}!print\_\-usage@{print\_\-usage}}
-\index{print\_\-usage@{print\_\-usage}!bin/bbssp.c@{bin/bbssp.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void print\_\-usage ()}}
-\label{bin_2bbssp_8c_e5ad5cbeccaedc03a48d3c7eaa803e79}
-
-
-Prints usage message. 
-
-
-
-Definition at line 131 of file bbssp.c.
-
-References program\_\-name.
-
-Referenced by print\_\-help(), and read\_\-args().\hypertarget{bin_2bbssp_8c_6302aaae12249e8ea16bfdc7de892f21}{
-\index{bin/bbssp.c@{bin/bbssp.c}!print\_\-version@{print\_\-version}}
-\index{print\_\-version@{print\_\-version}!bin/bbssp.c@{bin/bbssp.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void print\_\-version ()}}
-\label{bin_2bbssp_8c_6302aaae12249e8ea16bfdc7de892f21}
-
-
-Prints version message. 
-
-
-
-Definition at line 116 of file bbssp.c.
-
-References program\_\-name.
-
-Referenced by read\_\-args().\hypertarget{bin_2bbssp_8c_f8424468968336a39cad523e50f3b65a}{
-\index{bin/bbssp.c@{bin/bbssp.c}!print\_\-xml\_\-output@{print\_\-xml\_\-output}}
-\index{print\_\-xml\_\-output@{print\_\-xml\_\-output}!bin/bbssp.c@{bin/bbssp.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void print\_\-xml\_\-output (int {\em obj\_\-value}, \/  double {\em total\_\-time}, \/  int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]})}}
-\label{bin_2bbssp_8c_f8424468968336a39cad523e50f3b65a}
-
-
-Prints output in XML format. 
-
-
-
-Definition at line 191 of file bbssp.c.
-
-References input\_\-file.
-
-Referenced by main().\hypertarget{bin_2bbssp_8c_72d0810dad1a2062df342005c15106b9}{
-\index{bin/bbssp.c@{bin/bbssp.c}!read\_\-args@{read\_\-args}}
-\index{read\_\-args@{read\_\-args}!bin/bbssp.c@{bin/bbssp.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void read\_\-args (int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]})}}
-\label{bin_2bbssp_8c_72d0810dad1a2062df342005c15106b9}
-
-
-Reads program arguments. 
-
-
-
-Definition at line 137 of file bbssp.c.
-
-References arrow\_\-print\_\-error, ARROW\_\-TRUE, input\_\-file, print\_\-help(), print\_\-usage(), print\_\-version(), and xml\_\-output.
-
-Referenced by main().
+References arrow\_\-bbssp\_\-solve(), ARROW\_\-FAILURE, arrow\_\-options\_\-parse(), arrow\_\-print\_\-error, arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-destruct(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read(), ARROW\_\-SUCCESS, arrow\_\-util\_\-print\_\-program\_\-args(), desc, input\_\-file, arrow\_\-problem\_\-info::max\_\-cost, NUM\_\-OPTS, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-problem::symmetric, arrow\_\-bound\_\-result::total\_\-time, usage, and xml\_\-file.
 
 \subsection{Variable Documentation}
-\hypertarget{bin_2bbssp_8c_a4f3a15de34c409bdec6ceacf93078ed}{
+\hypertarget{bin_2bbssp_8c_3aad16fd4bea1b9717f232ea75ad6449}{
+\index{bin/bbssp.c@{bin/bbssp.c}!desc@{desc}}
+\index{desc@{desc}!bin/bbssp.c@{bin/bbssp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf desc} = \char`\"{}Bottleneck biconnected spanning subgraph solver\char`\"{}}}
+\label{bin_2bbssp_8c_3aad16fd4bea1b9717f232ea75ad6449}
+
+
+
+
+Definition at line 26 of file bbssp.c.\hypertarget{bin_2bbssp_8c_a4f3a15de34c409bdec6ceacf93078ed}{
 \index{bin/bbssp.c@{bin/bbssp.c}!input\_\-file@{input\_\-file}}
 \index{input\_\-file@{input\_\-file}!bin/bbssp.c@{bin/bbssp.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf input\_\-file}}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf input\_\-file} = NULL}}
 \label{bin_2bbssp_8c_a4f3a15de34c409bdec6ceacf93078ed}
 
 
 Given input TSPLIB file 
 
-Definition at line 45 of file bbssp.c.
+Definition at line 14 of file bbssp.c.\hypertarget{bin_2bbssp_8c_cea6a9709d519c143f30db401a0d0c72}{
+\index{bin/bbssp.c@{bin/bbssp.c}!options@{options}}
+\index{options@{options}!bin/bbssp.c@{bin/bbssp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf arrow\_\-option} {\bf options}\mbox{[}NUM\_\-OPTS\mbox{]}}}
+\label{bin_2bbssp_8c_cea6a9709d519c143f30db401a0d0c72}
 
-Referenced by main(), print\_\-xml\_\-output(), and read\_\-args().\hypertarget{bin_2bbssp_8c_289c5900d90626d909f0a85d5a0ed61d}{
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} 
+{
+    {'i', "input", "TSPLIB input file", 
+        ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE},
+    {'x', "xml", "File to write XML output to",
+        ARROW_OPTION_STRING, &xml_file, ARROW_FALSE, ARROW_TRUE}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 19 of file bbssp.c.\hypertarget{bin_2bbssp_8c_289c5900d90626d909f0a85d5a0ed61d}{
 \index{bin/bbssp.c@{bin/bbssp.c}!program\_\-name@{program\_\-name}}
 \index{program\_\-name@{program\_\-name}!bin/bbssp.c@{bin/bbssp.c}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf program\_\-name}}}
@@ -162,17 +119,22 @@ Referenced by main(), print\_\-xml\_\-output(), and read\_\-args().\hypertarget{
 
 Program name 
 
-Definition at line 44 of file bbssp.c.
-
-Referenced by main(), print\_\-help(), print\_\-usage(), and print\_\-version().\hypertarget{bin_2bbssp_8c_78435df485756d3c16e77edcd8f6b938}{
-\index{bin/bbssp.c@{bin/bbssp.c}!xml\_\-output@{xml\_\-output}}
-\index{xml\_\-output@{xml\_\-output}!bin/bbssp.c@{bin/bbssp.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf xml\_\-output} = ARROW\_\-FALSE}}
-\label{bin_2bbssp_8c_78435df485756d3c16e77edcd8f6b938}
+Definition at line 13 of file bbssp.c.\hypertarget{bin_2bbssp_8c_adebe2487a2c5240ab6cd02c83add0bf}{
+\index{bin/bbssp.c@{bin/bbssp.c}!usage@{usage}}
+\index{usage@{usage}!bin/bbssp.c@{bin/bbssp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf usage} = \char`\"{}-i tsplib.tsp \mbox{[}{\bf options}\mbox{]} \char`\"{}}}
+\label{bin_2bbssp_8c_adebe2487a2c5240ab6cd02c83add0bf}
 
 
-Output output in XML format (or not) 
 
-Definition at line 46 of file bbssp.c.
 
-Referenced by main(), and read\_\-args().
+Definition at line 27 of file bbssp.c.\hypertarget{bin_2bbssp_8c_bf4e392494984c6ef8259268eb1fe421}{
+\index{bin/bbssp.c@{bin/bbssp.c}!xml\_\-file@{xml\_\-file}}
+\index{xml\_\-file@{xml\_\-file}!bin/bbssp.c@{bin/bbssp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf xml\_\-file} = NULL}}
+\label{bin_2bbssp_8c_bf4e392494984c6ef8259268eb1fe421}
+
+
+
+
+Definition at line 15 of file bbssp.c.

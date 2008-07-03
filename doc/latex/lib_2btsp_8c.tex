@@ -1,0 +1,201 @@
+\hypertarget{lib_2btsp_8c}{
+\section{lib/btsp.c File Reference}
+\label{lib_2btsp_8c}\index{lib/btsp.c@{lib/btsp.c}}
+}
+Bottleneck traveling salesman problem (BTSP) methods. 
+
+{\tt \#include \char`\"{}arrow.h\char`\"{}}\par
+
+
+Include dependency graph for btsp.c:\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{lib_2btsp_8c_8e12a84533dea0a6611878416eda7b76}{feasible} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int num\_\-steps, \hyperlink{structarrow__btsp__solve__plan}{arrow\_\-btsp\_\-solve\_\-plan} $\ast$steps, int delta, int $\ast$tour\_\-exists, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves the feasibility problem which attempts to determine if there is a Hamiltonian cycle using costs $<$= delta. \item\end{CompactList}\item 
+int \hyperlink{lib_2btsp_8c_b78b71959db64c692a9e16832df9c096}{arrow\_\-btsp\_\-result\_\-init} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Initializes the BTSP result structure. \item\end{CompactList}\item 
+void \hyperlink{lib_2btsp_8c_11d150bd3219a6ba3d9ccd3f0c952b2a}{arrow\_\-btsp\_\-result\_\-destruct} (\hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Destructs a BTSP result structure. \item\end{CompactList}\item 
+void \hyperlink{lib_2btsp_8c_9ee14515eed23a56303e338258725b7c}{arrow\_\-btsp\_\-params\_\-init} (\hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params} $\ast$params)
+\begin{CompactList}\small\item\em Inititalizes BTSP parameter structure. \item\end{CompactList}\item 
+void \hyperlink{lib_2btsp_8c_c5c69eb958340aba441e75dfbb6d941b}{arrow\_\-btsp\_\-params\_\-destruct} (\hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params} $\ast$params)
+\begin{CompactList}\small\item\em Destructs a BTSP parameters structure. \item\end{CompactList}\item 
+void \hyperlink{lib_2btsp_8c_a5f73647dedc4bcd1b5df2bf9e3edab4}{arrow\_\-btsp\_\-solve\_\-plan\_\-init} (\hyperlink{structarrow__btsp__solve__plan}{arrow\_\-btsp\_\-solve\_\-plan} $\ast$plan)
+\begin{CompactList}\small\item\em Inititalizes BTSP solve plan structure. \item\end{CompactList}\item 
+void \hyperlink{lib_2btsp_8c_e1d667017d467f926e8371a0823d9d7a}{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct} (\hyperlink{structarrow__btsp__solve__plan}{arrow\_\-btsp\_\-solve\_\-plan} $\ast$plan)
+\begin{CompactList}\small\item\em Destructs a BTSP solve plan structure. \item\end{CompactList}\item 
+int \hyperlink{lib_2btsp_8c_3c6427a5ad0c0f5157d2c1a903f823c4}{arrow\_\-btsp\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params} $\ast$params, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves TSP with Concorde's exact solver. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Bottleneck traveling salesman problem (BTSP) methods. 
+
+Heuristic for solving the bottleneck traveling salesman problem (BTSP).
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{lib_2btsp_8c-source}{btsp.c}.
+
+\subsection{Function Documentation}
+\hypertarget{lib_2btsp_8c_c5c69eb958340aba441e75dfbb6d941b}{
+\index{lib/btsp.c@{lib/btsp.c}!arrow\_\-btsp\_\-params\_\-destruct@{arrow\_\-btsp\_\-params\_\-destruct}}
+\index{arrow\_\-btsp\_\-params\_\-destruct@{arrow\_\-btsp\_\-params\_\-destruct}!lib/btsp.c@{lib/btsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-params\_\-destruct ({\bf arrow\_\-btsp\_\-params} $\ast$ {\em params})}}
+\label{lib_2btsp_8c_c5c69eb958340aba441e75dfbb6d941b}
+
+
+Destructs a BTSP parameters structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em result}]\mbox{[}out\mbox{]} BTSP parameters structure \end{description}
+\end{Desc}
+
+
+Definition at line 71 of file btsp.c.
+
+References arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), arrow\_\-btsp\_\-params::num\_\-steps, and arrow\_\-btsp\_\-params::steps.
+
+Referenced by main().\hypertarget{lib_2btsp_8c_9ee14515eed23a56303e338258725b7c}{
+\index{lib/btsp.c@{lib/btsp.c}!arrow\_\-btsp\_\-params\_\-init@{arrow\_\-btsp\_\-params\_\-init}}
+\index{arrow\_\-btsp\_\-params\_\-init@{arrow\_\-btsp\_\-params\_\-init}!lib/btsp.c@{lib/btsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-params\_\-init ({\bf arrow\_\-btsp\_\-params} $\ast$ {\em params})}}
+\label{lib_2btsp_8c_9ee14515eed23a56303e338258725b7c}
+
+
+Inititalizes BTSP parameter structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em params}]\mbox{[}out\mbox{]} BTSP parameters structure \end{description}
+\end{Desc}
+
+
+Definition at line 60 of file btsp.c.
+
+References ARROW\_\-FALSE, arrow\_\-btsp\_\-params::confirm\_\-sol, arrow\_\-btsp\_\-params::find\_\-short\_\-tour, arrow\_\-btsp\_\-params::lower\_\-bound, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-btsp\_\-params::supress\_\-ebst, and arrow\_\-btsp\_\-params::upper\_\-bound.
+
+Referenced by main().\hypertarget{lib_2btsp_8c_11d150bd3219a6ba3d9ccd3f0c952b2a}{
+\index{lib/btsp.c@{lib/btsp.c}!arrow\_\-btsp\_\-result\_\-destruct@{arrow\_\-btsp\_\-result\_\-destruct}}
+\index{arrow\_\-btsp\_\-result\_\-destruct@{arrow\_\-btsp\_\-result\_\-destruct}!lib/btsp.c@{lib/btsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-result\_\-destruct ({\bf arrow\_\-btsp\_\-result} $\ast$ {\em result})}}
+\label{lib_2btsp_8c_11d150bd3219a6ba3d9ccd3f0c952b2a}
+
+
+Destructs a BTSP result structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em result}]\mbox{[}out\mbox{]} BTSP result structure \end{description}
+\end{Desc}
+
+
+Definition at line 53 of file btsp.c.
+
+References arrow\_\-btsp\_\-result::tour.
+
+Referenced by arrow\_\-btsp\_\-solve(), and main().\hypertarget{lib_2btsp_8c_b78b71959db64c692a9e16832df9c096}{
+\index{lib/btsp.c@{lib/btsp.c}!arrow\_\-btsp\_\-result\_\-init@{arrow\_\-btsp\_\-result\_\-init}}
+\index{arrow\_\-btsp\_\-result\_\-init@{arrow\_\-btsp\_\-result\_\-init}!lib/btsp.c@{lib/btsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-result\_\-init ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em result})}}
+\label{lib_2btsp_8c_b78b71959db64c692a9e16832df9c096}
+
+
+Initializes the BTSP result structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em result}]\mbox{[}out\mbox{]} BTSP result structure \end{description}
+\end{Desc}
+
+
+Definition at line 33 of file btsp.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-result::exact\_\-attempts, arrow\_\-btsp\_\-result::exact\_\-time, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-result::linkern\_\-attempts, arrow\_\-btsp\_\-result::linkern\_\-time, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, and arrow\_\-btsp\_\-result::tour\_\-length.
+
+Referenced by arrow\_\-btsp\_\-solve(), and main().\hypertarget{lib_2btsp_8c_3c6427a5ad0c0f5157d2c1a903f823c4}{
+\index{lib/btsp.c@{lib/btsp.c}!arrow\_\-btsp\_\-solve@{arrow\_\-btsp\_\-solve}}
+\index{arrow\_\-btsp\_\-solve@{arrow\_\-btsp\_\-solve}!lib/btsp.c@{lib/btsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-btsp\_\-params} $\ast$ {\em params}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em result})}}
+\label{lib_2btsp_8c_3c6427a5ad0c0f5157d2c1a903f823c4}
+
+
+Solves TSP with Concorde's exact solver. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em info}]\mbox{[}in\mbox{]} extra problem info \item[{\em params}]\mbox{[}in\mbox{]} parameters for solver (can be NULL) \item[{\em result}]\mbox{[}out\mbox{]} BTSP solution \end{description}
+\end{Desc}
+
+
+Definition at line 98 of file btsp.c.
+
+References arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-zeit(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-params::confirm\_\-sol, arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-result::exact\_\-attempts, arrow\_\-btsp\_\-result::exact\_\-time, feasible(), arrow\_\-btsp\_\-params::find\_\-short\_\-tour, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-result::linkern\_\-attempts, arrow\_\-btsp\_\-result::linkern\_\-time, arrow\_\-btsp\_\-params::lower\_\-bound, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-btsp\_\-result::optimal, arrow\_\-problem::size, arrow\_\-btsp\_\-params::steps, arrow\_\-btsp\_\-params::supress\_\-ebst, arrow\_\-problem::symmetric, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, arrow\_\-btsp\_\-result::tour\_\-length, upper\_\-bound, and arrow\_\-btsp\_\-params::upper\_\-bound.
+
+Referenced by main().\hypertarget{lib_2btsp_8c_e1d667017d467f926e8371a0823d9d7a}{
+\index{lib/btsp.c@{lib/btsp.c}!arrow\_\-btsp\_\-solve\_\-plan\_\-destruct@{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct}}
+\index{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct@{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct}!lib/btsp.c@{lib/btsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-solve\_\-plan\_\-destruct ({\bf arrow\_\-btsp\_\-solve\_\-plan} $\ast$ {\em plan})}}
+\label{lib_2btsp_8c_e1d667017d467f926e8371a0823d9d7a}
+
+
+Destructs a BTSP solve plan structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em result}]\mbox{[}out\mbox{]} BTSP solve plan structure \end{description}
+\end{Desc}
+
+
+Definition at line 91 of file btsp.c.
+
+References arrow\_\-btsp\_\-fun\_\-destruct(), arrow\_\-tsp\_\-lk\_\-params\_\-destruct(), arrow\_\-btsp\_\-solve\_\-plan::fun, and arrow\_\-btsp\_\-solve\_\-plan::lk\_\-params.
+
+Referenced by arrow\_\-btsp\_\-params\_\-destruct().\hypertarget{lib_2btsp_8c_a5f73647dedc4bcd1b5df2bf9e3edab4}{
+\index{lib/btsp.c@{lib/btsp.c}!arrow\_\-btsp\_\-solve\_\-plan\_\-init@{arrow\_\-btsp\_\-solve\_\-plan\_\-init}}
+\index{arrow\_\-btsp\_\-solve\_\-plan\_\-init@{arrow\_\-btsp\_\-solve\_\-plan\_\-init}!lib/btsp.c@{lib/btsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-solve\_\-plan\_\-init ({\bf arrow\_\-btsp\_\-solve\_\-plan} $\ast$ {\em plan})}}
+\label{lib_2btsp_8c_a5f73647dedc4bcd1b5df2bf9e3edab4}
+
+
+Inititalizes BTSP solve plan structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em params}]\mbox{[}out\mbox{]} BTSP solve plan structure \end{description}
+\end{Desc}
+
+
+Definition at line 84 of file btsp.c.
+
+References arrow\_\-btsp\_\-solve\_\-plan::attempts, and arrow\_\-btsp\_\-solve\_\-plan::plan\_\-type.\hypertarget{lib_2btsp_8c_8e12a84533dea0a6611878416eda7b76}{
+\index{lib/btsp.c@{lib/btsp.c}!feasible@{feasible}}
+\index{feasible@{feasible}!lib/btsp.c@{lib/btsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int feasible ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em num\_\-steps}, \/  {\bf arrow\_\-btsp\_\-solve\_\-plan} $\ast$ {\em steps}, \/  int {\em delta}, \/  int $\ast$ {\em tour\_\-exists}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em result})}}
+\label{lib_2btsp_8c_8e12a84533dea0a6611878416eda7b76}
+
+
+Solves the feasibility problem which attempts to determine if there is a Hamiltonian cycle using costs $<$= delta. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em num\_\-steps}]\mbox{[}in\mbox{]} total number of steps in solve plan \item[{\em steps}]\mbox{[}in\mbox{]} solve plan step details \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter for feasibility problem. \item[{\em tour\_\-exists}]\mbox{[}out\mbox{]} true if a feasible tour exists, false otherwise \item[{\em result}]\mbox{[}out\mbox{]} resulting BTSP tour found \end{description}
+\end{Desc}
+
+
+Definition at line 275 of file btsp.c.
+
+References arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-problem\_\-destruct(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-tsp\_\-lk\_\-solve(), arrow\_\-tsp\_\-result\_\-destruct(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve\_\-plan::attempts, arrow\_\-btsp\_\-result::exact\_\-attempts, arrow\_\-btsp\_\-result::exact\_\-time, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-solve\_\-plan::fun, arrow\_\-problem::get\_\-cost, arrow\_\-btsp\_\-result::linkern\_\-attempts, arrow\_\-btsp\_\-result::linkern\_\-time, arrow\_\-btsp\_\-solve\_\-plan::lk\_\-params, arrow\_\-tsp\_\-result::obj\_\-value, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-btsp\_\-solve\_\-plan::plan\_\-type, arrow\_\-problem::size, arrow\_\-tsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, arrow\_\-tsp\_\-result::tour, arrow\_\-btsp\_\-result::tour\_\-length, arrow\_\-btsp\_\-solve\_\-plan::upper\_\-bound\_\-update, and arrow\_\-btsp\_\-solve\_\-plan::use\_\-exact\_\-solver.
+
+Referenced by arrow\_\-btsp\_\-solve().

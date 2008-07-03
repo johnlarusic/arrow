@@ -1,0 +1,77 @@
+\hypertarget{options_8c}{
+\section{lib/options.c File Reference}
+\label{options_8c}\index{lib/options.c@{lib/options.c}}
+}
+Helper for parsing program options. 
+
+{\tt \#include \char`\"{}arrow.h\char`\"{}}\par
+
+
+Include dependency graph for options.c:\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{options_8c_4007f11f31786f9240a55404137a4109}{print\_\-usage} (char $\ast$\hyperlink{bin_2tsp_8c_289c5900d90626d909f0a85d5a0ed61d}{program\_\-name}, char $\ast$\hyperlink{histogram__data_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage})
+\item 
+void \hyperlink{options_8c_0e9eb03b516f80fc4b993ef37b334376}{print\_\-version} (char $\ast$\hyperlink{bin_2tsp_8c_289c5900d90626d909f0a85d5a0ed61d}{program\_\-name})
+\item 
+void \hyperlink{options_8c_b9605b88ecec0f96fd251a7262e506a3}{print\_\-help} (int num\_\-opts, \hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{histogram__data_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{[}$\,$\mbox{]}, char $\ast$description)
+\item 
+int \hyperlink{options_8c_e187e044872b9130dc8451a7cbfd3f8d}{arrow\_\-options\_\-parse} (int num\_\-opts, \hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{histogram__data_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{[}$\,$\mbox{]}, char $\ast$description, char $\ast$\hyperlink{histogram__data_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage}, int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, int $\ast$opt\_\-ind)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Helper for parsing program options. 
+
+For helping parse all those pesky program options!
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{options_8c-source}{options.c}.
+
+\subsection{Function Documentation}
+\hypertarget{options_8c_e187e044872b9130dc8451a7cbfd3f8d}{
+\index{options.c@{options.c}!arrow\_\-options\_\-parse@{arrow\_\-options\_\-parse}}
+\index{arrow\_\-options\_\-parse@{arrow\_\-options\_\-parse}!options.c@{options.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-options\_\-parse (int {\em num\_\-opts}, \/  {\bf arrow\_\-option} {\em options}\mbox{[}$\,$\mbox{]}, \/  char $\ast$ {\em description}, \/  char $\ast$ {\em usage}, \/  int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]}, \/  int $\ast$ {\em opt\_\-ind})}}
+\label{options_8c_e187e044872b9130dc8451a7cbfd3f8d}
+
+
+
+
+Definition at line 24 of file options.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-OPTION\_\-DOUBLE, ARROW\_\-OPTION\_\-INT, ARROW\_\-OPTION\_\-STRING, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-option::long\_\-option, print\_\-help(), print\_\-usage(), print\_\-version(), and arrow\_\-option::short\_\-option.
+
+Referenced by main().\hypertarget{options_8c_b9605b88ecec0f96fd251a7262e506a3}{
+\index{options.c@{options.c}!print\_\-help@{print\_\-help}}
+\index{print\_\-help@{print\_\-help}!options.c@{options.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void print\_\-help (int {\em num\_\-opts}, \/  {\bf arrow\_\-option} {\em options}\mbox{[}$\,$\mbox{]}, \/  char $\ast$ {\em description})}}
+\label{options_8c_b9605b88ecec0f96fd251a7262e506a3}
+
+
+
+
+Definition at line 207 of file options.c.\hypertarget{options_8c_4007f11f31786f9240a55404137a4109}{
+\index{options.c@{options.c}!print\_\-usage@{print\_\-usage}}
+\index{print\_\-usage@{print\_\-usage}!options.c@{options.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void print\_\-usage (char $\ast$ {\em program\_\-name}, \/  char $\ast$ {\em usage})}}
+\label{options_8c_4007f11f31786f9240a55404137a4109}
+
+
+
+
+Definition at line 186 of file options.c.\hypertarget{options_8c_0e9eb03b516f80fc4b993ef37b334376}{
+\index{options.c@{options.c}!print\_\-version@{print\_\-version}}
+\index{print\_\-version@{print\_\-version}!options.c@{options.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void print\_\-version (char $\ast$ {\em program\_\-name})}}
+\label{options_8c_0e9eb03b516f80fc4b993ef37b334376}
+
+
+
+
+Definition at line 192 of file options.c.
+
+References ARROW\_\-VERSION.

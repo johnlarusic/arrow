@@ -9,7 +9,6 @@
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
-      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&nbsp;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -30,6 +29,8 @@
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Data Fields</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__tsp__lk__params.html#ad3822d8c0e5d78b09618dbf716c3a4a">random_restarts</a></td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__tsp__lk__params.html#ec5d500e1f1d7dabbbe0d1aae2abfcf8">stall_count</a></td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__tsp__lk__params.html#9744a2fb89bca6b678fec9a6a17255ea">kicks</a></td></tr>
@@ -45,8 +46,27 @@
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 LK algorithm parameters. 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00227">227</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00142">142</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
 <hr><h2>Field Documentation</h2>
+<a class="anchor" name="ad3822d8c0e5d78b09618dbf716c3a4a"></a><!-- doxytag: member="arrow_tsp_lk_params::random_restarts" ref="ad3822d8c0e5d78b09618dbf716c3a4a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="structarrow__tsp__lk__params.html#ad3822d8c0e5d78b09618dbf716c3a4a">arrow_tsp_lk_params::random_restarts</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+the number of random restarts to perform 
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00144">144</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2tsp_8c-source.html#l00047">arrow_tsp_lk_params_init()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, and <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="ec5d500e1f1d7dabbbe0d1aae2abfcf8"></a><!-- doxytag: member="arrow_tsp_lk_params::stall_count" ref="ec5d500e1f1d7dabbbe0d1aae2abfcf8" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -60,7 +80,9 @@ LK algorithm parameters.
 
 <p>
 the max number of 4-swap kicks to perform without making progress 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00229">229</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00145">145</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2tsp_8c-source.html#l00047">arrow_tsp_lk_params_init()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, and <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
 
 </div>
 </div><p>
@@ -77,7 +99,9 @@ the max number of 4-swap kicks to perform without making progress
 
 <p>
 the number of 4-swap kicks to perform 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00231">231</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00147">147</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2tsp_8c-source.html#l00047">arrow_tsp_lk_params_init()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, and <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
 
 </div>
 </div><p>
@@ -94,7 +118,9 @@ the number of 4-swap kicks to perform
 
 <p>
 the type of kick: one of CC_LK_RANDOM_KICK, CC_LK_GEOMETRIC_KICK, or CC_LK_CLOSE_KICK; see Concorde documentation for more info 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00232">232</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00148">148</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2tsp_8c-source.html#l00047">arrow_tsp_lk_params_init()</a>, and <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>.</p>
 
 </div>
 </div><p>
@@ -111,7 +137,9 @@ the type of kick: one of CC_LK_RANDOM_KICK, CC_LK_GEOMETRIC_KICK, or CC_LK_CLOSE
 
 <p>
 stop after this running time reached; set to 0 to have no time bound, must be positive 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00235">235</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00151">151</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2tsp_8c-source.html#l00047">arrow_tsp_lk_params_init()</a>, and <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>.</p>
 
 </div>
 </div><p>
@@ -128,7 +156,9 @@ stop after this running time reached; set to 0 to have no time bound, must be po
 
 <p>
 stop after finding tour of this length; must be non-negative 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00237">237</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00153">153</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2tsp_8c-source.html#l00047">arrow_tsp_lk_params_init()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, and <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
 
 </div>
 </div><p>
@@ -145,14 +175,16 @@ stop after finding tour of this length; must be non-negative
 
 <p>
 initial tour (may be NULL) 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00239">239</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00155">155</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2tsp_8c-source.html#l00059">arrow_tsp_lk_params_destruct()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00047">arrow_tsp_lk_params_init()</a>, and <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this struct was generated from the following file:<ul>
 <li>lib/<a class="el" href="arrow_8h-source.html">arrow.h</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 11 20:47:16 2008 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Thu Jul 3 00:09:15 2008 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

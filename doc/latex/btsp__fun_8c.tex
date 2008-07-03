@@ -1,0 +1,500 @@
+\hypertarget{btsp__fun_8c}{
+\section{lib/btsp\_\-fun.c File Reference}
+\label{btsp__fun_8c}\index{lib/btsp\_\-fun.c@{lib/btsp\_\-fun.c}}
+}
+Cost matrix transformation functions. 
+
+{\tt \#include \char`\"{}arrow.h\char`\"{}}\par
+
+
+Include dependency graph for btsp\_\-fun.c:\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structbasic__data}{basic\_\-data}
+\begin{CompactList}\small\item\em Concorde userdat structure for basic cost matrix function. \item\end{CompactList}\item 
+struct \hyperlink{structconstrained__data}{constrained\_\-data}
+\begin{CompactList}\small\item\em Concorde userdat structure for constrained cost matrix function. \item\end{CompactList}\item 
+struct \hyperlink{structconstrained__shake__data}{constrained\_\-shake\_\-data}
+\begin{CompactList}\small\item\em Concorde userdat structure for constrained shake cost matrix function. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{btsp__fun_8c_94f3d03a6fcef1cd4824011a672548a6}{basic\_\-shallow\_\-apply} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int delta, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
+\begin{CompactList}\small\item\em Applies basic BTSP function to the cost matrix of the old problem to create the new problem (shallow copy). \item\end{CompactList}\item 
+int \hyperlink{btsp__fun_8c_c8454de57c75c0686a76cf885cdd91a8}{basic\_\-deep\_\-apply} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int delta, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
+\begin{CompactList}\small\item\em Applies basic BTSP function to the cost matrix of the old problem to create the new problem (deep copy). \item\end{CompactList}\item 
+void \hyperlink{btsp__fun_8c_943121f5c798dd76e338def78e4df486}{basic\_\-destruct} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Destructs a basic BTSP function structure. \item\end{CompactList}\item 
+int \hyperlink{btsp__fun_8c_762c64e6b461964435495575f35e343c}{basic\_\-feasible} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int delta, double tour\_\-length, int $\ast$tour)
+\begin{CompactList}\small\item\em Determines if the given tour is feasible or not. \item\end{CompactList}\item 
+static int \hyperlink{btsp__fun_8c_0389aa3fb915c9290144f9bb423f9a69}{basic\_\-edgelen} (int i, int j, struct CCdatagroup $\ast$dat)
+\begin{CompactList}\small\item\em Concorde edge length function for the basic cost matrix function. Returns the cost C\mbox{[}i,j\mbox{]}. \item\end{CompactList}\item 
+int \hyperlink{btsp__fun_8c_6d26a21434c453bf4913f1e4188fa0ec}{basic\_\-atsp\_\-deep\_\-apply} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int delta, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
+\begin{CompactList}\small\item\em Applies basic ABTSP function to the cost matrix of the old problem to create the new problem (deep copy). \item\end{CompactList}\item 
+void \hyperlink{btsp__fun_8c_5f63231bce7d4f90188b2b2329a3c3e0}{basic\_\-atsp\_\-destruct} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Destructs a basic ABTSP function structure. \item\end{CompactList}\item 
+int \hyperlink{btsp__fun_8c_4cd2c08071d798934e70893527ed1403}{basic\_\-atsp\_\-feasible} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int delta, double tour\_\-length, int $\ast$tour)
+\begin{CompactList}\small\item\em Determines if the given tour is feasible or not for the basic ATSP transformation. \item\end{CompactList}\item 
+int \hyperlink{btsp__fun_8c_0440247f3ddc828c531139e468ec40dc}{constrained\_\-shallow\_\-apply} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int delta, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
+\begin{CompactList}\small\item\em Applies constrained BTSP function to the cost matrix of the old problem to create the new problem (shallow copy). \item\end{CompactList}\item 
+int \hyperlink{btsp__fun_8c_395a80b4da614c2ca559a314772ec1e4}{constrained\_\-deep\_\-apply} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int delta, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
+\begin{CompactList}\small\item\em Applies constrained BTSP function to the cost matrix of the old problem to create the new problem (deep copy). \item\end{CompactList}\item 
+void \hyperlink{btsp__fun_8c_cf8f9a87497cfae1393b4bb6fd744d74}{constrained\_\-destruct} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Destructs constrained BTSP function structure. \item\end{CompactList}\item 
+static int \hyperlink{btsp__fun_8c_b30a50ce14b7b354d543227fb2aec0d2}{constrained\_\-edgelen} (int i, int j, struct CCdatagroup $\ast$dat)
+\begin{CompactList}\small\item\em Concorde edge length function for the constrained cost matrix function. Returns the cost C\mbox{[}i,j\mbox{]}. \item\end{CompactList}\item 
+int \hyperlink{btsp__fun_8c_97b1ee91fecd6ad5e56c63f4bcc66df5}{constrained\_\-shake\_\-deep\_\-apply} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int delta, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
+\begin{CompactList}\small\item\em Applies constrained shake BTSP function to the cost matrix of the old problem to create the new problem (deep copy). \item\end{CompactList}\item 
+void \hyperlink{btsp__fun_8c_6d52518968d1ea6f3312db1fecb79114}{constrained\_\-shake\_\-destruct} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Destructs constrained shake BTSP function structure. \item\end{CompactList}\item 
+int \hyperlink{btsp__fun_8c_5e966cb36e436ab94860b231935a416c}{constrained\_\-shake\_\-feasible} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int delta, double tour\_\-length, int $\ast$tour)
+\begin{CompactList}\small\item\em Determines if the given tour is feasible or not. \item\end{CompactList}\item 
+int \hyperlink{btsp__fun_8c_d9cf4e03bd60c7efc575dd29868456bf}{arrow\_\-btsp\_\-fun\_\-apply} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int delta, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
+\begin{CompactList}\small\item\em Applies the given function to the given problem to create a new problem. \item\end{CompactList}\item 
+void \hyperlink{btsp__fun_8c_f0b2cce4c9dced6fe48fbc29877bbd8d}{arrow\_\-btsp\_\-fun\_\-destruct} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Destructs a function structure. \item\end{CompactList}\item 
+int \hyperlink{btsp__fun_8c_a8030d26d0cc61ba064d0baedf766552}{arrow\_\-btsp\_\-fun\_\-basic} (int shallow, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Basic BTSP to TSP function. \item\end{CompactList}\item 
+int \hyperlink{btsp__fun_8c_4b7ad8f9778197ef3f6b88ed6abf259a}{arrow\_\-btsp\_\-fun\_\-basic\_\-atsp} (int shallow, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Basic BTSP to TSP function for asymmetric problem instances. \item\end{CompactList}\item 
+int \hyperlink{btsp__fun_8c_835bc4e51debcb5eeb721c65b1804fa9}{arrow\_\-btsp\_\-fun\_\-constrained} (int shallow, double feasible\_\-length, int infinity, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Constrained BTSP to TSP function. \item\end{CompactList}\item 
+int \hyperlink{btsp__fun_8c_c45130e6af4d03bb2ea580b6490f45e1}{arrow\_\-btsp\_\-fun\_\-constrained\_\-shake} (int shallow, double feasible\_\-length, int infinity, int rand\_\-min, int rand\_\-max, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Constrained \char`\"{}Shake\char`\"{} BTSP to TSP function. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Cost matrix transformation functions. 
+
+Cost matrix transformation functions for the bottleneck traveling salesman problem (BTSP).
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{btsp__fun_8c-source}{btsp\_\-fun.c}.
+
+\subsection{Function Documentation}
+\hypertarget{btsp__fun_8c_d9cf4e03bd60c7efc575dd29868456bf}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!arrow\_\-btsp\_\-fun\_\-apply@{arrow\_\-btsp\_\-fun\_\-apply}}
+\index{arrow\_\-btsp\_\-fun\_\-apply@{arrow\_\-btsp\_\-fun\_\-apply}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-apply ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em delta}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
+\label{btsp__fun_8c_d9cf4e03bd60c7efc575dd29868456bf}
+
+
+Applies the given function to the given problem to create a new problem. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em old\_\-problem}]\mbox{[}in\mbox{]} existing problem \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em new\_\-problem}]\mbox{[}out\mbox{]} new problem to create \end{description}
+\end{Desc}
+
+
+Definition at line 213 of file btsp\_\-fun.c.
+
+References arrow\_\-btsp\_\-fun::apply, ARROW\_\-ERROR\_\-FATAL, ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix(), arrow\_\-problem::data, arrow\_\-problem::get\_\-cost, arrow\_\-problem::name, arrow\_\-btsp\_\-fun::shallow, arrow\_\-problem::shallow, and arrow\_\-problem::size.
+
+Referenced by feasible().\hypertarget{btsp__fun_8c_a8030d26d0cc61ba064d0baedf766552}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!arrow\_\-btsp\_\-fun\_\-basic@{arrow\_\-btsp\_\-fun\_\-basic}}
+\index{arrow\_\-btsp\_\-fun\_\-basic@{arrow\_\-btsp\_\-fun\_\-basic}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-basic (int {\em shallow}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{btsp__fun_8c_a8030d26d0cc61ba064d0baedf766552}
+
+
+Basic BTSP to TSP function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 249 of file btsp\_\-fun.c.
+
+References arrow\_\-btsp\_\-fun::apply, ARROW\_\-FALSE, ARROW\_\-SUCCESS, ARROW\_\-TRUE, basic\_\-deep\_\-apply(), basic\_\-destruct(), basic\_\-feasible(), basic\_\-shallow\_\-apply(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::feasible\_\-length, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{btsp__fun_8c_4b7ad8f9778197ef3f6b88ed6abf259a}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!arrow\_\-btsp\_\-fun\_\-basic\_\-atsp@{arrow\_\-btsp\_\-fun\_\-basic\_\-atsp}}
+\index{arrow\_\-btsp\_\-fun\_\-basic\_\-atsp@{arrow\_\-btsp\_\-fun\_\-basic\_\-atsp}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-basic\_\-atsp (int {\em shallow}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{btsp__fun_8c_4b7ad8f9778197ef3f6b88ed6abf259a}
+
+
+Basic BTSP to TSP function for asymmetric problem instances. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 270 of file btsp\_\-fun.c.
+
+References arrow\_\-btsp\_\-fun::apply, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, basic\_\-atsp\_\-deep\_\-apply(), basic\_\-atsp\_\-destruct(), basic\_\-atsp\_\-feasible(), arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::feasible\_\-length, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{btsp__fun_8c_835bc4e51debcb5eeb721c65b1804fa9}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!arrow\_\-btsp\_\-fun\_\-constrained@{arrow\_\-btsp\_\-fun\_\-constrained}}
+\index{arrow\_\-btsp\_\-fun\_\-constrained@{arrow\_\-btsp\_\-fun\_\-constrained}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-constrained (int {\em shallow}, \/  double {\em feasible\_\-length}, \/  int {\em infinity}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{btsp__fun_8c_835bc4e51debcb5eeb721c65b1804fa9}
+
+
+Constrained BTSP to TSP function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em feasible\_\-length}]\mbox{[}in\mbox{]} length of feasible tour \item[{\em infinity}]\mbox{[}in\mbox{]} value to use as \char`\"{}infinity\char`\"{} \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 291 of file btsp\_\-fun.c.
+
+References arrow\_\-btsp\_\-fun::apply, ARROW\_\-ERROR\_\-FATAL, ARROW\_\-FALSE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, ARROW\_\-TRUE, basic\_\-feasible(), constrained\_\-deep\_\-apply(), constrained\_\-destruct(), constrained\_\-shallow\_\-apply(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::feasible\_\-length, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{btsp__fun_8c_c45130e6af4d03bb2ea580b6490f45e1}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!arrow\_\-btsp\_\-fun\_\-constrained\_\-shake@{arrow\_\-btsp\_\-fun\_\-constrained\_\-shake}}
+\index{arrow\_\-btsp\_\-fun\_\-constrained\_\-shake@{arrow\_\-btsp\_\-fun\_\-constrained\_\-shake}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-constrained\_\-shake (int {\em shallow}, \/  double {\em feasible\_\-length}, \/  int {\em infinity}, \/  int {\em rand\_\-min}, \/  int {\em rand\_\-max}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{btsp__fun_8c_c45130e6af4d03bb2ea580b6490f45e1}
+
+
+Constrained \char`\"{}Shake\char`\"{} BTSP to TSP function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em feasible\_\-length}]\mbox{[}in\mbox{]} length of feasible tour \item[{\em infinity}]\mbox{[}in\mbox{]} value to use as \char`\"{}infinity\char`\"{} \item[{\em rand\_\-min}]\mbox{[}in\mbox{]} minimum random value to generate \item[{\em rand\_\-max}]\mbox{[}in\mbox{]} maximum random value to generate \item[{\em problem}]\mbox{[}in\mbox{]} the problem the shake is based upon \item[{\em info}]\mbox{[}in\mbox{]} information about the original problem \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 319 of file btsp\_\-fun.c.
+
+References arrow\_\-btsp\_\-fun::apply, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, constrained\_\-shake\_\-deep\_\-apply(), constrained\_\-shake\_\-destruct(), constrained\_\-shake\_\-feasible(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::feasible\_\-length, constrained\_\-shake\_\-data::infinity, constrained\_\-shake\_\-data::info, constrained\_\-shake\_\-data::problem, constrained\_\-shake\_\-data::rand\_\-max, constrained\_\-shake\_\-data::rand\_\-min, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{btsp__fun_8c_f0b2cce4c9dced6fe48fbc29877bbd8d}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!arrow\_\-btsp\_\-fun\_\-destruct@{arrow\_\-btsp\_\-fun\_\-destruct}}
+\index{arrow\_\-btsp\_\-fun\_\-destruct@{arrow\_\-btsp\_\-fun\_\-destruct}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-fun\_\-destruct ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{btsp__fun_8c_f0b2cce4c9dced6fe48fbc29877bbd8d}
+
+
+Destructs a function structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 243 of file btsp\_\-fun.c.
+
+References arrow\_\-btsp\_\-fun::destruct.
+
+Referenced by arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), and main().\hypertarget{btsp__fun_8c_6d26a21434c453bf4913f1e4188fa0ec}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!basic\_\-atsp\_\-deep\_\-apply@{basic\_\-atsp\_\-deep\_\-apply}}
+\index{basic\_\-atsp\_\-deep\_\-apply@{basic\_\-atsp\_\-deep\_\-apply}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int basic\_\-atsp\_\-deep\_\-apply ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em delta}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
+\label{btsp__fun_8c_6d26a21434c453bf4913f1e4188fa0ec}
+
+
+Applies basic ABTSP function to the cost matrix of the old problem to create the new problem (deep copy). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} the cost matrix function \item[{\em old\_\-problem}]\mbox{[}in\mbox{]} the problem to apply the function to \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em new\_\-problem}]\mbox{[}out\mbox{]} the resulting new problem \end{description}
+\end{Desc}
+
+
+Definition at line 422 of file btsp\_\-fun.c.
+
+References ARROW\_\-SUCCESS, arrow\_\-problem::data, arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-basic\_\-atsp().\hypertarget{btsp__fun_8c_5f63231bce7d4f90188b2b2329a3c3e0}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!basic\_\-atsp\_\-destruct@{basic\_\-atsp\_\-destruct}}
+\index{basic\_\-atsp\_\-destruct@{basic\_\-atsp\_\-destruct}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void basic\_\-atsp\_\-destruct ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{btsp__fun_8c_5f63231bce7d4f90188b2b2329a3c3e0}
+
+
+Destructs a basic ABTSP function structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} the function structure to destruct \end{description}
+\end{Desc}
+
+
+Definition at line 442 of file btsp\_\-fun.c.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-basic\_\-atsp().\hypertarget{btsp__fun_8c_4cd2c08071d798934e70893527ed1403}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!basic\_\-atsp\_\-feasible@{basic\_\-atsp\_\-feasible}}
+\index{basic\_\-atsp\_\-feasible@{basic\_\-atsp\_\-feasible}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int basic\_\-atsp\_\-feasible ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em delta}, \/  double {\em tour\_\-length}, \/  int $\ast$ {\em tour})}}
+\label{btsp__fun_8c_4cd2c08071d798934e70893527ed1403}
+
+
+Determines if the given tour is feasible or not for the basic ATSP transformation. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em problem}]\mbox{[}in\mbox{]} the problem to check against \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em tour\_\-length}]\mbox{[}in\mbox{]} the length of the given tour \item[{\em tour}]\mbox{[}in\mbox{]} the tour in node-node format \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]ARROW\_\-TRUE if the tour is feasible, ARROW\_\-FALSE if not \end{Desc}
+
+
+Definition at line 446 of file btsp\_\-fun.c.
+
+References ARROW\_\-FALSE, ARROW\_\-TRUE, arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-basic\_\-atsp().\hypertarget{btsp__fun_8c_c8454de57c75c0686a76cf885cdd91a8}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!basic\_\-deep\_\-apply@{basic\_\-deep\_\-apply}}
+\index{basic\_\-deep\_\-apply@{basic\_\-deep\_\-apply}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int basic\_\-deep\_\-apply ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em delta}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
+\label{btsp__fun_8c_c8454de57c75c0686a76cf885cdd91a8}
+
+
+Applies basic BTSP function to the cost matrix of the old problem to create the new problem (deep copy). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} the cost matrix function \item[{\em old\_\-problem}]\mbox{[}in\mbox{]} the problem to apply the function to \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em new\_\-problem}]\mbox{[}out\mbox{]} the resulting new problem \end{description}
+\end{Desc}
+
+
+Definition at line 387 of file btsp\_\-fun.c.
+
+References ARROW\_\-SUCCESS, arrow\_\-problem::data, arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-basic().\hypertarget{btsp__fun_8c_943121f5c798dd76e338def78e4df486}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!basic\_\-destruct@{basic\_\-destruct}}
+\index{basic\_\-destruct@{basic\_\-destruct}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void basic\_\-destruct ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{btsp__fun_8c_943121f5c798dd76e338def78e4df486}
+
+
+Destructs a basic BTSP function structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} the function structure to destruct \end{description}
+\end{Desc}
+
+
+Definition at line 403 of file btsp\_\-fun.c.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-basic().\hypertarget{btsp__fun_8c_0389aa3fb915c9290144f9bb423f9a69}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!basic\_\-edgelen@{basic\_\-edgelen}}
+\index{basic\_\-edgelen@{basic\_\-edgelen}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}static int basic\_\-edgelen (int {\em i}, \/  int {\em j}, \/  struct CCdatagroup $\ast$ {\em dat})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{btsp__fun_8c_0389aa3fb915c9290144f9bb423f9a69}
+
+
+Concorde edge length function for the basic cost matrix function. Returns the cost C\mbox{[}i,j\mbox{]}. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em i}]\mbox{[}in\mbox{]} node i \item[{\em j}]\mbox{[}in\mbox{]} node j \item[{\em dat}]\mbox{[}in\mbox{]} Concorde data structure. \end{description}
+\end{Desc}
+
+
+Definition at line 414 of file btsp\_\-fun.c.
+
+References basic\_\-data::dat.
+
+Referenced by basic\_\-shallow\_\-apply().\hypertarget{btsp__fun_8c_762c64e6b461964435495575f35e343c}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!basic\_\-feasible@{basic\_\-feasible}}
+\index{basic\_\-feasible@{basic\_\-feasible}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int basic\_\-feasible ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em delta}, \/  double {\em tour\_\-length}, \/  int $\ast$ {\em tour})}}
+\label{btsp__fun_8c_762c64e6b461964435495575f35e343c}
+
+
+Determines if the given tour is feasible or not. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em problem}]\mbox{[}in\mbox{]} the problem to check against \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em tour\_\-length}]\mbox{[}in\mbox{]} the length of the given tour \item[{\em tour}]\mbox{[}in\mbox{]} the tour in node-node format \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]ARROW\_\-TRUE if the tour is feasible, ARROW\_\-FALSE if not \end{Desc}
+
+
+Definition at line 407 of file btsp\_\-fun.c.
+
+References ARROW\_\-FALSE, and ARROW\_\-TRUE.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-basic(), and arrow\_\-btsp\_\-fun\_\-constrained().\hypertarget{btsp__fun_8c_94f3d03a6fcef1cd4824011a672548a6}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!basic\_\-shallow\_\-apply@{basic\_\-shallow\_\-apply}}
+\index{basic\_\-shallow\_\-apply@{basic\_\-shallow\_\-apply}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int basic\_\-shallow\_\-apply ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em delta}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
+\label{btsp__fun_8c_94f3d03a6fcef1cd4824011a672548a6}
+
+
+Applies basic BTSP function to the cost matrix of the old problem to create the new problem (shallow copy). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} the cost matrix function \item[{\em old\_\-problem}]\mbox{[}in\mbox{]} the problem to apply the function to \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em new\_\-problem}]\mbox{[}out\mbox{]} the resulting new problem \end{description}
+\end{Desc}
+
+
+Definition at line 364 of file btsp\_\-fun.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, basic\_\-edgelen(), basic\_\-data::dat, arrow\_\-problem::data, and basic\_\-data::delta.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-basic().\hypertarget{btsp__fun_8c_395a80b4da614c2ca559a314772ec1e4}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!constrained\_\-deep\_\-apply@{constrained\_\-deep\_\-apply}}
+\index{constrained\_\-deep\_\-apply@{constrained\_\-deep\_\-apply}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int constrained\_\-deep\_\-apply ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em delta}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
+\label{btsp__fun_8c_395a80b4da614c2ca559a314772ec1e4}
+
+
+Applies constrained BTSP function to the cost matrix of the old problem to create the new problem (deep copy). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} the cost matrix function \item[{\em old\_\-problem}]\mbox{[}in\mbox{]} the problem to apply the function to \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em new\_\-problem}]\mbox{[}out\mbox{]} the resulting new problem \end{description}
+\end{Desc}
+
+
+Definition at line 500 of file btsp\_\-fun.c.
+
+References ARROW\_\-SUCCESS, arrow\_\-problem::data, arrow\_\-btsp\_\-fun::data, arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-constrained().\hypertarget{btsp__fun_8c_cf8f9a87497cfae1393b4bb6fd744d74}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!constrained\_\-destruct@{constrained\_\-destruct}}
+\index{constrained\_\-destruct@{constrained\_\-destruct}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void constrained\_\-destruct ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{btsp__fun_8c_cf8f9a87497cfae1393b4bb6fd744d74}
+
+
+Destructs constrained BTSP function structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} the function structure to destruct \end{description}
+\end{Desc}
+
+
+Definition at line 518 of file btsp\_\-fun.c.
+
+References arrow\_\-btsp\_\-fun::data.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-constrained().\hypertarget{btsp__fun_8c_b30a50ce14b7b354d543227fb2aec0d2}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!constrained\_\-edgelen@{constrained\_\-edgelen}}
+\index{constrained\_\-edgelen@{constrained\_\-edgelen}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}static int constrained\_\-edgelen (int {\em i}, \/  int {\em j}, \/  struct CCdatagroup $\ast$ {\em dat})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{btsp__fun_8c_b30a50ce14b7b354d543227fb2aec0d2}
+
+
+Concorde edge length function for the constrained cost matrix function. Returns the cost C\mbox{[}i,j\mbox{]}. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em i}]\mbox{[}in\mbox{]} node i \item[{\em j}]\mbox{[}in\mbox{]} node j \item[{\em dat}]\mbox{[}in\mbox{]} Concorde data structure. \end{description}
+\end{Desc}
+
+
+Definition at line 528 of file btsp\_\-fun.c.
+
+References constrained\_\-data::dat, and constrained\_\-data::infinity.
+
+Referenced by constrained\_\-shallow\_\-apply().\hypertarget{btsp__fun_8c_97b1ee91fecd6ad5e56c63f4bcc66df5}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!constrained\_\-shake\_\-deep\_\-apply@{constrained\_\-shake\_\-deep\_\-apply}}
+\index{constrained\_\-shake\_\-deep\_\-apply@{constrained\_\-shake\_\-deep\_\-apply}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int constrained\_\-shake\_\-deep\_\-apply ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em delta}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
+\label{btsp__fun_8c_97b1ee91fecd6ad5e56c63f4bcc66df5}
+
+
+Applies constrained shake BTSP function to the cost matrix of the old problem to create the new problem (deep copy). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} the cost matrix function \item[{\em old\_\-problem}]\mbox{[}in\mbox{]} the problem to apply the function to \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em new\_\-problem}]\mbox{[}out\mbox{]} the resulting new problem \end{description}
+\end{Desc}
+
+
+Definition at line 536 of file btsp\_\-fun.c.
+
+References arrow\_\-bintree\_\-destruct(), arrow\_\-bintree\_\-init(), arrow\_\-bintree\_\-insert(), arrow\_\-bintree\_\-to\_\-array(), ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-random\_\-between(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-problem::data, arrow\_\-btsp\_\-fun::data, arrow\_\-problem::get\_\-cost, constrained\_\-shake\_\-data::infinity, constrained\_\-shake\_\-data::info, constrained\_\-shake\_\-data::rand\_\-max, constrained\_\-shake\_\-data::rand\_\-min, arrow\_\-problem::size, and arrow\_\-bintree::size.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-constrained\_\-shake().\hypertarget{btsp__fun_8c_6d52518968d1ea6f3312db1fecb79114}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!constrained\_\-shake\_\-destruct@{constrained\_\-shake\_\-destruct}}
+\index{constrained\_\-shake\_\-destruct@{constrained\_\-shake\_\-destruct}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void constrained\_\-shake\_\-destruct ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{btsp__fun_8c_6d52518968d1ea6f3312db1fecb79114}
+
+
+Destructs constrained shake BTSP function structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} the function structure to destruct \end{description}
+\end{Desc}
+
+
+Definition at line 597 of file btsp\_\-fun.c.
+
+References arrow\_\-btsp\_\-fun::data.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-constrained\_\-shake().\hypertarget{btsp__fun_8c_5e966cb36e436ab94860b231935a416c}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!constrained\_\-shake\_\-feasible@{constrained\_\-shake\_\-feasible}}
+\index{constrained\_\-shake\_\-feasible@{constrained\_\-shake\_\-feasible}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int constrained\_\-shake\_\-feasible ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em delta}, \/  double {\em tour\_\-length}, \/  int $\ast$ {\em tour})}}
+\label{btsp__fun_8c_5e966cb36e436ab94860b231935a416c}
+
+
+Determines if the given tour is feasible or not. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em problem}]\mbox{[}in\mbox{]} the problem to check against \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em tour\_\-length}]\mbox{[}in\mbox{]} the length of the given tour \item[{\em tour}]\mbox{[}in\mbox{]} the tour in node-node format \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]ARROW\_\-TRUE if the tour is feasible, ARROW\_\-FALSE if not \end{Desc}
+
+
+Definition at line 607 of file btsp\_\-fun.c.
+
+References ARROW\_\-FALSE, ARROW\_\-TRUE, arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::feasible\_\-length, arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-constrained\_\-shake().\hypertarget{btsp__fun_8c_0440247f3ddc828c531139e468ec40dc}{
+\index{btsp\_\-fun.c@{btsp\_\-fun.c}!constrained\_\-shallow\_\-apply@{constrained\_\-shallow\_\-apply}}
+\index{constrained\_\-shallow\_\-apply@{constrained\_\-shallow\_\-apply}!btsp_fun.c@{btsp\_\-fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int constrained\_\-shallow\_\-apply ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em delta}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
+\label{btsp__fun_8c_0440247f3ddc828c531139e468ec40dc}
+
+
+Applies constrained BTSP function to the cost matrix of the old problem to create the new problem (shallow copy). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} the cost matrix function \item[{\em old\_\-problem}]\mbox{[}in\mbox{]} the problem to apply the function to \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em new\_\-problem}]\mbox{[}out\mbox{]} the resulting new problem \end{description}
+\end{Desc}
+
+
+Definition at line 476 of file btsp\_\-fun.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, constrained\_\-edgelen(), constrained\_\-data::dat, arrow\_\-btsp\_\-fun::data, arrow\_\-problem::data, constrained\_\-data::delta, and constrained\_\-data::infinity.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-constrained().

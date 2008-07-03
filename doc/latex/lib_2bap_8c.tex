@@ -1,0 +1,87 @@
+\hypertarget{lib_2bap_8c}{
+\section{lib/bap.c File Reference}
+\label{lib_2bap_8c}\index{lib/bap.c@{lib/bap.c}}
+}
+Bottleneck assignment problem (BAP) implemenation. 
+
+{\tt \#include \char`\"{}arrow.h\char`\"{}}\par
+
+
+Include dependency graph for bap.c:\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{lib_2bap_8c_130b34bc9719a82b72f18189b19663f6}{initialize\_\-flow\_\-data} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int delta, int s, int t, int $\ast$$\ast$res, int $\ast$m, int $\ast$dist, int $\ast$pred)
+\item 
+void \hyperlink{lib_2bap_8c_bded8340dbd6b08609f5b197bb9bc78a}{shortest\_\-augmenting\_\-path} (int n, int s, int t, int stop, int $\ast$$\ast$res, int $\ast$dist, int $\ast$pred, int $\ast$flow)
+\item 
+void \hyperlink{lib_2bap_8c_ad6ac80eb0f38b5c874b91dbeb49a555}{ford\_\-fulkerson\_\-labeling} (int n, int s, int t, int $\ast$$\ast$res, int $\ast$label, int $\ast$pred, int $\ast$flow, int $\ast$list)
+\item 
+int \hyperlink{lib_2bap_8c_55ff81ad64c0e4aadc08860a8c2d2c44}{arrow\_\-bap\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Bottleneck assignment problem (BAP) implemenation. 
+
+Implemenation of the bottleneck assignment problem (BAP) that's used as a lower bound for the Bottleneck TSP objective value.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{lib_2bap_8c-source}{bap.c}.
+
+\subsection{Function Documentation}
+\hypertarget{lib_2bap_8c_55ff81ad64c0e4aadc08860a8c2d2c44}{
+\index{lib/bap.c@{lib/bap.c}!arrow\_\-bap\_\-solve@{arrow\_\-bap\_\-solve}}
+\index{arrow\_\-bap\_\-solve@{arrow\_\-bap\_\-solve}!lib/bap.c@{lib/bap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bap\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
+\label{lib_2bap_8c_55ff81ad64c0e4aadc08860a8c2d2c44}
+
+
+
+
+Definition at line 67 of file bap.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-create\_\-int\_\-matrix(), arrow\_\-util\_\-zeit(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, ford\_\-fulkerson\_\-labeling(), initialize\_\-flow\_\-data(), arrow\_\-bound\_\-result::obj\_\-value, shortest\_\-augmenting\_\-path(), arrow\_\-problem::size, and arrow\_\-bound\_\-result::total\_\-time.
+
+Referenced by main().\hypertarget{lib_2bap_8c_ad6ac80eb0f38b5c874b91dbeb49a555}{
+\index{lib/bap.c@{lib/bap.c}!ford\_\-fulkerson\_\-labeling@{ford\_\-fulkerson\_\-labeling}}
+\index{ford\_\-fulkerson\_\-labeling@{ford\_\-fulkerson\_\-labeling}!lib/bap.c@{lib/bap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void ford\_\-fulkerson\_\-labeling (int {\em n}, \/  int {\em s}, \/  int {\em t}, \/  int $\ast$$\ast$ {\em res}, \/  int $\ast$ {\em label}, \/  int $\ast$ {\em pred}, \/  int $\ast$ {\em flow}, \/  int $\ast$ {\em list})}}
+\label{lib_2bap_8c_ad6ac80eb0f38b5c874b91dbeb49a555}
+
+
+
+
+Definition at line 251 of file bap.c.
+
+References ARROW\_\-FALSE, and ARROW\_\-TRUE.
+
+Referenced by arrow\_\-bap\_\-solve().\hypertarget{lib_2bap_8c_130b34bc9719a82b72f18189b19663f6}{
+\index{lib/bap.c@{lib/bap.c}!initialize\_\-flow\_\-data@{initialize\_\-flow\_\-data}}
+\index{initialize\_\-flow\_\-data@{initialize\_\-flow\_\-data}!lib/bap.c@{lib/bap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void initialize\_\-flow\_\-data ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em delta}, \/  int {\em s}, \/  int {\em t}, \/  int $\ast$$\ast$ {\em res}, \/  int $\ast$ {\em m}, \/  int $\ast$ {\em dist}, \/  int $\ast$ {\em pred})}}
+\label{lib_2bap_8c_130b34bc9719a82b72f18189b19663f6}
+
+
+
+
+Definition at line 152 of file bap.c.
+
+References arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
+
+Referenced by arrow\_\-bap\_\-solve().\hypertarget{lib_2bap_8c_bded8340dbd6b08609f5b197bb9bc78a}{
+\index{lib/bap.c@{lib/bap.c}!shortest\_\-augmenting\_\-path@{shortest\_\-augmenting\_\-path}}
+\index{shortest\_\-augmenting\_\-path@{shortest\_\-augmenting\_\-path}!lib/bap.c@{lib/bap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void shortest\_\-augmenting\_\-path (int {\em n}, \/  int {\em s}, \/  int {\em t}, \/  int {\em stop}, \/  int $\ast$$\ast$ {\em res}, \/  int $\ast$ {\em dist}, \/  int $\ast$ {\em pred}, \/  int $\ast$ {\em flow})}}
+\label{lib_2bap_8c_bded8340dbd6b08609f5b197bb9bc78a}
+
+
+
+
+Definition at line 193 of file bap.c.
+
+References ARROW\_\-FALSE, ARROW\_\-SUCCESS, and ARROW\_\-TRUE.
+
+Referenced by arrow\_\-bap\_\-solve().

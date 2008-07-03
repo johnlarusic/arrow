@@ -9,7 +9,6 @@
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
-      <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="annotated.html"><span>Data&nbsp;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -19,7 +18,6 @@
 <h1>bin/bbssp.c File Reference</h1>Bottleneck Biconnected Spanning Subgraph solver. <a href="#_details">More...</a>
 <p>
 <code>#include &quot;<a class="el" href="arrow_8h-source.html">arrow.h</a>&quot;</code><br>
-<code>#include &lt;getopt.h&gt;</code><br>
 
 <p>
 <div class="dynheader">
@@ -27,45 +25,57 @@ Include dependency graph for bbssp.c:</div>
 <div class="dynsection">
 <p><center><img src="bin_2bbssp_8c__incl.png" border="0" usemap="#bin/bbssp.c_map" alt=""></center>
 <map name="bin/bbssp.c_map">
-<area shape="rect" href="arrow_8h.html" title="Header file for the Arrow callable library." alt="" coords="269,80,336,107"></map>
+<area shape="rect" href="arrow_8h.html" title="Header file for the Arrow callable library." alt="" coords="404,80,471,107"></map>
 </div>
 
 <p>
 <a href="bin_2bbssp_8c-source.html">Go to the source code of this file.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Defines</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="bin_2bbssp_8c.html#9b58b2c4af931c8486a986c9deca40f5">NUM_OPTS</a>&nbsp;&nbsp;&nbsp;2</td></tr>
+
 <tr><td colspan="2"><br><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="bin_2bbssp_8c.html#853216ac51aa181669ff4d3de74058a7">print_help</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prints help/usage message.  <a href="#853216ac51aa181669ff4d3de74058a7"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="bin_2bbssp_8c.html#6302aaae12249e8ea16bfdc7de892f21">print_version</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prints version message.  <a href="#6302aaae12249e8ea16bfdc7de892f21"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="bin_2bbssp_8c.html#e5ad5cbeccaedc03a48d3c7eaa803e79">print_usage</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prints usage message.  <a href="#e5ad5cbeccaedc03a48d3c7eaa803e79"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="bin_2bbssp_8c.html#72d0810dad1a2062df342005c15106b9">read_args</a> (int argc, char *argv[])</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reads program arguments.  <a href="#72d0810dad1a2062df342005c15106b9"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="bin_2bbssp_8c.html#f8424468968336a39cad523e50f3b65a">print_xml_output</a> (int obj_value, double total_time, int argc, char *argv[])</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prints output in XML format.  <a href="#f8424468968336a39cad523e50f3b65a"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="bin_2bbssp_8c.html#0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 
 <tr><td colspan="2"><br><h2>Variables</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="bin_2bbssp_8c.html#289c5900d90626d909f0a85d5a0ed61d">program_name</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="bin_2bbssp_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="bin_2bbssp_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a> = NULL</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="bin_2bbssp_8c.html#78435df485756d3c16e77edcd8f6b938">xml_output</a> = ARROW_FALSE</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="bin_2bbssp_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a> = NULL</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="structarrow__option.html">arrow_option</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="bin_2bbssp_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a> [NUM_OPTS]</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="bin_2bbssp_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a> = &quot;Bottleneck biconnected spanning subgraph solver&quot;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="bin_2bbssp_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a> = &quot;-i tsplib.tsp [<a class="el" href="histogram__data_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>] &quot;</td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Bottleneck Biconnected Spanning Subgraph solver. 
 <p>
-Solves the bottleneck biconnected spanning subgraph problem (BBSSP) problem on the given input files.<p>
+Solves the bottleneck biconnected spanning subgraph problem (BBSSP) problem on the given input file.<p>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>John LaRusic </dd></dl>
 
 <p>Definition in file <a class="el" href="bin_2bbssp_8c-source.html">bbssp.c</a>.</p>
+<hr><h2>Define Documentation</h2>
+<a class="anchor" name="9b58b2c4af931c8486a986c9deca40f5"></a><!-- doxytag: member="bbssp.c::NUM_OPTS" ref="9b58b2c4af931c8486a986c9deca40f5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NUM_OPTS&nbsp;&nbsp;&nbsp;2          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="bin_2bbssp_8c-source.html#l00018">18</a> of file <a class="el" href="bin_2bbssp_8c-source.html">bbssp.c</a>.</p>
+
+</div>
+</div><p>
 <hr><h2>Function Documentation</h2>
 <a class="anchor" name="0ddf1224851353fc92bfbff6f499fa97"></a><!-- doxytag: member="bbssp.c::main" ref="0ddf1224851353fc92bfbff6f499fa97" args="(int argc, char *argv[])" -->
 <div class="memitem">
@@ -94,186 +104,36 @@ Solves the bottleneck biconnected spanning subgraph problem (BBSSP) problem on t
 
 <p>
 
-<p>Definition at line <a class="el" href="bin_2bbssp_8c-source.html#l00052">52</a> of file <a class="el" href="bin_2bbssp_8c-source.html">bbssp.c</a>.</p>
+<p>Definition at line <a class="el" href="bin_2bbssp_8c-source.html#l00031">31</a> of file <a class="el" href="bin_2bbssp_8c-source.html">bbssp.c</a>.</p>
 
-<p>References <a class="el" href="lib_2bbssp_8c-source.html#l00044">arrow_bbssp_solve()</a>, <a class="el" href="arrow_8h-source.html#l00024">ARROW_DEV_NULL</a>, <a class="el" href="arrow_8h-source.html#l00036">arrow_print_error</a>, <a class="el" href="problem_8c-source.html#l00050">arrow_problem_destruct()</a>, <a class="el" href="problem_8c-source.html#l00099">arrow_problem_info_destruct()</a>, <a class="el" href="problem_8c-source.html#l00060">arrow_problem_info_get()</a>, <a class="el" href="problem_8c-source.html#l00030">arrow_problem_read()</a>, <a class="el" href="util_8c-source.html#l00040">arrow_util_redirect_stdout_to_file()</a>, <a class="el" href="util_8c-source.html#l00049">arrow_util_restore_stdout()</a>, <a class="el" href="bin_2bbssp_8c-source.html#l00045">input_file</a>, <a class="el" href="arrow_8h-source.html#l00103">arrow_bbssp_result::obj_value</a>, <a class="el" href="bin_2bbssp_8c-source.html#l00191">print_xml_output()</a>, <a class="el" href="bin_2bbssp_8c-source.html#l00044">program_name</a>, <a class="el" href="bin_2bbssp_8c-source.html#l00137">read_args()</a>, <a class="el" href="arrow_8h-source.html#l00104">arrow_bbssp_result::total_time</a>, and <a class="el" href="bin_2bbssp_8c-source.html#l00046">xml_output</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="853216ac51aa181669ff4d3de74058a7"></a><!-- doxytag: member="bbssp.c::print_help" ref="853216ac51aa181669ff4d3de74058a7" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void print_help           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Prints help/usage message. 
-<p>
-
-<p>Definition at line <a class="el" href="bin_2bbssp_8c-source.html#l00100">100</a> of file <a class="el" href="bin_2bbssp_8c-source.html">bbssp.c</a>.</p>
-
-<p>References <a class="el" href="bin_2bbssp_8c-source.html#l00131">print_usage()</a>, and <a class="el" href="bin_2bbssp_8c-source.html#l00044">program_name</a>.</p>
-
-<p>Referenced by <a class="el" href="bin_2bbssp_8c-source.html#l00137">read_args()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="e5ad5cbeccaedc03a48d3c7eaa803e79"></a><!-- doxytag: member="bbssp.c::print_usage" ref="e5ad5cbeccaedc03a48d3c7eaa803e79" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void print_usage           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Prints usage message. 
-<p>
-
-<p>Definition at line <a class="el" href="bin_2bbssp_8c-source.html#l00131">131</a> of file <a class="el" href="bin_2bbssp_8c-source.html">bbssp.c</a>.</p>
-
-<p>References <a class="el" href="bin_2bbssp_8c-source.html#l00044">program_name</a>.</p>
-
-<p>Referenced by <a class="el" href="bin_2bbssp_8c-source.html#l00100">print_help()</a>, and <a class="el" href="bin_2bbssp_8c-source.html#l00137">read_args()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="6302aaae12249e8ea16bfdc7de892f21"></a><!-- doxytag: member="bbssp.c::print_version" ref="6302aaae12249e8ea16bfdc7de892f21" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void print_version           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Prints version message. 
-<p>
-
-<p>Definition at line <a class="el" href="bin_2bbssp_8c-source.html#l00116">116</a> of file <a class="el" href="bin_2bbssp_8c-source.html">bbssp.c</a>.</p>
-
-<p>References <a class="el" href="bin_2bbssp_8c-source.html#l00044">program_name</a>.</p>
-
-<p>Referenced by <a class="el" href="bin_2bbssp_8c-source.html#l00137">read_args()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="f8424468968336a39cad523e50f3b65a"></a><!-- doxytag: member="bbssp.c::print_xml_output" ref="f8424468968336a39cad523e50f3b65a" args="(int obj_value, double total_time, int argc, char *argv[])" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void print_xml_output           </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>obj_value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>total_time</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>argc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&nbsp;</td>
-          <td class="paramname"> <em>argv</em>[]</td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Prints output in XML format. 
-<p>
-
-<p>Definition at line <a class="el" href="bin_2bbssp_8c-source.html#l00191">191</a> of file <a class="el" href="bin_2bbssp_8c-source.html">bbssp.c</a>.</p>
-
-<p>References <a class="el" href="bin_2bbssp_8c-source.html#l00045">input_file</a>.</p>
-
-<p>Referenced by <a class="el" href="bin_2bbssp_8c-source.html#l00052">main()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="72d0810dad1a2062df342005c15106b9"></a><!-- doxytag: member="bbssp.c::read_args" ref="72d0810dad1a2062df342005c15106b9" args="(int argc, char *argv[])" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void read_args           </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>argc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&nbsp;</td>
-          <td class="paramname"> <em>argv</em>[]</td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Reads program arguments. 
-<p>
-
-<p>Definition at line <a class="el" href="bin_2bbssp_8c-source.html#l00137">137</a> of file <a class="el" href="bin_2bbssp_8c-source.html">bbssp.c</a>.</p>
-
-<p>References <a class="el" href="arrow_8h-source.html#l00036">arrow_print_error</a>, <a class="el" href="arrow_8h-source.html#l00029">ARROW_TRUE</a>, <a class="el" href="bin_2bbssp_8c-source.html#l00045">input_file</a>, <a class="el" href="bin_2bbssp_8c-source.html#l00100">print_help()</a>, <a class="el" href="bin_2bbssp_8c-source.html#l00131">print_usage()</a>, <a class="el" href="bin_2bbssp_8c-source.html#l00116">print_version()</a>, and <a class="el" href="bin_2bbssp_8c-source.html#l00046">xml_output</a>.</p>
-
-<p>Referenced by <a class="el" href="bin_2bbssp_8c-source.html#l00052">main()</a>.</p>
+<p>References <a class="el" href="lib_2bbssp_8c-source.html#l00044">arrow_bbssp_solve()</a>, <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="problem_8c-source.html#l00228">arrow_problem_abtsp_to_sbtsp()</a>, <a class="el" href="problem_8c-source.html#l00098">arrow_problem_destruct()</a>, <a class="el" href="problem_8c-source.html#l00158">arrow_problem_info_destruct()</a>, <a class="el" href="problem_8c-source.html#l00115">arrow_problem_info_get()</a>, <a class="el" href="problem_8c-source.html#l00054">arrow_problem_read()</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00195">arrow_util_print_program_args()</a>, <a class="el" href="bin_22mb_8c-source.html#l00025">desc</a>, <a class="el" href="bin_22mb_8c-source.html#l00013">input_file</a>, <a class="el" href="arrow_8h-source.html#l00136">arrow_problem_info::max_cost</a>, <a class="el" href="bin_22mb_8c-source.html#l00017">NUM_OPTS</a>, <a class="el" href="arrow_8h-source.html#l00081">arrow_bound_result::obj_value</a>, <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>, <a class="el" href="arrow_8h-source.html#l00112">arrow_problem::symmetric</a>, <a class="el" href="arrow_8h-source.html#l00082">arrow_bound_result::total_time</a>, <a class="el" href="bin_22mb_8c-source.html#l00026">usage</a>, and <a class="el" href="bin_22mb_8c-source.html#l00014">xml_file</a>.</p>
 
 </div>
 </div><p>
 <hr><h2>Variable Documentation</h2>
+<a class="anchor" name="3aad16fd4bea1b9717f232ea75ad6449"></a><!-- doxytag: member="bbssp.c::desc" ref="3aad16fd4bea1b9717f232ea75ad6449" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="histogram__data_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a> = &quot;Bottleneck biconnected spanning subgraph solver&quot;          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="bin_2bbssp_8c-source.html#l00026">26</a> of file <a class="el" href="bin_2bbssp_8c-source.html">bbssp.c</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="a4f3a15de34c409bdec6ceacf93078ed"></a><!-- doxytag: member="bbssp.c::input_file" ref="a4f3a15de34c409bdec6ceacf93078ed" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* <a class="el" href="histogram__data_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>          </td>
+          <td class="memname">char* <a class="el" href="bin_2tsp_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a> = NULL          </td>
         </tr>
       </table>
 </div>
@@ -281,9 +141,31 @@ Reads program arguments.
 
 <p>
 Given input TSPLIB file 
-<p>Definition at line <a class="el" href="bin_2bbssp_8c-source.html#l00045">45</a> of file <a class="el" href="bin_2bbssp_8c-source.html">bbssp.c</a>.</p>
+<p>Definition at line <a class="el" href="bin_2bbssp_8c-source.html#l00014">14</a> of file <a class="el" href="bin_2bbssp_8c-source.html">bbssp.c</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_2bbssp_8c-source.html#l00052">main()</a>, <a class="el" href="bin_2bbssp_8c-source.html#l00191">print_xml_output()</a>, and <a class="el" href="bin_2bbssp_8c-source.html#l00137">read_args()</a>.</p>
+</div>
+</div><p>
+<a class="anchor" name="cea6a9709d519c143f30db401a0d0c72"></a><!-- doxytag: member="bbssp.c::options" ref="cea6a9709d519c143f30db401a0d0c72" args="[NUM_OPTS]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structarrow__option.html">arrow_option</a> <a class="el" href="histogram__data_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>[NUM_OPTS]          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Initial value:</b><div class="fragment"><pre class="fragment"> 
+{
+    {<span class="charliteral">'i'</span>, <span class="stringliteral">"input"</span>, <span class="stringliteral">"TSPLIB input file"</span>, 
+        <a class="code" href="arrow_8h.html#a5af4b3dd40c1687deb0e897317fac3d">ARROW_OPTION_STRING</a>, &amp;<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>, <a class="code" href="arrow_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>, ARROW_TRUE},
+    {<span class="charliteral">'x'</span>, <span class="stringliteral">"xml"</span>, <span class="stringliteral">"File to write XML output to"</span>,
+        <a class="code" href="arrow_8h.html#a5af4b3dd40c1687deb0e897317fac3d">ARROW_OPTION_STRING</a>, &amp;<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a>, <a class="code" href="arrow_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="arrow_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>}
+}
+</pre></div>
+<p>Definition at line <a class="el" href="bin_2bbssp_8c-source.html#l00019">19</a> of file <a class="el" href="bin_2bbssp_8c-source.html">bbssp.c</a>.</p>
 
 </div>
 </div><p>
@@ -292,7 +174,7 @@ Given input TSPLIB file
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* <a class="el" href="histogram__data_8c.html#289c5900d90626d909f0a85d5a0ed61d">program_name</a>          </td>
+          <td class="memname">char* <a class="el" href="bin_2tsp_8c.html#289c5900d90626d909f0a85d5a0ed61d">program_name</a>          </td>
         </tr>
       </table>
 </div>
@@ -300,33 +182,46 @@ Given input TSPLIB file
 
 <p>
 Program name 
-<p>Definition at line <a class="el" href="bin_2bbssp_8c-source.html#l00044">44</a> of file <a class="el" href="bin_2bbssp_8c-source.html">bbssp.c</a>.</p>
-
-<p>Referenced by <a class="el" href="bin_2bbssp_8c-source.html#l00052">main()</a>, <a class="el" href="bin_2bbssp_8c-source.html#l00100">print_help()</a>, <a class="el" href="bin_2bbssp_8c-source.html#l00131">print_usage()</a>, and <a class="el" href="bin_2bbssp_8c-source.html#l00116">print_version()</a>.</p>
+<p>Definition at line <a class="el" href="bin_2bbssp_8c-source.html#l00013">13</a> of file <a class="el" href="bin_2bbssp_8c-source.html">bbssp.c</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="78435df485756d3c16e77edcd8f6b938"></a><!-- doxytag: member="bbssp.c::xml_output" ref="78435df485756d3c16e77edcd8f6b938" args="" -->
+<a class="anchor" name="adebe2487a2c5240ab6cd02c83add0bf"></a><!-- doxytag: member="bbssp.c::usage" ref="adebe2487a2c5240ab6cd02c83add0bf" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="bin_2bbssp_8c.html#78435df485756d3c16e77edcd8f6b938">xml_output</a> = ARROW_FALSE          </td>
+          <td class="memname">char* <a class="el" href="histogram__data_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a> = &quot;-i tsplib.tsp [<a class="el" href="histogram__data_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>] &quot;          </td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-Output output in XML format (or not) 
-<p>Definition at line <a class="el" href="bin_2bbssp_8c-source.html#l00046">46</a> of file <a class="el" href="bin_2bbssp_8c-source.html">bbssp.c</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_2bbssp_8c-source.html#l00052">main()</a>, and <a class="el" href="bin_2bbssp_8c-source.html#l00137">read_args()</a>.</p>
+<p>Definition at line <a class="el" href="bin_2bbssp_8c-source.html#l00027">27</a> of file <a class="el" href="bin_2bbssp_8c-source.html">bbssp.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="bf4e392494984c6ef8259268eb1fe421"></a><!-- doxytag: member="bbssp.c::xml_file" ref="bf4e392494984c6ef8259268eb1fe421" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="bin_2dcbpb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a> = NULL          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="bin_2bbssp_8c-source.html#l00015">15</a> of file <a class="el" href="bin_2bbssp_8c-source.html">bbssp.c</a>.</p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 11 20:47:16 2008 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Thu Jul 3 00:09:11 2008 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

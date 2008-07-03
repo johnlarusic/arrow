@@ -9,7 +9,6 @@
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
-      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&nbsp;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -32,7 +31,7 @@
 <tr><td colspan="2"><br><h2>Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__tsp__result.html#b85143df6ecc70032db7411a1aa3192a">found_tour</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__tsp__result.html#93a335ce86270dd455185d22ea5fd4ab">tour_length</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__tsp__result.html#f0fae9756e4c924517addf05988cfcb9">obj_value</a></td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__tsp__result.html#48433b03146d6ca3423a555ea2139d52">tour</a></td></tr>
 
@@ -41,7 +40,7 @@
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 TSP result (including result from LK heuristic). 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00216">216</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00161">161</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
 <hr><h2>Field Documentation</h2>
 <a class="anchor" name="b85143df6ecc70032db7411a1aa3192a"></a><!-- doxytag: member="arrow_tsp_result::found_tour" ref="b85143df6ecc70032db7411a1aa3192a" args="" -->
 <div class="memitem">
@@ -56,28 +55,28 @@ TSP result (including result from LK heuristic).
 
 <p>
 true if a tour was found, false otherwise 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00218">218</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00163">163</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
 
-<p>Referenced by <a class="el" href="tsp_8c-source.html#l00036">arrow_tsp_exact_solve()</a>, and <a class="el" href="tsp_8c-source.html#l00012">arrow_tsp_result_init()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2tsp_8c-source.html#l00066">arrow_tsp_exact_solve()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00023">arrow_tsp_result_init()</a>, and <a class="el" href="linkern_8c-source.html#l00049">main()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="93a335ce86270dd455185d22ea5fd4ab"></a><!-- doxytag: member="arrow_tsp_result::tour_length" ref="93a335ce86270dd455185d22ea5fd4ab" args="" -->
+<a class="anchor" name="f0fae9756e4c924517addf05988cfcb9"></a><!-- doxytag: member="arrow_tsp_result::obj_value" ref="f0fae9756e4c924517addf05988cfcb9" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="structarrow__tsp__result.html#93a335ce86270dd455185d22ea5fd4ab">arrow_tsp_result::tour_length</a>          </td>
+          <td class="memname">double <a class="el" href="structarrow__tsp__result.html#f0fae9756e4c924517addf05988cfcb9">arrow_tsp_result::obj_value</a>          </td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-tour length 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00219">219</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+objective value (tour length) 
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00164">164</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
 
-<p>Referenced by <a class="el" href="tsp_8c-source.html#l00036">arrow_tsp_exact_solve()</a>, and <a class="el" href="tsp_8c-source.html#l00012">arrow_tsp_result_init()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2tsp_8c-source.html#l00066">arrow_tsp_exact_solve()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00023">arrow_tsp_result_init()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>, and <a class="el" href="linkern_8c-source.html#l00049">main()</a>.</p>
 
 </div>
 </div><p>
@@ -94,9 +93,9 @@ tour length
 
 <p>
 tour that was found in node-node format 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00220">220</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00165">165</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
 
-<p>Referenced by <a class="el" href="tsp_8c-source.html#l00036">arrow_tsp_exact_solve()</a>, <a class="el" href="tsp_8c-source.html#l00022">arrow_tsp_result_destruct()</a>, and <a class="el" href="tsp_8c-source.html#l00012">arrow_tsp_result_init()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2tsp_8c-source.html#l00066">arrow_tsp_exact_solve()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00037">arrow_tsp_result_destruct()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00023">arrow_tsp_result_init()</a>, and <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>.</p>
 
 </div>
 </div><p>
@@ -113,16 +112,16 @@ tour that was found in node-node format
 
 <p>
 total time 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00221">221</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="arrow_8h-source.html#l00166">166</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
 
-<p>Referenced by <a class="el" href="tsp_8c-source.html#l00036">arrow_tsp_exact_solve()</a>, and <a class="el" href="tsp_8c-source.html#l00012">arrow_tsp_result_init()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2tsp_8c-source.html#l00066">arrow_tsp_exact_solve()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00023">arrow_tsp_result_init()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>, and <a class="el" href="linkern_8c-source.html#l00049">main()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this struct was generated from the following file:<ul>
 <li>lib/<a class="el" href="arrow_8h-source.html">arrow.h</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 11 20:47:16 2008 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Thu Jul 3 00:09:15 2008 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>
