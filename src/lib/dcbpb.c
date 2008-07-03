@@ -45,16 +45,15 @@ arrow_dcbpb_solve(arrow_problem *problem, arrow_bound_result *result)
         goto CLEANUP;
     }
     
-    result->obj_value = INT_MAX;
+    min_node = INT_MAX;
     
     for(i = 0; i < n; i++)
     {
         bottleneck_paths(problem, i, b, &delta);
         
-        min_node = INT_MAX;
         for(j = 0; j < n; j++)
         {
-            if(i != j)
+            if((i != j) && (problem->get_cost(problem, i, j) < min_node))
             {
                 for(k = j; k < n; k++)
                 {
@@ -91,12 +90,10 @@ arrow_dcbpb_solve(arrow_problem *problem, arrow_bound_result *result)
                 }
             }
         }
-        
-        if(min_node < result->obj_value)
-            result->obj_value = min_node;
     }
     end_time = arrow_util_zeit();
 
+    result->obj_value = min_node;
     result->total_time = end_time - start_time;
     
 CLEANUP:

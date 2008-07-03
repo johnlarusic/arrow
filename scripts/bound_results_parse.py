@@ -55,11 +55,13 @@ def main(argv=None):
         root = xDoc.getroot()
         
         problem_file = root.attrib["problem_file"]
-        params = root.attrib["params"]
+        bound_type = root.attrib["type"]
+        params = root.attrib["command_args"]
         objective_value = root.find("objective_value").text
         total_time = root.find("total_time").text
         
-        print "'%s', '%s', %s, %s" % (problem_file, params, objective_value, total_time)
+        print "'%s', '%s', '%s', %s, %s" \
+            % (problem_file, params, bound_type, objective_value, total_time)
 
 if __name__ == "__main__":
     sys.exit(main())

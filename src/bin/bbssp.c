@@ -87,7 +87,8 @@ main(int argc, char *argv[])
             goto CLEANUP;
         }
         
-        fprintf(xml, "<arrow_bbssp problem_file=\"%s\"", input_file);
+        fprintf(xml, "<arrow_bound type=\"BBSSP\" ");
+        fprintf(xml, "problem_file=\"%s\"", input_file);
         fprintf(xml, " command_args=\"");
         arrow_util_print_program_args(argc, argv, xml);
         fprintf(xml, "\">\n");
@@ -95,7 +96,7 @@ main(int argc, char *argv[])
                 result.obj_value);
         fprintf(xml, "    <total_time>%5.2f</total_time>\n", 
                 result.total_time);
-        fprintf(xml, "</arrow_bbssp>\n");
+        fprintf(xml, "</arrow_bound>\n");
         
         fclose(xml);
     }
