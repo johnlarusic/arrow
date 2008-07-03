@@ -268,6 +268,30 @@ typedef struct arrow_option
 } arrow_option;
 
 /****************************************************************************
+ *  2mb.c
+ ****************************************************************************/ 
+/**
+ *  @brief  Solves the 2-max bound (2MB) on the given problem.
+ *  @param  problem [in] problem data
+ *  @param  info [in] problem info
+ *  @param  result [out] 2MB solution
+ */
+int
+arrow_2mb_solve(arrow_problem *problem, arrow_bound_result *result);
+
+/****************************************************************************
+ *  dcbpb.c
+ ****************************************************************************/ 
+/**
+ *  @brief  Solves the degree constrained bottleneck paths bound (DCBPB).
+ *  @param  problem [in] problem data
+ *  @param  info [in] problem info
+ *  @param  result [out] BPB solution
+ */
+int
+arrow_dcbpb_solve(arrow_problem *problem, arrow_bound_result *result);
+
+/****************************************************************************
  *  bbssp.c
  ****************************************************************************/ 
 /**

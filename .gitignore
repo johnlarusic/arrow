@@ -9,11 +9,14 @@ stamp.h1
 *.Tpo
 *.exe
 
+2mb
 bap
 bbssp
+bscssp
 abtsp
 btsp
 cbtsp
+dcbpb
 hash
 histogram_data
 linkern
