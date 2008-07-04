@@ -57,13 +57,14 @@ for problem in problems:
         print " - problem: %s" % problem_name
     
         for program in programs:
+            print "   - program: %s" % program
             for trial in range(1, trials + 1):
                 file_trial = "%s/%s.%s.%02d" % \
                     (output_dir, problem_name, program, trial)
                 xml_file = "%s.xml" % file_trial
                 stdout_file = "%s.txt" % file_trial
 
-                print "   - trial %d of %d, %d of %d total or %.1f percent\"" % \
+                print "     - trial %d of %d, %d of %d total or %.1f percent\"" % \
                     (trial, trials, total_done, total, total_per)
                 
                 command = "%s/%s -i %s -x %s > %s" % \
