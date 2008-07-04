@@ -5,12 +5,12 @@
 Degree constarined bottleneck paths bound. 
 
 {\tt \#include \char`\"{}arrow.h\char`\"{}}\par
-
-
-Include dependency graph for dcbpb.c:\subsection*{Functions}
+\subsection*{Functions}
 \begin{CompactItemize}
 \item 
-void \hyperlink{lib_2dcbpb_8c_a326ce3ed8aca266ba26458adb21c10c}{bottleneck\_\-paths} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int ignore, int $\ast$$\ast$b, int $\ast$delta)
+void \hyperlink{lib_2dcbpb_8c_a6a4d775c9767e6830b28fb8eb94d854}{bottleneck\_\-paths} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int ignore, int $\ast$$\ast$b)
+\begin{CompactList}\small\item\em Solves the all-pairs bottleneck paths problem (a simple modification of the Floyd-Warshall alg for all-pairs shortest paths). \item\end{CompactList}\item 
+int \hyperlink{lib_2dcbpb_8c_ef245876f3cdbf5e5f31c3235fbed929}{max} (int i, int j, int k)
 \item 
 int \hyperlink{lib_2dcbpb_8c_ad3367474556148e376254886b71947d}{arrow\_\-dcbpb\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
 \begin{CompactList}\small\item\em Solves the degree constrained bottleneck paths bound (DCBPB). \item\end{CompactList}\end{CompactItemize}
@@ -40,30 +40,43 @@ Solves the degree constrained bottleneck paths bound (DCBPB).
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em info}]\mbox{[}in\mbox{]} problem info \item[{\em result}]\mbox{[}out\mbox{]} BPB solution \end{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em result}]\mbox{[}out\mbox{]} BPB solution \end{description}
 \end{Desc}
 
 
-Definition at line 29 of file dcbpb.c.
+Definition at line 38 of file dcbpb.c.
 
-References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-matrix(), arrow\_\-util\_\-zeit(), bottleneck\_\-paths(), arrow\_\-problem::get\_\-cost, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, and arrow\_\-bound\_\-result::total\_\-time.
+References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-matrix(), arrow\_\-util\_\-zeit(), bottleneck\_\-paths(), arrow\_\-problem::get\_\-cost, max(), arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, and arrow\_\-bound\_\-result::total\_\-time.
 
-Referenced by main().\hypertarget{lib_2dcbpb_8c_a326ce3ed8aca266ba26458adb21c10c}{
+Referenced by main().\hypertarget{lib_2dcbpb_8c_a6a4d775c9767e6830b28fb8eb94d854}{
 \index{lib/dcbpb.c@{lib/dcbpb.c}!bottleneck\_\-paths@{bottleneck\_\-paths}}
 \index{bottleneck\_\-paths@{bottleneck\_\-paths}!lib/dcbpb.c@{lib/dcbpb.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void bottleneck\_\-paths ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em ignore}, \/  int $\ast$$\ast$ {\em b}, \/  int $\ast$ {\em delta})}}
-\label{lib_2dcbpb_8c_a326ce3ed8aca266ba26458adb21c10c}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void bottleneck\_\-paths ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em ignore}, \/  int $\ast$$\ast$ {\em b})}}
+\label{lib_2dcbpb_8c_a6a4d775c9767e6830b28fb8eb94d854}
 
+
+Solves the all-pairs bottleneck paths problem (a simple modification of the Floyd-Warshall alg for all-pairs shortest paths). 
 
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em Solves}]the all-pairs bottleneck paths problem (a simple modification of the Floyd-Warshall alg for all-pairs shortest paths). \item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em ignore}]\mbox{[}in\mbox{]} vertex number to ignore \item[{\em b}]\mbox{[}out\mbox{]} array will hold bottleneck path value for each pair of source/sink nodes \item[{\em delta}]\mbox{[}out\mbox{]} the smallest cost among all bottleneck paths \end{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em ignore}]\mbox{[}in\mbox{]} vertex number to ignore \item[{\em b}]\mbox{[}out\mbox{]} array will hold bottleneck path value for each pair of source/sink nodes \end{description}
 \end{Desc}
 
 
-Definition at line 109 of file dcbpb.c.
+Definition at line 107 of file dcbpb.c.
 
-References arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
+References arrow\_\-problem::get\_\-cost, max(), and arrow\_\-problem::size.
 
-Referenced by arrow\_\-dcbpb\_\-solve().
+Referenced by arrow\_\-dcbpb\_\-solve().\hypertarget{lib_2dcbpb_8c_ef245876f3cdbf5e5f31c3235fbed929}{
+\index{lib/dcbpb.c@{lib/dcbpb.c}!max@{max}}
+\index{max@{max}!lib/dcbpb.c@{lib/dcbpb.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int max (int {\em i}, \/  int {\em j}, \/  int {\em k})}}
+\label{lib_2dcbpb_8c_ef245876f3cdbf5e5f31c3235fbed929}
+
+
+
+
+Definition at line 144 of file dcbpb.c.
+
+Referenced by arrow\_\-2mb\_\-solve(), arrow\_\-dcbpb\_\-solve(), and bottleneck\_\-paths().

@@ -5,9 +5,7 @@
 TSP solver and Lin-Kernighan heuristic. 
 
 {\tt \#include \char`\"{}arrow.h\char`\"{}}\par
-
-
-Include dependency graph for tsp.c:\subsection*{Functions}
+\subsection*{Functions}
 \begin{CompactItemize}
 \item 
 int \hyperlink{lib_2tsp_8c_1abecdc3c1d14aeea10872ddd423f7c5}{build\_\-initial\_\-tour} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, CCedgegengroup $\ast$plan, CCrandstate $\ast$rstate, int $\ast$initial\_\-tour)
@@ -52,7 +50,7 @@ Solves TSP with Concorde's exact solver.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em in\_\-tour}]\mbox{[}in\mbox{]} an initial tour (can be NULL) \item[{\em result}]\mbox{[}out\mbox{]} TSP solution \end{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em initial\_\-tour}]\mbox{[}in\mbox{]} an initial tour (can be NULL) \item[{\em result}]\mbox{[}out\mbox{]} TSP solution \end{description}
 \end{Desc}
 
 
@@ -72,7 +70,7 @@ Destructs a LK parameters structure.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em result}]\mbox{[}out\mbox{]} LK parameters structure \end{description}
+\item[{\em params}]\mbox{[}out\mbox{]} LK parameters structure \end{description}
 \end{Desc}
 
 

@@ -273,7 +273,6 @@ typedef struct arrow_option
 /**
  *  @brief  Solves the 2-max bound (2MB) on the given problem.
  *  @param  problem [in] problem data
- *  @param  info [in] problem info
  *  @param  result [out] 2MB solution
  */
 int
@@ -285,7 +284,6 @@ arrow_2mb_solve(arrow_problem *problem, arrow_bound_result *result);
 /**
  *  @brief  Solves the degree constrained bottleneck paths bound (DCBPB).
  *  @param  problem [in] problem data
- *  @param  info [in] problem info
  *  @param  result [out] BPB solution
  */
 int
@@ -409,21 +407,21 @@ arrow_btsp_params_init(arrow_btsp_params *params);
 
 /**
  *  @brief  Destructs a BTSP parameters structure.
- *  @param  result [out] BTSP parameters structure
+ *  @param  params [out] BTSP parameters structure
  */
 void 
 arrow_btsp_params_destruct(arrow_btsp_params *params);
 
 /**
  *  @brief  Inititalizes BTSP solve plan structure.
- *  @param  params [out] BTSP solve plan structure
+ *  @param  plan [out] BTSP solve plan structure
  */
 void
 arrow_btsp_solve_plan_init(arrow_btsp_solve_plan *plan);
 
 /**
  *  @brief  Destructs a BTSP solve plan structure.
- *  @param  result [out] BTSP solve plan structure
+ *  @param  plan [out] BTSP solve plan structure
  */
 void 
 arrow_btsp_solve_plan_destruct(arrow_btsp_solve_plan *plan);
@@ -610,7 +608,7 @@ arrow_tsp_lk_params_init(arrow_problem *problem, arrow_tsp_lk_params *params);
 
 /**
  *  @brief  Destructs a LK parameters structure.
- *  @param  result [out] LK parameters structure
+ *  @param  params [out] LK parameters structure
  */
 void 
 arrow_tsp_lk_params_destruct(arrow_tsp_lk_params *params);
@@ -618,7 +616,7 @@ arrow_tsp_lk_params_destruct(arrow_tsp_lk_params *params);
 /**
  *  @brief  Solves TSP with Concorde's exact solver.
  *  @param  problem [in] problem to solve
- *  @param  in_tour [in] an initial tour (can be NULL)
+ *  @param  initial_tour [in] an initial tour (can be NULL)
  *  @param  result [out] TSP solution
  */
 int 
@@ -694,7 +692,7 @@ arrow_util_restore_stdout(int old_stream);
 /**
  *  @brief  Makes a shallow copy of the Concorde CCdatagroup structure.
  *  @param  from [in] the CCdatagroup structure to copy from
- *  @oaram  to [out] the CCdatagroup structure to copy to
+ *  @param  to [out] the CCdatagroup structure to copy to
  */
 void
 arrow_util_CCdatagroup_shallow_copy(CCdatagroup *from, CCdatagroup *to);

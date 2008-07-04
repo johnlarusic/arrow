@@ -1,0 +1,23 @@
+/*  This file contains global settings and content for generating 
+    documentation with Doxygen. */
+/**
+    @mainpage Arrow Callable Library
+
+    @section intro_sec Introduction
+    Arrow is one part callable library, one part collection of programs for 
+    solving the bottleneck traveling salesman problem and other closely
+    related problems.
+
+    It's still very much under development, but someday a stable release
+    will be present that will include better documentation that what's
+    provided here.
+
+    @section install_sec Installation
+    Is still super hard.  Sorry about that.  Will describe it someday.
+ */
+
+/*  Module definitions. */
+/**
+ @defgroup bin Binary Programs
+ @defgroup lib Callable Library
+ */

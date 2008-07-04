@@ -12,8 +12,8 @@
  * Private function prototypes
  ****************************************************************************/
 /**
- *  @brief  Constructs a new arrow_tree_node structure with the given value.
- *  @param  node [out] pointer to arrow_tree_node structure
+ *  @brief  Constructs a new node structure with the given value.
+ *  @param  node [out] pointer to node structure
  *  @param  value [in] value to assign to new node
  */
 int
@@ -21,7 +21,7 @@ construct_node(arrow_bintree_node **node, int value);
 
 /**
  *  @brief  Frees the memory of the given node and its child nodes.
- *  @param  node [out] arrow_tree_node structure
+ *  @param  node [out] node structure
  */
 void
 destruct_node(arrow_bintree_node *node);
@@ -29,7 +29,8 @@ destruct_node(arrow_bintree_node *node);
 /**
  *  @brief  Inserts a given value into the tree at the given node, or one of
  *          its child nodes.
- *  @param  node [out] pointer to arrow_tree_node structure
+ *  @param  tree [in] pointer to tree structure
+ *  @param  node [out] pointer to node structure
  *  @param  value [in] value to assign to new node
  */
 int
@@ -37,7 +38,7 @@ insert_at(arrow_bintree *tree, arrow_bintree_node *node, int value);
 
 /**
  *  @brief  Recursive helper function to fill an array in nondecreasing order.
- *  @param  node [out] pointer to an arrow_tree_node structure
+ *  @param  node [out] pointer to an node structure
  *  @param  array [out] pointer to array to fill
  *  @param  pos [out] current position in array
  */

@@ -14,11 +14,7 @@ Header file for the Arrow callable library.
 {\tt \#include $<$regex.h$>$}\par
 {\tt \#include $<$getopt.h$>$}\par
 {\tt \#include \char`\"{}concorde.h\char`\"{}}\par
-
-
-Include dependency graph for arrow.h:
-
-This graph shows which files directly or indirectly include this file:\subsection*{Data Structures}
+\subsection*{Data Structures}
 \begin{CompactItemize}
 \item 
 struct \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result}
@@ -139,7 +135,7 @@ int \hyperlink{arrow_8h_835bc4e51debcb5eeb721c65b1804fa9}{arrow\_\-btsp\_\-fun\_
 \begin{CompactList}\small\item\em Constrained BTSP to TSP function. \item\end{CompactList}\item 
 int \hyperlink{arrow_8h_c45130e6af4d03bb2ea580b6490f45e1}{arrow\_\-btsp\_\-fun\_\-constrained\_\-shake} (int shallow, double feasible\_\-length, int infinity, int rand\_\-min, int rand\_\-max, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
 \begin{CompactList}\small\item\em Constrained \char`\"{}Shake\char`\"{} BTSP to TSP function. \item\end{CompactList}\item 
-int \hyperlink{arrow_8h_e187e044872b9130dc8451a7cbfd3f8d}{arrow\_\-options\_\-parse} (int num\_\-opts, \hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{histogram__data_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{[}$\,$\mbox{]}, char $\ast$description, char $\ast$\hyperlink{histogram__data_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage}, int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, int $\ast$opt\_\-ind)
+int \hyperlink{arrow_8h_e187e044872b9130dc8451a7cbfd3f8d}{arrow\_\-options\_\-parse} (int num\_\-opts, \hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{subproblem_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{[}$\,$\mbox{]}, char $\ast$description, char $\ast$\hyperlink{subproblem_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage}, int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, int $\ast$opt\_\-ind)
 \item 
 int \hyperlink{arrow_8h_b5b9bae9f92630983d3b3d39d86198f8}{arrow\_\-problem\_\-read} (char $\ast$file\_\-name, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem)
 \begin{CompactList}\small\item\em Reads a problem from a TSPLIB file. \item\end{CompactList}\item 
@@ -455,13 +451,13 @@ Solves the 2-max bound (2MB) on the given problem.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em info}]\mbox{[}in\mbox{]} problem info \item[{\em result}]\mbox{[}out\mbox{]} 2MB solution \end{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em result}]\mbox{[}out\mbox{]} 2MB solution \end{description}
 \end{Desc}
 
 
 Definition at line 16 of file 2mb.c.
 
-References ARROW\_\-SUCCESS, arrow\_\-util\_\-zeit(), arrow\_\-problem::get\_\-cost, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-problem::symmetric, and arrow\_\-bound\_\-result::total\_\-time.
+References ARROW\_\-SUCCESS, arrow\_\-util\_\-zeit(), arrow\_\-problem::get\_\-cost, max(), arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-problem::symmetric, and arrow\_\-bound\_\-result::total\_\-time.
 
 Referenced by main().\hypertarget{arrow_8h_727cb19dd9cfa6315e1155796daef833}{
 \index{arrow.h@{arrow.h}!arrow\_\-bbssp\_\-biconnected@{arrow\_\-bbssp\_\-biconnected}}
@@ -519,7 +515,7 @@ Destructs a binary tree data structure.
 \end{Desc}
 
 
-Definition at line 59 of file bintree.c.
+Definition at line 60 of file bintree.c.
 
 References destruct\_\-node(), arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
 
@@ -539,7 +535,7 @@ Initializes the binary tree data structure.
 \end{Desc}
 
 
-Definition at line 52 of file bintree.c.
+Definition at line 53 of file bintree.c.
 
 References arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
 
@@ -559,7 +555,7 @@ Inserts a value into the binary tree.
 \end{Desc}
 
 
-Definition at line 66 of file bintree.c.
+Definition at line 67 of file bintree.c.
 
 References construct\_\-node(), insert\_\-at(), arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
 
@@ -593,7 +589,7 @@ Initializes the binary tree data structure.
 \end{Desc}
 
 
-Definition at line 86 of file bintree.c.
+Definition at line 87 of file bintree.c.
 
 References ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), fill\_\-array(), arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
 
@@ -749,7 +745,7 @@ Destructs a BTSP parameters structure.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em result}]\mbox{[}out\mbox{]} BTSP parameters structure \end{description}
+\item[{\em params}]\mbox{[}out\mbox{]} BTSP parameters structure \end{description}
 \end{Desc}
 
 
@@ -849,7 +845,7 @@ Destructs a BTSP solve plan structure.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em result}]\mbox{[}out\mbox{]} BTSP solve plan structure \end{description}
+\item[{\em plan}]\mbox{[}out\mbox{]} BTSP solve plan structure \end{description}
 \end{Desc}
 
 
@@ -869,7 +865,7 @@ Inititalizes BTSP solve plan structure.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em params}]\mbox{[}out\mbox{]} BTSP solve plan structure \end{description}
+\item[{\em plan}]\mbox{[}out\mbox{]} BTSP solve plan structure \end{description}
 \end{Desc}
 
 
@@ -887,13 +883,13 @@ Solves the degree constrained bottleneck paths bound (DCBPB).
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em info}]\mbox{[}in\mbox{]} problem info \item[{\em result}]\mbox{[}out\mbox{]} BPB solution \end{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em result}]\mbox{[}out\mbox{]} BPB solution \end{description}
 \end{Desc}
 
 
-Definition at line 29 of file dcbpb.c.
+Definition at line 38 of file dcbpb.c.
 
-References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-matrix(), arrow\_\-util\_\-zeit(), bottleneck\_\-paths(), arrow\_\-problem::get\_\-cost, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, and arrow\_\-bound\_\-result::total\_\-time.
+References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-matrix(), arrow\_\-util\_\-zeit(), bottleneck\_\-paths(), arrow\_\-problem::get\_\-cost, max(), arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, and arrow\_\-bound\_\-result::total\_\-time.
 
 Referenced by main().\hypertarget{arrow_8h_e187e044872b9130dc8451a7cbfd3f8d}{
 \index{arrow.h@{arrow.h}!arrow\_\-options\_\-parse@{arrow\_\-options\_\-parse}}
@@ -1080,7 +1076,7 @@ Solves TSP with Concorde's exact solver.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em in\_\-tour}]\mbox{[}in\mbox{]} an initial tour (can be NULL) \item[{\em result}]\mbox{[}out\mbox{]} TSP solution \end{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em initial\_\-tour}]\mbox{[}in\mbox{]} an initial tour (can be NULL) \item[{\em result}]\mbox{[}out\mbox{]} TSP solution \end{description}
 \end{Desc}
 
 
@@ -1100,7 +1096,7 @@ Destructs a LK parameters structure.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em result}]\mbox{[}out\mbox{]} LK parameters structure \end{description}
+\item[{\em params}]\mbox{[}out\mbox{]} LK parameters structure \end{description}
 \end{Desc}
 
 
@@ -1242,7 +1238,7 @@ Makes a shallow copy of the Concorde CCdatagroup structure.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em from}]\mbox{[}in\mbox{]} the CCdatagroup structure to copy from  to \mbox{[}out\mbox{]} the CCdatagroup structure to copy to \end{description}
+\item[{\em from}]\mbox{[}in\mbox{]} the CCdatagroup structure to copy from \item[{\em to}]\mbox{[}out\mbox{]} the CCdatagroup structure to copy to \end{description}
 \end{Desc}
 
 

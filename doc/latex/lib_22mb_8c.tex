@@ -5,9 +5,7 @@
 2-max bound implemenation. 
 
 {\tt \#include \char`\"{}arrow.h\char`\"{}}\par
-
-
-Include dependency graph for 2mb.c:\subsection*{Functions}
+\subsection*{Functions}
 \begin{CompactItemize}
 \item 
 int \hyperlink{lib_22mb_8c_a3ac7f6280e1eaea38fafbe78375b13f}{arrow\_\-2mb\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
@@ -38,12 +36,12 @@ Solves the 2-max bound (2MB) on the given problem.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em info}]\mbox{[}in\mbox{]} problem info \item[{\em result}]\mbox{[}out\mbox{]} 2MB solution \end{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em result}]\mbox{[}out\mbox{]} 2MB solution \end{description}
 \end{Desc}
 
 
 Definition at line 16 of file 2mb.c.
 
-References ARROW\_\-SUCCESS, arrow\_\-util\_\-zeit(), arrow\_\-problem::get\_\-cost, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-problem::symmetric, and arrow\_\-bound\_\-result::total\_\-time.
+References ARROW\_\-SUCCESS, arrow\_\-util\_\-zeit(), arrow\_\-problem::get\_\-cost, max(), arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-problem::symmetric, and arrow\_\-bound\_\-result::total\_\-time.
 
 Referenced by main().
