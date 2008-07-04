@@ -10,17 +10,26 @@
 #include "arrow.h"
 
 /**
- *  @param  Solves the all-pairs bottleneck paths problem (a simple
+ *  @brief  Solves the all-pairs bottleneck paths problem (a simple
  *          modification of the Floyd-Warshall alg for all-pairs shortest
  *          paths).
  *  @param  problem [in] problem data
  *  @param  ignore [in] vertex number to ignore
  *  @param  b [out] array will hold bottleneck path value for each
  *              pair of source/sink nodes
- *  @param  delta [out] the smallest cost among all bottleneck paths
  */
 void
-bottleneck_paths(arrow_problem *problem, int ignore, int **b, int *delta);
+bottleneck_paths(arrow_problem *problem, int ignore, int **b);
+
+/*
+ *  @brief  Returns the max of the three values
+ *  @param  i [in] first number
+ *  @param  j [in] second number
+ *  @param  k [in] third number
+ *  @return the largest of i, j, k
+ */
+int
+max(int i, int j, int k);
 
 /****************************************************************************
  * Public function implemenations
@@ -30,7 +39,7 @@ arrow_dcbpb_solve(arrow_problem *problem, arrow_bound_result *result)
 {
     int ret = ARROW_SUCCESS;
     int i, j, k;
-    int delta, max_tree, min_node;
+    int delta, bottleneck, max_tree, min_node;
     int in_cost, out_cost;
     int n = problem->size;
     double start_time, end_time;    
@@ -44,56 +53,45 @@ arrow_dcbpb_solve(arrow_problem *problem, arrow_bound_result *result)
         ret = ARROW_FAILURE;
         goto CLEANUP;
     }
-    
-    min_node = INT_MAX;
-    
+    bottleneck = INT_MIN;
+
     for(i = 0; i < n; i++)
     {
-        bottleneck_paths(problem, i, b, &delta);
+        bottleneck_paths(problem, i, b);
+        min_node = INT_MAX;
         
         for(j = 0; j < n; j++)
         {
-            if((i != j) && (problem->get_cost(problem, i, j) < min_node))
+            if(j != i)
             {
-                for(k = j; k < n; k++)
+                delta = INT_MIN;
+                for(k = 0; k < n; k++)
                 {
-                    if((i != k) && (j != k))
+                    if((k != j) && (k != i))
                     {
-                        /* Assume we fix (i, j) and (k, i) arcs */
-                        max_tree = delta;
-                        
+                        if(b[j][k] > delta) delta = b[j][k];
+                    }
+                }
+                
+                for(k = 0; k < n; k++)
+                {
+                    if((k != i) && (k != j))
+                    {
                         out_cost = problem->get_cost(problem, i, j);
-                        if(max_tree < out_cost) 
-                            max_tree = out_cost;
-
                         in_cost = problem->get_cost(problem, k, i);
-                        if(max_tree < in_cost) 
-                            max_tree = in_cost;
-                        
-                        if(max_tree < min_node)
-                            min_node = max_tree;
-                            
-                        /* Now assume we fix (i, k) and (j, i) arcs */
-                        max_tree = delta;
-                        
-                        out_cost = problem->get_cost(problem, i, k);
-                        if(max_tree < out_cost) 
-                            max_tree = out_cost;
-
-                        in_cost = problem->get_cost(problem, j, i);
-                        if(max_tree < in_cost) 
-                            max_tree = in_cost;
-                        
-                        if(max_tree < min_node)
-                            min_node = max_tree; 
+                        max_tree = max(delta, out_cost, in_cost);
+                        if(max_tree < min_node) min_node = max_tree;
                     }
                 }
             }
         }
+        
+        if(bottleneck < min_node)
+            bottleneck = min_node;
     }
     end_time = arrow_util_zeit();
 
-    result->obj_value = min_node;
+    result->obj_value = bottleneck;
     result->total_time = end_time - start_time;
     
 CLEANUP:
@@ -106,7 +104,7 @@ CLEANUP:
  * Private function implemenations
  ****************************************************************************/
 void
-bottleneck_paths(arrow_problem *problem, int ignore, int **b, int *delta)
+bottleneck_paths(arrow_problem *problem, int ignore, int **b)
 {
     int i, j, k, max;
     
@@ -140,21 +138,13 @@ bottleneck_paths(arrow_problem *problem, int ignore, int **b, int *delta)
             }
         }
     }
-    
-    /* Find the largest bottleneck path cost */
-    *delta = INT_MIN;
-    for(i = 0; i < problem->size; i++)
-    {
-        if(i != ignore)
-        {
-            for(j = 0; j < problem->size; j++)
-            {
-                if((j != ignore) && (i != j))
-                {
-                    if(*delta < b[i][j])
-                        *delta = b[i][j];
-                }
-            }
-        }
-    }
+}
+
+int
+max(int i, int j, int k)
+{
+    int max = i;
+    if(max < j) max = j;
+    if(max < k) max = k;
+    return max;
 }
