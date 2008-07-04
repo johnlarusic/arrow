@@ -3,6 +3,7 @@ config.log
 config.status
 stamp.h1
 *.a
+*.aux
 .DS_Store
 *.Po
 *.o
