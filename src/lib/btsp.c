@@ -404,5 +404,3 @@ CLEANUP:
     arrow_tsp_result_destruct(&tsp_result);
     return ret;
 }
-
-
