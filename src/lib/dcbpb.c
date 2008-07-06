@@ -134,15 +134,22 @@ arrow_dcbpb_solve(arrow_problem *problem, arrow_bound_result *result)
         for(j = 0; j < n; j++)
         {
             if(j != i)
-            {                
-                for(k = 0; k < n; k++)
+            {
+                out_cost = problem->get_cost(problem, i, j);
+                if(out_cost < min_node)
                 {
-                    if((k != i) && (k != j))
+                    for(k = 0; k < n; k++)
                     {
-                        out_cost = problem->get_cost(problem, i, j);
-                        in_cost = problem->get_cost(problem, k, i);
-                        max_tree = max(alpha[j], gamma[k], out_cost, in_cost);
-                        if(max_tree < min_node) min_node = max_tree;
+                        if((k != i))
+                        {
+                            in_cost = problem->get_cost(problem, k, i);
+                            if(in_cost < min_node)
+                            {
+                                max_tree = 
+                                    max(alpha[j], gamma[k], out_cost, in_cost);
+                                if(max_tree < min_node) min_node = max_tree;
+                            }
+                        }
                     }
                 }
             }
