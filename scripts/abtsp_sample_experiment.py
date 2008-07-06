@@ -6,8 +6,7 @@ sample_abtsp_experiments.py
 Created by John LaRusic on 2008-06-19.
 """
 # PARAMETERS
-program_dir     = "/Users/johnlarusic/Dev/arrow"
-programs        = ["bbssp", "bap", "bscssp", "2mb", "dcbpb"]
+program         = "/Users/johnlarusic/Dev/arrow/abtsp"
 problem_files   = "/Users/johnlarusic/Dev/problems/atsp/ftv3*.atsp"
 output_dir      = "/Users/johnlarusic/Dev/results/abtsp/08-08-03"
 trials          = 2
@@ -22,7 +21,7 @@ import ConfigParser
 
 # Read configuration scripts
 data = ConfigParser.ConfigParser()
-data.read("data.ini")
+data.read("abtsp_data.ini")
 
 # Get a list of problems
 problems = glob.glob(problem_files)
@@ -53,7 +52,8 @@ for problem in problems:
     problem_base = os.path.basename(problem)
     problem_name =  problem_base[0:problem_base.rfind('.')]
     
-    try:    
+    try:
+        lower_bound = int(data.get("lower_bound", problem_name))
         print " - problem: %s" % problem_name
     
         for trial in range(1, trials + 1):
@@ -66,8 +66,8 @@ for problem in problems:
             print "   - trial %d of %d, %d of %d total or %.1f percent\"" % \
                 (trial, trials, total_done, total, total_per)
                 
-            command = "%s -i %s -x %s -T %s > %s" % \
-                (program, problem, xml_file, tour_file, stdout_file)
+            command = "%s -i %s -l %s -x %s -T %s > %s" % \
+                (program, problem, lower_bound, xml_file, tour_file, stdout_file)
             os.system(command)
             
             total_per += total_each

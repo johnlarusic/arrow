@@ -22,7 +22,7 @@ import ConfigParser
 
 # Read configuration scripts
 data = ConfigParser.ConfigParser()
-data.read("data.ini")
+data.read("cbtsp_data.ini")
 
 # Get a list of problems
 problems = glob.glob(problem_files)
