@@ -7,7 +7,7 @@ Created by John LaRusic on 2008-06-19.
 """
 # PARAMETERS
 program         = "/Users/johnlarusic/Dev/arrow/abtsp"
-problem_files   = "/Users/johnlarusic/Dev/problems/atsp/ftv3*.atsp"
+problem_files   = "/Users/johnlarusic/Dev/problems/atsp/*"
 output_dir      = "/Users/johnlarusic/Dev/results/abtsp/08-08-03"
 trials          = 2
 
@@ -51,9 +51,11 @@ if not os.path.exists(output_dir):
 for problem in problems:
     problem_base = os.path.basename(problem)
     problem_name =  problem_base[0:problem_base.rfind('.')]
-    
+    setting_name = problem_name.replace('.', '_')
+        
     try:
-        lower_bound = int(data.get("lower_bound", problem_name))
+        
+        lower_bound = int(data.get("lower_bound", setting_name))
         print " - problem: %s" % problem_name
     
         for trial in range(1, trials + 1):
@@ -68,12 +70,12 @@ for problem in problems:
                 
             command = "%s -i %s -l %s -x %s -T %s > %s" % \
                 (program, problem, lower_bound, xml_file, tour_file, stdout_file)
-            os.system(command)
+            #os.system(command)
             
             total_per += total_each
             total_done += 1
     except:
-        sys.stderr.write("Missing data for %s\n" % problem_name)
+        sys.stderr.write("Missing data for %s\n" % setting_name)
 
         
 
