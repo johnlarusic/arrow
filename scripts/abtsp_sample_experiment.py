@@ -70,7 +70,7 @@ for problem in problems:
                 
             command = "%s -i %s -l %s -x %s -T %s > %s" % \
                 (program, problem, lower_bound, xml_file, tour_file, stdout_file)
-            #os.system(command)
+            os.system(command)
             
             total_per += total_each
             total_done += 1
