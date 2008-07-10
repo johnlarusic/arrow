@@ -12,7 +12,7 @@
 char *input_file = NULL;
 char *xml_file = NULL;
 char *tour_file = NULL;
-int infinity = -1;
+int edge_infinity = -1;
 int random_restarts = -1;
 int stall_count = -1;
 int kicks = -1;
@@ -35,7 +35,7 @@ arrow_option options[NUM_OPTS] =
         ARROW_OPTION_STRING, &tour_file, ARROW_FALSE, ARROW_TRUE},
 
     {'I', "infinity", "value to use as infinity",
-        ARROW_OPTION_INT, &infinity, ARROW_FALSE, ARROW_TRUE},
+        ARROW_OPTION_INT, &edge_infinity, ARROW_FALSE, ARROW_TRUE},
     
     {'r', "restarts", "number of random restarts",
         ARROW_OPTION_INT, &random_restarts, ARROW_FALSE, ARROW_TRUE},
@@ -98,21 +98,21 @@ main(int argc, char *argv[])
     printf("Max cost in problem:  %d\n", info.max_cost);
     
     /* Calculate a value for infinity if necessary */
-    if(infinity < 0)
+    if(edge_infinity < 0)
     {
-        //infinity = info.max_cost * atsp_problem.size + 1;
-        infinity = info.max_cost * 2;
+        //edge_infinity = info.max_cost * atsp_problem.size + 1;
+        edge_infinity = info.max_cost * 2;
     }
-    if(infinity < info.max_cost)
+    if(edge_infinity < info.max_cost)
     {
         arrow_print_error("Infinity value is not large enough\n");
         arrow_problem_destruct(&atsp_problem);
         return EXIT_FAILURE;
     }
-    printf("Infinity: %d\n", infinity);
+    printf("Infinity: %d\n", edge_infinity);
     
     /* Create transformed problem */
-    if(!arrow_problem_abtsp_to_sbtsp(&atsp_problem, infinity, &problem))
+    if(!arrow_problem_abtsp_to_sbtsp(&atsp_problem, edge_infinity, &problem))
     {
         arrow_print_error("Could not create symmetric transformation.");
         arrow_problem_destruct(&atsp_problem);
@@ -135,7 +135,7 @@ main(int argc, char *argv[])
     if(random_restarts >= 0)    lk_params.random_restarts  = random_restarts;
     if(stall_count >= 0)        lk_params.stall_count      = stall_count;
     if(kicks >= 0)              lk_params.kicks            = kicks;
-    lk_params.length_bound = (infinity * -1.0) * atsp_problem.size;
+    lk_params.length_bound = (edge_infinity * -1.0) * atsp_problem.size;
         
     /* Setup necessary function structures */
     if(arrow_btsp_fun_basic_atsp(ARROW_FALSE, &fun_basic) != ARROW_SUCCESS)
@@ -176,7 +176,7 @@ main(int argc, char *argv[])
     /* Transform solution from symmetric solution to asymmetric solution */
     if(result.found_tour)
     {
-        /* result.tour_length += atsp_problem.size * infinity; */
+        /* result.tour_length += atsp_problem.size * edge_infinity; */
         result.tour_length = 0;
         
         int *actual_tour;
