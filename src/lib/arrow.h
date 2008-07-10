@@ -63,6 +63,9 @@ extern "C" {
 #define CONCORDE_SUCCESS 0
 #define CONCORDE_FAILURE 1
 
+#define CONCORDE_WEIGHT_ADJUST (5)
+#define CONCORDE_WEIGHT_MULT (1 << CONCORDE_WEIGHT_ADJUST)
+#define CONCORDE_WEIGHT_MAX_EDGE (1 << (20 - CONCORDE_WEIGHT_ADJUST)) 
 
 /****************************************************************************
  *  Macros

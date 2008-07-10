@@ -462,7 +462,6 @@ basic_atsp_feasible(arrow_btsp_fun *fun, arrow_problem *problem,
             trans_edges++;
     }
     
-    
     /* If an edge's cost is strictly less than 0, then it was introduced into
        the transformation from asymmetric to symmetric.  Any tour we find must
        use each of these edges in order for the tour to be valid. */

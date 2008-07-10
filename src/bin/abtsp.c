@@ -12,6 +12,7 @@
 char *input_file = NULL;
 char *xml_file = NULL;
 char *tour_file = NULL;
+int infinity = -1;
 int random_restarts = -1;
 int stall_count = -1;
 int kicks = -1;
@@ -23,7 +24,7 @@ int upper_bound = INT_MAX;
 int basic_attempts = ARROW_DEFAULT_BASIC_ATTEMPTS;
 
 /* Program options */
-#define NUM_OPTS 12
+#define NUM_OPTS 13
 arrow_option options[NUM_OPTS] = 
 {
     {'i', "input", "TSPLIB input file", 
@@ -32,7 +33,10 @@ arrow_option options[NUM_OPTS] =
         ARROW_OPTION_STRING, &xml_file, ARROW_FALSE, ARROW_TRUE},
     {'T', "tour", "file to write tour to",
         ARROW_OPTION_STRING, &tour_file, ARROW_FALSE, ARROW_TRUE},
-        
+
+    {'I', "infinity", "value to use as infinity",
+        ARROW_OPTION_INT, &infinity, ARROW_FALSE, ARROW_TRUE},
+    
     {'r', "restarts", "number of random restarts",
         ARROW_OPTION_INT, &random_restarts, ARROW_FALSE, ARROW_TRUE},
     {'s', "stall-count", "max number of 4-swaps w/o progress",
@@ -70,7 +74,6 @@ main(int argc, char *argv[])
     arrow_btsp_result result;
     arrow_btsp_params btsp_params;
     
-    int infinity = INT_MAX;
     double start_time = arrow_util_zeit();
     double end_time;
     double bbssp_time = -1.0;
@@ -91,11 +94,24 @@ main(int argc, char *argv[])
     /* Gather basic info about the problem */
     if(!arrow_problem_info_get(&atsp_problem, &info))
         return EXIT_FAILURE;
-    printf("Number of unique costs: %d\n", info.cost_list_length);
+    printf("Num costs in problem: %d\n", info.cost_list_length);
+    printf("Max cost in problem:  %d\n", info.max_cost);
+    
+    /* Calculate a value for infinity if necessary */
+    if(infinity < 0)
+    {
+        //infinity = info.max_cost * atsp_problem.size + 1;
+        infinity = info.max_cost * 2;
+    }
+    if(infinity < info.max_cost)
+    {
+        arrow_print_error("Infinity value is not large enough\n");
+        arrow_problem_destruct(&atsp_problem);
+        return EXIT_FAILURE;
+    }
+    printf("Infinity: %d\n", infinity);
     
     /* Create transformed problem */
-    infinity = info.max_cost * atsp_problem.size + 1;
-    arrow_debug("infinity = %d\n", infinity);
     if(!arrow_problem_abtsp_to_sbtsp(&atsp_problem, infinity, &problem))
     {
         arrow_print_error("Could not create symmetric transformation.");
@@ -119,7 +135,7 @@ main(int argc, char *argv[])
     if(random_restarts >= 0)    lk_params.random_restarts  = random_restarts;
     if(stall_count >= 0)        lk_params.stall_count      = stall_count;
     if(kicks >= 0)              lk_params.kicks            = kicks;
-    lk_params.length_bound = infinity * atsp_problem.size * -1;
+    lk_params.length_bound = (infinity * -1.0) * atsp_problem.size;
         
     /* Setup necessary function structures */
     if(arrow_btsp_fun_basic_atsp(ARROW_FALSE, &fun_basic) != ARROW_SUCCESS)
@@ -160,7 +176,8 @@ main(int argc, char *argv[])
     /* Transform solution from symmetric solution to asymmetric solution */
     if(result.found_tour)
     {
-        result.tour_length += atsp_problem.size * infinity;
+        /* result.tour_length += atsp_problem.size * infinity; */
+        result.tour_length = 0;
         
         int *actual_tour;
         if(!arrow_util_create_int_array(atsp_problem.size, &actual_tour))
@@ -193,6 +210,8 @@ main(int argc, char *argv[])
                 ret = EXIT_FAILURE;
                 goto CLEANUP;
             }
+            
+            result.tour_length += cost;
         }
         printf("Tour passes sanity check\n");
         
