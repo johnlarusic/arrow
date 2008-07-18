@@ -270,6 +270,26 @@ typedef struct arrow_option
                                  parameter is present */
 } arrow_option;
 
+/**
+ *  @brief  Linked list item
+ */
+typedef struct arrow_llist_item
+{
+    int data;                       /**< list item data */
+    struct arrow_llist_item *next;  /**< next item in list */
+} arrow_llist_item;
+
+/**
+ *  @brief  Linked list data structure
+ */
+typedef struct arrow_llist
+{
+    struct arrow_llist_item *head;  /**< head item in list */
+    struct arrow_llist_item *tail;  /**< tail item in list */
+    int size;                       /**< size of list */
+} arrow_llist;
+
+
 /****************************************************************************
  *  2mb.c
  ****************************************************************************/ 
@@ -461,6 +481,19 @@ int
 arrow_btsp_fun_basic(int shallow, arrow_btsp_fun *fun);
 
 /**
+ *  @brief  Controlled Type I Shake.
+ *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
+ *  @param  rand_min [in] minimum random number generated
+ *  @param  rand_max [in] maximum random number generated
+ *  @param  fun [out] function structure
+ */
+int
+arrow_btsp_fun_basic_shake_i(int shallow, int rand_min, int rand_max, 
+                             arrow_problem *problem, 
+                             arrow_problem_info *info, 
+                             arrow_btsp_fun *fun);
+
+/**
  *  @brief  Basic BTSP to TSP function for asymmetric problem instances.
  *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
  *  @param  fun [out] function structure
@@ -496,6 +529,85 @@ arrow_btsp_fun_constrained_shake(int shallow, double feasible_length,
                                  arrow_problem *problem, 
                                  arrow_problem_info *info, 
                                  arrow_btsp_fun *fun);
+
+/****************************************************************************
+ *  llist.c
+ ****************************************************************************/
+/**
+ *  @brief  Initializes a new linked list
+ *  @param  list [out] linked list structure
+ */
+void
+arrow_llist_init(arrow_llist *list);
+
+/**
+ *  @brief  Destructs contents of a linked list
+ *  @param  list [out] list structure
+ */
+void
+arrow_llist_destruct(arrow_llist *list);
+
+/**
+ *  @brief  Inserts a new item at the head of the list
+ *  @param  list [out] linked list structure
+ *  @param  value [in] value to insert
+ */
+int
+arrow_llist_insert_head(arrow_llist *list, int value); 
+
+/**
+ *  @brief  Inserts a new item at the tail of the list
+ *  @param  list [out] linked list structure
+ *  @param  value [in] value to insert
+ */
+int
+arrow_llist_insert_tail(arrow_llist *list, int value);
+
+/**
+ *  @brief  Inserts a new item after the given item in the list. NOTE:
+ *          procedure makes no attempt to verify given item is in the list!
+ *  @param  list [out] linked list structure
+ *  @param  item [in] linked list item
+ *  @param  value [in] value to insert
+ */
+int
+arrow_llist_insert_after(arrow_llist *list, arrow_llist_item *item, 
+                         int value);
+
+/**
+ *  @brief  Removes the head item in the list. 
+ *  @param  list [out] linked list structure
+ *  @param  value [out] value of removed item
+ */
+void
+arrow_llist_remove_head(arrow_llist *list, int *value);
+
+/**
+ *  @brief  Removes the tail item in the list.  NOTE: O(n) procedure!
+ *  @param  list [out] linked list structure
+ *  @param  value [out] value of removed item
+ */
+void
+arrow_llist_remove_tail(arrow_llist *list, int *value);
+
+/**
+ *  @brief  Removes the item after the given one in the list. NOTE:
+ *          procedure makes no attempt to verify given item is in the list!
+ *  @param  list [out] linked list structure
+ *  @param  item [in] linked list item
+ *  @param  value [out] value of removed item
+ */
+void
+arrow_llist_remove_after(arrow_llist *list, arrow_llist_item *item, 
+                         int *value);
+                         
+/**
+ *  @brief  Prints a list of items in the list. 
+ *  @param  list [in] linked list structure
+ */
+void
+arrow_llist_print(arrow_llist *list);
+    
 
 /****************************************************************************
  *  options.c

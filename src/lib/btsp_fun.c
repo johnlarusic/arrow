@@ -67,6 +67,25 @@ static int
 basic_edgelen(int i, int j, struct CCdatagroup *dat);
 
 /**
+ *  @brief  Applies controlled type I shake
+ *  @param  fun [in] the cost matrix function
+ *  @param  old_problem [in] the problem to apply the function to
+ *  @param  delta [in] delta parameter
+ *  @param  new_problem [out] the resulting new problem
+ */
+int
+basic_shake_i_deep_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
+                         int delta, arrow_problem *new_problem);
+
+/**
+ *  @brief  Destructs constrained shake structure
+ *  @param  fun [out] the function structure to destruct
+ */
+void
+basic_shake_i_destruct(arrow_btsp_fun *fun);
+
+
+/**
  *  @brief  Applies basic ABTSP function to the cost matrix of the old problem
  *          to create the new problem (deep copy).
  *  @param  fun [in] the cost matrix function
@@ -192,18 +211,16 @@ typedef struct constrained_data
 } constrained_data;
 
 /**
- *  @brief  Concorde userdat structure for constrained shake cost matrix
- *          function.
+ *  @brief  Shake information.
  */
-typedef struct constrained_shake_data
+typedef struct shake_info
 {
     arrow_problem *problem;     /**< original problem data */
     arrow_problem_info *info;   /**< original problem info */
     int rand_min;               /**< smallest random number to generate */
     int rand_max;               /**< largest random number to generate */
-    int random_list_length;     /**< the number of random numbers in list */
     int infinity;               /**< value to use for "infinity" */
-} constrained_shake_data;
+} shake_info;
 
 
 /****************************************************************************
@@ -261,6 +278,46 @@ arrow_btsp_fun_basic(int shallow, arrow_btsp_fun *fun)
     }
     fun->feasible_length = 0;
     fun->destruct = basic_destruct;
+    fun->feasible = basic_feasible;
+    
+    return ARROW_SUCCESS;
+}
+
+int
+arrow_btsp_fun_basic_shake_i(int shallow, int rand_min, int rand_max, 
+                             arrow_problem *problem, 
+                             arrow_problem_info *info, 
+                             arrow_btsp_fun *fun)
+{
+    if(shallow)
+    {
+        arrow_print_error("Not supported.\n");
+        return ARROW_FAILURE;
+    }
+    else
+    {
+        fun->shallow = ARROW_FALSE;
+        fun->apply = basic_shake_i_deep_apply;
+    }
+    
+    /* Create data structure for function */
+    shake_info *data;
+    if((fun->data = malloc(sizeof(shake_info))) == NULL)
+    {
+        arrow_print_error("Error allocating memory for fun->data.");
+        return ARROW_FAILURE;
+    }
+    data = (shake_info *)(fun->data);
+    
+    /* Set structure parameters */
+    data->problem = problem;
+    data->info = info;
+    data->rand_min = rand_min;
+    data->rand_max = rand_max;
+    data->infinity = INT_MAX;
+    
+    fun->feasible_length = 0;
+    fun->destruct = basic_shake_i_destruct;
     fun->feasible = basic_feasible;
     
     return ARROW_SUCCESS;
@@ -334,13 +391,13 @@ arrow_btsp_fun_constrained_shake(int shallow, double feasible_length,
     }
     
     /* Create data structure for function */
-    constrained_shake_data *data;
-    if((fun->data = malloc(sizeof(constrained_shake_data))) == NULL)
+    shake_info *data;
+    if((fun->data = malloc(sizeof(shake_info))) == NULL)
     {
         arrow_print_error("Error allocating memory for fun->data.");
         return ARROW_FAILURE;
     }
-    data = (constrained_shake_data *)(fun->data);
+    data = (shake_info *)(fun->data);
     
     /* Set structure parameters */
     data->problem = problem;
@@ -416,6 +473,73 @@ basic_edgelen(int i, int j, struct CCdatagroup *dat)
     basic_data *user = (basic_data *)(dat->userdat.data);
     int old_cost = user->dat->edgelen(i, j, user->dat);
     return (old_cost <= user->delta ? 0 : old_cost);
+}
+
+int
+basic_shake_i_deep_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
+                         int delta, arrow_problem *new_problem)
+{
+    int i, j, cost, rand_val, pos;
+    int *rand_list;
+    int ret = ARROW_SUCCESS;
+    arrow_bintree tree;
+    
+    shake_info *data = (shake_info *)(fun->data);
+    int list_length = data->info->cost_list_length;
+    
+    /* Generate an ordered list of random numbers */
+    arrow_bintree_init(&tree);
+    while(tree.size < list_length)
+    {
+        rand_val = arrow_util_random_between(data->rand_min, data->rand_max);
+        arrow_bintree_insert(&tree, rand_val);
+    }
+    if(!arrow_bintree_to_array(&tree, &rand_list))
+    {
+        arrow_print_error("Could not transform tree into int array");
+        arrow_bintree_destruct(&tree);
+        return ARROW_FAILURE;
+    }
+            
+    /* Fill cost matrix */
+    for(i = 0; i < new_problem->size; i++)
+    {
+        for(j = 0; j <= i; j++)
+        {
+            cost = old_problem->get_cost(old_problem, i, j);
+            if((i == j) || (cost <= delta))
+            {
+                new_problem->data.adj[i][j] = 0;
+            }
+            else
+            {
+                if(!arrow_util_binary_search(data->info->cost_list, 
+                                             list_length, cost, &pos))
+                {
+                    arrow_print_error("Could not find cost in cost list!");
+                    ret = ARROW_FAILURE;
+                    goto CLEANUP;
+                }
+                rand_val = rand_list[pos];
+                new_problem->data.adj[i][j] = cost + rand_val;
+            }
+        }
+    }
+
+CLEANUP:
+    arrow_bintree_destruct(&tree);
+    free(rand_list);
+    return ret;
+}
+
+void
+basic_shake_i_destruct(arrow_btsp_fun *fun)
+{ 
+    if((shake_info *)(fun->data) != NULL)
+    {
+        free(fun->data);
+        fun->data = NULL;
+    }
 }
 
 int
@@ -540,7 +664,7 @@ constrained_shake_deep_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
     int ret = ARROW_SUCCESS;
     arrow_bintree tree;
     
-    constrained_shake_data *data = (constrained_shake_data *)(fun->data);
+    shake_info *data = (shake_info *)(fun->data);
     int list_length = data->info->cost_list_length;
     
     /* Generate an ordered list of random numbers */
@@ -595,7 +719,7 @@ CLEANUP:
 void
 constrained_shake_destruct(arrow_btsp_fun *fun)
 { 
-    if((constrained_shake_data *)(fun->data) != NULL)
+    if((shake_info *)(fun->data) != NULL)
     {
         free(fun->data);
         fun->data = NULL;
@@ -607,8 +731,7 @@ constrained_shake_feasible(arrow_btsp_fun *fun, arrow_problem *problem,
                            int delta, double tour_length, int *tour)
 {
     int i, u, v, cost;
-    arrow_problem *old_problem = 
-        ((constrained_shake_data *)(fun->data))->problem;
+    arrow_problem *old_problem = ((shake_info *)(fun->data))->problem;
     double actual_length = 0.0;
     for(i = 0; i < old_problem->size; i++)
     {
