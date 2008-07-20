@@ -6,7 +6,7 @@
  * @author  John LaRusic
  * @ingroup lib
  ****************************************************************************/
-#include "arrow.h"
+#include "common.h"
 
 /****************************************************************************
  * Private function prototypes
@@ -108,7 +108,7 @@ construct_node(arrow_bintree_node **node, int value)
     {
         arrow_print_error("Error allocating memory for arrow_bintree_node.");
         node = NULL;
-        return ARROW_ERROR_FATAL;
+        return ARROW_FAILURE;
     }
     
     (*node)->data = value;
@@ -154,7 +154,7 @@ insert_at(arrow_bintree *tree, arrow_bintree_node *node, int value)
         if(node->has_left_node == ARROW_FALSE)
         {
             ret = construct_node(&new_node, value);
-            if(ret == ARROW_ERROR_FATAL)
+            if(ret == ARROW_FAILURE)
                 return ret;
             node->left_node = new_node;
             node->has_left_node = ARROW_TRUE;
@@ -172,7 +172,7 @@ insert_at(arrow_bintree *tree, arrow_bintree_node *node, int value)
         if(node->has_right_node == ARROW_FALSE)
         {
             ret = construct_node(&new_node, value);
-            if(ret == ARROW_ERROR_FATAL)
+            if(ret == ARROW_FAILURE)
                 return ret;
             node->right_node = new_node;
             node->has_right_node = ARROW_TRUE;

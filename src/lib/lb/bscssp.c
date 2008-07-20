@@ -9,7 +9,8 @@
  *  @author  John LaRusic
  *  @ingroup lib
  ****************************************************************************/
-#include "arrow.h"
+#include "common.h"
+#include "lb.h"
 
 /****************************************************************************
  * Private function prototypes
@@ -61,7 +62,7 @@ arrow_bscssp_solve(arrow_problem *problem, arrow_problem_info *info,
         ret = strongly_connected(problem, info->cost_list[median], 
                                  &connected);
         
-        if(ret == ARROW_ERROR_FATAL)
+        if(ret == ARROW_FAILURE)
         {
             result->obj_value = -1;
             return ARROW_FAILURE;
@@ -91,7 +92,7 @@ strongly_connected(arrow_problem *problem, int delta, int *result)
     
     /* Initialize arrays */
     ret = arrow_util_create_int_array(problem->size, &visited);
-    if(ret == ARROW_ERROR_FATAL) goto CLEANUP; 
+    if(ret == ARROW_FAILURE) goto CLEANUP; 
     
     /* We start by assuming the graph is strongly connected */
     *result = ARROW_TRUE;

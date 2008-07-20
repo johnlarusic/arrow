@@ -7,7 +7,7 @@
  * @author  John LaRusic
  * @ingroup lib
  ****************************************************************************/
-#include "arrow.h"
+#include "common.h"
 
 /****************************************************************************
  * Private function prototypes
@@ -221,7 +221,7 @@ arrow_problem_read_tour(char *file_name, int size, int *tour)
     if(CCutil_getcycle_tsplib(size, file_name, tour) == CONCORDE_SUCCESS)
         return ARROW_SUCCESS;
     else
-        return ARROW_ERROR_FATAL;
+        return ARROW_FAILURE;
 }
 
 int
@@ -298,7 +298,7 @@ read_atsp(char *file_name, arrow_problem *problem)
     if(!(in = fopen(file_name, "r"))) 
     {
         arrow_print_error("Unable to open file for input\n");
-        return ARROW_ERROR_FATAL;
+        return ARROW_FAILURE;
     }
     
     CCutil_init_datagroup(dat);
@@ -328,7 +328,7 @@ read_atsp(char *file_name, arrow_problem *problem)
                 if(sscanf(p, "%s", field) == EOF || strcmp (field, "ATSP"))
                 {
                     arrow_print_error("Not an ATSP problem");
-                    return ARROW_ERROR_FATAL;
+                    return ARROW_FAILURE;
                 }
             } 
             else if(!strcmp (key, "COMMENT"))
@@ -340,7 +340,7 @@ read_atsp(char *file_name, arrow_problem *problem)
                 if(sscanf(p, "%s", field) == EOF)
                 {
                     arrow_print_error("ERROR in DIMENSION line");
-                    return ARROW_ERROR_FATAL;
+                    return ARROW_FAILURE;
                 }
                 problem->size = atoi(field);
                 arrow_debug("Number of Nodes: %d\n", problem->size);
@@ -350,7 +350,7 @@ read_atsp(char *file_name, arrow_problem *problem)
                 if(sscanf(p, "%s", field) == EOF)
                 {
                     arrow_print_error("ERROR in EDGE_WEIGHT_TYPE line");
-                    return ARROW_ERROR_FATAL;
+                    return ARROW_FAILURE;
                 }
                 if(!strcmp(field, "EXPLICIT")) {
                     printf ("Explicit Lengths (CC_MATRIXNORM)\n");
@@ -359,13 +359,13 @@ read_atsp(char *file_name, arrow_problem *problem)
                 else
                 {
                     arrow_print_error("ERROR: Not set up for given norm");
-                    return ARROW_ERROR_FATAL;
+                    return ARROW_FAILURE;
                 }
                 
                 if(CCutil_dat_setnorm(dat, norm)) 
                 {
                     arrow_print_error("Could not setup MAXTRIXNORM");
-                    return ARROW_ERROR_FATAL;
+                    return ARROW_FAILURE;
                 }
                 dat->edgelen = fullmatrix_edgelen;
             }
@@ -374,25 +374,25 @@ read_atsp(char *file_name, arrow_problem *problem)
                 if(sscanf (p, "%s", field) == EOF)
                 {
                     arrow_print_error("ERROR in EDGE_WEIGHT_FORMAT line");
-                    return ARROW_ERROR_FATAL;
+                    return ARROW_FAILURE;
                 }
                 if(strcmp(field, "FULL_MATRIX"))
                 {
                     arrow_print_error("Cannot handle edge weight format");
-                    return ARROW_ERROR_FATAL;
+                    return ARROW_FAILURE;
                 }
             }
             else if(!strcmp(key, "EDGE_WEIGHT_SECTION"))
             {
                 if(problem->size < 1) {
                     arrow_print_error("Dimension not specified");
-                    return ARROW_ERROR_FATAL;
+                    return ARROW_FAILURE;
                 }
                 if(dat->adj != (int **)NULL)
                 {            
                     arrow_print_error("A second NODE_COORD_SECTION?");
                     CCutil_freedatagroup(dat);
-                    return ARROW_ERROR_FATAL;
+                    return ARROW_FAILURE;
                 }
                 if ((norm & CC_NORM_SIZE_BITS) == CC_MATRIX_NORM_SIZE)
                 {
@@ -405,7 +405,7 @@ read_atsp(char *file_name, arrow_problem *problem)
                     {
                         arrow_print_error("Could not setup adj/adjspace");
                         CCutil_freedatagroup(dat);
-                        return ARROW_ERROR_FATAL;
+                        return ARROW_FAILURE;
                     }
                     
                     for(i = 0, j = 0; i < problem->size; i++)
@@ -426,12 +426,12 @@ read_atsp(char *file_name, arrow_problem *problem)
             else if(!strcmp(key, "NODE_COORD_SECTION"))
             {
                 arrow_print_error("Encountered NODE_COORD_SECTION\n");
-                return ARROW_ERROR_FATAL;
+                return ARROW_FAILURE;
             }
             else if(!strcmp(key, "FIXED_EDGES_SECTION"))
             {
                 arrow_print_error("Not set up for fixed edges\n");
-                return ARROW_ERROR_FATAL;
+                return ARROW_FAILURE;
             }
         }
     }

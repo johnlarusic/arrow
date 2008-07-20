@@ -6,7 +6,8 @@
  *  @author  John LaRusic
  *  @ingroup lib
  ****************************************************************************/
-#include "arrow.h"
+#include "common.h"
+#include "tsp.h"
 
 /****************************************************************************
  * Private function prototypes
@@ -25,7 +26,7 @@ arrow_tsp_result_init(arrow_problem *problem, arrow_tsp_result *result)
     if(!arrow_util_create_int_array(problem->size, &(result->tour)))
     {
         result = NULL;
-        return ARROW_ERROR_FATAL;
+        return ARROW_FAILURE;
     }
     result->found_tour = ARROW_FALSE;
     result->obj_value = -1.0;

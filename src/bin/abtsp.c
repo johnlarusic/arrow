@@ -6,7 +6,10 @@
  * @author  John LaRusic
  * @ingroup bin
  ****************************************************************************/
-#include "arrow.h"
+#include "common.h"
+#include "lb.h"
+#include "tsp.h"
+#include "btsp.h"
 
 /* Global variables */
 char *input_file = NULL;
@@ -21,7 +24,7 @@ int supress_ebst = ARROW_FALSE;
 int find_short_tour = ARROW_FALSE;
 int lower_bound = -1;
 int upper_bound = INT_MAX;
-int basic_attempts = ARROW_DEFAULT_BASIC_ATTEMPTS;
+int basic_attempts = 1;
 
 /* Program options */
 #define NUM_OPTS 13

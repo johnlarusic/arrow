@@ -1,14 +1,53 @@
-# Where everything is located
+##############################################################################
+# BUILD LOCATIONS
+##############################################################################
+options_file = 'build_options.py'
+
 dir_src = 'src'
 lib_src = dir_src + '/lib'
 bin_src = dir_src + '/bin'
+inc_src = dir_src + '/include'
 
 dir_build = 'build'
 lib_build = dir_build + '/lib'
 bin_build = dir_build + '/bin'
+inc_build = dir_build + '/include'
 
-# Ask the user for options
-opts = Options('build_options.py')
+# List of library files
+lib_files = (
+    'btsp/btsp.c', 
+    'btsp/btsp_fun.c',
+    'common/bintree.c', 
+    'common/options.c', 
+    'common/problem.c', 
+    'common/util.c',
+    'lb/2mb.c', 
+    'lb/bap.c', 
+    'lb/bbssp.c', 
+    'lb/bscssp.c', 
+    'lb/dcbpb.c',
+    'tsp/tsp.c'
+)
+
+# List of executables in the form of (NAME, SRC)
+executables = (
+    ('2mb',         '2mb.c'),
+    ('abtsp',       'abtsp.c'),
+    ('bap',         'bap.c'),
+    ('bbssp',       'bbssp.c'),
+    ('btsp',        'btsp.c'),
+    ('cbtsp',       'cbtsp.c'),
+    ('dcbpb',       'dcbpb.c'),
+    ('histdata',    'histdata.c'),
+    ('subprob',     'subprob.c'),
+    ('tourinfo',    'tourinfo.c'),
+    ('tsp',         'tsp.c')
+)
+
+##############################################################################
+# GET USERS OPTIONS
+##############################################################################
+opts = Options(options_file)
 opts.AddOptions(
     PathOption('concorde_a', 'Path to Concorde library (concorde.a)', 
                '.', PathOption.PathIsFile),
@@ -20,31 +59,35 @@ opts.AddOptions(
                '.', PathOption.PathIsDir)
 )
 
-# Compile the callable library
-env_lib = Environment(options = opts,
-                      CPPPATH = ['"$concorde_h_dir"', '"$qsopt_h_dir"'])
-env_lib.BuildDir(lib_build, lib_src)
-env_lib.Library(target = 'arrow', 
-                source = Glob(lib_build + '/*.c') + [lib_build + '/arrow.h'])
+##############################################################################
+# COMPILE THE CALLABLE LIBRARY
+##############################################################################
+# Add full paths to library files
+lib_files_fullpath = []
+for lib_file in lib_files:
+    lib_files_fullpath.append(lib_build + '/' + lib_file)
 
-# Compile all the programs
-env_bin = Environment(options = opts,
-                      CPPPATH = ['"$concorde_h_dir"', '"$qsopt_h_dir"', lib_build],
-                      LIBS = ['arrow'],
-                      LIBPATH = ['.'])
+# Setup environment and build library
+env_lib = Environment(
+            options = opts,
+            CPPPATH = ['"$concorde_h_dir"', '"$qsopt_h_dir"', inc_build]
+          )
+env_lib.BuildDir(dir_build, dir_src)
+env_lib.Library(target = 'arrow', 
+                source = lib_files_fullpath)
+
+##############################################################################
+# COMPILE THE EXECUTABLES
+##############################################################################
+env_bin = Environment(
+            options = opts,
+            CPPPATH = ['"$concorde_h_dir"', '"$qsopt_h_dir"', inc_build],
+            LIBS = ['arrow'],
+            LIBPATH = ['.']
+          )
 env_bin.Append(LIBS = [File(env_bin.subst('$concorde_a'))])
 env_bin.Append(LIBS = [File(env_bin.subst('$qsopt_a'))])
 env_bin.BuildDir(bin_build, bin_src)
 
-env_bin.Program('2mb', bin_build + '/2mb.c')
-env_bin.Program('abtsp', bin_build + '/abtsp.c')
-env_bin.Program('bap', bin_build + '/bap.c')
-env_bin.Program('bbssp', bin_build + '/bbssp.c')
-env_bin.Program('bscssp', bin_build + '/bscssp.c')
-env_bin.Program('btsp', bin_build + '/btsp.c')
-env_bin.Program('cbtsp', bin_build + '/cbtsp.c')
-env_bin.Program('dcbpb', bin_build + '/dcbpb.c')
-env_bin.Program('histogram_data', bin_build + '/histogram_data.c')
-env_bin.Program('subproblem', bin_build + '/subproblem.c')
-#env_bin.Program('linkern', bin_build + '/linkern.c')
-#env_bin.Program('tsp', bin_build + '/tsp.c')
+for (name, src) in executables:
+    env_bin.Program(name, bin_build + '/' + src)

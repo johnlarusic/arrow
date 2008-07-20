@@ -8,8 +8,10 @@
  * @author  John LaRusic
  * @ingroup bin
  ****************************************************************************/
-#include "arrow.h"
-#include <getopt.h>
+#include "common.h"
+#include "lb.h"
+#include "tsp.h"
+#include "btsp.h"
 
 /**
  *  @brief  Prints help/usage message.

@@ -6,7 +6,8 @@
  * @author  John LaRusic
  * @ingroup lib
  ****************************************************************************/
-#include "arrow.h"
+#include "common.h"
+#include "btsp.h"
 
 /****************************************************************************
  * Private function prototypes

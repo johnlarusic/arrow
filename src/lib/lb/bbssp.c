@@ -8,7 +8,8 @@
  *  @author  John LaRusic
  *  @ingroup lib
  ****************************************************************************/
-#include "arrow.h"
+#include "common.h"
+#include "lb.h"
 
 /****************************************************************************
  * Private function prototypes
@@ -68,7 +69,7 @@ arrow_bbssp_solve(arrow_problem *problem, arrow_problem_info *info,
         ret = arrow_bbssp_biconnected(problem, info->cost_list[median],
                                       &connected);
         
-        if(ret == ARROW_ERROR_FATAL)
+        if(ret == ARROW_FAILURE)
         {
             result->obj_value = -1;
             return ARROW_FAILURE;
@@ -109,22 +110,22 @@ arrow_bbssp_biconnected(arrow_problem *problem, int max_cost, int *result)
 
     /* Initialize all the necessary arrays */
     ret = arrow_util_create_int_array(problem->size, &visited);
-    if(ret == ARROW_ERROR_FATAL) goto CLEANUP; 
+    if(ret == ARROW_FAILURE) goto CLEANUP; 
 
     ret = arrow_util_create_int_array(problem->size, &depth);
-    if(ret == ARROW_ERROR_FATAL) goto CLEANUP;
+    if(ret == ARROW_FAILURE) goto CLEANUP;
 
     ret = arrow_util_create_int_array(problem->size, &low);
-    if(ret == ARROW_ERROR_FATAL) goto CLEANUP;
+    if(ret == ARROW_FAILURE) goto CLEANUP;
 
     ret = arrow_util_create_int_array(problem->size, &parent);
-    if(ret == ARROW_ERROR_FATAL) goto CLEANUP;
+    if(ret == ARROW_FAILURE) goto CLEANUP;
 
     ret = arrow_util_create_int_array(problem->size, &visited);
-    if(ret == ARROW_ERROR_FATAL) goto CLEANUP;
+    if(ret == ARROW_FAILURE) goto CLEANUP;
 
     ret = arrow_util_create_int_array(problem->size, &art_point);
-    if(ret == ARROW_ERROR_FATAL) goto CLEANUP;
+    if(ret == ARROW_FAILURE) goto CLEANUP;
 
     /* Set the default values for each array */
     for(u = 0; u < problem->size; u++)

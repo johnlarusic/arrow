@@ -19,10 +19,10 @@ btsp
 cbtsp
 dcbpb
 hash
-histogram_data
+histdata
 linkern
-subproblem
-tour_info
+subprob
+tourinfo
 tsp
 
 *~

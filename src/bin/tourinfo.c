@@ -6,8 +6,7 @@
  * @author  John LaRusic
  * @ingroup bin
  ****************************************************************************/
-#include "arrow.h"
-#include <getopt.h>
+#include "common.h"
 
 /**
  *  @brief  Prints help/usage message.

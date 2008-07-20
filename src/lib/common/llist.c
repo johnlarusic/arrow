@@ -6,7 +6,7 @@
  * @author  John LaRusic
  * @ingroup lib
  ****************************************************************************/
-#include "arrow.h"
+#include "common.h"
 
 /**
  *  @brief  Constructs a new item structure with the given value.
@@ -205,7 +205,7 @@ construct_item(arrow_llist_item **item, int value)
     {
         arrow_print_error("Error allocating memory for arrow_llist_item.");
         *item = NULL;
-        return ARROW_ERROR_FATAL;
+        return ARROW_FAILURE;
     }
     
     (*item)->data = value;

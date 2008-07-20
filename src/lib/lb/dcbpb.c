@@ -7,7 +7,8 @@
  *  @author  John LaRusic
  *  @ingroup lib
  ****************************************************************************/
-#include "arrow.h"
+#include "common.h"
+#include "lb.h"
 
 /**
  *  @brief  Solves the all-pairs bottleneck paths problem (a simple

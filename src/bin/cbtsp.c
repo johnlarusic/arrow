@@ -6,7 +6,10 @@
  * @author  John LaRusic
  * @ingroup bin
  ****************************************************************************/
-#include "arrow.h"
+#include "common.h"
+#include "lb.h"
+#include "tsp.h"
+#include "btsp.h"
 
 /* Global variables */
 char *input_file = NULL;

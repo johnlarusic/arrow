@@ -7,7 +7,8 @@
  * @author  John LaRusic
  * @ingroup lib
  ****************************************************************************/
-#include "arrow.h"
+#include "common.h"
+#include "btsp.h"
 
 /****************************************************************************
  * Private function prototypes
@@ -243,7 +244,7 @@ arrow_btsp_fun_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
         ret = arrow_util_CCdatagroup_init_matrix(old_problem->size, 
                                                  &(new_problem->data));
         if(ret != ARROW_SUCCESS)
-            return ARROW_ERROR_FATAL;
+            return ARROW_FAILURE;
     }
     
     /* Apply the function to the cost matrix */
@@ -351,7 +352,7 @@ arrow_btsp_fun_constrained(int shallow, double feasible_length, int infinity,
     if((fun->data = malloc(sizeof(int))) == NULL)
     {
         arrow_print_error("Error allocating memory for fun->data (int).");
-        return ARROW_ERROR_FATAL;
+        return ARROW_FAILURE;
     }
     *((int*)fun->data) = infinity;
     

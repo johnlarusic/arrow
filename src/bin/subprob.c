@@ -7,7 +7,7 @@
  * @author  John LaRusic
  * @ingroup bin
  ****************************************************************************/
-#include "arrow.h"
+#include "common.h"
 
 /* Global variables */
 char *program_name;             /**< Program name */

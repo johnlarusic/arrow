@@ -6,7 +6,7 @@
  *  @author  John LaRusic
  *  @ingroup lib
  ****************************************************************************/
-#include "arrow.h"
+#include "common.h"
 
 void
 print_usage(char *program_name, char *usage);
