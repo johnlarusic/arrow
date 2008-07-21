@@ -16,7 +16,13 @@ inc_build = dir_build + '/include'
 # List of library files
 lib_files = (
     'btsp/btsp.c', 
-    'btsp/btsp_fun.c',
+    'btsp/fun.c',
+    'btsp/fun_abtsp.c',
+    'btsp/fun_cbtsp.c',
+    'btsp/fun_sbtsp.c',
+    'btsp/result.c',
+    'btsp/params.c',
+    'btsp/solve_plan.c',
     'common/bintree.c', 
     'common/options.c', 
     'common/problem.c', 
