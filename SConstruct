@@ -24,14 +24,19 @@ lib_files = (
     'btsp/params.c',
     'btsp/solve_plan.c',
     'common/bintree.c', 
+    'common/llist.c',
     'common/options.c', 
     'common/problem.c', 
     'common/util.c',
+    'common/xml.c',
     'lb/2mb.c', 
     'lb/bap.c', 
     'lb/bbssp.c', 
     'lb/bscssp.c', 
     'lb/dcbpb.c',
+    'tsp/cc.c',
+    'tsp/rai.c',
+    'tsp/result.c',
     'tsp/tsp.c'
 )
 
@@ -39,15 +44,16 @@ lib_files = (
 executables = (
     ('2mb',         '2mb.c'),
     ('abtsp',       'abtsp.c'),
+    ('abtsp-rai',   'abtsp-rai.c'),
     ('bap',         'bap.c'),
     ('bbssp',       'bbssp.c'),
-    ('btsp',        'btsp.c'),
-    ('cbtsp',       'cbtsp.c'),
+    #('btsp',        'btsp.c'),
+    #('cbtsp',       'cbtsp.c'),
     ('dcbpb',       'dcbpb.c'),
     ('histdata',    'histdata.c'),
     ('subprob',     'subprob.c'),
-    ('tourinfo',    'tourinfo.c'),
-    ('tsp',         'tsp.c')
+    ('tourinfo',    'tourinfo.c')#,
+    #('tsp',         'tsp.c')
 )
 
 ##############################################################################

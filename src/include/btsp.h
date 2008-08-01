@@ -32,10 +32,8 @@ typedef struct arrow_btsp_result
     int *tour;              /**< tour that was found in node-node format */
     int optimal;            /**< indicates if the solution is optimal */
     int bin_search_steps;   /**< number of steps in binary search */
-    int linkern_attempts;   /**< number of calls to LK heuristic */
-    double linkern_time;    /**< total time calling LK heuristic */
-    int exact_attempts;     /**< number of calls to exact TSP solver */
-    double exact_time;      /**< total time calling exact TSP solver */
+    int solver_attempts[ARROW_TSP_SOLVER_COUNT]; /**< calls to solver */
+    double solver_time[ARROW_TSP_SOLVER_COUNT];  /**< total time for solver */
     double total_time;      /**< total time */
 } arrow_btsp_result;
 
@@ -82,12 +80,10 @@ typedef struct arrow_btsp_fun
  */
 typedef struct arrow_btsp_solve_plan
 {
-    int plan_type;                 /**< the type of plan (see macros) */
-    int use_exact_solver;          /**< use exact TSP solver? */
-    arrow_btsp_fun fun;            /**< the cost matrix function to apply */
-    arrow_tsp_lk_params lk_params; /**< LK params to use */
-    int upper_bound_update;        /**< Check for better upper bound?*/
-    int attempts;                  /**< number of attempts to perform */
+    int tsp_solver;                 /**< TSP solver to use */
+    void *tsp_params;               /**< TSP params to use */
+    arrow_btsp_fun fun;             /**< the cost matrix function to apply */
+    int attempts;                   /**< number of attempts to perform */
 } arrow_btsp_solve_plan;
 
 /**
@@ -109,21 +105,6 @@ typedef struct arrow_btsp_params
  *  btsp.c
  ****************************************************************************/
 /**
- *  @brief  Initializes the BTSP result structure.
- *  @param  problem [in] problem to solve
- *  @param  result [out] BTSP result structure
- */
-int
-arrow_btsp_result_init(arrow_problem *problem, arrow_btsp_result *result);
-
-/**
- *  @brief  Destructs a BTSP result structure.
- *  @param  result [out] BTSP result structure
- */
-void
-arrow_btsp_result_destruct(arrow_btsp_result *result);
-
-/**
  *  @brief  Solves TSP with Concorde's exact solver.
  *  @param  problem [in] problem to solve
  *  @param  info [in] extra problem info
@@ -133,38 +114,10 @@ arrow_btsp_result_destruct(arrow_btsp_result *result);
 int
 arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
                  arrow_btsp_params *params, arrow_btsp_result *result);
-                 
-/**
- *  @brief  Inititalizes BTSP parameter structure.
- *  @param  params [out] BTSP parameters structure
- */
-void
-arrow_btsp_params_init(arrow_btsp_params *params);
-
-/**
- *  @brief  Destructs a BTSP parameters structure.
- *  @param  params [out] BTSP parameters structure
- */
-void 
-arrow_btsp_params_destruct(arrow_btsp_params *params);
-
-/**
- *  @brief  Inititalizes BTSP solve plan structure.
- *  @param  plan [out] BTSP solve plan structure
- */
-void
-arrow_btsp_solve_plan_init(arrow_btsp_solve_plan *plan);
-
-/**
- *  @brief  Destructs a BTSP solve plan structure.
- *  @param  plan [out] BTSP solve plan structure
- */
-void 
-arrow_btsp_solve_plan_destruct(arrow_btsp_solve_plan *plan);
 
 
 /****************************************************************************
- *  btsp_fun.c
+ *  fun.c
  ****************************************************************************/
 /**
  *  @brief  Applies the given function to the given problem to create a new
@@ -185,6 +138,22 @@ arrow_btsp_fun_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
 void
 arrow_btsp_fun_destruct(arrow_btsp_fun *fun);
 
+
+/****************************************************************************
+ *  fun_atsp.c
+ ****************************************************************************/
+/**
+ *  @brief  Basic BTSP to TSP function for asymmetric problem instances.
+ *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
+ *  @param  fun [out] function structure
+ */
+int
+arrow_btsp_fun_basic_atsp(int shallow, arrow_btsp_fun *fun);
+
+
+/****************************************************************************
+ *  fun_cbtsp.c
+ ****************************************************************************/
 /**
  *  @brief  Basic BTSP to TSP function.
  *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
@@ -206,14 +175,10 @@ arrow_btsp_fun_basic_shake_i(int shallow, int rand_min, int rand_max,
                              arrow_problem_info *info, 
                              arrow_btsp_fun *fun);
 
-/**
- *  @brief  Basic BTSP to TSP function for asymmetric problem instances.
- *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
- *  @param  fun [out] function structure
- */
-int
-arrow_btsp_fun_basic_atsp(int shallow, arrow_btsp_fun *fun);
 
+/****************************************************************************
+ *  fun_cbtsp.c
+ ****************************************************************************/
 /**
  *  @brief  Constrained BTSP to TSP function
  *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
@@ -242,6 +207,77 @@ arrow_btsp_fun_constrained_shake(int shallow, double feasible_length,
                                  arrow_problem *problem, 
                                  arrow_problem_info *info, 
                                  arrow_btsp_fun *fun);
+
+
+/****************************************************************************
+ *  params.c
+ ****************************************************************************/               
+/**
+ *  @brief  Inititalizes BTSP parameter structure.
+ *  @param  params [out] BTSP parameters structure
+ */
+void
+arrow_btsp_params_init(arrow_btsp_params *params);
+
+/**
+ *  @brief  Destructs a BTSP parameters structure.
+ *  @param  params [out] BTSP parameters structure
+ */
+void 
+arrow_btsp_params_destruct(arrow_btsp_params *params);
+
+
+/****************************************************************************
+ *  result.c
+ ****************************************************************************/
+/**
+ *  @brief  Initializes the BTSP result structure.
+ *  @param  problem [in] problem to solve
+ *  @param  result [out] BTSP result structure
+ */
+int
+arrow_btsp_result_init(arrow_problem *problem, arrow_btsp_result *result);
+
+/**
+ *  @brief  Destructs a BTSP result structure.
+ *  @param  result [out] BTSP result structure
+ */
+void
+arrow_btsp_result_destruct(arrow_btsp_result *result);
+
+/**
+ *  @brief  Prints results out in XML format
+ *  @param  result [in] result structure
+ *  @param  out [out] file to wrtie to
+ */
+void
+arrow_btsp_result_print_xml(arrow_btsp_result *result, FILE *out);
+
+/**
+ *  @brief  Prints results out
+ *  @param  result [in] result structure
+ *  @param  out [out] file to wrtie to
+ */
+void
+arrow_btsp_result_print_pretty(arrow_btsp_result *result, FILE *out);
+
+
+/****************************************************************************
+ *  solve_plan.c
+ ****************************************************************************/
+/**
+ *  @brief  Inititalizes BTSP solve plan structure.
+ *  @param  plan [out] BTSP solve plan structure
+ */
+void
+arrow_btsp_solve_plan_init(arrow_btsp_solve_plan *plan);
+
+/**
+ *  @brief  Destructs a BTSP solve plan structure.
+ *  @param  plan [out] BTSP solve plan structure
+ */
+void 
+arrow_btsp_solve_plan_destruct(arrow_btsp_solve_plan *plan);
 
 
 /* End C++ wrapper */

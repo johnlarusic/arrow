@@ -442,5 +442,6 @@ read_atsp(char *file_name, arrow_problem *problem)
 static int
 fullmatrix_edgelen(int i, int j, CCdatagroup *dat)
 {
+    //arrow_debug("~ C[%d,%d] = %d\n", i, j, dat->adj[i][j]);
     return dat->adj[i][j];
 }

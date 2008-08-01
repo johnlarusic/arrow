@@ -127,5 +127,3 @@ basic_atsp_feasible(arrow_btsp_fun *fun, arrow_problem *problem,
     else
         return ARROW_FALSE;
 }
-
-

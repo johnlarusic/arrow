@@ -1,5 +1,5 @@
 /**********************************************************doxygen*//** @file
- * @brief   Asymmetric Bottleneck TSP heuristic.
+ * @brief   Asymmetric Bottleneck TSP heuristic using RAI heuristic.
  *
  * Runs the Bottleneck TSP heuristic on the given asymmetric input file.  
  *
@@ -15,19 +15,14 @@
 char *input_file = NULL;
 char *xml_file = NULL;
 char *tour_file = NULL;
-int edge_infinity = -1;
-int random_restarts = -1;
-int stall_count = -1;
-int kicks = -1;
-int confirm_sol = ARROW_FALSE;
+int iterations = -1;
 int supress_ebst = ARROW_FALSE;
-int find_short_tour = ARROW_FALSE;
 int lower_bound = -1;
 int upper_bound = INT_MAX;
 int basic_attempts = 1;
 
 /* Program options */
-#define NUM_OPTS 13
+#define NUM_OPTS 8
 arrow_option options[NUM_OPTS] = 
 {
     {'i', "input", "TSPLIB input file", 
@@ -36,22 +31,12 @@ arrow_option options[NUM_OPTS] =
         ARROW_OPTION_STRING, &xml_file, ARROW_FALSE, ARROW_TRUE},
     {'T', "tour", "file to write tour to",
         ARROW_OPTION_STRING, &tour_file, ARROW_FALSE, ARROW_TRUE},
-
-    {'I', "infinity", "value to use as infinity",
-        ARROW_OPTION_INT, &edge_infinity, ARROW_FALSE, ARROW_TRUE},
     
-    {'r', "restarts", "number of random restarts",
-        ARROW_OPTION_INT, &random_restarts, ARROW_FALSE, ARROW_TRUE},
-    {'s', "stall-count", "max number of 4-swaps w/o progress",
-        ARROW_OPTION_INT, &stall_count, ARROW_FALSE, ARROW_TRUE},
-    {'k', "kicks", "number of 4-swap kicks",
-        ARROW_OPTION_INT, &kicks, ARROW_FALSE, ARROW_TRUE},
-    {'c', "confirm-solution", "confirm solution with exact solver",
-        ARROW_OPTION_INT, &confirm_sol, ARROW_FALSE, ARROW_FALSE},
+    {'r', "iterations", "number of RAI iterations",
+        ARROW_OPTION_INT, &iterations, ARROW_FALSE, ARROW_TRUE},
+        
     {'e', "supress-ebst", "supress binary search",
         ARROW_OPTION_INT, &supress_ebst, ARROW_FALSE, ARROW_FALSE},
-    {'S', "find-short-tour", "finds a (relatively) short BTSP tour",
-        ARROW_OPTION_INT, &find_short_tour, ARROW_FALSE, ARROW_FALSE},
         
     {'l', "lower-bound", "initial lower bound",
         ARROW_OPTION_INT, &lower_bound, ARROW_FALSE, ARROW_TRUE},
@@ -70,58 +55,37 @@ main(int argc, char *argv[])
     int ret = EXIT_SUCCESS;
     int i, u, v, cost, costp;
 
-    arrow_problem atsp_problem;
     arrow_problem problem;
     arrow_problem_info info;
-    arrow_tsp_cc_lk_params lk_params;
     arrow_btsp_fun fun_basic;
     arrow_btsp_result result;
+    arrow_tsp_rai_params rai_params;
     arrow_btsp_params btsp_params;
     
     double start_time = arrow_util_zeit();
     double end_time;
     double bbssp_time = -1.0;
     
+    arrow_util_random_seed(0);
+    
     /* Read program arguments */
     if(!arrow_options_parse(NUM_OPTS, options, desc, usage, argc, argv, NULL))
         return EXIT_FAILURE;
         
     /* Try and read the problem file */
-    if(!arrow_problem_read(input_file, &atsp_problem))
+    if(!arrow_problem_read(input_file, &problem))
         return EXIT_FAILURE;
-    if(atsp_problem.symmetric)
+    if(problem.symmetric)
     {
-        arrow_print_error("Solver only works on symmetric matrices.");
+        arrow_print_error("Solver only works on asymmetric matrices.");
         return EXIT_FAILURE;
     }
     
     /* Gather basic info about the problem */
-    if(!arrow_problem_info_get(&atsp_problem, &info))
+    if(!arrow_problem_info_get(&problem, &info))
         return EXIT_FAILURE;
     printf("Num costs in problem: %d\n", info.cost_list_length);
     printf("Max cost in problem:  %d\n", info.max_cost);
-    
-    /* Calculate a value for infinity if necessary */
-    if(edge_infinity < 0)
-    {
-        //edge_infinity = info.max_cost * atsp_problem.size + 1;
-        edge_infinity = info.max_cost * 2;
-    }
-    if(edge_infinity < info.max_cost)
-    {
-        arrow_print_error("Infinity value is not large enough\n");
-        arrow_problem_destruct(&atsp_problem);
-        return EXIT_FAILURE;
-    }
-    printf("Infinity: %d\n", edge_infinity);
-    
-    /* Create transformed problem */
-    if(!arrow_problem_abtsp_to_sbtsp(&atsp_problem, edge_infinity, &problem))
-    {
-        arrow_print_error("Could not create symmetric transformation.");
-        arrow_problem_destruct(&atsp_problem);
-        return EXIT_FAILURE;
-    }
     
     /* Determine if we need to call the BBSSP to find a lower bound */
     if(lower_bound < 0)
@@ -134,22 +98,20 @@ main(int argc, char *argv[])
         upper_bound = info.max_cost;
     }
     
-    /* Setup LK parameters structure */
-    arrow_tsp_cc_lk_params_init(&problem, &lk_params);
-    if(random_restarts >= 0)    lk_params.random_restarts  = random_restarts;
-    if(stall_count >= 0)        lk_params.stall_count      = stall_count;
-    if(kicks >= 0)              lk_params.kicks            = kicks;
-    lk_params.length_bound = (edge_infinity * -1.0) * atsp_problem.size;
+    /* Set up RAI parameters */
+    if(iterations < 0) iterations = problem.size * problem.size;
+    rai_params.iterations = iterations;
+    rai_params.solve_btsp = ARROW_TRUE;
         
     /* Setup necessary function structures */
-    if(arrow_btsp_fun_basic_atsp(ARROW_FALSE, &fun_basic) != ARROW_SUCCESS)
+    if(arrow_btsp_fun_basic(ARROW_TRUE, &fun_basic) != ARROW_SUCCESS)
         return EXIT_FAILURE;
     #define SOLVE_STEPS 1
     arrow_btsp_solve_plan steps[SOLVE_STEPS] = 
     {
        {
-           ARROW_TSP_CC_LK,                 /* TSP solver */
-           (void *)&lk_params,              /* TSP solver parameters */
+           ARROW_TSP_RAI,                   /* TSP solver */
+           (void *)&rai_params,             /* TSP solver parameters */
            fun_basic,                       /* fun (cost matrix function) */
            basic_attempts                   /* attempts */
        }
@@ -157,9 +119,9 @@ main(int argc, char *argv[])
     
     /* Setup BTSP parameters structure */
     arrow_btsp_params_init(&btsp_params);
-    btsp_params.confirm_sol         = confirm_sol;
+    btsp_params.confirm_sol         = 0;
     btsp_params.supress_ebst        = supress_ebst;
-    btsp_params.find_short_tour     = find_short_tour;
+    btsp_params.find_short_tour     = 0;
     btsp_params.lower_bound         = lower_bound;
     btsp_params.upper_bound         = upper_bound;
     btsp_params.num_steps           = SOLVE_STEPS;
@@ -175,27 +137,14 @@ main(int argc, char *argv[])
     }
     end_time = arrow_util_zeit() - start_time;
     
-    /* Transform solution from symmetric solution to asymmetric solution */
     if(result.found_tour)
     {
-        /* result.tour_length += atsp_problem.size * edge_infinity; */
-        result.tour_length = 0;
-        
-        int *actual_tour;
-        if(!arrow_util_create_int_array(atsp_problem.size, &actual_tour))
-        {
-            arrow_print_error("Could not create actual_tour array.\n");
-            ret = EXIT_FAILURE;
-            goto CLEANUP;
-        }
-        arrow_util_sbtsp_to_abstp_tour(&problem, result.tour, actual_tour);
-        
         /* Sanity check */
-        for(i = 0; i < atsp_problem.size; i++)
+        for(i = 0; i < problem.size; i++)
         {
-            u = actual_tour[i];
-            v = actual_tour[(i + 1) % atsp_problem.size];
-            cost = atsp_problem.get_cost(&atsp_problem, u, v);
+            u = result.tour[i];
+            v = result.tour[(i + 1) % problem.size];
+            cost = problem.get_cost(&problem, u, v);
             
             if(cost > result.obj_value)
             {
@@ -217,6 +166,7 @@ main(int argc, char *argv[])
         printf("Tour passes sanity check\n");
         
         /* Tour output */
+        /*
         if(tour_file != NULL)
         {
             FILE *tour;
@@ -236,19 +186,17 @@ main(int argc, char *argv[])
         
             fclose(tour);
         }
-        
-        free(actual_tour);
+        */
     }
     
     /* Final output */
     arrow_btsp_result_print_pretty(&result, stdout);
-        printf("Initial Lower Bound: %d\n", lower_bound);
-    if(bbssp_time >= 0.0)
-        printf("BBSSP Time: %.2f\n", bbssp_time);        
+        printf("Initial Lower Bound: %d\n", lower_bound);       
     
     printf("Total Time: %.2f\n", end_time);
     
     /* Xml output */
+    /*
     if(xml_file != NULL)
     {
         FILE *xml;
@@ -271,14 +219,13 @@ main(int argc, char *argv[])
         
         fclose(xml);
     }
+    */
     
 CLEANUP:
     arrow_btsp_result_destruct(&result);
     arrow_btsp_params_destruct(&btsp_params);
     arrow_btsp_fun_destruct(&fun_basic);
     arrow_btsp_params_destruct(&btsp_params);
-    arrow_tsp_cc_lk_params_destruct(&lk_params); 
     arrow_problem_destruct(&problem); 
-    arrow_problem_destruct(&atsp_problem);
     return ret;
 }

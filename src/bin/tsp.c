@@ -61,7 +61,7 @@ main(int argc, char *argv[])
     if(!arrow_tsp_result_init(&problem, &result))
         arrow_print_error("Could not initialize result structure.\n");
     
-    if(!arrow_tsp_exact_solve(&problem, NULL, &result))
+    if(!arrow_tsp_cc_exact_solve(&problem, NULL, &result))
         arrow_print_error("Could not solve TSP on file.\n");
     
     printf("\nFound Tour: %d\n", result.found_tour);

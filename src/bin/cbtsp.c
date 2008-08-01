@@ -87,7 +87,7 @@ main(int argc, char *argv[])
 
     arrow_problem problem;
     arrow_problem_info info;
-    arrow_tsp_lk_params lk_params;
+    arrow_tsp_cc_lk_params lk_params;
     arrow_btsp_fun fun_con;
     arrow_btsp_fun fun_con_shake;
     arrow_btsp_result result;
@@ -134,7 +134,7 @@ main(int argc, char *argv[])
     }
     
     /* Setup LK parameters structure */
-    arrow_tsp_lk_params_init(&problem, &lk_params);
+    arrow_tsp_cc_lk_params_init(&problem, &lk_params);
     if(random_restarts >= 0)    lk_params.random_restarts  = random_restarts;
     if(stall_count >= 0)        lk_params.stall_count      = stall_count;
     if(kicks >= 0)              lk_params.kicks            = kicks;
@@ -153,7 +153,6 @@ main(int argc, char *argv[])
     arrow_btsp_solve_plan steps[SOLVE_STEPS] = 
     {
        {
-           ARROW_BTSP_SOLVE_PLAN_CONSTRAINED, /* plan_type */
            ARROW_FALSE,                       /* use_exact_solver? */
            fun_con,                           /* fun (cost matrix function) */
            lk_params,                         /* LK parameters */
@@ -161,7 +160,6 @@ main(int argc, char *argv[])
            basic_attempts                     /* attempts */
        },
        {
-           ARROW_BTSP_SOLVE_PLAN_CONSTRAINED_SHAKE,
            ARROW_FALSE,
            fun_con_shake,
            lk_params,
@@ -312,7 +310,7 @@ CLEANUP:
     arrow_btsp_result_destruct(&result);
     /*arrow_btsp_fun_destruct(&fun_constrained);*/
     arrow_btsp_params_destruct(&btsp_params);
-    arrow_tsp_lk_params_destruct(&lk_params);
+    arrow_tsp_cc_lk_params_destruct(&lk_params);
     arrow_problem_destruct(&problem);
     return ret;
 }

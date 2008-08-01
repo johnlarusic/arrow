@@ -163,6 +163,14 @@ void
 arrow_llist_destruct(arrow_llist *list);
 
 /**
+ *  @brief  Swaps the two given lists.
+ *  @param  a [out] the first list
+ *  @param  b [out] the second list
+ */
+void
+arrow_llist_swap(arrow_llist *a, arrow_llist *b);
+
+/**
  *  @brief  Inserts a new item at the head of the list
  *  @param  list [out] linked list structure
  *  @param  value [in] value to insert
@@ -222,6 +230,15 @@ arrow_llist_remove_after(arrow_llist *list, arrow_llist_item *item,
  */
 void
 arrow_llist_print(arrow_llist *list);
+
+/**
+ *  @brief  Copys data from linked list into array.  Assume array is big
+ *          enough to handle linked list!
+ *  @param  list [in] linked list structure
+ *  @param  array [out] array to copy items into
+ */
+void
+arrow_llist_to_array(arrow_llist *list, int *array);
 
 
 /****************************************************************************
@@ -362,6 +379,215 @@ arrow_problem_read_tour(char *file_name, int size, int *tour);
 int
 arrow_problem_abtsp_to_sbtsp(arrow_problem *old_problem, int infinity, 
                              arrow_problem *new_problem);
+
+
+/****************************************************************************
+ *  util.c
+ ****************************************************************************/
+/**
+ *  @brief  Creates an integer array.
+ *  @param  size [in] size of array
+ *  @param  array [out] pointer to array that will be created
+ */
+inline int
+arrow_util_create_int_array(int size, int **array);
+
+/**
+ *  @brief  Creates a full integer matrix.
+ *  @param  rows [in] number of rows
+ *  @param  cols [in] number of columns
+ *  @param  matrix [out] pointer to matrix that will be created
+ *  @param  space [out] pointer to matrix space that will be created
+ */
+inline int
+arrow_util_create_int_matrix(int rows, int cols, int ***matrix, int **space);
+
+/**
+ *  @brief  Prints an error message to stderr with consistent formatting.
+ *  @param  file_name [in] file error occured in
+ *  @param  line_num [in] line number error occured at
+ *  @param  message [in] error message to write
+ */
+inline void
+arrow_util_print_error(const char *file_name, int line_num,
+                       const char *message);
+
+/**
+ *  @brief  Used to measure timings.
+ *  @return a value representing the CPU time in seconds
+ */             
+inline double
+arrow_util_zeit();
+
+/**
+ *  @brief  Redirects STDOUT stream to a file (can be used
+ *      to completely surpress output by directing to /dev/null).
+ *  @param  filename [in] name of file to direct STDOUT to
+ *  @param  old_stream [out] existing file handle for STDOUT stream 
+ *      (necessary for restoring stream afterwards)
+ */
+void
+arrow_util_redirect_stdout_to_file(const char *filename, int *old_stream);
+
+/**
+ *  @brief  Restores STDOUT stream that's been redirected.
+ *  @param  old_stream [in] existing file handle for STDOUT stream
+ */
+void
+arrow_util_restore_stdout(int old_stream);
+
+/**
+ *  @brief  Makes a shallow copy of the Concorde CCdatagroup structure.
+ *  @param  from [in] the CCdatagroup structure to copy from
+ *  @param  to [out] the CCdatagroup structure to copy to
+ */
+void
+arrow_util_CCdatagroup_shallow_copy(CCdatagroup *from, CCdatagroup *to);
+
+/**
+ *  @brief  Initializes an upper-diagonal matrix norm structure for
+ *          Concorde that is ready to be filled in with values.
+ *  @param  size [in] the number of cities/vertices
+ *  @param  dat [out] the CCdatagroup structure to create
+ */
+int
+arrow_util_CCdatagroup_init_matrix(int size, CCdatagroup *dat);
+
+/**
+ *  @brief  Performs a binary search to find the wanted element in a
+ *          sorted integer array.
+ *  @param  array [in] the array to search (note: must be sorted in
+ *              non-increasing order)
+ *  @param  size [in] size of the array
+ *  @param  element [in] the element to find in the array
+ *  @param  pos [out] the index where the element can be found in the array
+ */
+int
+arrow_util_binary_search(int *array, int size, int element, int *pos);
+
+/**
+ *	@brief	Determines if the given string turns up a match for the given
+ *			regular expression pattern.
+ *	@param	string [in] the string to match against
+ *	@param	pattern [in] the regular expression pattern to match
+ *	@return	ARROW_TRUE if a match is found, ARROW_FALSE if not.
+ */
+int
+arrow_util_regex_match(char *string, char *pattern);
+
+/**
+ *  @brief  Prints out the given program arguments to the specified file.
+ *  @param  argc [in] the number of arguments
+ *  @param  argv [in] the program arugment array
+ *  @param  out [in] the file handle to print out to
+ */
+void
+arrow_util_print_program_args(int argc, char *argv[], FILE *out);
+
+/**
+ *  @brief  Seeds the random number generator.  Pass a value of 0 to seed
+ *          with the current time.
+ *  @param  seed [in] the random number seed.
+ */
+void
+arrow_util_random_seed(int seed);
+
+/**
+ *  @brief  Returns a random number between 0 and RAND_MAX (normally,
+ *          RAND_MAX = INT_MAX).
+ *  @return a random integer.
+ */
+inline int
+arrow_util_random();
+
+/**
+ *  @brief  Returns a random number between min and max.
+ *  @param  min [in] the minimum random number to return
+ *  @param  max [in] the maximum random number to return
+ *  @return a random integer in the range [min, max]
+ */
+inline int
+arrow_util_random_between(int min, int max);
+
+/**
+ *  @brief  Randomly permutes the elements of the given array.
+ *  @param  size [in] the size of the array.
+ *  @param  array [out] the array to permute.
+ */
+void
+arrow_util_permute_array(int size, int *array);
+
+void
+arrow_util_write_tour(arrow_problem *problem, char *comment, int *tour, 
+                      FILE *out);
+
+void
+arrow_util_sbtsp_to_abstp_tour(arrow_problem *problem, int *old_tour,
+                               int *new_tour);
+
+
+/****************************************************************************
+ *  xml.c
+ ****************************************************************************/
+/**
+ *  @brief  Writes an XML tag out for an integer value
+ *  @param  name [in] the tag name
+ *  @param  value [in] the value to write
+ *  @param  out [out] the stream to write to
+ */
+inline void
+arrow_xml_element_int(char *name, int value, FILE *out);
+
+/**
+ *  @brief  Writes an XML tag out for a double value
+ *  @param  name [in] the tag name
+ *  @param  value [in] the value to write
+ *  @param  out [out] the stream to write to
+ */
+inline void
+arrow_xml_element_double(char *name, double value, FILE *out);
+
+/**
+ *  @brief  Writes an XML tag out for a string value
+ *  @param  name [in] the tag name
+ *  @param  value [in] the value to write
+ *  @param  out [out] the stream to write to
+ */
+inline void
+arrow_xml_element_string(char *name, char *value, FILE *out);
+
+/**
+ *  @brief  Writes an XML tag out for a boolean value
+ *  @param  name [in] the tag name
+ *  @param  value [in] the value to write
+ *  @param  out [out] the stream to write to
+ */
+inline void
+arrow_xml_element_bool(char *name, int value, FILE *out);
+
+inline void
+arrow_xml_attribute_int(char *name, int value, FILE *out);
+
+inline void
+arrow_xml_attribute_string(char *name, char *value, FILE *out);
+
+inline void
+arrow_xml_element_start(char *name, FILE *out);
+
+inline void
+arrow_xml_element_end(FILE *out);
+
+inline void
+arrow_xml_element_open(char *name, FILE *out);
+
+inline void
+arrow_xml_element_close(char *name, FILE *out);
+
+inline void
+arrow_xml_attribute_start(char *name, FILE *out);
+
+inline void
+arrow_xml_attribute_end(FILE *out);
 
 
 /* End C++ wrapper */

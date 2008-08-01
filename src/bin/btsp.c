@@ -64,7 +64,7 @@ main(int argc, char *argv[])
 
     arrow_problem problem;
     arrow_problem_info info;
-    arrow_tsp_lk_params lk_params;
+    arrow_tsp_cc_lk_params lk_params;
     arrow_btsp_fun fun_basic;
     arrow_btsp_result result;
     arrow_btsp_params btsp_params;
@@ -108,7 +108,7 @@ main(int argc, char *argv[])
     }
     
     /* Setup LK parameters structure */
-    arrow_tsp_lk_params_init(&problem, &lk_params);
+    arrow_tsp_cc_lk_params_init(&problem, &lk_params);
     if(random_restarts >= 0)    lk_params.random_restarts  = random_restarts;
     if(stall_count >= 0)        lk_params.stall_count      = stall_count;
     if(kicks >= 0)              lk_params.kicks            = kicks;
@@ -120,7 +120,6 @@ main(int argc, char *argv[])
     arrow_btsp_solve_plan steps[SOLVE_STEPS] = 
     {
        {
-           ARROW_BTSP_SOLVE_PLAN_BASIC,     /* plan_type */
            ARROW_FALSE,                     /* use_exact_solver? */
            fun_basic,                       /* fun (cost matrix function) */
            lk_params,                       /* LK parameters */
@@ -223,7 +222,7 @@ CLEANUP:
     arrow_btsp_params_destruct(&btsp_params);
     arrow_btsp_fun_destruct(&fun_basic);
     arrow_btsp_params_destruct(&btsp_params);
-    arrow_tsp_lk_params_destruct(&lk_params); 
+    arrow_tsp_cc_lk_params_destruct(&lk_params); 
     arrow_problem_destruct(&problem);
     return ret;
 }

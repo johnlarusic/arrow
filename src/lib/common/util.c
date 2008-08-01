@@ -220,7 +220,21 @@ arrow_util_random()
 inline int
 arrow_util_random_between(int min, int max)
 {
-    return (rand() % (max - min)) + min;
+    /*return (rand() % (max - min)) + min; */
+    return min + rand() / (RAND_MAX / (max - min + 1) + 1);
+}
+
+void
+arrow_util_permute_array(int size, int *array)
+{
+    int i, c, t;
+    for(i = 0; i < size; i++)
+    {
+        c = arrow_util_random_between(0, size - 1 - i);
+        int t = array[i]; 
+        array[i] = array[i + c];
+        array[i + c] = t;
+    }
 }
 
 void

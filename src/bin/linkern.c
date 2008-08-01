@@ -62,8 +62,8 @@ main(int argc, char *argv[])
     }
     
     /* Setup Lk parameters structure */
-    arrow_tsp_lk_params params;
-    arrow_tsp_lk_params_init(&problem, &params);
+    arrow_tsp_cc_lk_params params;
+    arrow_tsp_cc_lk_params_init(&problem, &params);
     if(random_restarts >= 0)    params.random_restarts  = random_restarts;
     if(stall_count >= 0)        params.stall_count      = stall_count;
     if(kicks >= 0)              params.kicks            = kicks;
@@ -81,7 +81,7 @@ main(int argc, char *argv[])
     printf("Total Time: %5.2f\n", result.total_time);
     
     /* Free up the structures */
-    arrow_tsp_lk_params_destruct(&params);
+    arrow_tsp_cc_lk_params_destruct(&params);
     arrow_tsp_result_destruct(&result);
     arrow_problem_destruct(&problem);
     

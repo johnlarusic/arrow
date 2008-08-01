@@ -20,32 +20,9 @@ build_initial_tour(arrow_problem *problem, CCedgegengroup *plan,
 /****************************************************************************
  * Public function implemenations
  ****************************************************************************/
-int
-arrow_tsp_result_init(arrow_problem *problem, arrow_tsp_result *result)
-{
-    if(!arrow_util_create_int_array(problem->size, &(result->tour)))
-    {
-        result = NULL;
-        return ARROW_FAILURE;
-    }
-    result->found_tour = ARROW_FALSE;
-    result->obj_value = -1.0;
-    result->total_time = 0.0;
-    return ARROW_SUCCESS;
-}
-
-void 
-arrow_tsp_result_destruct(arrow_tsp_result *result)
-{
-    if(result->tour != NULL)
-    {
-        free(result->tour);
-        result->tour = NULL;
-    }
-}
-
 void
-arrow_tsp_lk_params_init(arrow_problem *problem, arrow_tsp_lk_params *params)
+arrow_tsp_cc_lk_params_init(arrow_problem *problem, 
+                            arrow_tsp_cc_lk_params *params)
 {
     params->random_restarts = 0;
     params->stall_count = problem->size;
@@ -57,14 +34,14 @@ arrow_tsp_lk_params_init(arrow_problem *problem, arrow_tsp_lk_params *params)
 }
 
 void 
-arrow_tsp_lk_params_destruct(arrow_tsp_lk_params *params)
+arrow_tsp_cc_lk_params_destruct(arrow_tsp_cc_lk_params *params)
 {
     if(params->initial_tour != NULL)
         free(params->initial_tour);
 }
 
 int 
-arrow_tsp_exact_solve(arrow_problem *problem, int *initial_tour, 
+arrow_tsp_cc_exact_solve(arrow_problem *problem, int *initial_tour, 
                       arrow_tsp_result *result)
 {
     int ret;
@@ -72,8 +49,9 @@ arrow_tsp_exact_solve(arrow_problem *problem, int *initial_tour,
     double start_time, end_time;
     CCrandstate rstate;
     
-    CCutil_sprand((int)CCutil_real_zeit(), &rstate);
     start_time = arrow_util_zeit();
+    
+    CCutil_sprand((int)CCutil_real_zeit(), &rstate);
     ret = CCtsp_solve_dat(
             problem->size,          // int ncount
             &(problem->data),       // CCdatagroup *indat
@@ -100,7 +78,7 @@ arrow_tsp_exact_solve(arrow_problem *problem, int *initial_tour,
 }
 
 int
-arrow_tsp_lk_solve(arrow_problem *problem, arrow_tsp_lk_params *params,
+arrow_tsp_cc_lk_solve(arrow_problem *problem, arrow_tsp_cc_lk_params *params,
                    arrow_tsp_result *result)
 {
     int ret = ARROW_SUCCESS;
@@ -113,7 +91,7 @@ arrow_tsp_lk_solve(arrow_problem *problem, arrow_tsp_lk_params *params,
     int i;
     double val, bestval;
     double start_time, end_time;
-    arrow_tsp_lk_params lk_params;
+    arrow_tsp_cc_lk_params lk_params;
     CCedgegengroup plan;
     CCrandstate rstate;
     
@@ -127,7 +105,7 @@ arrow_tsp_lk_solve(arrow_problem *problem, arrow_tsp_lk_params *params,
     if(params == NULL)
     {
         arrow_debug(" - No parameters set, so using default.\n");
-        arrow_tsp_lk_params_init(problem, &lk_params);
+        arrow_tsp_cc_lk_params_init(problem, &lk_params);
     }
     else
     {
@@ -265,11 +243,15 @@ CLEANUP:
     arrow_debug(" - Cleaning up...");
     CC_IFFREE(cyc, int);
     CC_IFFREE(elist, int);
-    if(params == NULL) arrow_tsp_lk_params_destruct(&lk_params);
+    if(params == NULL) arrow_tsp_cc_lk_params_destruct(&lk_params);
     arrow_debug("done.\nLeaving arrow_tsp_lk_solve\n");
     return ret;
 }
 
+
+/****************************************************************************
+ * Private function implemenations
+ ****************************************************************************/
 int
 build_initial_tour(arrow_problem *problem, CCedgegengroup *plan, 
                    CCrandstate *rstate, int *initial_tour)

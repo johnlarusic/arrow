@@ -38,12 +38,6 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
     int tour_exists;
     double start_time = arrow_util_zeit();
     
-    if(!problem->symmetric)
-    {
-        arrow_print_error("Solver only works on symmetric cost matrices.");
-        return ARROW_FAILURE;
-    }
-    
     arrow_btsp_result cur_result;
     arrow_btsp_result_init(problem, &cur_result);
     
@@ -184,10 +178,11 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
         
         /* Copy over other important information */
         result->bin_search_steps++;
-        result->linkern_attempts    += cur_result.linkern_attempts;
-        result->linkern_time        += cur_result.linkern_time;
-        result->exact_attempts      += cur_result.exact_attempts;
-        result->exact_time          += cur_result.exact_time;        
+        for(i = 0; i < ARROW_TSP_SOLVER_COUNT; i++)
+        {
+            result->solver_attempts[i] += cur_result.solver_attempts[i];
+            result->solver_time[i] += cur_result.solver_time[i];
+        }
     }
                            
 CLEANUP:
@@ -213,6 +208,7 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
 {
     int ret = ARROW_SUCCESS;
     int feasible = ARROW_FALSE;
+    int i, j, k;
     int u, v, cost, max_cost;
     double len;
     
@@ -220,10 +216,11 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
     result->found_tour = ARROW_FALSE;
     result->obj_value = INT_MAX;
     result->tour_length = DBL_MAX;
-    result->linkern_attempts = 0;
-    result->linkern_time = 0.0;
-    result->exact_attempts = 0;
-    result->exact_time = 0.0;
+    for(i = 0; i < ARROW_TSP_SOLVER_COUNT; i++)
+    {
+        result->solver_attempts[i] = 0;
+        result->solver_time[i] = 0.0;
+    }
     result->total_time = 0.0;
     
     /* This holds the current tour that was found and its length */
@@ -231,14 +228,12 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
     arrow_tsp_result_init(problem, &tsp_result);
     
     arrow_debug("Feasibility problem for delta = %d\n", delta);
-    int i, j, k;
     for(i = 0; i < num_steps; i++)
     {
         arrow_btsp_solve_plan *plan = &(steps[i]);
         arrow_btsp_fun *fun = &(plan->fun);
                 
-        arrow_debug("Step %d of %d (Type %d):\n", i + 1, num_steps, 
-                    plan->plan_type);
+        arrow_debug("Step %d of %d:\n", i + 1, num_steps);
         
         for(j = 1; j <= plan->attempts; j++)
         {
@@ -252,20 +247,9 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
                 goto CLEANUP;
             }
                                                     
-            /* Call LK or Exact TSP solver on new problem */      
-            if(plan->use_exact_solver)
-            {
-                ret = arrow_tsp_exact_solve(&new_problem, NULL, &tsp_result);
-                (result->exact_attempts)++;
-                result->exact_time += tsp_result.total_time;
-            }
-            else
-            {
-                ret = arrow_tsp_lk_solve(&new_problem, &(plan->lk_params), 
-                                         &tsp_result);
-                result->linkern_attempts++;
-                result->linkern_time += tsp_result.total_time;
-            }
+            /* Call a TSP solver on new problem */      
+            ret = arrow_tsp_solve(plan->tsp_solver, &new_problem, 
+                                  plan->tsp_params, &tsp_result);
             if(!ret)
             {
                 ret = ARROW_FAILURE;
@@ -273,6 +257,10 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
                 arrow_problem_destruct(&new_problem);
                 goto CLEANUP;   
             }
+            
+            result->solver_attempts[plan->tsp_solver] += 1;
+            printf("TSP Solver Time: %.2f\n", tsp_result.total_time);
+            result->solver_time[plan->tsp_solver] += tsp_result.total_time;            
             
             /* Determine if we have found a tour of feasible length or not */
             arrow_debug("Found a tour of length %.0f\n", 
@@ -301,6 +289,8 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
                 arrow_debug("Finished feasibility question.\n");
                 goto CLEANUP;
             }
+            /** TODO: Find a better way of doing this upper bound update */
+            /*
             else if(plan->upper_bound_update)
             {
                 printf("Check to see if we found a better upper bound...\n");
@@ -329,7 +319,7 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
                     }
                 }
             }
-            
+            */
             /* Clean up */
             arrow_problem_destruct(&new_problem);
         }
