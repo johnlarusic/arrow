@@ -10,23 +10,8 @@ stamp.h1
 *.Tpo
 *.exe
 
-2mb
-bap
-bbssp
-bscssp
-abtsp
-abtsp-rai
-btsp
-cbtsp
-dcbpb
-hash
-histdata
-linkern
-subprob
-tourinfo
-tsp
-
 *~
 
 .sconsign.dblite
 build/*
+bin/*

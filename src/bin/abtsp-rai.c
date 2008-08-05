@@ -17,6 +17,7 @@ char *xml_file = NULL;
 char *tour_file = NULL;
 int iterations = -1;
 int supress_ebst = ARROW_FALSE;
+int solve_btsp = ARROW_FALSE;
 int lower_bound = -1;
 int upper_bound = INT_MAX;
 int basic_attempts = 1;
@@ -34,6 +35,8 @@ arrow_option options[NUM_OPTS] =
     
     {'r', "iterations", "number of RAI iterations",
         ARROW_OPTION_INT, &iterations, ARROW_FALSE, ARROW_TRUE},
+    {'b', "solve-btsp", "use BTSP formulation in RAI algorithm",
+        ARROW_OPTION_INT, &solve_btsp, ARROW_FALSE, ARROW_FALSE},
         
     {'e', "supress-ebst", "supress binary search",
         ARROW_OPTION_INT, &supress_ebst, ARROW_FALSE, ARROW_FALSE},
@@ -101,7 +104,7 @@ main(int argc, char *argv[])
     /* Set up RAI parameters */
     if(iterations < 0) iterations = problem.size * problem.size;
     rai_params.iterations = iterations;
-    rai_params.solve_btsp = ARROW_TRUE;
+    rai_params.solve_btsp = solve_btsp;
         
     /* Setup necessary function structures */
     if(arrow_btsp_fun_basic(ARROW_TRUE, &fun_basic) != ARROW_SUCCESS)
