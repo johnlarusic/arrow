@@ -13,6 +13,9 @@ lib_build = dir_build + '/lib'
 bin_build = dir_build + '/bin'
 inc_build = dir_build + '/include'
 
+dir_bin = 'bin'
+
+
 # List of library files
 lib_files = (
     'btsp/btsp.c', 
@@ -102,4 +105,4 @@ env_bin.Append(LIBS = [File(env_bin.subst('$qsopt_a'))])
 env_bin.BuildDir(bin_build, bin_src)
 
 for (name, src) in executables:
-    env_bin.Program(name, bin_build + '/' + src)
+    env_bin.Program(dir_bin + '/' + name, bin_build + '/' + src)
