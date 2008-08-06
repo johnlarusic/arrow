@@ -120,10 +120,9 @@ main(int argc, char *argv[])
     arrow_btsp_solve_plan steps[SOLVE_STEPS] = 
     {
        {
-           ARROW_FALSE,                     /* use_exact_solver? */
+           ARROW_TSP_CC_LK,                 /* TSP solver */
+           (void *)&lk_params,              /* TSP solver parameters */
            fun_basic,                       /* fun (cost matrix function) */
-           lk_params,                       /* LK parameters */
-           ARROW_TRUE,                      /* upper_bound_update? */
            basic_attempts                   /* attempts */
        }
     };
@@ -149,25 +148,12 @@ main(int argc, char *argv[])
     end_time = arrow_util_zeit() - start_time;
     
     /* Final output */
-    printf("\nFound Tour: %s\n", (result.found_tour ? "Yes" : "No"));
-    printf("Max. Cost: %d\n", result.obj_value);
-    printf("Tour Length: %.0f\n", result.tour_length);
+    arrow_btsp_result_print_pretty(&result, stdout);
     printf("Initial Lower Bound: %d\n", lower_bound);
     if(bbssp_time >= 0.0)
-        printf("BBSSP Time: %.2f\n", bbssp_time);        
-    printf("Optimal?: %s\n", (result.optimal == ARROW_TRUE ? "Yes" : "???"));
-    printf("Binary Search Steps: %d\n", result.bin_search_steps);
-    printf("Lin-Kernighan Calls: %d\n", result.linkern_attempts);
-    if(result.linkern_attempts > 0)
-        printf("Avg. Lin-Kernighan Time: %.2f\n", 
-            result.linkern_time / (result.linkern_attempts * 1.0));
-    printf("Exact TSP Calls: %d\n", result.exact_attempts);
-    if(result.exact_attempts > 0)
-        printf("Avg. Exact TSP Time: %.2f\n", 
-            result.exact_time / (result.exact_attempts * 1.0));
-    printf("Total BTSP Time: %.2f\n", result.total_time);
+        printf("BBSSP Time: %.2f\n", bbssp_time);
     printf("Total Time: %.2f\n", end_time);
-    
+        
     /* Xml output */
     if(xml_file != NULL)
     {
@@ -184,33 +170,8 @@ main(int argc, char *argv[])
         arrow_util_print_program_args(argc, argv, xml);
         fprintf(xml, "\">\n");
 
-        fprintf(xml, "    <found_tour>%s</found_tour>\n", 
-                (result.found_tour ? "true" : "false"));
-        fprintf(xml, "    <objective_value>%d</objective_value>\n", 
-                (result.found_tour ? result.obj_value : -1));
-        fprintf(xml, "    <tour_length>%.0f</tour_length>\n", 
-                (result.found_tour ? result.tour_length : -1.0));
-        fprintf(xml, "    <optimal>%s</optimal>\n", 
-                (result.optimal ? "true" : "false"));
-        fprintf(xml, "    <lower_bound>%d</lower_bound>\n", lower_bound);
-        fprintf(xml, "    <lower_bound_time>%.2f</lower_bound_time>\n",
-                bbssp_time);
-        fprintf(xml, "    <binary_search_steps>%d</binary_search_steps>\n",
-                result.bin_search_steps);
-        fprintf(xml, "    <linkern_attempts>%d</linkern_attempts>\n",
-                result.linkern_attempts);
-        fprintf(xml, "    <linkern_avg_time>%.2f</linkern_avg_time>\n", 
-                (result.linkern_attempts > 0 
-                 ? result.linkern_time / (result.linkern_attempts * 1.0) 
-                 : 0.0));
-        fprintf(xml, "    <exact_tsp_attempts>%d</exact_tsp_attempts>\n",
-                result.exact_attempts);
-        fprintf(xml, "    <exact_tsp_avg_time>%.2f</exact_tsp_avg_time>\n", 
-                (result.exact_attempts > 0 
-                 ? result.exact_time / (result.exact_attempts * 1.0) 
-                 : 0.0));
-        fprintf(xml, "    <btsp_total_time>%.2f</btsp_total_time>\n",
-                result.total_time);
+        arrow_btsp_result_print_xml(&result, xml);
+        
         fprintf(xml, "    <total_time>%.2f</total_time>\n", end_time);
         fprintf(xml, "</arrow_btsp>\n");
         
