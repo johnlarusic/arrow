@@ -23,7 +23,7 @@ int upper_bound = INT_MAX;
 int basic_attempts = 1;
 
 /* Program options */
-#define NUM_OPTS 8
+#define NUM_OPTS 9
 arrow_option options[NUM_OPTS] = 
 {
     {'i', "input", "TSPLIB input file", 
@@ -169,7 +169,6 @@ main(int argc, char *argv[])
         printf("Tour passes sanity check\n");
         
         /* Tour output */
-        /*
         if(tour_file != NULL)
         {
             FILE *tour;
@@ -185,11 +184,10 @@ main(int argc, char *argv[])
             sprintf(comment, "ABTSP Tour; Length %.0f, Max Cost %d.",
                 result.tour_length, result.obj_value);
         
-            arrow_util_write_tour(&atsp_problem, comment, actual_tour, tour);
+            arrow_util_write_tour(&problem, comment, result.tour, tour);
         
             fclose(tour);
         }
-        */
     }
     
     /* Final output */
@@ -199,7 +197,6 @@ main(int argc, char *argv[])
     printf("Total Time: %.2f\n", end_time);
     
     /* Xml output */
-    /*
     if(xml_file != NULL)
     {
         FILE *xml;
@@ -217,12 +214,11 @@ main(int argc, char *argv[])
 
         arrow_btsp_result_print_xml(&result, xml);
         
-        fprintf(xml, "    <total_time>%.2f</total_time>\n", end_time);
+        fprintf(xml, "<total_time>%.5f</total_time>\n", end_time);
         fprintf(xml, "</arrow_btsp>\n");
         
         fclose(xml);
     }
-    */
     
 CLEANUP:
     arrow_btsp_result_destruct(&result);
