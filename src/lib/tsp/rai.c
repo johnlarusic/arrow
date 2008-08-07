@@ -9,17 +9,53 @@
 #include "common.h"
 #include "tsp.h"
 
+/****************************************************************************
+ * Private function prototypes
+ ****************************************************************************/
+/**
+ *  @brief  Given a set of nodes to insert, inserts them as cheaply
+ *          as possible into a partial tour.
+ *  @param  problem [in] problem data
+ *  @param  solve_btsp [in] if ARROW_TRUE, attempts to construct tour by
+ *              minimizing the maximum cost, otherwise constructs tour by
+ *              minimizing the largest cost
+ *  @param  node_list [in] the list of nodes to insert into the partial tour
+ *  @param  list_size [in] the number of nodes in the node list
+ *  @param  tour [out] initially a partial tour, at termination is a
+ *              full tour of n nodes
+ *  @param  length [out] the length of the tour (or largest cost in tour
+ *              if solve_btsp = ARROW_TRUE)
+ *  @param  ins_list [out] a temporary array of pointers to linked list items
+ */
 void
 construct_tour(arrow_problem *problem, int solve_btsp, int *node_list, 
                int list_size, arrow_llist *tour, double *length,
                arrow_llist_item **ins_list);
-               
+
+/**
+ *  @brief  Attempts to improve upon the given tour by removing a random path
+ *          and reinserting the removed nodes in a random order as cheaply as
+ *          possible..
+ *  @param  problem [in] problem data
+ *  @param  solve_btsp [in] if ARROW_TRUE, attempts to construct tour by
+ *              minimizing the maximum cost, otherwise constructs tour by
+ *              minimizing the largest cost
+ *  @param  best_tour [out] the best tour found so far; if a better tour is
+ *              found this pointer will be changed to point to the new best
+ *              tour
+ *  @param  length [out] the length of the tour (or largest cost in tour
+ *              if solve_btsp = ARROW_TRUE)
+ *  @param  tour [out] initially a partial tour, at termination is a
+ *              full tour of n nodes
+ *  @param  ins_list [out] a temporary array of pointers to linked list items
+ *  @param  node_list [out] temporary array of integers of size n
+ */           
 void
 improve_tour(arrow_problem *problem, int solve_btsp, arrow_llist *best_tour, 
             double *length, arrow_llist *tour, arrow_llist_item **ins_list, 
             int *node_list);
 
-/*
+/**
  *  @brief  Returns the min of the two values
  *  @param  i [in] first number
  *  @param  j [in] second number
@@ -28,7 +64,7 @@ improve_tour(arrow_problem *problem, int solve_btsp, arrow_llist *best_tour,
 int
 min2(int i, int j);
 
-/*
+/**
  *  @brief  Returns the max of the two values
  *  @param  i [in] first number
  *  @param  j [in] second number
@@ -37,7 +73,7 @@ min2(int i, int j);
 int
 max2(int i, int j);
 
-/*
+/**
  *  @brief  Returns the max of the three values
  *  @param  i [in] first number
  *  @param  j [in] second number
@@ -47,6 +83,10 @@ max2(int i, int j);
 int
 max3(int i, int j, int k);
 
+
+/****************************************************************************
+ * Public function implemenations
+ ****************************************************************************/
 int 
 arrow_tsp_rai_solve(arrow_problem *problem, arrow_tsp_rai_params *params, 
                     arrow_tsp_result *result)
@@ -130,6 +170,10 @@ CLEANUP:
     return ret;
 }
 
+
+/****************************************************************************
+ * Private function implemenations
+ ****************************************************************************/
 void
 improve_tour(arrow_problem *problem, int solve_btsp, arrow_llist *best_tour, 
             double *length, arrow_llist *tour, arrow_llist_item **ins_list, 
@@ -338,8 +382,6 @@ construct_tour(arrow_problem *problem, int solve_btsp, int *node_list,
             node = node->next;
         }
     }
-    
-    /* arrow_debug(" - length: %.0f; alpha: %d; beta: %d\n", *length, alpha, beta); */
     
     /* If we're solving BTSP, return the length as the largest cost */
     if(solve_btsp)
