@@ -44,7 +44,8 @@
  *  Error reporting macro
  ****************************************************************************/
 #define arrow_print_error(args...) \
-    fprintf(stderr, "%s:%d: ", __FILE__, __LINE__); fprintf(stderr, args)
+    fprintf(stderr, "%s:%d: ", __FILE__, __LINE__); fprintf(stderr, args); \
+    fprintf(stderr, "\n")
 
 
 /****************************************************************************
@@ -124,6 +125,85 @@ arrow_bintree_to_array(arrow_bintree *tree, int **array);
  */ 
 void
 arrow_bintree_print(arrow_bintree *tree);
+
+
+/****************************************************************************
+ *  heap.c
+ ****************************************************************************/
+/**
+ *  @brief  Binary heap
+ */
+typedef struct arrow_heap
+{
+    int *keys;
+    int *values;
+    int *pos;
+    int size;
+    int max_size;
+} arrow_heap;
+
+/**
+ *  @brief  Initializes a new binary heap.
+ *  @param  heap [out] heap structure
+ *  @param  max_size [in] maximum size of heap
+ */
+int
+arrow_heap_init(arrow_heap *heap, int max_size);
+
+/**
+ *  @brief  Destructs a binary heap.
+ *  @param  heap [out] heap structure
+ */
+void
+arrow_heap_destruct(arrow_heap *heap);
+
+/**
+ *  @brief  Empties the heap of items.
+ *  @param  heap [out] heap structure
+ */
+void
+arrow_heap_empty(arrow_heap *heap);
+
+/**
+ *  @brief  Inserts a new (key,value) pair into the heap.
+ *  @param  heap [out] heap structure
+ *  @param  key [in] key to insert
+ *  @param  value [in] value to insert -- must be between 0 and [n-1] and
+ *              not a duplicate value.
+ */
+int
+arrow_heap_insert(arrow_heap *heap, int key, int value);
+
+/**
+ *  @brief  Changes the key for the given value in the heap.
+ *  @param  heap [out] heap structure
+ *  @param  key [in] the new key
+ *  @param  value [in] node value to change
+ */
+void
+arrow_heap_change_key(arrow_heap *heap, int key, int value);
+
+/**
+ *  @brief  Returns the value with the smallest key in the heap.
+ *  @brief  heap [in] heap structure
+ *  @return The value with the smallest key in the heap.
+ */
+inline int
+arrow_heap_get_min(arrow_heap *heap);
+
+/**
+ *  @brief  Removes the value with the smallest key from the heap.
+ *  @brief  heap [out] heap structure
+ */
+void
+arrow_heap_delete_min(arrow_heap *heap);
+
+/**
+ *  @brief  Prints heap structure
+ *  @brief  heap [in] heap structure
+ */
+void
+arrow_heap_print(arrow_heap *heap);
 
 
 /****************************************************************************
@@ -346,9 +426,10 @@ arrow_problem_info_destruct(arrow_problem_info *info);
 /**
  *  @brief  Prints out information about a problem.
  *  @param  problem [in] problem data structure
+ *  @param  pretty [in] if ARROW_TRUE, formats output to 8 nodes/row
  */
 void
-arrow_problem_print(arrow_problem *problem);
+arrow_problem_print(arrow_problem *problem, int pretty);
 
 /**
  *  @brief  Retrieves cost between nodes i and j

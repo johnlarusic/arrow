@@ -78,6 +78,33 @@ arrow_bscssp_solve(arrow_problem *problem, arrow_problem_info *info,
 
 
 /****************************************************************************
+ * cbst.c
+ ****************************************************************************/
+/**
+ *  @brief  Constrained bottleneck spanning tree (CBST) solver.
+ *  @param  problem [in] problem data
+ *  @param  info [in] problem info data
+ *  @param  max_length [in] maximum spanning tree length
+ *  @param  result [out] bound result
+ */
+int
+arrow_cbst_solve(arrow_problem *problem, arrow_problem_info *info,
+                 double max_length, arrow_bound_result *result);
+                 
+/**
+ *  @brief  Minimum spanning tree (MST) solver.
+ *  @param  problem [in] problem data
+ *  @param  info [in] problem info data
+ *  @param  tree [out] MST tree (tree[i] gives precessor for node i)
+ *  @param  max_cost [out] the largest cost in the tree
+ *  @param  length [out] the length of all edges in the tree
+ */
+int
+arrow_cbst_mst_solve(arrow_problem *problem, arrow_problem_info *info,
+                     int *tree, int *max_cost, double *length);
+
+
+/****************************************************************************
  *  dcbpb.c
  ****************************************************************************/ 
 /**

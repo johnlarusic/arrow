@@ -162,7 +162,7 @@ arrow_problem_info_destruct(arrow_problem_info *info)
 }
 
 void
-arrow_problem_print(arrow_problem *problem)
+arrow_problem_print(arrow_problem *problem, int pretty)
 {
     int i, j, k, count;
     int group_size = 8;
@@ -170,30 +170,57 @@ arrow_problem_print(arrow_problem *problem)
     printf("Problem Cost Matrix:\n");
     printf("----------------------------------------");
     printf("--------------------------------------\n");
+    printf("Problem Size: %d\n", problem->size);
     
     /* Print cost matrix out into groups so they will (normally) fit into
      * an 80-character width terminal. */
-    k = 0;
-    
-    arrow_debug("Problem Size: %d\n", problem->size);
-    while(k < problem->size)
+    if(pretty)
     {
-        /* Handle special case for last column */
-        if(problem->size - k < group_size)
-            count = problem->size - k;
-        else
-            count = group_size;
+        k = 0;
+        while(k < problem->size)
+        {
+            /* Handle special case for last column */
+            if(problem->size - k < group_size)
+                count = problem->size - k;
+            else
+                count = group_size;
         
-        /* Print out the header */
-        for(j = k; j < k + count; j++)
-            printf("\t[j=%d]", j);   
-        printf("\n");
+            /* Print out the header */
+            for(j = k; j < k + count; j++)
+                printf("\t[j=%d]", j);   
+            printf("\n");
 
+            /* Print out rows */
+            for(i = 0; i < problem->size; i++)
+            {
+                printf("[i=%d]", i); fflush(stdin);
+                for(j = k; j < k + count; j++)
+                {
+                    if(i == j)
+                        printf("\t-");
+                    else
+                        printf("\t%d", problem->get_cost(problem, i, j));
+                    fflush(stdin);
+                }
+                printf("\n");
+            }
+            printf("\n");
+
+            k += count;
+        }
+    }
+    else
+    {
+        /* Print out the header */
+        for(i = 0; i < problem->size; i++)
+            printf("\t[j=%d]", i);   
+        printf("\n");
+        
         /* Print out rows */
         for(i = 0; i < problem->size; i++)
         {
             printf("[i=%d]", i); fflush(stdin);
-            for(j = k; j < k + count; j++)
+            for(j = 0; j < problem->size; j++)
             {
                 if(i == j)
                     printf("\t-");
@@ -204,8 +231,6 @@ arrow_problem_print(arrow_problem *problem)
             printf("\n");
         }
         printf("\n");
-
-        k += count;
     }
 }
 
