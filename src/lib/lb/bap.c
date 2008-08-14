@@ -69,7 +69,7 @@ arrow_bap_solve(arrow_problem *problem, arrow_problem_info *info,
                 arrow_bound_result *result)
 {
     int ret = ARROW_SUCCESS;
-    int i, j, m, stop;
+    int m, stop;
     int low, high, median, delta, flow;
     double start_time, end_time;
     
@@ -194,7 +194,6 @@ void
 shortest_augmenting_path(int n, int s, int t, int stop, 
                          int **res, int *dist, int *pred, int *flow)
 {
-    int ret = ARROW_SUCCESS;
     int i, j, u, v;
     int min_d, admissable;
     

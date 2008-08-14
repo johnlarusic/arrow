@@ -40,7 +40,7 @@ int
 arrow_dcbpb_solve(arrow_problem *problem, arrow_bound_result *result)
 {
     int ret = ARROW_SUCCESS;
-    int i, j, k, l;
+    int i, j, k;
     int bottleneck, max_tree, min_node;
     int in_cost, out_cost;
     int n = problem->size;

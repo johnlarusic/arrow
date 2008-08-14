@@ -153,7 +153,7 @@ arrow_options_parse(int num_opts, arrow_option options[], char *description,
         
         if(!found)
         {
-            fprintf(stderr, "Unknown argument: '%c'\n");
+            fprintf(stderr, "Unknown argument: '%c'\n", opt);
             ret = ARROW_FAILURE;
             goto CLEANUP;
         }

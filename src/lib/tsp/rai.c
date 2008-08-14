@@ -99,7 +99,6 @@ arrow_tsp_rai_solve(arrow_problem *problem, arrow_tsp_rai_params *params,
     double start_time, end_time;
     arrow_llist best_tour;
     arrow_llist tour;
-    arrow_llist_item *node = NULL;
     arrow_llist_item **ins_list = NULL;
     
     /* Print out RAI parameters */
@@ -179,7 +178,7 @@ improve_tour(arrow_problem *problem, int solve_btsp, arrow_llist *best_tour,
             double *length, arrow_llist *tour, arrow_llist_item **ins_list, 
             int *node_list)
 {
-    int i, j, u, v, cost;
+    int j, u, v;
     double new_length;
     arrow_llist_item *node;
     

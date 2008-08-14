@@ -53,6 +53,7 @@ executables = (
     ('bap',         'bap.c'),
     ('bbssp',       'bbssp.c'),
     ('btsp',        'btsp.c'),
+    ('cbap',        'cbap.c'),
     ('cbst',        'cbst.c'),
     ('cbtsp',       'cbtsp.c'),
     ('dcbpb',       'dcbpb.c'),
@@ -88,6 +89,7 @@ for lib_file in lib_files:
 # Setup environment and build library
 env_lib = Environment(
             options = opts,
+            CCFLAGS = '-Wall',
             CPPPATH = ['"$concorde_h_dir"', '"$qsopt_h_dir"', inc_build]
           )
 env_lib.BuildDir(dir_build, dir_src)
@@ -99,6 +101,7 @@ env_lib.Library(target = 'arrow',
 ##############################################################################
 env_bin = Environment(
             options = opts,
+            CCFLAGS = '-Wall',
             CPPPATH = ['"$concorde_h_dir"', '"$qsopt_h_dir"', inc_build],
             LIBS = ['arrow'],
             LIBPATH = ['.']

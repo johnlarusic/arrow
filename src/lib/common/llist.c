@@ -121,6 +121,7 @@ arrow_llist_insert_after(arrow_llist *list, arrow_llist_item *item,
         
         list->size++;
     }
+    return ARROW_SUCCESS;
 }
 
 void

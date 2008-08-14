@@ -56,10 +56,6 @@ main(int argc, char *argv[])
         return EXIT_FAILURE;
     
     /* Solve CBST */
-    int tree[100];
-    int max_cost;
-    double length;
-    
     if(!arrow_cbst_solve(&problem, &info, max_length, &result))
     {
         arrow_print_error("Could not solve CBST on file.");

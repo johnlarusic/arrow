@@ -17,7 +17,7 @@
 int
 init_data(int n, arrow_heap *heap, int **cur_tree, int **in_heap, int **d);
 
-int
+void
 destroy_data(arrow_heap *heap, int **cur_tree, int **in_heap, int **d);
 
 /**
@@ -223,7 +223,7 @@ CLEANUP:
     return ARROW_FAILURE;
 }
 
-int
+void
 destroy_data(arrow_heap *heap, int **cur_tree, int **in_heap, int **d)
 {
     arrow_heap_destruct(heap);

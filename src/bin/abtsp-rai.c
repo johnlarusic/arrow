@@ -56,7 +56,7 @@ int
 main(int argc, char *argv[])
 {   
     int ret = EXIT_SUCCESS;
-    int i, u, v, cost, costp;
+    int i, u, v, cost;
 
     arrow_problem problem;
     arrow_problem_info info;
@@ -67,7 +67,6 @@ main(int argc, char *argv[])
     
     double start_time = arrow_util_zeit();
     double end_time;
-    double bbssp_time = -1.0;
     
     arrow_util_random_seed(0);
     

@@ -209,7 +209,7 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
     int ret = ARROW_SUCCESS;
     int feasible = ARROW_FALSE;
     int i, j, k;
-    int u, v, cost, max_cost;
+    int u, v;
     double len;
     
     *tour_exists = ARROW_FALSE;

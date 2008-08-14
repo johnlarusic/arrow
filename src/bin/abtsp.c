@@ -68,7 +68,7 @@ int
 main(int argc, char *argv[])
 {   
     int ret = EXIT_SUCCESS;
-    int i, u, v, cost, costp;
+    int i, u, v, cost;
 
     arrow_problem atsp_problem;
     arrow_problem problem;

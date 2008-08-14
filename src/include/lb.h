@@ -38,6 +38,20 @@ arrow_2mb_solve(arrow_problem *problem, arrow_bound_result *result);
 
 
 /****************************************************************************
+ *  bap.c
+ ****************************************************************************/ 
+/**
+ *  @brief  Solves the bottleneck assignment problem (BAP).
+ *  @param  problem [in] problem data
+ *  @param  info [in] problem info
+ *  @param  result [out] BBSSP solution
+ */
+int
+arrow_bap_solve(arrow_problem *problem, arrow_problem_info *info, 
+                arrow_bound_result *result);
+
+
+/****************************************************************************
  *  bbssp.c
  ****************************************************************************/ 
 /**

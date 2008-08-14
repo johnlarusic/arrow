@@ -227,7 +227,7 @@ arrow_util_random_between(int min, int max)
 void
 arrow_util_permute_array(int size, int *array)
 {
-    int i, c, t;
+    int i, c;
     for(i = 0; i < size; i++)
     {
         c = arrow_util_random_between(0, size - 1 - i);
