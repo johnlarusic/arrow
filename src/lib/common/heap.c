@@ -127,6 +127,13 @@ arrow_heap_destruct(arrow_heap *heap)
 void
 arrow_heap_empty(arrow_heap *heap)
 {
+    int i;
+    for(i = 0; i < heap->max_size; i++)
+    {
+        heap->keys[i] = -1;
+        heap->values[i] = -1;
+        heap->pos[i] = -1;
+    }    
     heap->size = 0;
 }
 

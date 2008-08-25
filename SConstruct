@@ -37,6 +37,7 @@ lib_files = (
     'lb/bap.c', 
     'lb/bbssp.c', 
     'lb/bscssp.c', 
+    'lb/cbap.c',
     'lb/cbst.c',
     'lb/dcbpb.c',
     'tsp/cc.c',

@@ -20,6 +20,7 @@
  *  @param  s [in] source node index
  *  @param  t [in] sink node index
  *  @param  res [out] residual graph to construct
+ *  @param  m [out] number of edges
  *  @param  dist [out] distance labels
  *  @param  pred [out] predecessor labels
  */
