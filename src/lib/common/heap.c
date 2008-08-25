@@ -167,6 +167,12 @@ arrow_heap_insert(arrow_heap *heap, int key, int value)
     return ARROW_SUCCESS;
 }
 
+int
+arrow_heap_in(arrow_heap *heap, int value)
+{
+    return (heap->pos[value] >= 0 ? ARROW_TRUE : ARROW_FALSE);
+}
+
 void
 arrow_heap_change_key(arrow_heap *heap, int key, int value)
 {

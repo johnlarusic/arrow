@@ -182,10 +182,9 @@ dijkstra(arrow_problem *problem, int delta, int *x, int *y, int *pi, int s,
         d[i] = INT_MAX;
         pred[i] = -1;
         label[i] = 0;
-        arrow_heap_insert(heap, d[i], i);
     }
     d[s] = 0;
-    arrow_heap_change_key(heap, 0, s);
+    arrow_heap_insert(heap, 0, s);
     
     /* Main loop for Dijkstra */
     while(heap->size > 0)
@@ -259,7 +258,10 @@ dijkstra(arrow_problem *problem, int delta, int *x, int *y, int *pi, int s,
                     {
                         d[j] = red_cost + d[i];
                         pred[j] = i;
-                        arrow_heap_change_key(heap, d[j], j);
+                        if(arrow_heap_in(heap, j))
+                            arrow_heap_change_key(heap, d[j], j);
+                        else
+                            arrow_heap_insert(heap, d[j], j);
                         arrow_debug("       - Update d[%d] = %d\n", j, d[j]);
                     }
                 }

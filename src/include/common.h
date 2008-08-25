@@ -175,6 +175,15 @@ int
 arrow_heap_insert(arrow_heap *heap, int key, int value);
 
 /**
+ *  @brief  Determines if the given value is present in the heap.
+ *  @param  heap [in] heap structure
+ *  @param  value [in] value to check
+ *  @return True or false, if the value is present in the heap
+ */
+int
+arrow_heap_in(arrow_heap *heap, int value);
+
+/**
  *  @brief  Changes the key for the given value in the heap.
  *  @param  heap [out] heap structure
  *  @param  key [in] the new key
