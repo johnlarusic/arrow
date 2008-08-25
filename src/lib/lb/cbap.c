@@ -48,16 +48,95 @@ augment(arrow_problem *problem, int s, int t, int *pred, int *x, int *y);
  * Private function implementations
  ****************************************************************************/
 int
+arrow_cbap_solve(arrow_problem *problem, arrow_problem_info *info, 
+                 double max_length, arrow_bound_result *result)
+{
+    int ret = ARROW_SUCCESS;
+    int n = problem->size * 2;
+    int i, cost, max_cost;
+    int low, high, median, delta;
+    int *x, *y, *pi, *d, *pred, *label;
+    double length;
+    double start_time, end_time;
+    arrow_heap heap;
+    
+    start_time = arrow_util_zeit();
+    
+    if(!init_data(n, &x, &y, &pi, &d, &pred, &label, &heap))
+    {
+        ret = ARROW_FAILURE;
+        goto CLEANUP;
+    }
+    
+    /* Initial LAP call */
+    length = lap(problem, INT_MAX, x, y, pi, d, pred, label, &heap);
+    if(length > max_length)
+    {
+        arrow_print_error("Given max_length is infeasible.\n");
+        ret = ARROW_FAILURE;
+        goto CLEANUP;
+    }
+    arrow_debug("Initial LAP solution: %.0f\n", length);
+    
+    /* Find the largest cost in the assignment.  It will be our
+       upper bound for the binary search. */
+    max_cost = INT_MIN;
+    for(i = 0; i < problem->size; i++)
+    {
+        cost = problem->get_cost(problem, i, x[i]);
+        if(cost > max_cost)
+            max_cost = cost;
+    }
+    
+    if(!arrow_util_binary_search(info->cost_list, info->cost_list_length,
+                                max_cost, &high))
+    {
+        arrow_print_error("Could not find max_cost in cost_list");
+        ret = ARROW_FAILURE;
+        goto CLEANUP;
+    }
+    low = 0;
+    
+    while(low != high)
+    {
+        median = ((high - low) / 2) + low;
+        delta = info->cost_list[median];
+        
+        length = lap(problem, delta, x, y, pi, d, pred, label, &heap);
+        
+        if(length <= max_length)
+            high = median;
+        else
+            low = median + 1;
+    }
+    end_time = arrow_util_zeit();
+    
+    /* Return the cost we converged to as the answer */
+    result->obj_value = info->cost_list[low];
+    result->total_time = end_time - start_time;
+
+CLEANUP:
+    destruct_data(&x, &y, &pi, &d, &pred, &label, &heap);
+    return ret;
+}
+
+int
 arrow_cbap_lap(arrow_problem *problem, double *result)
 {
-    int ret;
+    int ret = ARROW_SUCCESS;
     int n = problem->size * 2;
     int *x, *y, *pi, *d, *pred, *label;
     arrow_heap heap;
     
-    ret = init_data(n, &x, &y, &pi, &d, &pred, &label, &heap);
+    if(!init_data(n, &x, &y, &pi, &d, &pred, &label, &heap))
+    {
+        ret = ARROW_FAILURE;
+        goto CLEANUP;
+    }
+    
     *result = lap(problem, INT_MAX, x, y, pi, d, pred, label, &heap);
 
+CLEANUP:
     destruct_data(&x, &y, &pi, &d, &pred, &label, &heap);
     return ret;
 }
@@ -126,7 +205,7 @@ lap(arrow_problem *problem, int delta, int *x, int *y,
         dijkstra(problem, delta, x, y, pi, i, &t, d, pred, label, heap);
         
         /* If we cannot reach a demand node then problem's infeasible */
-        if(t == -1) return -1.0;
+        if(t == -1) return DBL_MAX;
         
         /* Update reduced costs */
         for(j = 0; j < 2 * n; j++)
@@ -139,12 +218,12 @@ lap(arrow_problem *problem, int delta, int *x, int *y,
         augment(problem, i, t, pred, x, y);
     }
     
-    /* Calculate total cost of assignment */
+    /* Calculate total cost of assignment, as well as fix final solution. */
     double cost = 0.0;
     for(i = 0; i < n; i++)
     {
-        j = x[i] - n;
-        cost += problem->get_cost(problem, i, j);
+        x[i] = x[i] - n;
+        cost += problem->get_cost(problem, i, x[i]);
     }
     return cost;
 }

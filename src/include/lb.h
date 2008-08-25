@@ -94,6 +94,22 @@ arrow_bscssp_solve(arrow_problem *problem, arrow_problem_info *info,
 /****************************************************************************
  *  bscssp.c
  ****************************************************************************/
+/**
+ *  @brief  Solves the constrained bottleneck assignment problem (CBAP).
+ *  @param  problem [in] problem data
+ *  @param  info [in] problem info
+ *  @param  max_length [in] the maximum length of the assignment
+ *  @param  result [out] CBAP solution
+ */
+int
+arrow_cbap_solve(arrow_problem *problem, arrow_problem_info *info, 
+                 double max_length, arrow_bound_result *result);
+
+/**
+ *  @brief  Solves the linear assignment problem (LAP).
+ *  @param  problem [in] problem data
+ *  @param  result [out] LAP solution
+ */
 int
 arrow_cbap_lap(arrow_problem *problem, double *result);
 

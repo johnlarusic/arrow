@@ -74,7 +74,7 @@ main(int argc, char *argv[])
         fprintf(xml, "\">\n");
         fprintf(xml, "    <objective_value>%d</objective_value>\n", 
                 result.obj_value);
-        fprintf(xml, "    <total_time>%5.2f</total_time>\n", 
+        fprintf(xml, "    <total_time>%.5f</total_time>\n", 
                 result.total_time);
         fprintf(xml, "</arrow_bound>\n");
         
