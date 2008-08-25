@@ -131,7 +131,7 @@ lap(arrow_problem *problem, int delta, int *x, int *y,
         
         arrow_debug(" - i\td[i]\tpred[i]\tlabel[i]\n");
         for(j = 0; j < 2 * n; j++)
-            arrow_debug("   %d\t%d\t%d\t%d\n", j, (d[j] > 100 ? 500 : d[j]), pred[j], label[j]);
+            arrow_debug("   %d\t%d\t%d\t%d\n", j, d[j], pred[j], label[j]);
         
         /* Update reduced costs */
         for(j = 0; j < 2 * n; j++)
@@ -234,13 +234,17 @@ dijkstra(arrow_problem *problem, int delta, int *x, int *y, int *pi, int s,
             
             if((u != v) && (admissable) && (!label[j]))
             {
-                cost = problem->get_cost(problem, u, v);
-                if(i >= n) cost = cost * -1;                
+                if(i >= n)
+                    cost = problem->get_cost(problem, v, u);
+                else
+                    cost = problem->get_cost(problem, u, v);
+                                
                 
                 arrow_debug("     - C[%d,%d] = %d\n", u, v, cost);
                 if(cost <= delta)
                 {
                     arrow_debug("       - Cost <= delta\n");
+                    if(i >= n) cost = cost * -1;
                     red_cost = cost - pi[i] + pi[j];
                     
                     if(red_cost < 0)
