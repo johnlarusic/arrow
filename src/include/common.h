@@ -57,6 +57,7 @@
 #define ARROW_FAILURE 0
 #define ARROW_TRUE 1
 #define ARROW_FALSE 0
+#define ARROW_PROBLEM_NAME_LENGTH 64
 
 #define ARROW_OPTION_INT 1
 #define ARROW_OPTION_DOUBLE 2
@@ -378,7 +379,7 @@ typedef struct arrow_problem
     int symmetric;      /**< indicates if cost matrix is symmetric */
     CCdatagroup data;   /**< Concorde data structure for problem. */
     int shallow;        /**< indicates use of shallow copy of data */
-    char name[64];      /**< name of problem (can be NULL) */
+    char name[ARROW_PROBLEM_NAME_LENGTH]; /**< problem name (can be NULL) */
     
     /**
      *  @brief  Returns the cost between node i and node j.

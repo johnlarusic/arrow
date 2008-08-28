@@ -52,7 +52,7 @@ fullmatrix_edgelen(int i, int j, CCdatagroup *dat);
  ****************************************************************************/
 int
 arrow_problem_read(char *file_name, arrow_problem *problem)
-{    
+{   
     if(is_symmetric(file_name) == ARROW_TRUE)
     {    
         arrow_debug("Reading symmetric TSPLIB file...\n");
@@ -87,6 +87,16 @@ arrow_problem_read(char *file_name, arrow_problem *problem)
         sprintf(problem->name, "%s", s + 1);
     else
         sprintf(problem->name, "%s", file_name);
+        
+    /* Replace . characters with _ characters */
+    s = strchr(problem->name, '.');
+    printf("%s\n", problem->name);
+    while(s != NULL)
+    {
+        *s = '_';
+        printf("%s\n", problem->name);
+        s = strchr(problem->name, '.');
+    }
     
     problem->shallow = ARROW_FALSE;
     problem->get_cost = arrow_problem_get_cost;
