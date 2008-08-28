@@ -72,14 +72,14 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
     }
     if(is_feasible)
     {
-        arrow_debug("A tour was found!  Nothing left to do here.\n");
+        arrow_debug("A tour was found!.\n");
         result->optimal = ARROW_TRUE;
         result->found_tour = ARROW_TRUE;
-        goto CLEANUP;
+        goto CONFIRM;
     }
     
     /* Start enhanced binary search threshold heuristic */
-    if(params->supress_ebst) goto CLEANUP;
+    if(params->supress_ebst) goto CONFIRM;
     arrow_debug("\nStarting enhanced binary search threshold heuristic.\n");
 
     ret = arrow_util_binary_search(info->cost_list, info->cost_list_length,
@@ -186,10 +186,11 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
             result->solver_time[i] += cur_result.solver_time[i];
         }
     }
-    
+
     /* Confirm the solution if required.  If we can find a Hamiltonian cycle
        using costs strictly less than our objective value, then our tour
        is not optimal. */
+CONFIRM:
     if(params->confirm_sol)
     {
         arrow_debug("Confirming solution...\n");
