@@ -198,8 +198,10 @@ CONFIRM:
         {
            params->confirm_plan
         };
+        
+        printf("checking feasibility...\n");
         ret = feasible(problem, 1, confirm_plan_steps, 
-                       info->cost_list[low - 1], &is_feasible, &cur_result);
+                       result->obj_value - 1, &is_feasible, &cur_result);
         if(ret != ARROW_SUCCESS)
         {
             ret = ARROW_FAILURE;
@@ -259,7 +261,7 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
     int i, j, k;
     int u, v;
     double len;
-    
+       
     *feasible = ARROW_FALSE;
     result->found_tour = ARROW_FALSE;
     result->obj_value = INT_MAX;
