@@ -51,6 +51,8 @@ arrow_tsp_cc_exact_solve(arrow_problem *problem, int *initial_tour,
     
     start_time = arrow_util_zeit();
     
+    arrow_debug("TSP Problem Name: '%s'\n", problem->name);
+    
     CCutil_sprand((int)CCutil_real_zeit(), &rstate);
     ret = CCtsp_solve_dat(
             problem->size,          // int ncount

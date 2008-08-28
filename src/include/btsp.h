@@ -98,6 +98,7 @@ typedef struct arrow_btsp_params
     int upper_bound;                /**< initial upper bound */
     int num_steps;                  /**< the number of solve plan steps */
     arrow_btsp_solve_plan *steps;   /**< solve plan steps */
+    arrow_btsp_solve_plan confirm_plan;   /**< confirm plan */
 } arrow_btsp_params;
 
 

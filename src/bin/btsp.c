@@ -126,6 +126,14 @@ main(int argc, char *argv[])
            basic_attempts                   /* attempts */
        }
     };
+    arrow_btsp_solve_plan confirm_plan = 
+    {
+       ARROW_TSP_CC_EXACT,
+       NULL,
+       fun_basic,
+       1
+    };
+    
     
     /* Setup BTSP parameters structure */
     arrow_btsp_params_init(&btsp_params);
@@ -136,6 +144,7 @@ main(int argc, char *argv[])
     btsp_params.upper_bound         = upper_bound;
     btsp_params.num_steps           = SOLVE_STEPS;
     btsp_params.steps               = steps;
+    btsp_params.confirm_plan        = confirm_plan;
     
     /* Setup BTSP results structure */
     arrow_btsp_result_init(&problem, &result);

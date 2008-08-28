@@ -93,6 +93,15 @@ static int
 basic_edgelen(int i, int j, struct CCdatagroup *dat);
 
 /**
+ *  @brief  Creates a copy of the user data.
+ *  @param  ncount [in] number of nodes
+ *  @param  in [in] source data group
+ *  @param  out [out] destination data group
+ */
+static int
+basic_copy(int ncount, struct CCdatagroup *in, struct CCdatagroup *out);
+
+/**
  *  @brief  Applies controlled type I shake
  *  @param  fun [in] the cost matrix function
  *  @param  old_problem [in] the problem to apply the function to
@@ -197,6 +206,7 @@ basic_shallow_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
     user->delta = delta;
         
     new_data->userdat.edgelen = basic_edgelen;
+    new_data->userdat.copy_datagroup = basic_copy;
     CCutil_dat_setnorm(new_data, CC_USER);
     
     return ARROW_SUCCESS;
@@ -235,6 +245,31 @@ basic_edgelen(int i, int j, struct CCdatagroup *dat)
     basic_data *user = (basic_data *)(dat->userdat.data);
     int old_cost = user->dat->edgelen(i, j, user->dat);
     return (old_cost <= user->delta ? 0 : old_cost);
+}
+
+static int
+basic_copy(int ncount, struct CCdatagroup *in, struct CCdatagroup *out)
+{
+    basic_data *in_user;
+    basic_data *out_user;
+    
+    if((out->userdat.data = malloc(sizeof(basic_data))) == NULL)
+    {
+        arrow_print_error("Error allocating memory for basic_data.");
+        return 1;
+    }
+    
+    in_user = (basic_data *)(in->userdat.data);
+    out_user = (basic_data *)(out->userdat.data);
+    
+    out_user->dat = in_user->dat;
+    out_user->delta = in_user->delta;
+        
+    out->userdat.edgelen = in->userdat.edgelen;
+    out->userdat.copy_datagroup = in->userdat.copy_datagroup;
+    CCutil_dat_setnorm(out, CC_USER);
+    
+    return 0;
 }
 
 int

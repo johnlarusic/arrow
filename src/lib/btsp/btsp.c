@@ -19,12 +19,12 @@
  *  @param  num_steps [in] total number of steps in solve plan
  *  @param  steps [in] solve plan step details
  *  @param  delta [in] delta parameter for feasibility problem.
- *  @param  tour_exists [out] true if a feasible tour exists, false otherwise
+ *  @param  feasible [out] true if a feasible tour exists, false otherwise
  *  @param  result [out] resulting BTSP tour found
  */
 int
 feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps, 
-         int delta, int *tour_exists, arrow_btsp_result *result);
+         int delta, int *feasible, arrow_btsp_result *result);
 
 
 /****************************************************************************
@@ -35,7 +35,8 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
                  arrow_btsp_params *params, arrow_btsp_result *result)
 {    
     int ret = ARROW_SUCCESS;
-    int tour_exists;
+    int is_feasible;
+    int i, low, high, median, median_val;
     double start_time = arrow_util_zeit();
     
     arrow_btsp_result cur_result;
@@ -63,13 +64,13 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
     arrow_debug("Starting enhanced threshold heuristic\n");
     arrow_debug("Current solution: %d\n", result->obj_value);
     ret = feasible(problem, params->num_steps, params->steps, 
-                   params->lower_bound, &tour_exists, result);
+                   params->lower_bound, &is_feasible, result);
     if(ret != ARROW_SUCCESS)
     {
         ret = ARROW_FAILURE;
         goto CLEANUP;
     }
-    if(tour_exists == ARROW_TRUE)
+    if(is_feasible)
     {
         arrow_debug("A tour was found!  Nothing left to do here.\n");
         result->optimal = ARROW_TRUE;
@@ -80,7 +81,6 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
     /* Start enhanced binary search threshold heuristic */
     if(params->supress_ebst) goto CLEANUP;
     arrow_debug("\nStarting enhanced binary search threshold heuristic.\n");
-    int i, low, high, median, median_val;
 
     ret = arrow_util_binary_search(info->cost_list, info->cost_list_length,
                                    params->lower_bound, &low);
@@ -113,14 +113,14 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
                     info->cost_list[low], info->cost_list[high], median_val);
         
         ret = feasible(problem, params->num_steps, params->steps, 
-                       median_val, &tour_exists, &cur_result);
+                       median_val, &is_feasible, &cur_result);
         if(ret != ARROW_SUCCESS)
         {
             ret = ARROW_FAILURE;
             goto CLEANUP;
         }
         
-        if(tour_exists == ARROW_TRUE)
+        if(is_feasible)
         {
             arrow_debug("A tour was found!\n");
             result->found_tour = ARROW_TRUE;
@@ -144,6 +144,7 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
             result->tour_length = cur_result.tour_length;
             if(result->tour != NULL)
             {
+                result->found_tour = ARROW_TRUE;
                 for(i = 0; i < problem->size; i++)
                     result->tour[i] = cur_result.tour[i];
             }   
@@ -167,6 +168,7 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
                 result->obj_value = cur_result.obj_value;
                 if(result->tour != NULL)
                 {
+                    result->found_tour = ARROW_TRUE;
                     for(i = 0; i < problem->size; i++)
                         result->tour[i] = cur_result.tour[i];
                 }
@@ -184,13 +186,59 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
             result->solver_time[i] += cur_result.solver_time[i];
         }
     }
+    
+    /* Confirm the solution if required.  If we can find a Hamiltonian cycle
+       using costs strictly less than our objective value, then our tour
+       is not optimal. */
+    if(params->confirm_sol)
+    {
+        arrow_debug("Confirming solution...\n");
+        arrow_btsp_solve_plan confirm_plan_steps[1] = 
+        {
+           params->confirm_plan
+        };
+        ret = feasible(problem, 1, confirm_plan_steps, 
+                       info->cost_list[low - 1], &is_feasible, &cur_result);
+        if(ret != ARROW_SUCCESS)
+        {
+            ret = ARROW_FAILURE;
+            goto CLEANUP;
+        }
+        
+        if(is_feasible)
+        {
+            arrow_debug("Tour found -- solution not optimal.\n");
+            result->found_tour = ARROW_TRUE;
+            
+            /* Copy over new best objective value and tour */
+            result->obj_value = cur_result.obj_value;
+            result->tour_length = cur_result.tour_length;
+            if(result->tour != NULL)
+            {
+                result->found_tour = ARROW_TRUE;
+                for(i = 0; i < problem->size; i++)
+                    result->tour[i] = cur_result.tour[i];
+            }   
+        }
+        else
+        {
+            arrow_debug("Tour could not be found -- solution optimal!\n");
+            result->optimal = ARROW_TRUE;
+        }
+        
+        result->solver_attempts[ARROW_TSP_CC_EXACT] 
+            += cur_result.solver_attempts[ARROW_TSP_CC_EXACT];
+        result->solver_time[ARROW_TSP_CC_EXACT] 
+            += cur_result.solver_time[ARROW_TSP_CC_EXACT];
+    }
+
                            
 CLEANUP:
     /* See if we've reached the lower bound to guarantee optimality */
     if(result->obj_value == params->lower_bound)
     {
         result->optimal = ARROW_TRUE;
-        result->found_tour = ARROW_TRUE;
+        
     }
     result->total_time = arrow_util_zeit() - start_time;
 
@@ -204,15 +252,14 @@ CLEANUP:
  ****************************************************************************/
 int
 feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps, 
-         int delta, int *tour_exists, arrow_btsp_result *result)
+         int delta, int *feasible, arrow_btsp_result *result)
 {
     int ret = ARROW_SUCCESS;
-    int feasible = ARROW_FALSE;
     int i, j, k;
     int u, v;
     double len;
     
-    *tour_exists = ARROW_FALSE;
+    *feasible = ARROW_FALSE;
     result->found_tour = ARROW_FALSE;
     result->obj_value = INT_MAX;
     result->tour_length = DBL_MAX;
@@ -265,13 +312,13 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
             /* Determine if we have found a tour of feasible length or not */
             arrow_debug("Found a tour of length %.0f\n", 
                         tsp_result.obj_value);
-            feasible = fun->feasible(fun, problem, delta, 
-                                     tsp_result.obj_value, tsp_result.tour);
-            if(feasible)
+            *feasible = fun->feasible(fun, problem, delta, 
+                                      tsp_result.obj_value, tsp_result.tour);
+            if(*feasible)
             {
                 /* Set this tour to the output variables then exit */
                 arrow_debug(" - tour found is feasible.\n");
-                *tour_exists = ARROW_TRUE;
+                result->found_tour = ARROW_TRUE;
                 result->obj_value = delta;
 
                 len = 0.0;
@@ -309,6 +356,7 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
                 {
                     arrow_debug(" - tour is the best one found so far.\n");
                     arrow_debug(" - max. cost is %d\n", max_cost);
+                    result->found_tour = ARROW_TRUE;
                     result->obj_value = max_cost;
                     arrow_debug(" - actual tour is of length %.0f\n", len);
                     result->tour_length = len;
