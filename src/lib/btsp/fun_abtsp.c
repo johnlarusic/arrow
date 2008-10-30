@@ -14,27 +14,27 @@
  * Private function prototypes
  ****************************************************************************/
 /**
- *  @brief  Applies basic ABTSP function to the cost matrix of the old problem
- *          to create the new problem (deep copy).
- *  @param  fun [in] the cost matrix function
- *  @param  old_problem [in] the problem to apply the function to
+ *  @brief  Retrieves cost between nodes i and j from the function.
+ *  @param  fun [in] function structure
+ *  @param  problem [in] problem structure
  *  @param  delta [in] delta parameter
- *  @param  new_problem [out] the resulting new problem
+ *  @param  i [in] id of start node
+ *  @param  j [in] id of end node
+ *  @return cost between node i and node j
  */
 int
-basic_atsp_deep_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
-                      int delta, arrow_problem *new_problem);
-                    
+basic_atsp_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
+                    int delta, int i, int j);
+              
 /**
- *  @brief  Destructs a basic ABTSP function structure
+ *  @brief  Destructs the function data.
  *  @param  fun [out] the function structure to destruct
  */
 void
 basic_atsp_destruct(arrow_btsp_fun *fun);
 
 /**
- *  @brief  Determines if the given tour is feasible or not for the basic
- *          ATSP transformation.
+ *  @brief  Determines if the given tour is feasible or not.
  *  @param  fun [in] function structure
  *  @param  problem [in] the problem to check against
  *  @param  delta [in] delta parameter
@@ -43,7 +43,7 @@ basic_atsp_destruct(arrow_btsp_fun *fun);
  *  @return ARROW_TRUE if the tour is feasible, ARROW_FALSE if not
  */
 int
-basic_atsp_feasible(arrow_btsp_fun *fun, arrow_problem *problem, 
+basic_atsp_feasible(arrow_btsp_fun *fun, arrow_problem *problem,
                     int delta, double tour_length, int *tour);
 
 
@@ -52,22 +52,12 @@ basic_atsp_feasible(arrow_btsp_fun *fun, arrow_problem *problem,
  ****************************************************************************/
 int
 arrow_btsp_fun_basic_atsp(int shallow, arrow_btsp_fun *fun)
-{
-    if(shallow)
-    {
-        arrow_print_error("Not supported.\n");
-        return ARROW_FAILURE;
-    }
-    else
-    {
-        fun->shallow = ARROW_FALSE;
-        fun->apply = basic_atsp_deep_apply;
-    }
-
-    fun->feasible_length = 0;
+{    
+    fun->data = NULL;
+    fun->shallow = shallow;
+    fun->get_cost = basic_atsp_get_cost;
     fun->destruct = basic_atsp_destruct;
     fun->feasible = basic_atsp_feasible;
-
     return ARROW_SUCCESS;
 }
 
@@ -76,23 +66,11 @@ arrow_btsp_fun_basic_atsp(int shallow, arrow_btsp_fun *fun)
  * Private function implemenations
  ****************************************************************************/
 int
-basic_atsp_deep_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
-                      int delta, arrow_problem *new_problem)
+basic_atsp_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
+                    int delta, int i, int j)
 {
-    int i, j, cost;
-    for(i = 0; i < new_problem->size; i++)
-    {
-        for(j = 0; j <= i; j++)
-        {
-            cost = old_problem->get_cost(old_problem, i, j);
-            
-            if((cost >= 0) && (cost <= delta))
-                new_problem->data.adj[i][j] = 0;
-            else
-                new_problem->data.adj[i][j] = cost;
-        }
-    }
-    return ARROW_SUCCESS;
+    int cost = base_problem->get_cost(base_problem, i, j);
+    return (cost <= delta ? 0 : cost);
 }
 
 void

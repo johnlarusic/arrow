@@ -152,13 +152,12 @@ arrow_btsp_fun_destruct(arrow_btsp_fun *fun);
  *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
  *  @param  fun [out] function structure
  */
-/*
 int
 arrow_btsp_fun_basic_atsp(int shallow, arrow_btsp_fun *fun);
-*/
+
 
 /****************************************************************************
- *  fun_cbtsp.c
+ *  fun_sbtsp.c
  ****************************************************************************/
 /**
  *  @brief  Basic BTSP to TSP function.

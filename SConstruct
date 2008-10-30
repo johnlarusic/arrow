@@ -20,7 +20,7 @@ dir_bin = 'bin'
 lib_files = (
     'btsp/btsp.c', 
     'btsp/fun.c',
-#    'btsp/fun_abtsp.c',
+    'btsp/fun_abtsp.c',
 #    'btsp/fun_cbtsp.c',
     'btsp/fun_sbtsp.c',
     'btsp/result.c',

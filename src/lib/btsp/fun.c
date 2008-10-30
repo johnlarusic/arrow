@@ -15,32 +15,59 @@
  ****************************************************************************/
 typedef struct fun_data
 {
-    arrow_btsp_fun *fun;
-    arrow_problem *base_problem;
-    int delta;
+    arrow_btsp_fun *fun;            /**< cost matrix function */
+    arrow_problem *base_problem;    /**< base problem for function */
+    int delta;                      /**< delta parameter */
 } fun_data;
 
 
 /****************************************************************************
  * Private function prototypes
  ****************************************************************************/
+/**
+ *  @brief  Creates a shallow data structure with data applied with given
+ *          cost matrix function and some base problem.
+ *  @param  fun [in] the cost matrix function
+ *  @param  old_problem [in] the base problem
+ *  @param  delta [in] delta parameter
+ *  @param  new_problem [out] the newly created, "shallow" problem
+ */
 int
 apply_shallow(arrow_btsp_fun *fun, arrow_problem *old_problem, 
               int delta, arrow_problem *new_problem);
 
+/**
+ *  @brief  Creates a deep data structure with data applied with given
+ *          cost matrix function and some base problem.
+ *  @param  fun [in] the cost matrix function
+ *  @param  old_problem [in] the base problem
+ *  @param  delta [in] delta parameter
+ *  @param  new_problem [out] the newly created, "deep" problem
+ */
 int
 apply_deep(arrow_btsp_fun *fun, arrow_problem *old_problem, 
            int delta, arrow_problem *new_problem);
-           
+
+/**
+ *  @brief  Cost function for problems based upon cost matrix functions.
+ *  @param  problem [in] problem structure
+ *  @param  i [in] id of starting node
+ *  @param  j [in] id of ending node
+ *  @return cost between node i and node j
+ */
 int 
 fun_get_cost(arrow_problem *this, int i, int j);
 
+/**
+ *  @brief  Destructs problem based upon cost matrix functions.
+ *  @param  problem [in] problem structure
+ */
 void 
 fun_destruct(arrow_problem *this);
 
 /**
- *  @brief  Retrieves cost between nodes i and j from Concorde's structure.
- *  @param  problem [in] pointer to arrow_problem structure
+ *  @brief  Cost function for problems based upon Concorde's data structure.
+ *  @param  problem [in] problem structure
  *  @param  i [in] id of starting node
  *  @param  j [in] id of ending node
  *  @return cost between node i and node j
@@ -49,8 +76,8 @@ int
 cc_get_cost(arrow_problem *problem, int i, int j);
 
 /**
- *  @brief  Destructs Concorde's data structure
- *  @param  problem [in] pointer to arrow_problem structure
+ *  @brief  Destructs problems based upon Concorde's data structure
+ *  @param  problem [in] problem structure
  */
 void
 cc_destruct(arrow_problem *problem);
@@ -138,19 +165,7 @@ apply_deep(arrow_btsp_fun *fun, arrow_problem *old_problem,
     new_problem->data = (void *)dat;
     new_problem->get_cost = cc_get_cost;
     new_problem->destruct = cc_destruct;
-/*    
-    for(i = 0; i < size; i++)
-    {
-        for(j = 0; j < size; j++)
-        {
-            if(i != j)
-                arrow_debug("C[%d,%d] = %d/%d/%d; ", i, j, old_problem->get_cost(old_problem, i, j),
-                    fun->get_cost(fun, old_problem, delta, i, j), new_problem->get_cost(new_problem, i, j));
-        }
-        arrow_debug("\n");
-    }
-    arrow_debug("\n");
-*/
+
     return ARROW_SUCCESS;
 }
 
