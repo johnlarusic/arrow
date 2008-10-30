@@ -44,15 +44,19 @@ typedef struct arrow_btsp_fun
 {
     void *data;             /**< data required by function */
     int shallow;            /**< indicates use of shallow copy of data */
-    double feasible_length; /**< the length of a feasible tour (normally 0) */
-    
+
     /**
-     *  @brief  Applies the function to the given problem
+     *  @brief  Retrieves cost between nodes i and j from the function.
      *  @param  fun [in] function structure
+     *  @param  problem [in] problem structure
+     *  @param  delta [in] delta parameter
+     *  @param  i [in] id of start node
+     *  @param  j [in] id of end node
+     *  @return cost between node i and node j
      */
     int 
-    (*apply)(struct arrow_btsp_fun *fun, arrow_problem *old_problem,
-             int delta, arrow_problem *new_problem);
+    (*get_cost)(struct arrow_btsp_fun *fun, arrow_problem *base_problem,
+                int delta, int i, int j);
     
     /**
      *  @brief  Destructs the function structure
@@ -148,9 +152,10 @@ arrow_btsp_fun_destruct(arrow_btsp_fun *fun);
  *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
  *  @param  fun [out] function structure
  */
+/*
 int
 arrow_btsp_fun_basic_atsp(int shallow, arrow_btsp_fun *fun);
-
+*/
 
 /****************************************************************************
  *  fun_cbtsp.c
@@ -162,7 +167,6 @@ arrow_btsp_fun_basic_atsp(int shallow, arrow_btsp_fun *fun);
  */
 int
 arrow_btsp_fun_basic(int shallow, arrow_btsp_fun *fun);
-
 /**
  *  @brief  Controlled Type I Shake.
  *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
@@ -175,7 +179,6 @@ arrow_btsp_fun_basic_shake_i(int shallow, int rand_min, int rand_max,
                              arrow_problem *problem, 
                              arrow_problem_info *info, 
                              arrow_btsp_fun *fun);
-
 
 /****************************************************************************
  *  fun_cbtsp.c
@@ -202,13 +205,14 @@ arrow_btsp_fun_constrained(int shallow, double feasible_length, int infinity,
  *  @param  info [in] information about the original problem
  *  @param  fun [out] function structure
  */
+/*
 int
 arrow_btsp_fun_constrained_shake(int shallow, double feasible_length, 
                                  int infinity, int rand_min, int rand_max,
                                  arrow_problem *problem, 
                                  arrow_problem_info *info, 
                                  arrow_btsp_fun *fun);
-
+*/
 
 /****************************************************************************
  *  params.c

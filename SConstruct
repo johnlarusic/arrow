@@ -20,8 +20,8 @@ dir_bin = 'bin'
 lib_files = (
     'btsp/btsp.c', 
     'btsp/fun.c',
-    'btsp/fun_abtsp.c',
-    'btsp/fun_cbtsp.c',
+#    'btsp/fun_abtsp.c',
+#    'btsp/fun_cbtsp.c',
     'btsp/fun_sbtsp.c',
     'btsp/result.c',
     'btsp/params.c',
@@ -49,14 +49,14 @@ lib_files = (
 # List of executables in the form of (NAME, SRC)
 executables = (
     ('2mb',         '2mb.c'),
-    ('abtsp',       'abtsp.c'),
-    ('abtsp-rai',   'abtsp-rai.c'),
+#    ('abtsp',       'abtsp.c'),
+#    ('abtsp-rai',   'abtsp-rai.c'),
     ('bap',         'bap.c'),
     ('bbssp',       'bbssp.c'),
     ('btsp',        'btsp.c'),
     ('cbap',        'cbap.c'),
     ('cbst',        'cbst.c'),
-    ('cbtsp',       'cbtsp.c'),
+#    ('cbtsp',       'cbtsp.c'),
     ('dcbpb',       'dcbpb.c'),
     ('histdata',    'histdata.c'),
     ('subprob',     'subprob.c'),
@@ -113,3 +113,9 @@ env_bin.BuildDir(bin_build, bin_src)
 
 for (name, src) in executables:
     env_bin.Program(dir_bin + '/' + name, bin_build + '/' + src)
+
+##############################################################################
+# RUN TEST FRAMEWORK
+##############################################################################
+#if 'check' in COMMAND_LINE_TARGETS:
+#    print "Run unit tests!"

@@ -61,11 +61,12 @@ main(int argc, char *argv[])
         /* Create symmetric transformation first */
         arrow_problem sym_problem;
         int infinity = info.max_cost * problem.size + 1;
-        if(!arrow_problem_abtsp_to_sbtsp(&problem, infinity, &sym_problem))
+        if(!arrow_problem_abtsp_to_sbtsp(ARROW_FALSE, &problem, infinity, &sym_problem))
         {
             arrow_print_error("Could not create transformation.");
             return EXIT_FAILURE;
         }
+                
         if(!arrow_bbssp_solve(&sym_problem, &info, &result))
         {
             arrow_print_error("Could not solve BBSSP on file.");

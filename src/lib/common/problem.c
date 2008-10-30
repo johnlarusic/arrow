@@ -10,6 +10,21 @@
 #include "common.h"
 
 /****************************************************************************
+ * Private structures
+ ****************************************************************************/
+typedef struct full_matrix_data
+{
+    int **adj;      /**< 2D array of integers */
+    int *adjspace;  /**< contiguous allocation of n*n integers */
+} full_matrix_data;
+
+typedef struct abtsp_data
+{
+    arrow_problem *base;  /**< base problem */
+    int infinity;         /**< value to represent infinity */
+} abtsp_data;
+
+/****************************************************************************
  * Private function prototypes
  ****************************************************************************/
 /**
@@ -29,6 +44,31 @@ int
 is_asymmetric(char *file_name);
 
 /**
+ *  @brief  Reads an symmetric TSPLIB file (*.tsp).
+ *  @param  file_name [in] the path to the TSPLIB file
+ *  @param  problem [out] problem structure
+ */
+int
+read_stsp(char *file_name, arrow_problem *problem);
+
+/**
+ *  @brief  Retrieves cost between nodes i and j from Concorde's structure.
+ *  @param  problem [in] pointer to arrow_problem structure
+ *  @param  i [in] id of starting node
+ *  @param  j [in] id of ending node
+ *  @return cost between node i and node j
+ */
+int 
+concorde_get_cost(arrow_problem *problem, int i, int j);
+
+/**
+ *  @brief  Destructs Concorde's data structure
+ *  @param  problem [in] pointer to arrow_problem structure
+ */
+void
+concorde_destruct(arrow_problem *problem);
+
+/**
  *  @brief  Reads an asymmetric TSPLIB file (*.atsp).
  *  @param  file_name [in] the path to the TSPLIB file
  *  @param  problem [out] problem structure
@@ -38,13 +78,37 @@ read_atsp(char *file_name, arrow_problem *problem);
 
 /**
  *  @brief  Edge length function for full matrix data
- *  @param  i [in] node i
- *  @param  j [in] node j
- *  @param  dat [in] Concorde problem data structure
- *  @return The cost C[i,j] between nodes i and j
+ *  @param  problem [in] pointer to arrow_problem structure
+ *  @param  i [in] id of starting node
+ *  @param  j [in] id of ending node
+ *  @return The cost between nodes i and j
  */
-static int
-fullmatrix_edgelen(int i, int j, CCdatagroup *dat);
+int 
+full_matrix_get_cost(arrow_problem *problem, int i, int j);
+
+/**
+ *  @brief  Destructs data structure of a full matrix problem.
+ *  @param  problem [in] pointer to arrow_problem structure
+ */
+void
+full_matrix_destruct(arrow_problem *problem);
+
+/**
+ *  @brief  Edge length function for ABTSP->SBTSP data
+ *  @param  problem [in] pointer to arrow_problem structure
+ *  @param  i [in] id of starting node
+ *  @param  j [in] id of ending node
+ *  @return The cost between nodes i and j
+ */
+int 
+abtsp_get_cost(arrow_problem *problem, int i, int j);
+
+/**
+ *  @brief  Destructs data structure of a ABTSP->SBTSP problem.
+ *  @param  problem [in] pointer to arrow_problem structure
+ */
+void
+abtsp_destruct(arrow_problem *problem);
 
 
 /****************************************************************************
@@ -53,71 +117,45 @@ fullmatrix_edgelen(int i, int j, CCdatagroup *dat);
 int
 arrow_problem_read(char *file_name, arrow_problem *problem)
 {   
-    if(is_symmetric(file_name) == ARROW_TRUE)
-    {    
-        arrow_debug("Reading symmetric TSPLIB file...\n");
-        int size;
-        if(CCutil_gettsplib(file_name, &size, &(problem->data)) != 0)
-        {
-            arrow_print_error("Unable to read TSPLIB file using Concorde\n");
-            return ARROW_FAILURE;
-        }
-        problem->size = size;
-        problem->symmetric = ARROW_TRUE;
-    }
-    else if(is_asymmetric(file_name) == ARROW_TRUE)
+    int ret = ARROW_FAILURE;
+    
+    if(is_symmetric(file_name))
+        ret = read_stsp(file_name, problem);
+    else if(is_asymmetric(file_name))
+        ret = read_atsp(file_name, problem);
+    
+    if(ret == ARROW_FAILURE)
     {
-        arrow_debug("Reading asymmetric TSPLIB file...\n");
-        if(read_atsp(file_name, problem) != ARROW_SUCCESS)
-        {
-            arrow_print_error("Unable to read ATSP file");
-            return ARROW_FAILURE;
-        }
-        problem->symmetric = ARROW_FALSE;
-    }
-    else
-    {
-        arrow_print_error("Input file type not supported.");
+        arrow_print_error("Unable to read '%s'", file_name);
         return ARROW_FAILURE;
     }
-    
-    /* Strip out the problem file name from the path */
+        
+    /* We're going to build a problem name from the file name. */
+    /* Start by only considering stuff after the last "/" */
     char *s = strrchr(file_name, '/');
     if(s != NULL)
         sprintf(problem->name, "%s", s + 1);
     else
         sprintf(problem->name, "%s", file_name);
         
-    /* Replace . characters with _ characters */
+    /* Now replace "." characters with "_" characters */
     s = strchr(problem->name, '.');
-    printf("%s\n", problem->name);
     while(s != NULL)
     {
         *s = '_';
-        printf("%s\n", problem->name);
         s = strchr(problem->name, '.');
     }
-    
-    problem->shallow = ARROW_FALSE;
-    problem->get_cost = arrow_problem_get_cost;
-    
-    return ARROW_SUCCESS;
+        
+    return ret;
 }
 
 void
 arrow_problem_destruct(arrow_problem *problem)
 {
-    if(!problem->shallow)
+    if(problem->data != NULL)
     {
-        if(&(problem->data) != NULL)
-        {
-            CCutil_freedatagroup(&(problem->data));
-        }
-    }
-    else
-    {
-        if(problem->data.userdat.data != NULL)
-            free(problem->data.userdat.data);
+        problem->destruct(problem);
+        problem->data = NULL;
     }
 }
 
@@ -244,12 +282,6 @@ arrow_problem_print(arrow_problem *problem, int pretty)
     }
 }
 
-inline int 
-arrow_problem_get_cost(arrow_problem *problem, int i, int j)
-{
-    return problem->data.edgelen(i, j, &(problem->data));
-}
-
 int
 arrow_problem_read_tour(char *file_name, int size, int *tour)
 {
@@ -260,42 +292,29 @@ arrow_problem_read_tour(char *file_name, int size, int *tour)
 }
 
 int
-arrow_problem_abtsp_to_sbtsp(arrow_problem *old_problem, int infinity, 
-                             arrow_problem *new_problem)
+arrow_problem_abtsp_to_sbtsp(int shallow, arrow_problem *old_problem, 
+                             int infinity, arrow_problem *new_problem)
 {
-    int i, j;
-    int n = old_problem->size;
-    int ret = ARROW_SUCCESS;
-
-    sprintf(new_problem->name, "%s", old_problem->name);
-    new_problem->shallow = ARROW_FALSE;
-    new_problem->size = n * 2;
+    new_problem->size = old_problem->size * 2;
+    new_problem->type = ARROW_PROBLEM_ABTSP_TO_SBTSP;
+    new_problem->shallow = shallow;
     new_problem->symmetric = ARROW_TRUE;
-    new_problem->get_cost = arrow_problem_get_cost;
+    sprintf(new_problem->name, "%s", old_problem->name);
     
-    CCdatagroup *dat = &(new_problem->data);
-    
-    ret = arrow_util_CCdatagroup_init_matrix(n * 2, dat);
-    if(ret != ARROW_SUCCESS)
+    abtsp_data *data = NULL;
+    if((data = malloc(sizeof(abtsp_data))) == NULL)
     {
-        arrow_print_error("Could not create CCdatagroup matrix");
+        arrow_print_error("Could not allocate memory for abtsp_data");
         return ARROW_FAILURE;
     }
+    data->base = old_problem;
+    data->infinity = infinity;    
+    new_problem->data = data;
 
-    for(i = 0; i < new_problem->size; i++)
-    {
-        for(j = 0; j <= i; j++)
-        {
-            if((i < n) || (j >= n))
-                dat->adj[i][j] = infinity;
-            else if(i == j + n)
-                dat->adj[i][j] = -1 * infinity;
-            else
-                dat->adj[i][j] = old_problem->get_cost(old_problem, j, i - n);
-        }
-    }
+    new_problem->get_cost = abtsp_get_cost;
+    new_problem->destruct = abtsp_destruct;
     
-    return ret;
+    return ARROW_SUCCESS;
 }
 
 
@@ -319,8 +338,77 @@ is_asymmetric(char *file_name)
 }
 
 int
+read_stsp(char *file_name, arrow_problem *problem)
+{
+    int size;
+    CCdatagroup *dat = NULL;
+    
+    arrow_debug("Reading symmetric TSPLIB file...\n");
+
+    /* Allocate CCdatargoup structure for Concorde to chew on. */
+    if((dat = malloc(sizeof(CCdatagroup))) == NULL)
+    {
+        arrow_print_error("Could not allocate memory for CCdatagroup");
+        goto CLEANUP;
+    }
+    
+    /* We're going to use Concorde to read the TSPLIB file!  Sneaky! 
+       Recall that Concorde returns 1 on failure because it's silly. */
+    if(CCutil_gettsplib(file_name, &size, dat))
+    {
+        arrow_print_error("Unable to read TSPLIB file using Concorde\n");
+        goto CLEANUP;
+    }
+    
+    problem->size = size;
+    problem->type = ARROW_PROBLEM_DATA_CONCORDE;
+    problem->symmetric = ARROW_TRUE;
+    problem->data = (void *)dat;
+    problem->shallow = ARROW_FALSE;
+    problem->get_cost = concorde_get_cost;
+    problem->destruct = concorde_destruct;
+    
+    return ARROW_SUCCESS;
+
+CLEANUP:
+    if(dat != NULL) free(dat);
+    return ARROW_FAILURE;
+}
+
+int 
+concorde_get_cost(arrow_problem *problem, int i, int j)
+{
+    CCdatagroup *dat = (CCdatagroup *)problem->data;    
+    return dat->edgelen(i, j, dat);
+}
+
+void
+concorde_destruct(arrow_problem *problem)
+{    
+    if(problem->data != NULL)
+    {
+        CCdatagroup *dat = (CCdatagroup *)problem->data;
+        CCutil_freedatagroup(dat);
+    }
+}
+
+int
 read_atsp(char *file_name, arrow_problem *problem)
 {
+    int size = -1;
+    full_matrix_data *data;
+    
+    arrow_debug("Reading asymmetric TSPLIB file...\n");
+    
+    /* Allocate CCdatargoup structure for Concorde to chew on. */
+    if((data = malloc(sizeof(full_matrix_data))) == NULL)
+    {
+        arrow_print_error("Could not allocate memory for full_matrix_data");
+        goto CLEANUP;
+    }
+    data->adj = NULL;
+    data->adjspace = NULL;
+
     /* This code is mostly borrowed (stolen?) from Concorde's routine,
        so credit to the Concorde guys who dealing with the pain of reading
        TSPLIB files in C. */
@@ -328,15 +416,12 @@ read_atsp(char *file_name, arrow_problem *problem)
     char *p;
     FILE *in;
     int norm, i, j;
-    CCdatagroup *dat = &(problem->data);
     
     if(!(in = fopen(file_name, "r"))) 
     {
         arrow_print_error("Unable to open file for input\n");
-        return ARROW_FAILURE;
+        goto CLEANUP;
     }
-    
-    CCutil_init_datagroup(dat);
     
     while(fgets(buf, 254, in) != (char *)NULL)
     {
@@ -363,7 +448,7 @@ read_atsp(char *file_name, arrow_problem *problem)
                 if(sscanf(p, "%s", field) == EOF || strcmp (field, "ATSP"))
                 {
                     arrow_print_error("Not an ATSP problem");
-                    return ARROW_FAILURE;
+                    goto CLEANUP;
                 }
             } 
             else if(!strcmp (key, "COMMENT"))
@@ -375,17 +460,17 @@ read_atsp(char *file_name, arrow_problem *problem)
                 if(sscanf(p, "%s", field) == EOF)
                 {
                     arrow_print_error("ERROR in DIMENSION line");
-                    return ARROW_FAILURE;
+                    goto CLEANUP;
                 }
-                problem->size = atoi(field);
-                arrow_debug("Number of Nodes: %d\n", problem->size);
+                size = atoi(field);
+                arrow_debug("Number of Nodes: %d\n", size);
             }
             else if(!strcmp (key, "EDGE_WEIGHT_TYPE"))
             {
                 if(sscanf(p, "%s", field) == EOF)
                 {
                     arrow_print_error("ERROR in EDGE_WEIGHT_TYPE line");
-                    return ARROW_FAILURE;
+                    goto CLEANUP;
                 }
                 if(!strcmp(field, "EXPLICIT")) {
                     printf ("Explicit Lengths (CC_MATRIXNORM)\n");
@@ -394,66 +479,56 @@ read_atsp(char *file_name, arrow_problem *problem)
                 else
                 {
                     arrow_print_error("ERROR: Not set up for given norm");
-                    return ARROW_FAILURE;
+                    goto CLEANUP;
                 }
-                
-                if(CCutil_dat_setnorm(dat, norm)) 
-                {
-                    arrow_print_error("Could not setup MAXTRIXNORM");
-                    return ARROW_FAILURE;
-                }
-                dat->edgelen = fullmatrix_edgelen;
             }
             else if(!strcmp (key, "EDGE_WEIGHT_FORMAT"))
             {
                 if(sscanf (p, "%s", field) == EOF)
                 {
                     arrow_print_error("ERROR in EDGE_WEIGHT_FORMAT line");
-                    return ARROW_FAILURE;
+                    goto CLEANUP;
                 }
                 if(strcmp(field, "FULL_MATRIX"))
                 {
                     arrow_print_error("Cannot handle edge weight format");
-                    return ARROW_FAILURE;
+                    goto CLEANUP;
                 }
             }
             else if(!strcmp(key, "EDGE_WEIGHT_SECTION"))
             {
-                if(problem->size < 1) {
+                if(size < 1) {
                     arrow_print_error("Dimension not specified");
-                    return ARROW_FAILURE;
+                    goto CLEANUP;
                 }
-                if(dat->adj != (int **)NULL)
+                if(data->adj != (int **)NULL)
                 {            
                     arrow_print_error("A second NODE_COORD_SECTION?");
-                    CCutil_freedatagroup(dat);
-                    return ARROW_FAILURE;
+                    goto CLEANUP;
                 }
                 if ((norm & CC_NORM_SIZE_BITS) == CC_MATRIX_NORM_SIZE)
                 {
-                    dat->adj = CC_SAFE_MALLOC(problem->size, int *);
-                    dat->adjspace = 
-                        CC_SAFE_MALLOC(problem->size * problem->size, int);
+                    data->adj = CC_SAFE_MALLOC(size, int *);
+                    data->adjspace = CC_SAFE_MALLOC(size * size, int);
 
-                    if(dat->adj == (int **) NULL ||
-                        dat->adjspace == (int *) NULL) 
+                    if(data->adj == (int **) NULL ||
+                        data->adjspace == (int *) NULL) 
                     {
                         arrow_print_error("Could not setup adj/adjspace");
-                        CCutil_freedatagroup(dat);
-                        return ARROW_FAILURE;
+                        goto CLEANUP;
                     }
                     
-                    for(i = 0, j = 0; i < problem->size; i++)
+                    for(i = 0, j = 0; i < size; i++)
                     {
-                        dat->adj[i] = dat->adjspace + j;
-                        j += problem->size;
+                        data->adj[i] = data->adjspace + j;
+                        j += size;
                     }
                     
-                    for(i = 0; i < problem->size; i++)
+                    for(i = 0; i < size; i++)
                     {
-                        for(j = 0; j < problem->size; j++)
+                        for(j = 0; j < size; j++)
                         {
-                            fscanf(in, "%d", &(dat->adj[i][j]));
+                            fscanf(in, "%d", &(data->adj[i][j]));
                         }
                     }
                 }
@@ -461,22 +536,67 @@ read_atsp(char *file_name, arrow_problem *problem)
             else if(!strcmp(key, "NODE_COORD_SECTION"))
             {
                 arrow_print_error("Encountered NODE_COORD_SECTION\n");
-                return ARROW_FAILURE;
+                goto CLEANUP;
             }
             else if(!strcmp(key, "FIXED_EDGES_SECTION"))
             {
                 arrow_print_error("Not set up for fixed edges\n");
-                return ARROW_FAILURE;
+                goto CLEANUP;
             }
         }
     }
-    
+
+    problem->size = size;
+    problem->type = ARROW_PROBLEM_DATA_FULL_MATRIX;
+    problem->symmetric = ARROW_FALSE;
+    problem->data = (void *)data;
+    problem->shallow = ARROW_FALSE;
+    problem->get_cost = full_matrix_get_cost;
+    problem->destruct = full_matrix_destruct;
     return ARROW_SUCCESS;
+
+CLEANUP:
+    if(data->adjspace != NULL) free(data->adjspace);
+    if(data->adj != NULL) free(data->adj);
+    return ARROW_FAILURE;
 }
 
-static int
-fullmatrix_edgelen(int i, int j, CCdatagroup *dat)
+int 
+full_matrix_get_cost(arrow_problem *problem, int i, int j)
 {
-    //arrow_debug("~ C[%d,%d] = %d\n", i, j, dat->adj[i][j]);
-    return dat->adj[i][j];
+    full_matrix_data *data = (full_matrix_data *)problem->data;
+    return data->adj[i][j];
+}
+
+void
+full_matrix_destruct(arrow_problem *problem)
+{   
+    if(problem->data != NULL)
+    {
+        full_matrix_data *data = (full_matrix_data *)problem->data;
+        free(data->adjspace);
+        free(data->adj);
+    }
+}
+
+int 
+abtsp_get_cost(arrow_problem *this, int i, int j)
+{
+    if(j > i) return abtsp_get_cost(this, j, i);
+    
+    abtsp_data *data = (abtsp_data *)this->data;
+    int n = data->base->size;
+    
+    if((i < n) || (j >= n))
+        return data->infinity;
+    else if(i == j + n)
+        return -1 * data->infinity;
+    else
+        return data->base->get_cost(data->base, j, i - n);
+}
+
+void 
+abtsp_destruct(arrow_problem *this)
+{ 
+    free(this->data);
 }

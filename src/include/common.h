@@ -59,6 +59,11 @@
 #define ARROW_FALSE 0
 #define ARROW_PROBLEM_NAME_LENGTH 64
 
+#define ARROW_PROBLEM_DATA_FULL_MATRIX 1
+#define ARROW_PROBLEM_DATA_CONCORDE 2
+#define ARROW_PROBLEM_DATA_BTSP_FUN 3
+#define ARROW_PROBLEM_ABTSP_TO_SBTSP 4
+
 #define ARROW_OPTION_INT 1
 #define ARROW_OPTION_DOUBLE 2
 #define ARROW_OPTION_STRING 3
@@ -376,11 +381,12 @@ arrow_options_parse(int num_opts, arrow_option options[],  char *description,
 typedef struct arrow_problem
 {
     int size;           /**< problem size */
+    int type;           /**< problem type */
     int symmetric;      /**< indicates if cost matrix is symmetric */
-    CCdatagroup data;   /**< Concorde data structure for problem. */
     int shallow;        /**< indicates use of shallow copy of data */
-    char name[ARROW_PROBLEM_NAME_LENGTH]; /**< problem name (can be NULL) */
-    
+    char name[ARROW_PROBLEM_NAME_LENGTH]; /**< problem name */
+    void *data;         /**< Pointer to structure for problem data. */
+        
     /**
      *  @brief  Returns the cost between node i and node j.
      *  @param  this [in] problem data
@@ -390,6 +396,13 @@ typedef struct arrow_problem
      */
     int 
     (*get_cost)(struct arrow_problem *this, int i, int j);
+    
+    /**
+     *  @brief  Frees problem data structure.
+     *  @param  this [in] problem data
+     */
+    void 
+    (*destruct)(struct arrow_problem *this);
 } arrow_problem;
 
 /**
@@ -442,16 +455,6 @@ void
 arrow_problem_print(arrow_problem *problem, int pretty);
 
 /**
- *  @brief  Retrieves cost between nodes i and j
- *  @param  problem [in] pointer to arrow_problem structure
- *  @param  i [in] id of starting node
- *  @param  j [in] id of ending node
- *  @return cost between node i and node j
- */
-inline int 
-arrow_problem_get_cost(arrow_problem *problem, int i, int j);
-
-/**
  *  @brief  Reads a TSPLIB tour file
  *  @param  file_name [in] the TSPLIB tour file to read
  *  @param  size [in] the number of cities in the tour
@@ -463,13 +466,14 @@ arrow_problem_read_tour(char *file_name, int size, int *tour);
 /**
  *	@brief	Transforms an asymmetric BTSP problem of n nodes into a symmetric
  *			BTSP problem with 2n nodes.
+ *  @param  shallow [in] if true only a shallow copy of data will be created
  *  @param  old_problem [in] the asymmetric problem
  *	@param	infinity [in] value to use as "infinity"
  *	@param	new_problem [out] the new symmetric problem
  */
 int
-arrow_problem_abtsp_to_sbtsp(arrow_problem *old_problem, int infinity, 
-                             arrow_problem *new_problem);
+arrow_problem_abtsp_to_sbtsp(int shallow, arrow_problem *old_problem,  
+                             int infinity, arrow_problem *new_problem);
 
 
 /****************************************************************************
