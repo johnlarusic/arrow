@@ -27,6 +27,7 @@ lib_files = (
     'btsp/params.c',
     'btsp/solve_plan.c',
     'common/bintree.c', 
+    'common/hash.c',
     'common/heap.c',
     'common/llist.c',
     'common/options.c', 

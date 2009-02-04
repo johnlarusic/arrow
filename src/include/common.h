@@ -28,6 +28,7 @@
 #include <regex.h>
 #include <getopt.h>
 #include "concorde.h"
+#include <cmph.h>
 
 /****************************************************************************
  *  Debugging info macro.  Rename ARROW_DEBUG to disable debug info
@@ -58,6 +59,7 @@
 #define ARROW_TRUE 1
 #define ARROW_FALSE 0
 #define ARROW_PROBLEM_NAME_LENGTH 64
+#define ARROW_HASH_BUFFER_LENGTH 16
 
 #define ARROW_PROBLEM_DATA_FULL_MATRIX 1
 #define ARROW_PROBLEM_DATA_CONCORDE 2
@@ -131,6 +133,47 @@ arrow_bintree_to_array(arrow_bintree *tree, int **array);
  */ 
 void
 arrow_bintree_print(arrow_bintree *tree);
+
+
+/****************************************************************************
+ *  hash.c
+ ****************************************************************************/
+/**
+ *  @brief  Hashtable
+ */
+typedef struct arrow_hash
+{
+    cmph_uint32 num_keys;       /**< number of keys in hashtable */
+    char **vector;              /**< array of strings (vectors) */
+    char *vector_space;         /**< memory space for strings */
+    cmph_io_adapter_t *source;  /**< CMPH hash source data */
+    cmph_t *data;               /**< CMPH hash data */
+} arrow_hash;
+
+/**
+ *  @brief  Creates a hash table from a list of unique costs
+ *  @param  cost_list [in] list of costs
+ *  @param  cost_list_length [in] length of cost list
+ *  @param  hash [out] hashtable data structure
+ */ 
+int
+arrow_hash_cost_list(int *cost_list, int cost_list_length, arrow_hash *hash);
+
+/**
+ *  @brief  Destructs a hashtable data structure.
+ *  @param  hash [out] hashtable data structure
+ */
+void
+arrow_hash_destruct(arrow_hash *hash);
+
+/**
+ *  @brief  Finds id associated with key in hashtable
+ *  @param  hash [in] hash table data structure
+ *  @param  key [in] key to look up
+ *  @return the id of the associated key
+ */
+unsigned int
+arrow_hash_search(arrow_hash *hash, int key);
 
 
 /****************************************************************************
