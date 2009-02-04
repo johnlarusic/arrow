@@ -58,6 +58,7 @@ executables = (
     ('cbst',        'cbst.c'),
 #    ('cbtsp',       'cbtsp.c'),
     ('dcbpb',       'dcbpb.c'),
+    ('hash',        'hash.c'),
     ('histdata',    'histdata.c'),
     ('subprob',     'subprob.c'),
     ('tourinfo',    'tourinfo.c')#,
@@ -104,7 +105,7 @@ env_bin = Environment(
             options = opts,
             CCFLAGS = '-Wall',
             CPPPATH = ['"$concorde_h_dir"', '"$qsopt_h_dir"', inc_build],
-            LIBS = ['arrow'],
+            LIBS = ['arrow', 'cmph'],
             LIBPATH = ['.']
           )
 env_bin.Append(LIBS = [File(env_bin.subst('$concorde_a'))])

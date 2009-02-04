@@ -166,6 +166,7 @@ arrow_btsp_fun_basic_atsp(int shallow, arrow_btsp_fun *fun);
  */
 int
 arrow_btsp_fun_basic(int shallow, arrow_btsp_fun *fun);
+
 /**
  *  @brief  Controlled Type I Shake.
  *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
