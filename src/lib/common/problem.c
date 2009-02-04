@@ -160,7 +160,8 @@ arrow_problem_destruct(arrow_problem *problem)
 }
 
 int
-arrow_problem_info_get(arrow_problem *problem, arrow_problem_info *info)
+arrow_problem_info_get(arrow_problem *problem, int create_hash,
+                       arrow_problem_info *info)
 {
     arrow_bintree tree;
     int ret;

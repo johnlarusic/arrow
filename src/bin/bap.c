@@ -43,8 +43,9 @@ main(int argc, char *argv[])
     /* Try and read the problem file and its info */
     if(!arrow_problem_read(input_file, &problem))
         return EXIT_FAILURE;
-    if(!arrow_problem_info_get(&problem, &info))
+    if(!arrow_problem_info_get(&problem, ARROW_FALSE, &info)) 
         return EXIT_FAILURE;
+    /* Note: BAP algorithm does not need hash list */
     
     /* Solve BAP */
     if(!arrow_bap_solve(&problem, &info, &result))

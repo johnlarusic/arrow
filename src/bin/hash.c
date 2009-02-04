@@ -12,13 +12,16 @@
 /* Global variables */
 char *program_name;             /**< Program name */
 char *input_file = NULL;        /**< Given input TSPLIB file */
+int supress_hash = ARROW_FALSE;
 
 /* Program options */
-#define NUM_OPTS 1
+#define NUM_OPTS 2
 arrow_option options[NUM_OPTS] = 
 {
     {'i', "input", "TSPLIB input file", 
-        ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE}
+        ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE},
+    {'h', "supress-hash", "do not create hash table",
+        ARROW_OPTION_INT, &supress_hash, ARROW_FALSE, ARROW_FALSE}
 };
 char *desc = "Tests the hashing functions.";
 char *usage = "-i tsplib.tsp";
@@ -39,7 +42,7 @@ main(int argc, char *argv[])
     /* Try and read the problem file and its info */
     if(!arrow_problem_read(input_file, &problem))
         return EXIT_FAILURE;
-    if(!arrow_problem_info_get(&problem, &info))
+    if(!arrow_problem_info_get(&problem, !supress_hash, &info))
         return EXIT_FAILURE;
     
     /* Create hash table */

@@ -457,6 +457,7 @@ typedef struct arrow_problem_info
     int cost_list_length;   /**< length of cost list. */
     int min_cost;           /**< smallest cost in problem. */
     int max_cost;           /**< largest cost in problem. */
+    arrow_hash *hash;       /**< hash table structure */
 } arrow_problem_info;
 
 /**
@@ -477,10 +478,12 @@ arrow_problem_destruct(arrow_problem *problem);
 /**
  *  @brief  Builds ordered cost list and finds min/max cost in a problem.
  *  @param  problem [in] problem data structure
+ *  @param  create_hash [in] if true will also create hash table of cost list 
  *  @param  info [out] problem info data structure
  */
 int
-arrow_problem_info_get(arrow_problem *problem, arrow_problem_info *info);
+arrow_problem_info_get(arrow_problem *problem, int create_hash,
+                       arrow_problem_info *info);
 
 /**
  *  @brief  Deallocates problem info data structure.
