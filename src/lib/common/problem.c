@@ -198,6 +198,14 @@ arrow_problem_info_get(arrow_problem *problem, int create_hash,
     info->min_cost = min_cost;
     info->max_cost = max_cost;
     
+    /* (optionally) create hash table */
+    info->hash.num_keys = 0;
+    if(create_hash)
+    {
+        arrow_hash_cost_list(info->cost_list, info->cost_list_length, 
+                             &(info->hash));
+    }
+    
 CLEANUP:
     arrow_bintree_destruct(&tree);
     return ret;
@@ -208,6 +216,8 @@ arrow_problem_info_destruct(arrow_problem_info *info)
 {
     if(info->cost_list != NULL)
         free(info->cost_list);
+    if(info->hash.num_keys > 0)
+        arrow_hash_destruct(&(info->hash));
 }
 
 void

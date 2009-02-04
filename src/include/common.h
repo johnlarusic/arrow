@@ -457,7 +457,7 @@ typedef struct arrow_problem_info
     int cost_list_length;   /**< length of cost list. */
     int min_cost;           /**< smallest cost in problem. */
     int max_cost;           /**< largest cost in problem. */
-    arrow_hash *hash;       /**< hash table structure */
+    arrow_hash hash;       /**< hash table structure */
 } arrow_problem_info;
 
 /**

@@ -20,7 +20,7 @@ arrow_option options[NUM_OPTS] =
 {
     {'i', "input", "TSPLIB input file", 
         ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE},
-    {'h', "supress-hash", "do not create hash table",
+    {'H', "supress-hash", "do not create hash table",
         ARROW_OPTION_INT, &supress_hash, ARROW_FALSE, ARROW_FALSE}
 };
 char *desc = "Tests the hashing functions.";
@@ -33,7 +33,6 @@ main(int argc, char *argv[])
     int i;
     arrow_problem problem;
     arrow_problem_info info;
-    arrow_hash hash;
     
     /* Read program arguments */
     if(!arrow_options_parse(NUM_OPTS, options, desc, usage, argc, argv, NULL))
@@ -45,20 +44,23 @@ main(int argc, char *argv[])
     if(!arrow_problem_info_get(&problem, !supress_hash, &info))
         return EXIT_FAILURE;
     
-    /* Create hash table */
-    arrow_hash_cost_list(info.cost_list, info.cost_list_length, &hash);
-    
     /* Check to make sure the hash table is working properly */
-    for(i = 0; i < info.cost_list_length; i++)
+    if(info.hash.num_keys > 0)
     {
-        int cost = info.cost_list[i];
-        unsigned int k = arrow_hash_search(&hash, cost);
-        printf("%d\t%d\t%s\t%d\n", i, cost, hash.vector[i], k);
+        for(i = 0; i < info.cost_list_length; i++)
+        {
+            int cost = info.cost_list[i];
+            unsigned int k = arrow_hash_search(&(info.hash), cost);
+            printf("%d\t%d\t%s\t%d\n", i, cost, info.hash.vector[i], k);
+        }
+        printf("\n");
     }
-    printf("\n");
+    else
+    {
+        printf("Hash table not created as per user option.\n");
+    }
         
     /* Free up the structures */
-    arrow_hash_destruct(&hash);
     arrow_problem_info_destruct(&info);
     arrow_problem_destruct(&problem);
     return EXIT_SUCCESS;
