@@ -1,0 +1,20 @@
+--- INCLUDE/util.h	2003-11-30 08:19:48.000000000 -0800
++++ INCLUDE/util.h	2008-08-27 23:40:30.000000000 -0700
+@@ -458,9 +458,15 @@ int
+ 
+ #undef  CCUTIL_EDGELEN_FUNCTIONPTR
+ 
++struct CCdatagroup;
+ typedef struct CCdata_user {
+-    double  *x;
+-    double  *y;
++    void *data;
++    int  
++        (*edgelen) (int i, int j, struct CCdatagroup *dat),
++        (*copy_datagroup) (int ncount, struct CCdatagroup *in, 
++                           struct CCdatagroup *out);
++    void
++        (*free_userdat) (struct CCdata_user *userdat);
+ } CCdata_user;
+ 
+ typedef struct CCdata_rhvector {

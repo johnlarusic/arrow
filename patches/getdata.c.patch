@@ -1,0 +1,203 @@
+--- UTIL/getdata.c	2003-11-30 10:14:13.000000000 -0800
++++ UTIL/getdata.c	2008-08-28 15:56:43.000000000 -0700
+@@ -1391,8 +1391,17 @@ int CCutil_copy_datagroup (int ncount, C
+     CCutil_dat_setnorm (outdat, indat->norm);
+ 
+     if (indat->norm == CC_USER) {
+-        fprintf (stderr, "CCutil_copy_datagroup not set up for user norm\n");
+-        return 1;
++        printf ("copying usernorm\n");
++        if (indat->userdat.copy_datagroup > 0) {
++            rval = indat->userdat.copy_datagroup(ncount, indat, outdat);
++            if (rval) {
++                fprintf (stderr, "user copy_datagroup failed\n"); goto CLEANUP;
++            }
++        }
++        else {
++            fprintf (stderr, "CCutil_copy_datagroup not set up for user norm\n");
++            return 1;
++        }
+     }
+ 
+     if (indat->norm == CC_RHMAP1 || indat->norm == CC_RHMAP2 ||
+@@ -3755,28 +3764,7 @@ static int read_user (char *datname, int
+ static int build_user (int *ncount, CCdata_user *userdat, CCrandstate *rstate,
+         int gridsize, CC_UNUSED int allow_dups)
+ {
+-    int i;
+-    
+-    userdat->x = (double *) NULL;
+-    userdat->y = (double *) NULL;
+-
+-    printf ("Random %d point set\n", *ncount); fflush (stdout);
+-    userdat->x = CC_SAFE_MALLOC (*ncount, double);
+-    userdat->y = CC_SAFE_MALLOC (*ncount, double);
+-    if (userdat->x == (double *) NULL ||
+-        userdat->y == (double *) NULL) {
+-        goto FAILURE;
+-    }
+-    for (i=0; i<*ncount; i++) {
+-        userdat->x[i] = (double) (CCutil_lprand (rstate) % gridsize);
+-        userdat->y[i] = (double) (CCutil_lprand (rstate) % gridsize);
+-    }
+     return 0;
+-
+- FAILURE:
+-    CC_IFFREE (userdat->x, double);
+-    CC_IFFREE (userdat->y, double);
+-    return 1;
+ }
+ 
+ /****************************************************************************/
+@@ -3791,41 +3779,7 @@ static int build_user (int *ncount, CCda
+ /****************************************************************************/
+ static int read_user_binary (char *datname, int *ncount, CCdata_user *userdat)
+ {
+-    int i;
+-    CC_SFILE *f = (CC_SFILE *) NULL;
+-    int xi;
+-    int yi;
+-    
+-    userdat->x = (double *) NULL;
+-    userdat->y = (double *) NULL;
+-
+-    f = CCutil_sopen (datname, "r");
+-    if (f == (CC_SFILE *) NULL) goto FAILURE;
+-    if (CCutil_sread_int (f, ncount)) goto FAILURE;
+-    printf ("nnodes = %d\n", *ncount); fflush (stdout);
+-    userdat->x = CC_SAFE_MALLOC (*ncount, double);
+-    userdat->y = CC_SAFE_MALLOC (*ncount, double);
+-    if (userdat->x == (double *) NULL ||
+-        userdat->y == (double *) NULL) {
+-        goto FAILURE;
+-    }
+-    for (i=0; i<*ncount; i++) {
+-        if (CCutil_sread_int (f, &xi) ||
+-            CCutil_sread_int (f, &yi)) {
+-            goto FAILURE;
+-        }
+-        userdat->x[i] = (double) xi;
+-        userdat->y[i] = (double) yi;
+-    }
+-    if (CCutil_sclose (f)) goto FAILURE;
+-    f = (CC_SFILE *) NULL;
+     return 0;
+-
+- FAILURE:
+-    CC_IFFREE (userdat->x, double);
+-    CC_IFFREE (userdat->y, double);
+-    if (f != (CC_SFILE *) NULL) CCutil_sclose (f);
+-    return 1;
+ }
+ 
+ /****************************************************************************/
+@@ -3838,38 +3792,7 @@ static int read_user_binary (char *datna
+ /****************************************************************************/
+ static int read_user_text (char *datname, int *ncount, CCdata_user *userdat)
+ {
+-    int i;
+-    FILE *datin = (FILE *) NULL;
+-    
+-    userdat->x = (double *) NULL;
+-    userdat->y = (double *) NULL;
+-
+-    datin = fopen (datname, "r");
+-    if (datin == (FILE *) NULL) {
+-        perror (datname);
+-        fprintf (stderr, "Unable to open %s for input\n", datname);
+-        goto FAILURE;
+-    }
+-    fscanf (datin, "%d", ncount);
+-    printf ("nnodes = %d\n", *ncount); fflush (stdout);
+-    userdat->x = CC_SAFE_MALLOC (*ncount, double);
+-    userdat->y = CC_SAFE_MALLOC (*ncount, double);
+-    if (userdat->x == (double *) NULL ||
+-        userdat->y == (double *) NULL) {
+-        goto FAILURE;
+-    }
+-    for (i=0; i<*ncount; i++) {
+-        fscanf (datin, "%lf%lf", &(userdat->x[i]), &(userdat->y[i]));
+-    }
+-    fclose (datin);
+-    datin = (FILE *) NULL;
+     return 0;
+-    
+- FAILURE:
+-    CC_IFFREE (userdat->x, double);
+-    CC_IFFREE (userdat->y, double);
+-    if (datin != (FILE *) NULL) fclose (datin);
+-    return 1;
+ }
+ 
+ /****************************************************************************/
+@@ -3879,14 +3802,6 @@ static int read_user_text (char *datname
+ /****************************************************************************/
+ static int writemaster_user (CC_SFILE *out, int ncount, CCdata_user *userdat)
+ {
+-    int i;
+-    
+-    for (i=0; i<ncount; i++) {
+-        if (CCutil_swrite_double (out, userdat->x[i]) ||
+-            CCutil_swrite_double (out, userdat->y[i])) {
+-            return 1;
+-        }
+-    }
+     return 0;
+ }
+ 
+@@ -3898,29 +3813,7 @@ static int writemaster_user (CC_SFILE *o
+ /****************************************************************************/
+ static int readmaster_user (CC_SFILE *in, int ncount, CCdata_user *userdat)
+ {
+-    int i;
+-
+-    userdat->x = (double *) NULL;
+-    userdat->y = (double *) NULL;
+-
+-    userdat->x = CC_SAFE_MALLOC (ncount, double);
+-    userdat->y = CC_SAFE_MALLOC (ncount, double);
+-    if (userdat->x == (double *) NULL ||
+-        userdat->y == (double *) NULL) {
+-        fprintf (stderr, "out of memory in readmaster_user\n");
+-        goto FAILURE;
+-    }
+-    for (i=0; i<ncount; i++) {
+-        if (CCutil_sread_double (in, &userdat->x[i]) ||
+-            CCutil_sread_double (in, &userdat->y[i])) {
+-            goto FAILURE;
+-        }
+-    }
+     return 0;
+- FAILURE:
+-    CC_IFFREE (userdat->x, double);
+-    CC_IFFREE (userdat->y, double);
+-    return 1;
+ }
+ 
+ /****************************************************************************/
+@@ -3930,25 +3823,6 @@ static int readmaster_user (CC_SFILE *in
+ /****************************************************************************/
+ static int permute_user (int ncount, CCdata_user *userdat, int *perm)
+ {
+-    double *temp = (double *) NULL;
+-    int i;
+-
+-    temp = CC_SAFE_MALLOC (ncount, double);
+-    if (temp == (double *) NULL) return 1;
+-    for (i=0; i<ncount; i++) {
+-        temp[i] = userdat->x[perm[i]];
+-    }
+-    CC_IFFREE (userdat->x, double);
+-    userdat->x = temp;
+-
+-    temp = CC_SAFE_MALLOC (ncount, double);
+-    if (temp == (double *) NULL) return 1;
+-    for (i=0; i<ncount; i++) {
+-        temp[i] = userdat->y[perm[i]];
+-    }
+-    CC_IFFREE (userdat->y, double);
+-    userdat->y = temp;
+-
+     return 0;
+ }
+ 

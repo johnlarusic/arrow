@@ -1,0 +1,87 @@
+--- UTIL/edgelen.c	2003-03-14 11:39:33.000000000 -0800
++++ UTIL/edgelen.c	2008-08-28 00:00:32.000000000 -0700
+@@ -568,74 +568,24 @@ void CCutil_freedatagroup (CCdatagroup *
+ 
+ static void init_userdat (CCdata_user *userdat)
+ {
+-    userdat->x = (double *) NULL;
+-    userdat->y = (double *) NULL;
++    userdat->data = NULL;
++    userdat->edgelen = edgelen_nonorm;
++    userdat->copy_datagroup = NULL;
++    userdat->free_userdat = NULL;
+ }
+ 
+ static void free_userdat (CCdata_user *userdat)
+ {
+-    CC_IFFREE (userdat->x, double);
+-    CC_IFFREE (userdat->y, double);
++    if(userdat->free_userdat > 0)
++        userdat->free_userdat(userdat);
++        
++    if(userdat->data != NULL)
++        free(userdat->data);
+ }
+ 
+ static int user_edgelen (int i, int j, CCdatagroup *dat)
+ {
+-    double dw = dat->userdat.x[i] - dat->userdat.x[j];
+-    double dw1 = dat->userdat.y[i] - dat->userdat.y[j];
+-    static const double ibm_xmult[7] = {1062.5,
+-        300.0,
+-        300.0,
+-        250.0,
+-        300.0,
+-        1000.0,
+-        154.6};
+-    static const double ibm_xadd[7] = {155.0 - 0.01 * 1062.5,
+-        197.5 - 0.05 * 300.0,
+-        212.5 - 0.10 * 300.0,
+-        227.5 - 0.15 * 250.0,
+-        240.5 - 0.20 * 300.0,
+-        255.0 - 0.25 * 1000.0,
+-        305.0 - 0.30 * 154.6};
+-    static const double ibm_ymult[7] = {1062.5,
+-        450.0,
+-        350.0,
+-        250.0,
+-        300.0,
+-        900.0,
+-        157.7};
+-    static const double ibm_yadd[7] = {150.0 - 0.01 * 1062.5,
+-        192.5 - 0.05 * 450.0,
+-        215.0 - 0.10 * 350.0,
+-        232.5 - 0.15 * 250.0,
+-        245.5 - 0.20 * 300.0,
+-        250.0 - 0.25 * 900.0,
+-        295.0 - 0.30 * 157.7};
+-
+-    if (dw < 0.0)
+-        dw = -dw;
+-    dw /= 25400.0;
+-    if (dw <= 0.01) {
+-        dw *= 15500.0;
+-    } else if (dw >= 0.30) {
+-        dw = dw * 154.6 + (305.0 - 0.3 * 154.6);
+-    } else {
+-        dw = dw * ibm_xmult[(int) (dw / 0.05)] +
+-            ibm_xadd[(int) (dw / 0.05)];
+-    }
+-    if (dw1 < 0.0)
+-        dw1 = -dw1;
+-    dw1 /= 25400.0;
+-    if (dw1 <= 0.01) {
+-        dw1 *= 15000.0;
+-    } else if (dw1 >= 0.30) {
+-        dw1 = dw1 * 157.7 + (295.0 - 0.3 * 157.7);
+-    } else {
+-        dw1 = dw1 * ibm_ymult[(int) (dw1 / 0.05)] +
+-            ibm_yadd[(int) (dw1 / 0.05)];
+-    }
+-    if (dw < dw1)
+-        dw = dw1;
+-    return (int) dw;
++    return dat->userdat.edgelen(i, j, dat);
+ }
+ 
+ static void init_rhdata (CCdata_rhvector *rhdat)
