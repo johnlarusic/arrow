@@ -46,7 +46,7 @@ arrow_option options[NUM_OPTS] =
         ARROW_OPTION_INT, &supress_ebst, ARROW_FALSE, ARROW_FALSE},
     {'S', "find-short-tour", "finds a (relatively) short BTSP tour",
         ARROW_OPTION_INT, &find_short_tour, ARROW_FALSE, ARROW_FALSE},
-    {'h', "supress-hash", "do not create hash table",
+    {'H', "supress-hash", "do not create hash table",
         ARROW_OPTION_INT, &supress_hash, ARROW_FALSE, ARROW_FALSE},
         
     {'l', "lower-bound", "initial lower bound",
