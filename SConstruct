@@ -69,16 +69,19 @@ executables = (
 ##############################################################################
 # GET USERS OPTIONS
 ##############################################################################
-opts = Options(options_file)
-opts.AddOptions(
-    PathOption('concorde_a', 'Path to Concorde library (concorde.a)', 
-               '.', PathOption.PathIsFile),
-    PathOption('concorde_h_dir', 'Path to Concorde header directory (concorde.h)',
-               '.', PathOption.PathIsDir),
-    PathOption('qsopt_a', 'Path to QSopt library (qsopt.a)', 
-               '.', PathOption.PathIsFile),
-    PathOption('qsopt_h_dir', 'Path to QSopt header (qsopt.h)',
-               '.', PathOption.PathIsDir)
+opts = Variables(options_file)
+opts.AddVariables(
+    PathVariable('concorde_a', 'Path to Concorde library (concorde.a)', 
+                 '.', PathVariable.PathIsFile),
+    PathVariable('concorde_h_dir', 'Path to Concorde header directory (concorde.h)',
+                 '.', PathVariable.PathIsDir),
+    PathVariable('lpsolver_a', 'Path to LP Solver library (qsopt.a/libcplex.a)', 
+                 '.', PathVariable.PathIsFile),
+    PathVariable('lpsolver_h_dir', 'Path to LP Solver header (qsopt.h/cplex80.h)',
+                 '.', PathVariable.PathIsDir),
+    ('lib_ccflags', 'General options to pass to C compiler for library', ''),
+    ('bin_ccflags', 'General options to pass to C compiler for binaries', ''),
+    ('bin_linkflags', 'General options to pass to linker for binaries', '')
 )
 
 ##############################################################################
@@ -91,9 +94,9 @@ for lib_file in lib_files:
 
 # Setup environment and build library
 env_lib = Environment(
-            options = opts,
-            CCFLAGS = '-Wall',
-            CPPPATH = ['"$concorde_h_dir"', '"$qsopt_h_dir"', inc_build]
+            variables = opts,
+            CCFLAGS = '"$lib_ccflags"',
+            CPPPATH = ['"$concorde_h_dir"', '"$lpsolver_h_dir"', inc_build]
           )
 env_lib.BuildDir(dir_build, dir_src)
 env_lib.Library(target = 'arrow', 
@@ -103,14 +106,15 @@ env_lib.Library(target = 'arrow',
 # COMPILE THE EXECUTABLES
 ##############################################################################
 env_bin = Environment(
-            options = opts,
-            CCFLAGS = '-Wall',
-            CPPPATH = ['"$concorde_h_dir"', '"$qsopt_h_dir"', inc_build],
+            variables = opts,
+            CCFLAGS = '"$bin_ccflags"',
+            LINKFLAGS = '"$bin_linkflags"',
+            CPPPATH = ['"$concorde_h_dir"', '"$lpsolver_h_dir"', inc_build],
             LIBS = ['arrow', 'cmph'],
             LIBPATH = ['.']
           )
 env_bin.Append(LIBS = [File(env_bin.subst('$concorde_a'))])
-env_bin.Append(LIBS = [File(env_bin.subst('$qsopt_a'))])
+env_bin.Append(LIBS = [File(env_bin.subst('$lpsolver_a'))])
 env_bin.BuildDir(bin_build, bin_src)
 
 for (name, src) in executables:
