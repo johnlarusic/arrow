@@ -136,8 +136,7 @@ main(int argc, char *argv[])
        fun_basic,
        1
     };
-    
-    
+        
     /* Setup BTSP parameters structure */
     arrow_btsp_params_init(&btsp_params);
     btsp_params.confirm_sol         = confirm_sol;
