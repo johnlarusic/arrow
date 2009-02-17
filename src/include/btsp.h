@@ -75,7 +75,7 @@ typedef struct arrow_btsp_fun
      *  @return ARROW_TRUE if the tour is feasible, ARROW_FALSE if not
      */
     int
-    (*feasible)(struct arrow_btsp_fun *fun, arrow_problem *problem,
+    (*feasible)(struct arrow_btsp_fun *fun, arrow_problem *base_problem,
                 int delta, double tour_length, int *tour);
 } arrow_btsp_fun;
 
@@ -191,7 +191,7 @@ arrow_btsp_fun_basic_shake_i(int shallow, int rand_min, int rand_max,
  *  @param  fun [out] function structure
  */
 int
-arrow_btsp_fun_constrained(int shallow, double feasible_length, int infinity,
+arrow_btsp_fun_cbtsp_basic(int shallow, double feasible_length, int infinity,
                            arrow_btsp_fun *fun);
 
 /**
