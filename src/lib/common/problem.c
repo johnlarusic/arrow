@@ -229,7 +229,9 @@ arrow_problem_print(arrow_problem *problem, int pretty)
     printf("Problem Cost Matrix:\n");
     printf("----------------------------------------");
     printf("--------------------------------------\n");
-    printf("Problem Size: %d\n", problem->size);
+    printf("Problem Size:  %d\n", problem->size);
+    printf("Shallow Data?: %s\n", (problem->shallow ? "Yes" : "No"));
+    printf("Symmetric?:    %s\n", (problem->symmetric ? "Yes" : "No"));
     
     /* Print cost matrix out into groups so they will (normally) fit into
      * an 80-character width terminal. */
