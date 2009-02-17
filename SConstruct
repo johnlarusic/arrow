@@ -50,7 +50,7 @@ lib_files = (
 # List of executables in the form of (NAME, SRC)
 executables = (
     ('2mb',         '2mb.c'),
-#    ('abtsp',       'abtsp.c'),
+    ('abtsp',       'abtsp.c'),
 #    ('abtsp-rai',   'abtsp-rai.c'),
     ('bap',         'bap.c'),
     ('bbssp',       'bbssp.c'),
