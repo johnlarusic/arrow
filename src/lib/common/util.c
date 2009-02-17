@@ -9,7 +9,7 @@
 #include "common.h"
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 inline int
 arrow_util_create_int_array(int size, int **array)

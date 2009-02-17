@@ -18,7 +18,7 @@ void
 print_help(int num_opts, arrow_option options[], char *description);
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 int
 arrow_options_parse(int num_opts, arrow_option options[], char *description, 

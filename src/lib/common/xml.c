@@ -9,7 +9,7 @@
 #include "common.h"
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 inline void
 arrow_xml_element_int(char *name, int value, FILE *out)

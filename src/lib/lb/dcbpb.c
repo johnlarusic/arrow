@@ -34,7 +34,7 @@ int
 max(int i, int j, int k, int l);
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 int
 arrow_dcbpb_solve(arrow_problem *problem, arrow_bound_result *result)
@@ -173,7 +173,7 @@ CLEANUP:
 }
 
 /****************************************************************************
- * Private function implemenations
+ * Private function implementations
  ****************************************************************************/
 void
 bottleneck_paths(arrow_problem *problem, int ignore, int **b)

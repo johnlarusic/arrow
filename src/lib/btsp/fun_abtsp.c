@@ -48,7 +48,7 @@ basic_atsp_feasible(arrow_btsp_fun *fun, arrow_problem *problem,
 
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 int
 arrow_btsp_fun_basic_atsp(int shallow, arrow_btsp_fun *fun)
@@ -63,7 +63,7 @@ arrow_btsp_fun_basic_atsp(int shallow, arrow_btsp_fun *fun)
 
 
 /****************************************************************************
- * Private function implemenations
+ * Private function implementations
  ****************************************************************************/
 int
 basic_atsp_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,

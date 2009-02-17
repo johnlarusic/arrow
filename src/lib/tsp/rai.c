@@ -85,7 +85,7 @@ max3(int i, int j, int k);
 
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 int 
 arrow_tsp_rai_solve(arrow_problem *problem, arrow_tsp_rai_params *params, 
@@ -171,7 +171,7 @@ CLEANUP:
 
 
 /****************************************************************************
- * Private function implemenations
+ * Private function implementations
  ****************************************************************************/
 void
 improve_tour(arrow_problem *problem, int solve_btsp, arrow_llist *best_tour, 

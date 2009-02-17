@@ -46,7 +46,7 @@ char *tour_file;                /**< Given TSPLIB tour file */
 int xml_output = ARROW_FALSE;   /**< Output output in XML format (or not) */
 
 /****************************************************************************
- * Function implemenations
+ * Function implementations
  ****************************************************************************/
 int 
 main(int argc, char *argv[])

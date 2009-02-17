@@ -10,7 +10,7 @@
 #include "btsp.h"
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 void
 arrow_btsp_solve_plan_init(arrow_btsp_solve_plan *plan)

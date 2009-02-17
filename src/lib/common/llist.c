@@ -17,7 +17,7 @@ int
 construct_item(arrow_llist_item **item, int value);
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 void
 arrow_llist_init(arrow_llist *list)
@@ -225,7 +225,7 @@ arrow_llist_to_array(arrow_llist *list, int *array)
 
 
 /****************************************************************************
- * Private function implemenations
+ * Private function implementations
  ****************************************************************************/
 int
 construct_item(arrow_llist_item **item, int value)

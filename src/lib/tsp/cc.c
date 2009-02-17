@@ -36,7 +36,7 @@ arrow_copy(int ncount, struct CCdatagroup *in, struct CCdatagroup *out);
 
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 void
 arrow_tsp_cc_lk_params_init(arrow_problem *problem, 
@@ -306,7 +306,7 @@ CLEANUP:
 
 
 /****************************************************************************
- * Private function implemenations
+ * Private function implementations
  ****************************************************************************/
 int
 build_initial_tour(int ncount, CCdatagroup *dat, CCedgegengroup *plan, 

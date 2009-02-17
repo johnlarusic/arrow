@@ -83,7 +83,7 @@ swap_nodes(arrow_heap *heap, int i, int j);
 
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 int
 arrow_heap_init(arrow_heap *heap, int max_size)

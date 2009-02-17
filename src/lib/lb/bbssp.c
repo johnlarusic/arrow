@@ -39,7 +39,7 @@ find_art_points(arrow_problem *problem, int max_cost, int node, int depth_num,
 
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 int
 arrow_bbssp_solve(arrow_problem *problem, arrow_problem_info *info, 
@@ -163,7 +163,7 @@ CLEANUP:
 
 
 /****************************************************************************
- * Private function implemenations
+ * Private function implementations
  ****************************************************************************/
 int
 find_art_points(arrow_problem *problem, int max_cost, int node, int depth_num, 

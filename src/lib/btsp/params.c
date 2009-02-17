@@ -10,7 +10,7 @@
 #include "btsp.h"
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 void
 arrow_btsp_params_init(arrow_btsp_params *params)

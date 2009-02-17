@@ -84,7 +84,7 @@ cc_destruct(arrow_problem *problem);
 
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 int
 arrow_btsp_fun_apply(arrow_btsp_fun *fun, arrow_problem *old_problem, 

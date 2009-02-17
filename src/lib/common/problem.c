@@ -1,7 +1,7 @@
 /**********************************************************doxygen*//** @file
  * @brief   Functions for working with problem data.
  *
- * Function implemenations for working with problem data, generally 
+ * Function implementations for working with problem data, generally 
  * manipulating the arrow_problem data structure.
  *
  * @author  John LaRusic
@@ -112,7 +112,7 @@ abtsp_destruct(arrow_problem *problem);
 
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 int
 arrow_problem_read(char *file_name, arrow_problem *problem)

@@ -11,7 +11,7 @@
 #include "lb.h"
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 int
 arrow_2mb_solve(arrow_problem *problem, arrow_bound_result *result)

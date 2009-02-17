@@ -28,7 +28,7 @@ feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps,
 
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 int 
 arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
@@ -251,7 +251,7 @@ CLEANUP:
 
 
 /****************************************************************************
- * Private function implemenations
+ * Private function implementations
  ****************************************************************************/
 int
 feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps, 

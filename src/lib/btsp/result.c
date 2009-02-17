@@ -10,7 +10,7 @@
 #include "btsp.h"
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 int
 arrow_btsp_result_init(arrow_problem *problem, arrow_btsp_result *result)

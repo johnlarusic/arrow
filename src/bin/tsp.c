@@ -40,7 +40,7 @@ char *program_name;             /**< Program name */
 char *input_file;               /**< Given input TSPLIB file */
 
 /****************************************************************************
- * Function implemenations
+ * Function implementations
  ****************************************************************************/
 int 
 main(int argc, char *argv[])

@@ -45,7 +45,7 @@ int stall_count = -1;
 int kicks = -1;
 
 /****************************************************************************
- * Function implemenations
+ * Function implementations
  ****************************************************************************/
 int 
 main(int argc, char *argv[])

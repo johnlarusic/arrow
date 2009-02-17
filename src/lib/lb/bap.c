@@ -63,7 +63,7 @@ ford_fulkerson_labeling(int n, int s, int t, int **res, int *label,
                         int *pred, int *flow,  int *list);
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 int
 arrow_bap_solve(arrow_problem *problem, arrow_problem_info *info, 
@@ -148,7 +148,7 @@ CLEANUP:
 }
 
 /****************************************************************************
- * Private function implemenations
+ * Private function implementations
  ****************************************************************************/
 void
 initialize_flow_data(arrow_problem *problem, int delta, int s, int t,

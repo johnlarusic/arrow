@@ -38,7 +38,7 @@ strongly_connected_dfs(arrow_problem *problem, int delta, int i,
                        int transpose, int *visited);
                        
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 int
 arrow_bscssp_solve(arrow_problem *problem, arrow_problem_info *info, 

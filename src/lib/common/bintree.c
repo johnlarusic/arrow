@@ -47,7 +47,7 @@ fill_array(arrow_bintree_node *node, int **array, int *pos);
 
 
 /****************************************************************************
- * Public function implemenations
+ * Public function implementations
  ****************************************************************************/
 void
 arrow_bintree_init(arrow_bintree *tree)
@@ -99,7 +99,7 @@ arrow_bintree_to_array(arrow_bintree *tree, int **array)
 
 
 /****************************************************************************
- * Private function implemenations
+ * Private function implementations
  ****************************************************************************/
 int
 construct_node(arrow_bintree_node **node, int value)
