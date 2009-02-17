@@ -70,7 +70,13 @@ basic_atsp_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
                     int delta, int i, int j)
 {
     int cost = base_problem->get_cost(base_problem, i, j);
-    return (cost <= delta ? 0 : cost);
+    
+    if(cost < 0)
+        return cost;
+    else if(cost <= delta)
+        return 0;
+    else
+        return cost;
 }
 
 void
@@ -92,11 +98,11 @@ basic_atsp_feasible(arrow_btsp_fun *fun, arrow_problem *problem,
         
         if(cost > delta)
             return ARROW_FALSE;
-            
+           
         if(cost < 0)
             trans_edges++;
     }
-    
+
     /* If an edge's cost is strictly less than 0, then it was introduced into
        the transformation from asymmetric to symmetric.  Any tour we find must
        use each of these edges in order for the tour to be valid. */
