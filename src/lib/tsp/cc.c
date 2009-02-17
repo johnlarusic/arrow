@@ -138,15 +138,17 @@ arrow_tsp_cc_lk_solve(arrow_problem *problem, arrow_tsp_cc_lk_params *params,
     
     /* Some of the following code is heavily copied from the find_tour
        method in Concorde's TSP/concorde.c */
-    arrow_debug("Entering arrow_tsp_lk_solve\n");
+    arrow_debug("Entering arrow_tsp_cc_lk_solve\n");
     
     /* Determine if we need to setup the userdat structure */
     if(problem->type == ARROW_PROBLEM_DATA_CONCORDE)
     {
+        arrow_debug("Using passed Concorde data structure\n");
         dat = (CCdatagroup *)problem->data;
     }
     else
     {
+        arrow_debug("Using passed Arrow data structure\n");
         dat = &arrow_data;
         CCutil_init_datagroup(dat);
         arrow_data.userdat.data = problem;
@@ -163,7 +165,7 @@ arrow_tsp_cc_lk_solve(arrow_problem *problem, arrow_tsp_cc_lk_params *params,
     }
     else
     {
-        arrow_debug(" - Using passed parameters.\n");
+        arrow_debug(" - Passed parameters.\n");
         lk_params = *params;
     }
     arrow_debug("     - random_restarts = %d\n", lk_params.random_restarts);
@@ -294,11 +296,11 @@ CLEANUP:
     end_time = arrow_util_zeit();
     result->total_time = end_time - start_time;
     
-    arrow_debug(" - Cleaning up...");
+    arrow_debug(" - Cleaning up\n");
     CC_IFFREE(cyc, int);
     CC_IFFREE(elist, int);
     if(params == NULL) arrow_tsp_cc_lk_params_destruct(&lk_params);
-    arrow_debug("done.\nLeaving arrow_tsp_lk_solve\n");
+    arrow_debug("Leaving arrow_tsp_cc_lk_solve\n");
     return ret;
 }
 
