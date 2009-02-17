@@ -23,12 +23,13 @@ int confirm_sol = ARROW_FALSE;
 int supress_ebst = ARROW_FALSE;
 int find_short_tour = ARROW_FALSE;
 int supress_hash = ARROW_FALSE;
+int deep_copy = ARROW_FALSE;
 int lower_bound = -1;
 int upper_bound = INT_MAX;
 int basic_attempts = 1;
 
 /* Program options */
-#define NUM_OPTS 14
+#define NUM_OPTS 15
 arrow_option options[NUM_OPTS] = 
 {
     {'i', "input", "TSPLIB input file", 
@@ -55,6 +56,8 @@ arrow_option options[NUM_OPTS] =
         ARROW_OPTION_INT, &find_short_tour, ARROW_FALSE, ARROW_FALSE},
     {'H', "supress-hash", "do not create hash table",
         ARROW_OPTION_INT, &supress_hash, ARROW_FALSE, ARROW_FALSE},
+    {'d', "deep-copy", "stores data in full cost-matrix",
+        ARROW_OPTION_INT, &deep_copy, ARROW_FALSE, ARROW_FALSE},
         
     {'l', "lower-bound", "initial lower bound",
         ARROW_OPTION_INT, &lower_bound, ARROW_FALSE, ARROW_TRUE},
@@ -119,7 +122,7 @@ main(int argc, char *argv[])
     printf("Infinity: %d\n", edge_infinity);
     
     /* Create transformed problem */
-    if(!arrow_problem_abtsp_to_sbtsp(ARROW_TRUE, &atsp_problem, edge_infinity, &problem))
+    if(!arrow_problem_abtsp_to_sbtsp(deep_copy, &atsp_problem, edge_infinity, &problem))
     {
         arrow_print_error("Could not create symmetric transformation.");
         arrow_problem_destruct(&atsp_problem);
@@ -145,7 +148,7 @@ main(int argc, char *argv[])
     lk_params.length_bound = (edge_infinity * -1.0) * atsp_problem.size;
         
     /* Setup necessary function structures */
-    if(arrow_btsp_fun_basic_atsp(ARROW_FALSE, &fun_basic) != ARROW_SUCCESS)
+    if(arrow_btsp_fun_basic_atsp(deep_copy, &fun_basic) != ARROW_SUCCESS)
         return EXIT_FAILURE;
     #define SOLVE_STEPS 1
     arrow_btsp_solve_plan steps[SOLVE_STEPS] = 
