@@ -16,6 +16,7 @@ char *input_file = NULL;
 char *xml_file = NULL;
 char *tour_file = NULL;
 double length = DBL_MAX;
+int edge_infinity = -1;
 int random_restarts = 5;
 int stall_count = -1;
 int kicks = -1;
@@ -34,7 +35,7 @@ int random_seed = 0;
 
 
 /* Program options */
-#define NUM_OPTS 19
+#define NUM_OPTS 20
 arrow_option options[NUM_OPTS] = 
 {
     {'i', "input", "TSPLIB input file", 
@@ -47,6 +48,8 @@ arrow_option options[NUM_OPTS] =
     {'L', "length", "maximum tour length",
         ARROW_OPTION_DOUBLE, &length, ARROW_TRUE, ARROW_TRUE},
     
+    {'I', "infinity", "value to use as infinity",
+        ARROW_OPTION_INT, &edge_infinity, ARROW_FALSE, ARROW_TRUE},
     {'r', "restarts", "number of random restarts",
         ARROW_OPTION_INT, &random_restarts, ARROW_FALSE, ARROW_TRUE},
     {'s', "stall-count", "max number of 4-swaps w/o progress",
@@ -95,7 +98,7 @@ main(int argc, char *argv[])
     arrow_problem_info info;
     arrow_tsp_cc_lk_params lk_params;
     arrow_btsp_fun fun_basic;
-    //arrow_btsp_fun fun_shake;
+    arrow_btsp_fun fun_shake;
     arrow_btsp_result result;
     arrow_btsp_params btsp_params;
     
@@ -124,6 +127,13 @@ main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
     
+    /* Calculate a value for infinity if necessary */
+    if(edge_infinity < 0)
+    {
+        edge_infinity = (info.max_cost + shake_rand_max) * 2;
+        printf("infinity: %d\n", edge_infinity);
+    }
+    
     /* Initialize random number generator */
     arrow_util_random_seed(random_seed);
     
@@ -150,24 +160,28 @@ main(int argc, char *argv[])
     lk_params.length_bound = length;
     
     /* Setup necessary function structures */
-    if(!arrow_btsp_fun_cbtsp_basic(deep_copy, length, length + 1, &fun_basic))
+    if(!arrow_btsp_fun_cbtsp_basic(deep_copy, length, edge_infinity, &fun_basic))
         return EXIT_FAILURE;
-    /*    
-    if(!arrow_btsp_fun_constrained_shake(ARROW_FALSE, length, length + 1, 
-                                         shake_rand_min, shake_rand_max, 
-                                         &problem, &info, &fun_con_shake))
+    if(!arrow_btsp_fun_cbtsp_shake(deep_copy, length, edge_infinity, 
+                                   shake_rand_min, shake_rand_max, &info, 
+                                   &fun_shake))
         return EXIT_FAILURE;
-    */
     
-    #define SOLVE_STEPS 1
+    #define SOLVE_STEPS 2
     arrow_btsp_solve_plan steps[SOLVE_STEPS] = 
     {
-       {
+        {
            ARROW_TSP_CC_LK,                 /* TSP solver */
            (void *)&lk_params,              /* TSP solver parameters */
            fun_basic,                       /* fun (cost matrix function) */
            basic_attempts                   /* attempts */
-       }
+        },
+        {
+            ARROW_TSP_CC_LK,                 /* TSP solver */
+            (void *)&lk_params,              /* TSP solver parameters */
+            fun_shake,                   /* fun (cost matrix function) */
+            shake_attempts                   /* attempts */
+        }
     };
     arrow_btsp_solve_plan confirm_plan = 
     {
@@ -277,6 +291,7 @@ main(int argc, char *argv[])
 CLEANUP:
     arrow_btsp_result_destruct(&result);
     arrow_btsp_fun_destruct(&fun_basic);
+    arrow_btsp_fun_destruct(&fun_shake);
     arrow_tsp_cc_lk_params_destruct(&lk_params);
     arrow_problem_destruct(&problem);
     return ret;
