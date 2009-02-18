@@ -120,12 +120,20 @@ int
 arrow_bintree_insert(arrow_bintree *tree, int value);
 
 /**
- *  @brief  Initializes the binary tree data structure.
+ *  @brief  Initializes the binary tree data structure into an existing array.
+ *  @param  tree [out] binary tree structure
+ *  @param  array [out] array to be filled
+ */
+void
+arrow_bintree_to_array(arrow_bintree *tree, int *array);
+
+/**
+ *  @brief  Initializes the binary tree data structure into a new array.
  *  @param  tree [out] binary tree structure
  *  @param  array [out] array to be created and filled
  */
 int
-arrow_bintree_to_array(arrow_bintree *tree, int **array);
+arrow_bintree_to_new_array(arrow_bintree *tree, int **array);
 
 /**
  *  @brief  Prints out the values of the binary tree.

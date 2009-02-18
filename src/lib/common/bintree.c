@@ -39,11 +39,11 @@ insert_at(arrow_bintree *tree, arrow_bintree_node *node, int value);
 /**
  *  @brief  Recursive helper function to fill an array in nondecreasing order.
  *  @param  node [out] pointer to an node structure
- *  @param  array [out] pointer to array to fill
+ *  @param  array [out] array to fill
  *  @param  pos [out] current position in array
  */
 void
-fill_array(arrow_bintree_node *node, int **array, int *pos);
+fill_array(arrow_bintree_node *node, int *array, int *pos);
 
 
 /****************************************************************************
@@ -83,18 +83,20 @@ arrow_bintree_insert(arrow_bintree *tree, int value)
     return ret;
 }
 
-int
-arrow_bintree_to_array(arrow_bintree *tree, int **array)
+void
+arrow_bintree_to_array(arrow_bintree *tree, int *array)
 {
-    int ret, pos;
-    
-    ret = arrow_util_create_int_array(tree->size, array);
-    if(ret == ARROW_SUCCESS)
-    {
-        pos = 0;
-        fill_array(tree->root_node, array, &pos);
-    }
-    return ret;
+    int pos = 0;
+    fill_array(tree->root_node, array, &pos);
+}
+
+int
+arrow_bintree_to_new_array(arrow_bintree *tree, int **array)
+{
+    if(!arrow_util_create_int_array(tree->size, array))
+        return ARROW_FAILURE;
+    arrow_bintree_to_array(tree, *array);
+    return ARROW_SUCCESS;
 }
 
 
@@ -187,11 +189,11 @@ insert_at(arrow_bintree *tree, arrow_bintree_node *node, int value)
 }
 
 void
-fill_array(arrow_bintree_node *node, int **array, int *pos)
+fill_array(arrow_bintree_node *node, int *array, int *pos)
 {
     if(node->has_left_node)
         fill_array(node->left_node, array, pos);
-    (*array)[*pos] = node->data;
+    array[*pos] = node->data;
     (*pos)++;
     if(node->has_right_node)
         fill_array(node->right_node, array, pos);
