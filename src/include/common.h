@@ -493,6 +493,15 @@ void
 arrow_problem_info_destruct(arrow_problem_info *info);
 
 /**
+ *  @brief  Finds the position of the given cost into the sorted list
+ *  @param  info [in] problem info data structure
+ *  @param  cost [in] cost to look up
+ *  @param  pos [out] position of given cost in sorted list
+ */
+int
+arrow_problem_info_cost_index(arrow_problem_info *info, int cost, int *pos);
+
+/**
  *  @brief  Prints out information about a problem.
  *  @param  problem [in] problem data structure
  *  @param  pretty [in] if ARROW_TRUE, formats output to 8 nodes/row

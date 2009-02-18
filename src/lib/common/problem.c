@@ -220,6 +220,31 @@ arrow_problem_info_destruct(arrow_problem_info *info)
         arrow_hash_destruct(&(info->hash));
 }
 
+int
+arrow_problem_info_cost_index(arrow_problem_info *info, int cost, int *pos)
+{
+    int ret = ARROW_SUCCESS;
+    
+    *pos = -1;
+    if(info->hash.num_keys > 0)
+    {
+        *pos = (int)arrow_hash_search(&(info->hash), cost);
+        if(*pos < 0)
+            ret = ARROW_FAILURE;
+    }
+    else
+    {
+        if(!arrow_util_binary_search(info->cost_list, info->cost_list_length, 
+                                     cost, pos))
+        {
+            arrow_print_error("Could not find cost in cost list");
+            ret = ARROW_FAILURE;
+        }
+    }
+    
+    return ret;
+}
+
 void
 arrow_problem_print(arrow_problem *problem, int pretty)
 {
