@@ -57,6 +57,13 @@ typedef struct arrow_btsp_fun
     int 
     (*get_cost)(struct arrow_btsp_fun *fun, arrow_problem *base_problem,
                 int delta, int i, int j);
+                
+    /**
+     *  @brief  Initializes the function structure for a new problem
+     *  @param  fun [out] function structure
+     */
+    int 
+    (*initialize)(struct arrow_btsp_fun *fun);
     
     /**
      *  @brief  Destructs the function structure
@@ -199,20 +206,16 @@ arrow_btsp_fun_cbtsp_basic(int shallow, double feasible_length, int infinity,
  *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
  *  @param  feasible_length [in] length of feasible tour
  *  @param  infinity [in] value to use as "infinity"
- *  @param  rand_min [in] minimum random value to generate
- *  @param  rand_max [in] maximum random value to generate
- *  @param  problem [in] the problem the shake is based upon
+ *  @param  random_min [in] minimum random value to generate
+ *  @param  random_max [in] maximum random value to generate
  *  @param  info [in] information about the original problem
  *  @param  fun [out] function structure
  */
-/*
 int
-arrow_btsp_fun_constrained_shake(int shallow, double feasible_length, 
-                                 int infinity, int rand_min, int rand_max,
-                                 arrow_problem *problem, 
-                                 arrow_problem_info *info, 
-                                 arrow_btsp_fun *fun);
-*/
+arrow_btsp_fun_cbtsp_shake(int shallow, double feasible_length, int infinity,
+                           int random_min, int random_max, 
+                           arrow_problem_info *info, arrow_btsp_fun *fun);
+                                 
 
 /****************************************************************************
  *  params.c
