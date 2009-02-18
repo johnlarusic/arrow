@@ -192,9 +192,9 @@ sbtsp_shake_1_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
     }
     
     if(cost <= delta)
-        return cost + data->random_list[pos];
+        return 0;
     else
-        return data->infinity;
+        return cost + data->random_list[pos];
 }
 
 int
