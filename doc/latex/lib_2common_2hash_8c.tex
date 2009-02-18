@@ -1,0 +1,93 @@
+\hypertarget{lib_2common_2hash_8c}{
+\section{lib/common/hash.c File Reference}
+\label{lib_2common_2hash_8c}\index{lib/common/hash.c@{lib/common/hash.c}}
+}
+Minimal perfect hashing functions. 
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{lib_2common_2hash_8c_23c1e4bb173c43287c42f51c94126c2c}{arrow\_\-hash\_\-cost\_\-list} (int $\ast$cost\_\-list, int cost\_\-list\_\-length, \hyperlink{structarrow__hash}{arrow\_\-hash} $\ast$hash)
+\begin{CompactList}\small\item\em Creates a hash table from a list of unique costs. \item\end{CompactList}\item 
+void \hyperlink{lib_2common_2hash_8c_f7f552485d4a2c7dfbaa82156e264b4e}{arrow\_\-hash\_\-destruct} (\hyperlink{structarrow__hash}{arrow\_\-hash} $\ast$hash)
+\begin{CompactList}\small\item\em Destructs a hashtable data structure. \item\end{CompactList}\item 
+unsigned int \hyperlink{lib_2common_2hash_8c_237811011cb0d4e84ec15972040b67d3}{arrow\_\-hash\_\-search} (\hyperlink{structarrow__hash}{arrow\_\-hash} $\ast$hash, int key)
+\begin{CompactList}\small\item\em Finds id associated with key in hashtable. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Minimal perfect hashing functions. 
+
+Methods for generating a minimal perfect hash.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{lib_2common_2hash_8c-source}{hash.c}.
+
+\subsection{Function Documentation}
+\hypertarget{lib_2common_2hash_8c_23c1e4bb173c43287c42f51c94126c2c}{
+\index{lib/common/hash.c@{lib/common/hash.c}!arrow\_\-hash\_\-cost\_\-list@{arrow\_\-hash\_\-cost\_\-list}}
+\index{arrow\_\-hash\_\-cost\_\-list@{arrow\_\-hash\_\-cost\_\-list}!lib/common/hash.c@{lib/common/hash.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-hash\_\-cost\_\-list (int $\ast$ {\em cost\_\-list}, \/  int {\em cost\_\-list\_\-length}, \/  {\bf arrow\_\-hash} $\ast$ {\em hash})}}
+\label{lib_2common_2hash_8c_23c1e4bb173c43287c42f51c94126c2c}
+
+
+Creates a hash table from a list of unique costs. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em cost\_\-list}]\mbox{[}in\mbox{]} list of costs \item[{\em cost\_\-list\_\-length}]\mbox{[}in\mbox{]} length of cost list \item[{\em hash}]\mbox{[}out\mbox{]} hashtable data structure \end{description}
+\end{Desc}
+
+
+Definition at line 12 of file hash.c.
+
+References ARROW\_\-HASH\_\-BUFFER\_\-LENGTH, ARROW\_\-SUCCESS, arrow\_\-hash::data, arrow\_\-hash::num\_\-keys, arrow\_\-hash::source, arrow\_\-hash::vector, and arrow\_\-hash::vector\_\-space.
+
+Referenced by arrow\_\-problem\_\-info\_\-get().\hypertarget{lib_2common_2hash_8c_f7f552485d4a2c7dfbaa82156e264b4e}{
+\index{lib/common/hash.c@{lib/common/hash.c}!arrow\_\-hash\_\-destruct@{arrow\_\-hash\_\-destruct}}
+\index{arrow\_\-hash\_\-destruct@{arrow\_\-hash\_\-destruct}!lib/common/hash.c@{lib/common/hash.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-hash\_\-destruct ({\bf arrow\_\-hash} $\ast$ {\em hash})}}
+\label{lib_2common_2hash_8c_f7f552485d4a2c7dfbaa82156e264b4e}
+
+
+Destructs a hashtable data structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em hash}]\mbox{[}out\mbox{]} hashtable data structure \end{description}
+\end{Desc}
+
+
+Definition at line 40 of file hash.c.
+
+References arrow\_\-hash::data, arrow\_\-hash::num\_\-keys, arrow\_\-hash::source, arrow\_\-hash::vector, and arrow\_\-hash::vector\_\-space.
+
+Referenced by arrow\_\-problem\_\-info\_\-destruct().\hypertarget{lib_2common_2hash_8c_237811011cb0d4e84ec15972040b67d3}{
+\index{lib/common/hash.c@{lib/common/hash.c}!arrow\_\-hash\_\-search@{arrow\_\-hash\_\-search}}
+\index{arrow\_\-hash\_\-search@{arrow\_\-hash\_\-search}!lib/common/hash.c@{lib/common/hash.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}unsigned int arrow\_\-hash\_\-search ({\bf arrow\_\-hash} $\ast$ {\em hash}, \/  int {\em key})}}
+\label{lib_2common_2hash_8c_237811011cb0d4e84ec15972040b67d3}
+
+
+Finds id associated with key in hashtable. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em hash}]\mbox{[}in\mbox{]} hash table data structure \item[{\em key}]\mbox{[}in\mbox{]} key to look up \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]the id of the associated key \end{Desc}
+
+
+Definition at line 50 of file hash.c.
+
+References ARROW\_\-HASH\_\-BUFFER\_\-LENGTH, and arrow\_\-hash::data.
+
+Referenced by arrow\_\-problem\_\-info\_\-cost\_\-index(), and main().

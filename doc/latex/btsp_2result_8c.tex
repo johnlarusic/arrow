@@ -1,0 +1,114 @@
+\hypertarget{btsp_2result_8c}{
+\section{lib/btsp/result.c File Reference}
+\label{btsp_2result_8c}\index{lib/btsp/result.c@{lib/btsp/result.c}}
+}
+BTSP result structure and methods. 
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}btsp.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{btsp_2result_8c_b78b71959db64c692a9e16832df9c096}{arrow\_\-btsp\_\-result\_\-init} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Initializes the BTSP result structure. \item\end{CompactList}\item 
+void \hyperlink{btsp_2result_8c_11d150bd3219a6ba3d9ccd3f0c952b2a}{arrow\_\-btsp\_\-result\_\-destruct} (\hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Destructs a BTSP result structure. \item\end{CompactList}\item 
+void \hyperlink{btsp_2result_8c_102ec7a76adc418a3381c3234a5f0207}{arrow\_\-btsp\_\-result\_\-print\_\-xml} (\hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result, FILE $\ast$out)
+\begin{CompactList}\small\item\em Prints results out in XML format. \item\end{CompactList}\item 
+void \hyperlink{btsp_2result_8c_0da381fd362478a3abbfd73cc3df460b}{arrow\_\-btsp\_\-result\_\-print\_\-pretty} (\hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result, FILE $\ast$out)
+\begin{CompactList}\small\item\em Prints results out. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+BTSP result structure and methods. 
+
+Bottleneck traveling salesman problem results structure.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{btsp_2result_8c-source}{result.c}.
+
+\subsection{Function Documentation}
+\hypertarget{btsp_2result_8c_11d150bd3219a6ba3d9ccd3f0c952b2a}{
+\index{btsp/result.c@{btsp/result.c}!arrow\_\-btsp\_\-result\_\-destruct@{arrow\_\-btsp\_\-result\_\-destruct}}
+\index{arrow\_\-btsp\_\-result\_\-destruct@{arrow\_\-btsp\_\-result\_\-destruct}!btsp/result.c@{btsp/result.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-result\_\-destruct ({\bf arrow\_\-btsp\_\-result} $\ast$ {\em result})}}
+\label{btsp_2result_8c_11d150bd3219a6ba3d9ccd3f0c952b2a}
+
+
+Destructs a BTSP result structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em result}]\mbox{[}out\mbox{]} BTSP result structure \end{description}
+\end{Desc}
+
+
+Definition at line 40 of file result.c.
+
+References arrow\_\-btsp\_\-result::tour.
+
+Referenced by arrow\_\-btsp\_\-solve(), and main().\hypertarget{btsp_2result_8c_b78b71959db64c692a9e16832df9c096}{
+\index{btsp/result.c@{btsp/result.c}!arrow\_\-btsp\_\-result\_\-init@{arrow\_\-btsp\_\-result\_\-init}}
+\index{arrow\_\-btsp\_\-result\_\-init@{arrow\_\-btsp\_\-result\_\-init}!btsp/result.c@{btsp/result.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-result\_\-init ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em result})}}
+\label{btsp_2result_8c_b78b71959db64c692a9e16832df9c096}
+
+
+Initializes the BTSP result structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em result}]\mbox{[}out\mbox{]} BTSP result structure \end{description}
+\end{Desc}
+
+
+Definition at line 16 of file result.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-SUCCESS, ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, and arrow\_\-btsp\_\-result::tour\_\-length.
+
+Referenced by arrow\_\-btsp\_\-solve(), and main().\hypertarget{btsp_2result_8c_0da381fd362478a3abbfd73cc3df460b}{
+\index{btsp/result.c@{btsp/result.c}!arrow\_\-btsp\_\-result\_\-print\_\-pretty@{arrow\_\-btsp\_\-result\_\-print\_\-pretty}}
+\index{arrow\_\-btsp\_\-result\_\-print\_\-pretty@{arrow\_\-btsp\_\-result\_\-print\_\-pretty}!btsp/result.c@{btsp/result.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-result\_\-print\_\-pretty ({\bf arrow\_\-btsp\_\-result} $\ast$ {\em result}, \/  FILE $\ast$ {\em out})}}
+\label{btsp_2result_8c_0da381fd362478a3abbfd73cc3df460b}
+
+
+Prints results out. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em result}]\mbox{[}in\mbox{]} result structure \item[{\em out}]\mbox{[}out\mbox{]} file to wrtie to \end{description}
+\end{Desc}
+
+
+Definition at line 95 of file result.c.
+
+References ARROW\_\-TRUE, arrow\_\-tsp\_\-long\_\-name(), ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-btsp\_\-result::optimal, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-result::total\_\-time, and arrow\_\-btsp\_\-result::tour\_\-length.
+
+Referenced by main().\hypertarget{btsp_2result_8c_102ec7a76adc418a3381c3234a5f0207}{
+\index{btsp/result.c@{btsp/result.c}!arrow\_\-btsp\_\-result\_\-print\_\-xml@{arrow\_\-btsp\_\-result\_\-print\_\-xml}}
+\index{arrow\_\-btsp\_\-result\_\-print\_\-xml@{arrow\_\-btsp\_\-result\_\-print\_\-xml}!btsp/result.c@{btsp/result.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-result\_\-print\_\-xml ({\bf arrow\_\-btsp\_\-result} $\ast$ {\em result}, \/  FILE $\ast$ {\em out})}}
+\label{btsp_2result_8c_102ec7a76adc418a3381c3234a5f0207}
+
+
+Prints results out in XML format. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em result}]\mbox{[}in\mbox{]} result structure \item[{\em out}]\mbox{[}out\mbox{]} file to wrtie to \end{description}
+\end{Desc}
+
+
+Definition at line 47 of file result.c.
+
+References arrow\_\-tsp\_\-short\_\-name(), ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-xml\_\-attribute\_\-end(), arrow\_\-xml\_\-attribute\_\-int(), arrow\_\-xml\_\-attribute\_\-start(), arrow\_\-xml\_\-element\_\-bool(), arrow\_\-xml\_\-element\_\-close(), arrow\_\-xml\_\-element\_\-double(), arrow\_\-xml\_\-element\_\-end(), arrow\_\-xml\_\-element\_\-int(), arrow\_\-xml\_\-element\_\-open(), arrow\_\-xml\_\-element\_\-start(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-btsp\_\-result::optimal, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-result::total\_\-time, and arrow\_\-btsp\_\-result::tour\_\-length.
+
+Referenced by main().

@@ -1,0 +1,70 @@
+\hypertarget{tsp_2result_8c}{
+\section{lib/tsp/result.c File Reference}
+\label{tsp_2result_8c}\index{lib/tsp/result.c@{lib/tsp/result.c}}
+}
+TSP result structure and methods. 
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}btsp.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{tsp_2result_8c_124a14a04e51fdd8e05f0aed7dfdd44c}{arrow\_\-tsp\_\-result\_\-init} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Initializes the TSP result structure. \item\end{CompactList}\item 
+void \hyperlink{tsp_2result_8c_0665c82047dc78f8d08f12ecf5a9eef8}{arrow\_\-tsp\_\-result\_\-destruct} (\hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Destructs a TSP result structure. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+TSP result structure and methods. 
+
+Traveling salesman problem results structure.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{tsp_2result_8c-source}{result.c}.
+
+\subsection{Function Documentation}
+\hypertarget{tsp_2result_8c_0665c82047dc78f8d08f12ecf5a9eef8}{
+\index{tsp/result.c@{tsp/result.c}!arrow\_\-tsp\_\-result\_\-destruct@{arrow\_\-tsp\_\-result\_\-destruct}}
+\index{arrow\_\-tsp\_\-result\_\-destruct@{arrow\_\-tsp\_\-result\_\-destruct}!tsp/result.c@{tsp/result.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-result\_\-destruct ({\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
+\label{tsp_2result_8c_0665c82047dc78f8d08f12ecf5a9eef8}
+
+
+Destructs a TSP result structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em result}]\mbox{[}out\mbox{]} TSP result structure \end{description}
+\end{Desc}
+
+
+Definition at line 30 of file result.c.
+
+References arrow\_\-tsp\_\-result::tour.
+
+Referenced by feasible(), and main().\hypertarget{tsp_2result_8c_124a14a04e51fdd8e05f0aed7dfdd44c}{
+\index{tsp/result.c@{tsp/result.c}!arrow\_\-tsp\_\-result\_\-init@{arrow\_\-tsp\_\-result\_\-init}}
+\index{arrow\_\-tsp\_\-result\_\-init@{arrow\_\-tsp\_\-result\_\-init}!tsp/result.c@{tsp/result.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-result\_\-init ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
+\label{tsp_2result_8c_124a14a04e51fdd8e05f0aed7dfdd44c}
+
+
+Initializes the TSP result structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em result}]\mbox{[}out\mbox{]} TSP result structure \end{description}
+\end{Desc}
+
+
+Definition at line 16 of file result.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-tsp\_\-result::found\_\-tour, arrow\_\-tsp\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-tsp\_\-result::total\_\-time, and arrow\_\-tsp\_\-result::tour.
+
+Referenced by feasible(), and main().

@@ -1,0 +1,395 @@
+\hypertarget{btsp_8h}{
+\section{include/btsp.h File Reference}
+\label{btsp_8h}\index{include/btsp.h@{include/btsp.h}}
+}
+Functions for solving the bottleneck TSP. 
+
+{\tt \#include \char`\"{}tsp.h\char`\"{}}\par
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result}
+\begin{CompactList}\small\item\em BTSP result. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun}
+\begin{CompactList}\small\item\em BTSP Cost matrix function definition. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__btsp__solve__plan}{arrow\_\-btsp\_\-solve\_\-plan}
+\begin{CompactList}\small\item\em BTSP feasibility solve step plan. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params}
+\begin{CompactList}\small\item\em BTSP algorithm parameters. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{btsp_8h_08ba7f1d633a842ae065d926e13e99d1}{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-BASIC}~1
+\item 
+\#define \hyperlink{btsp_8h_eb59f80d427163919e8f7b3542fd9784}{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED}~2
+\item 
+\#define \hyperlink{btsp_8h_a7f468f2633f855fbee81d70dea0f5ed}{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED\_\-SHAKE}~3
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{btsp_8h_3c6427a5ad0c0f5157d2c1a903f823c4}{arrow\_\-btsp\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params} $\ast$params, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves TSP with Concorde's exact solver. \item\end{CompactList}\item 
+int \hyperlink{btsp_8h_d9cf4e03bd60c7efc575dd29868456bf}{arrow\_\-btsp\_\-fun\_\-apply} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int delta, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
+\begin{CompactList}\small\item\em Applies the given function to the given problem to create a new problem. \item\end{CompactList}\item 
+void \hyperlink{btsp_8h_f0b2cce4c9dced6fe48fbc29877bbd8d}{arrow\_\-btsp\_\-fun\_\-destruct} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Destructs a function structure. \item\end{CompactList}\item 
+int \hyperlink{btsp_8h_4b7ad8f9778197ef3f6b88ed6abf259a}{arrow\_\-btsp\_\-fun\_\-basic\_\-atsp} (int shallow, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Basic BTSP to TSP function for asymmetric problem instances. \item\end{CompactList}\item 
+int \hyperlink{btsp_8h_a8030d26d0cc61ba064d0baedf766552}{arrow\_\-btsp\_\-fun\_\-basic} (int shallow, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Basic BTSP to TSP function. \item\end{CompactList}\item 
+int \hyperlink{btsp_8h_5a2420d31d356f04d1d353a95951bd75}{arrow\_\-btsp\_\-fun\_\-basic\_\-shake\_\-i} (int shallow, int random\_\-min, int random\_\-max, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Controlled Type I Shake. \item\end{CompactList}\item 
+int \hyperlink{btsp_8h_ec30be80a8e806be7b889794a305cf0e}{arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic} (int shallow, double feasible\_\-length, int infinity, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Constrained BTSP to TSP function. \item\end{CompactList}\item 
+int \hyperlink{btsp_8h_9a25b884af7fb5d314b624e446db91e2}{arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake} (int shallow, double feasible\_\-length, int infinity, int random\_\-min, int random\_\-max, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Constrained \char`\"{}Shake\char`\"{} BTSP to TSP function. \item\end{CompactList}\item 
+void \hyperlink{btsp_8h_9ee14515eed23a56303e338258725b7c}{arrow\_\-btsp\_\-params\_\-init} (\hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params} $\ast$params)
+\begin{CompactList}\small\item\em Inititalizes BTSP parameter structure. \item\end{CompactList}\item 
+int \hyperlink{btsp_8h_b78b71959db64c692a9e16832df9c096}{arrow\_\-btsp\_\-result\_\-init} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Initializes the BTSP result structure. \item\end{CompactList}\item 
+void \hyperlink{btsp_8h_11d150bd3219a6ba3d9ccd3f0c952b2a}{arrow\_\-btsp\_\-result\_\-destruct} (\hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Destructs a BTSP result structure. \item\end{CompactList}\item 
+void \hyperlink{btsp_8h_102ec7a76adc418a3381c3234a5f0207}{arrow\_\-btsp\_\-result\_\-print\_\-xml} (\hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result, FILE $\ast$out)
+\begin{CompactList}\small\item\em Prints results out in XML format. \item\end{CompactList}\item 
+void \hyperlink{btsp_8h_0da381fd362478a3abbfd73cc3df460b}{arrow\_\-btsp\_\-result\_\-print\_\-pretty} (\hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result, FILE $\ast$out)
+\begin{CompactList}\small\item\em Prints results out. \item\end{CompactList}\item 
+void \hyperlink{btsp_8h_a5f73647dedc4bcd1b5df2bf9e3edab4}{arrow\_\-btsp\_\-solve\_\-plan\_\-init} (\hyperlink{structarrow__btsp__solve__plan}{arrow\_\-btsp\_\-solve\_\-plan} $\ast$plan)
+\begin{CompactList}\small\item\em Inititalizes BTSP solve plan structure. \item\end{CompactList}\item 
+void \hyperlink{btsp_8h_e1d667017d467f926e8371a0823d9d7a}{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct} (\hyperlink{structarrow__btsp__solve__plan}{arrow\_\-btsp\_\-solve\_\-plan} $\ast$plan)
+\begin{CompactList}\small\item\em Destructs a BTSP solve plan structure. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Functions for solving the bottleneck TSP. 
+
+Functions for solving the bottleneck TSP.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{btsp_8h-source}{btsp.h}.
+
+\subsection{Define Documentation}
+\hypertarget{btsp_8h_08ba7f1d633a842ae065d926e13e99d1}{
+\index{btsp.h@{btsp.h}!ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-BASIC@{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-BASIC}}
+\index{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-BASIC@{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-BASIC}!btsp.h@{btsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-BASIC~1}}
+\label{btsp_8h_08ba7f1d633a842ae065d926e13e99d1}
+
+
+
+
+Definition at line 20 of file btsp.h.\hypertarget{btsp_8h_eb59f80d427163919e8f7b3542fd9784}{
+\index{btsp.h@{btsp.h}!ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED@{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED}}
+\index{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED@{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED}!btsp.h@{btsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED~2}}
+\label{btsp_8h_eb59f80d427163919e8f7b3542fd9784}
+
+
+
+
+Definition at line 21 of file btsp.h.\hypertarget{btsp_8h_a7f468f2633f855fbee81d70dea0f5ed}{
+\index{btsp.h@{btsp.h}!ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED\_\-SHAKE@{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED\_\-SHAKE}}
+\index{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED\_\-SHAKE@{ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED\_\-SHAKE}!btsp.h@{btsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-BTSP\_\-SOLVE\_\-PLAN\_\-CONSTRAINED\_\-SHAKE~3}}
+\label{btsp_8h_a7f468f2633f855fbee81d70dea0f5ed}
+
+
+
+
+Definition at line 22 of file btsp.h.
+
+\subsection{Function Documentation}
+\hypertarget{btsp_8h_d9cf4e03bd60c7efc575dd29868456bf}{
+\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-fun\_\-apply@{arrow\_\-btsp\_\-fun\_\-apply}}
+\index{arrow\_\-btsp\_\-fun\_\-apply@{arrow\_\-btsp\_\-fun\_\-apply}!btsp.h@{btsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-apply ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em delta}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
+\label{btsp_8h_d9cf4e03bd60c7efc575dd29868456bf}
+
+
+Applies the given function to the given problem to create a new problem. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em old\_\-problem}]\mbox{[}in\mbox{]} existing problem \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em new\_\-problem}]\mbox{[}out\mbox{]} new problem to create \end{description}
+\end{Desc}
+
+
+Definition at line 90 of file fun.c.
+
+References apply\_\-deep(), apply\_\-shallow(), ARROW\_\-FAILURE, arrow\_\-print\_\-error, arrow\_\-btsp\_\-fun::initialize, arrow\_\-problem::name, arrow\_\-btsp\_\-fun::shallow, arrow\_\-problem::shallow, arrow\_\-problem::size, and arrow\_\-problem::symmetric.
+
+Referenced by feasible().\hypertarget{btsp_8h_a8030d26d0cc61ba064d0baedf766552}{
+\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-fun\_\-basic@{arrow\_\-btsp\_\-fun\_\-basic}}
+\index{arrow\_\-btsp\_\-fun\_\-basic@{arrow\_\-btsp\_\-fun\_\-basic}!btsp.h@{btsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-basic (int {\em shallow}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{btsp_8h_a8030d26d0cc61ba064d0baedf766552}
+
+
+Basic BTSP to TSP function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 66 of file fun\_\-sbtsp.c.
+
+References ARROW\_\-SUCCESS, basic\_\-destruct(), basic\_\-feasible(), basic\_\-get\_\-cost(), basic\_\-initialize(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, arrow\_\-btsp\_\-fun::initialize, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{btsp_8h_4b7ad8f9778197ef3f6b88ed6abf259a}{
+\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-fun\_\-basic\_\-atsp@{arrow\_\-btsp\_\-fun\_\-basic\_\-atsp}}
+\index{arrow\_\-btsp\_\-fun\_\-basic\_\-atsp@{arrow\_\-btsp\_\-fun\_\-basic\_\-atsp}!btsp.h@{btsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-basic\_\-atsp (int {\em shallow}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{btsp_8h_4b7ad8f9778197ef3f6b88ed6abf259a}
+
+
+Basic BTSP to TSP function for asymmetric problem instances. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 61 of file fun\_\-abtsp.c.
+
+References ARROW\_\-SUCCESS, basic\_\-atsp\_\-destruct(), basic\_\-atsp\_\-feasible(), basic\_\-atsp\_\-get\_\-cost(), basic\_\-atsp\_\-initialize(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, arrow\_\-btsp\_\-fun::initialize, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{btsp_8h_5a2420d31d356f04d1d353a95951bd75}{
+\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-fun\_\-basic\_\-shake\_\-i@{arrow\_\-btsp\_\-fun\_\-basic\_\-shake\_\-i}}
+\index{arrow\_\-btsp\_\-fun\_\-basic\_\-shake\_\-i@{arrow\_\-btsp\_\-fun\_\-basic\_\-shake\_\-i}!btsp.h@{btsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-basic\_\-shake\_\-i (int {\em shallow}, \/  int {\em random\_\-min}, \/  int {\em random\_\-max}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{btsp_8h_5a2420d31d356f04d1d353a95951bd75}
+
+
+Controlled Type I Shake. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em random\_\-min}]\mbox{[}in\mbox{]} minimum random number to generate \item[{\em random\_\-max}]\mbox{[}in\mbox{]} maximum random number to generate \item[{\em info}]\mbox{[}in\mbox{]} information about the original problem \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+\hypertarget{btsp_8h_ec30be80a8e806be7b889794a305cf0e}{
+\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic@{arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic}}
+\index{arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic@{arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic}!btsp.h@{btsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic (int {\em shallow}, \/  double {\em feasible\_\-length}, \/  int {\em infinity}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{btsp_8h_ec30be80a8e806be7b889794a305cf0e}
+
+
+Constrained BTSP to TSP function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em feasible\_\-length}]\mbox{[}in\mbox{]} length of feasible tour \item[{\em infinity}]\mbox{[}in\mbox{]} value to use as \char`\"{}infinity\char`\"{} \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 128 of file fun\_\-cbtsp.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, basic\_\-cbtsp\_\-destruct(), basic\_\-cbtsp\_\-feasible(), basic\_\-cbtsp\_\-get\_\-cost(), basic\_\-cbtsp\_\-initialize(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, cbtsp\_\-basic\_\-data::feasible\_\-length, arrow\_\-btsp\_\-fun::get\_\-cost, cbtsp\_\-basic\_\-data::infinity, arrow\_\-btsp\_\-fun::initialize, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{btsp_8h_9a25b884af7fb5d314b624e446db91e2}{
+\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake@{arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake}}
+\index{arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake@{arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake}!btsp.h@{btsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake (int {\em shallow}, \/  double {\em feasible\_\-length}, \/  int {\em infinity}, \/  int {\em random\_\-min}, \/  int {\em random\_\-max}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{btsp_8h_9a25b884af7fb5d314b624e446db91e2}
+
+
+Constrained \char`\"{}Shake\char`\"{} BTSP to TSP function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em feasible\_\-length}]\mbox{[}in\mbox{]} length of feasible tour \item[{\em infinity}]\mbox{[}in\mbox{]} value to use as \char`\"{}infinity\char`\"{} \item[{\em random\_\-min}]\mbox{[}in\mbox{]} minimum random value to generate \item[{\em random\_\-max}]\mbox{[}in\mbox{]} maximum random value to generate \item[{\em info}]\mbox{[}in\mbox{]} information about the original problem \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 152 of file fun\_\-cbtsp.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), cbtsp\_\-shake\_\-destruct(), cbtsp\_\-shake\_\-feasible(), cbtsp\_\-shake\_\-get\_\-cost(), cbtsp\_\-shake\_\-initialize(), arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, cbtsp\_\-shake\_\-data::feasible\_\-length, arrow\_\-btsp\_\-fun::get\_\-cost, cbtsp\_\-shake\_\-data::infinity, cbtsp\_\-shake\_\-data::info, arrow\_\-btsp\_\-fun::initialize, cbtsp\_\-shake\_\-data::random\_\-list, cbtsp\_\-shake\_\-data::random\_\-list\_\-length, cbtsp\_\-shake\_\-data::random\_\-max, cbtsp\_\-shake\_\-data::random\_\-min, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{btsp_8h_f0b2cce4c9dced6fe48fbc29877bbd8d}{
+\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-fun\_\-destruct@{arrow\_\-btsp\_\-fun\_\-destruct}}
+\index{arrow\_\-btsp\_\-fun\_\-destruct@{arrow\_\-btsp\_\-fun\_\-destruct}!btsp.h@{btsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-fun\_\-destruct ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{btsp_8h_f0b2cce4c9dced6fe48fbc29877bbd8d}
+
+
+Destructs a function structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 111 of file fun.c.
+
+References arrow\_\-btsp\_\-fun::destruct.
+
+Referenced by arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), and main().\hypertarget{btsp_8h_9ee14515eed23a56303e338258725b7c}{
+\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-params\_\-init@{arrow\_\-btsp\_\-params\_\-init}}
+\index{arrow\_\-btsp\_\-params\_\-init@{arrow\_\-btsp\_\-params\_\-init}!btsp.h@{btsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-params\_\-init ({\bf arrow\_\-btsp\_\-params} $\ast$ {\em params})}}
+\label{btsp_8h_9ee14515eed23a56303e338258725b7c}
+
+
+Inititalizes BTSP parameter structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em params}]\mbox{[}out\mbox{]} BTSP parameters structure \end{description}
+\end{Desc}
+
+
+Definition at line 16 of file params.c.
+
+References ARROW\_\-FALSE, arrow\_\-btsp\_\-params::confirm\_\-sol, arrow\_\-btsp\_\-params::find\_\-short\_\-tour, arrow\_\-btsp\_\-params::lower\_\-bound, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-btsp\_\-params::supress\_\-ebst, and arrow\_\-btsp\_\-params::upper\_\-bound.
+
+Referenced by main().\hypertarget{btsp_8h_11d150bd3219a6ba3d9ccd3f0c952b2a}{
+\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-result\_\-destruct@{arrow\_\-btsp\_\-result\_\-destruct}}
+\index{arrow\_\-btsp\_\-result\_\-destruct@{arrow\_\-btsp\_\-result\_\-destruct}!btsp.h@{btsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-result\_\-destruct ({\bf arrow\_\-btsp\_\-result} $\ast$ {\em result})}}
+\label{btsp_8h_11d150bd3219a6ba3d9ccd3f0c952b2a}
+
+
+Destructs a BTSP result structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em result}]\mbox{[}out\mbox{]} BTSP result structure \end{description}
+\end{Desc}
+
+
+Definition at line 40 of file result.c.
+
+References arrow\_\-btsp\_\-result::tour.
+
+Referenced by arrow\_\-btsp\_\-solve(), and main().\hypertarget{btsp_8h_b78b71959db64c692a9e16832df9c096}{
+\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-result\_\-init@{arrow\_\-btsp\_\-result\_\-init}}
+\index{arrow\_\-btsp\_\-result\_\-init@{arrow\_\-btsp\_\-result\_\-init}!btsp.h@{btsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-result\_\-init ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em result})}}
+\label{btsp_8h_b78b71959db64c692a9e16832df9c096}
+
+
+Initializes the BTSP result structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em result}]\mbox{[}out\mbox{]} BTSP result structure \end{description}
+\end{Desc}
+
+
+Definition at line 16 of file result.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-SUCCESS, ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, and arrow\_\-btsp\_\-result::tour\_\-length.
+
+Referenced by arrow\_\-btsp\_\-solve(), and main().\hypertarget{btsp_8h_0da381fd362478a3abbfd73cc3df460b}{
+\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-result\_\-print\_\-pretty@{arrow\_\-btsp\_\-result\_\-print\_\-pretty}}
+\index{arrow\_\-btsp\_\-result\_\-print\_\-pretty@{arrow\_\-btsp\_\-result\_\-print\_\-pretty}!btsp.h@{btsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-result\_\-print\_\-pretty ({\bf arrow\_\-btsp\_\-result} $\ast$ {\em result}, \/  FILE $\ast$ {\em out})}}
+\label{btsp_8h_0da381fd362478a3abbfd73cc3df460b}
+
+
+Prints results out. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em result}]\mbox{[}in\mbox{]} result structure \item[{\em out}]\mbox{[}out\mbox{]} file to wrtie to \end{description}
+\end{Desc}
+
+
+Definition at line 95 of file result.c.
+
+References ARROW\_\-TRUE, arrow\_\-tsp\_\-long\_\-name(), ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-btsp\_\-result::optimal, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-result::total\_\-time, and arrow\_\-btsp\_\-result::tour\_\-length.
+
+Referenced by main().\hypertarget{btsp_8h_102ec7a76adc418a3381c3234a5f0207}{
+\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-result\_\-print\_\-xml@{arrow\_\-btsp\_\-result\_\-print\_\-xml}}
+\index{arrow\_\-btsp\_\-result\_\-print\_\-xml@{arrow\_\-btsp\_\-result\_\-print\_\-xml}!btsp.h@{btsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-result\_\-print\_\-xml ({\bf arrow\_\-btsp\_\-result} $\ast$ {\em result}, \/  FILE $\ast$ {\em out})}}
+\label{btsp_8h_102ec7a76adc418a3381c3234a5f0207}
+
+
+Prints results out in XML format. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em result}]\mbox{[}in\mbox{]} result structure \item[{\em out}]\mbox{[}out\mbox{]} file to wrtie to \end{description}
+\end{Desc}
+
+
+Definition at line 47 of file result.c.
+
+References arrow\_\-tsp\_\-short\_\-name(), ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-xml\_\-attribute\_\-end(), arrow\_\-xml\_\-attribute\_\-int(), arrow\_\-xml\_\-attribute\_\-start(), arrow\_\-xml\_\-element\_\-bool(), arrow\_\-xml\_\-element\_\-close(), arrow\_\-xml\_\-element\_\-double(), arrow\_\-xml\_\-element\_\-end(), arrow\_\-xml\_\-element\_\-int(), arrow\_\-xml\_\-element\_\-open(), arrow\_\-xml\_\-element\_\-start(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-btsp\_\-result::optimal, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-result::total\_\-time, and arrow\_\-btsp\_\-result::tour\_\-length.
+
+Referenced by main().\hypertarget{btsp_8h_3c6427a5ad0c0f5157d2c1a903f823c4}{
+\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-solve@{arrow\_\-btsp\_\-solve}}
+\index{arrow\_\-btsp\_\-solve@{arrow\_\-btsp\_\-solve}!btsp.h@{btsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-btsp\_\-params} $\ast$ {\em params}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em result})}}
+\label{btsp_8h_3c6427a5ad0c0f5157d2c1a903f823c4}
+
+
+Solves TSP with Concorde's exact solver. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em info}]\mbox{[}in\mbox{]} extra problem info \item[{\em params}]\mbox{[}in\mbox{]} parameters for solver (can be NULL) \item[{\em result}]\mbox{[}out\mbox{]} BTSP solution \end{description}
+\end{Desc}
+
+
+Definition at line 34 of file btsp.c.
+
+References arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-SUCCESS, ARROW\_\-TRUE, ARROW\_\-TSP\_\-CC\_\-EXACT, ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-zeit(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-params::confirm\_\-plan, arrow\_\-btsp\_\-params::confirm\_\-sol, arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, feasible(), arrow\_\-btsp\_\-params::find\_\-short\_\-tour, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-params::lower\_\-bound, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-btsp\_\-result::optimal, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-params::steps, arrow\_\-btsp\_\-params::supress\_\-ebst, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, arrow\_\-btsp\_\-result::tour\_\-length, upper\_\-bound, and arrow\_\-btsp\_\-params::upper\_\-bound.
+
+Referenced by main().\hypertarget{btsp_8h_e1d667017d467f926e8371a0823d9d7a}{
+\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-solve\_\-plan\_\-destruct@{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct}}
+\index{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct@{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct}!btsp.h@{btsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-solve\_\-plan\_\-destruct ({\bf arrow\_\-btsp\_\-solve\_\-plan} $\ast$ {\em plan})}}
+\label{btsp_8h_e1d667017d467f926e8371a0823d9d7a}
+
+
+Destructs a BTSP solve plan structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em plan}]\mbox{[}out\mbox{]} BTSP solve plan structure \end{description}
+\end{Desc}
+
+
+Definition at line 22 of file solve\_\-plan.c.
+
+References arrow\_\-btsp\_\-fun\_\-destruct(), ARROW\_\-TSP\_\-CC\_\-EXACT, ARROW\_\-TSP\_\-CC\_\-LK, arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct(), arrow\_\-btsp\_\-solve\_\-plan::fun, arrow\_\-btsp\_\-solve\_\-plan::tsp\_\-params, and arrow\_\-btsp\_\-solve\_\-plan::tsp\_\-solver.\hypertarget{btsp_8h_a5f73647dedc4bcd1b5df2bf9e3edab4}{
+\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-solve\_\-plan\_\-init@{arrow\_\-btsp\_\-solve\_\-plan\_\-init}}
+\index{arrow\_\-btsp\_\-solve\_\-plan\_\-init@{arrow\_\-btsp\_\-solve\_\-plan\_\-init}!btsp.h@{btsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-solve\_\-plan\_\-init ({\bf arrow\_\-btsp\_\-solve\_\-plan} $\ast$ {\em plan})}}
+\label{btsp_8h_a5f73647dedc4bcd1b5df2bf9e3edab4}
+
+
+Inititalizes BTSP solve plan structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em plan}]\mbox{[}out\mbox{]} BTSP solve plan structure \end{description}
+\end{Desc}
+
+
+Definition at line 16 of file solve\_\-plan.c.
+
+References arrow\_\-btsp\_\-solve\_\-plan::attempts.

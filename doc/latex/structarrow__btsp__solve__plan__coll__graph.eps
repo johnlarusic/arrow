@@ -1,9 +1,9 @@
-%!PS-Adobe-2.0
-%%Creator: dot version 2.8 (Tue Jul  4 20:16:49 GMT 2006)
+%!PS-Adobe-3.0 EPSF-3.0
+%%Creator: Graphviz version 2.20.2 (Fri Jul  4 18:42:45 UTC 2008)
 %%For: (johnlarusic) John LaRusic
 %%Title: G
 %%Pages: (atend)
-%%BoundingBox: 36 36 262 132
+%%BoundingBox: (atend)
 %%EndComments
 save
 %%BeginProlog
@@ -48,8 +48,8 @@ cleartomark
 
 /InvScaleFactor 1.0 def
 /set_scale {
-	dup 1 exch div /InvScaleFactor exch def
-	dup scale
+       dup 1 exch div /InvScaleFactor exch def
+       scale
 } bind def
 
 % styles
@@ -88,17 +88,15 @@ cleartomark
 	scalefont setfont
 } def
 
-% draw aligned label in bounding box aligned to current point
-/alignedtext {			% width adj text
+% draw text fitted to its expected width
+/alignedtext {			% width text
 	/text exch def
-	/adj exch def
 	/width exch def
 	gsave
 		width 0 gt {
-			text stringwidth pop adj mul 0 rmoveto
+			[] 0 setdash
+			text stringwidth pop width exch sub text length div 0 text ashow
 		} if
-		[] 0 setdash
-		text show
 	grestore
 } def
 
@@ -179,143 +177,76 @@ def
 } if
 
 %%EndSetup
+setupLatin1
 %%Page: 1 1
-%%PageBoundingBox: 36 36 262 132
+%%PageBoundingBox: 36 36 136 120
 %%PageOrientation: Portrait
-gsave
-36 36 226 96 boxprim clip newpath
-36 36 translate
 0 0 1 beginpage
-1.0000 set_scale
-4 4 translate 0 rotate
-0.000 0.000 0.000 graphcolor
-10.00 /FreeSans set_font
+gsave
+36 36 100 84 boxprim clip newpath
+1 1 set_scale 0 rotate 40 40 translate
 % Node1
-gsave 10 dict begin
-filled
+gsave
 0.000 0.000 0.749 nodecolor
-newpath 42 0 moveto
-163 0 lineto
-163 20 lineto
-42 20 lineto
-closepath
-fill
+newpath 0 0 moveto
+0 16 lineto
+93 16 lineto
+93 0 lineto
+closepath fill
+1 setlinewidth
+filled
 0.000 0.000 0.000 nodecolor
-newpath 42 0 moveto
-163 0 lineto
-163 20 lineto
-42 20 lineto
-closepath
-stroke
-gsave 10 dict begin
-49 7 moveto
-(arrow_btsp_solve_plan)
-[5.76 3.6 3.6 5.76 7.2 5.52 5.52 2.88 5.04 5.52 5.52 5.04 5.76 2.4 5.04 5.52 5.52 5.52 2.4 5.76 5.76]
-xshow
-end grestore
-end grestore
+newpath 0 0 moveto
+0 16 lineto
+93 16 lineto
+93 0 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 3 moveto 77 (arrow_btsp_solve_plan) alignedtext
+grestore
 % Node2
-[ /Rect [ 0 68 86 88 ]
+gsave
+[ /Rect [ 12 60 80 76 ]
   /Border [ 0 0 0 ]
   /Action << /Subtype /URI /URI ($structarrow__btsp__fun.html) >>
   /Subtype /Link
 /ANN pdfmark
-gsave 10 dict begin
-newpath 0 68 moveto
-87 68 lineto
-87 88 lineto
-0 88 lineto
-closepath
-stroke
-gsave 10 dict begin
-7 75 moveto
-(arrow_btsp_fun)
-[5.76 3.6 3.6 5.76 7.2 5.52 5.52 2.88 5.04 5.52 5.52 2.88 5.76 5.76]
-xshow
-end grestore
-end grestore
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 12 60 moveto
+12 76 lineto
+80 76 lineto
+80 60 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+20 63 moveto 52 (arrow_btsp_fun) alignedtext
+grestore
 % Node2->Node1
-gsave 10 dict begin
+gsave
+1 setlinewidth
 dashed
 0.776 0.753 0.804 edgecolor
-newpath 59 60 moveto
-70 47 84 31 93 20 curveto
+newpath 46 50 moveto
+46 39 46 25 46 16 curveto
 stroke
-gsave 10 dict begin
-solid
+0.776 0.753 0.804 edgecolor
+newpath 42.5 50 moveto
+46 60 lineto
+49.5 50 lineto
+closepath fill
 1 setlinewidth
-0.776 0.753 0.804 edgecolor
-newpath 56 58 moveto
-52 68 lineto
-61 63 lineto
-closepath
-fill
-0.776 0.753 0.804 edgecolor
-newpath 56 58 moveto
-52 68 lineto
-61 63 lineto
-closepath
-stroke
-end grestore
-gsave 10 dict begin
-0.000 0.000 0.000 edgecolor
-77 41 moveto
-(fun)
-[2.88 5.76 5.76]
-xshow
-end grestore
-end grestore
-% Node3
-[ /Rect [ 104 68 218 88 ]
-  /Border [ 0 0 0 ]
-  /Action << /Subtype /URI /URI ($structarrow__tsp__lk__params.html) >>
-  /Subtype /Link
-/ANN pdfmark
-gsave 10 dict begin
-newpath 104 68 moveto
-218 68 lineto
-218 88 lineto
-104 88 lineto
-closepath
-stroke
-gsave 10 dict begin
-112 75 moveto
-(arrow_tsp_lk_params)
-[5.76 3.6 3.6 5.76 7.2 5.52 2.88 5.04 5.52 5.52 2.4 5.04 5.52 5.52 5.76 3.6 5.76 8.4 5.04]
-xshow
-end grestore
-end grestore
-% Node3->Node1
-gsave 10 dict begin
-dashed
-0.776 0.753 0.804 edgecolor
-newpath 145 60 moveto
-134 47 120 31 111 20 curveto
-stroke
-gsave 10 dict begin
 solid
-1 setlinewidth
 0.776 0.753 0.804 edgecolor
-newpath 143 63 moveto
-152 68 lineto
-148 58 lineto
-closepath
-fill
-0.776 0.753 0.804 edgecolor
-newpath 143 63 moveto
-152 68 lineto
-148 58 lineto
-closepath
-stroke
-end grestore
-gsave 10 dict begin
+newpath 42.5 50 moveto
+46 60 lineto
+49.5 50 lineto
+closepath stroke
 0.000 0.000 0.000 edgecolor
-136 41 moveto
-(lk_params)
-[2.4 5.04 5.52 5.52 5.76 3.6 5.76 8.4 5.04]
-xshow
-end grestore
-end grestore
+10 /FreeSans set_font
+46 33 moveto 10 (fun) alignedtext
+grestore
 endpage
 showpage
 grestore
@@ -323,6 +254,7 @@ grestore
 %%EndPage: 1
 %%Trailer
 %%Pages: 1
+%%BoundingBox: 36 36 136 120
 end
 restore
 %%EOF

@@ -1,0 +1,1647 @@
+\hypertarget{common_8h}{
+\section{include/common.h File Reference}
+\label{common_8h}\index{include/common.h@{include/common.h}}
+}
+Common functions and data structures. 
+
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$stdlib.h$>$}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include $<$errno.h$>$}\par
+{\tt \#include $<$limits.h$>$}\par
+{\tt \#include $<$unistd.h$>$}\par
+{\tt \#include $<$float.h$>$}\par
+{\tt \#include $<$regex.h$>$}\par
+{\tt \#include $<$getopt.h$>$}\par
+{\tt \#include \char`\"{}concorde.h\char`\"{}}\par
+{\tt \#include $<$cmph.h$>$}\par
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structarrow__bintree}{arrow\_\-bintree}
+\begin{CompactList}\small\item\em Binary tree data structure. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__bintree__node}{arrow\_\-bintree\_\-node}
+\begin{CompactList}\small\item\em Binary tree node. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__hash}{arrow\_\-hash}
+\begin{CompactList}\small\item\em Hashtable. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__heap}{arrow\_\-heap}
+\begin{CompactList}\small\item\em Binary heap. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__llist__item}{arrow\_\-llist\_\-item}
+\begin{CompactList}\small\item\em Linked list item. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__llist}{arrow\_\-llist}
+\begin{CompactList}\small\item\em Linked list data structure. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__option}{arrow\_\-option}
+\begin{CompactList}\small\item\em Program options structure. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__problem}{arrow\_\-problem}
+\begin{CompactList}\small\item\em Problem data structure. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info}
+\begin{CompactList}\small\item\em Problem information data structure. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{common_8h_3057840b0de9d217fdcedddc615295ad}{ARROW\_\-DEBUG}
+\item 
+\#define \hyperlink{common_8h_84ee1610187a79fbe4cdefeafffff4e8}{arrow\_\-debug}~printf
+\item 
+\#define \hyperlink{common_8h_c8a166e323227a8681ed32027ca1000a}{arrow\_\-print\_\-error}(args...)
+\item 
+\#define \hyperlink{common_8h_73a3fc48edc73ab8c510034d6c6dd2e1}{ARROW\_\-VERSION}~\char`\"{}1.0\char`\"{}
+\item 
+\#define \hyperlink{common_8h_0be07738336b219a8057fb867ed386c1}{ARROW\_\-DEV\_\-NULL}~\char`\"{}/dev/null\char`\"{}
+\item 
+\#define \hyperlink{common_8h_21afcc3dc34f8488ad437841f58225c4}{ARROW\_\-SUCCESS}~1
+\item 
+\#define \hyperlink{common_8h_a50e8b8f74e48535271458079c7506cb}{ARROW\_\-FAILURE}~0
+\item 
+\#define \hyperlink{common_8h_42c447b913ad11889bf816691e423644}{ARROW\_\-TRUE}~1
+\item 
+\#define \hyperlink{common_8h_518134a9986d0e6bf31ec2480116ac76}{ARROW\_\-FALSE}~0
+\item 
+\#define \hyperlink{common_8h_a4bb457eaf684bb6a1fee64800430478}{ARROW\_\-PROBLEM\_\-NAME\_\-LENGTH}~64
+\item 
+\#define \hyperlink{common_8h_b0d90b2c298f16738e37c85a79651025}{ARROW\_\-HASH\_\-BUFFER\_\-LENGTH}~16
+\item 
+\#define \hyperlink{common_8h_931c27d4ee4fe221985a9dbbf0db475d}{ARROW\_\-PROBLEM\_\-DATA\_\-FULL\_\-MATRIX}~1
+\item 
+\#define \hyperlink{common_8h_25552fee94aa192f0671d943e565b8af}{ARROW\_\-PROBLEM\_\-DATA\_\-CONCORDE}~2
+\item 
+\#define \hyperlink{common_8h_fa38d578d41fcc6e296b8198d2f1b8f0}{ARROW\_\-PROBLEM\_\-DATA\_\-BTSP\_\-FUN}~3
+\item 
+\#define \hyperlink{common_8h_fa7567a2c1435c3ad07261341f4d2a71}{ARROW\_\-PROBLEM\_\-ABTSP\_\-TO\_\-SBTSP}~4
+\item 
+\#define \hyperlink{common_8h_627f37797cc57afbe5bd43c2bc18ef0a}{ARROW\_\-OPTION\_\-INT}~1
+\item 
+\#define \hyperlink{common_8h_6ae7aa7a4dfd9359283ca22c51d40902}{ARROW\_\-OPTION\_\-DOUBLE}~2
+\item 
+\#define \hyperlink{common_8h_a5af4b3dd40c1687deb0e897317fac3d}{ARROW\_\-OPTION\_\-STRING}~3
+\item 
+\#define \hyperlink{common_8h_5bc042a0d5e4aee532d2841342766d29}{CONCORDE\_\-SUCCESS}~0
+\item 
+\#define \hyperlink{common_8h_c85ff6ed8837999e4553ffde8af02756}{CONCORDE\_\-FAILURE}~1
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{common_8h_b28bc6559b228f0aa65cc671f67b9a09}{arrow\_\-bintree\_\-init} (\hyperlink{structarrow__bintree}{arrow\_\-bintree} $\ast$tree)
+\begin{CompactList}\small\item\em Initializes the binary tree data structure. \item\end{CompactList}\item 
+void \hyperlink{common_8h_ca9875422bf132eb9f5a4a2d10053207}{arrow\_\-bintree\_\-destruct} (\hyperlink{structarrow__bintree}{arrow\_\-bintree} $\ast$tree)
+\begin{CompactList}\small\item\em Destructs a binary tree data structure. \item\end{CompactList}\item 
+int \hyperlink{common_8h_75b4ee03b9667bd0e13e6cc71043e0a9}{arrow\_\-bintree\_\-insert} (\hyperlink{structarrow__bintree}{arrow\_\-bintree} $\ast$tree, int value)
+\begin{CompactList}\small\item\em Inserts a value into the binary tree. \item\end{CompactList}\item 
+void \hyperlink{common_8h_3f841b62942349c0036ca9073f98a481}{arrow\_\-bintree\_\-to\_\-array} (\hyperlink{structarrow__bintree}{arrow\_\-bintree} $\ast$tree, int $\ast$array)
+\begin{CompactList}\small\item\em Initializes the binary tree data structure into an existing array. \item\end{CompactList}\item 
+int \hyperlink{common_8h_11a76a726dfdd109e12cac7046cb431c}{arrow\_\-bintree\_\-to\_\-new\_\-array} (\hyperlink{structarrow__bintree}{arrow\_\-bintree} $\ast$tree, int $\ast$$\ast$array)
+\begin{CompactList}\small\item\em Initializes the binary tree data structure into a new array. \item\end{CompactList}\item 
+void \hyperlink{common_8h_3804a3bce6fc22ef6d5ea0ac5776a2bb}{arrow\_\-bintree\_\-print} (\hyperlink{structarrow__bintree}{arrow\_\-bintree} $\ast$tree)
+\begin{CompactList}\small\item\em Prints out the values of the binary tree. \item\end{CompactList}\item 
+int \hyperlink{common_8h_23c1e4bb173c43287c42f51c94126c2c}{arrow\_\-hash\_\-cost\_\-list} (int $\ast$cost\_\-list, int cost\_\-list\_\-length, \hyperlink{structarrow__hash}{arrow\_\-hash} $\ast$hash)
+\begin{CompactList}\small\item\em Creates a hash table from a list of unique costs. \item\end{CompactList}\item 
+void \hyperlink{common_8h_f7f552485d4a2c7dfbaa82156e264b4e}{arrow\_\-hash\_\-destruct} (\hyperlink{structarrow__hash}{arrow\_\-hash} $\ast$hash)
+\begin{CompactList}\small\item\em Destructs a hashtable data structure. \item\end{CompactList}\item 
+unsigned int \hyperlink{common_8h_237811011cb0d4e84ec15972040b67d3}{arrow\_\-hash\_\-search} (\hyperlink{structarrow__hash}{arrow\_\-hash} $\ast$hash, int key)
+\begin{CompactList}\small\item\em Finds id associated with key in hashtable. \item\end{CompactList}\item 
+int \hyperlink{common_8h_44eb41f556b84a8056ff66efb0c864b6}{arrow\_\-heap\_\-init} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int max\_\-size)
+\begin{CompactList}\small\item\em Initializes a new binary heap. \item\end{CompactList}\item 
+void \hyperlink{common_8h_f43829b492dd8cc8f4e0db378f1340a1}{arrow\_\-heap\_\-destruct} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
+\begin{CompactList}\small\item\em Destructs a binary heap. \item\end{CompactList}\item 
+void \hyperlink{common_8h_e439f7114905af00423376d542feb146}{arrow\_\-heap\_\-empty} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
+\begin{CompactList}\small\item\em Empties the heap of items. \item\end{CompactList}\item 
+int \hyperlink{common_8h_b0f4b6c5dfa713b20966719fbf6e093e}{arrow\_\-heap\_\-insert} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int key, int value)
+\begin{CompactList}\small\item\em Inserts a new (key,value) pair into the heap. \item\end{CompactList}\item 
+int \hyperlink{common_8h_a236930effb35f5b14b50253183d59ea}{arrow\_\-heap\_\-in} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int value)
+\begin{CompactList}\small\item\em Determines if the given value is present in the heap. \item\end{CompactList}\item 
+void \hyperlink{common_8h_68ed30661f547d8249a5a3c6e3b2a268}{arrow\_\-heap\_\-change\_\-key} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int key, int value)
+\begin{CompactList}\small\item\em Changes the key for the given value in the heap. \item\end{CompactList}\item 
+int \hyperlink{common_8h_a62ae3b2521ddd990699eaafa946db25}{arrow\_\-heap\_\-get\_\-min} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
+\begin{CompactList}\small\item\em Returns the value with the smallest key in the heap. \item\end{CompactList}\item 
+void \hyperlink{common_8h_c21664c1267507a01909d9e55fd1f2de}{arrow\_\-heap\_\-delete\_\-min} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
+\begin{CompactList}\small\item\em Removes the value with the smallest key from the heap. \item\end{CompactList}\item 
+void \hyperlink{common_8h_161eaacdfed324053e40cc0c3a7d9bf0}{arrow\_\-heap\_\-print} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
+\begin{CompactList}\small\item\em Prints heap structure. \item\end{CompactList}\item 
+void \hyperlink{common_8h_cc0b379b2e15aa13462bf1e7675e8cf4}{arrow\_\-llist\_\-init} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list)
+\begin{CompactList}\small\item\em Initializes a new linked list. \item\end{CompactList}\item 
+void \hyperlink{common_8h_bee92fb4a4711dd8fa4d22fb8f942f3d}{arrow\_\-llist\_\-destruct} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list)
+\begin{CompactList}\small\item\em Destructs contents of a linked list. \item\end{CompactList}\item 
+void \hyperlink{common_8h_080399f8567743e40256b47618f55fcd}{arrow\_\-llist\_\-swap} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$a, \hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$b)
+\begin{CompactList}\small\item\em Swaps the two given lists. \item\end{CompactList}\item 
+int \hyperlink{common_8h_686445c1ca941deb7843f570e801b703}{arrow\_\-llist\_\-insert\_\-head} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list, int value)
+\begin{CompactList}\small\item\em Inserts a new item at the head of the list. \item\end{CompactList}\item 
+int \hyperlink{common_8h_645b9a27d9014e3415b8e6f2a37a316a}{arrow\_\-llist\_\-insert\_\-tail} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list, int value)
+\begin{CompactList}\small\item\em Inserts a new item at the tail of the list. \item\end{CompactList}\item 
+int \hyperlink{common_8h_7c348a8af5422f6f4d1f6ded30677a70}{arrow\_\-llist\_\-insert\_\-after} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list, \hyperlink{structarrow__llist__item}{arrow\_\-llist\_\-item} $\ast$item, int value)
+\begin{CompactList}\small\item\em Inserts a new item after the given item in the list. NOTE: procedure makes no attempt to verify given item is in the list! \item\end{CompactList}\item 
+void \hyperlink{common_8h_081d530fc7f0936e3b18c00ff4266548}{arrow\_\-llist\_\-remove\_\-head} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list, int $\ast$value)
+\begin{CompactList}\small\item\em Removes the head item in the list. \item\end{CompactList}\item 
+void \hyperlink{common_8h_696e0c9f6adf3ab86287d50b84c471ce}{arrow\_\-llist\_\-remove\_\-tail} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list, int $\ast$value)
+\begin{CompactList}\small\item\em Removes the tail item in the list. NOTE: O(n) procedure! \item\end{CompactList}\item 
+void \hyperlink{common_8h_85f6a89c9b2b149c81751b6dcae7f4f1}{arrow\_\-llist\_\-remove\_\-after} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list, \hyperlink{structarrow__llist__item}{arrow\_\-llist\_\-item} $\ast$item, int $\ast$value)
+\begin{CompactList}\small\item\em Removes the item after the given one in the list. NOTE: procedure makes no attempt to verify given item is in the list! \item\end{CompactList}\item 
+void \hyperlink{common_8h_9c558d27574d24be9dd6688dd4e8543d}{arrow\_\-llist\_\-print} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list)
+\begin{CompactList}\small\item\em Prints a list of items in the list. \item\end{CompactList}\item 
+void \hyperlink{common_8h_708a19244cf603819ed64bd34f93714e}{arrow\_\-llist\_\-to\_\-array} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list, int $\ast$array)
+\begin{CompactList}\small\item\em Copys data from linked list into array. Assume array is big enough to handle linked list! \item\end{CompactList}\item 
+int \hyperlink{common_8h_e187e044872b9130dc8451a7cbfd3f8d}{arrow\_\-options\_\-parse} (int num\_\-opts, \hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{subprob_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{[}$\,$\mbox{]}, char $\ast$description, char $\ast$\hyperlink{subprob_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage}, int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, int $\ast$opt\_\-ind)
+\begin{CompactList}\small\item\em Parses program options. \item\end{CompactList}\item 
+int \hyperlink{common_8h_b5b9bae9f92630983d3b3d39d86198f8}{arrow\_\-problem\_\-read} (char $\ast$file\_\-name, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem)
+\begin{CompactList}\small\item\em Reads a problem from a TSPLIB file. \item\end{CompactList}\item 
+void \hyperlink{common_8h_a702972ab510dcc6354d7679759611d1}{arrow\_\-problem\_\-destruct} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem)
+\begin{CompactList}\small\item\em Deallocates problem data structure. \item\end{CompactList}\item 
+int \hyperlink{common_8h_3cccb8f9982d9a1ca2f5fcd1563d7d8d}{arrow\_\-problem\_\-info\_\-get} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int create\_\-hash, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info)
+\begin{CompactList}\small\item\em Builds ordered cost list and finds min/max cost in a problem. \item\end{CompactList}\item 
+void \hyperlink{common_8h_09a5ba81556412e281fe6b863a6f08db}{arrow\_\-problem\_\-info\_\-destruct} (\hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info)
+\begin{CompactList}\small\item\em Deallocates problem info data structure. \item\end{CompactList}\item 
+int \hyperlink{common_8h_30d8e2e252dc1e485c7be5767af0f65b}{arrow\_\-problem\_\-info\_\-cost\_\-index} (\hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, int cost, int $\ast$pos)
+\begin{CompactList}\small\item\em Finds the position of the given cost into the sorted list. \item\end{CompactList}\item 
+void \hyperlink{common_8h_bf45d0065398894bdfb4b345d50363ea}{arrow\_\-problem\_\-print} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int pretty)
+\begin{CompactList}\small\item\em Prints out information about a problem. \item\end{CompactList}\item 
+int \hyperlink{common_8h_b0ae70bd19a75c7f3164b81e4ed092ad}{arrow\_\-problem\_\-read\_\-tour} (char $\ast$file\_\-name, int size, int $\ast$tour)
+\begin{CompactList}\small\item\em Reads a TSPLIB tour file. \item\end{CompactList}\item 
+int \hyperlink{common_8h_904b6a44113cf39377e1bfbed3b5aed8}{arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp} (int shallow, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int infinity, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
+\begin{CompactList}\small\item\em Transforms an asymmetric BTSP problem of n nodes into a symmetric BTSP problem with 2n nodes. \item\end{CompactList}\item 
+int \hyperlink{common_8h_4aea68dfc908d08522baccb148251ae7}{arrow\_\-util\_\-create\_\-int\_\-array} (int size, int $\ast$$\ast$array)
+\begin{CompactList}\small\item\em Creates an integer array. \item\end{CompactList}\item 
+int \hyperlink{common_8h_2801c2cc414251180545168ba9abe911}{arrow\_\-util\_\-create\_\-int\_\-matrix} (int rows, int cols, int $\ast$$\ast$$\ast$matrix, int $\ast$$\ast$space)
+\begin{CompactList}\small\item\em Creates a full integer matrix. \item\end{CompactList}\item 
+void \hyperlink{common_8h_3bd7042ebd6e97b5790a8708c91be5b4}{arrow\_\-util\_\-print\_\-error} (const char $\ast$file\_\-name, int line\_\-num, const char $\ast$message)
+\begin{CompactList}\small\item\em Prints an error message to stderr with consistent formatting. \item\end{CompactList}\item 
+double \hyperlink{common_8h_05b2e96c9991c51368c1f8d5a77d3ccf}{arrow\_\-util\_\-zeit} ()
+\begin{CompactList}\small\item\em Used to measure timings. \item\end{CompactList}\item 
+void \hyperlink{common_8h_8a9cef270a8d9d4fb22483dc986aa792}{arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file} (const char $\ast$filename, int $\ast$old\_\-stream)
+\begin{CompactList}\small\item\em Redirects STDOUT stream to a file (can be used to completely surpress output by directing to /dev/null). \item\end{CompactList}\item 
+void \hyperlink{common_8h_65b9ba02b0c557fe9b15f5315a6953db}{arrow\_\-util\_\-restore\_\-stdout} (int old\_\-stream)
+\begin{CompactList}\small\item\em Restores STDOUT stream that's been redirected. \item\end{CompactList}\item 
+void \hyperlink{common_8h_b2e3326bacca581ca01013678d664cdb}{arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy} (CCdatagroup $\ast$from, CCdatagroup $\ast$to)
+\begin{CompactList}\small\item\em Makes a shallow copy of the Concorde CCdatagroup structure. \item\end{CompactList}\item 
+int \hyperlink{common_8h_3052203501efe0814bbe98548394b978}{arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix} (int size, CCdatagroup $\ast$dat)
+\begin{CompactList}\small\item\em Initializes an upper-diagonal matrix norm structure for Concorde that is ready to be filled in with values. \item\end{CompactList}\item 
+int \hyperlink{common_8h_7a32a3f10516726b76ba6f87d96d2903}{arrow\_\-util\_\-binary\_\-search} (int $\ast$array, int size, int element, int $\ast$pos)
+\begin{CompactList}\small\item\em Performs a binary search to find the wanted element in a sorted integer array. \item\end{CompactList}\item 
+int \hyperlink{common_8h_f9436128a70bfe493e200175d7eaf93b}{arrow\_\-util\_\-regex\_\-match} (char $\ast$string, char $\ast$pattern)
+\begin{CompactList}\small\item\em Determines if the given string turns up a match for the given regular expression pattern. \item\end{CompactList}\item 
+void \hyperlink{common_8h_0bf303aee0600136e1720be7e6c60021}{arrow\_\-util\_\-print\_\-program\_\-args} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, FILE $\ast$out)
+\begin{CompactList}\small\item\em Prints out the given program arguments to the specified file. \item\end{CompactList}\item 
+void \hyperlink{common_8h_448b71093a175c0f40f9cbe612b1c709}{arrow\_\-util\_\-random\_\-seed} (int seed)
+\begin{CompactList}\small\item\em Seeds the random number generator. Pass a value of 0 to seed with the current time. \item\end{CompactList}\item 
+int \hyperlink{common_8h_f2635504f3a222a0ced821917131c44c}{arrow\_\-util\_\-random} ()
+\begin{CompactList}\small\item\em Returns a random number between 0 and RAND\_\-MAX (normally, RAND\_\-MAX = INT\_\-MAX). \item\end{CompactList}\item 
+int \hyperlink{common_8h_529c872ac72eaf0046ad149abf7b6179}{arrow\_\-util\_\-random\_\-between} (int min, int max)
+\begin{CompactList}\small\item\em Returns a random number between min and max. \item\end{CompactList}\item 
+void \hyperlink{common_8h_4be50d1d9906ae44ddb69b1e8fb05153}{arrow\_\-util\_\-permute\_\-array} (int size, int $\ast$array)
+\begin{CompactList}\small\item\em Randomly permutes the elements of the given array. \item\end{CompactList}\item 
+void \hyperlink{common_8h_6921d887eca515c1ad59629e25a0c237}{arrow\_\-util\_\-write\_\-tour} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, char $\ast$comment, int $\ast$tour, FILE $\ast$out)
+\item 
+void \hyperlink{common_8h_8a7327192a37674e2559d82448a565b1}{arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int $\ast$old\_\-tour, int $\ast$new\_\-tour)
+\item 
+void \hyperlink{common_8h_ac92580a7e7c1ebb1c72f68d7005fe68}{arrow\_\-xml\_\-element\_\-int} (char $\ast$name, int value, FILE $\ast$out)
+\begin{CompactList}\small\item\em Writes an XML tag out for an integer value. \item\end{CompactList}\item 
+void \hyperlink{common_8h_286f1861006d22d745bd3c2681ee7aab}{arrow\_\-xml\_\-element\_\-double} (char $\ast$name, double value, FILE $\ast$out)
+\begin{CompactList}\small\item\em Writes an XML tag out for a double value. \item\end{CompactList}\item 
+void \hyperlink{common_8h_aaf85f529d527d406914a61f9ed10901}{arrow\_\-xml\_\-element\_\-string} (char $\ast$name, char $\ast$value, FILE $\ast$out)
+\begin{CompactList}\small\item\em Writes an XML tag out for a string value. \item\end{CompactList}\item 
+void \hyperlink{common_8h_793061e9078fa317e78f2d40d96f9fed}{arrow\_\-xml\_\-element\_\-bool} (char $\ast$name, int value, FILE $\ast$out)
+\begin{CompactList}\small\item\em Writes an XML tag out for a boolean value. \item\end{CompactList}\item 
+void \hyperlink{common_8h_ee90512e0cef8151422883d3598b5a4b}{arrow\_\-xml\_\-attribute\_\-int} (char $\ast$name, int value, FILE $\ast$out)
+\item 
+void \hyperlink{common_8h_5270de6c47898a14788a7b66a79fdf6c}{arrow\_\-xml\_\-attribute\_\-string} (char $\ast$name, char $\ast$value, FILE $\ast$out)
+\item 
+void \hyperlink{common_8h_37c3860e01ae53d1c110671d080fa52f}{arrow\_\-xml\_\-element\_\-start} (char $\ast$name, FILE $\ast$out)
+\item 
+void \hyperlink{common_8h_2a4cb1e33c581013142df340cbf007b1}{arrow\_\-xml\_\-element\_\-end} (FILE $\ast$out)
+\item 
+void \hyperlink{common_8h_77af49c39afb3b1de9e757ae01f8f039}{arrow\_\-xml\_\-element\_\-open} (char $\ast$name, FILE $\ast$out)
+\item 
+void \hyperlink{common_8h_706aca3669fa276b37aebb5e0d74c542}{arrow\_\-xml\_\-element\_\-close} (char $\ast$name, FILE $\ast$out)
+\item 
+void \hyperlink{common_8h_8c807a02bc67af49cd8ed343b0f43c03}{arrow\_\-xml\_\-attribute\_\-start} (char $\ast$name, FILE $\ast$out)
+\item 
+void \hyperlink{common_8h_c1e8bb3469598aa8f1a77d01d234fbdc}{arrow\_\-xml\_\-attribute\_\-end} (FILE $\ast$out)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Common functions and data structures. 
+
+Common functions and data structures exposed by the callable library.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{common_8h-source}{common.h}.
+
+\subsection{Define Documentation}
+\hypertarget{common_8h_84ee1610187a79fbe4cdefeafffff4e8}{
+\index{common.h@{common.h}!arrow\_\-debug@{arrow\_\-debug}}
+\index{arrow\_\-debug@{arrow\_\-debug}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define arrow\_\-debug~printf}}
+\label{common_8h_84ee1610187a79fbe4cdefeafffff4e8}
+
+
+
+
+Definition at line 38 of file common.h.
+
+Referenced by arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), feasible(), improve\_\-tour(), read\_\-atsp(), and read\_\-stsp().\hypertarget{common_8h_3057840b0de9d217fdcedddc615295ad}{
+\index{common.h@{common.h}!ARROW\_\-DEBUG@{ARROW\_\-DEBUG}}
+\index{ARROW\_\-DEBUG@{ARROW\_\-DEBUG}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-DEBUG}}
+\label{common_8h_3057840b0de9d217fdcedddc615295ad}
+
+
+
+
+Definition at line 36 of file common.h.\hypertarget{common_8h_0be07738336b219a8057fb867ed386c1}{
+\index{common.h@{common.h}!ARROW\_\-DEV\_\-NULL@{ARROW\_\-DEV\_\-NULL}}
+\index{ARROW\_\-DEV\_\-NULL@{ARROW\_\-DEV\_\-NULL}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-DEV\_\-NULL~\char`\"{}/dev/null\char`\"{}}}
+\label{common_8h_0be07738336b219a8057fb867ed386c1}
+
+
+
+
+Definition at line 56 of file common.h.
+
+Referenced by main().\hypertarget{common_8h_a50e8b8f74e48535271458079c7506cb}{
+\index{common.h@{common.h}!ARROW\_\-FAILURE@{ARROW\_\-FAILURE}}
+\index{ARROW\_\-FAILURE@{ARROW\_\-FAILURE}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-FAILURE~0}}
+\label{common_8h_a50e8b8f74e48535271458079c7506cb}
+
+
+
+
+Definition at line 58 of file common.h.
+
+Referenced by apply\_\-deep(), apply\_\-shallow(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-biconnected(), arrow\_\-bbssp\_\-solve(), arrow\_\-bintree\_\-to\_\-new\_\-array(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-lap(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-mst\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-heap\_\-init(), arrow\_\-heap\_\-insert(), arrow\_\-llist\_\-insert\_\-after(), arrow\_\-llist\_\-insert\_\-head(), arrow\_\-llist\_\-insert\_\-tail(), arrow\_\-options\_\-parse(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-info\_\-cost\_\-index(), arrow\_\-problem\_\-read(), arrow\_\-problem\_\-read\_\-tour(), arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-tsp\_\-solve(), arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix(), arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-create\_\-int\_\-matrix(), build\_\-initial\_\-tour(), construct\_\-item(), construct\_\-node(), feasible(), init\_\-data(), insert\_\-at(), main(), read\_\-atsp(), read\_\-stsp(), and strongly\_\-connected().\hypertarget{common_8h_518134a9986d0e6bf31ec2480116ac76}{
+\index{common.h@{common.h}!ARROW\_\-FALSE@{ARROW\_\-FALSE}}
+\index{ARROW\_\-FALSE@{ARROW\_\-FALSE}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-FALSE~0}}
+\label{common_8h_518134a9986d0e6bf31ec2480116ac76}
+
+
+
+
+Definition at line 60 of file common.h.
+
+Referenced by arrow\_\-bbssp\_\-biconnected(), arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), arrow\_\-heap\_\-in(), arrow\_\-options\_\-parse(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-util\_\-regex\_\-match(), basic\_\-atsp\_\-feasible(), basic\_\-cbtsp\_\-feasible(), basic\_\-feasible(), build\_\-initial\_\-tour(), cbtsp\_\-shake\_\-feasible(), construct\_\-node(), feasible(), ford\_\-fulkerson\_\-labeling(), insert\_\-at(), is\_\-leaf(), main(), read\_\-atsp(), read\_\-stsp(), shortest\_\-augmenting\_\-path(), and strongly\_\-connected().\hypertarget{common_8h_b0d90b2c298f16738e37c85a79651025}{
+\index{common.h@{common.h}!ARROW\_\-HASH\_\-BUFFER\_\-LENGTH@{ARROW\_\-HASH\_\-BUFFER\_\-LENGTH}}
+\index{ARROW\_\-HASH\_\-BUFFER\_\-LENGTH@{ARROW\_\-HASH\_\-BUFFER\_\-LENGTH}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-HASH\_\-BUFFER\_\-LENGTH~16}}
+\label{common_8h_b0d90b2c298f16738e37c85a79651025}
+
+
+
+
+Definition at line 62 of file common.h.
+
+Referenced by arrow\_\-hash\_\-cost\_\-list(), and arrow\_\-hash\_\-search().\hypertarget{common_8h_6ae7aa7a4dfd9359283ca22c51d40902}{
+\index{common.h@{common.h}!ARROW\_\-OPTION\_\-DOUBLE@{ARROW\_\-OPTION\_\-DOUBLE}}
+\index{ARROW\_\-OPTION\_\-DOUBLE@{ARROW\_\-OPTION\_\-DOUBLE}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-OPTION\_\-DOUBLE~2}}
+\label{common_8h_6ae7aa7a4dfd9359283ca22c51d40902}
+
+
+
+
+Definition at line 70 of file common.h.
+
+Referenced by arrow\_\-options\_\-parse().\hypertarget{common_8h_627f37797cc57afbe5bd43c2bc18ef0a}{
+\index{common.h@{common.h}!ARROW\_\-OPTION\_\-INT@{ARROW\_\-OPTION\_\-INT}}
+\index{ARROW\_\-OPTION\_\-INT@{ARROW\_\-OPTION\_\-INT}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-OPTION\_\-INT~1}}
+\label{common_8h_627f37797cc57afbe5bd43c2bc18ef0a}
+
+
+
+
+Definition at line 69 of file common.h.
+
+Referenced by arrow\_\-options\_\-parse().\hypertarget{common_8h_a5af4b3dd40c1687deb0e897317fac3d}{
+\index{common.h@{common.h}!ARROW\_\-OPTION\_\-STRING@{ARROW\_\-OPTION\_\-STRING}}
+\index{ARROW\_\-OPTION\_\-STRING@{ARROW\_\-OPTION\_\-STRING}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-OPTION\_\-STRING~3}}
+\label{common_8h_a5af4b3dd40c1687deb0e897317fac3d}
+
+
+
+
+Definition at line 71 of file common.h.
+
+Referenced by arrow\_\-options\_\-parse().\hypertarget{common_8h_c8a166e323227a8681ed32027ca1000a}{
+\index{common.h@{common.h}!arrow\_\-print\_\-error@{arrow\_\-print\_\-error}}
+\index{arrow\_\-print\_\-error@{arrow\_\-print\_\-error}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define arrow\_\-print\_\-error(args...)}}
+\label{common_8h_c8a166e323227a8681ed32027ca1000a}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}fprintf(stderr, "%s:%d: ", __FILE__, __LINE__); fprintf(stderr, args); \
+    fprintf(stderr, "\n")
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 47 of file common.h.
+
+Referenced by apply\_\-deep(), apply\_\-shallow(), arrow\_\-bbssp\_\-solve(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-mst\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-heap\_\-insert(), arrow\_\-llist\_\-insert\_\-after(), arrow\_\-options\_\-parse(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-info\_\-cost\_\-index(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-long\_\-name(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-short\_\-name(), arrow\_\-tsp\_\-solve(), arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix(), arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-create\_\-int\_\-matrix(), build\_\-initial\_\-tour(), cbtsp\_\-shake\_\-get\_\-cost(), construct\_\-item(), construct\_\-node(), dijkstra(), main(), read\_\-args(), read\_\-atsp(), and read\_\-stsp().\hypertarget{common_8h_fa7567a2c1435c3ad07261341f4d2a71}{
+\index{common.h@{common.h}!ARROW\_\-PROBLEM\_\-ABTSP\_\-TO\_\-SBTSP@{ARROW\_\-PROBLEM\_\-ABTSP\_\-TO\_\-SBTSP}}
+\index{ARROW\_\-PROBLEM\_\-ABTSP\_\-TO\_\-SBTSP@{ARROW\_\-PROBLEM\_\-ABTSP\_\-TO\_\-SBTSP}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-PROBLEM\_\-ABTSP\_\-TO\_\-SBTSP~4}}
+\label{common_8h_fa7567a2c1435c3ad07261341f4d2a71}
+
+
+
+
+Definition at line 67 of file common.h.
+
+Referenced by arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp().\hypertarget{common_8h_fa38d578d41fcc6e296b8198d2f1b8f0}{
+\index{common.h@{common.h}!ARROW\_\-PROBLEM\_\-DATA\_\-BTSP\_\-FUN@{ARROW\_\-PROBLEM\_\-DATA\_\-BTSP\_\-FUN}}
+\index{ARROW\_\-PROBLEM\_\-DATA\_\-BTSP\_\-FUN@{ARROW\_\-PROBLEM\_\-DATA\_\-BTSP\_\-FUN}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-PROBLEM\_\-DATA\_\-BTSP\_\-FUN~3}}
+\label{common_8h_fa38d578d41fcc6e296b8198d2f1b8f0}
+
+
+
+
+Definition at line 66 of file common.h.
+
+Referenced by apply\_\-shallow().\hypertarget{common_8h_25552fee94aa192f0671d943e565b8af}{
+\index{common.h@{common.h}!ARROW\_\-PROBLEM\_\-DATA\_\-CONCORDE@{ARROW\_\-PROBLEM\_\-DATA\_\-CONCORDE}}
+\index{ARROW\_\-PROBLEM\_\-DATA\_\-CONCORDE@{ARROW\_\-PROBLEM\_\-DATA\_\-CONCORDE}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-PROBLEM\_\-DATA\_\-CONCORDE~2}}
+\label{common_8h_25552fee94aa192f0671d943e565b8af}
+
+
+
+
+Definition at line 65 of file common.h.
+
+Referenced by apply\_\-deep(), arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), and read\_\-stsp().\hypertarget{common_8h_931c27d4ee4fe221985a9dbbf0db475d}{
+\index{common.h@{common.h}!ARROW\_\-PROBLEM\_\-DATA\_\-FULL\_\-MATRIX@{ARROW\_\-PROBLEM\_\-DATA\_\-FULL\_\-MATRIX}}
+\index{ARROW\_\-PROBLEM\_\-DATA\_\-FULL\_\-MATRIX@{ARROW\_\-PROBLEM\_\-DATA\_\-FULL\_\-MATRIX}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-PROBLEM\_\-DATA\_\-FULL\_\-MATRIX~1}}
+\label{common_8h_931c27d4ee4fe221985a9dbbf0db475d}
+
+
+
+
+Definition at line 64 of file common.h.
+
+Referenced by read\_\-atsp().\hypertarget{common_8h_a4bb457eaf684bb6a1fee64800430478}{
+\index{common.h@{common.h}!ARROW\_\-PROBLEM\_\-NAME\_\-LENGTH@{ARROW\_\-PROBLEM\_\-NAME\_\-LENGTH}}
+\index{ARROW\_\-PROBLEM\_\-NAME\_\-LENGTH@{ARROW\_\-PROBLEM\_\-NAME\_\-LENGTH}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-PROBLEM\_\-NAME\_\-LENGTH~64}}
+\label{common_8h_a4bb457eaf684bb6a1fee64800430478}
+
+
+
+
+Definition at line 61 of file common.h.\hypertarget{common_8h_21afcc3dc34f8488ad437841f58225c4}{
+\index{common.h@{common.h}!ARROW\_\-SUCCESS@{ARROW\_\-SUCCESS}}
+\index{ARROW\_\-SUCCESS@{ARROW\_\-SUCCESS}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-SUCCESS~1}}
+\label{common_8h_21afcc3dc34f8488ad437841f58225c4}
+
+
+
+
+Definition at line 57 of file common.h.
+
+Referenced by apply\_\-deep(), apply\_\-shallow(), arrow\_\-2mb\_\-solve(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bintree\_\-to\_\-new\_\-array(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-basic\_\-atsp(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-lap(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-mst\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-hash\_\-cost\_\-list(), arrow\_\-heap\_\-init(), arrow\_\-heap\_\-insert(), arrow\_\-llist\_\-insert\_\-after(), arrow\_\-llist\_\-insert\_\-head(), arrow\_\-llist\_\-insert\_\-tail(), arrow\_\-options\_\-parse(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-info\_\-cost\_\-index(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read\_\-tour(), arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix(), arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-create\_\-int\_\-matrix(), basic\_\-atsp\_\-initialize(), basic\_\-cbtsp\_\-initialize(), basic\_\-initialize(), build\_\-initial\_\-tour(), cbtsp\_\-shake\_\-initialize(), construct\_\-item(), construct\_\-node(), feasible(), find\_\-art\_\-points(), init\_\-data(), insert\_\-at(), main(), read\_\-atsp(), read\_\-stsp(), and strongly\_\-connected().\hypertarget{common_8h_42c447b913ad11889bf816691e423644}{
+\index{common.h@{common.h}!ARROW\_\-TRUE@{ARROW\_\-TRUE}}
+\index{ARROW\_\-TRUE@{ARROW\_\-TRUE}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-TRUE~1}}
+\label{common_8h_42c447b913ad11889bf816691e423644}
+
+
+
+
+Definition at line 59 of file common.h.
+
+Referenced by arrow\_\-bbssp\_\-biconnected(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-solve(), arrow\_\-heap\_\-in(), arrow\_\-options\_\-parse(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-util\_\-regex\_\-match(), basic\_\-atsp\_\-feasible(), basic\_\-cbtsp\_\-feasible(), basic\_\-feasible(), cbtsp\_\-shake\_\-feasible(), destruct\_\-node(), feasible(), ford\_\-fulkerson\_\-labeling(), insert\_\-at(), is\_\-leaf(), main(), read\_\-stsp(), shortest\_\-augmenting\_\-path(), strongly\_\-connected(), and strongly\_\-connected\_\-dfs().\hypertarget{common_8h_73a3fc48edc73ab8c510034d6c6dd2e1}{
+\index{common.h@{common.h}!ARROW\_\-VERSION@{ARROW\_\-VERSION}}
+\index{ARROW\_\-VERSION@{ARROW\_\-VERSION}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-VERSION~\char`\"{}1.0\char`\"{}}}
+\label{common_8h_73a3fc48edc73ab8c510034d6c6dd2e1}
+
+
+
+
+Definition at line 55 of file common.h.
+
+Referenced by print\_\-version().\hypertarget{common_8h_c85ff6ed8837999e4553ffde8af02756}{
+\index{common.h@{common.h}!CONCORDE\_\-FAILURE@{CONCORDE\_\-FAILURE}}
+\index{CONCORDE\_\-FAILURE@{CONCORDE\_\-FAILURE}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define CONCORDE\_\-FAILURE~1}}
+\label{common_8h_c85ff6ed8837999e4553ffde8af02756}
+
+
+
+
+Definition at line 74 of file common.h.
+
+Referenced by arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), and build\_\-initial\_\-tour().\hypertarget{common_8h_5bc042a0d5e4aee532d2841342766d29}{
+\index{common.h@{common.h}!CONCORDE\_\-SUCCESS@{CONCORDE\_\-SUCCESS}}
+\index{CONCORDE\_\-SUCCESS@{CONCORDE\_\-SUCCESS}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define CONCORDE\_\-SUCCESS~0}}
+\label{common_8h_5bc042a0d5e4aee532d2841342766d29}
+
+
+
+
+Definition at line 73 of file common.h.
+
+Referenced by arrow\_\-problem\_\-read\_\-tour().
+
+\subsection{Function Documentation}
+\hypertarget{common_8h_ca9875422bf132eb9f5a4a2d10053207}{
+\index{common.h@{common.h}!arrow\_\-bintree\_\-destruct@{arrow\_\-bintree\_\-destruct}}
+\index{arrow\_\-bintree\_\-destruct@{arrow\_\-bintree\_\-destruct}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-bintree\_\-destruct ({\bf arrow\_\-bintree} $\ast$ {\em tree})}}
+\label{common_8h_ca9875422bf132eb9f5a4a2d10053207}
+
+
+Destructs a binary tree data structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em tree}]\mbox{[}out\mbox{]} binary tree structure \end{description}
+\end{Desc}
+
+
+Definition at line 60 of file bintree.c.
+
+References destruct\_\-node(), arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
+
+Referenced by arrow\_\-problem\_\-info\_\-get().\hypertarget{common_8h_b28bc6559b228f0aa65cc671f67b9a09}{
+\index{common.h@{common.h}!arrow\_\-bintree\_\-init@{arrow\_\-bintree\_\-init}}
+\index{arrow\_\-bintree\_\-init@{arrow\_\-bintree\_\-init}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-bintree\_\-init ({\bf arrow\_\-bintree} $\ast$ {\em tree})}}
+\label{common_8h_b28bc6559b228f0aa65cc671f67b9a09}
+
+
+Initializes the binary tree data structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em tree}]\mbox{[}out\mbox{]} binary tree structure \end{description}
+\end{Desc}
+
+
+Definition at line 53 of file bintree.c.
+
+References arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
+
+Referenced by arrow\_\-problem\_\-info\_\-get(), and cbtsp\_\-shake\_\-initialize().\hypertarget{common_8h_75b4ee03b9667bd0e13e6cc71043e0a9}{
+\index{common.h@{common.h}!arrow\_\-bintree\_\-insert@{arrow\_\-bintree\_\-insert}}
+\index{arrow\_\-bintree\_\-insert@{arrow\_\-bintree\_\-insert}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bintree\_\-insert ({\bf arrow\_\-bintree} $\ast$ {\em tree}, \/  int {\em value})}}
+\label{common_8h_75b4ee03b9667bd0e13e6cc71043e0a9}
+
+
+Inserts a value into the binary tree. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em tree}]\mbox{[}out\mbox{]} binary tree structure \item[{\em value}]\mbox{[}in\mbox{]} value to insert into tree \end{description}
+\end{Desc}
+
+
+Definition at line 67 of file bintree.c.
+
+References construct\_\-node(), insert\_\-at(), arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
+
+Referenced by arrow\_\-problem\_\-info\_\-get(), and cbtsp\_\-shake\_\-initialize().\hypertarget{common_8h_3804a3bce6fc22ef6d5ea0ac5776a2bb}{
+\index{common.h@{common.h}!arrow\_\-bintree\_\-print@{arrow\_\-bintree\_\-print}}
+\index{arrow\_\-bintree\_\-print@{arrow\_\-bintree\_\-print}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-bintree\_\-print ({\bf arrow\_\-bintree} $\ast$ {\em tree})}}
+\label{common_8h_3804a3bce6fc22ef6d5ea0ac5776a2bb}
+
+
+Prints out the values of the binary tree. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em tree}]\mbox{[}in\mbox{]} binary tree structure \end{description}
+\end{Desc}
+\hypertarget{common_8h_3f841b62942349c0036ca9073f98a481}{
+\index{common.h@{common.h}!arrow\_\-bintree\_\-to\_\-array@{arrow\_\-bintree\_\-to\_\-array}}
+\index{arrow\_\-bintree\_\-to\_\-array@{arrow\_\-bintree\_\-to\_\-array}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-bintree\_\-to\_\-array ({\bf arrow\_\-bintree} $\ast$ {\em tree}, \/  int $\ast$ {\em array})}}
+\label{common_8h_3f841b62942349c0036ca9073f98a481}
+
+
+Initializes the binary tree data structure into an existing array. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em tree}]\mbox{[}out\mbox{]} binary tree structure \item[{\em array}]\mbox{[}out\mbox{]} array to be filled \end{description}
+\end{Desc}
+
+
+Definition at line 87 of file bintree.c.
+
+References fill\_\-array(), and arrow\_\-bintree::root\_\-node.
+
+Referenced by arrow\_\-bintree\_\-to\_\-new\_\-array(), and cbtsp\_\-shake\_\-initialize().\hypertarget{common_8h_11a76a726dfdd109e12cac7046cb431c}{
+\index{common.h@{common.h}!arrow\_\-bintree\_\-to\_\-new\_\-array@{arrow\_\-bintree\_\-to\_\-new\_\-array}}
+\index{arrow\_\-bintree\_\-to\_\-new\_\-array@{arrow\_\-bintree\_\-to\_\-new\_\-array}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bintree\_\-to\_\-new\_\-array ({\bf arrow\_\-bintree} $\ast$ {\em tree}, \/  int $\ast$$\ast$ {\em array})}}
+\label{common_8h_11a76a726dfdd109e12cac7046cb431c}
+
+
+Initializes the binary tree data structure into a new array. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em tree}]\mbox{[}out\mbox{]} binary tree structure \item[{\em array}]\mbox{[}out\mbox{]} array to be created and filled \end{description}
+\end{Desc}
+
+
+Definition at line 94 of file bintree.c.
+
+References arrow\_\-bintree\_\-to\_\-array(), ARROW\_\-FAILURE, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), and arrow\_\-bintree::size.
+
+Referenced by arrow\_\-problem\_\-info\_\-get().\hypertarget{common_8h_23c1e4bb173c43287c42f51c94126c2c}{
+\index{common.h@{common.h}!arrow\_\-hash\_\-cost\_\-list@{arrow\_\-hash\_\-cost\_\-list}}
+\index{arrow\_\-hash\_\-cost\_\-list@{arrow\_\-hash\_\-cost\_\-list}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-hash\_\-cost\_\-list (int $\ast$ {\em cost\_\-list}, \/  int {\em cost\_\-list\_\-length}, \/  {\bf arrow\_\-hash} $\ast$ {\em hash})}}
+\label{common_8h_23c1e4bb173c43287c42f51c94126c2c}
+
+
+Creates a hash table from a list of unique costs. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em cost\_\-list}]\mbox{[}in\mbox{]} list of costs \item[{\em cost\_\-list\_\-length}]\mbox{[}in\mbox{]} length of cost list \item[{\em hash}]\mbox{[}out\mbox{]} hashtable data structure \end{description}
+\end{Desc}
+
+
+Definition at line 12 of file hash.c.
+
+References ARROW\_\-HASH\_\-BUFFER\_\-LENGTH, ARROW\_\-SUCCESS, arrow\_\-hash::data, arrow\_\-hash::num\_\-keys, arrow\_\-hash::source, arrow\_\-hash::vector, and arrow\_\-hash::vector\_\-space.
+
+Referenced by arrow\_\-problem\_\-info\_\-get().\hypertarget{common_8h_f7f552485d4a2c7dfbaa82156e264b4e}{
+\index{common.h@{common.h}!arrow\_\-hash\_\-destruct@{arrow\_\-hash\_\-destruct}}
+\index{arrow\_\-hash\_\-destruct@{arrow\_\-hash\_\-destruct}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-hash\_\-destruct ({\bf arrow\_\-hash} $\ast$ {\em hash})}}
+\label{common_8h_f7f552485d4a2c7dfbaa82156e264b4e}
+
+
+Destructs a hashtable data structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em hash}]\mbox{[}out\mbox{]} hashtable data structure \end{description}
+\end{Desc}
+
+
+Definition at line 40 of file hash.c.
+
+References arrow\_\-hash::data, arrow\_\-hash::num\_\-keys, arrow\_\-hash::source, arrow\_\-hash::vector, and arrow\_\-hash::vector\_\-space.
+
+Referenced by arrow\_\-problem\_\-info\_\-destruct().\hypertarget{common_8h_237811011cb0d4e84ec15972040b67d3}{
+\index{common.h@{common.h}!arrow\_\-hash\_\-search@{arrow\_\-hash\_\-search}}
+\index{arrow\_\-hash\_\-search@{arrow\_\-hash\_\-search}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}unsigned int arrow\_\-hash\_\-search ({\bf arrow\_\-hash} $\ast$ {\em hash}, \/  int {\em key})}}
+\label{common_8h_237811011cb0d4e84ec15972040b67d3}
+
+
+Finds id associated with key in hashtable. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em hash}]\mbox{[}in\mbox{]} hash table data structure \item[{\em key}]\mbox{[}in\mbox{]} key to look up \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]the id of the associated key \end{Desc}
+
+
+Definition at line 50 of file hash.c.
+
+References ARROW\_\-HASH\_\-BUFFER\_\-LENGTH, and arrow\_\-hash::data.
+
+Referenced by arrow\_\-problem\_\-info\_\-cost\_\-index(), and main().\hypertarget{common_8h_68ed30661f547d8249a5a3c6e3b2a268}{
+\index{common.h@{common.h}!arrow\_\-heap\_\-change\_\-key@{arrow\_\-heap\_\-change\_\-key}}
+\index{arrow\_\-heap\_\-change\_\-key@{arrow\_\-heap\_\-change\_\-key}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-heap\_\-change\_\-key ({\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int {\em key}, \/  int {\em value})}}
+\label{common_8h_68ed30661f547d8249a5a3c6e3b2a268}
+
+
+Changes the key for the given value in the heap. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}out\mbox{]} heap structure \item[{\em key}]\mbox{[}in\mbox{]} the new key \item[{\em value}]\mbox{[}in\mbox{]} node value to change \end{description}
+\end{Desc}
+
+
+Definition at line 177 of file heap.c.
+
+References arrow\_\-heap::keys, arrow\_\-heap::pos, siftdown(), and siftup().
+
+Referenced by dijkstra(), and min\_\-span\_\-tree().\hypertarget{common_8h_c21664c1267507a01909d9e55fd1f2de}{
+\index{common.h@{common.h}!arrow\_\-heap\_\-delete\_\-min@{arrow\_\-heap\_\-delete\_\-min}}
+\index{arrow\_\-heap\_\-delete\_\-min@{arrow\_\-heap\_\-delete\_\-min}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-heap\_\-delete\_\-min ({\bf arrow\_\-heap} $\ast$ {\em heap})}}
+\label{common_8h_c21664c1267507a01909d9e55fd1f2de}
+
+
+Removes the value with the smallest key from the heap. 
+
+heap \mbox{[}out\mbox{]} heap structure 
+
+Definition at line 196 of file heap.c.
+
+References arrow\_\-heap::pos, siftdown(), arrow\_\-heap::size, swap\_\-nodes(), and arrow\_\-heap::values.
+
+Referenced by dijkstra(), and min\_\-span\_\-tree().\hypertarget{common_8h_f43829b492dd8cc8f4e0db378f1340a1}{
+\index{common.h@{common.h}!arrow\_\-heap\_\-destruct@{arrow\_\-heap\_\-destruct}}
+\index{arrow\_\-heap\_\-destruct@{arrow\_\-heap\_\-destruct}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-heap\_\-destruct ({\bf arrow\_\-heap} $\ast$ {\em heap})}}
+\label{common_8h_f43829b492dd8cc8f4e0db378f1340a1}
+
+
+Destructs a binary heap. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}out\mbox{]} heap structure \end{description}
+\end{Desc}
+
+
+Definition at line 117 of file heap.c.
+
+References arrow\_\-heap::keys, arrow\_\-heap::pos, and arrow\_\-heap::values.
+
+Referenced by arrow\_\-heap\_\-init(), destroy\_\-data(), and destruct\_\-data().\hypertarget{common_8h_e439f7114905af00423376d542feb146}{
+\index{common.h@{common.h}!arrow\_\-heap\_\-empty@{arrow\_\-heap\_\-empty}}
+\index{arrow\_\-heap\_\-empty@{arrow\_\-heap\_\-empty}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-heap\_\-empty ({\bf arrow\_\-heap} $\ast$ {\em heap})}}
+\label{common_8h_e439f7114905af00423376d542feb146}
+
+
+Empties the heap of items. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}out\mbox{]} heap structure \end{description}
+\end{Desc}
+
+
+Definition at line 128 of file heap.c.
+
+References arrow\_\-heap::keys, arrow\_\-heap::max\_\-size, arrow\_\-heap::pos, arrow\_\-heap::size, and arrow\_\-heap::values.
+
+Referenced by dijkstra(), and min\_\-span\_\-tree().\hypertarget{common_8h_a62ae3b2521ddd990699eaafa946db25}{
+\index{common.h@{common.h}!arrow\_\-heap\_\-get\_\-min@{arrow\_\-heap\_\-get\_\-min}}
+\index{arrow\_\-heap\_\-get\_\-min@{arrow\_\-heap\_\-get\_\-min}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-heap\_\-get\_\-min ({\bf arrow\_\-heap} $\ast$ {\em heap})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_a62ae3b2521ddd990699eaafa946db25}
+
+
+Returns the value with the smallest key in the heap. 
+
+heap \mbox{[}in\mbox{]} heap structure \begin{Desc}
+\item[Returns:]The value with the smallest key in the heap. \end{Desc}
+
+
+Definition at line 190 of file heap.c.
+
+References arrow\_\-heap::values.
+
+Referenced by dijkstra(), and min\_\-span\_\-tree().\hypertarget{common_8h_a236930effb35f5b14b50253183d59ea}{
+\index{common.h@{common.h}!arrow\_\-heap\_\-in@{arrow\_\-heap\_\-in}}
+\index{arrow\_\-heap\_\-in@{arrow\_\-heap\_\-in}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-heap\_\-in ({\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int {\em value})}}
+\label{common_8h_a236930effb35f5b14b50253183d59ea}
+
+
+Determines if the given value is present in the heap. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}in\mbox{]} heap structure \item[{\em value}]\mbox{[}in\mbox{]} value to check \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]True or false, if the value is present in the heap \end{Desc}
+
+
+Definition at line 171 of file heap.c.
+
+References ARROW\_\-FALSE, ARROW\_\-TRUE, and arrow\_\-heap::pos.
+
+Referenced by dijkstra().\hypertarget{common_8h_44eb41f556b84a8056ff66efb0c864b6}{
+\index{common.h@{common.h}!arrow\_\-heap\_\-init@{arrow\_\-heap\_\-init}}
+\index{arrow\_\-heap\_\-init@{arrow\_\-heap\_\-init}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-heap\_\-init ({\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int {\em max\_\-size})}}
+\label{common_8h_44eb41f556b84a8056ff66efb0c864b6}
+
+
+Initializes a new binary heap. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}out\mbox{]} heap structure \item[{\em max\_\-size}]\mbox{[}in\mbox{]} maximum size of heap \end{description}
+\end{Desc}
+
+
+Definition at line 89 of file heap.c.
+
+References ARROW\_\-FAILURE, arrow\_\-heap\_\-destruct(), ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-heap::keys, arrow\_\-heap::max\_\-size, arrow\_\-heap::pos, arrow\_\-heap::size, and arrow\_\-heap::values.
+
+Referenced by init\_\-data().\hypertarget{common_8h_b0f4b6c5dfa713b20966719fbf6e093e}{
+\index{common.h@{common.h}!arrow\_\-heap\_\-insert@{arrow\_\-heap\_\-insert}}
+\index{arrow\_\-heap\_\-insert@{arrow\_\-heap\_\-insert}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-heap\_\-insert ({\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int {\em key}, \/  int {\em value})}}
+\label{common_8h_b0f4b6c5dfa713b20966719fbf6e093e}
+
+
+Inserts a new (key,value) pair into the heap. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}out\mbox{]} heap structure \item[{\em key}]\mbox{[}in\mbox{]} key to insert \item[{\em value}]\mbox{[}in\mbox{]} value to insert -- must be between 0 and \mbox{[}n-1\mbox{]} and not a duplicate value. \end{description}
+\end{Desc}
+
+
+Definition at line 141 of file heap.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-heap::keys, arrow\_\-heap::max\_\-size, arrow\_\-heap::pos, siftup(), arrow\_\-heap::size, and arrow\_\-heap::values.
+
+Referenced by dijkstra(), and min\_\-span\_\-tree().\hypertarget{common_8h_161eaacdfed324053e40cc0c3a7d9bf0}{
+\index{common.h@{common.h}!arrow\_\-heap\_\-print@{arrow\_\-heap\_\-print}}
+\index{arrow\_\-heap\_\-print@{arrow\_\-heap\_\-print}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-heap\_\-print ({\bf arrow\_\-heap} $\ast$ {\em heap})}}
+\label{common_8h_161eaacdfed324053e40cc0c3a7d9bf0}
+
+
+Prints heap structure. 
+
+heap \mbox{[}in\mbox{]} heap structure 
+
+Definition at line 206 of file heap.c.
+
+References arrow\_\-heap::keys, arrow\_\-heap::max\_\-size, arrow\_\-heap::pos, arrow\_\-heap::size, and arrow\_\-heap::values.\hypertarget{common_8h_bee92fb4a4711dd8fa4d22fb8f942f3d}{
+\index{common.h@{common.h}!arrow\_\-llist\_\-destruct@{arrow\_\-llist\_\-destruct}}
+\index{arrow\_\-llist\_\-destruct@{arrow\_\-llist\_\-destruct}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-destruct ({\bf arrow\_\-llist} $\ast$ {\em list})}}
+\label{common_8h_bee92fb4a4711dd8fa4d22fb8f942f3d}
+
+
+Destructs contents of a linked list. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}out\mbox{]} list structure \end{description}
+\end{Desc}
+
+
+Definition at line 31 of file llist.c.
+
+References arrow\_\-llist\_\-remove\_\-head(), and arrow\_\-llist::size.
+
+Referenced by arrow\_\-tsp\_\-rai\_\-solve(), and improve\_\-tour().\hypertarget{common_8h_cc0b379b2e15aa13462bf1e7675e8cf4}{
+\index{common.h@{common.h}!arrow\_\-llist\_\-init@{arrow\_\-llist\_\-init}}
+\index{arrow\_\-llist\_\-init@{arrow\_\-llist\_\-init}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-init ({\bf arrow\_\-llist} $\ast$ {\em list})}}
+\label{common_8h_cc0b379b2e15aa13462bf1e7675e8cf4}
+
+
+Initializes a new linked list. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}out\mbox{]} linked list structure \end{description}
+\end{Desc}
+
+
+Definition at line 23 of file llist.c.
+
+References arrow\_\-llist::head, arrow\_\-llist::size, and arrow\_\-llist::tail.
+
+Referenced by arrow\_\-tsp\_\-rai\_\-solve().\hypertarget{common_8h_7c348a8af5422f6f4d1f6ded30677a70}{
+\index{common.h@{common.h}!arrow\_\-llist\_\-insert\_\-after@{arrow\_\-llist\_\-insert\_\-after}}
+\index{arrow\_\-llist\_\-insert\_\-after@{arrow\_\-llist\_\-insert\_\-after}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-llist\_\-insert\_\-after ({\bf arrow\_\-llist} $\ast$ {\em list}, \/  {\bf arrow\_\-llist\_\-item} $\ast$ {\em item}, \/  int {\em value})}}
+\label{common_8h_7c348a8af5422f6f4d1f6ded30677a70}
+
+
+Inserts a new item after the given item in the list. NOTE: procedure makes no attempt to verify given item is in the list! 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}out\mbox{]} linked list structure \item[{\em item}]\mbox{[}in\mbox{]} linked list item \item[{\em value}]\mbox{[}in\mbox{]} value to insert \end{description}
+\end{Desc}
+
+
+Definition at line 101 of file llist.c.
+
+References ARROW\_\-FAILURE, arrow\_\-llist\_\-insert\_\-tail(), arrow\_\-print\_\-error, ARROW\_\-SUCCESS, construct\_\-item(), arrow\_\-llist\_\-item::next, arrow\_\-llist::size, and arrow\_\-llist::tail.
+
+Referenced by construct\_\-tour().\hypertarget{common_8h_686445c1ca941deb7843f570e801b703}{
+\index{common.h@{common.h}!arrow\_\-llist\_\-insert\_\-head@{arrow\_\-llist\_\-insert\_\-head}}
+\index{arrow\_\-llist\_\-insert\_\-head@{arrow\_\-llist\_\-insert\_\-head}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-llist\_\-insert\_\-head ({\bf arrow\_\-llist} $\ast$ {\em list}, \/  int {\em value})}}
+\label{common_8h_686445c1ca941deb7843f570e801b703}
+
+
+Inserts a new item at the head of the list. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}out\mbox{]} linked list structure \item[{\em value}]\mbox{[}in\mbox{]} value to insert \end{description}
+\end{Desc}
+
+
+Definition at line 55 of file llist.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, construct\_\-item(), arrow\_\-llist::head, arrow\_\-llist\_\-item::next, arrow\_\-llist::size, and arrow\_\-llist::tail.\hypertarget{common_8h_645b9a27d9014e3415b8e6f2a37a316a}{
+\index{common.h@{common.h}!arrow\_\-llist\_\-insert\_\-tail@{arrow\_\-llist\_\-insert\_\-tail}}
+\index{arrow\_\-llist\_\-insert\_\-tail@{arrow\_\-llist\_\-insert\_\-tail}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-llist\_\-insert\_\-tail ({\bf arrow\_\-llist} $\ast$ {\em list}, \/  int {\em value})}}
+\label{common_8h_645b9a27d9014e3415b8e6f2a37a316a}
+
+
+Inserts a new item at the tail of the list. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}out\mbox{]} linked list structure \item[{\em value}]\mbox{[}in\mbox{]} value to insert \end{description}
+\end{Desc}
+
+
+Definition at line 78 of file llist.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, construct\_\-item(), arrow\_\-llist::head, arrow\_\-llist\_\-item::next, arrow\_\-llist::size, and arrow\_\-llist::tail.
+
+Referenced by arrow\_\-llist\_\-insert\_\-after(), arrow\_\-tsp\_\-rai\_\-solve(), construct\_\-tour(), and improve\_\-tour().\hypertarget{common_8h_9c558d27574d24be9dd6688dd4e8543d}{
+\index{common.h@{common.h}!arrow\_\-llist\_\-print@{arrow\_\-llist\_\-print}}
+\index{arrow\_\-llist\_\-print@{arrow\_\-llist\_\-print}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-print ({\bf arrow\_\-llist} $\ast$ {\em list})}}
+\label{common_8h_9c558d27574d24be9dd6688dd4e8543d}
+
+
+Prints a list of items in the list. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}in\mbox{]} linked list structure \end{description}
+\end{Desc}
+
+
+Definition at line 201 of file llist.c.
+
+References arrow\_\-llist\_\-item::data, arrow\_\-llist::head, arrow\_\-llist\_\-item::next, and arrow\_\-llist::size.\hypertarget{common_8h_85f6a89c9b2b149c81751b6dcae7f4f1}{
+\index{common.h@{common.h}!arrow\_\-llist\_\-remove\_\-after@{arrow\_\-llist\_\-remove\_\-after}}
+\index{arrow\_\-llist\_\-remove\_\-after@{arrow\_\-llist\_\-remove\_\-after}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-remove\_\-after ({\bf arrow\_\-llist} $\ast$ {\em list}, \/  {\bf arrow\_\-llist\_\-item} $\ast$ {\em item}, \/  int $\ast$ {\em value})}}
+\label{common_8h_85f6a89c9b2b149c81751b6dcae7f4f1}
+
+
+Removes the item after the given one in the list. NOTE: procedure makes no attempt to verify given item is in the list! 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}out\mbox{]} linked list structure \item[{\em item}]\mbox{[}in\mbox{]} linked list item \item[{\em value}]\mbox{[}out\mbox{]} value of removed item \end{description}
+\end{Desc}
+
+
+Definition at line 179 of file llist.c.
+
+References arrow\_\-llist\_\-remove\_\-head(), arrow\_\-llist\_\-item::data, arrow\_\-llist::head, arrow\_\-llist\_\-item::next, arrow\_\-llist::size, and arrow\_\-llist::tail.\hypertarget{common_8h_081d530fc7f0936e3b18c00ff4266548}{
+\index{common.h@{common.h}!arrow\_\-llist\_\-remove\_\-head@{arrow\_\-llist\_\-remove\_\-head}}
+\index{arrow\_\-llist\_\-remove\_\-head@{arrow\_\-llist\_\-remove\_\-head}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-remove\_\-head ({\bf arrow\_\-llist} $\ast$ {\em list}, \/  int $\ast$ {\em value})}}
+\label{common_8h_081d530fc7f0936e3b18c00ff4266548}
+
+
+Removes the head item in the list. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}out\mbox{]} linked list structure \item[{\em value}]\mbox{[}out\mbox{]} value of removed item \end{description}
+\end{Desc}
+
+
+Definition at line 128 of file llist.c.
+
+References arrow\_\-llist\_\-item::data, arrow\_\-llist::head, arrow\_\-llist\_\-item::next, arrow\_\-llist::size, and arrow\_\-llist::tail.
+
+Referenced by arrow\_\-llist\_\-destruct(), arrow\_\-llist\_\-remove\_\-after(), and arrow\_\-llist\_\-remove\_\-tail().\hypertarget{common_8h_696e0c9f6adf3ab86287d50b84c471ce}{
+\index{common.h@{common.h}!arrow\_\-llist\_\-remove\_\-tail@{arrow\_\-llist\_\-remove\_\-tail}}
+\index{arrow\_\-llist\_\-remove\_\-tail@{arrow\_\-llist\_\-remove\_\-tail}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-remove\_\-tail ({\bf arrow\_\-llist} $\ast$ {\em list}, \/  int $\ast$ {\em value})}}
+\label{common_8h_696e0c9f6adf3ab86287d50b84c471ce}
+
+
+Removes the tail item in the list. NOTE: O(n) procedure! 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}out\mbox{]} linked list structure \item[{\em value}]\mbox{[}out\mbox{]} value of removed item \end{description}
+\end{Desc}
+
+
+Definition at line 153 of file llist.c.
+
+References arrow\_\-llist\_\-remove\_\-head(), arrow\_\-llist\_\-item::data, arrow\_\-llist::head, arrow\_\-llist\_\-item::next, arrow\_\-llist::size, and arrow\_\-llist::tail.\hypertarget{common_8h_080399f8567743e40256b47618f55fcd}{
+\index{common.h@{common.h}!arrow\_\-llist\_\-swap@{arrow\_\-llist\_\-swap}}
+\index{arrow\_\-llist\_\-swap@{arrow\_\-llist\_\-swap}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-swap ({\bf arrow\_\-llist} $\ast$ {\em a}, \/  {\bf arrow\_\-llist} $\ast$ {\em b})}}
+\label{common_8h_080399f8567743e40256b47618f55fcd}
+
+
+Swaps the two given lists. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em a}]\mbox{[}out\mbox{]} the first list \item[{\em b}]\mbox{[}out\mbox{]} the second list \end{description}
+\end{Desc}
+
+
+Definition at line 39 of file llist.c.
+
+References arrow\_\-llist::head, arrow\_\-llist::size, and arrow\_\-llist::tail.
+
+Referenced by improve\_\-tour().\hypertarget{common_8h_708a19244cf603819ed64bd34f93714e}{
+\index{common.h@{common.h}!arrow\_\-llist\_\-to\_\-array@{arrow\_\-llist\_\-to\_\-array}}
+\index{arrow\_\-llist\_\-to\_\-array@{arrow\_\-llist\_\-to\_\-array}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-to\_\-array ({\bf arrow\_\-llist} $\ast$ {\em list}, \/  int $\ast$ {\em array})}}
+\label{common_8h_708a19244cf603819ed64bd34f93714e}
+
+
+Copys data from linked list into array. Assume array is big enough to handle linked list! 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}in\mbox{]} linked list structure \item[{\em array}]\mbox{[}out\mbox{]} array to copy items into \end{description}
+\end{Desc}
+
+
+Definition at line 214 of file llist.c.
+
+References arrow\_\-llist\_\-item::data, arrow\_\-llist::head, and arrow\_\-llist\_\-item::next.
+
+Referenced by arrow\_\-tsp\_\-rai\_\-solve().\hypertarget{common_8h_e187e044872b9130dc8451a7cbfd3f8d}{
+\index{common.h@{common.h}!arrow\_\-options\_\-parse@{arrow\_\-options\_\-parse}}
+\index{arrow\_\-options\_\-parse@{arrow\_\-options\_\-parse}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-options\_\-parse (int {\em num\_\-opts}, \/  {\bf arrow\_\-option} {\em options}\mbox{[}$\,$\mbox{]}, \/  char $\ast$ {\em description}, \/  char $\ast$ {\em usage}, \/  int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]}, \/  int $\ast$ {\em opt\_\-ind})}}
+\label{common_8h_e187e044872b9130dc8451a7cbfd3f8d}
+
+
+Parses program options. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em num\_\-opts}]\mbox{[}in\mbox{]} the number of program options \item[{\em options}]\mbox{[}out\mbox{]} array of program options \item[{\em description}]\mbox{[}in\mbox{]} description of program \item[{\em usage}]\mbox{[}in\mbox{]} usage message \item[{\em argc}]\mbox{[}in\mbox{]} number of program arguments \item[{\em argv}]\mbox{[}out\mbox{]} array of program arguments (might be rearranged) \item[{\em opt\_\-ind}]\mbox{[}out\mbox{]} index first program option appears at \end{description}
+\end{Desc}
+
+
+Definition at line 24 of file options.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-OPTION\_\-DOUBLE, ARROW\_\-OPTION\_\-INT, ARROW\_\-OPTION\_\-STRING, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-option::long\_\-option, print\_\-help(), print\_\-usage(), print\_\-version(), and arrow\_\-option::short\_\-option.
+
+Referenced by main().\hypertarget{common_8h_904b6a44113cf39377e1bfbed3b5aed8}{
+\index{common.h@{common.h}!arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp@{arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp}}
+\index{arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp@{arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp (int {\em shallow}, \/  {\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em infinity}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
+\label{common_8h_904b6a44113cf39377e1bfbed3b5aed8}
+
+
+Transforms an asymmetric BTSP problem of n nodes into a symmetric BTSP problem with 2n nodes. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} if true only a shallow copy of data will be created \item[{\em old\_\-problem}]\mbox{[}in\mbox{]} the asymmetric problem \item[{\em infinity}]\mbox{[}in\mbox{]} value to use as \char`\"{}infinity\char`\"{} \item[{\em new\_\-problem}]\mbox{[}out\mbox{]} the new symmetric problem \end{description}
+\end{Desc}
+
+
+Definition at line 333 of file problem.c.
+
+References abtsp\_\-destruct(), abtsp\_\-get\_\-cost(), ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-PROBLEM\_\-ABTSP\_\-TO\_\-SBTSP, ARROW\_\-SUCCESS, ARROW\_\-TRUE, abtsp\_\-data::base, arrow\_\-problem::data, arrow\_\-problem::destruct, arrow\_\-problem::get\_\-cost, abtsp\_\-data::infinity, arrow\_\-problem::name, arrow\_\-problem::shallow, arrow\_\-problem::size, arrow\_\-problem::symmetric, and arrow\_\-problem::type.
+
+Referenced by main().\hypertarget{common_8h_a702972ab510dcc6354d7679759611d1}{
+\index{common.h@{common.h}!arrow\_\-problem\_\-destruct@{arrow\_\-problem\_\-destruct}}
+\index{arrow\_\-problem\_\-destruct@{arrow\_\-problem\_\-destruct}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-problem\_\-destruct ({\bf arrow\_\-problem} $\ast$ {\em problem})}}
+\label{common_8h_a702972ab510dcc6354d7679759611d1}
+
+
+Deallocates problem data structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}out\mbox{]} problem data structure \end{description}
+\end{Desc}
+
+
+Definition at line 153 of file problem.c.
+
+References arrow\_\-problem::data, and arrow\_\-problem::destruct.
+
+Referenced by feasible(), and main().\hypertarget{common_8h_30d8e2e252dc1e485c7be5767af0f65b}{
+\index{common.h@{common.h}!arrow\_\-problem\_\-info\_\-cost\_\-index@{arrow\_\-problem\_\-info\_\-cost\_\-index}}
+\index{arrow\_\-problem\_\-info\_\-cost\_\-index@{arrow\_\-problem\_\-info\_\-cost\_\-index}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-info\_\-cost\_\-index ({\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  int {\em cost}, \/  int $\ast$ {\em pos})}}
+\label{common_8h_30d8e2e252dc1e485c7be5767af0f65b}
+
+
+Finds the position of the given cost into the sorted list. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em info}]\mbox{[}in\mbox{]} problem info data structure \item[{\em cost}]\mbox{[}in\mbox{]} cost to look up \item[{\em pos}]\mbox{[}out\mbox{]} position of given cost in sorted list \end{description}
+\end{Desc}
+
+
+Definition at line 224 of file problem.c.
+
+References ARROW\_\-FAILURE, arrow\_\-hash\_\-search(), arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-binary\_\-search(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-problem\_\-info::hash, and arrow\_\-hash::num\_\-keys.
+
+Referenced by cbtsp\_\-shake\_\-get\_\-cost().\hypertarget{common_8h_09a5ba81556412e281fe6b863a6f08db}{
+\index{common.h@{common.h}!arrow\_\-problem\_\-info\_\-destruct@{arrow\_\-problem\_\-info\_\-destruct}}
+\index{arrow\_\-problem\_\-info\_\-destruct@{arrow\_\-problem\_\-info\_\-destruct}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-problem\_\-info\_\-destruct ({\bf arrow\_\-problem\_\-info} $\ast$ {\em info})}}
+\label{common_8h_09a5ba81556412e281fe6b863a6f08db}
+
+
+Deallocates problem info data structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em info}]\mbox{[}in\mbox{]} problem info data structure \end{description}
+\end{Desc}
+
+
+Definition at line 215 of file problem.c.
+
+References arrow\_\-hash\_\-destruct(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::hash, and arrow\_\-hash::num\_\-keys.
+
+Referenced by main().\hypertarget{common_8h_3cccb8f9982d9a1ca2f5fcd1563d7d8d}{
+\index{common.h@{common.h}!arrow\_\-problem\_\-info\_\-get@{arrow\_\-problem\_\-info\_\-get}}
+\index{arrow\_\-problem\_\-info\_\-get@{arrow\_\-problem\_\-info\_\-get}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-info\_\-get ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em create\_\-hash}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info})}}
+\label{common_8h_3cccb8f9982d9a1ca2f5fcd1563d7d8d}
+
+
+Builds ordered cost list and finds min/max cost in a problem. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data structure \item[{\em create\_\-hash}]\mbox{[}in\mbox{]} if true will also create hash table of cost list \item[{\em info}]\mbox{[}out\mbox{]} problem info data structure \end{description}
+\end{Desc}
+
+
+Definition at line 163 of file problem.c.
+
+References arrow\_\-bintree\_\-destruct(), arrow\_\-bintree\_\-init(), arrow\_\-bintree\_\-insert(), arrow\_\-bintree\_\-to\_\-new\_\-array(), arrow\_\-hash\_\-cost\_\-list(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-problem::get\_\-cost, arrow\_\-problem\_\-info::hash, arrow\_\-problem\_\-info::max\_\-cost, arrow\_\-problem\_\-info::min\_\-cost, arrow\_\-hash::num\_\-keys, arrow\_\-bintree::size, arrow\_\-problem::size, and arrow\_\-problem::symmetric.
+
+Referenced by main().\hypertarget{common_8h_bf45d0065398894bdfb4b345d50363ea}{
+\index{common.h@{common.h}!arrow\_\-problem\_\-print@{arrow\_\-problem\_\-print}}
+\index{arrow\_\-problem\_\-print@{arrow\_\-problem\_\-print}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-problem\_\-print ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em pretty})}}
+\label{common_8h_bf45d0065398894bdfb4b345d50363ea}
+
+
+Prints out information about a problem. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data structure \item[{\em pretty}]\mbox{[}in\mbox{]} if ARROW\_\-TRUE, formats output to 8 nodes/row \end{description}
+\end{Desc}
+
+
+Definition at line 249 of file problem.c.
+
+References arrow\_\-problem::get\_\-cost, arrow\_\-problem::shallow, arrow\_\-problem::size, and arrow\_\-problem::symmetric.\hypertarget{common_8h_b5b9bae9f92630983d3b3d39d86198f8}{
+\index{common.h@{common.h}!arrow\_\-problem\_\-read@{arrow\_\-problem\_\-read}}
+\index{arrow\_\-problem\_\-read@{arrow\_\-problem\_\-read}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-read (char $\ast$ {\em file\_\-name}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem})}}
+\label{common_8h_b5b9bae9f92630983d3b3d39d86198f8}
+
+
+Reads a problem from a TSPLIB file. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em file\_\-name}]\mbox{[}in\mbox{]} path to TSPLIB file \item[{\em problem}]\mbox{[}out\mbox{]} problem data structure \end{description}
+\end{Desc}
+
+
+Definition at line 118 of file problem.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, is\_\-asymmetric(), is\_\-symmetric(), arrow\_\-problem::name, read\_\-atsp(), and read\_\-stsp().
+
+Referenced by main().\hypertarget{common_8h_b0ae70bd19a75c7f3164b81e4ed092ad}{
+\index{common.h@{common.h}!arrow\_\-problem\_\-read\_\-tour@{arrow\_\-problem\_\-read\_\-tour}}
+\index{arrow\_\-problem\_\-read\_\-tour@{arrow\_\-problem\_\-read\_\-tour}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-read\_\-tour (char $\ast$ {\em file\_\-name}, \/  int {\em size}, \/  int $\ast$ {\em tour})}}
+\label{common_8h_b0ae70bd19a75c7f3164b81e4ed092ad}
+
+
+Reads a TSPLIB tour file. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em file\_\-name}]\mbox{[}in\mbox{]} the TSPLIB tour file to read \item[{\em size}]\mbox{[}in\mbox{]} the number of cities in the tour \item[{\em tour}]\mbox{[}out\mbox{]} an array to hold the tour in node-node format \end{description}
+\end{Desc}
+
+
+Definition at line 324 of file problem.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, and CONCORDE\_\-SUCCESS.
+
+Referenced by main().\hypertarget{common_8h_7a32a3f10516726b76ba6f87d96d2903}{
+\index{common.h@{common.h}!arrow\_\-util\_\-binary\_\-search@{arrow\_\-util\_\-binary\_\-search}}
+\index{arrow\_\-util\_\-binary\_\-search@{arrow\_\-util\_\-binary\_\-search}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-binary\_\-search (int $\ast$ {\em array}, \/  int {\em size}, \/  int {\em element}, \/  int $\ast$ {\em pos})}}
+\label{common_8h_7a32a3f10516726b76ba6f87d96d2903}
+
+
+Performs a binary search to find the wanted element in a sorted integer array. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em array}]\mbox{[}in\mbox{]} the array to search (note: must be sorted in non-increasing order) \item[{\em size}]\mbox{[}in\mbox{]} size of the array \item[{\em element}]\mbox{[}in\mbox{]} the element to find in the array \item[{\em pos}]\mbox{[}out\mbox{]} the index where the element can be found in the array \end{description}
+\end{Desc}
+
+
+Definition at line 145 of file util.c.
+
+References ARROW\_\-FAILURE, and ARROW\_\-SUCCESS.
+
+Referenced by arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-solve(), and arrow\_\-problem\_\-info\_\-cost\_\-index().\hypertarget{common_8h_3052203501efe0814bbe98548394b978}{
+\index{common.h@{common.h}!arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix@{arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix}}
+\index{arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix@{arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix (int {\em size}, \/  CCdatagroup $\ast$ {\em dat})}}
+\label{common_8h_3052203501efe0814bbe98548394b978}
+
+
+Initializes an upper-diagonal matrix norm structure for Concorde that is ready to be filled in with values. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em size}]\mbox{[}in\mbox{]} the number of cities/vertices \item[{\em dat}]\mbox{[}out\mbox{]} the CCdatagroup structure to create \end{description}
+\end{Desc}
+
+
+Definition at line 115 of file util.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, and ARROW\_\-SUCCESS.
+
+Referenced by apply\_\-deep().\hypertarget{common_8h_b2e3326bacca581ca01013678d664cdb}{
+\index{common.h@{common.h}!arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy@{arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy}}
+\index{arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy@{arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy (CCdatagroup $\ast$ {\em from}, \/  CCdatagroup $\ast$ {\em to})}}
+\label{common_8h_b2e3326bacca581ca01013678d664cdb}
+
+
+Makes a shallow copy of the Concorde CCdatagroup structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em from}]\mbox{[}in\mbox{]} the CCdatagroup structure to copy from \item[{\em to}]\mbox{[}out\mbox{]} the CCdatagroup structure to copy to \end{description}
+\end{Desc}
+
+
+Definition at line 89 of file util.c.\hypertarget{common_8h_4aea68dfc908d08522baccb148251ae7}{
+\index{common.h@{common.h}!arrow\_\-util\_\-create\_\-int\_\-array@{arrow\_\-util\_\-create\_\-int\_\-array}}
+\index{arrow\_\-util\_\-create\_\-int\_\-array@{arrow\_\-util\_\-create\_\-int\_\-array}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-create\_\-int\_\-array (int {\em size}, \/  int $\ast$$\ast$ {\em array})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_4aea68dfc908d08522baccb148251ae7}
+
+
+Creates an integer array. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em size}]\mbox{[}in\mbox{]} size of array \item[{\em array}]\mbox{[}out\mbox{]} pointer to array that will be created \end{description}
+\end{Desc}
+
+
+Definition at line 15 of file util.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, and ARROW\_\-SUCCESS.
+
+Referenced by arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-biconnected(), arrow\_\-bintree\_\-to\_\-new\_\-array(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-cbst\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-heap\_\-init(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-util\_\-create\_\-int\_\-matrix(), init\_\-data(), main(), and strongly\_\-connected().\hypertarget{common_8h_2801c2cc414251180545168ba9abe911}{
+\index{common.h@{common.h}!arrow\_\-util\_\-create\_\-int\_\-matrix@{arrow\_\-util\_\-create\_\-int\_\-matrix}}
+\index{arrow\_\-util\_\-create\_\-int\_\-matrix@{arrow\_\-util\_\-create\_\-int\_\-matrix}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-create\_\-int\_\-matrix (int {\em rows}, \/  int {\em cols}, \/  int $\ast$$\ast$$\ast$ {\em matrix}, \/  int $\ast$$\ast$ {\em space})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_2801c2cc414251180545168ba9abe911}
+
+
+Creates a full integer matrix. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em rows}]\mbox{[}in\mbox{]} number of rows \item[{\em cols}]\mbox{[}in\mbox{]} number of columns \item[{\em matrix}]\mbox{[}out\mbox{]} pointer to matrix that will be created \item[{\em space}]\mbox{[}out\mbox{]} pointer to matrix space that will be created \end{description}
+\end{Desc}
+
+
+Definition at line 27 of file util.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, and arrow\_\-util\_\-create\_\-int\_\-array().
+
+Referenced by arrow\_\-bap\_\-solve(), and arrow\_\-dcbpb\_\-solve().\hypertarget{common_8h_4be50d1d9906ae44ddb69b1e8fb05153}{
+\index{common.h@{common.h}!arrow\_\-util\_\-permute\_\-array@{arrow\_\-util\_\-permute\_\-array}}
+\index{arrow\_\-util\_\-permute\_\-array@{arrow\_\-util\_\-permute\_\-array}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-permute\_\-array (int {\em size}, \/  int $\ast$ {\em array})}}
+\label{common_8h_4be50d1d9906ae44ddb69b1e8fb05153}
+
+
+Randomly permutes the elements of the given array. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em size}]\mbox{[}in\mbox{]} the size of the array. \item[{\em array}]\mbox{[}out\mbox{]} the array to permute. \end{description}
+\end{Desc}
+
+
+Definition at line 228 of file util.c.
+
+References arrow\_\-util\_\-random\_\-between().
+
+Referenced by arrow\_\-tsp\_\-rai\_\-solve(), and improve\_\-tour().\hypertarget{common_8h_3bd7042ebd6e97b5790a8708c91be5b4}{
+\index{common.h@{common.h}!arrow\_\-util\_\-print\_\-error@{arrow\_\-util\_\-print\_\-error}}
+\index{arrow\_\-util\_\-print\_\-error@{arrow\_\-util\_\-print\_\-error}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-print\_\-error (const char $\ast$ {\em file\_\-name}, \/  int {\em line\_\-num}, \/  const char $\ast$ {\em message})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_3bd7042ebd6e97b5790a8708c91be5b4}
+
+
+Prints an error message to stderr with consistent formatting. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em file\_\-name}]\mbox{[}in\mbox{]} file error occured in \item[{\em line\_\-num}]\mbox{[}in\mbox{]} line number error occured at \item[{\em message}]\mbox{[}in\mbox{]} error message to write \end{description}
+\end{Desc}
+
+
+Definition at line 56 of file util.c.\hypertarget{common_8h_0bf303aee0600136e1720be7e6c60021}{
+\index{common.h@{common.h}!arrow\_\-util\_\-print\_\-program\_\-args@{arrow\_\-util\_\-print\_\-program\_\-args}}
+\index{arrow\_\-util\_\-print\_\-program\_\-args@{arrow\_\-util\_\-print\_\-program\_\-args}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-print\_\-program\_\-args (int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]}, \/  FILE $\ast$ {\em out})}}
+\label{common_8h_0bf303aee0600136e1720be7e6c60021}
+
+
+Prints out the given program arguments to the specified file. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em argc}]\mbox{[}in\mbox{]} the number of arguments \item[{\em argv}]\mbox{[}in\mbox{]} the program arugment array \item[{\em out}]\mbox{[}in\mbox{]} the file handle to print out to \end{description}
+\end{Desc}
+
+
+Definition at line 195 of file util.c.
+
+Referenced by main().\hypertarget{common_8h_f2635504f3a222a0ced821917131c44c}{
+\index{common.h@{common.h}!arrow\_\-util\_\-random@{arrow\_\-util\_\-random}}
+\index{arrow\_\-util\_\-random@{arrow\_\-util\_\-random}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-random ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_f2635504f3a222a0ced821917131c44c}
+
+
+Returns a random number between 0 and RAND\_\-MAX (normally, RAND\_\-MAX = INT\_\-MAX). 
+
+\begin{Desc}
+\item[Returns:]a random integer. \end{Desc}
+
+
+Definition at line 215 of file util.c.\hypertarget{common_8h_529c872ac72eaf0046ad149abf7b6179}{
+\index{common.h@{common.h}!arrow\_\-util\_\-random\_\-between@{arrow\_\-util\_\-random\_\-between}}
+\index{arrow\_\-util\_\-random\_\-between@{arrow\_\-util\_\-random\_\-between}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-random\_\-between (int {\em min}, \/  int {\em max})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_529c872ac72eaf0046ad149abf7b6179}
+
+
+Returns a random number between min and max. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em min}]\mbox{[}in\mbox{]} the minimum random number to return \item[{\em max}]\mbox{[}in\mbox{]} the maximum random number to return \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a random integer in the range \mbox{[}min, max\mbox{]} \end{Desc}
+
+
+Definition at line 221 of file util.c.
+
+Referenced by arrow\_\-util\_\-permute\_\-array(), cbtsp\_\-shake\_\-initialize(), construct\_\-tour(), and improve\_\-tour().\hypertarget{common_8h_448b71093a175c0f40f9cbe612b1c709}{
+\index{common.h@{common.h}!arrow\_\-util\_\-random\_\-seed@{arrow\_\-util\_\-random\_\-seed}}
+\index{arrow\_\-util\_\-random\_\-seed@{arrow\_\-util\_\-random\_\-seed}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-random\_\-seed (int {\em seed})}}
+\label{common_8h_448b71093a175c0f40f9cbe612b1c709}
+
+
+Seeds the random number generator. Pass a value of 0 to seed with the current time. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em seed}]\mbox{[}in\mbox{]} the random number seed. \end{description}
+\end{Desc}
+
+
+Definition at line 206 of file util.c.
+
+Referenced by main().\hypertarget{common_8h_8a9cef270a8d9d4fb22483dc986aa792}{
+\index{common.h@{common.h}!arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file@{arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file}}
+\index{arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file@{arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file (const char $\ast$ {\em filename}, \/  int $\ast$ {\em old\_\-stream})}}
+\label{common_8h_8a9cef270a8d9d4fb22483dc986aa792}
+
+
+Redirects STDOUT stream to a file (can be used to completely surpress output by directing to /dev/null). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em filename}]\mbox{[}in\mbox{]} name of file to direct STDOUT to \item[{\em old\_\-stream}]\mbox{[}out\mbox{]} existing file handle for STDOUT stream (necessary for restoring stream afterwards) \end{description}
+\end{Desc}
+
+
+Definition at line 69 of file util.c.
+
+Referenced by main().\hypertarget{common_8h_f9436128a70bfe493e200175d7eaf93b}{
+\index{common.h@{common.h}!arrow\_\-util\_\-regex\_\-match@{arrow\_\-util\_\-regex\_\-match}}
+\index{arrow\_\-util\_\-regex\_\-match@{arrow\_\-util\_\-regex\_\-match}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-regex\_\-match (char $\ast$ {\em string}, \/  char $\ast$ {\em pattern})}}
+\label{common_8h_f9436128a70bfe493e200175d7eaf93b}
+
+
+Determines if the given string turns up a match for the given regular expression pattern. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em string}]\mbox{[}in\mbox{]} the string to match against \item[{\em pattern}]\mbox{[}in\mbox{]} the regular expression pattern to match \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]ARROW\_\-TRUE if a match is found, ARROW\_\-FALSE if not. \end{Desc}
+
+
+Definition at line 177 of file util.c.
+
+References ARROW\_\-FALSE, and ARROW\_\-TRUE.
+
+Referenced by is\_\-asymmetric(), and is\_\-symmetric().\hypertarget{common_8h_65b9ba02b0c557fe9b15f5315a6953db}{
+\index{common.h@{common.h}!arrow\_\-util\_\-restore\_\-stdout@{arrow\_\-util\_\-restore\_\-stdout}}
+\index{arrow\_\-util\_\-restore\_\-stdout@{arrow\_\-util\_\-restore\_\-stdout}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-restore\_\-stdout (int {\em old\_\-stream})}}
+\label{common_8h_65b9ba02b0c557fe9b15f5315a6953db}
+
+
+Restores STDOUT stream that's been redirected. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em old\_\-stream}]\mbox{[}in\mbox{]} existing file handle for STDOUT stream \end{description}
+\end{Desc}
+
+
+Definition at line 78 of file util.c.
+
+Referenced by main().\hypertarget{common_8h_8a7327192a37674e2559d82448a565b1}{
+\index{common.h@{common.h}!arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour@{arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour}}
+\index{arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour@{arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int $\ast$ {\em old\_\-tour}, \/  int $\ast$ {\em new\_\-tour})}}
+\label{common_8h_8a7327192a37674e2559d82448a565b1}
+
+
+
+
+Definition at line 260 of file util.c.
+
+References arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
+
+Referenced by main().\hypertarget{common_8h_6921d887eca515c1ad59629e25a0c237}{
+\index{common.h@{common.h}!arrow\_\-util\_\-write\_\-tour@{arrow\_\-util\_\-write\_\-tour}}
+\index{arrow\_\-util\_\-write\_\-tour@{arrow\_\-util\_\-write\_\-tour}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-write\_\-tour ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  char $\ast$ {\em comment}, \/  int $\ast$ {\em tour}, \/  FILE $\ast$ {\em out})}}
+\label{common_8h_6921d887eca515c1ad59629e25a0c237}
+
+
+
+
+Definition at line 241 of file util.c.
+
+References arrow\_\-problem::name, and arrow\_\-problem::size.
+
+Referenced by main().\hypertarget{common_8h_05b2e96c9991c51368c1f8d5a77d3ccf}{
+\index{common.h@{common.h}!arrow\_\-util\_\-zeit@{arrow\_\-util\_\-zeit}}
+\index{arrow\_\-util\_\-zeit@{arrow\_\-util\_\-zeit}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}double arrow\_\-util\_\-zeit ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_05b2e96c9991c51368c1f8d5a77d3ccf}
+
+
+Used to measure timings. 
+
+\begin{Desc}
+\item[Returns:]a value representing the CPU time in seconds \end{Desc}
+
+
+Definition at line 63 of file util.c.
+
+Referenced by arrow\_\-2mb\_\-solve(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), and main().\hypertarget{common_8h_c1e8bb3469598aa8f1a77d01d234fbdc}{
+\index{common.h@{common.h}!arrow\_\-xml\_\-attribute\_\-end@{arrow\_\-xml\_\-attribute\_\-end}}
+\index{arrow\_\-xml\_\-attribute\_\-end@{arrow\_\-xml\_\-attribute\_\-end}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-attribute\_\-end (FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_c1e8bb3469598aa8f1a77d01d234fbdc}
+
+
+
+
+Definition at line 81 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_ee90512e0cef8151422883d3598b5a4b}{
+\index{common.h@{common.h}!arrow\_\-xml\_\-attribute\_\-int@{arrow\_\-xml\_\-attribute\_\-int}}
+\index{arrow\_\-xml\_\-attribute\_\-int@{arrow\_\-xml\_\-attribute\_\-int}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-attribute\_\-int (char $\ast$ {\em name}, \/  int {\em value}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_ee90512e0cef8151422883d3598b5a4b}
+
+
+
+
+Definition at line 39 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_8c807a02bc67af49cd8ed343b0f43c03}{
+\index{common.h@{common.h}!arrow\_\-xml\_\-attribute\_\-start@{arrow\_\-xml\_\-attribute\_\-start}}
+\index{arrow\_\-xml\_\-attribute\_\-start@{arrow\_\-xml\_\-attribute\_\-start}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-attribute\_\-start (char $\ast$ {\em name}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_8c807a02bc67af49cd8ed343b0f43c03}
+
+
+
+
+Definition at line 75 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_5270de6c47898a14788a7b66a79fdf6c}{
+\index{common.h@{common.h}!arrow\_\-xml\_\-attribute\_\-string@{arrow\_\-xml\_\-attribute\_\-string}}
+\index{arrow\_\-xml\_\-attribute\_\-string@{arrow\_\-xml\_\-attribute\_\-string}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-attribute\_\-string (char $\ast$ {\em name}, \/  char $\ast$ {\em value}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_5270de6c47898a14788a7b66a79fdf6c}
+
+
+
+
+Definition at line 45 of file xml.c.\hypertarget{common_8h_793061e9078fa317e78f2d40d96f9fed}{
+\index{common.h@{common.h}!arrow\_\-xml\_\-element\_\-bool@{arrow\_\-xml\_\-element\_\-bool}}
+\index{arrow\_\-xml\_\-element\_\-bool@{arrow\_\-xml\_\-element\_\-bool}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-bool (char $\ast$ {\em name}, \/  int {\em value}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_793061e9078fa317e78f2d40d96f9fed}
+
+
+Writes an XML tag out for a boolean value. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em name}]\mbox{[}in\mbox{]} the tag name \item[{\em value}]\mbox{[}in\mbox{]} the value to write \item[{\em out}]\mbox{[}out\mbox{]} the stream to write to \end{description}
+\end{Desc}
+
+
+Definition at line 33 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_706aca3669fa276b37aebb5e0d74c542}{
+\index{common.h@{common.h}!arrow\_\-xml\_\-element\_\-close@{arrow\_\-xml\_\-element\_\-close}}
+\index{arrow\_\-xml\_\-element\_\-close@{arrow\_\-xml\_\-element\_\-close}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-close (char $\ast$ {\em name}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_706aca3669fa276b37aebb5e0d74c542}
+
+
+
+
+Definition at line 69 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_286f1861006d22d745bd3c2681ee7aab}{
+\index{common.h@{common.h}!arrow\_\-xml\_\-element\_\-double@{arrow\_\-xml\_\-element\_\-double}}
+\index{arrow\_\-xml\_\-element\_\-double@{arrow\_\-xml\_\-element\_\-double}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-double (char $\ast$ {\em name}, \/  double {\em value}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_286f1861006d22d745bd3c2681ee7aab}
+
+
+Writes an XML tag out for a double value. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em name}]\mbox{[}in\mbox{]} the tag name \item[{\em value}]\mbox{[}in\mbox{]} the value to write \item[{\em out}]\mbox{[}out\mbox{]} the stream to write to \end{description}
+\end{Desc}
+
+
+Definition at line 21 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_2a4cb1e33c581013142df340cbf007b1}{
+\index{common.h@{common.h}!arrow\_\-xml\_\-element\_\-end@{arrow\_\-xml\_\-element\_\-end}}
+\index{arrow\_\-xml\_\-element\_\-end@{arrow\_\-xml\_\-element\_\-end}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-end (FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_2a4cb1e33c581013142df340cbf007b1}
+
+
+
+
+Definition at line 57 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_ac92580a7e7c1ebb1c72f68d7005fe68}{
+\index{common.h@{common.h}!arrow\_\-xml\_\-element\_\-int@{arrow\_\-xml\_\-element\_\-int}}
+\index{arrow\_\-xml\_\-element\_\-int@{arrow\_\-xml\_\-element\_\-int}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-int (char $\ast$ {\em name}, \/  int {\em value}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_ac92580a7e7c1ebb1c72f68d7005fe68}
+
+
+Writes an XML tag out for an integer value. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em name}]\mbox{[}in\mbox{]} the tag name \item[{\em value}]\mbox{[}in\mbox{]} the value to write \item[{\em out}]\mbox{[}out\mbox{]} the stream to write to \end{description}
+\end{Desc}
+
+
+Definition at line 15 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_77af49c39afb3b1de9e757ae01f8f039}{
+\index{common.h@{common.h}!arrow\_\-xml\_\-element\_\-open@{arrow\_\-xml\_\-element\_\-open}}
+\index{arrow\_\-xml\_\-element\_\-open@{arrow\_\-xml\_\-element\_\-open}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-open (char $\ast$ {\em name}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_77af49c39afb3b1de9e757ae01f8f039}
+
+
+
+
+Definition at line 63 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_37c3860e01ae53d1c110671d080fa52f}{
+\index{common.h@{common.h}!arrow\_\-xml\_\-element\_\-start@{arrow\_\-xml\_\-element\_\-start}}
+\index{arrow\_\-xml\_\-element\_\-start@{arrow\_\-xml\_\-element\_\-start}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-start (char $\ast$ {\em name}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_37c3860e01ae53d1c110671d080fa52f}
+
+
+
+
+Definition at line 51 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_aaf85f529d527d406914a61f9ed10901}{
+\index{common.h@{common.h}!arrow\_\-xml\_\-element\_\-string@{arrow\_\-xml\_\-element\_\-string}}
+\index{arrow\_\-xml\_\-element\_\-string@{arrow\_\-xml\_\-element\_\-string}!common.h@{common.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-string (char $\ast$ {\em name}, \/  char $\ast$ {\em value}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{common_8h_aaf85f529d527d406914a61f9ed10901}
+
+
+Writes an XML tag out for a string value. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em name}]\mbox{[}in\mbox{]} the tag name \item[{\em value}]\mbox{[}in\mbox{]} the value to write \item[{\em out}]\mbox{[}out\mbox{]} the stream to write to \end{description}
+\end{Desc}
+
+
+Definition at line 27 of file xml.c.

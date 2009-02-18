@@ -1,0 +1,153 @@
+\hypertarget{tourinfo_8c}{
+\section{bin/tourinfo.c File Reference}
+\label{tourinfo_8c}\index{bin/tourinfo.c@{bin/tourinfo.c}}
+}
+Tour information. 
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{tourinfo_8c_853216ac51aa181669ff4d3de74058a7}{print\_\-help} ()
+\begin{CompactList}\small\item\em Prints help/usage message. \item\end{CompactList}\item 
+void \hyperlink{tourinfo_8c_6302aaae12249e8ea16bfdc7de892f21}{print\_\-version} ()
+\begin{CompactList}\small\item\em Prints version message. \item\end{CompactList}\item 
+void \hyperlink{tourinfo_8c_e5ad5cbeccaedc03a48d3c7eaa803e79}{print\_\-usage} ()
+\begin{CompactList}\small\item\em Prints usage message. \item\end{CompactList}\item 
+void \hyperlink{tourinfo_8c_72d0810dad1a2062df342005c15106b9}{read\_\-args} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{CompactList}\small\item\em Reads program arguments. \item\end{CompactList}\item 
+void \hyperlink{tourinfo_8c_ca25a74e65f1464ca819401162b4de7a}{print\_\-xml\_\-output} (double \hyperlink{cbtsp_8c_928b11f5716331f0b89abe7d8d4124b4}{length}, int max\_\-cost, int min\_\-cost, int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{CompactList}\small\item\em Prints output in XML format. \item\end{CompactList}\item 
+int \hyperlink{tourinfo_8c_0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+char $\ast$ \hyperlink{tourinfo_8c_289c5900d90626d909f0a85d5a0ed61d}{program\_\-name}
+\item 
+char $\ast$ \hyperlink{tourinfo_8c_11f01103a19bd5a96cc616e65ed84637}{problem\_\-file}
+\item 
+char $\ast$ \hyperlink{tourinfo_8c_b818a82f867be75d7c4d92d792b0943e}{tour\_\-file}
+\item 
+int \hyperlink{tourinfo_8c_78435df485756d3c16e77edcd8f6b938}{xml\_\-output} = ARROW\_\-FALSE
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Tour information. 
+
+Displays tour information for a given problem input and tour input
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{tourinfo_8c-source}{tourinfo.c}.
+
+\subsection{Function Documentation}
+\hypertarget{tourinfo_8c_0ddf1224851353fc92bfbff6f499fa97}{
+\index{tourinfo.c@{tourinfo.c}!main@{main}}
+\index{main@{main}!tourinfo.c@{tourinfo.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]})}}
+\label{tourinfo_8c_0ddf1224851353fc92bfbff6f499fa97}
+
+
+
+
+Definition at line 52 of file tourinfo.c.
+
+References ARROW\_\-DEV\_\-NULL, arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-read(), arrow\_\-problem\_\-read\_\-tour(), ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file(), arrow\_\-util\_\-restore\_\-stdout(), arrow\_\-problem::get\_\-cost, length, print\_\-xml\_\-output(), problem\_\-file, program\_\-name, read\_\-args(), arrow\_\-problem::size, tour\_\-file, and xml\_\-output.\hypertarget{tourinfo_8c_853216ac51aa181669ff4d3de74058a7}{
+\index{tourinfo.c@{tourinfo.c}!print\_\-help@{print\_\-help}}
+\index{print\_\-help@{print\_\-help}!tourinfo.c@{tourinfo.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void print\_\-help ()}}
+\label{tourinfo_8c_853216ac51aa181669ff4d3de74058a7}
+
+
+Prints help/usage message. 
+
+\hypertarget{tourinfo_8c_e5ad5cbeccaedc03a48d3c7eaa803e79}{
+\index{tourinfo.c@{tourinfo.c}!print\_\-usage@{print\_\-usage}}
+\index{print\_\-usage@{print\_\-usage}!tourinfo.c@{tourinfo.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void print\_\-usage ()}}
+\label{tourinfo_8c_e5ad5cbeccaedc03a48d3c7eaa803e79}
+
+
+Prints usage message. 
+
+\hypertarget{tourinfo_8c_6302aaae12249e8ea16bfdc7de892f21}{
+\index{tourinfo.c@{tourinfo.c}!print\_\-version@{print\_\-version}}
+\index{print\_\-version@{print\_\-version}!tourinfo.c@{tourinfo.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void print\_\-version ()}}
+\label{tourinfo_8c_6302aaae12249e8ea16bfdc7de892f21}
+
+
+Prints version message. 
+
+\hypertarget{tourinfo_8c_ca25a74e65f1464ca819401162b4de7a}{
+\index{tourinfo.c@{tourinfo.c}!print\_\-xml\_\-output@{print\_\-xml\_\-output}}
+\index{print\_\-xml\_\-output@{print\_\-xml\_\-output}!tourinfo.c@{tourinfo.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void print\_\-xml\_\-output (double {\em length}, \/  int {\em max\_\-cost}, \/  int {\em min\_\-cost}, \/  int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]})}}
+\label{tourinfo_8c_ca25a74e65f1464ca819401162b4de7a}
+
+
+Prints output in XML format. 
+
+
+
+Definition at line 213 of file tourinfo.c.
+
+References problem\_\-file, and tour\_\-file.
+
+Referenced by main().\hypertarget{tourinfo_8c_72d0810dad1a2062df342005c15106b9}{
+\index{tourinfo.c@{tourinfo.c}!read\_\-args@{read\_\-args}}
+\index{read\_\-args@{read\_\-args}!tourinfo.c@{tourinfo.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void read\_\-args (int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]})}}
+\label{tourinfo_8c_72d0810dad1a2062df342005c15106b9}
+
+
+Reads program arguments. 
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{tourinfo_8c_11f01103a19bd5a96cc616e65ed84637}{
+\index{tourinfo.c@{tourinfo.c}!problem\_\-file@{problem\_\-file}}
+\index{problem\_\-file@{problem\_\-file}!tourinfo.c@{tourinfo.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf problem\_\-file}}}
+\label{tourinfo_8c_11f01103a19bd5a96cc616e65ed84637}
+
+
+Given TSPLIB problem file 
+
+Definition at line 44 of file tourinfo.c.
+
+Referenced by main(), and print\_\-xml\_\-output().\hypertarget{tourinfo_8c_289c5900d90626d909f0a85d5a0ed61d}{
+\index{tourinfo.c@{tourinfo.c}!program\_\-name@{program\_\-name}}
+\index{program\_\-name@{program\_\-name}!tourinfo.c@{tourinfo.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf program\_\-name}}}
+\label{tourinfo_8c_289c5900d90626d909f0a85d5a0ed61d}
+
+
+Program name 
+
+Definition at line 43 of file tourinfo.c.\hypertarget{tourinfo_8c_b818a82f867be75d7c4d92d792b0943e}{
+\index{tourinfo.c@{tourinfo.c}!tour\_\-file@{tour\_\-file}}
+\index{tour\_\-file@{tour\_\-file}!tourinfo.c@{tourinfo.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf tour\_\-file}}}
+\label{tourinfo_8c_b818a82f867be75d7c4d92d792b0943e}
+
+
+Given TSPLIB tour file 
+
+Definition at line 45 of file tourinfo.c.\hypertarget{tourinfo_8c_78435df485756d3c16e77edcd8f6b938}{
+\index{tourinfo.c@{tourinfo.c}!xml\_\-output@{xml\_\-output}}
+\index{xml\_\-output@{xml\_\-output}!tourinfo.c@{tourinfo.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf xml\_\-output} = ARROW\_\-FALSE}}
+\label{tourinfo_8c_78435df485756d3c16e77edcd8f6b938}
+
+
+Output output in XML format (or not) 
+
+Definition at line 46 of file tourinfo.c.
+
+Referenced by main().

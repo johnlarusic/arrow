@@ -1,0 +1,326 @@
+\hypertarget{tsp_8h}{
+\section{include/tsp.h File Reference}
+\label{tsp_8h}\index{include/tsp.h@{include/tsp.h}}
+}
+Solvers and heuristics for the traveling salesman problem. 
+
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structarrow__tsp__cc__lk__params}{arrow\_\-tsp\_\-cc\_\-lk\_\-params}
+\begin{CompactList}\small\item\em LK algorithm parameters. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__tsp__rai__params}{arrow\_\-tsp\_\-rai\_\-params}
+\begin{CompactList}\small\item\em LK algorithm parameters. \item\end{CompactList}\item 
+struct \hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result}
+\begin{CompactList}\small\item\em TSP result (including result from LK heuristic). \item\end{CompactList}\end{CompactItemize}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{tsp_8h_683eb4a805e8b2c7172396e03f7474a4}{ARROW\_\-TSP\_\-SOLVER\_\-COUNT}~4
+\item 
+\#define \hyperlink{tsp_8h_583c20a6a43c2b16485f0c2229e9f450}{ARROW\_\-TSP\_\-CC\_\-EXACT}~0
+\item 
+\#define \hyperlink{tsp_8h_e46fd06c8eb7f72f63159354bde93296}{ARROW\_\-TSP\_\-CC\_\-LK}~1
+\item 
+\#define \hyperlink{tsp_8h_99c0720e6942280790bd5f7a614fa031}{ARROW\_\-TSP\_\-RAI}~2
+\item 
+\#define \hyperlink{tsp_8h_fec25a267db6710cceb279f03180d6c2}{ARROW\_\-TSP\_\-PATCHING}~3
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{tsp_8h_8ccbdc390843e8b51299a9d89183c25d}{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__tsp__cc__lk__params}{arrow\_\-tsp\_\-cc\_\-lk\_\-params} $\ast$params)
+\begin{CompactList}\small\item\em Sets default parameters for Lin-Kernighan heuristic:\begin{itemize}
+\item random\_\-restarts = 0\item stall\_\-count = problem-$>$size\item kicks = (problem-$>$size / 2), at least 500\item kick\_\-type = CC\_\-LK\_\-GEOMETRIC\_\-KICK\item time\_\-bound = 0.0\item length\_\-bound = 0.0\item initial\_\-tour = NULL. \end{itemize}
+\item\end{CompactList}\item 
+void \hyperlink{tsp_8h_2e3f26d69919dddd1eb0e6969d4dcd85}{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct} (\hyperlink{structarrow__tsp__cc__lk__params}{arrow\_\-tsp\_\-cc\_\-lk\_\-params} $\ast$params)
+\begin{CompactList}\small\item\em Destructs a LK parameters structure. \item\end{CompactList}\item 
+int \hyperlink{tsp_8h_0facfae73f4527eaede86b39bfbe3e2c}{arrow\_\-tsp\_\-cc\_\-exact\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int $\ast$initial\_\-tour, \hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves TSP with Concorde's exact solver. \item\end{CompactList}\item 
+int \hyperlink{tsp_8h_a51ad259e32d0cc792d02e5c93bca4f2}{arrow\_\-tsp\_\-cc\_\-lk\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__tsp__cc__lk__params}{arrow\_\-tsp\_\-cc\_\-lk\_\-params} $\ast$params, \hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves TSP with Concorde's Lin-Kernighan heuristic. \item\end{CompactList}\item 
+int \hyperlink{tsp_8h_7236b8bd57298ee7dbe317375ab167b4}{arrow\_\-tsp\_\-rai\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__tsp__rai__params}{arrow\_\-tsp\_\-rai\_\-params} $\ast$params, \hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result} $\ast$result)
+\item 
+int \hyperlink{tsp_8h_124a14a04e51fdd8e05f0aed7dfdd44c}{arrow\_\-tsp\_\-result\_\-init} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Initializes the TSP result structure. \item\end{CompactList}\item 
+void \hyperlink{tsp_8h_0665c82047dc78f8d08f12ecf5a9eef8}{arrow\_\-tsp\_\-result\_\-destruct} (\hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Destructs a TSP result structure. \item\end{CompactList}\item 
+int \hyperlink{tsp_8h_83a75ed402c5d7d82eaa305d2d08349c}{arrow\_\-tsp\_\-solve} (int tsp\_\-solver, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, void $\ast$params, \hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves TSP with for requested TSP solver. \item\end{CompactList}\item 
+void \hyperlink{tsp_8h_6ee8b5b058f03a5c00e54e186d00d7fc}{arrow\_\-tsp\_\-short\_\-name} (int tsp\_\-solver, FILE $\ast$out)
+\begin{CompactList}\small\item\em Prints out the short name for the given solver. \item\end{CompactList}\item 
+void \hyperlink{tsp_8h_f82f3196a6663d14324cb5c27615f983}{arrow\_\-tsp\_\-long\_\-name} (int tsp\_\-solver, FILE $\ast$out)
+\begin{CompactList}\small\item\em Prints out the long name for the given solver. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Solvers and heuristics for the traveling salesman problem. 
+
+Solvers and heuristics for the traveling salesman problem.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{tsp_8h-source}{tsp.h}.
+
+\subsection{Define Documentation}
+\hypertarget{tsp_8h_583c20a6a43c2b16485f0c2229e9f450}{
+\index{tsp.h@{tsp.h}!ARROW\_\-TSP\_\-CC\_\-EXACT@{ARROW\_\-TSP\_\-CC\_\-EXACT}}
+\index{ARROW\_\-TSP\_\-CC\_\-EXACT@{ARROW\_\-TSP\_\-CC\_\-EXACT}!tsp.h@{tsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-TSP\_\-CC\_\-EXACT~0}}
+\label{tsp_8h_583c20a6a43c2b16485f0c2229e9f450}
+
+
+
+
+Definition at line 19 of file tsp.h.
+
+Referenced by arrow\_\-btsp\_\-solve(), arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), arrow\_\-tsp\_\-long\_\-name(), arrow\_\-tsp\_\-short\_\-name(), arrow\_\-tsp\_\-solve(), and main().\hypertarget{tsp_8h_e46fd06c8eb7f72f63159354bde93296}{
+\index{tsp.h@{tsp.h}!ARROW\_\-TSP\_\-CC\_\-LK@{ARROW\_\-TSP\_\-CC\_\-LK}}
+\index{ARROW\_\-TSP\_\-CC\_\-LK@{ARROW\_\-TSP\_\-CC\_\-LK}!tsp.h@{tsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-TSP\_\-CC\_\-LK~1}}
+\label{tsp_8h_e46fd06c8eb7f72f63159354bde93296}
+
+
+
+
+Definition at line 20 of file tsp.h.
+
+Referenced by arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), arrow\_\-tsp\_\-long\_\-name(), arrow\_\-tsp\_\-short\_\-name(), arrow\_\-tsp\_\-solve(), and main().\hypertarget{tsp_8h_fec25a267db6710cceb279f03180d6c2}{
+\index{tsp.h@{tsp.h}!ARROW\_\-TSP\_\-PATCHING@{ARROW\_\-TSP\_\-PATCHING}}
+\index{ARROW\_\-TSP\_\-PATCHING@{ARROW\_\-TSP\_\-PATCHING}!tsp.h@{tsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-TSP\_\-PATCHING~3}}
+\label{tsp_8h_fec25a267db6710cceb279f03180d6c2}
+
+
+
+
+Definition at line 22 of file tsp.h.\hypertarget{tsp_8h_99c0720e6942280790bd5f7a614fa031}{
+\index{tsp.h@{tsp.h}!ARROW\_\-TSP\_\-RAI@{ARROW\_\-TSP\_\-RAI}}
+\index{ARROW\_\-TSP\_\-RAI@{ARROW\_\-TSP\_\-RAI}!tsp.h@{tsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-TSP\_\-RAI~2}}
+\label{tsp_8h_99c0720e6942280790bd5f7a614fa031}
+
+
+
+
+Definition at line 21 of file tsp.h.
+
+Referenced by arrow\_\-tsp\_\-long\_\-name(), arrow\_\-tsp\_\-short\_\-name(), arrow\_\-tsp\_\-solve(), and main().\hypertarget{tsp_8h_683eb4a805e8b2c7172396e03f7474a4}{
+\index{tsp.h@{tsp.h}!ARROW\_\-TSP\_\-SOLVER\_\-COUNT@{ARROW\_\-TSP\_\-SOLVER\_\-COUNT}}
+\index{ARROW\_\-TSP\_\-SOLVER\_\-COUNT@{ARROW\_\-TSP\_\-SOLVER\_\-COUNT}!tsp.h@{tsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-TSP\_\-SOLVER\_\-COUNT~4}}
+\label{tsp_8h_683eb4a805e8b2c7172396e03f7474a4}
+
+
+
+
+Definition at line 18 of file tsp.h.
+
+Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-result\_\-print\_\-xml(), arrow\_\-btsp\_\-solve(), and feasible().
+
+\subsection{Function Documentation}
+\hypertarget{tsp_8h_0facfae73f4527eaede86b39bfbe3e2c}{
+\index{tsp.h@{tsp.h}!arrow\_\-tsp\_\-cc\_\-exact\_\-solve@{arrow\_\-tsp\_\-cc\_\-exact\_\-solve}}
+\index{arrow\_\-tsp\_\-cc\_\-exact\_\-solve@{arrow\_\-tsp\_\-cc\_\-exact\_\-solve}!tsp.h@{tsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-cc\_\-exact\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int $\ast$ {\em initial\_\-tour}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
+\label{tsp_8h_0facfae73f4527eaede86b39bfbe3e2c}
+
+
+Solves TSP with Concorde's exact solver. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em initial\_\-tour}]\mbox{[}in\mbox{]} an initial tour (can be NULL) \item[{\em result}]\mbox{[}out\mbox{]} TSP solution \end{description}
+\end{Desc}
+
+
+Definition at line 62 of file cc.c.
+
+References arrow\_\-copy(), arrow\_\-debug, arrow\_\-edgelen(), ARROW\_\-FAILURE, ARROW\_\-PROBLEM\_\-DATA\_\-CONCORDE, ARROW\_\-SUCCESS, arrow\_\-util\_\-zeit(), arrow\_\-problem::data, arrow\_\-tsp\_\-result::found\_\-tour, arrow\_\-problem::name, arrow\_\-tsp\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-tsp\_\-result::total\_\-time, arrow\_\-tsp\_\-result::tour, and arrow\_\-problem::type.
+
+Referenced by arrow\_\-tsp\_\-solve(), and main().\hypertarget{tsp_8h_2e3f26d69919dddd1eb0e6969d4dcd85}{
+\index{tsp.h@{tsp.h}!arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct@{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct}}
+\index{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct@{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct}!tsp.h@{tsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct ({\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params} $\ast$ {\em params})}}
+\label{tsp_8h_2e3f26d69919dddd1eb0e6969d4dcd85}
+
+
+Destructs a LK parameters structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em params}]\mbox{[}out\mbox{]} LK parameters structure \end{description}
+\end{Desc}
+
+
+Definition at line 55 of file cc.c.
+
+References arrow\_\-tsp\_\-cc\_\-lk\_\-params::initial\_\-tour.
+
+Referenced by arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), and main().\hypertarget{tsp_8h_8ccbdc390843e8b51299a9d89183c25d}{
+\index{tsp.h@{tsp.h}!arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init@{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init}}
+\index{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init@{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init}!tsp.h@{tsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params} $\ast$ {\em params})}}
+\label{tsp_8h_8ccbdc390843e8b51299a9d89183c25d}
+
+
+Sets default parameters for Lin-Kernighan heuristic:\begin{itemize}
+\item random\_\-restarts = 0\item stall\_\-count = problem-$>$size\item kicks = (problem-$>$size / 2), at least 500\item kick\_\-type = CC\_\-LK\_\-GEOMETRIC\_\-KICK\item time\_\-bound = 0.0\item length\_\-bound = 0.0\item initial\_\-tour = NULL. \end{itemize}
+
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em params}]\mbox{[}out\mbox{]} LK parameters structure \end{description}
+\end{Desc}
+
+
+Definition at line 42 of file cc.c.
+
+References arrow\_\-tsp\_\-cc\_\-lk\_\-params::initial\_\-tour, arrow\_\-tsp\_\-cc\_\-lk\_\-params::kick\_\-type, arrow\_\-tsp\_\-cc\_\-lk\_\-params::kicks, arrow\_\-tsp\_\-cc\_\-lk\_\-params::length\_\-bound, arrow\_\-tsp\_\-cc\_\-lk\_\-params::random\_\-restarts, arrow\_\-problem::size, arrow\_\-tsp\_\-cc\_\-lk\_\-params::stall\_\-count, and arrow\_\-tsp\_\-cc\_\-lk\_\-params::time\_\-bound.
+
+Referenced by arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), and main().\hypertarget{tsp_8h_a51ad259e32d0cc792d02e5c93bca4f2}{
+\index{tsp.h@{tsp.h}!arrow\_\-tsp\_\-cc\_\-lk\_\-solve@{arrow\_\-tsp\_\-cc\_\-lk\_\-solve}}
+\index{arrow\_\-tsp\_\-cc\_\-lk\_\-solve@{arrow\_\-tsp\_\-cc\_\-lk\_\-solve}!tsp.h@{tsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-cc\_\-lk\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params} $\ast$ {\em params}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
+\label{tsp_8h_a51ad259e32d0cc792d02e5c93bca4f2}
+
+
+Solves TSP with Concorde's Lin-Kernighan heuristic. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em params}]\mbox{[}in\mbox{]} Lin-Kernighan params (can be NULL) \item[{\em result}]\mbox{[}out\mbox{]} TSP solution \end{description}
+\end{Desc}
+
+
+Definition at line 118 of file cc.c.
+
+References arrow\_\-copy(), arrow\_\-debug, arrow\_\-edgelen(), ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-PROBLEM\_\-DATA\_\-CONCORDE, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct(), arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init(), arrow\_\-util\_\-zeit(), build\_\-initial\_\-tour(), CONCORDE\_\-FAILURE, arrow\_\-problem::data, arrow\_\-tsp\_\-result::found\_\-tour, arrow\_\-tsp\_\-cc\_\-lk\_\-params::initial\_\-tour, arrow\_\-tsp\_\-cc\_\-lk\_\-params::kick\_\-type, arrow\_\-tsp\_\-cc\_\-lk\_\-params::kicks, arrow\_\-tsp\_\-cc\_\-lk\_\-params::length\_\-bound, arrow\_\-tsp\_\-result::obj\_\-value, arrow\_\-tsp\_\-cc\_\-lk\_\-params::random\_\-restarts, arrow\_\-problem::size, arrow\_\-tsp\_\-cc\_\-lk\_\-params::stall\_\-count, arrow\_\-tsp\_\-cc\_\-lk\_\-params::time\_\-bound, arrow\_\-tsp\_\-result::total\_\-time, arrow\_\-tsp\_\-result::tour, and arrow\_\-problem::type.
+
+Referenced by arrow\_\-tsp\_\-solve().\hypertarget{tsp_8h_f82f3196a6663d14324cb5c27615f983}{
+\index{tsp.h@{tsp.h}!arrow\_\-tsp\_\-long\_\-name@{arrow\_\-tsp\_\-long\_\-name}}
+\index{arrow\_\-tsp\_\-long\_\-name@{arrow\_\-tsp\_\-long\_\-name}!tsp.h@{tsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-long\_\-name (int {\em tsp\_\-solver}, \/  FILE $\ast$ {\em out})}}
+\label{tsp_8h_f82f3196a6663d14324cb5c27615f983}
+
+
+Prints out the long name for the given solver. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em tsp\_\-solver}]\mbox{[}in\mbox{]} the TSP solver in question \item[{\em out}]\mbox{[}out\mbox{]} the file handle to print out to. \end{description}
+\end{Desc}
+
+
+Definition at line 61 of file tsp.c.
+
+References arrow\_\-print\_\-error, ARROW\_\-TSP\_\-CC\_\-EXACT, ARROW\_\-TSP\_\-CC\_\-LK, and ARROW\_\-TSP\_\-RAI.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-pretty().\hypertarget{tsp_8h_7236b8bd57298ee7dbe317375ab167b4}{
+\index{tsp.h@{tsp.h}!arrow\_\-tsp\_\-rai\_\-solve@{arrow\_\-tsp\_\-rai\_\-solve}}
+\index{arrow\_\-tsp\_\-rai\_\-solve@{arrow\_\-tsp\_\-rai\_\-solve}!tsp.h@{tsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-rai\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-rai\_\-params} $\ast$ {\em params}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
+\label{tsp_8h_7236b8bd57298ee7dbe317375ab167b4}
+
+
+
+
+Definition at line 91 of file rai.c.
+
+References arrow\_\-debug, ARROW\_\-FAILURE, arrow\_\-llist\_\-destruct(), arrow\_\-llist\_\-init(), arrow\_\-llist\_\-insert\_\-tail(), arrow\_\-llist\_\-to\_\-array(), arrow\_\-print\_\-error, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-permute\_\-array(), arrow\_\-util\_\-zeit(), construct\_\-tour(), arrow\_\-tsp\_\-result::found\_\-tour, improve\_\-tour(), arrow\_\-tsp\_\-rai\_\-params::iterations, length, arrow\_\-tsp\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-tsp\_\-rai\_\-params::solve\_\-btsp, arrow\_\-tsp\_\-result::total\_\-time, and arrow\_\-tsp\_\-result::tour.
+
+Referenced by arrow\_\-tsp\_\-solve().\hypertarget{tsp_8h_0665c82047dc78f8d08f12ecf5a9eef8}{
+\index{tsp.h@{tsp.h}!arrow\_\-tsp\_\-result\_\-destruct@{arrow\_\-tsp\_\-result\_\-destruct}}
+\index{arrow\_\-tsp\_\-result\_\-destruct@{arrow\_\-tsp\_\-result\_\-destruct}!tsp.h@{tsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-result\_\-destruct ({\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
+\label{tsp_8h_0665c82047dc78f8d08f12ecf5a9eef8}
+
+
+Destructs a TSP result structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em result}]\mbox{[}out\mbox{]} TSP result structure \end{description}
+\end{Desc}
+
+
+Definition at line 30 of file result.c.
+
+References arrow\_\-tsp\_\-result::tour.
+
+Referenced by feasible(), and main().\hypertarget{tsp_8h_124a14a04e51fdd8e05f0aed7dfdd44c}{
+\index{tsp.h@{tsp.h}!arrow\_\-tsp\_\-result\_\-init@{arrow\_\-tsp\_\-result\_\-init}}
+\index{arrow\_\-tsp\_\-result\_\-init@{arrow\_\-tsp\_\-result\_\-init}!tsp.h@{tsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-result\_\-init ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
+\label{tsp_8h_124a14a04e51fdd8e05f0aed7dfdd44c}
+
+
+Initializes the TSP result structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em result}]\mbox{[}out\mbox{]} TSP result structure \end{description}
+\end{Desc}
+
+
+Definition at line 16 of file result.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-tsp\_\-result::found\_\-tour, arrow\_\-tsp\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-tsp\_\-result::total\_\-time, and arrow\_\-tsp\_\-result::tour.
+
+Referenced by feasible(), and main().\hypertarget{tsp_8h_6ee8b5b058f03a5c00e54e186d00d7fc}{
+\index{tsp.h@{tsp.h}!arrow\_\-tsp\_\-short\_\-name@{arrow\_\-tsp\_\-short\_\-name}}
+\index{arrow\_\-tsp\_\-short\_\-name@{arrow\_\-tsp\_\-short\_\-name}!tsp.h@{tsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-short\_\-name (int {\em tsp\_\-solver}, \/  FILE $\ast$ {\em out})}}
+\label{tsp_8h_6ee8b5b058f03a5c00e54e186d00d7fc}
+
+
+Prints out the short name for the given solver. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em tsp\_\-solver}]\mbox{[}in\mbox{]} the TSP solver in question \item[{\em out}]\mbox{[}out\mbox{]} the file handle to print out to. \end{description}
+\end{Desc}
+
+
+Definition at line 45 of file tsp.c.
+
+References arrow\_\-print\_\-error, ARROW\_\-TSP\_\-CC\_\-EXACT, ARROW\_\-TSP\_\-CC\_\-LK, and ARROW\_\-TSP\_\-RAI.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{tsp_8h_83a75ed402c5d7d82eaa305d2d08349c}{
+\index{tsp.h@{tsp.h}!arrow\_\-tsp\_\-solve@{arrow\_\-tsp\_\-solve}}
+\index{arrow\_\-tsp\_\-solve@{arrow\_\-tsp\_\-solve}!tsp.h@{tsp.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-solve (int {\em tsp\_\-solver}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem}, \/  void $\ast$ {\em params}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
+\label{tsp_8h_83a75ed402c5d7d82eaa305d2d08349c}
+
+
+Solves TSP with for requested TSP solver. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em tsp\_\-solver}]\mbox{[}in\mbox{]} the TSP solver to use \item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em params}]\mbox{[}in\mbox{]} Lin-Kernighan params (can be NULL) \item[{\em result}]\mbox{[}out\mbox{]} TSP solution\end{description}
+\end{Desc}
+Solves TSP with for requested TSP solver.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em tsp\_\-solver}]\mbox{[}in\mbox{]} the TSP solver to use \item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em params}]\mbox{[}in\mbox{]} Lin-Kernighan params (can be NULL) \item[{\em result}]\mbox{[}out\mbox{]} TSP solution \end{description}
+\end{Desc}
+
+
+Definition at line 20 of file tsp.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-TSP\_\-CC\_\-EXACT, arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), ARROW\_\-TSP\_\-CC\_\-LK, arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), ARROW\_\-TSP\_\-RAI, and arrow\_\-tsp\_\-rai\_\-solve().
+
+Referenced by feasible().

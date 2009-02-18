@@ -24,9 +24,9 @@
 <a name="l00008"></a>00008 <span class="comment"> * @author  John LaRusic</span>
 <a name="l00009"></a>00009 <span class="comment"> * @ingroup bin</span>
 <a name="l00010"></a>00010 <span class="comment"> ****************************************************************************/</span>
-<a name="l00011"></a>00011 <span class="preprocessor">#include "<a class="code" href="arrow_8h.html" title="Header file for the Arrow callable library.">arrow.h</a>"</span>
-<a name="l00012"></a>00012 <span class="preprocessor">#include &lt;getopt.h&gt;</span>
-<a name="l00013"></a>00013 <span class="comment"></span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include "<a class="code" href="common_8h.html" title="Common functions and data structures.">common.h</a>"</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include "<a class="code" href="lb_8h.html" title="Lower bound functions for the bottleneck TSP.">lb.h</a>"</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include "<a class="code" href="tsp_8h.html" title="Solvers and heuristics for the traveling salesman problem.">tsp.h</a>"</span><span class="comment"></span>
 <a name="l00014"></a>00014 <span class="comment">/**</span>
 <a name="l00015"></a>00015 <span class="comment"> *  @brief  Prints help/usage message.</span>
 <a name="l00016"></a>00016 <span class="comment"> */</span>
@@ -56,7 +56,7 @@
 <a name="l00040"></a><a class="code" href="bin_2tsp_8c.html#a4f3a15de34c409bdec6ceacf93078ed">00040</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>;               <span class="comment">/**&lt; Given input TSPLIB file */</span>
 <a name="l00041"></a>00041 
 <a name="l00042"></a>00042 <span class="comment">/****************************************************************************</span>
-<a name="l00043"></a>00043 <span class="comment"> * Function implemenations</span>
+<a name="l00043"></a>00043 <span class="comment"> * Function implementations</span>
 <a name="l00044"></a>00044 <span class="comment"> ****************************************************************************/</span>
 <a name="l00045"></a>00045 <span class="keywordtype">int</span> 
 <a name="l00046"></a><a class="code" href="bin_2tsp_8c.html#0ddf1224851353fc92bfbff6f499fa97">00046</a> <a class="code" href="bin_22mb_8c.html#0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])
@@ -67,26 +67,26 @@
 <a name="l00051"></a>00051         
 <a name="l00052"></a>00052     <span class="comment">/* Try and read the problem file and its info */</span>
 <a name="l00053"></a>00053     <a class="code" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> problem;
-<a name="l00054"></a>00054     <span class="keywordflow">if</span>(!<a class="code" href="arrow_8h.html#b5b9bae9f92630983d3b3d39d86198f8" title="Reads a problem from a TSPLIB file.">arrow_problem_read</a>(<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>, &amp;problem))
+<a name="l00054"></a>00054     <span class="keywordflow">if</span>(!<a class="code" href="common_8h.html#b5b9bae9f92630983d3b3d39d86198f8" title="Reads a problem from a TSPLIB file.">arrow_problem_read</a>(<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>, &amp;problem))
 <a name="l00055"></a>00055     {
-<a name="l00056"></a>00056         <a class="code" href="arrow_8h.html#2bc89592b4a27c03c1129b8e4b876a51">arrow_print_error</a>(<span class="stringliteral">"Could not read input file.\n"</span>);
+<a name="l00056"></a>00056         <a class="code" href="common_8h.html#c8a166e323227a8681ed32027ca1000a">arrow_print_error</a>(<span class="stringliteral">"Could not read input file.\n"</span>);
 <a name="l00057"></a>00057     }
 <a name="l00058"></a>00058     
 <a name="l00059"></a>00059     <span class="comment">/* Solve TSP */</span>
 <a name="l00060"></a>00060     <a class="code" href="structarrow__tsp__result.html" title="TSP result (including result from LK heuristic).">arrow_tsp_result</a> result;
-<a name="l00061"></a>00061     <span class="keywordflow">if</span>(!<a class="code" href="arrow_8h.html#124a14a04e51fdd8e05f0aed7dfdd44c" title="Initializes the TSP result structure.">arrow_tsp_result_init</a>(&amp;problem, &amp;result))
-<a name="l00062"></a>00062         <a class="code" href="arrow_8h.html#2bc89592b4a27c03c1129b8e4b876a51">arrow_print_error</a>(<span class="stringliteral">"Could not initialize result structure.\n"</span>);
+<a name="l00061"></a>00061     <span class="keywordflow">if</span>(!<a class="code" href="tsp_8h.html#124a14a04e51fdd8e05f0aed7dfdd44c" title="Initializes the TSP result structure.">arrow_tsp_result_init</a>(&amp;problem, &amp;result))
+<a name="l00062"></a>00062         <a class="code" href="common_8h.html#c8a166e323227a8681ed32027ca1000a">arrow_print_error</a>(<span class="stringliteral">"Could not initialize result structure.\n"</span>);
 <a name="l00063"></a>00063     
-<a name="l00064"></a>00064     <span class="keywordflow">if</span>(!<a class="code" href="arrow_8h.html#e678a3a4a87c4db0ab8493e7edfb6119" title="Solves TSP with Concorde&amp;#39;s exact solver.">arrow_tsp_exact_solve</a>(&amp;problem, NULL, &amp;result))
-<a name="l00065"></a>00065         <a class="code" href="arrow_8h.html#2bc89592b4a27c03c1129b8e4b876a51">arrow_print_error</a>(<span class="stringliteral">"Could not solve TSP on file.\n"</span>);
+<a name="l00064"></a>00064     <span class="keywordflow">if</span>(!<a class="code" href="tsp_8h.html#0facfae73f4527eaede86b39bfbe3e2c" title="Solves TSP with Concorde&amp;#39;s exact solver.">arrow_tsp_cc_exact_solve</a>(&amp;problem, NULL, &amp;result))
+<a name="l00065"></a>00065         <a class="code" href="common_8h.html#c8a166e323227a8681ed32027ca1000a">arrow_print_error</a>(<span class="stringliteral">"Could not solve TSP on file.\n"</span>);
 <a name="l00066"></a>00066     
 <a name="l00067"></a>00067     printf(<span class="stringliteral">"\nFound Tour: %d\n"</span>, result.<a class="code" href="structarrow__tsp__result.html#b85143df6ecc70032db7411a1aa3192a">found_tour</a>);
 <a name="l00068"></a>00068     printf(<span class="stringliteral">"Tour length: %5.0f\n"</span>, result.<a class="code" href="structarrow__tsp__result.html#f0fae9756e4c924517addf05988cfcb9">obj_value</a>);
 <a name="l00069"></a>00069     printf(<span class="stringliteral">"Total Time: %5.2f\n"</span>, result.<a class="code" href="structarrow__tsp__result.html#82ea7aa0320d932892602d34339a9276">total_time</a>);
 <a name="l00070"></a>00070     
 <a name="l00071"></a>00071     <span class="comment">/* Free up the structures */</span>
-<a name="l00072"></a>00072     <a class="code" href="arrow_8h.html#0665c82047dc78f8d08f12ecf5a9eef8" title="Destructs a TSP result structure.">arrow_tsp_result_destruct</a>(&amp;result);
-<a name="l00073"></a>00073     <a class="code" href="arrow_8h.html#a702972ab510dcc6354d7679759611d1" title="Deallocates problem data structure.">arrow_problem_destruct</a>(&amp;problem);
+<a name="l00072"></a>00072     <a class="code" href="tsp_8h.html#0665c82047dc78f8d08f12ecf5a9eef8" title="Destructs a TSP result structure.">arrow_tsp_result_destruct</a>(&amp;result);
+<a name="l00073"></a>00073     <a class="code" href="common_8h.html#a702972ab510dcc6354d7679759611d1" title="Deallocates problem data structure.">arrow_problem_destruct</a>(&amp;problem);
 <a name="l00074"></a>00074     
 <a name="l00075"></a>00075     <span class="keywordflow">return</span> EXIT_SUCCESS;
 <a name="l00076"></a>00076 }
@@ -164,20 +164,20 @@
 <a name="l00148"></a>00148     <span class="comment">/* Read the file name to process */</span>
 <a name="l00149"></a>00149     <span class="keywordflow">if</span>(optind == argc)
 <a name="l00150"></a>00150     {
-<a name="l00151"></a>00151         <a class="code" href="arrow_8h.html#2bc89592b4a27c03c1129b8e4b876a51">arrow_print_error</a>(<span class="stringliteral">"No problem files specified.\n"</span>);
+<a name="l00151"></a>00151         <a class="code" href="common_8h.html#c8a166e323227a8681ed32027ca1000a">arrow_print_error</a>(<span class="stringliteral">"No problem files specified.\n"</span>);
 <a name="l00152"></a>00152         <a class="code" href="linkern_8c.html#e5ad5cbeccaedc03a48d3c7eaa803e79" title="Prints usage message.">print_usage</a>(argv[0]);
 <a name="l00153"></a>00153         exit(EXIT_FAILURE);
 <a name="l00154"></a>00154     }
 <a name="l00155"></a>00155     <span class="keywordflow">else</span> <span class="keywordflow">if</span>(optind &lt; argc - 1)
 <a name="l00156"></a>00156     {
-<a name="l00157"></a>00157         <a class="code" href="arrow_8h.html#2bc89592b4a27c03c1129b8e4b876a51">arrow_print_error</a>(<span class="stringliteral">"Multiple input files specified.\n"</span>);
+<a name="l00157"></a>00157         <a class="code" href="common_8h.html#c8a166e323227a8681ed32027ca1000a">arrow_print_error</a>(<span class="stringliteral">"Multiple input files specified.\n"</span>);
 <a name="l00158"></a>00158         <a class="code" href="linkern_8c.html#e5ad5cbeccaedc03a48d3c7eaa803e79" title="Prints usage message.">print_usage</a>(argv[0]);
 <a name="l00159"></a>00159         exit(EXIT_FAILURE);
 <a name="l00160"></a>00160     }
 <a name="l00161"></a>00161     <a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a> = argv[optind];    
 <a name="l00162"></a>00162 }
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Jul 4 13:27:16 2008 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Feb 18 01:00:20 2009 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

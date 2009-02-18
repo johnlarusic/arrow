@@ -5,27 +5,23 @@
 BTSP feasibility solve step plan.  
 
 
-{\tt \#include $<$arrow.h$>$}
+{\tt \#include $<$btsp.h$>$}
 
 Collaboration diagram for arrow\_\-btsp\_\-solve\_\-plan:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=131pt]{structarrow__btsp__solve__plan__coll__graph}
+\includegraphics[width=68pt]{structarrow__btsp__solve__plan__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Data Fields}
 \begin{CompactItemize}
 \item 
-int \hyperlink{structarrow__btsp__solve__plan_527ebf95b7a2c12f174d935ded4445a9}{plan\_\-type}
+int \hyperlink{structarrow__btsp__solve__plan_911facf12673ddb5c3eb024fa12ee18d}{tsp\_\-solver}
 \item 
-int \hyperlink{structarrow__btsp__solve__plan_fed81dda6e547af712c67dc2c35b55b3}{use\_\-exact\_\-solver}
+void $\ast$ \hyperlink{structarrow__btsp__solve__plan_2b7cf65583f45c990218139dbae34ae5}{tsp\_\-params}
 \item 
 \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} \hyperlink{structarrow__btsp__solve__plan_89fa2ad1bcc026cd50fd7abc6c30ce3e}{fun}
-\item 
-\hyperlink{structarrow__tsp__lk__params}{arrow\_\-tsp\_\-lk\_\-params} \hyperlink{structarrow__btsp__solve__plan_576ea43a6d1de8f9c46f02edf2849122}{lk\_\-params}
-\item 
-int \hyperlink{structarrow__btsp__solve__plan_5ac6a38c297df040797c63babc4c02c3}{upper\_\-bound\_\-update}
 \item 
 int \hyperlink{structarrow__btsp__solve__plan_acfa3d4257a33548a9f60ee568219bc5}{attempts}
 \end{CompactItemize}
@@ -34,32 +30,32 @@ int \hyperlink{structarrow__btsp__solve__plan_acfa3d4257a33548a9f60ee568219bc5}{
 \subsection{Detailed Description}
 BTSP feasibility solve step plan. 
 
-Definition at line 228 of file arrow.h.
+Definition at line 92 of file btsp.h.
 
 \subsection{Field Documentation}
-\hypertarget{structarrow__btsp__solve__plan_527ebf95b7a2c12f174d935ded4445a9}{
-\index{arrow\_\-btsp\_\-solve\_\-plan@{arrow\_\-btsp\_\-solve\_\-plan}!plan\_\-type@{plan\_\-type}}
-\index{plan\_\-type@{plan\_\-type}!arrow_btsp_solve_plan@{arrow\_\-btsp\_\-solve\_\-plan}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-btsp\_\-solve\_\-plan::plan\_\-type}}}
-\label{structarrow__btsp__solve__plan_527ebf95b7a2c12f174d935ded4445a9}
+\hypertarget{structarrow__btsp__solve__plan_911facf12673ddb5c3eb024fa12ee18d}{
+\index{arrow\_\-btsp\_\-solve\_\-plan@{arrow\_\-btsp\_\-solve\_\-plan}!tsp\_\-solver@{tsp\_\-solver}}
+\index{tsp\_\-solver@{tsp\_\-solver}!arrow_btsp_solve_plan@{arrow\_\-btsp\_\-solve\_\-plan}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-btsp\_\-solve\_\-plan::tsp\_\-solver}}}
+\label{structarrow__btsp__solve__plan_911facf12673ddb5c3eb024fa12ee18d}
 
 
-the type of plan (see macros) 
+TSP solver to use 
 
-Definition at line 230 of file arrow.h.
+Definition at line 94 of file btsp.h.
 
-Referenced by arrow\_\-btsp\_\-solve\_\-plan\_\-init(), and feasible().\hypertarget{structarrow__btsp__solve__plan_fed81dda6e547af712c67dc2c35b55b3}{
-\index{arrow\_\-btsp\_\-solve\_\-plan@{arrow\_\-btsp\_\-solve\_\-plan}!use\_\-exact\_\-solver@{use\_\-exact\_\-solver}}
-\index{use\_\-exact\_\-solver@{use\_\-exact\_\-solver}!arrow_btsp_solve_plan@{arrow\_\-btsp\_\-solve\_\-plan}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-btsp\_\-solve\_\-plan::use\_\-exact\_\-solver}}}
-\label{structarrow__btsp__solve__plan_fed81dda6e547af712c67dc2c35b55b3}
+Referenced by arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), and feasible().\hypertarget{structarrow__btsp__solve__plan_2b7cf65583f45c990218139dbae34ae5}{
+\index{arrow\_\-btsp\_\-solve\_\-plan@{arrow\_\-btsp\_\-solve\_\-plan}!tsp\_\-params@{tsp\_\-params}}
+\index{tsp\_\-params@{tsp\_\-params}!arrow_btsp_solve_plan@{arrow\_\-btsp\_\-solve\_\-plan}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ {\bf arrow\_\-btsp\_\-solve\_\-plan::tsp\_\-params}}}
+\label{structarrow__btsp__solve__plan_2b7cf65583f45c990218139dbae34ae5}
 
 
-use exact TSP solver? 
+TSP params to use 
 
-Definition at line 231 of file arrow.h.
+Definition at line 95 of file btsp.h.
 
-Referenced by feasible().\hypertarget{structarrow__btsp__solve__plan_89fa2ad1bcc026cd50fd7abc6c30ce3e}{
+Referenced by arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), and feasible().\hypertarget{structarrow__btsp__solve__plan_89fa2ad1bcc026cd50fd7abc6c30ce3e}{
 \index{arrow\_\-btsp\_\-solve\_\-plan@{arrow\_\-btsp\_\-solve\_\-plan}!fun@{fun}}
 \index{fun@{fun}!arrow_btsp_solve_plan@{arrow\_\-btsp\_\-solve\_\-plan}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf arrow\_\-btsp\_\-fun} {\bf arrow\_\-btsp\_\-solve\_\-plan::fun}}}
@@ -68,31 +64,9 @@ Referenced by feasible().\hypertarget{structarrow__btsp__solve__plan_89fa2ad1bcc
 
 the cost matrix function to apply 
 
-Definition at line 232 of file arrow.h.
+Definition at line 96 of file btsp.h.
 
-Referenced by arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), and feasible().\hypertarget{structarrow__btsp__solve__plan_576ea43a6d1de8f9c46f02edf2849122}{
-\index{arrow\_\-btsp\_\-solve\_\-plan@{arrow\_\-btsp\_\-solve\_\-plan}!lk\_\-params@{lk\_\-params}}
-\index{lk\_\-params@{lk\_\-params}!arrow_btsp_solve_plan@{arrow\_\-btsp\_\-solve\_\-plan}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf arrow\_\-tsp\_\-lk\_\-params} {\bf arrow\_\-btsp\_\-solve\_\-plan::lk\_\-params}}}
-\label{structarrow__btsp__solve__plan_576ea43a6d1de8f9c46f02edf2849122}
-
-
-LK params to use 
-
-Definition at line 233 of file arrow.h.
-
-Referenced by arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), and feasible().\hypertarget{structarrow__btsp__solve__plan_5ac6a38c297df040797c63babc4c02c3}{
-\index{arrow\_\-btsp\_\-solve\_\-plan@{arrow\_\-btsp\_\-solve\_\-plan}!upper\_\-bound\_\-update@{upper\_\-bound\_\-update}}
-\index{upper\_\-bound\_\-update@{upper\_\-bound\_\-update}!arrow_btsp_solve_plan@{arrow\_\-btsp\_\-solve\_\-plan}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-btsp\_\-solve\_\-plan::upper\_\-bound\_\-update}}}
-\label{structarrow__btsp__solve__plan_5ac6a38c297df040797c63babc4c02c3}
-
-
-Check for better upper bound? 
-
-Definition at line 234 of file arrow.h.
-
-Referenced by feasible().\hypertarget{structarrow__btsp__solve__plan_acfa3d4257a33548a9f60ee568219bc5}{
+Referenced by arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), and feasible().\hypertarget{structarrow__btsp__solve__plan_acfa3d4257a33548a9f60ee568219bc5}{
 \index{arrow\_\-btsp\_\-solve\_\-plan@{arrow\_\-btsp\_\-solve\_\-plan}!attempts@{attempts}}
 \index{attempts@{attempts}!arrow_btsp_solve_plan@{arrow\_\-btsp\_\-solve\_\-plan}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-btsp\_\-solve\_\-plan::attempts}}}
@@ -101,10 +75,10 @@ Referenced by feasible().\hypertarget{structarrow__btsp__solve__plan_acfa3d4257a
 
 number of attempts to perform 
 
-Definition at line 235 of file arrow.h.
+Definition at line 97 of file btsp.h.
 
 Referenced by arrow\_\-btsp\_\-solve\_\-plan\_\-init(), and feasible().
 
 The documentation for this struct was generated from the following file:\begin{CompactItemize}
 \item 
-lib/\hyperlink{arrow_8h}{arrow.h}\end{CompactItemize}
+include/\hyperlink{btsp_8h}{btsp.h}\end{CompactItemize}

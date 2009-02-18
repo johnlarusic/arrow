@@ -5,7 +5,7 @@
 TSP result (including result from LK heuristic).  
 
 
-{\tt \#include $<$arrow.h$>$}
+{\tt \#include $<$tsp.h$>$}
 
 \subsection*{Data Fields}
 \begin{CompactItemize}
@@ -23,7 +23,7 @@ double \hyperlink{structarrow__tsp__result_82ea7aa0320d932892602d34339a9276}{tot
 \subsection{Detailed Description}
 TSP result (including result from LK heuristic). 
 
-Definition at line 161 of file arrow.h.
+Definition at line 55 of file tsp.h.
 
 \subsection{Field Documentation}
 \hypertarget{structarrow__tsp__result_b85143df6ecc70032db7411a1aa3192a}{
@@ -35,9 +35,9 @@ Definition at line 161 of file arrow.h.
 
 true if a tour was found, false otherwise 
 
-Definition at line 163 of file arrow.h.
+Definition at line 57 of file tsp.h.
 
-Referenced by arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-tsp\_\-lk\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), and main().\hypertarget{structarrow__tsp__result_f0fae9756e4c924517addf05988cfcb9}{
+Referenced by arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), and main().\hypertarget{structarrow__tsp__result_f0fae9756e4c924517addf05988cfcb9}{
 \index{arrow\_\-tsp\_\-result@{arrow\_\-tsp\_\-result}!obj\_\-value@{obj\_\-value}}
 \index{obj\_\-value@{obj\_\-value}!arrow_tsp_result@{arrow\_\-tsp\_\-result}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}double {\bf arrow\_\-tsp\_\-result::obj\_\-value}}}
@@ -46,9 +46,9 @@ Referenced by arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-tsp\_\-lk\_\-solve(), a
 
 objective value (tour length) 
 
-Definition at line 164 of file arrow.h.
+Definition at line 58 of file tsp.h.
 
-Referenced by arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-tsp\_\-lk\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), feasible(), and main().\hypertarget{structarrow__tsp__result_48433b03146d6ca3423a555ea2139d52}{
+Referenced by arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), feasible(), and main().\hypertarget{structarrow__tsp__result_48433b03146d6ca3423a555ea2139d52}{
 \index{arrow\_\-tsp\_\-result@{arrow\_\-tsp\_\-result}!tour@{tour}}
 \index{tour@{tour}!arrow_tsp_result@{arrow\_\-tsp\_\-result}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ {\bf arrow\_\-tsp\_\-result::tour}}}
@@ -57,9 +57,9 @@ Referenced by arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-tsp\_\-lk\_\-solve(), a
 
 tour that was found in node-node format 
 
-Definition at line 165 of file arrow.h.
+Definition at line 59 of file tsp.h.
 
-Referenced by arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-tsp\_\-lk\_\-solve(), arrow\_\-tsp\_\-result\_\-destruct(), arrow\_\-tsp\_\-result\_\-init(), and feasible().\hypertarget{structarrow__tsp__result_82ea7aa0320d932892602d34339a9276}{
+Referenced by arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-result\_\-destruct(), arrow\_\-tsp\_\-result\_\-init(), and feasible().\hypertarget{structarrow__tsp__result_82ea7aa0320d932892602d34339a9276}{
 \index{arrow\_\-tsp\_\-result@{arrow\_\-tsp\_\-result}!total\_\-time@{total\_\-time}}
 \index{total\_\-time@{total\_\-time}!arrow_tsp_result@{arrow\_\-tsp\_\-result}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}double {\bf arrow\_\-tsp\_\-result::total\_\-time}}}
@@ -68,10 +68,10 @@ Referenced by arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-tsp\_\-lk\_\-solve(), a
 
 total time 
 
-Definition at line 166 of file arrow.h.
+Definition at line 60 of file tsp.h.
 
-Referenced by arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-tsp\_\-lk\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), feasible(), and main().
+Referenced by arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), feasible(), and main().
 
 The documentation for this struct was generated from the following file:\begin{CompactItemize}
 \item 
-lib/\hyperlink{arrow_8h}{arrow.h}\end{CompactItemize}
+include/\hyperlink{tsp_8h}{tsp.h}\end{CompactItemize}

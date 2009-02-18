@@ -18,13 +18,16 @@
 <div class="contents">
 <h1>bin/cbtsp.c File Reference</h1>Constrained Bottleneck TSP heuristic. <a href="#_details">More...</a>
 <p>
-<code>#include &quot;<a class="el" href="arrow_8h-source.html">arrow.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="common_8h-source.html">common.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="lb_8h-source.html">lb.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="tsp_8h-source.html">tsp.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="btsp_8h-source.html">btsp.h</a>&quot;</code><br>
 
 <p>
 <a href="cbtsp_8c-source.html">Go to the source code of this file.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Defines</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbtsp_8c.html#9b58b2c4af931c8486a986c9deca40f5">NUM_OPTS</a>&nbsp;&nbsp;&nbsp;17</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbtsp_8c.html#9b58b2c4af931c8486a986c9deca40f5">NUM_OPTS</a>&nbsp;&nbsp;&nbsp;20</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbtsp_8c.html#ceebcce8f411269df7b99e78247d7497">SOLVE_STEPS</a>&nbsp;&nbsp;&nbsp;2</td></tr>
 
@@ -40,6 +43,8 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbtsp_8c.html#928b11f5716331f0b89abe7d8d4124b4">length</a> = DBL_MAX</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbtsp_8c.html#61a12d5995172f376610cce2f19e5855">edge_infinity</a> = -1</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbtsp_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">random_restarts</a> = 5</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbtsp_8c.html#a1641a28cf3ea572a56763e84518c17b">stall_count</a> = -1</td></tr>
@@ -51,6 +56,10 @@
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbtsp_8c.html#502a0aac74d070b870b1c096d9d8520d">supress_ebst</a> = ARROW_FALSE</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbtsp_8c.html#ed48edf71a0207dcdec06e399c24df88">find_short_tour</a> = ARROW_FALSE</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbtsp_8c.html#c022145e682345ed4064bad274e5a4f1">supress_hash</a> = ARROW_FALSE</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbtsp_8c.html#7298da576a5b127d04b4c46b3bc78821">deep_copy</a> = ARROW_FALSE</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbtsp_8c.html#ed7394fd8e0c2796b26b9654fd10fd9d">lower_bound</a> = -1</td></tr>
 
@@ -68,9 +77,9 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="structarrow__option.html">arrow_option</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbtsp_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a> [NUM_OPTS]</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbtsp_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a> = &quot;Bottleneck traveling salesman problem (BTSP) solver&quot;</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbtsp_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a> = &quot;Constarined bottleneck TSP solver&quot;</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbtsp_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a> = &quot;-i tsplib.tsp -L max_length [<a class="el" href="subproblem_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>]&quot;</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbtsp_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a> = &quot;-i tsplib.tsp -L <a class="el" href="bin_2cbst_8c.html#0c7f495d279d6f237d38be875e03f593">max_length</a> [<a class="el" href="subprob_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>]&quot;</td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -86,7 +95,7 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define NUM_OPTS&nbsp;&nbsp;&nbsp;17          </td>
+          <td class="memname">#define NUM_OPTS&nbsp;&nbsp;&nbsp;20          </td>
         </tr>
       </table>
 </div>
@@ -94,7 +103,7 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00032">32</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00038">38</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
 </div>
 </div><p>
@@ -141,9 +150,9 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00081">81</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00093">93</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
-<p>References <a class="el" href="lib_2bbssp_8c-source.html#l00044">arrow_bbssp_solve()</a>, <a class="el" href="btsp__fun_8c-source.html#l00291">arrow_btsp_fun_constrained()</a>, <a class="el" href="btsp__fun_8c-source.html#l00319">arrow_btsp_fun_constrained_shake()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00071">arrow_btsp_params_destruct()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00060">arrow_btsp_params_init()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00053">arrow_btsp_result_destruct()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00033">arrow_btsp_result_init()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00098">arrow_btsp_solve()</a>, <a class="el" href="arrow_8h-source.html#l00054">ARROW_BTSP_SOLVE_PLAN_CONSTRAINED</a>, <a class="el" href="arrow_8h-source.html#l00055">ARROW_BTSP_SOLVE_PLAN_CONSTRAINED_SHAKE</a>, <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00051">ARROW_FALSE</a>, <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="problem_8c-source.html#l00098">arrow_problem_destruct()</a>, <a class="el" href="problem_8c-source.html#l00115">arrow_problem_info_get()</a>, <a class="el" href="problem_8c-source.html#l00054">arrow_problem_read()</a>, <a class="el" href="arrow_8h-source.html#l00050">ARROW_TRUE</a>, <a class="el" href="lib_2tsp_8c-source.html#l00059">arrow_tsp_lk_params_destruct()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00047">arrow_tsp_lk_params_init()</a>, <a class="el" href="util_8c-source.html#l00195">arrow_util_print_program_args()</a>, <a class="el" href="util_8c-source.html#l00206">arrow_util_random_seed()</a>, <a class="el" href="util_8c-source.html#l00227">arrow_util_write_tour()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="abtsp_8c-source.html#l00023">basic_attempts</a>, <a class="el" href="arrow_8h-source.html#l00179">arrow_btsp_result::bin_search_steps</a>, <a class="el" href="abtsp_8c-source.html#l00018">confirm_sol</a>, <a class="el" href="arrow_8h-source.html#l00243">arrow_btsp_params::confirm_sol</a>, <a class="el" href="arrow_8h-source.html#l00134">arrow_problem_info::cost_list_length</a>, <a class="el" href="bin_22mb_8c-source.html#l00025">desc</a>, <a class="el" href="arrow_8h-source.html#l00182">arrow_btsp_result::exact_attempts</a>, <a class="el" href="arrow_8h-source.html#l00183">arrow_btsp_result::exact_time</a>, <a class="el" href="abtsp_8c-source.html#l00020">find_short_tour</a>, <a class="el" href="arrow_8h-source.html#l00245">arrow_btsp_params::find_short_tour</a>, <a class="el" href="arrow_8h-source.html#l00174">arrow_btsp_result::found_tour</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="bin_22mb_8c-source.html#l00013">input_file</a>, <a class="el" href="arrow_8h-source.html#l00147">arrow_tsp_lk_params::kicks</a>, <a class="el" href="abtsp_8c-source.html#l00017">kicks</a>, <a class="el" href="cbtsp_8c-source.html#l00015">length</a>, <a class="el" href="arrow_8h-source.html#l00153">arrow_tsp_lk_params::length_bound</a>, <a class="el" href="arrow_8h-source.html#l00180">arrow_btsp_result::linkern_attempts</a>, <a class="el" href="arrow_8h-source.html#l00181">arrow_btsp_result::linkern_time</a>, <a class="el" href="arrow_8h-source.html#l00246">arrow_btsp_params::lower_bound</a>, <a class="el" href="abtsp_8c-source.html#l00021">lower_bound</a>, <a class="el" href="bin_22mb_8c-source.html#l00017">NUM_OPTS</a>, <a class="el" href="arrow_8h-source.html#l00248">arrow_btsp_params::num_steps</a>, <a class="el" href="arrow_8h-source.html#l00175">arrow_btsp_result::obj_value</a>, <a class="el" href="arrow_8h-source.html#l00081">arrow_bound_result::obj_value</a>, <a class="el" href="arrow_8h-source.html#l00178">arrow_btsp_result::optimal</a>, <a class="el" href="arrow_8h-source.html#l00144">arrow_tsp_lk_params::random_restarts</a>, <a class="el" href="abtsp_8c-source.html#l00015">random_restarts</a>, <a class="el" href="cbtsp_8c-source.html#l00028">random_seed</a>, <a class="el" href="cbtsp_8c-source.html#l00025">shake_attempts</a>, <a class="el" href="cbtsp_8c-source.html#l00027">shake_rand_max</a>, <a class="el" href="cbtsp_8c-source.html#l00026">shake_rand_min</a>, <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>, <a class="el" href="abtsp_8c.html#ceebcce8f411269df7b99e78247d7497">SOLVE_STEPS</a>, <a class="el" href="arrow_8h-source.html#l00145">arrow_tsp_lk_params::stall_count</a>, <a class="el" href="abtsp_8c-source.html#l00016">stall_count</a>, <a class="el" href="arrow_8h-source.html#l00249">arrow_btsp_params::steps</a>, <a class="el" href="abtsp_8c-source.html#l00019">supress_ebst</a>, <a class="el" href="arrow_8h-source.html#l00244">arrow_btsp_params::supress_ebst</a>, <a class="el" href="arrow_8h-source.html#l00184">arrow_btsp_result::total_time</a>, <a class="el" href="arrow_8h-source.html#l00082">arrow_bound_result::total_time</a>, <a class="el" href="arrow_8h-source.html#l00177">arrow_btsp_result::tour</a>, <a class="el" href="abtsp_8c-source.html#l00014">tour_file</a>, <a class="el" href="arrow_8h-source.html#l00176">arrow_btsp_result::tour_length</a>, <a class="el" href="abtsp_8c-source.html#l00022">upper_bound</a>, <a class="el" href="arrow_8h-source.html#l00247">arrow_btsp_params::upper_bound</a>, <a class="el" href="bin_22mb_8c-source.html#l00026">usage</a>, and <a class="el" href="bin_22mb_8c-source.html#l00014">xml_file</a>.</p>
+<p>References <a class="el" href="lib_2lb_2bbssp_8c-source.html#l00045">arrow_bbssp_solve()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00128">arrow_btsp_fun_cbtsp_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00152">arrow_btsp_fun_cbtsp_shake()</a>, <a class="el" href="fun_8c-source.html#l00111">arrow_btsp_fun_destruct()</a>, <a class="el" href="params_8c-source.html#l00016">arrow_btsp_params_init()</a>, <a class="el" href="btsp_2result_8c-source.html#l00040">arrow_btsp_result_destruct()</a>, <a class="el" href="btsp_2result_8c-source.html#l00016">arrow_btsp_result_init()</a>, <a class="el" href="btsp_2result_8c-source.html#l00095">arrow_btsp_result_print_pretty()</a>, <a class="el" href="btsp_2result_8c-source.html#l00047">arrow_btsp_result_print_xml()</a>, <a class="el" href="lib_2btsp_2btsp_8c-source.html#l00034">arrow_btsp_solve()</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="problem_8c-source.html#l00153">arrow_problem_destruct()</a>, <a class="el" href="problem_8c-source.html#l00163">arrow_problem_info_get()</a>, <a class="el" href="problem_8c-source.html#l00118">arrow_problem_read()</a>, <a class="el" href="tsp_8h-source.html#l00019">ARROW_TSP_CC_EXACT</a>, <a class="el" href="tsp_8h-source.html#l00020">ARROW_TSP_CC_LK</a>, <a class="el" href="cc_8c-source.html#l00055">arrow_tsp_cc_lk_params_destruct()</a>, <a class="el" href="cc_8c-source.html#l00042">arrow_tsp_cc_lk_params_init()</a>, <a class="el" href="util_8c-source.html#l00195">arrow_util_print_program_args()</a>, <a class="el" href="util_8c-source.html#l00206">arrow_util_random_seed()</a>, <a class="el" href="util_8c-source.html#l00241">arrow_util_write_tour()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="abtsp-rai_8c-source.html#l00023">basic_attempts</a>, <a class="el" href="btsp_8h-source.html#l00112">arrow_btsp_params::confirm_plan</a>, <a class="el" href="abtsp_8c-source.html#l00022">confirm_sol</a>, <a class="el" href="btsp_8h-source.html#l00105">arrow_btsp_params::confirm_sol</a>, <a class="el" href="common_8h-source.html#l00465">arrow_problem_info::cost_list_length</a>, <a class="el" href="abtsp_8c-source.html#l00026">deep_copy</a>, <a class="el" href="bin_22mb_8c-source.html#l00026">desc</a>, <a class="el" href="abtsp_8c-source.html#l00018">edge_infinity</a>, <a class="el" href="abtsp_8c-source.html#l00024">find_short_tour</a>, <a class="el" href="btsp_8h-source.html#l00107">arrow_btsp_params::find_short_tour</a>, <a class="el" href="btsp_8h-source.html#l00029">arrow_btsp_result::found_tour</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="bin_22mb_8c-source.html#l00014">input_file</a>, <a class="el" href="tsp_8h-source.html#l00032">arrow_tsp_cc_lk_params::kicks</a>, <a class="el" href="abtsp_8c-source.html#l00021">kicks</a>, <a class="el" href="cbtsp_8c-source.html#l00018">length</a>, <a class="el" href="tsp_8h-source.html#l00038">arrow_tsp_cc_lk_params::length_bound</a>, <a class="el" href="btsp_8h-source.html#l00108">arrow_btsp_params::lower_bound</a>, <a class="el" href="abtsp-rai_8c-source.html#l00021">lower_bound</a>, <a class="el" href="common_8h-source.html#l00467">arrow_problem_info::max_cost</a>, <a class="el" href="bin_22mb_8c-source.html#l00018">NUM_OPTS</a>, <a class="el" href="btsp_8h-source.html#l00110">arrow_btsp_params::num_steps</a>, <a class="el" href="btsp_8h-source.html#l00030">arrow_btsp_result::obj_value</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="tsp_8h-source.html#l00029">arrow_tsp_cc_lk_params::random_restarts</a>, <a class="el" href="abtsp_8c-source.html#l00019">random_restarts</a>, <a class="el" href="cbtsp_8c-source.html#l00034">random_seed</a>, <a class="el" href="cbtsp_8c-source.html#l00031">shake_attempts</a>, <a class="el" href="cbtsp_8c-source.html#l00033">shake_rand_max</a>, <a class="el" href="cbtsp_8c-source.html#l00032">shake_rand_min</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, <a class="el" href="abtsp-rai_8c.html#ceebcce8f411269df7b99e78247d7497">SOLVE_STEPS</a>, <a class="el" href="tsp_8h-source.html#l00030">arrow_tsp_cc_lk_params::stall_count</a>, <a class="el" href="abtsp_8c-source.html#l00020">stall_count</a>, <a class="el" href="btsp_8h-source.html#l00111">arrow_btsp_params::steps</a>, <a class="el" href="abtsp-rai_8c-source.html#l00019">supress_ebst</a>, <a class="el" href="btsp_8h-source.html#l00106">arrow_btsp_params::supress_ebst</a>, <a class="el" href="abtsp_8c-source.html#l00025">supress_hash</a>, <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>, <a class="el" href="btsp_8h-source.html#l00032">arrow_btsp_result::tour</a>, <a class="el" href="abtsp-rai_8c-source.html#l00017">tour_file</a>, <a class="el" href="btsp_8h-source.html#l00031">arrow_btsp_result::tour_length</a>, <a class="el" href="abtsp-rai_8c-source.html#l00022">upper_bound</a>, <a class="el" href="btsp_8h-source.html#l00109">arrow_btsp_params::upper_bound</a>, <a class="el" href="bin_22mb_8c-source.html#l00027">usage</a>, and <a class="el" href="bin_22mb_8c-source.html#l00015">xml_file</a>.</p>
 
 </div>
 </div><p>
@@ -161,7 +170,7 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00024">24</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00030">30</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
 </div>
 </div><p>
@@ -178,7 +187,24 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00019">19</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00023">23</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7298da576a5b127d04b4c46b3bc78821"></a><!-- doxytag: member="cbtsp.c::deep_copy" ref="7298da576a5b127d04b4c46b3bc78821" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="cbtsp_8c.html#7298da576a5b127d04b4c46b3bc78821">deep_copy</a> = ARROW_FALSE          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00027">27</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
 </div>
 </div><p>
@@ -187,7 +213,7 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* <a class="el" href="subproblem_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a> = &quot;Bottleneck traveling salesman problem (BTSP) solver&quot;          </td>
+          <td class="memname">char* <a class="el" href="subprob_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a> = &quot;Constarined bottleneck TSP solver&quot;          </td>
         </tr>
       </table>
 </div>
@@ -195,7 +221,24 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00076">76</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00088">88</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="61a12d5995172f376610cce2f19e5855"></a><!-- doxytag: member="cbtsp.c::edge_infinity" ref="61a12d5995172f376610cce2f19e5855" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="cbtsp_8c.html#61a12d5995172f376610cce2f19e5855">edge_infinity</a> = -1          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00019">19</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
 </div>
 </div><p>
@@ -212,7 +255,7 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00021">21</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00025">25</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
 </div>
 </div><p>
@@ -229,7 +272,7 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00012">12</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00015">15</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
 </div>
 </div><p>
@@ -246,7 +289,7 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00018">18</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00022">22</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
 </div>
 </div><p>
@@ -263,9 +306,9 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00015">15</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00018">18</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
-<p>Referenced by <a class="el" href="cbtsp_8c-source.html#l00081">main()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2lb_2cbap_8c-source.html#l00051">arrow_cbap_solve()</a>, <a class="el" href="lib_2lb_2cbst_8c-source.html#l00046">arrow_cbst_solve()</a>, <a class="el" href="rai_8c-source.html#l00091">arrow_tsp_rai_solve()</a>, and <a class="el" href="cbtsp_8c-source.html#l00093">main()</a>.</p>
 
 </div>
 </div><p>
@@ -282,7 +325,7 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00022">22</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00028">28</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
 </div>
 </div><p>
@@ -291,7 +334,7 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structarrow__option.html">arrow_option</a> <a class="el" href="subproblem_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>[NUM_OPTS]          </td>
+          <td class="memname"><a class="el" href="structarrow__option.html">arrow_option</a> <a class="el" href="subprob_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>[NUM_OPTS]          </td>
         </tr>
       </table>
 </div>
@@ -299,7 +342,7 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00033">33</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00039">39</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
 </div>
 </div><p>
@@ -316,7 +359,7 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00016">16</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00020">20</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
 </div>
 </div><p>
@@ -333,9 +376,9 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00028">28</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00034">34</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
-<p>Referenced by <a class="el" href="cbtsp_8c-source.html#l00081">main()</a>.</p>
+<p>Referenced by <a class="el" href="cbtsp_8c-source.html#l00093">main()</a>.</p>
 
 </div>
 </div><p>
@@ -352,9 +395,9 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00025">25</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00031">31</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
-<p>Referenced by <a class="el" href="cbtsp_8c-source.html#l00081">main()</a>.</p>
+<p>Referenced by <a class="el" href="cbtsp_8c-source.html#l00093">main()</a>.</p>
 
 </div>
 </div><p>
@@ -371,9 +414,9 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00027">27</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00033">33</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
-<p>Referenced by <a class="el" href="cbtsp_8c-source.html#l00081">main()</a>.</p>
+<p>Referenced by <a class="el" href="cbtsp_8c-source.html#l00093">main()</a>.</p>
 
 </div>
 </div><p>
@@ -390,9 +433,9 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00026">26</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00032">32</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
-<p>Referenced by <a class="el" href="cbtsp_8c-source.html#l00081">main()</a>.</p>
+<p>Referenced by <a class="el" href="cbtsp_8c-source.html#l00093">main()</a>.</p>
 
 </div>
 </div><p>
@@ -409,7 +452,7 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00017">17</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00021">21</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
 </div>
 </div><p>
@@ -426,7 +469,24 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00020">20</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00024">24</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c022145e682345ed4064bad274e5a4f1"></a><!-- doxytag: member="cbtsp.c::supress_hash" ref="c022145e682345ed4064bad274e5a4f1" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="bin_2hash_8c.html#c022145e682345ed4064bad274e5a4f1">supress_hash</a> = ARROW_FALSE          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00026">26</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
 </div>
 </div><p>
@@ -435,7 +495,7 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* <a class="el" href="tour__info_8c.html#b818a82f867be75d7c4d92d792b0943e">tour_file</a> = NULL          </td>
+          <td class="memname">char* <a class="el" href="tourinfo_8c.html#b818a82f867be75d7c4d92d792b0943e">tour_file</a> = NULL          </td>
         </tr>
       </table>
 </div>
@@ -443,7 +503,7 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00014">14</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00017">17</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
 </div>
 </div><p>
@@ -460,7 +520,7 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00023">23</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00029">29</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
 </div>
 </div><p>
@@ -469,7 +529,7 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* <a class="el" href="subproblem_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a> = &quot;-i tsplib.tsp -L max_length [<a class="el" href="subproblem_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>]&quot;          </td>
+          <td class="memname">char* <a class="el" href="subprob_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a> = &quot;-i tsplib.tsp -L <a class="el" href="bin_2cbst_8c.html#0c7f495d279d6f237d38be875e03f593">max_length</a> [<a class="el" href="subprob_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>]&quot;          </td>
         </tr>
       </table>
 </div>
@@ -477,7 +537,7 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00077">77</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00089">89</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
 </div>
 </div><p>
@@ -494,12 +554,12 @@ Runs the Constrained Bottleneck TSP heuristic on the given input file.<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00013">13</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="cbtsp_8c-source.html#l00016">16</a> of file <a class="el" href="cbtsp_8c-source.html">cbtsp.c</a>.</p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Jul 4 13:27:16 2008 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Feb 18 01:00:20 2009 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

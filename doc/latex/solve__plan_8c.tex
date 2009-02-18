@@ -1,0 +1,66 @@
+\hypertarget{solve__plan_8c}{
+\section{lib/btsp/solve\_\-plan.c File Reference}
+\label{solve__plan_8c}\index{lib/btsp/solve\_\-plan.c@{lib/btsp/solve\_\-plan.c}}
+}
+BTSP solve plan structure and methods. 
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}btsp.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{solve__plan_8c_a5f73647dedc4bcd1b5df2bf9e3edab4}{arrow\_\-btsp\_\-solve\_\-plan\_\-init} (\hyperlink{structarrow__btsp__solve__plan}{arrow\_\-btsp\_\-solve\_\-plan} $\ast$plan)
+\begin{CompactList}\small\item\em Inititalizes BTSP solve plan structure. \item\end{CompactList}\item 
+void \hyperlink{solve__plan_8c_e1d667017d467f926e8371a0823d9d7a}{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct} (\hyperlink{structarrow__btsp__solve__plan}{arrow\_\-btsp\_\-solve\_\-plan} $\ast$plan)
+\begin{CompactList}\small\item\em Destructs a BTSP solve plan structure. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+BTSP solve plan structure and methods. 
+
+Bottleneck traveling salesman problem solve plan structure.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{solve__plan_8c-source}{solve\_\-plan.c}.
+
+\subsection{Function Documentation}
+\hypertarget{solve__plan_8c_e1d667017d467f926e8371a0823d9d7a}{
+\index{solve\_\-plan.c@{solve\_\-plan.c}!arrow\_\-btsp\_\-solve\_\-plan\_\-destruct@{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct}}
+\index{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct@{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct}!solve_plan.c@{solve\_\-plan.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-solve\_\-plan\_\-destruct ({\bf arrow\_\-btsp\_\-solve\_\-plan} $\ast$ {\em plan})}}
+\label{solve__plan_8c_e1d667017d467f926e8371a0823d9d7a}
+
+
+Destructs a BTSP solve plan structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em plan}]\mbox{[}out\mbox{]} BTSP solve plan structure \end{description}
+\end{Desc}
+
+
+Definition at line 22 of file solve\_\-plan.c.
+
+References arrow\_\-btsp\_\-fun\_\-destruct(), ARROW\_\-TSP\_\-CC\_\-EXACT, ARROW\_\-TSP\_\-CC\_\-LK, arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct(), arrow\_\-btsp\_\-solve\_\-plan::fun, arrow\_\-btsp\_\-solve\_\-plan::tsp\_\-params, and arrow\_\-btsp\_\-solve\_\-plan::tsp\_\-solver.\hypertarget{solve__plan_8c_a5f73647dedc4bcd1b5df2bf9e3edab4}{
+\index{solve\_\-plan.c@{solve\_\-plan.c}!arrow\_\-btsp\_\-solve\_\-plan\_\-init@{arrow\_\-btsp\_\-solve\_\-plan\_\-init}}
+\index{arrow\_\-btsp\_\-solve\_\-plan\_\-init@{arrow\_\-btsp\_\-solve\_\-plan\_\-init}!solve_plan.c@{solve\_\-plan.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-solve\_\-plan\_\-init ({\bf arrow\_\-btsp\_\-solve\_\-plan} $\ast$ {\em plan})}}
+\label{solve__plan_8c_a5f73647dedc4bcd1b5df2bf9e3edab4}
+
+
+Inititalizes BTSP solve plan structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em plan}]\mbox{[}out\mbox{]} BTSP solve plan structure \end{description}
+\end{Desc}
+
+
+Definition at line 16 of file solve\_\-plan.c.
+
+References arrow\_\-btsp\_\-solve\_\-plan::attempts.

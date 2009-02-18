@@ -1,0 +1,151 @@
+\hypertarget{rai_8c}{
+\section{lib/tsp/rai.c File Reference}
+\label{rai_8c}\index{lib/tsp/rai.c@{lib/tsp/rai.c}}
+}
+Random arbitrary insertion TSP heuristic. 
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}tsp.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{rai_8c_a9b43abdd7f90bae9e816e1e963309b2}{construct\_\-tour} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int \hyperlink{abtsp-rai_8c_de7f7731dd87b73e02ed30fd099d5cc5}{solve\_\-btsp}, int $\ast$node\_\-list, int list\_\-size, \hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$tour, double $\ast$\hyperlink{cbtsp_8c_928b11f5716331f0b89abe7d8d4124b4}{length}, \hyperlink{structarrow__llist__item}{arrow\_\-llist\_\-item} $\ast$$\ast$ins\_\-list)
+\begin{CompactList}\small\item\em Given a set of nodes to insert, inserts them as cheaply as possible into a partial tour. \item\end{CompactList}\item 
+void \hyperlink{rai_8c_b0bf46e69b5a6d92df5d285c39154d5c}{improve\_\-tour} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int \hyperlink{abtsp-rai_8c_de7f7731dd87b73e02ed30fd099d5cc5}{solve\_\-btsp}, \hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$best\_\-tour, double $\ast$\hyperlink{cbtsp_8c_928b11f5716331f0b89abe7d8d4124b4}{length}, \hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$tour, \hyperlink{structarrow__llist__item}{arrow\_\-llist\_\-item} $\ast$$\ast$ins\_\-list, int $\ast$node\_\-list)
+\begin{CompactList}\small\item\em Attempts to improve upon the given tour by removing a random path and reinserting the removed nodes in a random order as cheaply as possible.. \item\end{CompactList}\item 
+int \hyperlink{rai_8c_01aa37114a0c37bea302a8a57ff69aae}{min2} (int i, int j)
+\begin{CompactList}\small\item\em Returns the min of the two values. \item\end{CompactList}\item 
+int \hyperlink{rai_8c_e2fd3841379dffc8324f9b251a6f6be2}{max2} (int i, int j)
+\begin{CompactList}\small\item\em Returns the max of the two values. \item\end{CompactList}\item 
+int \hyperlink{rai_8c_7f7715f2c67cafb4fbe693c7b845da08}{max3} (int i, int j, int k)
+\begin{CompactList}\small\item\em Returns the max of the three values. \item\end{CompactList}\item 
+int \hyperlink{rai_8c_7236b8bd57298ee7dbe317375ab167b4}{arrow\_\-tsp\_\-rai\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__tsp__rai__params}{arrow\_\-tsp\_\-rai\_\-params} $\ast$params, \hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result} $\ast$result)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Random arbitrary insertion TSP heuristic. 
+
+Random arbitrary insertion (RAI) TSP heuristic.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{rai_8c-source}{rai.c}.
+
+\subsection{Function Documentation}
+\hypertarget{rai_8c_7236b8bd57298ee7dbe317375ab167b4}{
+\index{rai.c@{rai.c}!arrow\_\-tsp\_\-rai\_\-solve@{arrow\_\-tsp\_\-rai\_\-solve}}
+\index{arrow\_\-tsp\_\-rai\_\-solve@{arrow\_\-tsp\_\-rai\_\-solve}!rai.c@{rai.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-rai\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-rai\_\-params} $\ast$ {\em params}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
+\label{rai_8c_7236b8bd57298ee7dbe317375ab167b4}
+
+
+
+
+Definition at line 91 of file rai.c.
+
+References arrow\_\-debug, ARROW\_\-FAILURE, arrow\_\-llist\_\-destruct(), arrow\_\-llist\_\-init(), arrow\_\-llist\_\-insert\_\-tail(), arrow\_\-llist\_\-to\_\-array(), arrow\_\-print\_\-error, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-permute\_\-array(), arrow\_\-util\_\-zeit(), construct\_\-tour(), arrow\_\-tsp\_\-result::found\_\-tour, improve\_\-tour(), arrow\_\-tsp\_\-rai\_\-params::iterations, length, arrow\_\-tsp\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-tsp\_\-rai\_\-params::solve\_\-btsp, arrow\_\-tsp\_\-result::total\_\-time, and arrow\_\-tsp\_\-result::tour.
+
+Referenced by arrow\_\-tsp\_\-solve().\hypertarget{rai_8c_a9b43abdd7f90bae9e816e1e963309b2}{
+\index{rai.c@{rai.c}!construct\_\-tour@{construct\_\-tour}}
+\index{construct\_\-tour@{construct\_\-tour}!rai.c@{rai.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void construct\_\-tour ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em solve\_\-btsp}, \/  int $\ast$ {\em node\_\-list}, \/  int {\em list\_\-size}, \/  {\bf arrow\_\-llist} $\ast$ {\em tour}, \/  double $\ast$ {\em length}, \/  {\bf arrow\_\-llist\_\-item} $\ast$$\ast$ {\em ins\_\-list})}}
+\label{rai_8c_a9b43abdd7f90bae9e816e1e963309b2}
+
+
+Given a set of nodes to insert, inserts them as cheaply as possible into a partial tour. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em solve\_\-btsp}]\mbox{[}in\mbox{]} if ARROW\_\-TRUE, attempts to construct tour by minimizing the maximum cost, otherwise constructs tour by minimizing the largest cost \item[{\em node\_\-list}]\mbox{[}in\mbox{]} the list of nodes to insert into the partial tour \item[{\em list\_\-size}]\mbox{[}in\mbox{]} the number of nodes in the node list \item[{\em tour}]\mbox{[}out\mbox{]} initially a partial tour, at termination is a full tour of n nodes \item[{\em length}]\mbox{[}out\mbox{]} the length of the tour (or largest cost in tour if solve\_\-btsp = ARROW\_\-TRUE) \item[{\em ins\_\-list}]\mbox{[}out\mbox{]} a temporary array of pointers to linked list items \end{description}
+\end{Desc}
+
+
+Definition at line 253 of file rai.c.
+
+References arrow\_\-llist\_\-insert\_\-after(), arrow\_\-llist\_\-insert\_\-tail(), arrow\_\-util\_\-random\_\-between(), arrow\_\-llist\_\-item::data, arrow\_\-problem::get\_\-cost, arrow\_\-llist::head, max3(), arrow\_\-llist\_\-item::next, and arrow\_\-llist::size.
+
+Referenced by arrow\_\-tsp\_\-rai\_\-solve(), and improve\_\-tour().\hypertarget{rai_8c_b0bf46e69b5a6d92df5d285c39154d5c}{
+\index{rai.c@{rai.c}!improve\_\-tour@{improve\_\-tour}}
+\index{improve\_\-tour@{improve\_\-tour}!rai.c@{rai.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void improve\_\-tour ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em solve\_\-btsp}, \/  {\bf arrow\_\-llist} $\ast$ {\em best\_\-tour}, \/  double $\ast$ {\em length}, \/  {\bf arrow\_\-llist} $\ast$ {\em tour}, \/  {\bf arrow\_\-llist\_\-item} $\ast$$\ast$ {\em ins\_\-list}, \/  int $\ast$ {\em node\_\-list})}}
+\label{rai_8c_b0bf46e69b5a6d92df5d285c39154d5c}
+
+
+Attempts to improve upon the given tour by removing a random path and reinserting the removed nodes in a random order as cheaply as possible.. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em solve\_\-btsp}]\mbox{[}in\mbox{]} if ARROW\_\-TRUE, attempts to construct tour by minimizing the maximum cost, otherwise constructs tour by minimizing the largest cost \item[{\em best\_\-tour}]\mbox{[}out\mbox{]} the best tour found so far; if a better tour is found this pointer will be changed to point to the new best tour \item[{\em length}]\mbox{[}out\mbox{]} the length of the tour (or largest cost in tour if solve\_\-btsp = ARROW\_\-TRUE) \item[{\em tour}]\mbox{[}out\mbox{]} initially a partial tour, at termination is a full tour of n nodes \item[{\em ins\_\-list}]\mbox{[}out\mbox{]} a temporary array of pointers to linked list items \item[{\em node\_\-list}]\mbox{[}out\mbox{]} temporary array of integers of size n \end{description}
+\end{Desc}
+
+
+Definition at line 177 of file rai.c.
+
+References arrow\_\-debug, arrow\_\-llist\_\-destruct(), arrow\_\-llist\_\-insert\_\-tail(), arrow\_\-llist\_\-swap(), arrow\_\-util\_\-permute\_\-array(), arrow\_\-util\_\-random\_\-between(), construct\_\-tour(), arrow\_\-llist\_\-item::data, arrow\_\-llist::head, arrow\_\-llist\_\-item::next, and arrow\_\-problem::size.
+
+Referenced by arrow\_\-tsp\_\-rai\_\-solve().\hypertarget{rai_8c_e2fd3841379dffc8324f9b251a6f6be2}{
+\index{rai.c@{rai.c}!max2@{max2}}
+\index{max2@{max2}!rai.c@{rai.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int max2 (int {\em i}, \/  int {\em j})}}
+\label{rai_8c_e2fd3841379dffc8324f9b251a6f6be2}
+
+
+Returns the max of the two values. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em i}]\mbox{[}in\mbox{]} first number \item[{\em j}]\mbox{[}in\mbox{]} second number \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]the largest of i, j \end{Desc}
+
+
+Definition at line 401 of file rai.c.
+
+References max().\hypertarget{rai_8c_7f7715f2c67cafb4fbe693c7b845da08}{
+\index{rai.c@{rai.c}!max3@{max3}}
+\index{max3@{max3}!rai.c@{rai.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int max3 (int {\em i}, \/  int {\em j}, \/  int {\em k})}}
+\label{rai_8c_7f7715f2c67cafb4fbe693c7b845da08}
+
+
+Returns the max of the three values. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em i}]\mbox{[}in\mbox{]} first number \item[{\em j}]\mbox{[}in\mbox{]} second number \item[{\em k}]\mbox{[}in\mbox{]} third number \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]the largest of i, j, k \end{Desc}
+
+
+Definition at line 409 of file rai.c.
+
+References max().
+
+Referenced by construct\_\-tour().\hypertarget{rai_8c_01aa37114a0c37bea302a8a57ff69aae}{
+\index{rai.c@{rai.c}!min2@{min2}}
+\index{min2@{min2}!rai.c@{rai.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int min2 (int {\em i}, \/  int {\em j})}}
+\label{rai_8c_01aa37114a0c37bea302a8a57ff69aae}
+
+
+Returns the min of the two values. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em i}]\mbox{[}in\mbox{]} first number \item[{\em j}]\mbox{[}in\mbox{]} second number \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]the smallest of i, j \end{Desc}
+
+
+Definition at line 393 of file rai.c.

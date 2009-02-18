@@ -1,0 +1,94 @@
+\hypertarget{lib_2tsp_2tsp_8c}{
+\section{lib/tsp/tsp.c File Reference}
+\label{lib_2tsp_2tsp_8c}\index{lib/tsp/tsp.c@{lib/tsp/tsp.c}}
+}
+Wrapper for calling TSP solvers and heuristics. 
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}tsp.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{lib_2tsp_2tsp_8c_83a75ed402c5d7d82eaa305d2d08349c}{arrow\_\-tsp\_\-solve} (int tsp\_\-solver, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, void $\ast$params, \hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves TSP with Concorde's Lin-Kernighan heuristic. \item\end{CompactList}\item 
+void \hyperlink{lib_2tsp_2tsp_8c_6ee8b5b058f03a5c00e54e186d00d7fc}{arrow\_\-tsp\_\-short\_\-name} (int tsp\_\-solver, FILE $\ast$out)
+\begin{CompactList}\small\item\em Prints out the short name for the given solver. \item\end{CompactList}\item 
+void \hyperlink{lib_2tsp_2tsp_8c_f82f3196a6663d14324cb5c27615f983}{arrow\_\-tsp\_\-long\_\-name} (int tsp\_\-solver, FILE $\ast$out)
+\begin{CompactList}\small\item\em Prints out the long name for the given solver. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Wrapper for calling TSP solvers and heuristics. 
+
+Wrapper for solvers and heuristics for the traveling salesman problem.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{lib_2tsp_2tsp_8c-source}{tsp.c}.
+
+\subsection{Function Documentation}
+\hypertarget{lib_2tsp_2tsp_8c_f82f3196a6663d14324cb5c27615f983}{
+\index{lib/tsp/tsp.c@{lib/tsp/tsp.c}!arrow\_\-tsp\_\-long\_\-name@{arrow\_\-tsp\_\-long\_\-name}}
+\index{arrow\_\-tsp\_\-long\_\-name@{arrow\_\-tsp\_\-long\_\-name}!lib/tsp/tsp.c@{lib/tsp/tsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-long\_\-name (int {\em tsp\_\-solver}, \/  FILE $\ast$ {\em out})}}
+\label{lib_2tsp_2tsp_8c_f82f3196a6663d14324cb5c27615f983}
+
+
+Prints out the long name for the given solver. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em tsp\_\-solver}]\mbox{[}in\mbox{]} the TSP solver in question \item[{\em out}]\mbox{[}out\mbox{]} the file handle to print out to. \end{description}
+\end{Desc}
+
+
+Definition at line 61 of file tsp.c.
+
+References arrow\_\-print\_\-error, ARROW\_\-TSP\_\-CC\_\-EXACT, ARROW\_\-TSP\_\-CC\_\-LK, and ARROW\_\-TSP\_\-RAI.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-pretty().\hypertarget{lib_2tsp_2tsp_8c_6ee8b5b058f03a5c00e54e186d00d7fc}{
+\index{lib/tsp/tsp.c@{lib/tsp/tsp.c}!arrow\_\-tsp\_\-short\_\-name@{arrow\_\-tsp\_\-short\_\-name}}
+\index{arrow\_\-tsp\_\-short\_\-name@{arrow\_\-tsp\_\-short\_\-name}!lib/tsp/tsp.c@{lib/tsp/tsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-short\_\-name (int {\em tsp\_\-solver}, \/  FILE $\ast$ {\em out})}}
+\label{lib_2tsp_2tsp_8c_6ee8b5b058f03a5c00e54e186d00d7fc}
+
+
+Prints out the short name for the given solver. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em tsp\_\-solver}]\mbox{[}in\mbox{]} the TSP solver in question \item[{\em out}]\mbox{[}out\mbox{]} the file handle to print out to. \end{description}
+\end{Desc}
+
+
+Definition at line 45 of file tsp.c.
+
+References arrow\_\-print\_\-error, ARROW\_\-TSP\_\-CC\_\-EXACT, ARROW\_\-TSP\_\-CC\_\-LK, and ARROW\_\-TSP\_\-RAI.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{lib_2tsp_2tsp_8c_83a75ed402c5d7d82eaa305d2d08349c}{
+\index{lib/tsp/tsp.c@{lib/tsp/tsp.c}!arrow\_\-tsp\_\-solve@{arrow\_\-tsp\_\-solve}}
+\index{arrow\_\-tsp\_\-solve@{arrow\_\-tsp\_\-solve}!lib/tsp/tsp.c@{lib/tsp/tsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-solve (int {\em tsp\_\-solver}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem}, \/  void $\ast$ {\em params}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
+\label{lib_2tsp_2tsp_8c_83a75ed402c5d7d82eaa305d2d08349c}
+
+
+Solves TSP with Concorde's Lin-Kernighan heuristic. 
+
+Solves TSP with for requested TSP solver.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em tsp\_\-solver}]\mbox{[}in\mbox{]} the TSP solver to use \item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em params}]\mbox{[}in\mbox{]} Lin-Kernighan params (can be NULL) \item[{\em result}]\mbox{[}out\mbox{]} TSP solution \end{description}
+\end{Desc}
+
+
+Definition at line 20 of file tsp.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-TSP\_\-CC\_\-EXACT, arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), ARROW\_\-TSP\_\-CC\_\-LK, arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), ARROW\_\-TSP\_\-RAI, and arrow\_\-tsp\_\-rai\_\-solve().
+
+Referenced by feasible().

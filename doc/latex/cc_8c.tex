@@ -1,0 +1,175 @@
+\hypertarget{cc_8c}{
+\section{lib/tsp/cc.c File Reference}
+\label{cc_8c}\index{lib/tsp/cc.c@{lib/tsp/cc.c}}
+}
+TSP solver and Lin-Kernighan heuristic. 
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}tsp.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{cc_8c_262c0ed412c066c45212c2cc13e703b5}{build\_\-initial\_\-tour} (int ncount, CCdatagroup $\ast$dat, CCedgegengroup $\ast$plan, CCrandstate $\ast$rstate, int $\ast$initial\_\-tour)
+\item 
+static int \hyperlink{cc_8c_14413a6385a9cdc12ad169f6dffe6105}{arrow\_\-edgelen} (int i, int j, struct CCdatagroup $\ast$dat)
+\begin{CompactList}\small\item\em Concorde edge length function for Arrow problem strutures. \item\end{CompactList}\item 
+static int \hyperlink{cc_8c_93f8cd5c58da12d37ef8e3adfda1febe}{arrow\_\-copy} (int ncount, struct CCdatagroup $\ast$in, struct CCdatagroup $\ast$out)
+\begin{CompactList}\small\item\em Creates a copy of the user data. \item\end{CompactList}\item 
+void \hyperlink{cc_8c_8ccbdc390843e8b51299a9d89183c25d}{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__tsp__cc__lk__params}{arrow\_\-tsp\_\-cc\_\-lk\_\-params} $\ast$params)
+\begin{CompactList}\small\item\em Sets default parameters for Lin-Kernighan heuristic:\begin{itemize}
+\item random\_\-restarts = 0\item stall\_\-count = problem-$>$size\item kicks = (problem-$>$size / 2), at least 500\item kick\_\-type = CC\_\-LK\_\-GEOMETRIC\_\-KICK\item time\_\-bound = 0.0\item length\_\-bound = 0.0\item initial\_\-tour = NULL. \end{itemize}
+\item\end{CompactList}\item 
+void \hyperlink{cc_8c_2e3f26d69919dddd1eb0e6969d4dcd85}{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct} (\hyperlink{structarrow__tsp__cc__lk__params}{arrow\_\-tsp\_\-cc\_\-lk\_\-params} $\ast$params)
+\begin{CompactList}\small\item\em Destructs a LK parameters structure. \item\end{CompactList}\item 
+int \hyperlink{cc_8c_0facfae73f4527eaede86b39bfbe3e2c}{arrow\_\-tsp\_\-cc\_\-exact\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int $\ast$initial\_\-tour, \hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves TSP with Concorde's exact solver. \item\end{CompactList}\item 
+int \hyperlink{cc_8c_a51ad259e32d0cc792d02e5c93bca4f2}{arrow\_\-tsp\_\-cc\_\-lk\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__tsp__cc__lk__params}{arrow\_\-tsp\_\-cc\_\-lk\_\-params} $\ast$params, \hyperlink{structarrow__tsp__result}{arrow\_\-tsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves TSP with Concorde's Lin-Kernighan heuristic. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+TSP solver and Lin-Kernighan heuristic. 
+
+Wrapper for calling Concorde's TSP solver and Lin-Kernighan heuristic.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{cc_8c-source}{cc.c}.
+
+\subsection{Function Documentation}
+\hypertarget{cc_8c_93f8cd5c58da12d37ef8e3adfda1febe}{
+\index{cc.c@{cc.c}!arrow\_\-copy@{arrow\_\-copy}}
+\index{arrow\_\-copy@{arrow\_\-copy}!cc.c@{cc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}static int arrow\_\-copy (int {\em ncount}, \/  struct CCdatagroup $\ast$ {\em in}, \/  struct CCdatagroup $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{cc_8c_93f8cd5c58da12d37ef8e3adfda1febe}
+
+
+Creates a copy of the user data. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em ncount}]\mbox{[}in\mbox{]} number of nodes \item[{\em in}]\mbox{[}in\mbox{]} source data group \item[{\em out}]\mbox{[}out\mbox{]} destination data group \end{description}
+\end{Desc}
+
+
+Definition at line 361 of file cc.c.
+
+Referenced by arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), and arrow\_\-tsp\_\-cc\_\-lk\_\-solve().\hypertarget{cc_8c_14413a6385a9cdc12ad169f6dffe6105}{
+\index{cc.c@{cc.c}!arrow\_\-edgelen@{arrow\_\-edgelen}}
+\index{arrow\_\-edgelen@{arrow\_\-edgelen}!cc.c@{cc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}static int arrow\_\-edgelen (int {\em i}, \/  int {\em j}, \/  struct CCdatagroup $\ast$ {\em dat})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{cc_8c_14413a6385a9cdc12ad169f6dffe6105}
+
+
+Concorde edge length function for Arrow problem strutures. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em i}]\mbox{[}in\mbox{]} node i \item[{\em j}]\mbox{[}in\mbox{]} node j \item[{\em dat}]\mbox{[}in\mbox{]} Concorde data structure. \end{description}
+\end{Desc}
+
+
+Definition at line 354 of file cc.c.
+
+References arrow\_\-problem::get\_\-cost.
+
+Referenced by arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), and arrow\_\-tsp\_\-cc\_\-lk\_\-solve().\hypertarget{cc_8c_0facfae73f4527eaede86b39bfbe3e2c}{
+\index{cc.c@{cc.c}!arrow\_\-tsp\_\-cc\_\-exact\_\-solve@{arrow\_\-tsp\_\-cc\_\-exact\_\-solve}}
+\index{arrow\_\-tsp\_\-cc\_\-exact\_\-solve@{arrow\_\-tsp\_\-cc\_\-exact\_\-solve}!cc.c@{cc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-cc\_\-exact\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int $\ast$ {\em initial\_\-tour}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
+\label{cc_8c_0facfae73f4527eaede86b39bfbe3e2c}
+
+
+Solves TSP with Concorde's exact solver. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em initial\_\-tour}]\mbox{[}in\mbox{]} an initial tour (can be NULL) \item[{\em result}]\mbox{[}out\mbox{]} TSP solution \end{description}
+\end{Desc}
+
+
+Definition at line 62 of file cc.c.
+
+References arrow\_\-copy(), arrow\_\-debug, arrow\_\-edgelen(), ARROW\_\-FAILURE, ARROW\_\-PROBLEM\_\-DATA\_\-CONCORDE, ARROW\_\-SUCCESS, arrow\_\-util\_\-zeit(), arrow\_\-problem::data, arrow\_\-tsp\_\-result::found\_\-tour, arrow\_\-problem::name, arrow\_\-tsp\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-tsp\_\-result::total\_\-time, arrow\_\-tsp\_\-result::tour, and arrow\_\-problem::type.
+
+Referenced by arrow\_\-tsp\_\-solve(), and main().\hypertarget{cc_8c_2e3f26d69919dddd1eb0e6969d4dcd85}{
+\index{cc.c@{cc.c}!arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct@{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct}}
+\index{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct@{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct}!cc.c@{cc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct ({\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params} $\ast$ {\em params})}}
+\label{cc_8c_2e3f26d69919dddd1eb0e6969d4dcd85}
+
+
+Destructs a LK parameters structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em params}]\mbox{[}out\mbox{]} LK parameters structure \end{description}
+\end{Desc}
+
+
+Definition at line 55 of file cc.c.
+
+References arrow\_\-tsp\_\-cc\_\-lk\_\-params::initial\_\-tour.
+
+Referenced by arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), and main().\hypertarget{cc_8c_8ccbdc390843e8b51299a9d89183c25d}{
+\index{cc.c@{cc.c}!arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init@{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init}}
+\index{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init@{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init}!cc.c@{cc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params} $\ast$ {\em params})}}
+\label{cc_8c_8ccbdc390843e8b51299a9d89183c25d}
+
+
+Sets default parameters for Lin-Kernighan heuristic:\begin{itemize}
+\item random\_\-restarts = 0\item stall\_\-count = problem-$>$size\item kicks = (problem-$>$size / 2), at least 500\item kick\_\-type = CC\_\-LK\_\-GEOMETRIC\_\-KICK\item time\_\-bound = 0.0\item length\_\-bound = 0.0\item initial\_\-tour = NULL. \end{itemize}
+
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em params}]\mbox{[}out\mbox{]} LK parameters structure \end{description}
+\end{Desc}
+
+
+Definition at line 42 of file cc.c.
+
+References arrow\_\-tsp\_\-cc\_\-lk\_\-params::initial\_\-tour, arrow\_\-tsp\_\-cc\_\-lk\_\-params::kick\_\-type, arrow\_\-tsp\_\-cc\_\-lk\_\-params::kicks, arrow\_\-tsp\_\-cc\_\-lk\_\-params::length\_\-bound, arrow\_\-tsp\_\-cc\_\-lk\_\-params::random\_\-restarts, arrow\_\-problem::size, arrow\_\-tsp\_\-cc\_\-lk\_\-params::stall\_\-count, and arrow\_\-tsp\_\-cc\_\-lk\_\-params::time\_\-bound.
+
+Referenced by arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), and main().\hypertarget{cc_8c_a51ad259e32d0cc792d02e5c93bca4f2}{
+\index{cc.c@{cc.c}!arrow\_\-tsp\_\-cc\_\-lk\_\-solve@{arrow\_\-tsp\_\-cc\_\-lk\_\-solve}}
+\index{arrow\_\-tsp\_\-cc\_\-lk\_\-solve@{arrow\_\-tsp\_\-cc\_\-lk\_\-solve}!cc.c@{cc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-cc\_\-lk\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params} $\ast$ {\em params}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
+\label{cc_8c_a51ad259e32d0cc792d02e5c93bca4f2}
+
+
+Solves TSP with Concorde's Lin-Kernighan heuristic. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em params}]\mbox{[}in\mbox{]} Lin-Kernighan params (can be NULL) \item[{\em result}]\mbox{[}out\mbox{]} TSP solution \end{description}
+\end{Desc}
+
+
+Definition at line 118 of file cc.c.
+
+References arrow\_\-copy(), arrow\_\-debug, arrow\_\-edgelen(), ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-PROBLEM\_\-DATA\_\-CONCORDE, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct(), arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init(), arrow\_\-util\_\-zeit(), build\_\-initial\_\-tour(), CONCORDE\_\-FAILURE, arrow\_\-problem::data, arrow\_\-tsp\_\-result::found\_\-tour, arrow\_\-tsp\_\-cc\_\-lk\_\-params::initial\_\-tour, arrow\_\-tsp\_\-cc\_\-lk\_\-params::kick\_\-type, arrow\_\-tsp\_\-cc\_\-lk\_\-params::kicks, arrow\_\-tsp\_\-cc\_\-lk\_\-params::length\_\-bound, arrow\_\-tsp\_\-result::obj\_\-value, arrow\_\-tsp\_\-cc\_\-lk\_\-params::random\_\-restarts, arrow\_\-problem::size, arrow\_\-tsp\_\-cc\_\-lk\_\-params::stall\_\-count, arrow\_\-tsp\_\-cc\_\-lk\_\-params::time\_\-bound, arrow\_\-tsp\_\-result::total\_\-time, arrow\_\-tsp\_\-result::tour, and arrow\_\-problem::type.
+
+Referenced by arrow\_\-tsp\_\-solve().\hypertarget{cc_8c_262c0ed412c066c45212c2cc13e703b5}{
+\index{cc.c@{cc.c}!build\_\-initial\_\-tour@{build\_\-initial\_\-tour}}
+\index{build\_\-initial\_\-tour@{build\_\-initial\_\-tour}!cc.c@{cc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int build\_\-initial\_\-tour (int {\em ncount}, \/  CCdatagroup $\ast$ {\em dat}, \/  CCedgegengroup $\ast$ {\em plan}, \/  CCrandstate $\ast$ {\em rstate}, \/  int $\ast$ {\em initial\_\-tour})}}
+\label{cc_8c_262c0ed412c066c45212c2cc13e703b5}
+
+
+
+
+Definition at line 312 of file cc.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, and CONCORDE\_\-FAILURE.
+
+Referenced by arrow\_\-tsp\_\-cc\_\-lk\_\-solve().

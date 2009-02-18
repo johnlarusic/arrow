@@ -1,0 +1,281 @@
+\hypertarget{llist_8c}{
+\section{lib/common/llist.c File Reference}
+\label{llist_8c}\index{lib/common/llist.c@{lib/common/llist.c}}
+}
+Linked list implementation. 
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{llist_8c_ca055661f3570d5157005ac026a0877b}{construct\_\-item} (\hyperlink{structarrow__llist__item}{arrow\_\-llist\_\-item} $\ast$$\ast$item, int value)
+\begin{CompactList}\small\item\em Constructs a new item structure with the given value. \item\end{CompactList}\item 
+void \hyperlink{llist_8c_cc0b379b2e15aa13462bf1e7675e8cf4}{arrow\_\-llist\_\-init} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list)
+\begin{CompactList}\small\item\em Initializes a new linked list. \item\end{CompactList}\item 
+void \hyperlink{llist_8c_bee92fb4a4711dd8fa4d22fb8f942f3d}{arrow\_\-llist\_\-destruct} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list)
+\begin{CompactList}\small\item\em Destructs contents of a linked list. \item\end{CompactList}\item 
+void \hyperlink{llist_8c_080399f8567743e40256b47618f55fcd}{arrow\_\-llist\_\-swap} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$a, \hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$b)
+\begin{CompactList}\small\item\em Swaps the two given lists. \item\end{CompactList}\item 
+int \hyperlink{llist_8c_686445c1ca941deb7843f570e801b703}{arrow\_\-llist\_\-insert\_\-head} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list, int value)
+\begin{CompactList}\small\item\em Inserts a new item at the head of the list. \item\end{CompactList}\item 
+int \hyperlink{llist_8c_645b9a27d9014e3415b8e6f2a37a316a}{arrow\_\-llist\_\-insert\_\-tail} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list, int value)
+\begin{CompactList}\small\item\em Inserts a new item at the tail of the list. \item\end{CompactList}\item 
+int \hyperlink{llist_8c_7c348a8af5422f6f4d1f6ded30677a70}{arrow\_\-llist\_\-insert\_\-after} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list, \hyperlink{structarrow__llist__item}{arrow\_\-llist\_\-item} $\ast$item, int value)
+\begin{CompactList}\small\item\em Inserts a new item after the given item in the list. NOTE: procedure makes no attempt to verify given item is in the list! \item\end{CompactList}\item 
+void \hyperlink{llist_8c_081d530fc7f0936e3b18c00ff4266548}{arrow\_\-llist\_\-remove\_\-head} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list, int $\ast$value)
+\begin{CompactList}\small\item\em Removes the head item in the list. \item\end{CompactList}\item 
+void \hyperlink{llist_8c_696e0c9f6adf3ab86287d50b84c471ce}{arrow\_\-llist\_\-remove\_\-tail} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list, int $\ast$value)
+\begin{CompactList}\small\item\em Removes the tail item in the list. NOTE: O(n) procedure! \item\end{CompactList}\item 
+void \hyperlink{llist_8c_85f6a89c9b2b149c81751b6dcae7f4f1}{arrow\_\-llist\_\-remove\_\-after} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list, \hyperlink{structarrow__llist__item}{arrow\_\-llist\_\-item} $\ast$item, int $\ast$value)
+\begin{CompactList}\small\item\em Removes the item after the given one in the list. NOTE: procedure makes no attempt to verify given item is in the list! \item\end{CompactList}\item 
+void \hyperlink{llist_8c_9c558d27574d24be9dd6688dd4e8543d}{arrow\_\-llist\_\-print} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list)
+\begin{CompactList}\small\item\em Prints a list of items in the list. \item\end{CompactList}\item 
+void \hyperlink{llist_8c_708a19244cf603819ed64bd34f93714e}{arrow\_\-llist\_\-to\_\-array} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list, int $\ast$array)
+\begin{CompactList}\small\item\em Copys data from linked list into array. Assume array is big enough to handle linked list! \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Linked list implementation. 
+
+Methods for working with a linked list structure.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{llist_8c-source}{llist.c}.
+
+\subsection{Function Documentation}
+\hypertarget{llist_8c_bee92fb4a4711dd8fa4d22fb8f942f3d}{
+\index{llist.c@{llist.c}!arrow\_\-llist\_\-destruct@{arrow\_\-llist\_\-destruct}}
+\index{arrow\_\-llist\_\-destruct@{arrow\_\-llist\_\-destruct}!llist.c@{llist.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-destruct ({\bf arrow\_\-llist} $\ast$ {\em list})}}
+\label{llist_8c_bee92fb4a4711dd8fa4d22fb8f942f3d}
+
+
+Destructs contents of a linked list. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}out\mbox{]} list structure \end{description}
+\end{Desc}
+
+
+Definition at line 31 of file llist.c.
+
+References arrow\_\-llist\_\-remove\_\-head(), and arrow\_\-llist::size.
+
+Referenced by arrow\_\-tsp\_\-rai\_\-solve(), and improve\_\-tour().\hypertarget{llist_8c_cc0b379b2e15aa13462bf1e7675e8cf4}{
+\index{llist.c@{llist.c}!arrow\_\-llist\_\-init@{arrow\_\-llist\_\-init}}
+\index{arrow\_\-llist\_\-init@{arrow\_\-llist\_\-init}!llist.c@{llist.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-init ({\bf arrow\_\-llist} $\ast$ {\em list})}}
+\label{llist_8c_cc0b379b2e15aa13462bf1e7675e8cf4}
+
+
+Initializes a new linked list. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}out\mbox{]} linked list structure \end{description}
+\end{Desc}
+
+
+Definition at line 23 of file llist.c.
+
+References arrow\_\-llist::head, arrow\_\-llist::size, and arrow\_\-llist::tail.
+
+Referenced by arrow\_\-tsp\_\-rai\_\-solve().\hypertarget{llist_8c_7c348a8af5422f6f4d1f6ded30677a70}{
+\index{llist.c@{llist.c}!arrow\_\-llist\_\-insert\_\-after@{arrow\_\-llist\_\-insert\_\-after}}
+\index{arrow\_\-llist\_\-insert\_\-after@{arrow\_\-llist\_\-insert\_\-after}!llist.c@{llist.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-llist\_\-insert\_\-after ({\bf arrow\_\-llist} $\ast$ {\em list}, \/  {\bf arrow\_\-llist\_\-item} $\ast$ {\em item}, \/  int {\em value})}}
+\label{llist_8c_7c348a8af5422f6f4d1f6ded30677a70}
+
+
+Inserts a new item after the given item in the list. NOTE: procedure makes no attempt to verify given item is in the list! 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}out\mbox{]} linked list structure \item[{\em item}]\mbox{[}in\mbox{]} linked list item \item[{\em value}]\mbox{[}in\mbox{]} value to insert \end{description}
+\end{Desc}
+
+
+Definition at line 101 of file llist.c.
+
+References ARROW\_\-FAILURE, arrow\_\-llist\_\-insert\_\-tail(), arrow\_\-print\_\-error, ARROW\_\-SUCCESS, construct\_\-item(), arrow\_\-llist\_\-item::next, arrow\_\-llist::size, and arrow\_\-llist::tail.
+
+Referenced by construct\_\-tour().\hypertarget{llist_8c_686445c1ca941deb7843f570e801b703}{
+\index{llist.c@{llist.c}!arrow\_\-llist\_\-insert\_\-head@{arrow\_\-llist\_\-insert\_\-head}}
+\index{arrow\_\-llist\_\-insert\_\-head@{arrow\_\-llist\_\-insert\_\-head}!llist.c@{llist.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-llist\_\-insert\_\-head ({\bf arrow\_\-llist} $\ast$ {\em list}, \/  int {\em value})}}
+\label{llist_8c_686445c1ca941deb7843f570e801b703}
+
+
+Inserts a new item at the head of the list. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}out\mbox{]} linked list structure \item[{\em value}]\mbox{[}in\mbox{]} value to insert \end{description}
+\end{Desc}
+
+
+Definition at line 55 of file llist.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, construct\_\-item(), arrow\_\-llist::head, arrow\_\-llist\_\-item::next, arrow\_\-llist::size, and arrow\_\-llist::tail.\hypertarget{llist_8c_645b9a27d9014e3415b8e6f2a37a316a}{
+\index{llist.c@{llist.c}!arrow\_\-llist\_\-insert\_\-tail@{arrow\_\-llist\_\-insert\_\-tail}}
+\index{arrow\_\-llist\_\-insert\_\-tail@{arrow\_\-llist\_\-insert\_\-tail}!llist.c@{llist.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-llist\_\-insert\_\-tail ({\bf arrow\_\-llist} $\ast$ {\em list}, \/  int {\em value})}}
+\label{llist_8c_645b9a27d9014e3415b8e6f2a37a316a}
+
+
+Inserts a new item at the tail of the list. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}out\mbox{]} linked list structure \item[{\em value}]\mbox{[}in\mbox{]} value to insert \end{description}
+\end{Desc}
+
+
+Definition at line 78 of file llist.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, construct\_\-item(), arrow\_\-llist::head, arrow\_\-llist\_\-item::next, arrow\_\-llist::size, and arrow\_\-llist::tail.
+
+Referenced by arrow\_\-llist\_\-insert\_\-after(), arrow\_\-tsp\_\-rai\_\-solve(), construct\_\-tour(), and improve\_\-tour().\hypertarget{llist_8c_9c558d27574d24be9dd6688dd4e8543d}{
+\index{llist.c@{llist.c}!arrow\_\-llist\_\-print@{arrow\_\-llist\_\-print}}
+\index{arrow\_\-llist\_\-print@{arrow\_\-llist\_\-print}!llist.c@{llist.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-print ({\bf arrow\_\-llist} $\ast$ {\em list})}}
+\label{llist_8c_9c558d27574d24be9dd6688dd4e8543d}
+
+
+Prints a list of items in the list. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}in\mbox{]} linked list structure \end{description}
+\end{Desc}
+
+
+Definition at line 201 of file llist.c.
+
+References arrow\_\-llist\_\-item::data, arrow\_\-llist::head, arrow\_\-llist\_\-item::next, and arrow\_\-llist::size.\hypertarget{llist_8c_85f6a89c9b2b149c81751b6dcae7f4f1}{
+\index{llist.c@{llist.c}!arrow\_\-llist\_\-remove\_\-after@{arrow\_\-llist\_\-remove\_\-after}}
+\index{arrow\_\-llist\_\-remove\_\-after@{arrow\_\-llist\_\-remove\_\-after}!llist.c@{llist.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-remove\_\-after ({\bf arrow\_\-llist} $\ast$ {\em list}, \/  {\bf arrow\_\-llist\_\-item} $\ast$ {\em item}, \/  int $\ast$ {\em value})}}
+\label{llist_8c_85f6a89c9b2b149c81751b6dcae7f4f1}
+
+
+Removes the item after the given one in the list. NOTE: procedure makes no attempt to verify given item is in the list! 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}out\mbox{]} linked list structure \item[{\em item}]\mbox{[}in\mbox{]} linked list item \item[{\em value}]\mbox{[}out\mbox{]} value of removed item \end{description}
+\end{Desc}
+
+
+Definition at line 179 of file llist.c.
+
+References arrow\_\-llist\_\-remove\_\-head(), arrow\_\-llist\_\-item::data, arrow\_\-llist::head, arrow\_\-llist\_\-item::next, arrow\_\-llist::size, and arrow\_\-llist::tail.\hypertarget{llist_8c_081d530fc7f0936e3b18c00ff4266548}{
+\index{llist.c@{llist.c}!arrow\_\-llist\_\-remove\_\-head@{arrow\_\-llist\_\-remove\_\-head}}
+\index{arrow\_\-llist\_\-remove\_\-head@{arrow\_\-llist\_\-remove\_\-head}!llist.c@{llist.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-remove\_\-head ({\bf arrow\_\-llist} $\ast$ {\em list}, \/  int $\ast$ {\em value})}}
+\label{llist_8c_081d530fc7f0936e3b18c00ff4266548}
+
+
+Removes the head item in the list. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}out\mbox{]} linked list structure \item[{\em value}]\mbox{[}out\mbox{]} value of removed item \end{description}
+\end{Desc}
+
+
+Definition at line 128 of file llist.c.
+
+References arrow\_\-llist\_\-item::data, arrow\_\-llist::head, arrow\_\-llist\_\-item::next, arrow\_\-llist::size, and arrow\_\-llist::tail.
+
+Referenced by arrow\_\-llist\_\-destruct(), arrow\_\-llist\_\-remove\_\-after(), and arrow\_\-llist\_\-remove\_\-tail().\hypertarget{llist_8c_696e0c9f6adf3ab86287d50b84c471ce}{
+\index{llist.c@{llist.c}!arrow\_\-llist\_\-remove\_\-tail@{arrow\_\-llist\_\-remove\_\-tail}}
+\index{arrow\_\-llist\_\-remove\_\-tail@{arrow\_\-llist\_\-remove\_\-tail}!llist.c@{llist.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-remove\_\-tail ({\bf arrow\_\-llist} $\ast$ {\em list}, \/  int $\ast$ {\em value})}}
+\label{llist_8c_696e0c9f6adf3ab86287d50b84c471ce}
+
+
+Removes the tail item in the list. NOTE: O(n) procedure! 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}out\mbox{]} linked list structure \item[{\em value}]\mbox{[}out\mbox{]} value of removed item \end{description}
+\end{Desc}
+
+
+Definition at line 153 of file llist.c.
+
+References arrow\_\-llist\_\-remove\_\-head(), arrow\_\-llist\_\-item::data, arrow\_\-llist::head, arrow\_\-llist\_\-item::next, arrow\_\-llist::size, and arrow\_\-llist::tail.\hypertarget{llist_8c_080399f8567743e40256b47618f55fcd}{
+\index{llist.c@{llist.c}!arrow\_\-llist\_\-swap@{arrow\_\-llist\_\-swap}}
+\index{arrow\_\-llist\_\-swap@{arrow\_\-llist\_\-swap}!llist.c@{llist.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-swap ({\bf arrow\_\-llist} $\ast$ {\em a}, \/  {\bf arrow\_\-llist} $\ast$ {\em b})}}
+\label{llist_8c_080399f8567743e40256b47618f55fcd}
+
+
+Swaps the two given lists. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em a}]\mbox{[}out\mbox{]} the first list \item[{\em b}]\mbox{[}out\mbox{]} the second list \end{description}
+\end{Desc}
+
+
+Definition at line 39 of file llist.c.
+
+References arrow\_\-llist::head, arrow\_\-llist::size, and arrow\_\-llist::tail.
+
+Referenced by improve\_\-tour().\hypertarget{llist_8c_708a19244cf603819ed64bd34f93714e}{
+\index{llist.c@{llist.c}!arrow\_\-llist\_\-to\_\-array@{arrow\_\-llist\_\-to\_\-array}}
+\index{arrow\_\-llist\_\-to\_\-array@{arrow\_\-llist\_\-to\_\-array}!llist.c@{llist.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-to\_\-array ({\bf arrow\_\-llist} $\ast$ {\em list}, \/  int $\ast$ {\em array})}}
+\label{llist_8c_708a19244cf603819ed64bd34f93714e}
+
+
+Copys data from linked list into array. Assume array is big enough to handle linked list! 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]\mbox{[}in\mbox{]} linked list structure \item[{\em array}]\mbox{[}out\mbox{]} array to copy items into \end{description}
+\end{Desc}
+
+
+Definition at line 214 of file llist.c.
+
+References arrow\_\-llist\_\-item::data, arrow\_\-llist::head, and arrow\_\-llist\_\-item::next.
+
+Referenced by arrow\_\-tsp\_\-rai\_\-solve().\hypertarget{llist_8c_ca055661f3570d5157005ac026a0877b}{
+\index{llist.c@{llist.c}!construct\_\-item@{construct\_\-item}}
+\index{construct\_\-item@{construct\_\-item}!llist.c@{llist.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int construct\_\-item ({\bf arrow\_\-llist\_\-item} $\ast$$\ast$ {\em item}, \/  int {\em value})}}
+\label{llist_8c_ca055661f3570d5157005ac026a0877b}
+
+
+Constructs a new item structure with the given value. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em item}]\mbox{[}out\mbox{]} pointer to item structure \item[{\em value}]\mbox{[}in\mbox{]} value to assign to new item \end{description}
+\end{Desc}
+
+
+Definition at line 231 of file llist.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, and ARROW\_\-SUCCESS.
+
+Referenced by arrow\_\-llist\_\-insert\_\-after(), arrow\_\-llist\_\-insert\_\-head(), and arrow\_\-llist\_\-insert\_\-tail().

@@ -1,0 +1,138 @@
+\hypertarget{fun__sbtsp_8c}{
+\section{lib/btsp/fun\_\-sbtsp.c File Reference}
+\label{fun__sbtsp_8c}\index{lib/btsp/fun\_\-sbtsp.c@{lib/btsp/fun\_\-sbtsp.c}}
+}
+Cost matrix functions for the symmetric BTSP. 
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}btsp.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{fun__sbtsp_8c_8a88f36c06363eb2903f21ddd93695e7}{basic\_\-get\_\-cost} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int delta, int i, int j)
+\begin{CompactList}\small\item\em Retrieves cost between nodes i and j from the function. \item\end{CompactList}\item 
+int \hyperlink{fun__sbtsp_8c_a795fb772ac5641554a4bbe588773e2d}{basic\_\-initialize} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Initializes the function data. \item\end{CompactList}\item 
+void \hyperlink{fun__sbtsp_8c_943121f5c798dd76e338def78e4df486}{basic\_\-destruct} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Destructs the function data. \item\end{CompactList}\item 
+int \hyperlink{fun__sbtsp_8c_762c64e6b461964435495575f35e343c}{basic\_\-feasible} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int delta, double tour\_\-length, int $\ast$tour)
+\begin{CompactList}\small\item\em Determines if the given tour is feasible or not. \item\end{CompactList}\item 
+int \hyperlink{fun__sbtsp_8c_a8030d26d0cc61ba064d0baedf766552}{arrow\_\-btsp\_\-fun\_\-basic} (int shallow, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Basic BTSP to TSP function. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Cost matrix functions for the symmetric BTSP. 
+
+Cost matrix transformation functions for the symmetric bottleneck traveling salesman problem (SBTSP).
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{fun__sbtsp_8c-source}{fun\_\-sbtsp.c}.
+
+\subsection{Function Documentation}
+\hypertarget{fun__sbtsp_8c_a8030d26d0cc61ba064d0baedf766552}{
+\index{fun\_\-sbtsp.c@{fun\_\-sbtsp.c}!arrow\_\-btsp\_\-fun\_\-basic@{arrow\_\-btsp\_\-fun\_\-basic}}
+\index{arrow\_\-btsp\_\-fun\_\-basic@{arrow\_\-btsp\_\-fun\_\-basic}!fun_sbtsp.c@{fun\_\-sbtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-basic (int {\em shallow}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__sbtsp_8c_a8030d26d0cc61ba064d0baedf766552}
+
+
+Basic BTSP to TSP function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 66 of file fun\_\-sbtsp.c.
+
+References ARROW\_\-SUCCESS, basic\_\-destruct(), basic\_\-feasible(), basic\_\-get\_\-cost(), basic\_\-initialize(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, arrow\_\-btsp\_\-fun::initialize, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{fun__sbtsp_8c_943121f5c798dd76e338def78e4df486}{
+\index{fun\_\-sbtsp.c@{fun\_\-sbtsp.c}!basic\_\-destruct@{basic\_\-destruct}}
+\index{basic\_\-destruct@{basic\_\-destruct}!fun_sbtsp.c@{fun\_\-sbtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void basic\_\-destruct ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__sbtsp_8c_943121f5c798dd76e338def78e4df486}
+
+
+Destructs the function data. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} the function structure to destruct \end{description}
+\end{Desc}
+
+
+Definition at line 96 of file fun\_\-sbtsp.c.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-basic().\hypertarget{fun__sbtsp_8c_762c64e6b461964435495575f35e343c}{
+\index{fun\_\-sbtsp.c@{fun\_\-sbtsp.c}!basic\_\-feasible@{basic\_\-feasible}}
+\index{basic\_\-feasible@{basic\_\-feasible}!fun_sbtsp.c@{fun\_\-sbtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int basic\_\-feasible ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em delta}, \/  double {\em tour\_\-length}, \/  int $\ast$ {\em tour})}}
+\label{fun__sbtsp_8c_762c64e6b461964435495575f35e343c}
+
+
+Determines if the given tour is feasible or not. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em problem}]\mbox{[}in\mbox{]} the problem to check against \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em tour\_\-length}]\mbox{[}in\mbox{]} the length of the given tour \item[{\em tour}]\mbox{[}in\mbox{]} the tour in node-node format \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]ARROW\_\-TRUE if the tour is feasible, ARROW\_\-FALSE if not \end{Desc}
+
+
+Definition at line 100 of file fun\_\-sbtsp.c.
+
+References ARROW\_\-FALSE, and ARROW\_\-TRUE.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-basic().\hypertarget{fun__sbtsp_8c_8a88f36c06363eb2903f21ddd93695e7}{
+\index{fun\_\-sbtsp.c@{fun\_\-sbtsp.c}!basic\_\-get\_\-cost@{basic\_\-get\_\-cost}}
+\index{basic\_\-get\_\-cost@{basic\_\-get\_\-cost}!fun_sbtsp.c@{fun\_\-sbtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int basic\_\-get\_\-cost ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em delta}, \/  int {\em i}, \/  int {\em j})}}
+\label{fun__sbtsp_8c_8a88f36c06363eb2903f21ddd93695e7}
+
+
+Retrieves cost between nodes i and j from the function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em base\_\-problem}]\mbox{[}in\mbox{]} problem structure \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em i}]\mbox{[}in\mbox{]} id of start node \item[{\em j}]\mbox{[}in\mbox{]} id of end node \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]cost between node i and node j \end{Desc}
+
+
+Definition at line 82 of file fun\_\-sbtsp.c.
+
+References arrow\_\-problem::get\_\-cost.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-basic().\hypertarget{fun__sbtsp_8c_a795fb772ac5641554a4bbe588773e2d}{
+\index{fun\_\-sbtsp.c@{fun\_\-sbtsp.c}!basic\_\-initialize@{basic\_\-initialize}}
+\index{basic\_\-initialize@{basic\_\-initialize}!fun_sbtsp.c@{fun\_\-sbtsp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int basic\_\-initialize ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__sbtsp_8c_a795fb772ac5641554a4bbe588773e2d}
+
+
+Initializes the function data. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} the function structure to initialize \end{description}
+\end{Desc}
+
+
+Definition at line 90 of file fun\_\-sbtsp.c.
+
+References ARROW\_\-SUCCESS.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-basic().

@@ -25,70 +25,66 @@
 <h1>arrow_btsp_solve_plan Struct Reference</h1><!-- doxytag: class="arrow_btsp_solve_plan" -->BTSP feasibility solve step plan.  
 <a href="#_details">More...</a>
 <p>
-<code>#include &lt;<a class="el" href="arrow_8h-source.html">arrow.h</a>&gt;</code>
+<code>#include &lt;<a class="el" href="btsp_8h-source.html">btsp.h</a>&gt;</code>
 <p>
 <div class="dynheader">
 Collaboration diagram for arrow_btsp_solve_plan:</div>
 <div class="dynsection">
 <p><center><img src="structarrow__btsp__solve__plan__coll__graph.png" border="0" usemap="#arrow__btsp__solve__plan__coll__map" alt="Collaboration graph"></center>
 <map name="arrow__btsp__solve__plan__coll__map">
-<area shape="rect" href="structarrow__btsp__fun.html" title="BTSP Cost matrix function definition." alt="" coords="5,5,120,32"><area shape="rect" href="structarrow__tsp__lk__params.html" title="LK algorithm parameters." alt="" coords="144,5,296,32"></map>
+<area shape="rect" href="structarrow__btsp__fun.html" title="BTSP Cost matrix function definition." alt="" coords="21,5,112,27"></map>
 <center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Data Fields</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__solve__plan.html#527ebf95b7a2c12f174d935ded4445a9">plan_type</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__solve__plan.html#911facf12673ddb5c3eb024fa12ee18d">tsp_solver</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__solve__plan.html#fed81dda6e547af712c67dc2c35b55b3">use_exact_solver</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__solve__plan.html#2b7cf65583f45c990218139dbae34ae5">tsp_params</a></td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__solve__plan.html#89fa2ad1bcc026cd50fd7abc6c30ce3e">fun</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="structarrow__tsp__lk__params.html">arrow_tsp_lk_params</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__solve__plan.html#576ea43a6d1de8f9c46f02edf2849122">lk_params</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__solve__plan.html#5ac6a38c297df040797c63babc4c02c3">upper_bound_update</a></td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__solve__plan.html#acfa3d4257a33548a9f60ee568219bc5">attempts</a></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 BTSP feasibility solve step plan. 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00228">228</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="btsp_8h-source.html#l00092">92</a> of file <a class="el" href="btsp_8h-source.html">btsp.h</a>.</p>
 <hr><h2>Field Documentation</h2>
-<a class="anchor" name="527ebf95b7a2c12f174d935ded4445a9"></a><!-- doxytag: member="arrow_btsp_solve_plan::plan_type" ref="527ebf95b7a2c12f174d935ded4445a9" args="" -->
+<a class="anchor" name="911facf12673ddb5c3eb024fa12ee18d"></a><!-- doxytag: member="arrow_btsp_solve_plan::tsp_solver" ref="911facf12673ddb5c3eb024fa12ee18d" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="structarrow__btsp__solve__plan.html#527ebf95b7a2c12f174d935ded4445a9">arrow_btsp_solve_plan::plan_type</a>          </td>
+          <td class="memname">int <a class="el" href="structarrow__btsp__solve__plan.html#911facf12673ddb5c3eb024fa12ee18d">arrow_btsp_solve_plan::tsp_solver</a>          </td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-the type of plan (see macros) 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00230">230</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+TSP solver to use 
+<p>Definition at line <a class="el" href="btsp_8h-source.html#l00094">94</a> of file <a class="el" href="btsp_8h-source.html">btsp.h</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00084">arrow_btsp_solve_plan_init()</a>, and <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>.</p>
+<p>Referenced by <a class="el" href="solve__plan_8c-source.html#l00022">arrow_btsp_solve_plan_destruct()</a>, and <a class="el" href="lib_2btsp_2btsp_8c-source.html#l00257">feasible()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="fed81dda6e547af712c67dc2c35b55b3"></a><!-- doxytag: member="arrow_btsp_solve_plan::use_exact_solver" ref="fed81dda6e547af712c67dc2c35b55b3" args="" -->
+<a class="anchor" name="2b7cf65583f45c990218139dbae34ae5"></a><!-- doxytag: member="arrow_btsp_solve_plan::tsp_params" ref="2b7cf65583f45c990218139dbae34ae5" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="structarrow__btsp__solve__plan.html#fed81dda6e547af712c67dc2c35b55b3">arrow_btsp_solve_plan::use_exact_solver</a>          </td>
+          <td class="memname">void* <a class="el" href="structarrow__btsp__solve__plan.html#2b7cf65583f45c990218139dbae34ae5">arrow_btsp_solve_plan::tsp_params</a>          </td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-use exact TSP solver? 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00231">231</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+TSP params to use 
+<p>Definition at line <a class="el" href="btsp_8h-source.html#l00095">95</a> of file <a class="el" href="btsp_8h-source.html">btsp.h</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>.</p>
+<p>Referenced by <a class="el" href="solve__plan_8c-source.html#l00022">arrow_btsp_solve_plan_destruct()</a>, and <a class="el" href="lib_2btsp_2btsp_8c-source.html#l00257">feasible()</a>.</p>
 
 </div>
 </div><p>
@@ -105,47 +101,9 @@ use exact TSP solver?
 
 <p>
 the cost matrix function to apply 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00232">232</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="btsp_8h-source.html#l00096">96</a> of file <a class="el" href="btsp_8h-source.html">btsp.h</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00091">arrow_btsp_solve_plan_destruct()</a>, and <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="576ea43a6d1de8f9c46f02edf2849122"></a><!-- doxytag: member="arrow_btsp_solve_plan::lk_params" ref="576ea43a6d1de8f9c46f02edf2849122" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structarrow__tsp__lk__params.html">arrow_tsp_lk_params</a> <a class="el" href="structarrow__btsp__solve__plan.html#576ea43a6d1de8f9c46f02edf2849122">arrow_btsp_solve_plan::lk_params</a>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-LK params to use 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00233">233</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
-
-<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00091">arrow_btsp_solve_plan_destruct()</a>, and <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="5ac6a38c297df040797c63babc4c02c3"></a><!-- doxytag: member="arrow_btsp_solve_plan::upper_bound_update" ref="5ac6a38c297df040797c63babc4c02c3" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int <a class="el" href="structarrow__btsp__solve__plan.html#5ac6a38c297df040797c63babc4c02c3">arrow_btsp_solve_plan::upper_bound_update</a>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Check for better upper bound? 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00234">234</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
-
-<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>.</p>
+<p>Referenced by <a class="el" href="solve__plan_8c-source.html#l00022">arrow_btsp_solve_plan_destruct()</a>, and <a class="el" href="lib_2btsp_2btsp_8c-source.html#l00257">feasible()</a>.</p>
 
 </div>
 </div><p>
@@ -162,16 +120,16 @@ Check for better upper bound?
 
 <p>
 number of attempts to perform 
-<p>Definition at line <a class="el" href="arrow_8h-source.html#l00235">235</a> of file <a class="el" href="arrow_8h-source.html">arrow.h</a>.</p>
+<p>Definition at line <a class="el" href="btsp_8h-source.html#l00097">97</a> of file <a class="el" href="btsp_8h-source.html">btsp.h</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00084">arrow_btsp_solve_plan_init()</a>, and <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>.</p>
+<p>Referenced by <a class="el" href="solve__plan_8c-source.html#l00016">arrow_btsp_solve_plan_init()</a>, and <a class="el" href="lib_2btsp_2btsp_8c-source.html#l00257">feasible()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this struct was generated from the following file:<ul>
-<li>lib/<a class="el" href="arrow_8h-source.html">arrow.h</a></ul>
+<li>include/<a class="el" href="btsp_8h-source.html">btsp.h</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Jul 4 13:27:16 2008 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Feb 18 01:00:20 2009 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

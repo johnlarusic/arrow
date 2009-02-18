@@ -1,0 +1,394 @@
+\hypertarget{heap_8c}{
+\section{lib/common/heap.c File Reference}
+\label{heap_8c}\index{lib/common/heap.c@{lib/common/heap.c}}
+}
+Binary heap implementation. 
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{heap_8c_7b73a645ebbf3223996fcd9df2e1e50d}{siftup} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int i)
+\begin{CompactList}\small\item\em Sifts nodes up as necessary to maintain heap property. \item\end{CompactList}\item 
+void \hyperlink{heap_8c_92412759ccc2fd60da4d8f415d1ab82b}{siftdown} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int i)
+\begin{CompactList}\small\item\em Sifts nodes down as necessary to maintain heap property. \item\end{CompactList}\item 
+int \hyperlink{heap_8c_9e17bb6bfc4a61c0107091565bf97e8e}{parent} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int i)
+\begin{CompactList}\small\item\em Returns the position of the parent to the given node. \item\end{CompactList}\item 
+int \hyperlink{heap_8c_518c241846fb5d94438984b082226259}{is\_\-leaf} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int i)
+\begin{CompactList}\small\item\em Determines if the given node is a leaf node in the heap tree. \item\end{CompactList}\item 
+int \hyperlink{heap_8c_1e6d3f8146c853fe809991db5e56982c}{left\_\-child} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int i)
+\begin{CompactList}\small\item\em Returns the position of the left child to the given node. \item\end{CompactList}\item 
+int \hyperlink{heap_8c_82d9f8a92a5ca9ee349e2ce48f9d656d}{right\_\-child} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int i)
+\begin{CompactList}\small\item\em Returns the position of the right child to the given node. \item\end{CompactList}\item 
+int \hyperlink{heap_8c_2231befbb8421ae3792b0ec58df85fde}{min\_\-child} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int i)
+\begin{CompactList}\small\item\em Returns the smaller of the two child nodes to the given node. \item\end{CompactList}\item 
+void \hyperlink{heap_8c_7cc3045e2543328e44e1d87992719d78}{swap\_\-nodes} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int i, int j)
+\begin{CompactList}\small\item\em Swaps the two given nodes in the heap tree. \item\end{CompactList}\item 
+int \hyperlink{heap_8c_44eb41f556b84a8056ff66efb0c864b6}{arrow\_\-heap\_\-init} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int max\_\-size)
+\begin{CompactList}\small\item\em Initializes a new binary heap. \item\end{CompactList}\item 
+void \hyperlink{heap_8c_f43829b492dd8cc8f4e0db378f1340a1}{arrow\_\-heap\_\-destruct} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
+\begin{CompactList}\small\item\em Destructs a binary heap. \item\end{CompactList}\item 
+void \hyperlink{heap_8c_e439f7114905af00423376d542feb146}{arrow\_\-heap\_\-empty} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
+\begin{CompactList}\small\item\em Empties the heap of items. \item\end{CompactList}\item 
+int \hyperlink{heap_8c_b0f4b6c5dfa713b20966719fbf6e093e}{arrow\_\-heap\_\-insert} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int key, int value)
+\begin{CompactList}\small\item\em Inserts a new (key,value) pair into the heap. \item\end{CompactList}\item 
+int \hyperlink{heap_8c_a236930effb35f5b14b50253183d59ea}{arrow\_\-heap\_\-in} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int value)
+\begin{CompactList}\small\item\em Determines if the given value is present in the heap. \item\end{CompactList}\item 
+void \hyperlink{heap_8c_68ed30661f547d8249a5a3c6e3b2a268}{arrow\_\-heap\_\-change\_\-key} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int key, int value)
+\begin{CompactList}\small\item\em Changes the key for the given value in the heap. \item\end{CompactList}\item 
+int \hyperlink{heap_8c_a62ae3b2521ddd990699eaafa946db25}{arrow\_\-heap\_\-get\_\-min} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
+\begin{CompactList}\small\item\em Returns the value with the smallest key in the heap. \item\end{CompactList}\item 
+void \hyperlink{heap_8c_c21664c1267507a01909d9e55fd1f2de}{arrow\_\-heap\_\-delete\_\-min} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
+\begin{CompactList}\small\item\em Removes the value with the smallest key from the heap. \item\end{CompactList}\item 
+void \hyperlink{heap_8c_161eaacdfed324053e40cc0c3a7d9bf0}{arrow\_\-heap\_\-print} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
+\begin{CompactList}\small\item\em Prints heap structure. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Binary heap implementation. 
+
+Methods for working with Arrow's binary heap data structure.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{heap_8c-source}{heap.c}.
+
+\subsection{Function Documentation}
+\hypertarget{heap_8c_68ed30661f547d8249a5a3c6e3b2a268}{
+\index{heap.c@{heap.c}!arrow\_\-heap\_\-change\_\-key@{arrow\_\-heap\_\-change\_\-key}}
+\index{arrow\_\-heap\_\-change\_\-key@{arrow\_\-heap\_\-change\_\-key}!heap.c@{heap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-heap\_\-change\_\-key ({\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int {\em key}, \/  int {\em value})}}
+\label{heap_8c_68ed30661f547d8249a5a3c6e3b2a268}
+
+
+Changes the key for the given value in the heap. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}out\mbox{]} heap structure \item[{\em key}]\mbox{[}in\mbox{]} the new key \item[{\em value}]\mbox{[}in\mbox{]} node value to change \end{description}
+\end{Desc}
+
+
+Definition at line 177 of file heap.c.
+
+References arrow\_\-heap::keys, arrow\_\-heap::pos, siftdown(), and siftup().
+
+Referenced by dijkstra(), and min\_\-span\_\-tree().\hypertarget{heap_8c_c21664c1267507a01909d9e55fd1f2de}{
+\index{heap.c@{heap.c}!arrow\_\-heap\_\-delete\_\-min@{arrow\_\-heap\_\-delete\_\-min}}
+\index{arrow\_\-heap\_\-delete\_\-min@{arrow\_\-heap\_\-delete\_\-min}!heap.c@{heap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-heap\_\-delete\_\-min ({\bf arrow\_\-heap} $\ast$ {\em heap})}}
+\label{heap_8c_c21664c1267507a01909d9e55fd1f2de}
+
+
+Removes the value with the smallest key from the heap. 
+
+heap \mbox{[}out\mbox{]} heap structure 
+
+Definition at line 196 of file heap.c.
+
+References arrow\_\-heap::pos, siftdown(), arrow\_\-heap::size, swap\_\-nodes(), and arrow\_\-heap::values.
+
+Referenced by dijkstra(), and min\_\-span\_\-tree().\hypertarget{heap_8c_f43829b492dd8cc8f4e0db378f1340a1}{
+\index{heap.c@{heap.c}!arrow\_\-heap\_\-destruct@{arrow\_\-heap\_\-destruct}}
+\index{arrow\_\-heap\_\-destruct@{arrow\_\-heap\_\-destruct}!heap.c@{heap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-heap\_\-destruct ({\bf arrow\_\-heap} $\ast$ {\em heap})}}
+\label{heap_8c_f43829b492dd8cc8f4e0db378f1340a1}
+
+
+Destructs a binary heap. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}out\mbox{]} heap structure \end{description}
+\end{Desc}
+
+
+Definition at line 117 of file heap.c.
+
+References arrow\_\-heap::keys, arrow\_\-heap::pos, and arrow\_\-heap::values.
+
+Referenced by arrow\_\-heap\_\-init(), destroy\_\-data(), and destruct\_\-data().\hypertarget{heap_8c_e439f7114905af00423376d542feb146}{
+\index{heap.c@{heap.c}!arrow\_\-heap\_\-empty@{arrow\_\-heap\_\-empty}}
+\index{arrow\_\-heap\_\-empty@{arrow\_\-heap\_\-empty}!heap.c@{heap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-heap\_\-empty ({\bf arrow\_\-heap} $\ast$ {\em heap})}}
+\label{heap_8c_e439f7114905af00423376d542feb146}
+
+
+Empties the heap of items. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}out\mbox{]} heap structure \end{description}
+\end{Desc}
+
+
+Definition at line 128 of file heap.c.
+
+References arrow\_\-heap::keys, arrow\_\-heap::max\_\-size, arrow\_\-heap::pos, arrow\_\-heap::size, and arrow\_\-heap::values.
+
+Referenced by dijkstra(), and min\_\-span\_\-tree().\hypertarget{heap_8c_a62ae3b2521ddd990699eaafa946db25}{
+\index{heap.c@{heap.c}!arrow\_\-heap\_\-get\_\-min@{arrow\_\-heap\_\-get\_\-min}}
+\index{arrow\_\-heap\_\-get\_\-min@{arrow\_\-heap\_\-get\_\-min}!heap.c@{heap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-heap\_\-get\_\-min ({\bf arrow\_\-heap} $\ast$ {\em heap})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{heap_8c_a62ae3b2521ddd990699eaafa946db25}
+
+
+Returns the value with the smallest key in the heap. 
+
+heap \mbox{[}in\mbox{]} heap structure \begin{Desc}
+\item[Returns:]The value with the smallest key in the heap. \end{Desc}
+
+
+Definition at line 190 of file heap.c.
+
+References arrow\_\-heap::values.
+
+Referenced by dijkstra(), and min\_\-span\_\-tree().\hypertarget{heap_8c_a236930effb35f5b14b50253183d59ea}{
+\index{heap.c@{heap.c}!arrow\_\-heap\_\-in@{arrow\_\-heap\_\-in}}
+\index{arrow\_\-heap\_\-in@{arrow\_\-heap\_\-in}!heap.c@{heap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-heap\_\-in ({\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int {\em value})}}
+\label{heap_8c_a236930effb35f5b14b50253183d59ea}
+
+
+Determines if the given value is present in the heap. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}in\mbox{]} heap structure \item[{\em value}]\mbox{[}in\mbox{]} value to check \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]True or false, if the value is present in the heap \end{Desc}
+
+
+Definition at line 171 of file heap.c.
+
+References ARROW\_\-FALSE, ARROW\_\-TRUE, and arrow\_\-heap::pos.
+
+Referenced by dijkstra().\hypertarget{heap_8c_44eb41f556b84a8056ff66efb0c864b6}{
+\index{heap.c@{heap.c}!arrow\_\-heap\_\-init@{arrow\_\-heap\_\-init}}
+\index{arrow\_\-heap\_\-init@{arrow\_\-heap\_\-init}!heap.c@{heap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-heap\_\-init ({\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int {\em max\_\-size})}}
+\label{heap_8c_44eb41f556b84a8056ff66efb0c864b6}
+
+
+Initializes a new binary heap. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}out\mbox{]} heap structure \item[{\em max\_\-size}]\mbox{[}in\mbox{]} maximum size of heap \end{description}
+\end{Desc}
+
+
+Definition at line 89 of file heap.c.
+
+References ARROW\_\-FAILURE, arrow\_\-heap\_\-destruct(), ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-heap::keys, arrow\_\-heap::max\_\-size, arrow\_\-heap::pos, arrow\_\-heap::size, and arrow\_\-heap::values.
+
+Referenced by init\_\-data().\hypertarget{heap_8c_b0f4b6c5dfa713b20966719fbf6e093e}{
+\index{heap.c@{heap.c}!arrow\_\-heap\_\-insert@{arrow\_\-heap\_\-insert}}
+\index{arrow\_\-heap\_\-insert@{arrow\_\-heap\_\-insert}!heap.c@{heap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-heap\_\-insert ({\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int {\em key}, \/  int {\em value})}}
+\label{heap_8c_b0f4b6c5dfa713b20966719fbf6e093e}
+
+
+Inserts a new (key,value) pair into the heap. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}out\mbox{]} heap structure \item[{\em key}]\mbox{[}in\mbox{]} key to insert \item[{\em value}]\mbox{[}in\mbox{]} value to insert -- must be between 0 and \mbox{[}n-1\mbox{]} and not a duplicate value. \end{description}
+\end{Desc}
+
+
+Definition at line 141 of file heap.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-heap::keys, arrow\_\-heap::max\_\-size, arrow\_\-heap::pos, siftup(), arrow\_\-heap::size, and arrow\_\-heap::values.
+
+Referenced by dijkstra(), and min\_\-span\_\-tree().\hypertarget{heap_8c_161eaacdfed324053e40cc0c3a7d9bf0}{
+\index{heap.c@{heap.c}!arrow\_\-heap\_\-print@{arrow\_\-heap\_\-print}}
+\index{arrow\_\-heap\_\-print@{arrow\_\-heap\_\-print}!heap.c@{heap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-heap\_\-print ({\bf arrow\_\-heap} $\ast$ {\em heap})}}
+\label{heap_8c_161eaacdfed324053e40cc0c3a7d9bf0}
+
+
+Prints heap structure. 
+
+heap \mbox{[}in\mbox{]} heap structure 
+
+Definition at line 206 of file heap.c.
+
+References arrow\_\-heap::keys, arrow\_\-heap::max\_\-size, arrow\_\-heap::pos, arrow\_\-heap::size, and arrow\_\-heap::values.\hypertarget{heap_8c_518c241846fb5d94438984b082226259}{
+\index{heap.c@{heap.c}!is\_\-leaf@{is\_\-leaf}}
+\index{is\_\-leaf@{is\_\-leaf}!heap.c@{heap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int is\_\-leaf ({\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int {\em i})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{heap_8c_518c241846fb5d94438984b082226259}
+
+
+Determines if the given node is a leaf node in the heap tree. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}out\mbox{]} heap structure \item[{\em i}]\mbox{[}in\mbox{]} node position \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]ARROW\_\-TRUE is node is a leaf, ARROW\_\-FALSE otherwise \end{Desc}
+
+
+Definition at line 268 of file heap.c.
+
+References ARROW\_\-FALSE, ARROW\_\-TRUE, and arrow\_\-heap::size.
+
+Referenced by min\_\-child(), and siftdown().\hypertarget{heap_8c_1e6d3f8146c853fe809991db5e56982c}{
+\index{heap.c@{heap.c}!left\_\-child@{left\_\-child}}
+\index{left\_\-child@{left\_\-child}!heap.c@{heap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int left\_\-child ({\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int {\em i})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{heap_8c_1e6d3f8146c853fe809991db5e56982c}
+
+
+Returns the position of the left child to the given node. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}out\mbox{]} heap structure \item[{\em i}]\mbox{[}in\mbox{]} node position \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]position of left child node, or -1 if no child exists \end{Desc}
+
+
+Definition at line 274 of file heap.c.
+
+References arrow\_\-heap::size.
+
+Referenced by min\_\-child().\hypertarget{heap_8c_2231befbb8421ae3792b0ec58df85fde}{
+\index{heap.c@{heap.c}!min\_\-child@{min\_\-child}}
+\index{min\_\-child@{min\_\-child}!heap.c@{heap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int min\_\-child ({\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int {\em i})}}
+\label{heap_8c_2231befbb8421ae3792b0ec58df85fde}
+
+
+Returns the smaller of the two child nodes to the given node. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}out\mbox{]} heap structure \item[{\em i}]\mbox{[}in\mbox{]} node position \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]The smaller of the left and right nodes, or -1 if node is leaf \end{Desc}
+
+
+Definition at line 288 of file heap.c.
+
+References is\_\-leaf(), arrow\_\-heap::keys, left\_\-child(), and right\_\-child().
+
+Referenced by siftdown().\hypertarget{heap_8c_9e17bb6bfc4a61c0107091565bf97e8e}{
+\index{heap.c@{heap.c}!parent@{parent}}
+\index{parent@{parent}!heap.c@{heap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int parent ({\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int {\em i})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{heap_8c_9e17bb6bfc4a61c0107091565bf97e8e}
+
+
+Returns the position of the parent to the given node. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}out\mbox{]} heap structure \item[{\em i}]\mbox{[}in\mbox{]} node position \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]position of parent node, or -1 if the node is the parent \end{Desc}
+
+
+Definition at line 259 of file heap.c.
+
+Referenced by arrow\_\-bbssp\_\-biconnected(), and siftup().\hypertarget{heap_8c_82d9f8a92a5ca9ee349e2ce48f9d656d}{
+\index{heap.c@{heap.c}!right\_\-child@{right\_\-child}}
+\index{right\_\-child@{right\_\-child}!heap.c@{heap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int right\_\-child ({\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int {\em i})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{heap_8c_82d9f8a92a5ca9ee349e2ce48f9d656d}
+
+
+Returns the position of the right child to the given node. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}out\mbox{]} heap structure \item[{\em i}]\mbox{[}in\mbox{]} node position \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]position of right child node, or -1 if no child exists \end{Desc}
+
+
+Definition at line 281 of file heap.c.
+
+References arrow\_\-heap::size.
+
+Referenced by min\_\-child().\hypertarget{heap_8c_92412759ccc2fd60da4d8f415d1ab82b}{
+\index{heap.c@{heap.c}!siftdown@{siftdown}}
+\index{siftdown@{siftdown}!heap.c@{heap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void siftdown ({\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int {\em i})}}
+\label{heap_8c_92412759ccc2fd60da4d8f415d1ab82b}
+
+
+Sifts nodes down as necessary to maintain heap property. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}out\mbox{]} heap structure \item[{\em i}]\mbox{[}in\mbox{]} node to sift down from \end{description}
+\end{Desc}
+
+
+Definition at line 242 of file heap.c.
+
+References is\_\-leaf(), arrow\_\-heap::keys, min\_\-child(), and swap\_\-nodes().
+
+Referenced by arrow\_\-heap\_\-change\_\-key(), and arrow\_\-heap\_\-delete\_\-min().\hypertarget{heap_8c_7b73a645ebbf3223996fcd9df2e1e50d}{
+\index{heap.c@{heap.c}!siftup@{siftup}}
+\index{siftup@{siftup}!heap.c@{heap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void siftup ({\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int {\em i})}}
+\label{heap_8c_7b73a645ebbf3223996fcd9df2e1e50d}
+
+
+Sifts nodes up as necessary to maintain heap property. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}out\mbox{]} heap structure \item[{\em i}]\mbox{[}in\mbox{]} node to sift up from \end{description}
+\end{Desc}
+
+
+Definition at line 225 of file heap.c.
+
+References arrow\_\-heap::keys, parent(), and swap\_\-nodes().
+
+Referenced by arrow\_\-heap\_\-change\_\-key(), and arrow\_\-heap\_\-insert().\hypertarget{heap_8c_7cc3045e2543328e44e1d87992719d78}{
+\index{heap.c@{heap.c}!swap\_\-nodes@{swap\_\-nodes}}
+\index{swap\_\-nodes@{swap\_\-nodes}!heap.c@{heap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void swap\_\-nodes ({\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int {\em i}, \/  int {\em j})}}
+\label{heap_8c_7cc3045e2543328e44e1d87992719d78}
+
+
+Swaps the two given nodes in the heap tree. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em heap}]\mbox{[}out\mbox{]} heap structure \item[{\em i}]\mbox{[}in\mbox{]} first node position \item[{\em j}]\mbox{[}in\mbox{]} second node position \end{description}
+\end{Desc}
+
+
+Definition at line 302 of file heap.c.
+
+References arrow\_\-heap::keys, arrow\_\-heap::pos, and arrow\_\-heap::values.
+
+Referenced by arrow\_\-heap\_\-delete\_\-min(), siftdown(), and siftup().

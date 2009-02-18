@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Arrow: lib/problem.c File Reference</title>
+<title>Arrow: lib/common/problem.c File Reference</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -16,13 +16,18 @@
   </div>
 </div>
 <div class="contents">
-<h1>lib/problem.c File Reference</h1>Functions for working with problem data. <a href="#_details">More...</a>
+<h1>lib/common/problem.c File Reference</h1>Functions for working with problem data. <a href="#_details">More...</a>
 <p>
-<code>#include &quot;<a class="el" href="arrow_8h-source.html">arrow.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="common_8h-source.html">common.h</a>&quot;</code><br>
 
 <p>
 <a href="problem_8c-source.html">Go to the source code of this file.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Data Structures</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfull__matrix__data.html">full_matrix_data</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structabtsp__data.html">abtsp_data</a></td></tr>
+
 <tr><td colspan="2"><br><h2>Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#fa549be1b1392e88b285ed7fa50588ff">is_symmetric</a> (char *file_name)</td></tr>
 
@@ -30,52 +35,158 @@
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#0a7e51deba64ca2ebd568beea8b96be3">is_asymmetric</a> (char *file_name)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determines if the given file is an asymmetric TSPLIB file.  <a href="#0a7e51deba64ca2ebd568beea8b96be3"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#6fa87c3803ac242364a3fb444b95374e">read_stsp</a> (char *file_name, <a class="el" href="structarrow__problem.html">arrow_problem</a> *problem)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reads an symmetric TSPLIB file (*.tsp).  <a href="#6fa87c3803ac242364a3fb444b95374e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#a634c4ee36960c1a0d23addc8bc79fb3">concorde_get_cost</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int i, int j)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieves cost between nodes i and j from Concorde's structure.  <a href="#a634c4ee36960c1a0d23addc8bc79fb3"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#723bed1edccabe6e8c0afb4a3cfb430f">concorde_destruct</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructs Concorde's data structure.  <a href="#723bed1edccabe6e8c0afb4a3cfb430f"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#ebc55389a5ecab4c7acc7650844da8cb">read_atsp</a> (char *file_name, <a class="el" href="structarrow__problem.html">arrow_problem</a> *problem)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reads an asymmetric TSPLIB file (*.atsp).  <a href="#ebc55389a5ecab4c7acc7650844da8cb"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#9a9c35eb88141ab4ec682d3d3d8c2689">fullmatrix_edgelen</a> (int i, int j, CCdatagroup *dat)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#4deb566323c4ffa4dd98767baf50f89e">full_matrix_get_cost</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int i, int j)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Edge length function for full matrix data.  <a href="#9a9c35eb88141ab4ec682d3d3d8c2689"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Edge length function for full matrix data.  <a href="#4deb566323c4ffa4dd98767baf50f89e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#2f43e3b98a308cb6e08e754b63616c18">full_matrix_destruct</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructs data structure of a full matrix problem.  <a href="#2f43e3b98a308cb6e08e754b63616c18"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#aef13fe0d1df06dafbe804b1e082ba5b">abtsp_get_cost</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int i, int j)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Edge length function for ABTSP-&gt;SBTSP data.  <a href="#aef13fe0d1df06dafbe804b1e082ba5b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#d41995a5082f63244f11c428969fb282">abtsp_destruct</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructs data structure of a ABTSP-&gt;SBTSP problem.  <a href="#d41995a5082f63244f11c428969fb282"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#b5b9bae9f92630983d3b3d39d86198f8">arrow_problem_read</a> (char *file_name, <a class="el" href="structarrow__problem.html">arrow_problem</a> *problem)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reads a problem from a TSPLIB file.  <a href="#b5b9bae9f92630983d3b3d39d86198f8"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#a702972ab510dcc6354d7679759611d1">arrow_problem_destruct</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Deallocates problem data structure.  <a href="#a702972ab510dcc6354d7679759611d1"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#01623c45a7e1726ef7eeeec300e75bff">arrow_problem_info_get</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *info)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#3cccb8f9982d9a1ca2f5fcd1563d7d8d">arrow_problem_info_get</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int create_hash, <a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *info)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Builds ordered cost list and finds min/max cost in a problem.  <a href="#01623c45a7e1726ef7eeeec300e75bff"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Builds ordered cost list and finds min/max cost in a problem.  <a href="#3cccb8f9982d9a1ca2f5fcd1563d7d8d"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#09a5ba81556412e281fe6b863a6f08db">arrow_problem_info_destruct</a> (<a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *info)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Deallocates problem info data structure.  <a href="#09a5ba81556412e281fe6b863a6f08db"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#ce6b857eab0a7a887262d033b7e5cf22">arrow_problem_print</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#30d8e2e252dc1e485c7be5767af0f65b">arrow_problem_info_cost_index</a> (<a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *info, int cost, int *pos)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prints out information about a problem.  <a href="#ce6b857eab0a7a887262d033b7e5cf22"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#cd0bca6159ba920a6039ba06e82c1440">arrow_problem_get_cost</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int i, int j)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Finds the position of the given cost into the sorted list.  <a href="#30d8e2e252dc1e485c7be5767af0f65b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#bf45d0065398894bdfb4b345d50363ea">arrow_problem_print</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int pretty)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieves cost between nodes i and j.  <a href="#cd0bca6159ba920a6039ba06e82c1440"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prints out information about a problem.  <a href="#bf45d0065398894bdfb4b345d50363ea"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#b0ae70bd19a75c7f3164b81e4ed092ad">arrow_problem_read_tour</a> (char *file_name, int size, int *tour)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reads a TSPLIB tour file.  <a href="#b0ae70bd19a75c7f3164b81e4ed092ad"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#1fd00c671b95d81b8309bac580635d51">arrow_problem_abtsp_to_sbtsp</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *old_problem, int infinity, <a class="el" href="structarrow__problem.html">arrow_problem</a> *new_problem)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="problem_8c.html#904b6a44113cf39377e1bfbed3b5aed8">arrow_problem_abtsp_to_sbtsp</a> (int shallow, <a class="el" href="structarrow__problem.html">arrow_problem</a> *old_problem, int infinity, <a class="el" href="structarrow__problem.html">arrow_problem</a> *new_problem)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Transforms an asymmetric BTSP problem of n nodes into a symmetric BTSP problem with 2n nodes.  <a href="#1fd00c671b95d81b8309bac580635d51"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Transforms an asymmetric BTSP problem of n nodes into a symmetric BTSP problem with 2n nodes.  <a href="#904b6a44113cf39377e1bfbed3b5aed8"></a><br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Functions for working with problem data. 
 <p>
-Function implemenations for working with problem data, generally manipulating the <a class="el" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> data structure.<p>
+Function implementations for working with problem data, generally manipulating the <a class="el" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> data structure.<p>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>John LaRusic </dd></dl>
 
 <p>Definition in file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
 <hr><h2>Function Documentation</h2>
-<a class="anchor" name="1fd00c671b95d81b8309bac580635d51"></a><!-- doxytag: member="problem.c::arrow_problem_abtsp_to_sbtsp" ref="1fd00c671b95d81b8309bac580635d51" args="(arrow_problem *old_problem, int infinity, arrow_problem *new_problem)" -->
+<a class="anchor" name="d41995a5082f63244f11c428969fb282"></a><!-- doxytag: member="problem.c::abtsp_destruct" ref="d41995a5082f63244f11c428969fb282" args="(arrow_problem *problem)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void abtsp_destruct           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Destructs data structure of a ABTSP-&gt;SBTSP problem. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] pointer to <a class="el" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> structure </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00637">637</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+
+<p>Referenced by <a class="el" href="problem_8c-source.html#l00333">arrow_problem_abtsp_to_sbtsp()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="aef13fe0d1df06dafbe804b1e082ba5b"></a><!-- doxytag: member="problem.c::abtsp_get_cost" ref="aef13fe0d1df06dafbe804b1e082ba5b" args="(arrow_problem *problem, int i, int j)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int abtsp_get_cost           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>j</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Edge length function for ABTSP-&gt;SBTSP data. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] pointer to <a class="el" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> structure </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>[in] id of starting node </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>j</em>&nbsp;</td><td>[in] id of ending node </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>The cost between nodes i and j </dd></dl>
+
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00621">621</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+
+<p>References <a class="el" href="problem_8c-source.html#l00023">abtsp_data::base</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="problem_8c-source.html#l00024">abtsp_data::infinity</a>, and <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>.</p>
+
+<p>Referenced by <a class="el" href="problem_8c-source.html#l00333">arrow_problem_abtsp_to_sbtsp()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="904b6a44113cf39377e1bfbed3b5aed8"></a><!-- doxytag: member="problem.c::arrow_problem_abtsp_to_sbtsp" ref="904b6a44113cf39377e1bfbed3b5aed8" args="(int shallow, arrow_problem *old_problem, int infinity, arrow_problem *new_problem)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int arrow_problem_abtsp_to_sbtsp           </td>
           <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>shallow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
           <td class="paramname"> <em>old_problem</em>, </td>
         </tr>
@@ -105,17 +216,18 @@ Transforms an asymmetric BTSP problem of n nodes into a symmetric BTSP problem w
 <p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>shallow</em>&nbsp;</td><td>[in] if true only a shallow copy of data will be created </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>old_problem</em>&nbsp;</td><td>[in] the asymmetric problem </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>infinity</em>&nbsp;</td><td>[in] value to use as "infinity" </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>new_problem</em>&nbsp;</td><td>[out] the new symmetric problem </td></tr>
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="problem_8c-source.html#l00228">228</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00333">333</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00051">ARROW_FALSE</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="problem_8c-source.html#l00213">arrow_problem_get_cost()</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="arrow_8h-source.html#l00050">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00115">arrow_util_CCdatagroup_init_matrix()</a>, <a class="el" href="arrow_8h-source.html#l00113">arrow_problem::data</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="arrow_8h-source.html#l00115">arrow_problem::name</a>, <a class="el" href="arrow_8h-source.html#l00114">arrow_problem::shallow</a>, <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>, and <a class="el" href="arrow_8h-source.html#l00112">arrow_problem::symmetric</a>.</p>
+<p>References <a class="el" href="problem_8c-source.html#l00637">abtsp_destruct()</a>, <a class="el" href="problem_8c-source.html#l00621">abtsp_get_cost()</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00067">ARROW_PROBLEM_ABTSP_TO_SBTSP</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="problem_8c-source.html#l00023">abtsp_data::base</a>, <a class="el" href="common_8h-source.html#l00439">arrow_problem::data</a>, <a class="el" href="structarrow__problem.html#ff7c7873a7e7130a16e2a49da20ee625">arrow_problem::destruct</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="problem_8c-source.html#l00024">abtsp_data::infinity</a>, <a class="el" href="common_8h-source.html#l00438">arrow_problem::name</a>, <a class="el" href="common_8h-source.html#l00437">arrow_problem::shallow</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, <a class="el" href="common_8h-source.html#l00436">arrow_problem::symmetric</a>, and <a class="el" href="common_8h-source.html#l00435">arrow_problem::type</a>.</p>
 
-<p>Referenced by <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
+<p>Referenced by <a class="el" href="abtsp_8c-source.html#l00074">main()</a>.</p>
 
 </div>
 </div><p>
@@ -144,62 +256,61 @@ Deallocates problem data structure.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="problem_8c-source.html#l00098">98</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00153">153</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00113">arrow_problem::data</a>, and <a class="el" href="arrow_8h-source.html#l00114">arrow_problem::shallow</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00439">arrow_problem::data</a>, and <a class="el" href="structarrow__problem.html#ff7c7873a7e7130a16e2a49da20ee625">arrow_problem::destruct</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00275">feasible()</a>, and <a class="el" href="bin_22mb_8c-source.html#l00030">main()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2btsp_2btsp_8c-source.html#l00257">feasible()</a>, and <a class="el" href="bin_22mb_8c-source.html#l00031">main()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="cd0bca6159ba920a6039ba06e82c1440"></a><!-- doxytag: member="problem.c::arrow_problem_get_cost" ref="cd0bca6159ba920a6039ba06e82c1440" args="(arrow_problem *problem, int i, int j)" -->
+<a class="anchor" name="30d8e2e252dc1e485c7be5767af0f65b"></a><!-- doxytag: member="problem.c::arrow_problem_info_cost_index" ref="30d8e2e252dc1e485c7be5767af0f65b" args="(arrow_problem_info *info, int cost, int *pos)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int arrow_problem_get_cost           </td>
+          <td class="memname">int arrow_problem_info_cost_index           </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
-          <td class="paramname"> <em>problem</em>, </td>
+          <td class="paramtype"><a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *&nbsp;</td>
+          <td class="paramname"> <em>info</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>i</em>, </td>
+          <td class="paramname"> <em>cost</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>j</em></td><td>&nbsp;</td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>pos</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td width="100%"><code> [inline]</code></td>
+          <td></td><td></td><td width="100%"></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-Retrieves cost between nodes i and j. 
+Finds the position of the given cost into the sorted list. 
 <p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] pointer to <a class="el" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> structure </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>[in] id of starting node </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>j</em>&nbsp;</td><td>[in] id of ending node </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>info</em>&nbsp;</td><td>[in] problem info data structure </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>cost</em>&nbsp;</td><td>[in] cost to look up </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>pos</em>&nbsp;</td><td>[out] position of given cost in sorted list </td></tr>
   </table>
 </dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>cost between node i and node j </dd></dl>
 
-<p>Definition at line <a class="el" href="problem_8c-source.html#l00213">213</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00224">224</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00113">arrow_problem::data</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="lib_2common_2hash_8c-source.html#l00050">arrow_hash_search()</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00145">arrow_util_binary_search()</a>, <a class="el" href="common_8h-source.html#l00464">arrow_problem_info::cost_list</a>, <a class="el" href="common_8h-source.html#l00465">arrow_problem_info::cost_list_length</a>, <a class="el" href="common_8h-source.html#l00468">arrow_problem_info::hash</a>, and <a class="el" href="common_8h-source.html#l00154">arrow_hash::num_keys</a>.</p>
 
-<p>Referenced by <a class="el" href="problem_8c-source.html#l00228">arrow_problem_abtsp_to_sbtsp()</a>, and <a class="el" href="problem_8c-source.html#l00054">arrow_problem_read()</a>.</p>
+<p>Referenced by <a class="el" href="fun__cbtsp_8c-source.html#l00230">cbtsp_shake_get_cost()</a>.</p>
 
 </div>
 </div><p>
@@ -228,15 +339,15 @@ Deallocates problem info data structure.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="problem_8c-source.html#l00158">158</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00215">215</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00133">arrow_problem_info::cost_list</a>.</p>
+<p>References <a class="el" href="lib_2common_2hash_8c-source.html#l00040">arrow_hash_destruct()</a>, <a class="el" href="common_8h-source.html#l00464">arrow_problem_info::cost_list</a>, <a class="el" href="common_8h-source.html#l00468">arrow_problem_info::hash</a>, and <a class="el" href="common_8h-source.html#l00154">arrow_hash::num_keys</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_2bap_8c-source.html#l00030">main()</a>.</p>
+<p>Referenced by <a class="el" href="bin_2bap_8c-source.html#l00031">main()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="01623c45a7e1726ef7eeeec300e75bff"></a><!-- doxytag: member="problem.c::arrow_problem_info_get" ref="01623c45a7e1726ef7eeeec300e75bff" args="(arrow_problem *problem, arrow_problem_info *info)" -->
+<a class="anchor" name="3cccb8f9982d9a1ca2f5fcd1563d7d8d"></a><!-- doxytag: member="problem.c::arrow_problem_info_get" ref="3cccb8f9982d9a1ca2f5fcd1563d7d8d" args="(arrow_problem *problem, int create_hash, arrow_problem_info *info)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -245,6 +356,12 @@ Deallocates problem info data structure.
           <td>(</td>
           <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
           <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>create_hash</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -267,19 +384,20 @@ Builds ordered cost list and finds min/max cost in a problem.
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] problem data structure </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>create_hash</em>&nbsp;</td><td>[in] if true will also create hash table of cost list </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>info</em>&nbsp;</td><td>[out] problem info data structure </td></tr>
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="problem_8c-source.html#l00115">115</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00163">163</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
 
-<p>References <a class="el" href="bintree_8c-source.html#l00060">arrow_bintree_destruct()</a>, <a class="el" href="bintree_8c-source.html#l00053">arrow_bintree_init()</a>, <a class="el" href="bintree_8c-source.html#l00067">arrow_bintree_insert()</a>, <a class="el" href="bintree_8c-source.html#l00087">arrow_bintree_to_array()</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="arrow_8h-source.html#l00050">ARROW_TRUE</a>, <a class="el" href="arrow_8h-source.html#l00133">arrow_problem_info::cost_list</a>, <a class="el" href="arrow_8h-source.html#l00134">arrow_problem_info::cost_list_length</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="arrow_8h-source.html#l00136">arrow_problem_info::max_cost</a>, <a class="el" href="arrow_8h-source.html#l00135">arrow_problem_info::min_cost</a>, <a class="el" href="arrow_8h-source.html#l00091">arrow_bintree::size</a>, <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>, and <a class="el" href="arrow_8h-source.html#l00112">arrow_problem::symmetric</a>.</p>
+<p>References <a class="el" href="bintree_8c-source.html#l00060">arrow_bintree_destruct()</a>, <a class="el" href="bintree_8c-source.html#l00053">arrow_bintree_init()</a>, <a class="el" href="bintree_8c-source.html#l00067">arrow_bintree_insert()</a>, <a class="el" href="bintree_8c-source.html#l00094">arrow_bintree_to_new_array()</a>, <a class="el" href="lib_2common_2hash_8c-source.html#l00012">arrow_hash_cost_list()</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="common_8h-source.html#l00464">arrow_problem_info::cost_list</a>, <a class="el" href="common_8h-source.html#l00465">arrow_problem_info::cost_list_length</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="common_8h-source.html#l00468">arrow_problem_info::hash</a>, <a class="el" href="common_8h-source.html#l00467">arrow_problem_info::max_cost</a>, <a class="el" href="common_8h-source.html#l00466">arrow_problem_info::min_cost</a>, <a class="el" href="common_8h-source.html#l00154">arrow_hash::num_keys</a>, <a class="el" href="common_8h-source.html#l00085">arrow_bintree::size</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, and <a class="el" href="common_8h-source.html#l00436">arrow_problem::symmetric</a>.</p>
 
-<p>Referenced by <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
+<p>Referenced by <a class="el" href="abtsp-rai_8c-source.html#l00056">main()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="ce6b857eab0a7a887262d033b7e5cf22"></a><!-- doxytag: member="problem.c::arrow_problem_print" ref="ce6b857eab0a7a887262d033b7e5cf22" args="(arrow_problem *problem)" -->
+<a class="anchor" name="bf45d0065398894bdfb4b345d50363ea"></a><!-- doxytag: member="problem.c::arrow_problem_print" ref="bf45d0065398894bdfb4b345d50363ea" args="(arrow_problem *problem, int pretty)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -287,9 +405,18 @@ Builds ordered cost list and finds min/max cost in a problem.
           <td class="memname">void arrow_problem_print           </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
-          <td class="paramname"> <em>problem</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"></td>
+          <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>pretty</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
         </tr>
       </table>
 </div>
@@ -301,12 +428,13 @@ Prints out information about a problem.
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] problem data structure </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>pretty</em>&nbsp;</td><td>[in] if ARROW_TRUE, formats output to 8 nodes/row </td></tr>
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="problem_8c-source.html#l00165">165</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00249">249</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00033">arrow_debug</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, and <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>.</p>
+<p>References <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="common_8h-source.html#l00437">arrow_problem::shallow</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, and <a class="el" href="common_8h-source.html#l00436">arrow_problem::symmetric</a>.</p>
 
 </div>
 </div><p>
@@ -345,11 +473,11 @@ Reads a problem from a TSPLIB file.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="problem_8c-source.html#l00054">54</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00118">118</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00033">arrow_debug</a>, <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00051">ARROW_FALSE</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="problem_8c-source.html#l00213">arrow_problem_get_cost()</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="arrow_8h-source.html#l00050">ARROW_TRUE</a>, <a class="el" href="arrow_8h-source.html#l00113">arrow_problem::data</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="problem_8c-source.html#l00281">is_asymmetric()</a>, <a class="el" href="problem_8c-source.html#l00275">is_symmetric()</a>, <a class="el" href="arrow_8h-source.html#l00115">arrow_problem::name</a>, <a class="el" href="problem_8c-source.html#l00287">read_atsp()</a>, <a class="el" href="arrow_8h-source.html#l00114">arrow_problem::shallow</a>, <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>, and <a class="el" href="arrow_8h-source.html#l00112">arrow_problem::symmetric</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="problem_8c-source.html#l00373">is_asymmetric()</a>, <a class="el" href="problem_8c-source.html#l00367">is_symmetric()</a>, <a class="el" href="common_8h-source.html#l00438">arrow_problem::name</a>, <a class="el" href="problem_8c-source.html#l00434">read_atsp()</a>, and <a class="el" href="problem_8c-source.html#l00379">read_stsp()</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_22mb_8c-source.html#l00030">main()</a>.</p>
+<p>Referenced by <a class="el" href="bin_22mb_8c-source.html#l00031">main()</a>.</p>
 
 </div>
 </div><p>
@@ -395,21 +523,60 @@ Reads a TSPLIB tour file.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="problem_8c-source.html#l00219">219</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00324">324</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00048">ARROW_ERROR_FATAL</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, and <a class="el" href="arrow_8h-source.html#l00063">CONCORDE_SUCCESS</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, and <a class="el" href="common_8h-source.html#l00073">CONCORDE_SUCCESS</a>.</p>
 
-<p>Referenced by <a class="el" href="tour__info_8c-source.html#l00053">main()</a>.</p>
+<p>Referenced by <a class="el" href="tourinfo_8c-source.html#l00052">main()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="9a9c35eb88141ab4ec682d3d3d8c2689"></a><!-- doxytag: member="problem.c::fullmatrix_edgelen" ref="9a9c35eb88141ab4ec682d3d3d8c2689" args="(int i, int j, CCdatagroup *dat)" -->
+<a class="anchor" name="723bed1edccabe6e8c0afb4a3cfb430f"></a><!-- doxytag: member="problem.c::concorde_destruct" ref="723bed1edccabe6e8c0afb4a3cfb430f" args="(arrow_problem *problem)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">static int fullmatrix_edgelen           </td>
+          <td class="memname">void concorde_destruct           </td>
           <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Destructs Concorde's data structure. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] pointer to <a class="el" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> structure </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00424">424</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+
+<p>References <a class="el" href="common_8h-source.html#l00439">arrow_problem::data</a>.</p>
+
+<p>Referenced by <a class="el" href="problem_8c-source.html#l00379">read_stsp()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a634c4ee36960c1a0d23addc8bc79fb3"></a><!-- doxytag: member="problem.c::concorde_get_cost" ref="a634c4ee36960c1a0d23addc8bc79fb3" args="(arrow_problem *problem, int i, int j)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int concorde_get_cost           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">int&nbsp;</td>
           <td class="paramname"> <em>i</em>, </td>
         </tr>
@@ -417,18 +584,96 @@ Reads a TSPLIB tour file.
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>j</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">CCdatagroup *&nbsp;</td>
-          <td class="paramname"> <em>dat</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>j</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td width="100%"><code> [static]</code></td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retrieves cost between nodes i and j from Concorde's structure. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] pointer to <a class="el" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> structure </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>[in] id of starting node </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>j</em>&nbsp;</td><td>[in] id of ending node </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>cost between node i and node j </dd></dl>
+
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00417">417</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+
+<p>References <a class="el" href="common_8h-source.html#l00439">arrow_problem::data</a>.</p>
+
+<p>Referenced by <a class="el" href="problem_8c-source.html#l00379">read_stsp()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2f43e3b98a308cb6e08e754b63616c18"></a><!-- doxytag: member="problem.c::full_matrix_destruct" ref="2f43e3b98a308cb6e08e754b63616c18" args="(arrow_problem *problem)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void full_matrix_destruct           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Destructs data structure of a full matrix problem. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] pointer to <a class="el" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> structure </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00610">610</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+
+<p>References <a class="el" href="problem_8c-source.html#l00017">full_matrix_data::adj</a>, <a class="el" href="problem_8c-source.html#l00018">full_matrix_data::adjspace</a>, and <a class="el" href="common_8h-source.html#l00439">arrow_problem::data</a>.</p>
+
+<p>Referenced by <a class="el" href="problem_8c-source.html#l00434">read_atsp()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4deb566323c4ffa4dd98767baf50f89e"></a><!-- doxytag: member="problem.c::full_matrix_get_cost" ref="4deb566323c4ffa4dd98767baf50f89e" args="(arrow_problem *problem, int i, int j)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int full_matrix_get_cost           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>j</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
         </tr>
       </table>
 </div>
@@ -439,16 +684,18 @@ Edge length function for full matrix data.
 <p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>[in] node i </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>j</em>&nbsp;</td><td>[in] node j </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>dat</em>&nbsp;</td><td>[in] Concorde problem data structure </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] pointer to <a class="el" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> structure </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>[in] id of starting node </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>j</em>&nbsp;</td><td>[in] id of ending node </td></tr>
   </table>
 </dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>The cost C[i,j] between nodes i and j </dd></dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>The cost between nodes i and j </dd></dl>
 
-<p>Definition at line <a class="el" href="problem_8c-source.html#l00443">443</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00603">603</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
 
-<p>Referenced by <a class="el" href="problem_8c-source.html#l00287">read_atsp()</a>.</p>
+<p>References <a class="el" href="problem_8c-source.html#l00017">full_matrix_data::adj</a>, and <a class="el" href="common_8h-source.html#l00439">arrow_problem::data</a>.</p>
+
+<p>Referenced by <a class="el" href="problem_8c-source.html#l00434">read_atsp()</a>.</p>
 
 </div>
 </div><p>
@@ -478,11 +725,11 @@ Determines if the given file is an asymmetric TSPLIB file.
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>ARROW_TRUE if the file is for asymmetric data, ARROW_FALSE if not </dd></dl>
 
-<p>Definition at line <a class="el" href="problem_8c-source.html#l00281">281</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00373">373</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
 
 <p>References <a class="el" href="util_8c-source.html#l00177">arrow_util_regex_match()</a>.</p>
 
-<p>Referenced by <a class="el" href="problem_8c-source.html#l00054">arrow_problem_read()</a>.</p>
+<p>Referenced by <a class="el" href="problem_8c-source.html#l00118">arrow_problem_read()</a>.</p>
 
 </div>
 </div><p>
@@ -512,11 +759,11 @@ Determines if the given file is a symmetric TSPLIB file.
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>ARROW_TRUE if the file is for symmetric data, ARROW_FALSE if not </dd></dl>
 
-<p>Definition at line <a class="el" href="problem_8c-source.html#l00275">275</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00367">367</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
 
 <p>References <a class="el" href="util_8c-source.html#l00177">arrow_util_regex_match()</a>.</p>
 
-<p>Referenced by <a class="el" href="problem_8c-source.html#l00054">arrow_problem_read()</a>.</p>
+<p>Referenced by <a class="el" href="problem_8c-source.html#l00118">arrow_problem_read()</a>.</p>
 
 </div>
 </div><p>
@@ -555,16 +802,59 @@ Reads an asymmetric TSPLIB file (*.atsp).
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="problem_8c-source.html#l00287">287</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00434">434</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00033">arrow_debug</a>, <a class="el" href="arrow_8h-source.html#l00048">ARROW_ERROR_FATAL</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="arrow_8h-source.html#l00113">arrow_problem::data</a>, <a class="el" href="problem_8c-source.html#l00443">fullmatrix_edgelen()</a>, and <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>.</p>
+<p>References <a class="el" href="problem_8c-source.html#l00017">full_matrix_data::adj</a>, <a class="el" href="problem_8c-source.html#l00018">full_matrix_data::adjspace</a>, <a class="el" href="common_8h-source.html#l00038">arrow_debug</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00064">ARROW_PROBLEM_DATA_FULL_MATRIX</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00439">arrow_problem::data</a>, <a class="el" href="structarrow__problem.html#ff7c7873a7e7130a16e2a49da20ee625">arrow_problem::destruct</a>, <a class="el" href="problem_8c-source.html#l00610">full_matrix_destruct()</a>, <a class="el" href="problem_8c-source.html#l00603">full_matrix_get_cost()</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="common_8h-source.html#l00437">arrow_problem::shallow</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, <a class="el" href="common_8h-source.html#l00436">arrow_problem::symmetric</a>, and <a class="el" href="common_8h-source.html#l00435">arrow_problem::type</a>.</p>
 
-<p>Referenced by <a class="el" href="problem_8c-source.html#l00054">arrow_problem_read()</a>.</p>
+<p>Referenced by <a class="el" href="problem_8c-source.html#l00118">arrow_problem_read()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6fa87c3803ac242364a3fb444b95374e"></a><!-- doxytag: member="problem.c::read_stsp" ref="6fa87c3803ac242364a3fb444b95374e" args="(char *file_name, arrow_problem *problem)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int read_stsp           </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>file_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Reads an symmetric TSPLIB file (*.tsp). 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>file_name</em>&nbsp;</td><td>[in] the path to the TSPLIB file </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[out] problem structure </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="problem_8c-source.html#l00379">379</a> of file <a class="el" href="problem_8c-source.html">problem.c</a>.</p>
+
+<p>References <a class="el" href="common_8h-source.html#l00038">arrow_debug</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00065">ARROW_PROBLEM_DATA_CONCORDE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="problem_8c-source.html#l00424">concorde_destruct()</a>, <a class="el" href="problem_8c-source.html#l00417">concorde_get_cost()</a>, <a class="el" href="common_8h-source.html#l00439">arrow_problem::data</a>, <a class="el" href="structarrow__problem.html#ff7c7873a7e7130a16e2a49da20ee625">arrow_problem::destruct</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="common_8h-source.html#l00437">arrow_problem::shallow</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, <a class="el" href="common_8h-source.html#l00436">arrow_problem::symmetric</a>, and <a class="el" href="common_8h-source.html#l00435">arrow_problem::type</a>.</p>
+
+<p>Referenced by <a class="el" href="problem_8c-source.html#l00118">arrow_problem_read()</a>.</p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Jul 4 13:27:16 2008 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Feb 18 01:00:20 2009 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

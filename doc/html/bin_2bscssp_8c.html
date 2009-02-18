@@ -18,7 +18,8 @@
 <div class="contents">
 <h1>bin/bscssp.c File Reference</h1>Bottleneck strongly connected spanning subgraph problem solver. <a href="#_details">More...</a>
 <p>
-<code>#include &quot;<a class="el" href="arrow_8h-source.html">arrow.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="common_8h-source.html">common.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="lb_8h-source.html">lb.h</a>&quot;</code><br>
 
 <p>
 <a href="bin_2bscssp_8c-source.html">Go to the source code of this file.</a><table border="0" cellpadding="0" cellspacing="0">
@@ -40,7 +41,7 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="bin_2bscssp_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a> = &quot;Bottleneck strongly connected spanning subgraph problem solver&quot;</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="bin_2bscssp_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a> = &quot;-i tsplib.tsp [<a class="el" href="subproblem_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>] &quot;</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="bin_2bscssp_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a> = &quot;-i tsplib.tsp [<a class="el" href="subprob_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>] &quot;</td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -64,7 +65,7 @@ Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on t
 
 <p>
 
-<p>Definition at line <a class="el" href="bin_2bscssp_8c-source.html#l00018">18</a> of file <a class="el" href="bin_2bscssp_8c-source.html">bscssp.c</a>.</p>
+<p>Definition at line <a class="el" href="bin_2bscssp_8c-source.html#l00019">19</a> of file <a class="el" href="bin_2bscssp_8c-source.html">bscssp.c</a>.</p>
 
 </div>
 </div><p>
@@ -96,9 +97,9 @@ Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on t
 
 <p>
 
-<p>Definition at line <a class="el" href="bin_2bscssp_8c-source.html#l00031">31</a> of file <a class="el" href="bin_2bscssp_8c-source.html">bscssp.c</a>.</p>
+<p>Definition at line <a class="el" href="bin_2bscssp_8c-source.html#l00032">32</a> of file <a class="el" href="bin_2bscssp_8c-source.html">bscssp.c</a>.</p>
 
-<p>References <a class="el" href="lib_2bscssp_8c-source.html#l00043">arrow_bscssp_solve()</a>, <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="problem_8c-source.html#l00098">arrow_problem_destruct()</a>, <a class="el" href="problem_8c-source.html#l00158">arrow_problem_info_destruct()</a>, <a class="el" href="problem_8c-source.html#l00115">arrow_problem_info_get()</a>, <a class="el" href="problem_8c-source.html#l00054">arrow_problem_read()</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00195">arrow_util_print_program_args()</a>, <a class="el" href="bin_22mb_8c-source.html#l00025">desc</a>, <a class="el" href="bin_22mb_8c-source.html#l00013">input_file</a>, <a class="el" href="bin_22mb_8c-source.html#l00017">NUM_OPTS</a>, <a class="el" href="arrow_8h-source.html#l00081">arrow_bound_result::obj_value</a>, <a class="el" href="arrow_8h-source.html#l00082">arrow_bound_result::total_time</a>, <a class="el" href="bin_22mb_8c-source.html#l00026">usage</a>, and <a class="el" href="bin_22mb_8c-source.html#l00014">xml_file</a>.</p>
+<p>References <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00044">arrow_bscssp_solve()</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="problem_8c-source.html#l00153">arrow_problem_destruct()</a>, <a class="el" href="problem_8c-source.html#l00215">arrow_problem_info_destruct()</a>, <a class="el" href="problem_8c-source.html#l00163">arrow_problem_info_get()</a>, <a class="el" href="problem_8c-source.html#l00118">arrow_problem_read()</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00195">arrow_util_print_program_args()</a>, <a class="el" href="bin_22mb_8c-source.html#l00026">desc</a>, <a class="el" href="bin_22mb_8c-source.html#l00014">input_file</a>, <a class="el" href="bin_22mb_8c-source.html#l00018">NUM_OPTS</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>, <a class="el" href="bin_22mb_8c-source.html#l00027">usage</a>, and <a class="el" href="bin_22mb_8c-source.html#l00015">xml_file</a>.</p>
 
 </div>
 </div><p>
@@ -108,7 +109,7 @@ Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on t
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* <a class="el" href="subproblem_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a> = &quot;Bottleneck strongly connected spanning subgraph problem solver&quot;          </td>
+          <td class="memname">char* <a class="el" href="subprob_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a> = &quot;Bottleneck strongly connected spanning subgraph problem solver&quot;          </td>
         </tr>
       </table>
 </div>
@@ -116,7 +117,7 @@ Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on t
 
 <p>
 
-<p>Definition at line <a class="el" href="bin_2bscssp_8c-source.html#l00026">26</a> of file <a class="el" href="bin_2bscssp_8c-source.html">bscssp.c</a>.</p>
+<p>Definition at line <a class="el" href="bin_2bscssp_8c-source.html#l00027">27</a> of file <a class="el" href="bin_2bscssp_8c-source.html">bscssp.c</a>.</p>
 
 </div>
 </div><p>
@@ -133,7 +134,7 @@ Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on t
 
 <p>
 Given input TSPLIB file 
-<p>Definition at line <a class="el" href="bin_2bscssp_8c-source.html#l00014">14</a> of file <a class="el" href="bin_2bscssp_8c-source.html">bscssp.c</a>.</p>
+<p>Definition at line <a class="el" href="bin_2bscssp_8c-source.html#l00015">15</a> of file <a class="el" href="bin_2bscssp_8c-source.html">bscssp.c</a>.</p>
 
 </div>
 </div><p>
@@ -142,7 +143,7 @@ Given input TSPLIB file
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structarrow__option.html">arrow_option</a> <a class="el" href="subproblem_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>[NUM_OPTS]          </td>
+          <td class="memname"><a class="el" href="structarrow__option.html">arrow_option</a> <a class="el" href="subprob_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>[NUM_OPTS]          </td>
         </tr>
       </table>
 </div>
@@ -152,12 +153,12 @@ Given input TSPLIB file
 <b>Initial value:</b><div class="fragment"><pre class="fragment"> 
 {
     {<span class="charliteral">'i'</span>, <span class="stringliteral">"input"</span>, <span class="stringliteral">"TSPLIB input file"</span>, 
-        <a class="code" href="arrow_8h.html#a5af4b3dd40c1687deb0e897317fac3d">ARROW_OPTION_STRING</a>, &amp;<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>, <a class="code" href="arrow_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>, ARROW_TRUE},
+        <a class="code" href="common_8h.html#a5af4b3dd40c1687deb0e897317fac3d">ARROW_OPTION_STRING</a>, &amp;<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>, <a class="code" href="common_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>, ARROW_TRUE},
     {<span class="charliteral">'x'</span>, <span class="stringliteral">"xml"</span>, <span class="stringliteral">"File to write XML output to"</span>,
-        <a class="code" href="arrow_8h.html#a5af4b3dd40c1687deb0e897317fac3d">ARROW_OPTION_STRING</a>, &amp;<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a>, <a class="code" href="arrow_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="arrow_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>}
+        <a class="code" href="common_8h.html#a5af4b3dd40c1687deb0e897317fac3d">ARROW_OPTION_STRING</a>, &amp;<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a>, <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="common_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>}
 }
 </pre></div>
-<p>Definition at line <a class="el" href="bin_2bscssp_8c-source.html#l00019">19</a> of file <a class="el" href="bin_2bscssp_8c-source.html">bscssp.c</a>.</p>
+<p>Definition at line <a class="el" href="bin_2bscssp_8c-source.html#l00020">20</a> of file <a class="el" href="bin_2bscssp_8c-source.html">bscssp.c</a>.</p>
 
 </div>
 </div><p>
@@ -174,7 +175,7 @@ Given input TSPLIB file
 
 <p>
 Program name 
-<p>Definition at line <a class="el" href="bin_2bscssp_8c-source.html#l00013">13</a> of file <a class="el" href="bin_2bscssp_8c-source.html">bscssp.c</a>.</p>
+<p>Definition at line <a class="el" href="bin_2bscssp_8c-source.html#l00014">14</a> of file <a class="el" href="bin_2bscssp_8c-source.html">bscssp.c</a>.</p>
 
 </div>
 </div><p>
@@ -183,7 +184,7 @@ Program name
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* <a class="el" href="subproblem_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a> = &quot;-i tsplib.tsp [<a class="el" href="subproblem_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>] &quot;          </td>
+          <td class="memname">char* <a class="el" href="subprob_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a> = &quot;-i tsplib.tsp [<a class="el" href="subprob_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>] &quot;          </td>
         </tr>
       </table>
 </div>
@@ -191,7 +192,7 @@ Program name
 
 <p>
 
-<p>Definition at line <a class="el" href="bin_2bscssp_8c-source.html#l00027">27</a> of file <a class="el" href="bin_2bscssp_8c-source.html">bscssp.c</a>.</p>
+<p>Definition at line <a class="el" href="bin_2bscssp_8c-source.html#l00028">28</a> of file <a class="el" href="bin_2bscssp_8c-source.html">bscssp.c</a>.</p>
 
 </div>
 </div><p>
@@ -208,12 +209,12 @@ Program name
 
 <p>
 
-<p>Definition at line <a class="el" href="bin_2bscssp_8c-source.html#l00015">15</a> of file <a class="el" href="bin_2bscssp_8c-source.html">bscssp.c</a>.</p>
+<p>Definition at line <a class="el" href="bin_2bscssp_8c-source.html#l00016">16</a> of file <a class="el" href="bin_2bscssp_8c-source.html">bscssp.c</a>.</p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Jul 4 13:27:16 2008 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Feb 18 01:00:20 2009 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

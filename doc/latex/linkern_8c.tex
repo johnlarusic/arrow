@@ -4,8 +4,10 @@
 }
 Lin-Kernighan TSP heuristic. 
 
-{\tt \#include \char`\"{}arrow.h\char`\"{}}\par
-{\tt \#include $<$getopt.h$>$}\par
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}lb.h\char`\"{}}\par
+{\tt \#include \char`\"{}tsp.h\char`\"{}}\par
+{\tt \#include \char`\"{}btsp.h\char`\"{}}\par
 \subsection*{Functions}
 \begin{CompactItemize}
 \item 
@@ -55,9 +57,9 @@ Definition in file \hyperlink{linkern_8c-source}{linkern.c}.
 
 
 
-Definition at line 49 of file linkern.c.
+Definition at line 51 of file linkern.c.
 
-References arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-lk\_\-params\_\-destruct(), arrow\_\-tsp\_\-lk\_\-params\_\-init(), arrow\_\-tsp\_\-lk\_\-solve(), arrow\_\-tsp\_\-result\_\-destruct(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-tsp\_\-result::found\_\-tour, input\_\-file, arrow\_\-tsp\_\-lk\_\-params::kicks, kicks, arrow\_\-tsp\_\-result::obj\_\-value, program\_\-name, arrow\_\-tsp\_\-lk\_\-params::random\_\-restarts, random\_\-restarts, read\_\-args(), arrow\_\-tsp\_\-lk\_\-params::stall\_\-count, stall\_\-count, and arrow\_\-tsp\_\-result::total\_\-time.\hypertarget{linkern_8c_853216ac51aa181669ff4d3de74058a7}{
+References arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct(), arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init(), arrow\_\-tsp\_\-result\_\-destruct(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-tsp\_\-result::found\_\-tour, input\_\-file, arrow\_\-tsp\_\-cc\_\-lk\_\-params::kicks, kicks, arrow\_\-tsp\_\-result::obj\_\-value, program\_\-name, arrow\_\-tsp\_\-cc\_\-lk\_\-params::random\_\-restarts, random\_\-restarts, read\_\-args(), arrow\_\-tsp\_\-cc\_\-lk\_\-params::stall\_\-count, stall\_\-count, and arrow\_\-tsp\_\-result::total\_\-time.\hypertarget{linkern_8c_853216ac51aa181669ff4d3de74058a7}{
 \index{linkern.c@{linkern.c}!print\_\-help@{print\_\-help}}
 \index{print\_\-help@{print\_\-help}!linkern.c@{linkern.c}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}void print\_\-help ()}}
@@ -68,7 +70,7 @@ Prints help/usage message.
 
 
 
-Definition at line 90 of file linkern.c.
+Definition at line 92 of file linkern.c.
 
 References print\_\-usage(), and program\_\-name.
 
@@ -83,7 +85,7 @@ Prints usage message.
 
 
 
-Definition at line 120 of file linkern.c.
+Definition at line 122 of file linkern.c.
 
 References program\_\-name.
 
@@ -98,7 +100,7 @@ Prints version message.
 
 
 
-Definition at line 105 of file linkern.c.
+Definition at line 107 of file linkern.c.
 
 References program\_\-name.
 
@@ -113,7 +115,7 @@ Reads program arguments.
 
 
 
-Definition at line 126 of file linkern.c.
+Definition at line 128 of file linkern.c.
 
 References arrow\_\-print\_\-error, input\_\-file, kicks, print\_\-help(), print\_\-usage(), print\_\-version(), random\_\-restarts, and stall\_\-count.
 
@@ -129,7 +131,7 @@ Referenced by main().
 
 Given input TSPLIB file 
 
-Definition at line 40 of file linkern.c.\hypertarget{linkern_8c_b8f057ba1ad6b7f0c46f8140b25b3467}{
+Definition at line 42 of file linkern.c.\hypertarget{linkern_8c_b8f057ba1ad6b7f0c46f8140b25b3467}{
 \index{linkern.c@{linkern.c}!kicks@{kicks}}
 \index{kicks@{kicks}!linkern.c@{linkern.c}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf kicks} = -1}}
@@ -138,7 +140,7 @@ Definition at line 40 of file linkern.c.\hypertarget{linkern_8c_b8f057ba1ad6b7f0
 
 
 
-Definition at line 43 of file linkern.c.\hypertarget{linkern_8c_289c5900d90626d909f0a85d5a0ed61d}{
+Definition at line 45 of file linkern.c.\hypertarget{linkern_8c_289c5900d90626d909f0a85d5a0ed61d}{
 \index{linkern.c@{linkern.c}!program\_\-name@{program\_\-name}}
 \index{program\_\-name@{program\_\-name}!linkern.c@{linkern.c}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf program\_\-name}}}
@@ -147,7 +149,7 @@ Definition at line 43 of file linkern.c.\hypertarget{linkern_8c_289c5900d90626d9
 
 Program name 
 
-Definition at line 39 of file linkern.c.\hypertarget{linkern_8c_e6a9db0fe5c8a0407d62dec2f7a14959}{
+Definition at line 41 of file linkern.c.\hypertarget{linkern_8c_e6a9db0fe5c8a0407d62dec2f7a14959}{
 \index{linkern.c@{linkern.c}!random\_\-restarts@{random\_\-restarts}}
 \index{random\_\-restarts@{random\_\-restarts}!linkern.c@{linkern.c}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf random\_\-restarts} = -1}}
@@ -156,7 +158,7 @@ Definition at line 39 of file linkern.c.\hypertarget{linkern_8c_e6a9db0fe5c8a040
 
 
 
-Definition at line 41 of file linkern.c.\hypertarget{linkern_8c_a1641a28cf3ea572a56763e84518c17b}{
+Definition at line 43 of file linkern.c.\hypertarget{linkern_8c_a1641a28cf3ea572a56763e84518c17b}{
 \index{linkern.c@{linkern.c}!stall\_\-count@{stall\_\-count}}
 \index{stall\_\-count@{stall\_\-count}!linkern.c@{linkern.c}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf stall\_\-count} = -1}}
@@ -165,4 +167,4 @@ Definition at line 41 of file linkern.c.\hypertarget{linkern_8c_a1641a28cf3ea572
 
 
 
-Definition at line 42 of file linkern.c.
+Definition at line 44 of file linkern.c.

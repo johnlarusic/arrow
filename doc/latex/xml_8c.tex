@@ -1,0 +1,205 @@
+\hypertarget{xml_8c}{
+\section{lib/common/xml.c File Reference}
+\label{xml_8c}\index{lib/common/xml.c@{lib/common/xml.c}}
+}
+Useful functions for writing XML. 
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{xml_8c_ac92580a7e7c1ebb1c72f68d7005fe68}{arrow\_\-xml\_\-element\_\-int} (char $\ast$name, int value, FILE $\ast$out)
+\begin{CompactList}\small\item\em Writes an XML tag out for an integer value. \item\end{CompactList}\item 
+void \hyperlink{xml_8c_286f1861006d22d745bd3c2681ee7aab}{arrow\_\-xml\_\-element\_\-double} (char $\ast$name, double value, FILE $\ast$out)
+\begin{CompactList}\small\item\em Writes an XML tag out for a double value. \item\end{CompactList}\item 
+void \hyperlink{xml_8c_aaf85f529d527d406914a61f9ed10901}{arrow\_\-xml\_\-element\_\-string} (char $\ast$name, char $\ast$value, FILE $\ast$out)
+\begin{CompactList}\small\item\em Writes an XML tag out for a string value. \item\end{CompactList}\item 
+void \hyperlink{xml_8c_793061e9078fa317e78f2d40d96f9fed}{arrow\_\-xml\_\-element\_\-bool} (char $\ast$name, int value, FILE $\ast$out)
+\begin{CompactList}\small\item\em Writes an XML tag out for a boolean value. \item\end{CompactList}\item 
+void \hyperlink{xml_8c_ee90512e0cef8151422883d3598b5a4b}{arrow\_\-xml\_\-attribute\_\-int} (char $\ast$name, int value, FILE $\ast$out)
+\item 
+void \hyperlink{xml_8c_5270de6c47898a14788a7b66a79fdf6c}{arrow\_\-xml\_\-attribute\_\-string} (char $\ast$name, char $\ast$value, FILE $\ast$out)
+\item 
+void \hyperlink{xml_8c_37c3860e01ae53d1c110671d080fa52f}{arrow\_\-xml\_\-element\_\-start} (char $\ast$name, FILE $\ast$out)
+\item 
+void \hyperlink{xml_8c_2a4cb1e33c581013142df340cbf007b1}{arrow\_\-xml\_\-element\_\-end} (FILE $\ast$out)
+\item 
+void \hyperlink{xml_8c_77af49c39afb3b1de9e757ae01f8f039}{arrow\_\-xml\_\-element\_\-open} (char $\ast$name, FILE $\ast$out)
+\item 
+void \hyperlink{xml_8c_706aca3669fa276b37aebb5e0d74c542}{arrow\_\-xml\_\-element\_\-close} (char $\ast$name, FILE $\ast$out)
+\item 
+void \hyperlink{xml_8c_8c807a02bc67af49cd8ed343b0f43c03}{arrow\_\-xml\_\-attribute\_\-start} (char $\ast$name, FILE $\ast$out)
+\item 
+void \hyperlink{xml_8c_c1e8bb3469598aa8f1a77d01d234fbdc}{arrow\_\-xml\_\-attribute\_\-end} (FILE $\ast$out)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Useful functions for writing XML. 
+
+Useful functions for writing xml.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{xml_8c-source}{xml.c}.
+
+\subsection{Function Documentation}
+\hypertarget{xml_8c_c1e8bb3469598aa8f1a77d01d234fbdc}{
+\index{xml.c@{xml.c}!arrow\_\-xml\_\-attribute\_\-end@{arrow\_\-xml\_\-attribute\_\-end}}
+\index{arrow\_\-xml\_\-attribute\_\-end@{arrow\_\-xml\_\-attribute\_\-end}!xml.c@{xml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-attribute\_\-end (FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{xml_8c_c1e8bb3469598aa8f1a77d01d234fbdc}
+
+
+
+
+Definition at line 81 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{xml_8c_ee90512e0cef8151422883d3598b5a4b}{
+\index{xml.c@{xml.c}!arrow\_\-xml\_\-attribute\_\-int@{arrow\_\-xml\_\-attribute\_\-int}}
+\index{arrow\_\-xml\_\-attribute\_\-int@{arrow\_\-xml\_\-attribute\_\-int}!xml.c@{xml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-attribute\_\-int (char $\ast$ {\em name}, \/  int {\em value}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{xml_8c_ee90512e0cef8151422883d3598b5a4b}
+
+
+
+
+Definition at line 39 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{xml_8c_8c807a02bc67af49cd8ed343b0f43c03}{
+\index{xml.c@{xml.c}!arrow\_\-xml\_\-attribute\_\-start@{arrow\_\-xml\_\-attribute\_\-start}}
+\index{arrow\_\-xml\_\-attribute\_\-start@{arrow\_\-xml\_\-attribute\_\-start}!xml.c@{xml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-attribute\_\-start (char $\ast$ {\em name}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{xml_8c_8c807a02bc67af49cd8ed343b0f43c03}
+
+
+
+
+Definition at line 75 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{xml_8c_5270de6c47898a14788a7b66a79fdf6c}{
+\index{xml.c@{xml.c}!arrow\_\-xml\_\-attribute\_\-string@{arrow\_\-xml\_\-attribute\_\-string}}
+\index{arrow\_\-xml\_\-attribute\_\-string@{arrow\_\-xml\_\-attribute\_\-string}!xml.c@{xml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-attribute\_\-string (char $\ast$ {\em name}, \/  char $\ast$ {\em value}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{xml_8c_5270de6c47898a14788a7b66a79fdf6c}
+
+
+
+
+Definition at line 45 of file xml.c.\hypertarget{xml_8c_793061e9078fa317e78f2d40d96f9fed}{
+\index{xml.c@{xml.c}!arrow\_\-xml\_\-element\_\-bool@{arrow\_\-xml\_\-element\_\-bool}}
+\index{arrow\_\-xml\_\-element\_\-bool@{arrow\_\-xml\_\-element\_\-bool}!xml.c@{xml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-bool (char $\ast$ {\em name}, \/  int {\em value}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{xml_8c_793061e9078fa317e78f2d40d96f9fed}
+
+
+Writes an XML tag out for a boolean value. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em name}]\mbox{[}in\mbox{]} the tag name \item[{\em value}]\mbox{[}in\mbox{]} the value to write \item[{\em out}]\mbox{[}out\mbox{]} the stream to write to \end{description}
+\end{Desc}
+
+
+Definition at line 33 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{xml_8c_706aca3669fa276b37aebb5e0d74c542}{
+\index{xml.c@{xml.c}!arrow\_\-xml\_\-element\_\-close@{arrow\_\-xml\_\-element\_\-close}}
+\index{arrow\_\-xml\_\-element\_\-close@{arrow\_\-xml\_\-element\_\-close}!xml.c@{xml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-close (char $\ast$ {\em name}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{xml_8c_706aca3669fa276b37aebb5e0d74c542}
+
+
+
+
+Definition at line 69 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{xml_8c_286f1861006d22d745bd3c2681ee7aab}{
+\index{xml.c@{xml.c}!arrow\_\-xml\_\-element\_\-double@{arrow\_\-xml\_\-element\_\-double}}
+\index{arrow\_\-xml\_\-element\_\-double@{arrow\_\-xml\_\-element\_\-double}!xml.c@{xml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-double (char $\ast$ {\em name}, \/  double {\em value}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{xml_8c_286f1861006d22d745bd3c2681ee7aab}
+
+
+Writes an XML tag out for a double value. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em name}]\mbox{[}in\mbox{]} the tag name \item[{\em value}]\mbox{[}in\mbox{]} the value to write \item[{\em out}]\mbox{[}out\mbox{]} the stream to write to \end{description}
+\end{Desc}
+
+
+Definition at line 21 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{xml_8c_2a4cb1e33c581013142df340cbf007b1}{
+\index{xml.c@{xml.c}!arrow\_\-xml\_\-element\_\-end@{arrow\_\-xml\_\-element\_\-end}}
+\index{arrow\_\-xml\_\-element\_\-end@{arrow\_\-xml\_\-element\_\-end}!xml.c@{xml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-end (FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{xml_8c_2a4cb1e33c581013142df340cbf007b1}
+
+
+
+
+Definition at line 57 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{xml_8c_ac92580a7e7c1ebb1c72f68d7005fe68}{
+\index{xml.c@{xml.c}!arrow\_\-xml\_\-element\_\-int@{arrow\_\-xml\_\-element\_\-int}}
+\index{arrow\_\-xml\_\-element\_\-int@{arrow\_\-xml\_\-element\_\-int}!xml.c@{xml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-int (char $\ast$ {\em name}, \/  int {\em value}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{xml_8c_ac92580a7e7c1ebb1c72f68d7005fe68}
+
+
+Writes an XML tag out for an integer value. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em name}]\mbox{[}in\mbox{]} the tag name \item[{\em value}]\mbox{[}in\mbox{]} the value to write \item[{\em out}]\mbox{[}out\mbox{]} the stream to write to \end{description}
+\end{Desc}
+
+
+Definition at line 15 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{xml_8c_77af49c39afb3b1de9e757ae01f8f039}{
+\index{xml.c@{xml.c}!arrow\_\-xml\_\-element\_\-open@{arrow\_\-xml\_\-element\_\-open}}
+\index{arrow\_\-xml\_\-element\_\-open@{arrow\_\-xml\_\-element\_\-open}!xml.c@{xml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-open (char $\ast$ {\em name}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{xml_8c_77af49c39afb3b1de9e757ae01f8f039}
+
+
+
+
+Definition at line 63 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{xml_8c_37c3860e01ae53d1c110671d080fa52f}{
+\index{xml.c@{xml.c}!arrow\_\-xml\_\-element\_\-start@{arrow\_\-xml\_\-element\_\-start}}
+\index{arrow\_\-xml\_\-element\_\-start@{arrow\_\-xml\_\-element\_\-start}!xml.c@{xml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-start (char $\ast$ {\em name}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{xml_8c_37c3860e01ae53d1c110671d080fa52f}
+
+
+
+
+Definition at line 51 of file xml.c.
+
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{xml_8c_aaf85f529d527d406914a61f9ed10901}{
+\index{xml.c@{xml.c}!arrow\_\-xml\_\-element\_\-string@{arrow\_\-xml\_\-element\_\-string}}
+\index{arrow\_\-xml\_\-element\_\-string@{arrow\_\-xml\_\-element\_\-string}!xml.c@{xml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-string (char $\ast$ {\em name}, \/  char $\ast$ {\em value}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{xml_8c_aaf85f529d527d406914a61f9ed10901}
+
+
+Writes an XML tag out for a string value. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em name}]\mbox{[}in\mbox{]} the tag name \item[{\em value}]\mbox{[}in\mbox{]} the value to write \item[{\em out}]\mbox{[}out\mbox{]} the stream to write to \end{description}
+\end{Desc}
+
+
+Definition at line 27 of file xml.c.

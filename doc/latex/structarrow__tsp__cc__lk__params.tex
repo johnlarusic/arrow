@@ -1,0 +1,116 @@
+\hypertarget{structarrow__tsp__cc__lk__params}{
+\section{arrow\_\-tsp\_\-cc\_\-lk\_\-params Struct Reference}
+\label{structarrow__tsp__cc__lk__params}\index{arrow\_\-tsp\_\-cc\_\-lk\_\-params@{arrow\_\-tsp\_\-cc\_\-lk\_\-params}}
+}
+LK algorithm parameters.  
+
+
+{\tt \#include $<$tsp.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+int \hyperlink{structarrow__tsp__cc__lk__params_291c8a0ec4208ae75229c223dcf1160a}{random\_\-restarts}
+\item 
+int \hyperlink{structarrow__tsp__cc__lk__params_dee46e401d6f6eca9f9a0d1f376c6ebe}{stall\_\-count}
+\item 
+int \hyperlink{structarrow__tsp__cc__lk__params_5912b1978195270052497e56d8dbffae}{kicks}
+\item 
+int \hyperlink{structarrow__tsp__cc__lk__params_d5973ec2e377d3526911cfbc8deb2e47}{kick\_\-type}
+\item 
+double \hyperlink{structarrow__tsp__cc__lk__params_d4a71865c09d0624395d5a71b46bf8d5}{time\_\-bound}
+\item 
+double \hyperlink{structarrow__tsp__cc__lk__params_47292f99c63b9db5bad901b5aa5e42a1}{length\_\-bound}
+\item 
+int $\ast$ \hyperlink{structarrow__tsp__cc__lk__params_1093ecf5b1b8f5d198740bbaad77d4a2}{initial\_\-tour}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+LK algorithm parameters. 
+
+Definition at line 27 of file tsp.h.
+
+\subsection{Field Documentation}
+\hypertarget{structarrow__tsp__cc__lk__params_291c8a0ec4208ae75229c223dcf1160a}{
+\index{arrow\_\-tsp\_\-cc\_\-lk\_\-params@{arrow\_\-tsp\_\-cc\_\-lk\_\-params}!random\_\-restarts@{random\_\-restarts}}
+\index{random\_\-restarts@{random\_\-restarts}!arrow_tsp_cc_lk_params@{arrow\_\-tsp\_\-cc\_\-lk\_\-params}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params::random\_\-restarts}}}
+\label{structarrow__tsp__cc__lk__params_291c8a0ec4208ae75229c223dcf1160a}
+
+
+the number of random restarts to perform 
+
+Definition at line 29 of file tsp.h.
+
+Referenced by arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), and main().\hypertarget{structarrow__tsp__cc__lk__params_dee46e401d6f6eca9f9a0d1f376c6ebe}{
+\index{arrow\_\-tsp\_\-cc\_\-lk\_\-params@{arrow\_\-tsp\_\-cc\_\-lk\_\-params}!stall\_\-count@{stall\_\-count}}
+\index{stall\_\-count@{stall\_\-count}!arrow_tsp_cc_lk_params@{arrow\_\-tsp\_\-cc\_\-lk\_\-params}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params::stall\_\-count}}}
+\label{structarrow__tsp__cc__lk__params_dee46e401d6f6eca9f9a0d1f376c6ebe}
+
+
+the max number of 4-swap kicks to perform without making progress 
+
+Definition at line 30 of file tsp.h.
+
+Referenced by arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), and main().\hypertarget{structarrow__tsp__cc__lk__params_5912b1978195270052497e56d8dbffae}{
+\index{arrow\_\-tsp\_\-cc\_\-lk\_\-params@{arrow\_\-tsp\_\-cc\_\-lk\_\-params}!kicks@{kicks}}
+\index{kicks@{kicks}!arrow_tsp_cc_lk_params@{arrow\_\-tsp\_\-cc\_\-lk\_\-params}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params::kicks}}}
+\label{structarrow__tsp__cc__lk__params_5912b1978195270052497e56d8dbffae}
+
+
+the number of 4-swap kicks to perform 
+
+Definition at line 32 of file tsp.h.
+
+Referenced by arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), and main().\hypertarget{structarrow__tsp__cc__lk__params_d5973ec2e377d3526911cfbc8deb2e47}{
+\index{arrow\_\-tsp\_\-cc\_\-lk\_\-params@{arrow\_\-tsp\_\-cc\_\-lk\_\-params}!kick\_\-type@{kick\_\-type}}
+\index{kick\_\-type@{kick\_\-type}!arrow_tsp_cc_lk_params@{arrow\_\-tsp\_\-cc\_\-lk\_\-params}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params::kick\_\-type}}}
+\label{structarrow__tsp__cc__lk__params_d5973ec2e377d3526911cfbc8deb2e47}
+
+
+the type of kick: one of CC\_\-LK\_\-RANDOM\_\-KICK, CC\_\-LK\_\-GEOMETRIC\_\-KICK, or CC\_\-LK\_\-CLOSE\_\-KICK; see Concorde documentation for more info 
+
+Definition at line 33 of file tsp.h.
+
+Referenced by arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init(), and arrow\_\-tsp\_\-cc\_\-lk\_\-solve().\hypertarget{structarrow__tsp__cc__lk__params_d4a71865c09d0624395d5a71b46bf8d5}{
+\index{arrow\_\-tsp\_\-cc\_\-lk\_\-params@{arrow\_\-tsp\_\-cc\_\-lk\_\-params}!time\_\-bound@{time\_\-bound}}
+\index{time\_\-bound@{time\_\-bound}!arrow_tsp_cc_lk_params@{arrow\_\-tsp\_\-cc\_\-lk\_\-params}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}double {\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params::time\_\-bound}}}
+\label{structarrow__tsp__cc__lk__params_d4a71865c09d0624395d5a71b46bf8d5}
+
+
+stop after this running time reached; set to 0 to have no time bound, must be positive 
+
+Definition at line 36 of file tsp.h.
+
+Referenced by arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init(), and arrow\_\-tsp\_\-cc\_\-lk\_\-solve().\hypertarget{structarrow__tsp__cc__lk__params_47292f99c63b9db5bad901b5aa5e42a1}{
+\index{arrow\_\-tsp\_\-cc\_\-lk\_\-params@{arrow\_\-tsp\_\-cc\_\-lk\_\-params}!length\_\-bound@{length\_\-bound}}
+\index{length\_\-bound@{length\_\-bound}!arrow_tsp_cc_lk_params@{arrow\_\-tsp\_\-cc\_\-lk\_\-params}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}double {\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params::length\_\-bound}}}
+\label{structarrow__tsp__cc__lk__params_47292f99c63b9db5bad901b5aa5e42a1}
+
+
+stop after finding tour of this length; must be non-negative 
+
+Definition at line 38 of file tsp.h.
+
+Referenced by arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), and main().\hypertarget{structarrow__tsp__cc__lk__params_1093ecf5b1b8f5d198740bbaad77d4a2}{
+\index{arrow\_\-tsp\_\-cc\_\-lk\_\-params@{arrow\_\-tsp\_\-cc\_\-lk\_\-params}!initial\_\-tour@{initial\_\-tour}}
+\index{initial\_\-tour@{initial\_\-tour}!arrow_tsp_cc_lk_params@{arrow\_\-tsp\_\-cc\_\-lk\_\-params}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ {\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params::initial\_\-tour}}}
+\label{structarrow__tsp__cc__lk__params_1093ecf5b1b8f5d198740bbaad77d4a2}
+
+
+initial tour (may be NULL) 
+
+Definition at line 40 of file tsp.h.
+
+Referenced by arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct(), arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init(), and arrow\_\-tsp\_\-cc\_\-lk\_\-solve().
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+include/\hyperlink{tsp_8h}{tsp.h}\end{CompactItemize}

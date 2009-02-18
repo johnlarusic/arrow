@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Arrow: lib/util.c File Reference</title>
+<title>Arrow: lib/common/util.c File Reference</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -16,9 +16,9 @@
   </div>
 </div>
 <div class="contents">
-<h1>lib/util.c File Reference</h1>Useful utility functions. <a href="#_details">More...</a>
+<h1>lib/common/util.c File Reference</h1>Useful utility functions. <a href="#_details">More...</a>
 <p>
-<code>#include &quot;<a class="el" href="arrow_8h-source.html">arrow.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="common_8h-source.html">common.h</a>&quot;</code><br>
 
 <p>
 <a href="util_8c-source.html">Go to the source code of this file.</a><table border="0" cellpadding="0" cellspacing="0">
@@ -66,6 +66,9 @@
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#529c872ac72eaf0046ad149abf7b6179">arrow_util_random_between</a> (int min, int max)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a random number between min and max.  <a href="#529c872ac72eaf0046ad149abf7b6179"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#4be50d1d9906ae44ddb69b1e8fb05153">arrow_util_permute_array</a> (int size, int *array)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Randomly permutes the elements of the given array.  <a href="#4be50d1d9906ae44ddb69b1e8fb05153"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#6921d887eca515c1ad59629e25a0c237">arrow_util_write_tour</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, char *comment, int *tour, FILE *out)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#8a7327192a37674e2559d82448a565b1">arrow_util_sbtsp_to_abstp_tour</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int *old_tour, int *new_tour)</td></tr>
@@ -130,9 +133,9 @@ Performs a binary search to find the wanted element in a sorted integer array.
 
 <p>Definition at line <a class="el" href="util_8c-source.html#l00145">145</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, and <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, and <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2btsp_8c-source.html#l00098">arrow_btsp_solve()</a>, and <a class="el" href="btsp__fun_8c-source.html#l00536">constrained_shake_deep_apply()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2btsp_2btsp_8c-source.html#l00034">arrow_btsp_solve()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00051">arrow_cbap_solve()</a>, and <a class="el" href="problem_8c-source.html#l00224">arrow_problem_info_cost_index()</a>.</p>
 
 </div>
 </div><p>
@@ -173,9 +176,9 @@ Initializes an upper-diagonal matrix norm structure for Concorde that is ready t
 
 <p>Definition at line <a class="el" href="util_8c-source.html#l00115">115</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, and <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, and <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>.</p>
 
-<p>Referenced by <a class="el" href="btsp__fun_8c-source.html#l00213">arrow_btsp_fun_apply()</a>, and <a class="el" href="problem_8c-source.html#l00228">arrow_problem_abtsp_to_sbtsp()</a>.</p>
+<p>Referenced by <a class="el" href="fun_8c-source.html#l00144">apply_deep()</a>.</p>
 
 </div>
 </div><p>
@@ -255,9 +258,9 @@ Creates an integer array.
 
 <p>Definition at line <a class="el" href="util_8c-source.html#l00015">15</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, and <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, and <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2bap_8c-source.html#l00067">arrow_bap_solve()</a>, <a class="el" href="lib_2bbssp_8c-source.html#l00094">arrow_bbssp_biconnected()</a>, <a class="el" href="bintree_8c-source.html#l00087">arrow_bintree_to_array()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00033">arrow_btsp_result_init()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00023">arrow_tsp_result_init()</a>, <a class="el" href="util_8c-source.html#l00027">arrow_util_create_int_matrix()</a>, <a class="el" href="abtsp_8c-source.html#l00061">main()</a>, and <a class="el" href="lib_2bscssp_8c-source.html#l00086">strongly_connected()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2lb_2bap_8c-source.html#l00069">arrow_bap_solve()</a>, <a class="el" href="lib_2lb_2bbssp_8c-source.html#l00095">arrow_bbssp_biconnected()</a>, <a class="el" href="bintree_8c-source.html#l00094">arrow_bintree_to_new_array()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00152">arrow_btsp_fun_cbtsp_shake()</a>, <a class="el" href="btsp_2result_8c-source.html#l00016">arrow_btsp_result_init()</a>, <a class="el" href="lib_2lb_2cbst_8c-source.html#l00046">arrow_cbst_solve()</a>, <a class="el" href="lib_2lb_2dcbpb_8c-source.html#l00040">arrow_dcbpb_solve()</a>, <a class="el" href="heap_8c-source.html#l00089">arrow_heap_init()</a>, <a class="el" href="rai_8c-source.html#l00091">arrow_tsp_rai_solve()</a>, <a class="el" href="tsp_2result_8c-source.html#l00016">arrow_tsp_result_init()</a>, <a class="el" href="util_8c-source.html#l00027">arrow_util_create_int_matrix()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00149">init_data()</a>, <a class="el" href="abtsp_8c-source.html#l00074">main()</a>, and <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00087">strongly_connected()</a>.</p>
 
 </div>
 </div><p>
@@ -312,9 +315,52 @@ Creates a full integer matrix.
 
 <p>Definition at line <a class="el" href="util_8c-source.html#l00027">27</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, and <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, and <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2bap_8c-source.html#l00067">arrow_bap_solve()</a>, and <a class="el" href="lib_2dcbpb_8c-source.html#l00038">arrow_dcbpb_solve()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2lb_2bap_8c-source.html#l00069">arrow_bap_solve()</a>, and <a class="el" href="lib_2lb_2dcbpb_8c-source.html#l00040">arrow_dcbpb_solve()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4be50d1d9906ae44ddb69b1e8fb05153"></a><!-- doxytag: member="util.c::arrow_util_permute_array" ref="4be50d1d9906ae44ddb69b1e8fb05153" args="(int size, int *array)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arrow_util_permute_array           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>array</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Randomly permutes the elements of the given array. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>[in] the size of the array. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>array</em>&nbsp;</td><td>[out] the array to permute. </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="util_8c-source.html#l00228">228</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
+
+<p>References <a class="el" href="util_8c-source.html#l00221">arrow_util_random_between()</a>.</p>
+
+<p>Referenced by <a class="el" href="rai_8c-source.html#l00091">arrow_tsp_rai_solve()</a>, and <a class="el" href="rai_8c-source.html#l00177">improve_tour()</a>.</p>
 
 </div>
 </div><p>
@@ -408,7 +454,7 @@ Prints out the given program arguments to the specified file.
 
 <p>Definition at line <a class="el" href="util_8c-source.html#l00195">195</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_22mb_8c-source.html#l00030">main()</a>.</p>
+<p>Referenced by <a class="el" href="bin_22mb_8c-source.html#l00031">main()</a>.</p>
 
 </div>
 </div><p>
@@ -474,7 +520,7 @@ Returns a random number between min and max.
 
 <p>Definition at line <a class="el" href="util_8c-source.html#l00221">221</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
 
-<p>Referenced by <a class="el" href="btsp__fun_8c-source.html#l00536">constrained_shake_deep_apply()</a>.</p>
+<p>Referenced by <a class="el" href="util_8c-source.html#l00228">arrow_util_permute_array()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00250">cbtsp_shake_initialize()</a>, <a class="el" href="rai_8c-source.html#l00253">construct_tour()</a>, and <a class="el" href="rai_8c-source.html#l00177">improve_tour()</a>.</p>
 
 </div>
 </div><p>
@@ -505,7 +551,7 @@ Seeds the random number generator. Pass a value of 0 to seed with the current ti
 
 <p>Definition at line <a class="el" href="util_8c-source.html#l00206">206</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
 
-<p>Referenced by <a class="el" href="cbtsp_8c-source.html#l00081">main()</a>.</p>
+<p>Referenced by <a class="el" href="abtsp-rai_8c-source.html#l00056">main()</a>.</p>
 
 </div>
 </div><p>
@@ -546,7 +592,7 @@ Redirects STDOUT stream to a file (can be used to completely surpress output by 
 
 <p>Definition at line <a class="el" href="util_8c-source.html#l00069">69</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
 
-<p>Referenced by <a class="el" href="histogram__data_8c-source.html#l00028">main()</a>.</p>
+<p>Referenced by <a class="el" href="histdata_8c-source.html#l00028">main()</a>.</p>
 
 </div>
 </div><p>
@@ -588,9 +634,9 @@ Determines if the given string turns up a match for the given regular expression
 
 <p>Definition at line <a class="el" href="util_8c-source.html#l00177">177</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00051">ARROW_FALSE</a>, and <a class="el" href="arrow_8h-source.html#l00050">ARROW_TRUE</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, and <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>.</p>
 
-<p>Referenced by <a class="el" href="problem_8c-source.html#l00281">is_asymmetric()</a>, and <a class="el" href="problem_8c-source.html#l00275">is_symmetric()</a>.</p>
+<p>Referenced by <a class="el" href="problem_8c-source.html#l00373">is_asymmetric()</a>, and <a class="el" href="problem_8c-source.html#l00367">is_symmetric()</a>.</p>
 
 </div>
 </div><p>
@@ -621,7 +667,7 @@ Restores STDOUT stream that's been redirected.
 
 <p>Definition at line <a class="el" href="util_8c-source.html#l00078">78</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
 
-<p>Referenced by <a class="el" href="histogram__data_8c-source.html#l00028">main()</a>.</p>
+<p>Referenced by <a class="el" href="histdata_8c-source.html#l00028">main()</a>.</p>
 
 </div>
 </div><p>
@@ -658,11 +704,11 @@ Restores STDOUT stream that's been redirected.
 
 <p>
 
-<p>Definition at line <a class="el" href="util_8c-source.html#l00246">246</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
+<p>Definition at line <a class="el" href="util_8c-source.html#l00260">260</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
 
-<p>References <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, and <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>.</p>
+<p>References <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, and <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>.</p>
 
-<p>Referenced by <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
+<p>Referenced by <a class="el" href="abtsp_8c-source.html#l00074">main()</a>.</p>
 
 </div>
 </div><p>
@@ -705,11 +751,11 @@ Restores STDOUT stream that's been redirected.
 
 <p>
 
-<p>Definition at line <a class="el" href="util_8c-source.html#l00227">227</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
+<p>Definition at line <a class="el" href="util_8c-source.html#l00241">241</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00115">arrow_problem::name</a>, and <a class="el" href="arrow_8h-source.html#l00111">arrow_problem::size</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00438">arrow_problem::name</a>, and <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>.</p>
 
-<p>Referenced by <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
+<p>Referenced by <a class="el" href="abtsp-rai_8c-source.html#l00056">main()</a>.</p>
 
 </div>
 </div><p>
@@ -735,12 +781,12 @@ Used to measure timings.
 
 <p>Definition at line <a class="el" href="util_8c-source.html#l00063">63</a> of file <a class="el" href="util_8c-source.html">util.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_22mb_8c-source.html#l00016">arrow_2mb_solve()</a>, <a class="el" href="lib_2bap_8c-source.html#l00067">arrow_bap_solve()</a>, <a class="el" href="lib_2bbssp_8c-source.html#l00044">arrow_bbssp_solve()</a>, <a class="el" href="lib_2bscssp_8c-source.html#l00043">arrow_bscssp_solve()</a>, <a class="el" href="lib_2btsp_8c-source.html#l00098">arrow_btsp_solve()</a>, <a class="el" href="lib_2dcbpb_8c-source.html#l00038">arrow_dcbpb_solve()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00066">arrow_tsp_exact_solve()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, and <a class="el" href="abtsp_8c-source.html#l00061">main()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2lb_22mb_8c-source.html#l00017">arrow_2mb_solve()</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00069">arrow_bap_solve()</a>, <a class="el" href="lib_2lb_2bbssp_8c-source.html#l00045">arrow_bbssp_solve()</a>, <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00044">arrow_bscssp_solve()</a>, <a class="el" href="lib_2btsp_2btsp_8c-source.html#l00034">arrow_btsp_solve()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00051">arrow_cbap_solve()</a>, <a class="el" href="lib_2lb_2cbst_8c-source.html#l00046">arrow_cbst_solve()</a>, <a class="el" href="lib_2lb_2dcbpb_8c-source.html#l00040">arrow_dcbpb_solve()</a>, <a class="el" href="cc_8c-source.html#l00062">arrow_tsp_cc_exact_solve()</a>, <a class="el" href="cc_8c-source.html#l00118">arrow_tsp_cc_lk_solve()</a>, <a class="el" href="rai_8c-source.html#l00091">arrow_tsp_rai_solve()</a>, and <a class="el" href="abtsp-rai_8c-source.html#l00056">main()</a>.</p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Jul 4 13:27:16 2008 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Feb 18 01:00:20 2009 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

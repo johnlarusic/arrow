@@ -1,10 +1,10 @@
 \hypertarget{util_8c}{
-\section{lib/util.c File Reference}
-\label{util_8c}\index{lib/util.c@{lib/util.c}}
+\section{lib/common/util.c File Reference}
+\label{util_8c}\index{lib/common/util.c@{lib/common/util.c}}
 }
 Useful utility functions. 
 
-{\tt \#include \char`\"{}arrow.h\char`\"{}}\par
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
 \subsection*{Functions}
 \begin{CompactItemize}
 \item 
@@ -36,6 +36,8 @@ int \hyperlink{util_8c_f2635504f3a222a0ced821917131c44c}{arrow\_\-util\_\-random
 \begin{CompactList}\small\item\em Returns a random number between 0 and RAND\_\-MAX (normally, RAND\_\-MAX = INT\_\-MAX). \item\end{CompactList}\item 
 int \hyperlink{util_8c_529c872ac72eaf0046ad149abf7b6179}{arrow\_\-util\_\-random\_\-between} (int min, int max)
 \begin{CompactList}\small\item\em Returns a random number between min and max. \item\end{CompactList}\item 
+void \hyperlink{util_8c_4be50d1d9906ae44ddb69b1e8fb05153}{arrow\_\-util\_\-permute\_\-array} (int size, int $\ast$array)
+\begin{CompactList}\small\item\em Randomly permutes the elements of the given array. \item\end{CompactList}\item 
 void \hyperlink{util_8c_6921d887eca515c1ad59629e25a0c237}{arrow\_\-util\_\-write\_\-tour} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, char $\ast$comment, int $\ast$tour, FILE $\ast$out)
 \item 
 void \hyperlink{util_8c_8a7327192a37674e2559d82448a565b1}{arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int $\ast$old\_\-tour, int $\ast$new\_\-tour)
@@ -74,7 +76,7 @@ Definition at line 145 of file util.c.
 
 References ARROW\_\-FAILURE, and ARROW\_\-SUCCESS.
 
-Referenced by arrow\_\-btsp\_\-solve(), and constrained\_\-shake\_\-deep\_\-apply().\hypertarget{util_8c_3052203501efe0814bbe98548394b978}{
+Referenced by arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-solve(), and arrow\_\-problem\_\-info\_\-cost\_\-index().\hypertarget{util_8c_3052203501efe0814bbe98548394b978}{
 \index{util.c@{util.c}!arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix@{arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix}}
 \index{arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix@{arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix}!util.c@{util.c}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix (int {\em size}, \/  CCdatagroup $\ast$ {\em dat})}}
@@ -94,7 +96,7 @@ Definition at line 115 of file util.c.
 
 References ARROW\_\-FAILURE, arrow\_\-print\_\-error, and ARROW\_\-SUCCESS.
 
-Referenced by arrow\_\-btsp\_\-fun\_\-apply(), and arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp().\hypertarget{util_8c_b2e3326bacca581ca01013678d664cdb}{
+Referenced by apply\_\-deep().\hypertarget{util_8c_b2e3326bacca581ca01013678d664cdb}{
 \index{util.c@{util.c}!arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy@{arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy}}
 \index{arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy@{arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy}!util.c@{util.c}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-CCdatagroup\_\-shallow\_\-copy (CCdatagroup $\ast$ {\em from}, \/  CCdatagroup $\ast$ {\em to})}}
@@ -130,7 +132,7 @@ Definition at line 15 of file util.c.
 
 References ARROW\_\-FAILURE, arrow\_\-print\_\-error, and ARROW\_\-SUCCESS.
 
-Referenced by arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-biconnected(), arrow\_\-bintree\_\-to\_\-array(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-util\_\-create\_\-int\_\-matrix(), main(), and strongly\_\-connected().\hypertarget{util_8c_2801c2cc414251180545168ba9abe911}{
+Referenced by arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-biconnected(), arrow\_\-bintree\_\-to\_\-new\_\-array(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-cbst\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-heap\_\-init(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-util\_\-create\_\-int\_\-matrix(), init\_\-data(), main(), and strongly\_\-connected().\hypertarget{util_8c_2801c2cc414251180545168ba9abe911}{
 \index{util.c@{util.c}!arrow\_\-util\_\-create\_\-int\_\-matrix@{arrow\_\-util\_\-create\_\-int\_\-matrix}}
 \index{arrow\_\-util\_\-create\_\-int\_\-matrix@{arrow\_\-util\_\-create\_\-int\_\-matrix}!util.c@{util.c}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-create\_\-int\_\-matrix (int {\em rows}, \/  int {\em cols}, \/  int $\ast$$\ast$$\ast$ {\em matrix}, \/  int $\ast$$\ast$ {\em space})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
@@ -150,7 +152,27 @@ Definition at line 27 of file util.c.
 
 References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, and arrow\_\-util\_\-create\_\-int\_\-array().
 
-Referenced by arrow\_\-bap\_\-solve(), and arrow\_\-dcbpb\_\-solve().\hypertarget{util_8c_3bd7042ebd6e97b5790a8708c91be5b4}{
+Referenced by arrow\_\-bap\_\-solve(), and arrow\_\-dcbpb\_\-solve().\hypertarget{util_8c_4be50d1d9906ae44ddb69b1e8fb05153}{
+\index{util.c@{util.c}!arrow\_\-util\_\-permute\_\-array@{arrow\_\-util\_\-permute\_\-array}}
+\index{arrow\_\-util\_\-permute\_\-array@{arrow\_\-util\_\-permute\_\-array}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-permute\_\-array (int {\em size}, \/  int $\ast$ {\em array})}}
+\label{util_8c_4be50d1d9906ae44ddb69b1e8fb05153}
+
+
+Randomly permutes the elements of the given array. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em size}]\mbox{[}in\mbox{]} the size of the array. \item[{\em array}]\mbox{[}out\mbox{]} the array to permute. \end{description}
+\end{Desc}
+
+
+Definition at line 228 of file util.c.
+
+References arrow\_\-util\_\-random\_\-between().
+
+Referenced by arrow\_\-tsp\_\-rai\_\-solve(), and improve\_\-tour().\hypertarget{util_8c_3bd7042ebd6e97b5790a8708c91be5b4}{
 \index{util.c@{util.c}!arrow\_\-util\_\-print\_\-error@{arrow\_\-util\_\-print\_\-error}}
 \index{arrow\_\-util\_\-print\_\-error@{arrow\_\-util\_\-print\_\-error}!util.c@{util.c}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-print\_\-error (const char $\ast$ {\em file\_\-name}, \/  int {\em line\_\-num}, \/  const char $\ast$ {\em message})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
@@ -217,7 +239,7 @@ Returns a random number between min and max.
 
 Definition at line 221 of file util.c.
 
-Referenced by constrained\_\-shake\_\-deep\_\-apply().\hypertarget{util_8c_448b71093a175c0f40f9cbe612b1c709}{
+Referenced by arrow\_\-util\_\-permute\_\-array(), cbtsp\_\-shake\_\-initialize(), construct\_\-tour(), and improve\_\-tour().\hypertarget{util_8c_448b71093a175c0f40f9cbe612b1c709}{
 \index{util.c@{util.c}!arrow\_\-util\_\-random\_\-seed@{arrow\_\-util\_\-random\_\-seed}}
 \index{arrow\_\-util\_\-random\_\-seed@{arrow\_\-util\_\-random\_\-seed}!util.c@{util.c}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-random\_\-seed (int {\em seed})}}
@@ -302,7 +324,7 @@ Referenced by main().\hypertarget{util_8c_8a7327192a37674e2559d82448a565b1}{
 
 
 
-Definition at line 246 of file util.c.
+Definition at line 260 of file util.c.
 
 References arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
 
@@ -315,7 +337,7 @@ Referenced by main().\hypertarget{util_8c_6921d887eca515c1ad59629e25a0c237}{
 
 
 
-Definition at line 227 of file util.c.
+Definition at line 241 of file util.c.
 
 References arrow\_\-problem::name, and arrow\_\-problem::size.
 
@@ -334,4 +356,4 @@ Used to measure timings.
 
 Definition at line 63 of file util.c.
 
-Referenced by arrow\_\-2mb\_\-solve(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-tsp\_\-exact\_\-solve(), arrow\_\-tsp\_\-lk\_\-solve(), and main().
+Referenced by arrow\_\-2mb\_\-solve(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), and main().

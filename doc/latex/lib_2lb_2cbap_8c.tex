@@ -1,0 +1,145 @@
+\hypertarget{lib_2lb_2cbap_8c}{
+\section{lib/lb/cbap.c File Reference}
+\label{lib_2lb_2cbap_8c}\index{lib/lb/cbap.c@{lib/lb/cbap.c}}
+}
+Contrained bottleneck assignment problem algorithm. 
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}lb.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{lib_2lb_2cbap_8c_c9529085f74a03a541bdbb1c1202be70}{init\_\-data} (int n, int $\ast$$\ast$x, int $\ast$$\ast$y, int $\ast$$\ast$pi, int $\ast$$\ast$d, int $\ast$$\ast$pred, int $\ast$$\ast$label, \hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
+\item 
+void \hyperlink{lib_2lb_2cbap_8c_49170e8eae9b6170375a6e3c8fa0c3e6}{destruct\_\-data} (int $\ast$$\ast$x, int $\ast$$\ast$y, int $\ast$$\ast$pi, int $\ast$$\ast$d, int $\ast$$\ast$pred, int $\ast$$\ast$label, \hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
+\item 
+double \hyperlink{lib_2lb_2cbap_8c_99c7a8b71e6063f6bdc57a0adb920bd2}{lap} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int delta, int $\ast$x, int $\ast$y, int $\ast$pi, int $\ast$d, int $\ast$pred, int $\ast$label, \hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
+\item 
+void \hyperlink{lib_2lb_2cbap_8c_b086dfbdeea8fc31342b66704b7e0259}{dijkstra} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int delta, int $\ast$x, int $\ast$y, int $\ast$pi, int s, int $\ast$t, int $\ast$d, int $\ast$pred, int $\ast$label, \hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
+\item 
+void \hyperlink{lib_2lb_2cbap_8c_1ca0b562a9c0fb4ef4a3c82605690e90}{augment} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int s, int t, int $\ast$pred, int $\ast$x, int $\ast$y)
+\item 
+int \hyperlink{lib_2lb_2cbap_8c_33a2e1c3a014448c8684a6f6770e08a9}{arrow\_\-cbap\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, double \hyperlink{bin_2cbst_8c_0c7f495d279d6f237d38be875e03f593}{max\_\-length}, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves the constrained bottleneck assignment problem (CBAP). \item\end{CompactList}\item 
+int \hyperlink{lib_2lb_2cbap_8c_d886215a5663a977758daca551470e64}{arrow\_\-cbap\_\-lap} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, double $\ast$result)
+\begin{CompactList}\small\item\em Solves the linear assignment problem (LAP). \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Contrained bottleneck assignment problem algorithm. 
+
+Implemenation of the contrained bottleneck assignment problem (CBAP) that's used as a lower bound for the contrained BTSP objective value.
+
+NOTE: This code is an almost verbatim copy of C++ code written by Jonker (a copy may be found at \href{http://www.magiclogic.com/assignment.html}{\tt http://www.magiclogic.com/assignment.html}). The code will not compile along side Concorde, and requires a full cost matrix (which we need to avoid for large problems). Therefore, the best option was to implement a C version using our problem data structure.
+
+This code is explained in the paper: \char`\"{}A Shortest Augmenting Path Algorithm for Dense and Sparse Linear Assignment Problems,\char`\"{} Computing 38, 325-340, 1987 by R. Jonker and A. Volgenant, University of Amsterdam.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{lib_2lb_2cbap_8c-source}{cbap.c}.
+
+\subsection{Function Documentation}
+\hypertarget{lib_2lb_2cbap_8c_d886215a5663a977758daca551470e64}{
+\index{lib/lb/cbap.c@{lib/lb/cbap.c}!arrow\_\-cbap\_\-lap@{arrow\_\-cbap\_\-lap}}
+\index{arrow\_\-cbap\_\-lap@{arrow\_\-cbap\_\-lap}!lib/lb/cbap.c@{lib/lb/cbap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-cbap\_\-lap ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  double $\ast$ {\em result})}}
+\label{lib_2lb_2cbap_8c_d886215a5663a977758daca551470e64}
+
+
+Solves the linear assignment problem (LAP). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em result}]\mbox{[}out\mbox{]} LAP solution \end{description}
+\end{Desc}
+
+
+Definition at line 124 of file cbap.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, destruct\_\-data(), init\_\-data(), lap(), and arrow\_\-problem::size.\hypertarget{lib_2lb_2cbap_8c_33a2e1c3a014448c8684a6f6770e08a9}{
+\index{lib/lb/cbap.c@{lib/lb/cbap.c}!arrow\_\-cbap\_\-solve@{arrow\_\-cbap\_\-solve}}
+\index{arrow\_\-cbap\_\-solve@{arrow\_\-cbap\_\-solve}!lib/lb/cbap.c@{lib/lb/cbap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-cbap\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  double {\em max\_\-length}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
+\label{lib_2lb_2cbap_8c_33a2e1c3a014448c8684a6f6770e08a9}
+
+
+Solves the constrained bottleneck assignment problem (CBAP). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em info}]\mbox{[}in\mbox{]} problem info \item[{\em max\_\-length}]\mbox{[}in\mbox{]} the maximum length of the assignment \item[{\em result}]\mbox{[}out\mbox{]} CBAP solution \end{description}
+\end{Desc}
+
+
+Definition at line 51 of file cbap.c.
+
+References arrow\_\-debug, ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-zeit(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, destruct\_\-data(), arrow\_\-problem::get\_\-cost, init\_\-data(), lap(), length, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, and arrow\_\-bound\_\-result::total\_\-time.
+
+Referenced by main().\hypertarget{lib_2lb_2cbap_8c_1ca0b562a9c0fb4ef4a3c82605690e90}{
+\index{lib/lb/cbap.c@{lib/lb/cbap.c}!augment@{augment}}
+\index{augment@{augment}!lib/lb/cbap.c@{lib/lb/cbap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void augment ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em s}, \/  int {\em t}, \/  int $\ast$ {\em pred}, \/  int $\ast$ {\em x}, \/  int $\ast$ {\em y})}}
+\label{lib_2lb_2cbap_8c_1ca0b562a9c0fb4ef4a3c82605690e90}
+
+
+
+
+Definition at line 327 of file cbap.c.
+
+Referenced by lap().\hypertarget{lib_2lb_2cbap_8c_49170e8eae9b6170375a6e3c8fa0c3e6}{
+\index{lib/lb/cbap.c@{lib/lb/cbap.c}!destruct\_\-data@{destruct\_\-data}}
+\index{destruct\_\-data@{destruct\_\-data}!lib/lb/cbap.c@{lib/lb/cbap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void destruct\_\-data (int $\ast$$\ast$ {\em x}, \/  int $\ast$$\ast$ {\em y}, \/  int $\ast$$\ast$ {\em pi}, \/  int $\ast$$\ast$ {\em d}, \/  int $\ast$$\ast$ {\em pred}, \/  int $\ast$$\ast$ {\em label}, \/  {\bf arrow\_\-heap} $\ast$ {\em heap})}}
+\label{lib_2lb_2cbap_8c_49170e8eae9b6170375a6e3c8fa0c3e6}
+
+
+
+
+Definition at line 175 of file cbap.c.
+
+References arrow\_\-heap\_\-destruct().
+
+Referenced by arrow\_\-cbap\_\-lap(), arrow\_\-cbap\_\-solve(), and init\_\-data().\hypertarget{lib_2lb_2cbap_8c_b086dfbdeea8fc31342b66704b7e0259}{
+\index{lib/lb/cbap.c@{lib/lb/cbap.c}!dijkstra@{dijkstra}}
+\index{dijkstra@{dijkstra}!lib/lb/cbap.c@{lib/lb/cbap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void dijkstra ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em delta}, \/  int $\ast$ {\em x}, \/  int $\ast$ {\em y}, \/  int $\ast$ {\em pi}, \/  int {\em s}, \/  int $\ast$ {\em t}, \/  int $\ast$ {\em d}, \/  int $\ast$ {\em pred}, \/  int $\ast$ {\em label}, \/  {\bf arrow\_\-heap} $\ast$ {\em heap})}}
+\label{lib_2lb_2cbap_8c_b086dfbdeea8fc31342b66704b7e0259}
+
+
+
+
+Definition at line 232 of file cbap.c.
+
+References arrow\_\-heap\_\-change\_\-key(), arrow\_\-heap\_\-delete\_\-min(), arrow\_\-heap\_\-empty(), arrow\_\-heap\_\-get\_\-min(), arrow\_\-heap\_\-in(), arrow\_\-heap\_\-insert(), arrow\_\-print\_\-error, arrow\_\-problem::get\_\-cost, arrow\_\-heap::size, arrow\_\-problem::size, and start.
+
+Referenced by lap().\hypertarget{lib_2lb_2cbap_8c_c9529085f74a03a541bdbb1c1202be70}{
+\index{lib/lb/cbap.c@{lib/lb/cbap.c}!init\_\-data@{init\_\-data}}
+\index{init\_\-data@{init\_\-data}!lib/lb/cbap.c@{lib/lb/cbap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int init\_\-data (int {\em n}, \/  int $\ast$$\ast$ {\em x}, \/  int $\ast$$\ast$ {\em y}, \/  int $\ast$$\ast$ {\em pi}, \/  int $\ast$$\ast$ {\em d}, \/  int $\ast$$\ast$ {\em pred}, \/  int $\ast$$\ast$ {\em label}, \/  {\bf arrow\_\-heap} $\ast$ {\em heap})}}
+\label{lib_2lb_2cbap_8c_c9529085f74a03a541bdbb1c1202be70}
+
+
+
+
+Definition at line 149 of file cbap.c.
+
+References ARROW\_\-FAILURE, arrow\_\-heap\_\-init(), ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), and destruct\_\-data().
+
+Referenced by arrow\_\-cbap\_\-lap(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-mst\_\-solve(), and arrow\_\-cbst\_\-solve().\hypertarget{lib_2lb_2cbap_8c_99c7a8b71e6063f6bdc57a0adb920bd2}{
+\index{lib/lb/cbap.c@{lib/lb/cbap.c}!lap@{lap}}
+\index{lap@{lap}!lib/lb/cbap.c@{lib/lb/cbap.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}double lap ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em delta}, \/  int $\ast$ {\em x}, \/  int $\ast$ {\em y}, \/  int $\ast$ {\em pi}, \/  int $\ast$ {\em d}, \/  int $\ast$ {\em pred}, \/  int $\ast$ {\em label}, \/  {\bf arrow\_\-heap} $\ast$ {\em heap})}}
+\label{lib_2lb_2cbap_8c_99c7a8b71e6063f6bdc57a0adb920bd2}
+
+
+
+
+Definition at line 188 of file cbap.c.
+
+References augment(), dijkstra(), arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
+
+Referenced by arrow\_\-cbap\_\-lap(), and arrow\_\-cbap\_\-solve().

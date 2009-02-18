@@ -5,7 +5,7 @@
 BTSP result.  
 
 
-{\tt \#include $<$arrow.h$>$}
+{\tt \#include $<$btsp.h$>$}
 
 \subsection*{Data Fields}
 \begin{CompactItemize}
@@ -22,13 +22,9 @@ int \hyperlink{structarrow__btsp__result_febcf61e24bf277eeb7795c18bd42b8b}{optim
 \item 
 int \hyperlink{structarrow__btsp__result_80106c5f0b8f82353ad6771ad9eaac71}{bin\_\-search\_\-steps}
 \item 
-int \hyperlink{structarrow__btsp__result_53b6e6b7922eb5c3e5a1b135d42d5654}{linkern\_\-attempts}
+int \hyperlink{structarrow__btsp__result_b1d423ab6eda81de4c3bde1685976593}{solver\_\-attempts} \mbox{[}ARROW\_\-TSP\_\-SOLVER\_\-COUNT\mbox{]}
 \item 
-double \hyperlink{structarrow__btsp__result_7e8a3ff6f55c89caa52a7a793fa36dd6}{linkern\_\-time}
-\item 
-int \hyperlink{structarrow__btsp__result_47433b850b6addae44522177a50696b3}{exact\_\-attempts}
-\item 
-double \hyperlink{structarrow__btsp__result_edefe82c06445f657e5147d52720bdef}{exact\_\-time}
+double \hyperlink{structarrow__btsp__result_f13227603570821a0ba7d6466f39f00c}{solver\_\-time} \mbox{[}ARROW\_\-TSP\_\-SOLVER\_\-COUNT\mbox{]}
 \item 
 double \hyperlink{structarrow__btsp__result_dea5711f0a574d98f66d1b20011a68de}{total\_\-time}
 \end{CompactItemize}
@@ -37,7 +33,7 @@ double \hyperlink{structarrow__btsp__result_dea5711f0a574d98f66d1b20011a68de}{to
 \subsection{Detailed Description}
 BTSP result. 
 
-Definition at line 172 of file arrow.h.
+Definition at line 27 of file btsp.h.
 
 \subsection{Field Documentation}
 \hypertarget{structarrow__btsp__result_6ba21b4231cfe2c1e437a9f7e8f31aa6}{
@@ -49,9 +45,9 @@ Definition at line 172 of file arrow.h.
 
 true if a tour was found, false otherwise 
 
-Definition at line 174 of file arrow.h.
+Definition at line 29 of file btsp.h.
 
-Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), feasible(), and main().\hypertarget{structarrow__btsp__result_ea5f7f45bf61f33ca6b57829da92e041}{
+Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-result\_\-print\_\-xml(), arrow\_\-btsp\_\-solve(), feasible(), and main().\hypertarget{structarrow__btsp__result_ea5f7f45bf61f33ca6b57829da92e041}{
 \index{arrow\_\-btsp\_\-result@{arrow\_\-btsp\_\-result}!obj\_\-value@{obj\_\-value}}
 \index{obj\_\-value@{obj\_\-value}!arrow_btsp_result@{arrow\_\-btsp\_\-result}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-btsp\_\-result::obj\_\-value}}}
@@ -60,9 +56,9 @@ Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), feasi
 
 objective value (largest cost in tour) 
 
-Definition at line 175 of file arrow.h.
+Definition at line 30 of file btsp.h.
 
-Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), feasible(), and main().\hypertarget{structarrow__btsp__result_3c0b8827a873df71166e7fe9419c45c2}{
+Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-result\_\-print\_\-xml(), arrow\_\-btsp\_\-solve(), feasible(), and main().\hypertarget{structarrow__btsp__result_3c0b8827a873df71166e7fe9419c45c2}{
 \index{arrow\_\-btsp\_\-result@{arrow\_\-btsp\_\-result}!tour\_\-length@{tour\_\-length}}
 \index{tour\_\-length@{tour\_\-length}!arrow_btsp_result@{arrow\_\-btsp\_\-result}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}double {\bf arrow\_\-btsp\_\-result::tour\_\-length}}}
@@ -71,9 +67,9 @@ Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), feasi
 
 length of the tour found 
 
-Definition at line 176 of file arrow.h.
+Definition at line 31 of file btsp.h.
 
-Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), feasible(), and main().\hypertarget{structarrow__btsp__result_ebd9a553dc3bf31f52eda0b293b0e272}{
+Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-result\_\-print\_\-xml(), arrow\_\-btsp\_\-solve(), feasible(), and main().\hypertarget{structarrow__btsp__result_ebd9a553dc3bf31f52eda0b293b0e272}{
 \index{arrow\_\-btsp\_\-result@{arrow\_\-btsp\_\-result}!tour@{tour}}
 \index{tour@{tour}!arrow_btsp_result@{arrow\_\-btsp\_\-result}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ {\bf arrow\_\-btsp\_\-result::tour}}}
@@ -82,7 +78,7 @@ Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), feasi
 
 tour that was found in node-node format 
 
-Definition at line 177 of file arrow.h.
+Definition at line 32 of file btsp.h.
 
 Referenced by arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), feasible(), and main().\hypertarget{structarrow__btsp__result_febcf61e24bf277eeb7795c18bd42b8b}{
 \index{arrow\_\-btsp\_\-result@{arrow\_\-btsp\_\-result}!optimal@{optimal}}
@@ -93,9 +89,9 @@ Referenced by arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-
 
 indicates if the solution is optimal 
 
-Definition at line 178 of file arrow.h.
+Definition at line 33 of file btsp.h.
 
-Referenced by arrow\_\-btsp\_\-solve(), and main().\hypertarget{structarrow__btsp__result_80106c5f0b8f82353ad6771ad9eaac71}{
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-result\_\-print\_\-xml(), and arrow\_\-btsp\_\-solve().\hypertarget{structarrow__btsp__result_80106c5f0b8f82353ad6771ad9eaac71}{
 \index{arrow\_\-btsp\_\-result@{arrow\_\-btsp\_\-result}!bin\_\-search\_\-steps@{bin\_\-search\_\-steps}}
 \index{bin\_\-search\_\-steps@{bin\_\-search\_\-steps}!arrow_btsp_result@{arrow\_\-btsp\_\-result}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-btsp\_\-result::bin\_\-search\_\-steps}}}
@@ -104,53 +100,31 @@ Referenced by arrow\_\-btsp\_\-solve(), and main().\hypertarget{structarrow__bts
 
 number of steps in binary search 
 
-Definition at line 179 of file arrow.h.
+Definition at line 34 of file btsp.h.
 
-Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), and main().\hypertarget{structarrow__btsp__result_53b6e6b7922eb5c3e5a1b135d42d5654}{
-\index{arrow\_\-btsp\_\-result@{arrow\_\-btsp\_\-result}!linkern\_\-attempts@{linkern\_\-attempts}}
-\index{linkern\_\-attempts@{linkern\_\-attempts}!arrow_btsp_result@{arrow\_\-btsp\_\-result}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-btsp\_\-result::linkern\_\-attempts}}}
-\label{structarrow__btsp__result_53b6e6b7922eb5c3e5a1b135d42d5654}
-
-
-number of calls to LK heuristic 
-
-Definition at line 180 of file arrow.h.
-
-Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), feasible(), and main().\hypertarget{structarrow__btsp__result_7e8a3ff6f55c89caa52a7a793fa36dd6}{
-\index{arrow\_\-btsp\_\-result@{arrow\_\-btsp\_\-result}!linkern\_\-time@{linkern\_\-time}}
-\index{linkern\_\-time@{linkern\_\-time}!arrow_btsp_result@{arrow\_\-btsp\_\-result}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}double {\bf arrow\_\-btsp\_\-result::linkern\_\-time}}}
-\label{structarrow__btsp__result_7e8a3ff6f55c89caa52a7a793fa36dd6}
+Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-result\_\-print\_\-xml(), and arrow\_\-btsp\_\-solve().\hypertarget{structarrow__btsp__result_b1d423ab6eda81de4c3bde1685976593}{
+\index{arrow\_\-btsp\_\-result@{arrow\_\-btsp\_\-result}!solver\_\-attempts@{solver\_\-attempts}}
+\index{solver\_\-attempts@{solver\_\-attempts}!arrow_btsp_result@{arrow\_\-btsp\_\-result}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-btsp\_\-result::solver\_\-attempts}\mbox{[}ARROW\_\-TSP\_\-SOLVER\_\-COUNT\mbox{]}}}
+\label{structarrow__btsp__result_b1d423ab6eda81de4c3bde1685976593}
 
 
-total time calling LK heuristic 
+calls to solver 
 
-Definition at line 181 of file arrow.h.
+Definition at line 35 of file btsp.h.
 
-Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), feasible(), and main().\hypertarget{structarrow__btsp__result_47433b850b6addae44522177a50696b3}{
-\index{arrow\_\-btsp\_\-result@{arrow\_\-btsp\_\-result}!exact\_\-attempts@{exact\_\-attempts}}
-\index{exact\_\-attempts@{exact\_\-attempts}!arrow_btsp_result@{arrow\_\-btsp\_\-result}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-btsp\_\-result::exact\_\-attempts}}}
-\label{structarrow__btsp__result_47433b850b6addae44522177a50696b3}
-
-
-number of calls to exact TSP solver 
-
-Definition at line 182 of file arrow.h.
-
-Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), feasible(), and main().\hypertarget{structarrow__btsp__result_edefe82c06445f657e5147d52720bdef}{
-\index{arrow\_\-btsp\_\-result@{arrow\_\-btsp\_\-result}!exact\_\-time@{exact\_\-time}}
-\index{exact\_\-time@{exact\_\-time}!arrow_btsp_result@{arrow\_\-btsp\_\-result}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}double {\bf arrow\_\-btsp\_\-result::exact\_\-time}}}
-\label{structarrow__btsp__result_edefe82c06445f657e5147d52720bdef}
+Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-result\_\-print\_\-xml(), arrow\_\-btsp\_\-solve(), and feasible().\hypertarget{structarrow__btsp__result_f13227603570821a0ba7d6466f39f00c}{
+\index{arrow\_\-btsp\_\-result@{arrow\_\-btsp\_\-result}!solver\_\-time@{solver\_\-time}}
+\index{solver\_\-time@{solver\_\-time}!arrow_btsp_result@{arrow\_\-btsp\_\-result}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}double {\bf arrow\_\-btsp\_\-result::solver\_\-time}\mbox{[}ARROW\_\-TSP\_\-SOLVER\_\-COUNT\mbox{]}}}
+\label{structarrow__btsp__result_f13227603570821a0ba7d6466f39f00c}
 
 
-total time calling exact TSP solver 
+total time for solver 
 
-Definition at line 183 of file arrow.h.
+Definition at line 36 of file btsp.h.
 
-Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), feasible(), and main().\hypertarget{structarrow__btsp__result_dea5711f0a574d98f66d1b20011a68de}{
+Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-result\_\-print\_\-xml(), arrow\_\-btsp\_\-solve(), and feasible().\hypertarget{structarrow__btsp__result_dea5711f0a574d98f66d1b20011a68de}{
 \index{arrow\_\-btsp\_\-result@{arrow\_\-btsp\_\-result}!total\_\-time@{total\_\-time}}
 \index{total\_\-time@{total\_\-time}!arrow_btsp_result@{arrow\_\-btsp\_\-result}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}double {\bf arrow\_\-btsp\_\-result::total\_\-time}}}
@@ -159,10 +133,10 @@ Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), feasi
 
 total time 
 
-Definition at line 184 of file arrow.h.
+Definition at line 37 of file btsp.h.
 
-Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), feasible(), and main().
+Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-result\_\-print\_\-xml(), arrow\_\-btsp\_\-solve(), and feasible().
 
 The documentation for this struct was generated from the following file:\begin{CompactItemize}
 \item 
-lib/\hyperlink{arrow_8h}{arrow.h}\end{CompactItemize}
+include/\hyperlink{btsp_8h}{btsp.h}\end{CompactItemize}

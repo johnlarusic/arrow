@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Arrow: lib/options.c File Reference</title>
+<title>Arrow: lib/common/options.c File Reference</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -16,22 +16,23 @@
   </div>
 </div>
 <div class="contents">
-<h1>lib/options.c File Reference</h1>Helper for parsing program options. <a href="#_details">More...</a>
+<h1>lib/common/options.c File Reference</h1>Helper for parsing program options. <a href="#_details">More...</a>
 <p>
-<code>#include &quot;<a class="el" href="arrow_8h-source.html">arrow.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="common_8h-source.html">common.h</a>&quot;</code><br>
 
 <p>
 <a href="options_8c-source.html">Go to the source code of this file.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="options_8c.html#4007f11f31786f9240a55404137a4109">print_usage</a> (char *<a class="el" href="bin_2tsp_8c.html#289c5900d90626d909f0a85d5a0ed61d">program_name</a>, char *<a class="el" href="subproblem_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a>)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="options_8c.html#4007f11f31786f9240a55404137a4109">print_usage</a> (char *<a class="el" href="bin_2tsp_8c.html#289c5900d90626d909f0a85d5a0ed61d">program_name</a>, char *<a class="el" href="subprob_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a>)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="options_8c.html#0e9eb03b516f80fc4b993ef37b334376">print_version</a> (char *<a class="el" href="bin_2tsp_8c.html#289c5900d90626d909f0a85d5a0ed61d">program_name</a>)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="options_8c.html#b9605b88ecec0f96fd251a7262e506a3">print_help</a> (int num_opts, <a class="el" href="structarrow__option.html">arrow_option</a> <a class="el" href="subproblem_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>[], char *description)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="options_8c.html#b9605b88ecec0f96fd251a7262e506a3">print_help</a> (int num_opts, <a class="el" href="structarrow__option.html">arrow_option</a> <a class="el" href="subprob_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>[], char *description)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="options_8c.html#e187e044872b9130dc8451a7cbfd3f8d">arrow_options_parse</a> (int num_opts, <a class="el" href="structarrow__option.html">arrow_option</a> <a class="el" href="subproblem_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>[], char *description, char *<a class="el" href="subproblem_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a>, int argc, char *argv[], int *opt_ind)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="options_8c.html#e187e044872b9130dc8451a7cbfd3f8d">arrow_options_parse</a> (int num_opts, <a class="el" href="structarrow__option.html">arrow_option</a> <a class="el" href="subprob_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>[], char *description, char *<a class="el" href="subprob_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a>, int argc, char *argv[], int *opt_ind)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Parses program options.  <a href="#e187e044872b9130dc8451a7cbfd3f8d"></a><br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Helper for parsing program options. 
@@ -97,12 +98,25 @@ For helping parse all those pesky program options!<p>
 <div class="memdoc">
 
 <p>
+Parses program options. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>num_opts</em>&nbsp;</td><td>[in] the number of program options </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>options</em>&nbsp;</td><td>[out] array of program options </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>description</em>&nbsp;</td><td>[in] description of program </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>usage</em>&nbsp;</td><td>[in] usage message </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>argc</em>&nbsp;</td><td>[in] number of program arguments </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>argv</em>&nbsp;</td><td>[out] array of program arguments (might be rearranged) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>opt_ind</em>&nbsp;</td><td>[out] index first program option appears at </td></tr>
+  </table>
+</dl>
 
 <p>Definition at line <a class="el" href="options_8c-source.html#l00024">24</a> of file <a class="el" href="options_8c-source.html">options.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00045">ARROW_FAILURE</a>, <a class="el" href="arrow_8h-source.html#l00051">ARROW_FALSE</a>, <a class="el" href="arrow_8h-source.html#l00060">ARROW_OPTION_DOUBLE</a>, <a class="el" href="arrow_8h-source.html#l00059">ARROW_OPTION_INT</a>, <a class="el" href="arrow_8h-source.html#l00061">ARROW_OPTION_STRING</a>, <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="arrow_8h-source.html#l00044">ARROW_SUCCESS</a>, <a class="el" href="arrow_8h-source.html#l00050">ARROW_TRUE</a>, <a class="el" href="arrow_8h-source.html#l00258">arrow_option::long_option</a>, <a class="el" href="linkern_8c-source.html#l00090">print_help()</a>, <a class="el" href="linkern_8c-source.html#l00120">print_usage()</a>, <a class="el" href="linkern_8c-source.html#l00105">print_version()</a>, and <a class="el" href="arrow_8h-source.html#l00257">arrow_option::short_option</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, <a class="el" href="common_8h-source.html#l00070">ARROW_OPTION_DOUBLE</a>, <a class="el" href="common_8h-source.html#l00069">ARROW_OPTION_INT</a>, <a class="el" href="common_8h-source.html#l00071">ARROW_OPTION_STRING</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="common_8h-source.html#l00399">arrow_option::long_option</a>, <a class="el" href="linkern_8c-source.html#l00092">print_help()</a>, <a class="el" href="linkern_8c-source.html#l00122">print_usage()</a>, <a class="el" href="linkern_8c-source.html#l00107">print_version()</a>, and <a class="el" href="common_8h-source.html#l00398">arrow_option::short_option</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_22mb_8c-source.html#l00030">main()</a>.</p>
+<p>Referenced by <a class="el" href="bin_22mb_8c-source.html#l00031">main()</a>.</p>
 
 </div>
 </div><p>
@@ -194,12 +208,12 @@ For helping parse all those pesky program options!<p>
 
 <p>Definition at line <a class="el" href="options_8c-source.html#l00192">192</a> of file <a class="el" href="options_8c-source.html">options.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00041">ARROW_VERSION</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00055">ARROW_VERSION</a>.</p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Jul 4 13:27:16 2008 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Feb 18 01:00:20 2009 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

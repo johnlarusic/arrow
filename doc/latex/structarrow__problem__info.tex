@@ -5,8 +5,15 @@
 Problem information data structure.  
 
 
-{\tt \#include $<$arrow.h$>$}
+{\tt \#include $<$common.h$>$}
 
+Collaboration diagram for arrow\_\-problem\_\-info:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=63pt]{structarrow__problem__info__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Data Fields}
 \begin{CompactItemize}
 \item 
@@ -17,13 +24,15 @@ int \hyperlink{structarrow__problem__info_54bbdc187af19361072480b45016f171}{cost
 int \hyperlink{structarrow__problem__info_46fabcc0ccd3a732cebb014331d4eeb5}{min\_\-cost}
 \item 
 int \hyperlink{structarrow__problem__info_724060f3be25521cca761899913c2776}{max\_\-cost}
+\item 
+\hyperlink{structarrow__hash}{arrow\_\-hash} \hyperlink{structarrow__problem__info_d62672139bdce70b23d8c72ecd96ff0d}{hash}
 \end{CompactItemize}
 
 
 \subsection{Detailed Description}
 Problem information data structure. 
 
-Definition at line 131 of file arrow.h.
+Definition at line 462 of file common.h.
 
 \subsection{Field Documentation}
 \hypertarget{structarrow__problem__info_7c9472312d7057fb9d74eb5579930216}{
@@ -35,9 +44,9 @@ Definition at line 131 of file arrow.h.
 
 sorted list of unique costs from problem. 
 
-Definition at line 133 of file arrow.h.
+Definition at line 464 of file common.h.
 
-Referenced by arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-solve(), arrow\_\-problem\_\-info\_\-destruct(), arrow\_\-problem\_\-info\_\-get(), constrained\_\-shake\_\-deep\_\-apply(), and main().\hypertarget{structarrow__problem__info_54bbdc187af19361072480b45016f171}{
+Referenced by arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-solve(), arrow\_\-problem\_\-info\_\-cost\_\-index(), arrow\_\-problem\_\-info\_\-destruct(), arrow\_\-problem\_\-info\_\-get(), and main().\hypertarget{structarrow__problem__info_54bbdc187af19361072480b45016f171}{
 \index{arrow\_\-problem\_\-info@{arrow\_\-problem\_\-info}!cost\_\-list\_\-length@{cost\_\-list\_\-length}}
 \index{cost\_\-list\_\-length@{cost\_\-list\_\-length}!arrow_problem_info@{arrow\_\-problem\_\-info}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-problem\_\-info::cost\_\-list\_\-length}}}
@@ -46,9 +55,9 @@ Referenced by arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscss
 
 length of cost list. 
 
-Definition at line 134 of file arrow.h.
+Definition at line 465 of file common.h.
 
-Referenced by arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-solve(), arrow\_\-problem\_\-info\_\-get(), constrained\_\-shake\_\-deep\_\-apply(), and main().\hypertarget{structarrow__problem__info_46fabcc0ccd3a732cebb014331d4eeb5}{
+Referenced by arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-solve(), arrow\_\-problem\_\-info\_\-cost\_\-index(), arrow\_\-problem\_\-info\_\-get(), and main().\hypertarget{structarrow__problem__info_46fabcc0ccd3a732cebb014331d4eeb5}{
 \index{arrow\_\-problem\_\-info@{arrow\_\-problem\_\-info}!min\_\-cost@{min\_\-cost}}
 \index{min\_\-cost@{min\_\-cost}!arrow_problem_info@{arrow\_\-problem\_\-info}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-problem\_\-info::min\_\-cost}}}
@@ -57,7 +66,7 @@ Referenced by arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscss
 
 smallest cost in problem. 
 
-Definition at line 135 of file arrow.h.
+Definition at line 466 of file common.h.
 
 Referenced by arrow\_\-problem\_\-info\_\-get(), and main().\hypertarget{structarrow__problem__info_724060f3be25521cca761899913c2776}{
 \index{arrow\_\-problem\_\-info@{arrow\_\-problem\_\-info}!max\_\-cost@{max\_\-cost}}
@@ -68,10 +77,21 @@ Referenced by arrow\_\-problem\_\-info\_\-get(), and main().\hypertarget{structa
 
 largest cost in problem. 
 
-Definition at line 136 of file arrow.h.
+Definition at line 467 of file common.h.
 
-Referenced by arrow\_\-problem\_\-info\_\-get(), and main().
+Referenced by arrow\_\-cbst\_\-mst\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-problem\_\-info\_\-get(), and main().\hypertarget{structarrow__problem__info_d62672139bdce70b23d8c72ecd96ff0d}{
+\index{arrow\_\-problem\_\-info@{arrow\_\-problem\_\-info}!hash@{hash}}
+\index{hash@{hash}!arrow_problem_info@{arrow\_\-problem\_\-info}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf arrow\_\-hash} {\bf arrow\_\-problem\_\-info::hash}}}
+\label{structarrow__problem__info_d62672139bdce70b23d8c72ecd96ff0d}
+
+
+hash table structure 
+
+Definition at line 468 of file common.h.
+
+Referenced by arrow\_\-problem\_\-info\_\-cost\_\-index(), arrow\_\-problem\_\-info\_\-destruct(), arrow\_\-problem\_\-info\_\-get(), and main().
 
 The documentation for this struct was generated from the following file:\begin{CompactItemize}
 \item 
-lib/\hyperlink{arrow_8h}{arrow.h}\end{CompactItemize}
+include/\hyperlink{common_8h}{common.h}\end{CompactItemize}

@@ -22,226 +22,198 @@
 <a name="l00006"></a>00006 <span class="comment"> * @author  John LaRusic</span>
 <a name="l00007"></a>00007 <span class="comment"> * @ingroup bin</span>
 <a name="l00008"></a>00008 <span class="comment"> ****************************************************************************/</span>
-<a name="l00009"></a>00009 <span class="preprocessor">#include "<a class="code" href="arrow_8h.html" title="Header file for the Arrow callable library.">arrow.h</a>"</span>
-<a name="l00010"></a>00010 
-<a name="l00011"></a>00011 <span class="comment">/* Global variables */</span>
-<a name="l00012"></a><a class="code" href="bin_2btsp_8c.html#a4f3a15de34c409bdec6ceacf93078ed">00012</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a> = NULL;
-<a name="l00013"></a><a class="code" href="bin_2btsp_8c.html#bf4e392494984c6ef8259268eb1fe421">00013</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a> = NULL;
-<a name="l00014"></a><a class="code" href="bin_2btsp_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">00014</a> <span class="keywordtype">int</span> <a class="code" href="abtsp_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">random_restarts</a> = -1;
-<a name="l00015"></a><a class="code" href="bin_2btsp_8c.html#a1641a28cf3ea572a56763e84518c17b">00015</a> <span class="keywordtype">int</span> <a class="code" href="abtsp_8c.html#a1641a28cf3ea572a56763e84518c17b">stall_count</a> = -1;
-<a name="l00016"></a><a class="code" href="bin_2btsp_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">00016</a> <span class="keywordtype">int</span> <a class="code" href="abtsp_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">kicks</a> = -1;
-<a name="l00017"></a><a class="code" href="bin_2btsp_8c.html#5f4aa75866b44d2dc5f30ee0175d44ff">00017</a> <span class="keywordtype">int</span> <a class="code" href="abtsp_8c.html#5f4aa75866b44d2dc5f30ee0175d44ff">confirm_sol</a> = <a class="code" href="arrow_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>;
-<a name="l00018"></a><a class="code" href="bin_2btsp_8c.html#502a0aac74d070b870b1c096d9d8520d">00018</a> <span class="keywordtype">int</span> <a class="code" href="abtsp_8c.html#502a0aac74d070b870b1c096d9d8520d">supress_ebst</a> = <a class="code" href="arrow_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>;
-<a name="l00019"></a><a class="code" href="bin_2btsp_8c.html#ed48edf71a0207dcdec06e399c24df88">00019</a> <span class="keywordtype">int</span> <a class="code" href="abtsp_8c.html#ed48edf71a0207dcdec06e399c24df88">find_short_tour</a> = <a class="code" href="arrow_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>;
-<a name="l00020"></a><a class="code" href="bin_2btsp_8c.html#ed7394fd8e0c2796b26b9654fd10fd9d">00020</a> <span class="keywordtype">int</span> <a class="code" href="abtsp_8c.html#ed7394fd8e0c2796b26b9654fd10fd9d">lower_bound</a> = -1;
-<a name="l00021"></a><a class="code" href="bin_2btsp_8c.html#f5a34eb1d01ffd792adcadc9627ffcb8">00021</a> <span class="keywordtype">int</span> <a class="code" href="abtsp_8c.html#f5a34eb1d01ffd792adcadc9627ffcb8">upper_bound</a> = INT_MAX;
-<a name="l00022"></a><a class="code" href="bin_2btsp_8c.html#227b7ec968925f365b96a92ace419c56">00022</a> <span class="keywordtype">int</span> <a class="code" href="abtsp_8c.html#227b7ec968925f365b96a92ace419c56">basic_attempts</a> = <a class="code" href="arrow_8h.html#803ded0eb51e5d8750d08ab33e618af4">ARROW_DEFAULT_BASIC_ATTEMPTS</a>;
-<a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="comment">/* Program options */</span>
-<a name="l00025"></a><a class="code" href="bin_2btsp_8c.html#9b58b2c4af931c8486a986c9deca40f5">00025</a> <span class="preprocessor">#define NUM_OPTS 11</span>
-<a name="l00026"></a><a class="code" href="bin_2btsp_8c.html#cea6a9709d519c143f30db401a0d0c72">00026</a> <span class="preprocessor"></span><a class="code" href="structarrow__option.html" title="Program options structure.">arrow_option</a> <a class="code" href="bin_22mb_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>[<a class="code" href="bin_22mb_8c.html#9b58b2c4af931c8486a986c9deca40f5">NUM_OPTS</a>] = 
-<a name="l00027"></a>00027 {
-<a name="l00028"></a>00028     {<span class="charliteral">'i'</span>, <span class="stringliteral">"input"</span>, <span class="stringliteral">"TSPLIB input file"</span>, 
-<a name="l00029"></a>00029         <a class="code" href="arrow_8h.html#a5af4b3dd40c1687deb0e897317fac3d">ARROW_OPTION_STRING</a>, &amp;<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>, <a class="code" href="arrow_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>, ARROW_TRUE},
-<a name="l00030"></a>00030     {<span class="charliteral">'x'</span>, <span class="stringliteral">"xml"</span>, <span class="stringliteral">"file to write XML output to"</span>,
-<a name="l00031"></a>00031         <a class="code" href="arrow_8h.html#a5af4b3dd40c1687deb0e897317fac3d">ARROW_OPTION_STRING</a>, &amp;<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a>, <a class="code" href="arrow_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="arrow_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>},
-<a name="l00032"></a>00032         
-<a name="l00033"></a>00033     {<span class="charliteral">'r'</span>, <span class="stringliteral">"restarts"</span>, <span class="stringliteral">"number of random restarts"</span>,
-<a name="l00034"></a>00034         <a class="code" href="arrow_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">random_restarts</a>, <a class="code" href="arrow_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="arrow_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>},
-<a name="l00035"></a>00035     {<span class="charliteral">'s'</span>, <span class="stringliteral">"stall-count"</span>, <span class="stringliteral">"max number of 4-swaps w/o progress"</span>,
-<a name="l00036"></a>00036         <a class="code" href="arrow_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp_8c.html#a1641a28cf3ea572a56763e84518c17b">stall_count</a>, <a class="code" href="arrow_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="arrow_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>},
-<a name="l00037"></a>00037     {<span class="charliteral">'k'</span>, <span class="stringliteral">"kicks"</span>, <span class="stringliteral">"number of 4-swap kicks"</span>,
-<a name="l00038"></a>00038         <a class="code" href="arrow_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">kicks</a>, <a class="code" href="arrow_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="arrow_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>},
-<a name="l00039"></a>00039     {<span class="charliteral">'c'</span>, <span class="stringliteral">"confirm-solution"</span>, <span class="stringliteral">"confirm solution with exact solver"</span>,
-<a name="l00040"></a>00040         <a class="code" href="arrow_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp_8c.html#5f4aa75866b44d2dc5f30ee0175d44ff">confirm_sol</a>, <a class="code" href="arrow_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, ARROW_FALSE},
-<a name="l00041"></a>00041     {<span class="charliteral">'e'</span>, <span class="stringliteral">"supress-ebst"</span>, <span class="stringliteral">"supress binary search"</span>,
-<a name="l00042"></a>00042         <a class="code" href="arrow_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp_8c.html#502a0aac74d070b870b1c096d9d8520d">supress_ebst</a>, <a class="code" href="arrow_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, ARROW_FALSE},
-<a name="l00043"></a>00043     {<span class="charliteral">'S'</span>, <span class="stringliteral">"find-short-tour"</span>, <span class="stringliteral">"finds a (relatively) short BTSP tour"</span>,
-<a name="l00044"></a>00044         <a class="code" href="arrow_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp_8c.html#ed48edf71a0207dcdec06e399c24df88">find_short_tour</a>, <a class="code" href="arrow_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, ARROW_FALSE},
-<a name="l00045"></a>00045         
-<a name="l00046"></a>00046     {<span class="charliteral">'l'</span>, <span class="stringliteral">"lower-bound"</span>, <span class="stringliteral">"initial lower bound"</span>,
-<a name="l00047"></a>00047         <a class="code" href="arrow_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp_8c.html#ed7394fd8e0c2796b26b9654fd10fd9d">lower_bound</a>, <a class="code" href="arrow_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="arrow_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>},
-<a name="l00048"></a>00048     {<span class="charliteral">'u'</span>, <span class="stringliteral">"upper-bound"</span>, <span class="stringliteral">"initial upper bound"</span>,
-<a name="l00049"></a>00049         <a class="code" href="arrow_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp_8c.html#f5a34eb1d01ffd792adcadc9627ffcb8">upper_bound</a>, <a class="code" href="arrow_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="arrow_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>},
-<a name="l00050"></a>00050     {<span class="charliteral">'a'</span>, <span class="stringliteral">"basic-attempts"</span>, <span class="stringliteral">"number of basic attempts"</span>,
-<a name="l00051"></a>00051         <a class="code" href="arrow_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp_8c.html#227b7ec968925f365b96a92ace419c56">basic_attempts</a>, <a class="code" href="arrow_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="arrow_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>}
-<a name="l00052"></a>00052 };
-<a name="l00053"></a><a class="code" href="bin_2btsp_8c.html#3aad16fd4bea1b9717f232ea75ad6449">00053</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a> = <span class="stringliteral">"Bottleneck traveling salesman problem (BTSP) solver"</span>;
-<a name="l00054"></a><a class="code" href="bin_2btsp_8c.html#adebe2487a2c5240ab6cd02c83add0bf">00054</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a> = <span class="stringliteral">"-i tsplib.tsp [options]"</span>;
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056 <span class="comment">/* Main method */</span>
-<a name="l00057"></a>00057 <span class="keywordtype">int</span> 
-<a name="l00058"></a><a class="code" href="bin_2btsp_8c.html#0ddf1224851353fc92bfbff6f499fa97">00058</a> <a class="code" href="bin_22mb_8c.html#0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])
-<a name="l00059"></a>00059 {   
-<a name="l00060"></a>00060     <span class="keywordtype">int</span> ret = EXIT_SUCCESS;
+<a name="l00009"></a>00009 <span class="preprocessor">#include "<a class="code" href="common_8h.html" title="Common functions and data structures.">common.h</a>"</span>
+<a name="l00010"></a>00010 <span class="preprocessor">#include "<a class="code" href="lb_8h.html" title="Lower bound functions for the bottleneck TSP.">lb.h</a>"</span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include "<a class="code" href="tsp_8h.html" title="Solvers and heuristics for the traveling salesman problem.">tsp.h</a>"</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include "<a class="code" href="btsp_8h.html" title="Functions for solving the bottleneck TSP.">btsp.h</a>"</span>
+<a name="l00013"></a>00013 
+<a name="l00014"></a>00014 <span class="comment">/* Global variables */</span>
+<a name="l00015"></a><a class="code" href="bin_2btsp_8c.html#a4f3a15de34c409bdec6ceacf93078ed">00015</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a> = NULL;
+<a name="l00016"></a><a class="code" href="bin_2btsp_8c.html#bf4e392494984c6ef8259268eb1fe421">00016</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a> = NULL;
+<a name="l00017"></a><a class="code" href="bin_2btsp_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">00017</a> <span class="keywordtype">int</span> <a class="code" href="abtsp_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">random_restarts</a> = -1;
+<a name="l00018"></a><a class="code" href="bin_2btsp_8c.html#a1641a28cf3ea572a56763e84518c17b">00018</a> <span class="keywordtype">int</span> <a class="code" href="abtsp_8c.html#a1641a28cf3ea572a56763e84518c17b">stall_count</a> = -1;
+<a name="l00019"></a><a class="code" href="bin_2btsp_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">00019</a> <span class="keywordtype">int</span> <a class="code" href="abtsp_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">kicks</a> = -1;
+<a name="l00020"></a><a class="code" href="bin_2btsp_8c.html#5f4aa75866b44d2dc5f30ee0175d44ff">00020</a> <span class="keywordtype">int</span> <a class="code" href="abtsp_8c.html#5f4aa75866b44d2dc5f30ee0175d44ff">confirm_sol</a> = <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>;
+<a name="l00021"></a><a class="code" href="bin_2btsp_8c.html#502a0aac74d070b870b1c096d9d8520d">00021</a> <span class="keywordtype">int</span> <a class="code" href="abtsp-rai_8c.html#502a0aac74d070b870b1c096d9d8520d">supress_ebst</a> = <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>;
+<a name="l00022"></a><a class="code" href="bin_2btsp_8c.html#ed48edf71a0207dcdec06e399c24df88">00022</a> <span class="keywordtype">int</span> <a class="code" href="abtsp_8c.html#ed48edf71a0207dcdec06e399c24df88">find_short_tour</a> = <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>;
+<a name="l00023"></a><a class="code" href="bin_2btsp_8c.html#c022145e682345ed4064bad274e5a4f1">00023</a> <span class="keywordtype">int</span> <a class="code" href="abtsp_8c.html#c022145e682345ed4064bad274e5a4f1">supress_hash</a> = <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>;
+<a name="l00024"></a><a class="code" href="bin_2btsp_8c.html#ed7394fd8e0c2796b26b9654fd10fd9d">00024</a> <span class="keywordtype">int</span> <a class="code" href="abtsp-rai_8c.html#ed7394fd8e0c2796b26b9654fd10fd9d">lower_bound</a> = -1;
+<a name="l00025"></a><a class="code" href="bin_2btsp_8c.html#f5a34eb1d01ffd792adcadc9627ffcb8">00025</a> <span class="keywordtype">int</span> <a class="code" href="abtsp-rai_8c.html#f5a34eb1d01ffd792adcadc9627ffcb8">upper_bound</a> = INT_MAX;
+<a name="l00026"></a><a class="code" href="bin_2btsp_8c.html#227b7ec968925f365b96a92ace419c56">00026</a> <span class="keywordtype">int</span> <a class="code" href="abtsp-rai_8c.html#227b7ec968925f365b96a92ace419c56">basic_attempts</a> = 1;
+<a name="l00027"></a>00027 
+<a name="l00028"></a>00028 <span class="comment">/* Program options */</span>
+<a name="l00029"></a><a class="code" href="bin_2btsp_8c.html#9b58b2c4af931c8486a986c9deca40f5">00029</a> <span class="preprocessor">#define NUM_OPTS 12</span>
+<a name="l00030"></a><a class="code" href="bin_2btsp_8c.html#cea6a9709d519c143f30db401a0d0c72">00030</a> <span class="preprocessor"></span><a class="code" href="structarrow__option.html" title="Program options structure.">arrow_option</a> <a class="code" href="bin_22mb_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>[<a class="code" href="bin_22mb_8c.html#9b58b2c4af931c8486a986c9deca40f5">NUM_OPTS</a>] = 
+<a name="l00031"></a>00031 {
+<a name="l00032"></a>00032     {<span class="charliteral">'i'</span>, <span class="stringliteral">"input"</span>, <span class="stringliteral">"TSPLIB input file"</span>, 
+<a name="l00033"></a>00033         <a class="code" href="common_8h.html#a5af4b3dd40c1687deb0e897317fac3d">ARROW_OPTION_STRING</a>, &amp;<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>, <a class="code" href="common_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>, ARROW_TRUE},
+<a name="l00034"></a>00034     {<span class="charliteral">'x'</span>, <span class="stringliteral">"xml"</span>, <span class="stringliteral">"file to write XML output to"</span>,
+<a name="l00035"></a>00035         <a class="code" href="common_8h.html#a5af4b3dd40c1687deb0e897317fac3d">ARROW_OPTION_STRING</a>, &amp;<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a>, <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="common_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>},
+<a name="l00036"></a>00036         
+<a name="l00037"></a>00037     {<span class="charliteral">'r'</span>, <span class="stringliteral">"restarts"</span>, <span class="stringliteral">"number of random restarts"</span>,
+<a name="l00038"></a>00038         <a class="code" href="common_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">random_restarts</a>, <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="common_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>},
+<a name="l00039"></a>00039     {<span class="charliteral">'s'</span>, <span class="stringliteral">"stall-count"</span>, <span class="stringliteral">"max number of 4-swaps w/o progress"</span>,
+<a name="l00040"></a>00040         <a class="code" href="common_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp_8c.html#a1641a28cf3ea572a56763e84518c17b">stall_count</a>, <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="common_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>},
+<a name="l00041"></a>00041     {<span class="charliteral">'k'</span>, <span class="stringliteral">"kicks"</span>, <span class="stringliteral">"number of 4-swap kicks"</span>,
+<a name="l00042"></a>00042         <a class="code" href="common_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">kicks</a>, <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="common_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>},
+<a name="l00043"></a>00043     {<span class="charliteral">'c'</span>, <span class="stringliteral">"confirm-solution"</span>, <span class="stringliteral">"confirm solution with exact solver"</span>,
+<a name="l00044"></a>00044         <a class="code" href="common_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp_8c.html#5f4aa75866b44d2dc5f30ee0175d44ff">confirm_sol</a>, <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, ARROW_FALSE},
+<a name="l00045"></a>00045     {<span class="charliteral">'e'</span>, <span class="stringliteral">"supress-ebst"</span>, <span class="stringliteral">"supress binary search"</span>,
+<a name="l00046"></a>00046         <a class="code" href="common_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp-rai_8c.html#502a0aac74d070b870b1c096d9d8520d">supress_ebst</a>, <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, ARROW_FALSE},
+<a name="l00047"></a>00047     {<span class="charliteral">'S'</span>, <span class="stringliteral">"find-short-tour"</span>, <span class="stringliteral">"finds a (relatively) short BTSP tour"</span>,
+<a name="l00048"></a>00048         <a class="code" href="common_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp_8c.html#ed48edf71a0207dcdec06e399c24df88">find_short_tour</a>, <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, ARROW_FALSE},
+<a name="l00049"></a>00049     {<span class="charliteral">'H'</span>, <span class="stringliteral">"supress-hash"</span>, <span class="stringliteral">"do not create hash table"</span>,
+<a name="l00050"></a>00050         <a class="code" href="common_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp_8c.html#c022145e682345ed4064bad274e5a4f1">supress_hash</a>, <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, ARROW_FALSE},
+<a name="l00051"></a>00051         
+<a name="l00052"></a>00052     {<span class="charliteral">'l'</span>, <span class="stringliteral">"lower-bound"</span>, <span class="stringliteral">"initial lower bound"</span>,
+<a name="l00053"></a>00053         <a class="code" href="common_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp-rai_8c.html#ed7394fd8e0c2796b26b9654fd10fd9d">lower_bound</a>, <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="common_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>},
+<a name="l00054"></a>00054     {<span class="charliteral">'u'</span>, <span class="stringliteral">"upper-bound"</span>, <span class="stringliteral">"initial upper bound"</span>,
+<a name="l00055"></a>00055         <a class="code" href="common_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp-rai_8c.html#f5a34eb1d01ffd792adcadc9627ffcb8">upper_bound</a>, <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="common_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>},
+<a name="l00056"></a>00056     {<span class="charliteral">'a'</span>, <span class="stringliteral">"basic-attempts"</span>, <span class="stringliteral">"number of basic attempts"</span>,
+<a name="l00057"></a>00057         <a class="code" href="common_8h.html#627f37797cc57afbe5bd43c2bc18ef0a">ARROW_OPTION_INT</a>, &amp;<a class="code" href="abtsp-rai_8c.html#227b7ec968925f365b96a92ace419c56">basic_attempts</a>, <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="common_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>}
+<a name="l00058"></a>00058 };
+<a name="l00059"></a><a class="code" href="bin_2btsp_8c.html#3aad16fd4bea1b9717f232ea75ad6449">00059</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a> = <span class="stringliteral">"Bottleneck traveling salesman problem (BTSP) solver"</span>;
+<a name="l00060"></a><a class="code" href="bin_2btsp_8c.html#adebe2487a2c5240ab6cd02c83add0bf">00060</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a> = <span class="stringliteral">"-i tsplib.tsp [options]"</span>;
 <a name="l00061"></a>00061 
-<a name="l00062"></a>00062     <a class="code" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> problem;
-<a name="l00063"></a>00063     <a class="code" href="structarrow__problem__info.html" title="Problem information data structure.">arrow_problem_info</a> info;
-<a name="l00064"></a>00064     <a class="code" href="structarrow__tsp__lk__params.html" title="LK algorithm parameters.">arrow_tsp_lk_params</a> lk_params;
-<a name="l00065"></a>00065     <a class="code" href="structarrow__btsp__fun.html" title="BTSP Cost matrix function definition.">arrow_btsp_fun</a> fun_basic;
-<a name="l00066"></a>00066     <a class="code" href="structarrow__btsp__result.html" title="BTSP result.">arrow_btsp_result</a> result;
-<a name="l00067"></a>00067     <a class="code" href="structarrow__btsp__params.html" title="BTSP algorithm parameters.">arrow_btsp_params</a> btsp_params;
-<a name="l00068"></a>00068     
-<a name="l00069"></a>00069     <span class="keywordtype">double</span> start_time = <a class="code" href="arrow_8h.html#05b2e96c9991c51368c1f8d5a77d3ccf" title="Used to measure timings.">arrow_util_zeit</a>();
-<a name="l00070"></a>00070     <span class="keywordtype">double</span> end_time;
-<a name="l00071"></a>00071     <span class="keywordtype">double</span> bbssp_time = -1.0;
-<a name="l00072"></a>00072     
-<a name="l00073"></a>00073     <span class="comment">/* Read program arguments */</span>
-<a name="l00074"></a>00074     <span class="keywordflow">if</span>(!<a class="code" href="arrow_8h.html#e187e044872b9130dc8451a7cbfd3f8d">arrow_options_parse</a>(<a class="code" href="bin_22mb_8c.html#9b58b2c4af931c8486a986c9deca40f5">NUM_OPTS</a>, options, <a class="code" href="bin_22mb_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a>, <a class="code" href="bin_22mb_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a>, argc, argv, NULL))
-<a name="l00075"></a>00075         <span class="keywordflow">return</span> EXIT_FAILURE;
-<a name="l00076"></a>00076         
-<a name="l00077"></a>00077     <span class="comment">/* Try and read the problem file */</span>
-<a name="l00078"></a>00078     <span class="keywordflow">if</span>(!<a class="code" href="arrow_8h.html#b5b9bae9f92630983d3b3d39d86198f8" title="Reads a problem from a TSPLIB file.">arrow_problem_read</a>(<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>, &amp;problem))
-<a name="l00079"></a>00079         <span class="keywordflow">return</span> EXIT_FAILURE;
-<a name="l00080"></a>00080     <span class="keywordflow">if</span>(!problem.<a class="code" href="structarrow__problem.html#168ab92e9d7a873740a2550f4d3510d9">symmetric</a>)
-<a name="l00081"></a>00081     {
-<a name="l00082"></a>00082         <a class="code" href="arrow_8h.html#2bc89592b4a27c03c1129b8e4b876a51">arrow_print_error</a>(<span class="stringliteral">"Solver only works on symmetric matrices."</span>);
-<a name="l00083"></a>00083         <span class="keywordflow">return</span> EXIT_FAILURE;
-<a name="l00084"></a>00084     }
-<a name="l00085"></a>00085     
-<a name="l00086"></a>00086     <span class="comment">/* Gather basic info about the problem */</span>
-<a name="l00087"></a>00087     <span class="keywordflow">if</span>(!<a class="code" href="arrow_8h.html#01623c45a7e1726ef7eeeec300e75bff" title="Builds ordered cost list and finds min/max cost in a problem.">arrow_problem_info_get</a>(&amp;problem, &amp;info))
-<a name="l00088"></a>00088         <span class="keywordflow">return</span> EXIT_FAILURE;
-<a name="l00089"></a>00089     printf(<span class="stringliteral">"Number of unique costs: %d\n"</span>, info.<a class="code" href="structarrow__problem__info.html#54bbdc187af19361072480b45016f171">cost_list_length</a>);
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091     <span class="comment">/* Determine if we need to call the BBSSP to find a lower bound */</span>
-<a name="l00092"></a>00092     <span class="keywordflow">if</span>(<a class="code" href="abtsp_8c.html#ed7394fd8e0c2796b26b9654fd10fd9d">lower_bound</a> &lt; 0)
-<a name="l00093"></a>00093     {
-<a name="l00094"></a>00094         printf(<span class="stringliteral">"Solving BBSSP to find a lower bound\n"</span>);
-<a name="l00095"></a>00095         <a class="code" href="structarrow__bound__result.html" title="A lower bound result.">arrow_bound_result</a> bbssp_result;
-<a name="l00096"></a>00096         <span class="keywordflow">if</span>(!<a class="code" href="arrow_8h.html#ff7006ace4173927265facbe5f895cf0" title="Solves the bottleneck biconnected spanning subgraph problem (BBSSP) on the given...">arrow_bbssp_solve</a>(&amp;problem, &amp;info, &amp;bbssp_result))
-<a name="l00097"></a>00097         {
-<a name="l00098"></a>00098             <a class="code" href="arrow_8h.html#2bc89592b4a27c03c1129b8e4b876a51">arrow_print_error</a>(<span class="stringliteral">"Could not solve BBSSP on file.\n"</span>);
-<a name="l00099"></a>00099             <a class="code" href="arrow_8h.html#a702972ab510dcc6354d7679759611d1" title="Deallocates problem data structure.">arrow_problem_destruct</a>(&amp;problem);
-<a name="l00100"></a>00100             <span class="keywordflow">return</span> EXIT_FAILURE;
-<a name="l00101"></a>00101         }
-<a name="l00102"></a>00102         <a class="code" href="abtsp_8c.html#ed7394fd8e0c2796b26b9654fd10fd9d">lower_bound</a> = bbssp_result.<a class="code" href="structarrow__bound__result.html#acbca68de984376a60dbb9893935e0f4">obj_value</a>;
-<a name="l00103"></a>00103         bbssp_time = bbssp_result.<a class="code" href="structarrow__bound__result.html#d27a3cae43bbe1ed2e2c60a4ef307b08">total_time</a>;
-<a name="l00104"></a>00104         printf(<span class="stringliteral">"BBSSP lower bound is %d\n."</span>, <a class="code" href="abtsp_8c.html#ed7394fd8e0c2796b26b9654fd10fd9d">lower_bound</a>);
-<a name="l00105"></a>00105     }
-<a name="l00106"></a>00106     
-<a name="l00107"></a>00107     <span class="comment">/* Setup LK parameters structure */</span>
-<a name="l00108"></a>00108     <a class="code" href="arrow_8h.html#b6916d874aabb28c782ec4b37448851a" title="Sets default parameters for Lin-Kernighan heuristic:random_restarts = 0stall_count...">arrow_tsp_lk_params_init</a>(&amp;problem, &amp;lk_params);
-<a name="l00109"></a>00109     <span class="keywordflow">if</span>(<a class="code" href="abtsp_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">random_restarts</a> &gt;= 0)    lk_params.<a class="code" href="structarrow__tsp__lk__params.html#ad3822d8c0e5d78b09618dbf716c3a4a">random_restarts</a>  = <a class="code" href="abtsp_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">random_restarts</a>;
-<a name="l00110"></a>00110     <span class="keywordflow">if</span>(<a class="code" href="abtsp_8c.html#a1641a28cf3ea572a56763e84518c17b">stall_count</a> &gt;= 0)        lk_params.<a class="code" href="structarrow__tsp__lk__params.html#ec5d500e1f1d7dabbbe0d1aae2abfcf8">stall_count</a>      = <a class="code" href="abtsp_8c.html#a1641a28cf3ea572a56763e84518c17b">stall_count</a>;
-<a name="l00111"></a>00111     <span class="keywordflow">if</span>(<a class="code" href="abtsp_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">kicks</a> &gt;= 0)              lk_params.<a class="code" href="structarrow__tsp__lk__params.html#9744a2fb89bca6b678fec9a6a17255ea">kicks</a>            = <a class="code" href="abtsp_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">kicks</a>;
-<a name="l00112"></a>00112         
-<a name="l00113"></a>00113     <span class="comment">/* Setup necessary function structures */</span>
-<a name="l00114"></a>00114     <span class="keywordflow">if</span>(<a class="code" href="arrow_8h.html#a8030d26d0cc61ba064d0baedf766552" title="Basic BTSP to TSP function.">arrow_btsp_fun_basic</a>(<a class="code" href="arrow_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>, &amp;fun_basic) != <a class="code" href="arrow_8h.html#21afcc3dc34f8488ad437841f58225c4">ARROW_SUCCESS</a>)
-<a name="l00115"></a>00115         <span class="keywordflow">return</span> EXIT_FAILURE;
-<a name="l00116"></a>00116 <span class="preprocessor">    #define SOLVE_STEPS 1</span>
-<a name="l00117"></a>00117 <span class="preprocessor"></span>    <a class="code" href="structarrow__btsp__solve__plan.html" title="BTSP feasibility solve step plan.">arrow_btsp_solve_plan</a> steps[<a class="code" href="abtsp_8c.html#ceebcce8f411269df7b99e78247d7497">SOLVE_STEPS</a>] = 
-<a name="l00118"></a>00118     {
-<a name="l00119"></a>00119        {
-<a name="l00120"></a>00120            <a class="code" href="arrow_8h.html#08ba7f1d633a842ae065d926e13e99d1">ARROW_BTSP_SOLVE_PLAN_BASIC</a>,     <span class="comment">/* plan_type */</span>
-<a name="l00121"></a>00121            <a class="code" href="arrow_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>,                     <span class="comment">/* use_exact_solver? */</span>
-<a name="l00122"></a>00122            fun_basic,                       <span class="comment">/* fun (cost matrix function) */</span>
-<a name="l00123"></a>00123            lk_params,                       <span class="comment">/* LK parameters */</span>
-<a name="l00124"></a>00124            <a class="code" href="arrow_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>,                      <span class="comment">/* upper_bound_update? */</span>
-<a name="l00125"></a>00125            <a class="code" href="abtsp_8c.html#227b7ec968925f365b96a92ace419c56">basic_attempts</a>                   <span class="comment">/* attempts */</span>
-<a name="l00126"></a>00126        }
-<a name="l00127"></a>00127     };
-<a name="l00128"></a>00128     
-<a name="l00129"></a>00129     <span class="comment">/* Setup BTSP parameters structure */</span>
-<a name="l00130"></a>00130     <a class="code" href="arrow_8h.html#9ee14515eed23a56303e338258725b7c" title="Inititalizes BTSP parameter structure.">arrow_btsp_params_init</a>(&amp;btsp_params);
-<a name="l00131"></a>00131     btsp_params.<a class="code" href="structarrow__btsp__params.html#2c579feb3ff41f4d73b5de97596fe465">confirm_sol</a>         = <a class="code" href="abtsp_8c.html#5f4aa75866b44d2dc5f30ee0175d44ff">confirm_sol</a>;
-<a name="l00132"></a>00132     btsp_params.<a class="code" href="structarrow__btsp__params.html#cd85b850ac7c8495a4689100e8c3182c">supress_ebst</a>        = <a class="code" href="abtsp_8c.html#502a0aac74d070b870b1c096d9d8520d">supress_ebst</a>;
-<a name="l00133"></a>00133     btsp_params.<a class="code" href="structarrow__btsp__params.html#f5fd677200b64930838c6905cbada990">find_short_tour</a>     = <a class="code" href="abtsp_8c.html#ed48edf71a0207dcdec06e399c24df88">find_short_tour</a>;
-<a name="l00134"></a>00134     btsp_params.<a class="code" href="structarrow__btsp__params.html#da747e3797f9327834e4dbb1459d2786">lower_bound</a>         = <a class="code" href="abtsp_8c.html#ed7394fd8e0c2796b26b9654fd10fd9d">lower_bound</a>;
-<a name="l00135"></a>00135     btsp_params.<a class="code" href="structarrow__btsp__params.html#b8749004215015a78139b8e4e1fb8905">upper_bound</a>         = <a class="code" href="abtsp_8c.html#f5a34eb1d01ffd792adcadc9627ffcb8">upper_bound</a>;
-<a name="l00136"></a>00136     btsp_params.<a class="code" href="structarrow__btsp__params.html#2897d24f2fdd53c723609cf68880f55e">num_steps</a>           = <a class="code" href="abtsp_8c.html#ceebcce8f411269df7b99e78247d7497">SOLVE_STEPS</a>;
-<a name="l00137"></a>00137     btsp_params.<a class="code" href="structarrow__btsp__params.html#49aedb95b2fc4a725e3bb8485470484b">steps</a>               = steps;
-<a name="l00138"></a>00138     
-<a name="l00139"></a>00139     <span class="comment">/* Setup BTSP results structure */</span>
-<a name="l00140"></a>00140     <a class="code" href="arrow_8h.html#b78b71959db64c692a9e16832df9c096" title="Initializes the BTSP result structure.">arrow_btsp_result_init</a>(&amp;problem, &amp;result);
-<a name="l00141"></a>00141     <span class="keywordflow">if</span>(!<a class="code" href="arrow_8h.html#3c6427a5ad0c0f5157d2c1a903f823c4" title="Solves TSP with Concorde&amp;#39;s exact solver.">arrow_btsp_solve</a>(&amp;problem, &amp;info, &amp;btsp_params, &amp;result))
-<a name="l00142"></a>00142     {
-<a name="l00143"></a>00143         <a class="code" href="arrow_8h.html#2bc89592b4a27c03c1129b8e4b876a51">arrow_print_error</a>(<span class="stringliteral">"Could not solve BTSP on file.\n"</span>);
-<a name="l00144"></a>00144         ret = EXIT_FAILURE;
-<a name="l00145"></a>00145         <span class="keywordflow">goto</span> CLEANUP;
-<a name="l00146"></a>00146     }
-<a name="l00147"></a>00147     end_time = <a class="code" href="arrow_8h.html#05b2e96c9991c51368c1f8d5a77d3ccf" title="Used to measure timings.">arrow_util_zeit</a>() - start_time;
-<a name="l00148"></a>00148     
-<a name="l00149"></a>00149     <span class="comment">/* Final output */</span>
-<a name="l00150"></a>00150     printf(<span class="stringliteral">"\nFound Tour: %s\n"</span>, (result.<a class="code" href="structarrow__btsp__result.html#6ba21b4231cfe2c1e437a9f7e8f31aa6">found_tour</a> ? <span class="stringliteral">"Yes"</span> : <span class="stringliteral">"No"</span>));
-<a name="l00151"></a>00151     printf(<span class="stringliteral">"Max. Cost: %d\n"</span>, result.<a class="code" href="structarrow__btsp__result.html#ea5f7f45bf61f33ca6b57829da92e041">obj_value</a>);
-<a name="l00152"></a>00152     printf(<span class="stringliteral">"Tour Length: %.0f\n"</span>, result.<a class="code" href="structarrow__btsp__result.html#3c0b8827a873df71166e7fe9419c45c2">tour_length</a>);
-<a name="l00153"></a>00153     printf(<span class="stringliteral">"Initial Lower Bound: %d\n"</span>, <a class="code" href="abtsp_8c.html#ed7394fd8e0c2796b26b9654fd10fd9d">lower_bound</a>);
-<a name="l00154"></a>00154     <span class="keywordflow">if</span>(bbssp_time &gt;= 0.0)
-<a name="l00155"></a>00155         printf(<span class="stringliteral">"BBSSP Time: %.2f\n"</span>, bbssp_time);        
-<a name="l00156"></a>00156     printf(<span class="stringliteral">"Optimal?: %s\n"</span>, (result.<a class="code" href="structarrow__btsp__result.html#febcf61e24bf277eeb7795c18bd42b8b">optimal</a> == <a class="code" href="arrow_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a> ? <span class="stringliteral">"Yes"</span> : <span class="stringliteral">"???"</span>));
-<a name="l00157"></a>00157     printf(<span class="stringliteral">"Binary Search Steps: %d\n"</span>, result.<a class="code" href="structarrow__btsp__result.html#80106c5f0b8f82353ad6771ad9eaac71">bin_search_steps</a>);
-<a name="l00158"></a>00158     printf(<span class="stringliteral">"Lin-Kernighan Calls: %d\n"</span>, result.<a class="code" href="structarrow__btsp__result.html#53b6e6b7922eb5c3e5a1b135d42d5654">linkern_attempts</a>);
-<a name="l00159"></a>00159     <span class="keywordflow">if</span>(result.<a class="code" href="structarrow__btsp__result.html#53b6e6b7922eb5c3e5a1b135d42d5654">linkern_attempts</a> &gt; 0)
-<a name="l00160"></a>00160         printf(<span class="stringliteral">"Avg. Lin-Kernighan Time: %.2f\n"</span>, 
-<a name="l00161"></a>00161             result.<a class="code" href="structarrow__btsp__result.html#7e8a3ff6f55c89caa52a7a793fa36dd6">linkern_time</a> / (result.<a class="code" href="structarrow__btsp__result.html#53b6e6b7922eb5c3e5a1b135d42d5654">linkern_attempts</a> * 1.0));
-<a name="l00162"></a>00162     printf(<span class="stringliteral">"Exact TSP Calls: %d\n"</span>, result.<a class="code" href="structarrow__btsp__result.html#47433b850b6addae44522177a50696b3">exact_attempts</a>);
-<a name="l00163"></a>00163     <span class="keywordflow">if</span>(result.<a class="code" href="structarrow__btsp__result.html#47433b850b6addae44522177a50696b3">exact_attempts</a> &gt; 0)
-<a name="l00164"></a>00164         printf(<span class="stringliteral">"Avg. Exact TSP Time: %.2f\n"</span>, 
-<a name="l00165"></a>00165             result.<a class="code" href="structarrow__btsp__result.html#edefe82c06445f657e5147d52720bdef">exact_time</a> / (result.<a class="code" href="structarrow__btsp__result.html#47433b850b6addae44522177a50696b3">exact_attempts</a> * 1.0));
-<a name="l00166"></a>00166     printf(<span class="stringliteral">"Total BTSP Time: %.2f\n"</span>, result.<a class="code" href="structarrow__btsp__result.html#dea5711f0a574d98f66d1b20011a68de">total_time</a>);
-<a name="l00167"></a>00167     printf(<span class="stringliteral">"Total Time: %.2f\n"</span>, end_time);
-<a name="l00168"></a>00168     
-<a name="l00169"></a>00169     <span class="comment">/* Xml output */</span>
-<a name="l00170"></a>00170     <span class="keywordflow">if</span>(<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a> != NULL)
-<a name="l00171"></a>00171     {
-<a name="l00172"></a>00172         FILE *xml;
-<a name="l00173"></a>00173         <span class="keywordflow">if</span>(!(xml = fopen(<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a>, <span class="stringliteral">"w"</span>)))
-<a name="l00174"></a>00174         {
-<a name="l00175"></a>00175             <a class="code" href="arrow_8h.html#2bc89592b4a27c03c1129b8e4b876a51">arrow_print_error</a>(<span class="stringliteral">"Could not open xml file for writing"</span>);
-<a name="l00176"></a>00176             ret = <a class="code" href="arrow_8h.html#a50e8b8f74e48535271458079c7506cb">ARROW_FAILURE</a>;
-<a name="l00177"></a>00177             <span class="keywordflow">goto</span> CLEANUP;
-<a name="l00178"></a>00178         }
-<a name="l00179"></a>00179         
-<a name="l00180"></a>00180         fprintf(xml, <span class="stringliteral">"&lt;arrow_btsp problem_file=\"%s\""</span>, <a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>);
-<a name="l00181"></a>00181         fprintf(xml, <span class="stringliteral">" command_args=\""</span>);
-<a name="l00182"></a>00182         <a class="code" href="arrow_8h.html#0bf303aee0600136e1720be7e6c60021" title="Prints out the given program arguments to the specified file.">arrow_util_print_program_args</a>(argc, argv, xml);
-<a name="l00183"></a>00183         fprintf(xml, <span class="stringliteral">"\"&gt;\n"</span>);
-<a name="l00184"></a>00184 
-<a name="l00185"></a>00185         fprintf(xml, <span class="stringliteral">"    &lt;found_tour&gt;%s&lt;/found_tour&gt;\n"</span>, 
-<a name="l00186"></a>00186                 (result.<a class="code" href="structarrow__btsp__result.html#6ba21b4231cfe2c1e437a9f7e8f31aa6">found_tour</a> ? <span class="stringliteral">"true"</span> : <span class="stringliteral">"false"</span>));
-<a name="l00187"></a>00187         fprintf(xml, <span class="stringliteral">"    &lt;objective_value&gt;%d&lt;/objective_value&gt;\n"</span>, 
-<a name="l00188"></a>00188                 (result.<a class="code" href="structarrow__btsp__result.html#6ba21b4231cfe2c1e437a9f7e8f31aa6">found_tour</a> ? result.<a class="code" href="structarrow__btsp__result.html#ea5f7f45bf61f33ca6b57829da92e041">obj_value</a> : -1));
-<a name="l00189"></a>00189         fprintf(xml, <span class="stringliteral">"    &lt;tour_length&gt;%.0f&lt;/tour_length&gt;\n"</span>, 
-<a name="l00190"></a>00190                 (result.<a class="code" href="structarrow__btsp__result.html#6ba21b4231cfe2c1e437a9f7e8f31aa6">found_tour</a> ? result.<a class="code" href="structarrow__btsp__result.html#3c0b8827a873df71166e7fe9419c45c2">tour_length</a> : -1.0));
-<a name="l00191"></a>00191         fprintf(xml, <span class="stringliteral">"    &lt;optimal&gt;%s&lt;/optimal&gt;\n"</span>, 
-<a name="l00192"></a>00192                 (result.<a class="code" href="structarrow__btsp__result.html#febcf61e24bf277eeb7795c18bd42b8b">optimal</a> ? <span class="stringliteral">"true"</span> : <span class="stringliteral">"false"</span>));
-<a name="l00193"></a>00193         fprintf(xml, <span class="stringliteral">"    &lt;lower_bound&gt;%d&lt;/lower_bound&gt;\n"</span>, <a class="code" href="abtsp_8c.html#ed7394fd8e0c2796b26b9654fd10fd9d">lower_bound</a>);
-<a name="l00194"></a>00194         fprintf(xml, <span class="stringliteral">"    &lt;lower_bound_time&gt;%.2f&lt;/lower_bound_time&gt;\n"</span>,
-<a name="l00195"></a>00195                 bbssp_time);
-<a name="l00196"></a>00196         fprintf(xml, <span class="stringliteral">"    &lt;binary_search_steps&gt;%d&lt;/binary_search_steps&gt;\n"</span>,
-<a name="l00197"></a>00197                 result.<a class="code" href="structarrow__btsp__result.html#80106c5f0b8f82353ad6771ad9eaac71">bin_search_steps</a>);
-<a name="l00198"></a>00198         fprintf(xml, <span class="stringliteral">"    &lt;linkern_attempts&gt;%d&lt;/linkern_attempts&gt;\n"</span>,
-<a name="l00199"></a>00199                 result.<a class="code" href="structarrow__btsp__result.html#53b6e6b7922eb5c3e5a1b135d42d5654">linkern_attempts</a>);
-<a name="l00200"></a>00200         fprintf(xml, <span class="stringliteral">"    &lt;linkern_avg_time&gt;%.2f&lt;/linkern_avg_time&gt;\n"</span>, 
-<a name="l00201"></a>00201                 (result.<a class="code" href="structarrow__btsp__result.html#53b6e6b7922eb5c3e5a1b135d42d5654">linkern_attempts</a> &gt; 0 
-<a name="l00202"></a>00202                  ? result.<a class="code" href="structarrow__btsp__result.html#7e8a3ff6f55c89caa52a7a793fa36dd6">linkern_time</a> / (result.<a class="code" href="structarrow__btsp__result.html#53b6e6b7922eb5c3e5a1b135d42d5654">linkern_attempts</a> * 1.0) 
-<a name="l00203"></a>00203                  : 0.0));
-<a name="l00204"></a>00204         fprintf(xml, <span class="stringliteral">"    &lt;exact_tsp_attempts&gt;%d&lt;/exact_tsp_attempts&gt;\n"</span>,
-<a name="l00205"></a>00205                 result.<a class="code" href="structarrow__btsp__result.html#47433b850b6addae44522177a50696b3">exact_attempts</a>);
-<a name="l00206"></a>00206         fprintf(xml, <span class="stringliteral">"    &lt;exact_tsp_avg_time&gt;%.2f&lt;/exact_tsp_avg_time&gt;\n"</span>, 
-<a name="l00207"></a>00207                 (result.<a class="code" href="structarrow__btsp__result.html#47433b850b6addae44522177a50696b3">exact_attempts</a> &gt; 0 
-<a name="l00208"></a>00208                  ? result.<a class="code" href="structarrow__btsp__result.html#edefe82c06445f657e5147d52720bdef">exact_time</a> / (result.<a class="code" href="structarrow__btsp__result.html#47433b850b6addae44522177a50696b3">exact_attempts</a> * 1.0) 
-<a name="l00209"></a>00209                  : 0.0));
-<a name="l00210"></a>00210         fprintf(xml, <span class="stringliteral">"    &lt;btsp_total_time&gt;%.2f&lt;/btsp_total_time&gt;\n"</span>,
-<a name="l00211"></a>00211                 result.<a class="code" href="structarrow__btsp__result.html#dea5711f0a574d98f66d1b20011a68de">total_time</a>);
-<a name="l00212"></a>00212         fprintf(xml, <span class="stringliteral">"    &lt;total_time&gt;%.2f&lt;/total_time&gt;\n"</span>, end_time);
-<a name="l00213"></a>00213         fprintf(xml, <span class="stringliteral">"&lt;/arrow_btsp&gt;\n"</span>);
-<a name="l00214"></a>00214         
-<a name="l00215"></a>00215         fclose(xml);
-<a name="l00216"></a>00216     }
-<a name="l00217"></a>00217     
-<a name="l00218"></a>00218 CLEANUP:
-<a name="l00219"></a>00219     <a class="code" href="arrow_8h.html#11d150bd3219a6ba3d9ccd3f0c952b2a" title="Destructs a BTSP result structure.">arrow_btsp_result_destruct</a>(&amp;result);
-<a name="l00220"></a>00220     <a class="code" href="arrow_8h.html#c5c69eb958340aba441e75dfbb6d941b" title="Destructs a BTSP parameters structure.">arrow_btsp_params_destruct</a>(&amp;btsp_params);
-<a name="l00221"></a>00221     <a class="code" href="arrow_8h.html#f0b2cce4c9dced6fe48fbc29877bbd8d" title="Destructs a function structure.">arrow_btsp_fun_destruct</a>(&amp;fun_basic);
-<a name="l00222"></a>00222     <a class="code" href="arrow_8h.html#c5c69eb958340aba441e75dfbb6d941b" title="Destructs a BTSP parameters structure.">arrow_btsp_params_destruct</a>(&amp;btsp_params);
-<a name="l00223"></a>00223     <a class="code" href="arrow_8h.html#67dd9d24c1d45e49152c4f9b6a3e7836" title="Destructs a LK parameters structure.">arrow_tsp_lk_params_destruct</a>(&amp;lk_params); 
-<a name="l00224"></a>00224     <a class="code" href="arrow_8h.html#a702972ab510dcc6354d7679759611d1" title="Deallocates problem data structure.">arrow_problem_destruct</a>(&amp;problem);
-<a name="l00225"></a>00225     <span class="keywordflow">return</span> ret;
-<a name="l00226"></a>00226 }
+<a name="l00062"></a>00062 <span class="comment">/* Main method */</span>
+<a name="l00063"></a>00063 <span class="keywordtype">int</span> 
+<a name="l00064"></a><a class="code" href="bin_2btsp_8c.html#0ddf1224851353fc92bfbff6f499fa97">00064</a> <a class="code" href="bin_22mb_8c.html#0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])
+<a name="l00065"></a>00065 {   
+<a name="l00066"></a>00066     <span class="keywordtype">int</span> ret = EXIT_SUCCESS;
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068     <a class="code" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> problem;
+<a name="l00069"></a>00069     <a class="code" href="structarrow__problem__info.html" title="Problem information data structure.">arrow_problem_info</a> info;
+<a name="l00070"></a>00070     <a class="code" href="structarrow__tsp__cc__lk__params.html" title="LK algorithm parameters.">arrow_tsp_cc_lk_params</a> lk_params;
+<a name="l00071"></a>00071     <a class="code" href="structarrow__btsp__fun.html" title="BTSP Cost matrix function definition.">arrow_btsp_fun</a> fun_basic;
+<a name="l00072"></a>00072     <a class="code" href="structarrow__btsp__result.html" title="BTSP result.">arrow_btsp_result</a> result;
+<a name="l00073"></a>00073     <a class="code" href="structarrow__btsp__params.html" title="BTSP algorithm parameters.">arrow_btsp_params</a> btsp_params;
+<a name="l00074"></a>00074     
+<a name="l00075"></a>00075     <span class="keywordtype">double</span> start_time = <a class="code" href="common_8h.html#05b2e96c9991c51368c1f8d5a77d3ccf" title="Used to measure timings.">arrow_util_zeit</a>();
+<a name="l00076"></a>00076     <span class="keywordtype">double</span> end_time;
+<a name="l00077"></a>00077     <span class="keywordtype">double</span> bbssp_time = -1.0;
+<a name="l00078"></a>00078     
+<a name="l00079"></a>00079     <span class="comment">/* Read program arguments */</span>
+<a name="l00080"></a>00080     <span class="keywordflow">if</span>(!<a class="code" href="common_8h.html#e187e044872b9130dc8451a7cbfd3f8d" title="Parses program options.">arrow_options_parse</a>(<a class="code" href="bin_22mb_8c.html#9b58b2c4af931c8486a986c9deca40f5">NUM_OPTS</a>, options, <a class="code" href="bin_22mb_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a>, <a class="code" href="bin_22mb_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a>, argc, argv, NULL))
+<a name="l00081"></a>00081         <span class="keywordflow">return</span> EXIT_FAILURE;
+<a name="l00082"></a>00082         
+<a name="l00083"></a>00083     <span class="comment">/* Try and read the problem file */</span>
+<a name="l00084"></a>00084     <span class="keywordflow">if</span>(!<a class="code" href="common_8h.html#b5b9bae9f92630983d3b3d39d86198f8" title="Reads a problem from a TSPLIB file.">arrow_problem_read</a>(<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>, &amp;problem))
+<a name="l00085"></a>00085         <span class="keywordflow">return</span> EXIT_FAILURE;
+<a name="l00086"></a>00086     <span class="keywordflow">if</span>(!problem.<a class="code" href="structarrow__problem.html#168ab92e9d7a873740a2550f4d3510d9">symmetric</a>)
+<a name="l00087"></a>00087     {
+<a name="l00088"></a>00088         <a class="code" href="common_8h.html#c8a166e323227a8681ed32027ca1000a">arrow_print_error</a>(<span class="stringliteral">"Solver only works on symmetric matrices."</span>);
+<a name="l00089"></a>00089         <span class="keywordflow">return</span> EXIT_FAILURE;
+<a name="l00090"></a>00090     }
+<a name="l00091"></a>00091     
+<a name="l00092"></a>00092     <span class="comment">/* Gather basic info about the problem */</span>
+<a name="l00093"></a>00093     <span class="keywordflow">if</span>(!<a class="code" href="common_8h.html#3cccb8f9982d9a1ca2f5fcd1563d7d8d" title="Builds ordered cost list and finds min/max cost in a problem.">arrow_problem_info_get</a>(&amp;problem, !<a class="code" href="abtsp_8c.html#c022145e682345ed4064bad274e5a4f1">supress_hash</a>, &amp;info))
+<a name="l00094"></a>00094         <span class="keywordflow">return</span> EXIT_FAILURE;
+<a name="l00095"></a>00095     printf(<span class="stringliteral">"Number of unique costs: %d\n"</span>, info.<a class="code" href="structarrow__problem__info.html#54bbdc187af19361072480b45016f171">cost_list_length</a>);
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097     <span class="comment">/* Determine if we need to call the BBSSP to find a lower bound */</span>
+<a name="l00098"></a>00098     <span class="keywordflow">if</span>(<a class="code" href="abtsp-rai_8c.html#ed7394fd8e0c2796b26b9654fd10fd9d">lower_bound</a> &lt; 0)
+<a name="l00099"></a>00099     {
+<a name="l00100"></a>00100         printf(<span class="stringliteral">"Solving BBSSP to find a lower bound\n"</span>);
+<a name="l00101"></a>00101         <a class="code" href="structarrow__bound__result.html" title="A lower bound result.">arrow_bound_result</a> bbssp_result;
+<a name="l00102"></a>00102         <span class="keywordflow">if</span>(!<a class="code" href="lb_8h.html#ff7006ace4173927265facbe5f895cf0" title="Solves the bottleneck biconnected spanning subgraph problem (BBSSP) on the given...">arrow_bbssp_solve</a>(&amp;problem, &amp;info, &amp;bbssp_result))
+<a name="l00103"></a>00103         {
+<a name="l00104"></a>00104             <a class="code" href="common_8h.html#c8a166e323227a8681ed32027ca1000a">arrow_print_error</a>(<span class="stringliteral">"Could not solve BBSSP on file.\n"</span>);
+<a name="l00105"></a>00105             <a class="code" href="common_8h.html#a702972ab510dcc6354d7679759611d1" title="Deallocates problem data structure.">arrow_problem_destruct</a>(&amp;problem);
+<a name="l00106"></a>00106             <span class="keywordflow">return</span> EXIT_FAILURE;
+<a name="l00107"></a>00107         }
+<a name="l00108"></a>00108         <a class="code" href="abtsp-rai_8c.html#ed7394fd8e0c2796b26b9654fd10fd9d">lower_bound</a> = bbssp_result.<a class="code" href="structarrow__bound__result.html#acbca68de984376a60dbb9893935e0f4">obj_value</a>;
+<a name="l00109"></a>00109         bbssp_time = bbssp_result.<a class="code" href="structarrow__bound__result.html#d27a3cae43bbe1ed2e2c60a4ef307b08">total_time</a>;
+<a name="l00110"></a>00110         printf(<span class="stringliteral">"BBSSP lower bound is %d\n."</span>, <a class="code" href="abtsp-rai_8c.html#ed7394fd8e0c2796b26b9654fd10fd9d">lower_bound</a>);
+<a name="l00111"></a>00111     }
+<a name="l00112"></a>00112     
+<a name="l00113"></a>00113     <span class="comment">/* Setup LK parameters structure */</span>
+<a name="l00114"></a>00114     <a class="code" href="tsp_8h.html#8ccbdc390843e8b51299a9d89183c25d" title="Sets default parameters for Lin-Kernighan heuristic:random_restarts = 0stall_count...">arrow_tsp_cc_lk_params_init</a>(&amp;problem, &amp;lk_params);
+<a name="l00115"></a>00115     <span class="keywordflow">if</span>(<a class="code" href="abtsp_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">random_restarts</a> &gt;= 0)    lk_params.<a class="code" href="structarrow__tsp__cc__lk__params.html#291c8a0ec4208ae75229c223dcf1160a">random_restarts</a>  = <a class="code" href="abtsp_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">random_restarts</a>;
+<a name="l00116"></a>00116     <span class="keywordflow">if</span>(<a class="code" href="abtsp_8c.html#a1641a28cf3ea572a56763e84518c17b">stall_count</a> &gt;= 0)        lk_params.<a class="code" href="structarrow__tsp__cc__lk__params.html#dee46e401d6f6eca9f9a0d1f376c6ebe">stall_count</a>      = <a class="code" href="abtsp_8c.html#a1641a28cf3ea572a56763e84518c17b">stall_count</a>;
+<a name="l00117"></a>00117     <span class="keywordflow">if</span>(<a class="code" href="abtsp_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">kicks</a> &gt;= 0)              lk_params.<a class="code" href="structarrow__tsp__cc__lk__params.html#5912b1978195270052497e56d8dbffae">kicks</a>            = <a class="code" href="abtsp_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">kicks</a>;
+<a name="l00118"></a>00118         
+<a name="l00119"></a>00119     <span class="comment">/* Setup necessary function structures */</span>
+<a name="l00120"></a>00120     <span class="keywordflow">if</span>(<a class="code" href="btsp_8h.html#a8030d26d0cc61ba064d0baedf766552" title="Basic BTSP to TSP function.">arrow_btsp_fun_basic</a>(<a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, &amp;fun_basic) != <a class="code" href="common_8h.html#21afcc3dc34f8488ad437841f58225c4">ARROW_SUCCESS</a>)
+<a name="l00121"></a>00121         <span class="keywordflow">return</span> EXIT_FAILURE;
+<a name="l00122"></a>00122 <span class="preprocessor">    #define SOLVE_STEPS 1</span>
+<a name="l00123"></a>00123 <span class="preprocessor"></span>    <a class="code" href="structarrow__btsp__solve__plan.html" title="BTSP feasibility solve step plan.">arrow_btsp_solve_plan</a> steps[<a class="code" href="abtsp-rai_8c.html#ceebcce8f411269df7b99e78247d7497">SOLVE_STEPS</a>] = 
+<a name="l00124"></a>00124     {
+<a name="l00125"></a>00125        {
+<a name="l00126"></a>00126            <a class="code" href="tsp_8h.html#e46fd06c8eb7f72f63159354bde93296">ARROW_TSP_CC_LK</a>,                 <span class="comment">/* TSP solver */</span>
+<a name="l00127"></a>00127            (<span class="keywordtype">void</span> *)&amp;lk_params,              <span class="comment">/* TSP solver parameters */</span>
+<a name="l00128"></a>00128            fun_basic,                       <span class="comment">/* fun (cost matrix function) */</span>
+<a name="l00129"></a>00129            <a class="code" href="abtsp-rai_8c.html#227b7ec968925f365b96a92ace419c56">basic_attempts</a>                   <span class="comment">/* attempts */</span>
+<a name="l00130"></a>00130        }
+<a name="l00131"></a>00131     };
+<a name="l00132"></a>00132     <a class="code" href="structarrow__btsp__solve__plan.html" title="BTSP feasibility solve step plan.">arrow_btsp_solve_plan</a> confirm_plan = 
+<a name="l00133"></a>00133     {
+<a name="l00134"></a>00134        <a class="code" href="tsp_8h.html#583c20a6a43c2b16485f0c2229e9f450">ARROW_TSP_CC_EXACT</a>,
+<a name="l00135"></a>00135        NULL,
+<a name="l00136"></a>00136        fun_basic,
+<a name="l00137"></a>00137        1
+<a name="l00138"></a>00138     };
+<a name="l00139"></a>00139         
+<a name="l00140"></a>00140     <span class="comment">/* Setup BTSP parameters structure */</span>
+<a name="l00141"></a>00141     <a class="code" href="btsp_8h.html#9ee14515eed23a56303e338258725b7c" title="Inititalizes BTSP parameter structure.">arrow_btsp_params_init</a>(&amp;btsp_params);
+<a name="l00142"></a>00142     btsp_params.<a class="code" href="structarrow__btsp__params.html#2c579feb3ff41f4d73b5de97596fe465">confirm_sol</a>         = <a class="code" href="abtsp_8c.html#5f4aa75866b44d2dc5f30ee0175d44ff">confirm_sol</a>;
+<a name="l00143"></a>00143     btsp_params.<a class="code" href="structarrow__btsp__params.html#cd85b850ac7c8495a4689100e8c3182c">supress_ebst</a>        = <a class="code" href="abtsp-rai_8c.html#502a0aac74d070b870b1c096d9d8520d">supress_ebst</a>;
+<a name="l00144"></a>00144     btsp_params.<a class="code" href="structarrow__btsp__params.html#f5fd677200b64930838c6905cbada990">find_short_tour</a>     = <a class="code" href="abtsp_8c.html#ed48edf71a0207dcdec06e399c24df88">find_short_tour</a>;
+<a name="l00145"></a>00145     btsp_params.<a class="code" href="structarrow__btsp__params.html#da747e3797f9327834e4dbb1459d2786">lower_bound</a>         = <a class="code" href="abtsp-rai_8c.html#ed7394fd8e0c2796b26b9654fd10fd9d">lower_bound</a>;
+<a name="l00146"></a>00146     btsp_params.<a class="code" href="structarrow__btsp__params.html#b8749004215015a78139b8e4e1fb8905">upper_bound</a>         = <a class="code" href="abtsp-rai_8c.html#f5a34eb1d01ffd792adcadc9627ffcb8">upper_bound</a>;
+<a name="l00147"></a>00147     btsp_params.<a class="code" href="structarrow__btsp__params.html#2897d24f2fdd53c723609cf68880f55e">num_steps</a>           = <a class="code" href="abtsp-rai_8c.html#ceebcce8f411269df7b99e78247d7497">SOLVE_STEPS</a>;
+<a name="l00148"></a>00148     btsp_params.<a class="code" href="structarrow__btsp__params.html#49aedb95b2fc4a725e3bb8485470484b">steps</a>               = steps;
+<a name="l00149"></a>00149     btsp_params.<a class="code" href="structarrow__btsp__params.html#f6a3bf7e56264d14b9dceb4ce779363c">confirm_plan</a>        = confirm_plan;
+<a name="l00150"></a>00150     
+<a name="l00151"></a>00151     <span class="comment">/* Setup BTSP results structure */</span>
+<a name="l00152"></a>00152     <a class="code" href="btsp_8h.html#b78b71959db64c692a9e16832df9c096" title="Initializes the BTSP result structure.">arrow_btsp_result_init</a>(&amp;problem, &amp;result);
+<a name="l00153"></a>00153     <span class="keywordflow">if</span>(!<a class="code" href="btsp_8h.html#3c6427a5ad0c0f5157d2c1a903f823c4" title="Solves TSP with Concorde&amp;#39;s exact solver.">arrow_btsp_solve</a>(&amp;problem, &amp;info, &amp;btsp_params, &amp;result))
+<a name="l00154"></a>00154     {
+<a name="l00155"></a>00155         <a class="code" href="common_8h.html#c8a166e323227a8681ed32027ca1000a">arrow_print_error</a>(<span class="stringliteral">"Could not solve BTSP on file.\n"</span>);
+<a name="l00156"></a>00156         ret = EXIT_FAILURE;
+<a name="l00157"></a>00157         <span class="keywordflow">goto</span> CLEANUP;
+<a name="l00158"></a>00158     }
+<a name="l00159"></a>00159     end_time = <a class="code" href="common_8h.html#05b2e96c9991c51368c1f8d5a77d3ccf" title="Used to measure timings.">arrow_util_zeit</a>() - start_time;
+<a name="l00160"></a>00160     
+<a name="l00161"></a>00161     <span class="comment">/* Final output */</span>
+<a name="l00162"></a>00162     <a class="code" href="btsp_8h.html#0da381fd362478a3abbfd73cc3df460b" title="Prints results out.">arrow_btsp_result_print_pretty</a>(&amp;result, stdout);
+<a name="l00163"></a>00163     printf(<span class="stringliteral">"Initial Lower Bound: %d\n"</span>, <a class="code" href="abtsp-rai_8c.html#ed7394fd8e0c2796b26b9654fd10fd9d">lower_bound</a>);
+<a name="l00164"></a>00164     <span class="keywordflow">if</span>(bbssp_time &gt;= 0.0)
+<a name="l00165"></a>00165         printf(<span class="stringliteral">"BBSSP Time: %.2f\n"</span>, bbssp_time);
+<a name="l00166"></a>00166     printf(<span class="stringliteral">"Total Time: %.2f\n"</span>, end_time);
+<a name="l00167"></a>00167         
+<a name="l00168"></a>00168     <span class="comment">/* Xml output */</span>
+<a name="l00169"></a>00169     <span class="keywordflow">if</span>(<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a> != NULL)
+<a name="l00170"></a>00170     {
+<a name="l00171"></a>00171         FILE *xml;
+<a name="l00172"></a>00172         <span class="keywordflow">if</span>(!(xml = fopen(<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a>, <span class="stringliteral">"w"</span>)))
+<a name="l00173"></a>00173         {
+<a name="l00174"></a>00174             <a class="code" href="common_8h.html#c8a166e323227a8681ed32027ca1000a">arrow_print_error</a>(<span class="stringliteral">"Could not open xml file for writing"</span>);
+<a name="l00175"></a>00175             ret = <a class="code" href="common_8h.html#a50e8b8f74e48535271458079c7506cb">ARROW_FAILURE</a>;
+<a name="l00176"></a>00176             <span class="keywordflow">goto</span> CLEANUP;
+<a name="l00177"></a>00177         }
+<a name="l00178"></a>00178         
+<a name="l00179"></a>00179         fprintf(xml, <span class="stringliteral">"&lt;arrow_btsp problem_file=\"%s\""</span>, <a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>);
+<a name="l00180"></a>00180         fprintf(xml, <span class="stringliteral">" command_args=\""</span>);
+<a name="l00181"></a>00181         <a class="code" href="common_8h.html#0bf303aee0600136e1720be7e6c60021" title="Prints out the given program arguments to the specified file.">arrow_util_print_program_args</a>(argc, argv, xml);
+<a name="l00182"></a>00182         fprintf(xml, <span class="stringliteral">"\"&gt;\n"</span>);
+<a name="l00183"></a>00183 
+<a name="l00184"></a>00184         <a class="code" href="btsp_8h.html#102ec7a76adc418a3381c3234a5f0207" title="Prints results out in XML format.">arrow_btsp_result_print_xml</a>(&amp;result, xml);
+<a name="l00185"></a>00185         
+<a name="l00186"></a>00186         fprintf(xml, <span class="stringliteral">"    &lt;total_time&gt;%.2f&lt;/total_time&gt;\n"</span>, end_time);
+<a name="l00187"></a>00187         fprintf(xml, <span class="stringliteral">"&lt;/arrow_btsp&gt;\n"</span>);
+<a name="l00188"></a>00188         
+<a name="l00189"></a>00189         fclose(xml);
+<a name="l00190"></a>00190     }
+<a name="l00191"></a>00191     
+<a name="l00192"></a>00192 CLEANUP:
+<a name="l00193"></a>00193     <a class="code" href="btsp_8h.html#11d150bd3219a6ba3d9ccd3f0c952b2a" title="Destructs a BTSP result structure.">arrow_btsp_result_destruct</a>(&amp;result);
+<a name="l00194"></a>00194     <a class="code" href="btsp_8h.html#f0b2cce4c9dced6fe48fbc29877bbd8d" title="Destructs a function structure.">arrow_btsp_fun_destruct</a>(&amp;fun_basic);
+<a name="l00195"></a>00195     <a class="code" href="tsp_8h.html#2e3f26d69919dddd1eb0e6969d4dcd85" title="Destructs a LK parameters structure.">arrow_tsp_cc_lk_params_destruct</a>(&amp;lk_params); 
+<a name="l00196"></a>00196     <a class="code" href="common_8h.html#a702972ab510dcc6354d7679759611d1" title="Deallocates problem data structure.">arrow_problem_destruct</a>(&amp;problem);
+<a name="l00197"></a>00197     <span class="keywordflow">return</span> ret;
+<a name="l00198"></a>00198 }
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Jul 4 13:27:16 2008 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Feb 18 01:00:19 2009 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

@@ -1,0 +1,209 @@
+\hypertarget{fun_8c}{
+\section{lib/btsp/fun.c File Reference}
+\label{fun_8c}\index{lib/btsp/fun.c@{lib/btsp/fun.c}}
+}
+Cost matrix transformation functions. 
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}btsp.h\char`\"{}}\par
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structfun__data}{fun\_\-data}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{fun_8c_de2840141c73da39d21d95d8e1cfc0ab}{apply\_\-shallow} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int delta, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
+\begin{CompactList}\small\item\em Creates a shallow data structure with data applied with given cost matrix function and some base problem. \item\end{CompactList}\item 
+int \hyperlink{fun_8c_1432bc88412006e39a1c14b1ae61c773}{apply\_\-deep} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int delta, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
+\begin{CompactList}\small\item\em Creates a deep data structure with data applied with given cost matrix function and some base problem. \item\end{CompactList}\item 
+int \hyperlink{fun_8c_5c147cc48c0dad29b311e3a874a910f7}{fun\_\-get\_\-cost} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$this, int i, int j)
+\begin{CompactList}\small\item\em Cost function for problems based upon cost matrix functions. \item\end{CompactList}\item 
+void \hyperlink{fun_8c_0f816f318217fd3c09736f9a306b3a35}{fun\_\-destruct} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$this)
+\begin{CompactList}\small\item\em Destructs problem based upon cost matrix functions. \item\end{CompactList}\item 
+int \hyperlink{fun_8c_c28fb4bd25a57cb2b87751821c785cdd}{cc\_\-get\_\-cost} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int i, int j)
+\begin{CompactList}\small\item\em Cost function for problems based upon Concorde's data structure. \item\end{CompactList}\item 
+void \hyperlink{fun_8c_d521c0bf7249e07ca31c90bb98f7995a}{cc\_\-destruct} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem)
+\begin{CompactList}\small\item\em Destructs problems based upon Concorde's data structure. \item\end{CompactList}\item 
+int \hyperlink{fun_8c_d9cf4e03bd60c7efc575dd29868456bf}{arrow\_\-btsp\_\-fun\_\-apply} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int delta, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
+\begin{CompactList}\small\item\em Applies the given function to the given problem to create a new problem. \item\end{CompactList}\item 
+void \hyperlink{fun_8c_f0b2cce4c9dced6fe48fbc29877bbd8d}{arrow\_\-btsp\_\-fun\_\-destruct} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Destructs a function structure. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Cost matrix transformation functions. 
+
+Cost matrix transformation functions for the bottleneck traveling salesman problem (BTSP).
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{fun_8c-source}{fun.c}.
+
+\subsection{Function Documentation}
+\hypertarget{fun_8c_1432bc88412006e39a1c14b1ae61c773}{
+\index{fun.c@{fun.c}!apply\_\-deep@{apply\_\-deep}}
+\index{apply\_\-deep@{apply\_\-deep}!fun.c@{fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int apply\_\-deep ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em delta}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
+\label{fun_8c_1432bc88412006e39a1c14b1ae61c773}
+
+
+Creates a deep data structure with data applied with given cost matrix function and some base problem. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} the cost matrix function \item[{\em old\_\-problem}]\mbox{[}in\mbox{]} the base problem \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em new\_\-problem}]\mbox{[}out\mbox{]} the newly created, \char`\"{}deep\char`\"{} problem \end{description}
+\end{Desc}
+
+
+Definition at line 144 of file fun.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-PROBLEM\_\-DATA\_\-CONCORDE, ARROW\_\-SUCCESS, arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix(), cc\_\-destruct(), cc\_\-get\_\-cost(), arrow\_\-problem::data, arrow\_\-problem::destruct, arrow\_\-problem::get\_\-cost, arrow\_\-btsp\_\-fun::get\_\-cost, arrow\_\-problem::size, and arrow\_\-problem::type.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-apply().\hypertarget{fun_8c_de2840141c73da39d21d95d8e1cfc0ab}{
+\index{fun.c@{fun.c}!apply\_\-shallow@{apply\_\-shallow}}
+\index{apply\_\-shallow@{apply\_\-shallow}!fun.c@{fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int apply\_\-shallow ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em delta}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
+\label{fun_8c_de2840141c73da39d21d95d8e1cfc0ab}
+
+
+Creates a shallow data structure with data applied with given cost matrix function and some base problem. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} the cost matrix function \item[{\em old\_\-problem}]\mbox{[}in\mbox{]} the base problem \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em new\_\-problem}]\mbox{[}out\mbox{]} the newly created, \char`\"{}shallow\char`\"{} problem \end{description}
+\end{Desc}
+
+
+Definition at line 121 of file fun.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-PROBLEM\_\-DATA\_\-BTSP\_\-FUN, ARROW\_\-SUCCESS, fun\_\-data::base\_\-problem, arrow\_\-problem::data, fun\_\-data::delta, arrow\_\-problem::destruct, fun\_\-data::fun, fun\_\-destruct(), fun\_\-get\_\-cost(), arrow\_\-problem::get\_\-cost, and arrow\_\-problem::type.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-apply().\hypertarget{fun_8c_d9cf4e03bd60c7efc575dd29868456bf}{
+\index{fun.c@{fun.c}!arrow\_\-btsp\_\-fun\_\-apply@{arrow\_\-btsp\_\-fun\_\-apply}}
+\index{arrow\_\-btsp\_\-fun\_\-apply@{arrow\_\-btsp\_\-fun\_\-apply}!fun.c@{fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-apply ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em delta}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
+\label{fun_8c_d9cf4e03bd60c7efc575dd29868456bf}
+
+
+Applies the given function to the given problem to create a new problem. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em old\_\-problem}]\mbox{[}in\mbox{]} existing problem \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em new\_\-problem}]\mbox{[}out\mbox{]} new problem to create \end{description}
+\end{Desc}
+
+
+Definition at line 90 of file fun.c.
+
+References apply\_\-deep(), apply\_\-shallow(), ARROW\_\-FAILURE, arrow\_\-print\_\-error, arrow\_\-btsp\_\-fun::initialize, arrow\_\-problem::name, arrow\_\-btsp\_\-fun::shallow, arrow\_\-problem::shallow, arrow\_\-problem::size, and arrow\_\-problem::symmetric.
+
+Referenced by feasible().\hypertarget{fun_8c_f0b2cce4c9dced6fe48fbc29877bbd8d}{
+\index{fun.c@{fun.c}!arrow\_\-btsp\_\-fun\_\-destruct@{arrow\_\-btsp\_\-fun\_\-destruct}}
+\index{arrow\_\-btsp\_\-fun\_\-destruct@{arrow\_\-btsp\_\-fun\_\-destruct}!fun.c@{fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-fun\_\-destruct ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun_8c_f0b2cce4c9dced6fe48fbc29877bbd8d}
+
+
+Destructs a function structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 111 of file fun.c.
+
+References arrow\_\-btsp\_\-fun::destruct.
+
+Referenced by arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), and main().\hypertarget{fun_8c_d521c0bf7249e07ca31c90bb98f7995a}{
+\index{fun.c@{fun.c}!cc\_\-destruct@{cc\_\-destruct}}
+\index{cc\_\-destruct@{cc\_\-destruct}!fun.c@{fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void cc\_\-destruct ({\bf arrow\_\-problem} $\ast$ {\em problem})}}
+\label{fun_8c_d521c0bf7249e07ca31c90bb98f7995a}
+
+
+Destructs problems based upon Concorde's data structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem structure \end{description}
+\end{Desc}
+
+
+Definition at line 197 of file fun.c.
+
+References arrow\_\-problem::data.
+
+Referenced by apply\_\-deep().\hypertarget{fun_8c_c28fb4bd25a57cb2b87751821c785cdd}{
+\index{fun.c@{fun.c}!cc\_\-get\_\-cost@{cc\_\-get\_\-cost}}
+\index{cc\_\-get\_\-cost@{cc\_\-get\_\-cost}!fun.c@{fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int cc\_\-get\_\-cost ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em i}, \/  int {\em j})}}
+\label{fun_8c_c28fb4bd25a57cb2b87751821c785cdd}
+
+
+Cost function for problems based upon Concorde's data structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem structure \item[{\em i}]\mbox{[}in\mbox{]} id of starting node \item[{\em j}]\mbox{[}in\mbox{]} id of ending node \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]cost between node i and node j \end{Desc}
+
+
+Definition at line 190 of file fun.c.
+
+References arrow\_\-problem::data.
+
+Referenced by apply\_\-deep().\hypertarget{fun_8c_0f816f318217fd3c09736f9a306b3a35}{
+\index{fun.c@{fun.c}!fun\_\-destruct@{fun\_\-destruct}}
+\index{fun\_\-destruct@{fun\_\-destruct}!fun.c@{fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void fun\_\-destruct ({\bf arrow\_\-problem} $\ast$ {\em this})}}
+\label{fun_8c_0f816f318217fd3c09736f9a306b3a35}
+
+
+Destructs problem based upon cost matrix functions. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em this}]\mbox{[}in\mbox{]} problem structure \end{description}
+\end{Desc}
+
+
+Definition at line 186 of file fun.c.
+
+Referenced by apply\_\-shallow().\hypertarget{fun_8c_5c147cc48c0dad29b311e3a874a910f7}{
+\index{fun.c@{fun.c}!fun\_\-get\_\-cost@{fun\_\-get\_\-cost}}
+\index{fun\_\-get\_\-cost@{fun\_\-get\_\-cost}!fun.c@{fun.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int fun\_\-get\_\-cost ({\bf arrow\_\-problem} $\ast$ {\em this}, \/  int {\em i}, \/  int {\em j})}}
+\label{fun_8c_5c147cc48c0dad29b311e3a874a910f7}
+
+
+Cost function for problems based upon cost matrix functions. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em this}]\mbox{[}in\mbox{]} problem structure \item[{\em i}]\mbox{[}in\mbox{]} id of starting node \item[{\em j}]\mbox{[}in\mbox{]} id of ending node \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]cost between node i and node j \end{Desc}
+
+
+Definition at line 179 of file fun.c.
+
+References fun\_\-data::base\_\-problem, fun\_\-data::delta, fun\_\-data::fun, and arrow\_\-btsp\_\-fun::get\_\-cost.
+
+Referenced by apply\_\-shallow().

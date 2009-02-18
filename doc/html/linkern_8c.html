@@ -18,8 +18,10 @@
 <div class="contents">
 <h1>bin/linkern.c File Reference</h1>Lin-Kernighan TSP heuristic. <a href="#_details">More...</a>
 <p>
-<code>#include &quot;<a class="el" href="arrow_8h-source.html">arrow.h</a>&quot;</code><br>
-<code>#include &lt;getopt.h&gt;</code><br>
+<code>#include &quot;<a class="el" href="common_8h-source.html">common.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="lb_8h-source.html">lb.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="tsp_8h-source.html">tsp.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="btsp_8h-source.html">btsp.h</a>&quot;</code><br>
 
 <p>
 <a href="linkern_8c-source.html">Go to the source code of this file.</a><table border="0" cellpadding="0" cellspacing="0">
@@ -86,9 +88,9 @@ Runs the Lin-Kernighan TSP heuristic on the given input file. This is really not
 
 <p>
 
-<p>Definition at line <a class="el" href="linkern_8c-source.html#l00049">49</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
+<p>Definition at line <a class="el" href="linkern_8c-source.html#l00051">51</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="problem_8c-source.html#l00098">arrow_problem_destruct()</a>, <a class="el" href="problem_8c-source.html#l00054">arrow_problem_read()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00059">arrow_tsp_lk_params_destruct()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00047">arrow_tsp_lk_params_init()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00102">arrow_tsp_lk_solve()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00037">arrow_tsp_result_destruct()</a>, <a class="el" href="lib_2tsp_8c-source.html#l00023">arrow_tsp_result_init()</a>, <a class="el" href="arrow_8h-source.html#l00163">arrow_tsp_result::found_tour</a>, <a class="el" href="bin_22mb_8c-source.html#l00013">input_file</a>, <a class="el" href="arrow_8h-source.html#l00147">arrow_tsp_lk_params::kicks</a>, <a class="el" href="abtsp_8c-source.html#l00017">kicks</a>, <a class="el" href="arrow_8h-source.html#l00164">arrow_tsp_result::obj_value</a>, <a class="el" href="bin_22mb_8c-source.html#l00012">program_name</a>, <a class="el" href="arrow_8h-source.html#l00144">arrow_tsp_lk_params::random_restarts</a>, <a class="el" href="abtsp_8c-source.html#l00015">random_restarts</a>, <a class="el" href="linkern_8c-source.html#l00126">read_args()</a>, <a class="el" href="arrow_8h-source.html#l00145">arrow_tsp_lk_params::stall_count</a>, <a class="el" href="abtsp_8c-source.html#l00016">stall_count</a>, and <a class="el" href="arrow_8h-source.html#l00166">arrow_tsp_result::total_time</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="problem_8c-source.html#l00153">arrow_problem_destruct()</a>, <a class="el" href="problem_8c-source.html#l00118">arrow_problem_read()</a>, <a class="el" href="cc_8c-source.html#l00055">arrow_tsp_cc_lk_params_destruct()</a>, <a class="el" href="cc_8c-source.html#l00042">arrow_tsp_cc_lk_params_init()</a>, <a class="el" href="tsp_2result_8c-source.html#l00030">arrow_tsp_result_destruct()</a>, <a class="el" href="tsp_2result_8c-source.html#l00016">arrow_tsp_result_init()</a>, <a class="el" href="tsp_8h-source.html#l00057">arrow_tsp_result::found_tour</a>, <a class="el" href="bin_22mb_8c-source.html#l00014">input_file</a>, <a class="el" href="tsp_8h-source.html#l00032">arrow_tsp_cc_lk_params::kicks</a>, <a class="el" href="abtsp_8c-source.html#l00021">kicks</a>, <a class="el" href="tsp_8h-source.html#l00058">arrow_tsp_result::obj_value</a>, <a class="el" href="bin_22mb_8c-source.html#l00013">program_name</a>, <a class="el" href="tsp_8h-source.html#l00029">arrow_tsp_cc_lk_params::random_restarts</a>, <a class="el" href="abtsp_8c-source.html#l00019">random_restarts</a>, <a class="el" href="linkern_8c-source.html#l00128">read_args()</a>, <a class="el" href="tsp_8h-source.html#l00030">arrow_tsp_cc_lk_params::stall_count</a>, <a class="el" href="abtsp_8c-source.html#l00020">stall_count</a>, and <a class="el" href="tsp_8h-source.html#l00060">arrow_tsp_result::total_time</a>.</p>
 
 </div>
 </div><p>
@@ -111,11 +113,11 @@ Runs the Lin-Kernighan TSP heuristic on the given input file. This is really not
 Prints help/usage message. 
 <p>
 
-<p>Definition at line <a class="el" href="linkern_8c-source.html#l00090">90</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
+<p>Definition at line <a class="el" href="linkern_8c-source.html#l00092">92</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
 
-<p>References <a class="el" href="linkern_8c-source.html#l00120">print_usage()</a>, and <a class="el" href="bin_22mb_8c-source.html#l00012">program_name</a>.</p>
+<p>References <a class="el" href="linkern_8c-source.html#l00122">print_usage()</a>, and <a class="el" href="bin_22mb_8c-source.html#l00013">program_name</a>.</p>
 
-<p>Referenced by <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>, and <a class="el" href="linkern_8c-source.html#l00126">read_args()</a>.</p>
+<p>Referenced by <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>, and <a class="el" href="linkern_8c-source.html#l00128">read_args()</a>.</p>
 
 </div>
 </div><p>
@@ -138,11 +140,11 @@ Prints help/usage message.
 Prints usage message. 
 <p>
 
-<p>Definition at line <a class="el" href="linkern_8c-source.html#l00120">120</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
+<p>Definition at line <a class="el" href="linkern_8c-source.html#l00122">122</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
 
-<p>References <a class="el" href="bin_22mb_8c-source.html#l00012">program_name</a>.</p>
+<p>References <a class="el" href="bin_22mb_8c-source.html#l00013">program_name</a>.</p>
 
-<p>Referenced by <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>, <a class="el" href="linkern_8c-source.html#l00090">print_help()</a>, and <a class="el" href="linkern_8c-source.html#l00126">read_args()</a>.</p>
+<p>Referenced by <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>, <a class="el" href="linkern_8c-source.html#l00092">print_help()</a>, and <a class="el" href="linkern_8c-source.html#l00128">read_args()</a>.</p>
 
 </div>
 </div><p>
@@ -165,11 +167,11 @@ Prints usage message.
 Prints version message. 
 <p>
 
-<p>Definition at line <a class="el" href="linkern_8c-source.html#l00105">105</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
+<p>Definition at line <a class="el" href="linkern_8c-source.html#l00107">107</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
 
-<p>References <a class="el" href="bin_22mb_8c-source.html#l00012">program_name</a>.</p>
+<p>References <a class="el" href="bin_22mb_8c-source.html#l00013">program_name</a>.</p>
 
-<p>Referenced by <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>, and <a class="el" href="linkern_8c-source.html#l00126">read_args()</a>.</p>
+<p>Referenced by <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>, and <a class="el" href="linkern_8c-source.html#l00128">read_args()</a>.</p>
 
 </div>
 </div><p>
@@ -202,11 +204,11 @@ Prints version message.
 Reads program arguments. 
 <p>
 
-<p>Definition at line <a class="el" href="linkern_8c-source.html#l00126">126</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
+<p>Definition at line <a class="el" href="linkern_8c-source.html#l00128">128</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
 
-<p>References <a class="el" href="arrow_8h-source.html#l00070">arrow_print_error</a>, <a class="el" href="bin_22mb_8c-source.html#l00013">input_file</a>, <a class="el" href="abtsp_8c-source.html#l00017">kicks</a>, <a class="el" href="linkern_8c-source.html#l00090">print_help()</a>, <a class="el" href="linkern_8c-source.html#l00120">print_usage()</a>, <a class="el" href="linkern_8c-source.html#l00105">print_version()</a>, <a class="el" href="abtsp_8c-source.html#l00015">random_restarts</a>, and <a class="el" href="abtsp_8c-source.html#l00016">stall_count</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="bin_22mb_8c-source.html#l00014">input_file</a>, <a class="el" href="abtsp_8c-source.html#l00021">kicks</a>, <a class="el" href="linkern_8c-source.html#l00092">print_help()</a>, <a class="el" href="linkern_8c-source.html#l00122">print_usage()</a>, <a class="el" href="linkern_8c-source.html#l00107">print_version()</a>, <a class="el" href="abtsp_8c-source.html#l00019">random_restarts</a>, and <a class="el" href="abtsp_8c-source.html#l00020">stall_count</a>.</p>
 
-<p>Referenced by <a class="el" href="linkern_8c-source.html#l00049">main()</a>.</p>
+<p>Referenced by <a class="el" href="linkern_8c-source.html#l00051">main()</a>.</p>
 
 </div>
 </div><p>
@@ -224,7 +226,7 @@ Reads program arguments.
 
 <p>
 Given input TSPLIB file 
-<p>Definition at line <a class="el" href="linkern_8c-source.html#l00040">40</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
+<p>Definition at line <a class="el" href="linkern_8c-source.html#l00042">42</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
 
 </div>
 </div><p>
@@ -241,7 +243,7 @@ Given input TSPLIB file
 
 <p>
 
-<p>Definition at line <a class="el" href="linkern_8c-source.html#l00043">43</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
+<p>Definition at line <a class="el" href="linkern_8c-source.html#l00045">45</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
 
 </div>
 </div><p>
@@ -258,7 +260,7 @@ Given input TSPLIB file
 
 <p>
 Program name 
-<p>Definition at line <a class="el" href="linkern_8c-source.html#l00039">39</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
+<p>Definition at line <a class="el" href="linkern_8c-source.html#l00041">41</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
 
 </div>
 </div><p>
@@ -275,7 +277,7 @@ Program name
 
 <p>
 
-<p>Definition at line <a class="el" href="linkern_8c-source.html#l00041">41</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
+<p>Definition at line <a class="el" href="linkern_8c-source.html#l00043">43</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
 
 </div>
 </div><p>
@@ -292,12 +294,12 @@ Program name
 
 <p>
 
-<p>Definition at line <a class="el" href="linkern_8c-source.html#l00042">42</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
+<p>Definition at line <a class="el" href="linkern_8c-source.html#l00044">44</a> of file <a class="el" href="linkern_8c-source.html">linkern.c</a>.</p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Jul 4 13:27:16 2008 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Feb 18 01:00:20 2009 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

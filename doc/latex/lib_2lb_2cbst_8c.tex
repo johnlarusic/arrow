@@ -1,0 +1,118 @@
+\hypertarget{lib_2lb_2cbst_8c}{
+\section{lib/lb/cbst.c File Reference}
+\label{lib_2lb_2cbst_8c}\index{lib/lb/cbst.c@{lib/lb/cbst.c}}
+}
+Constrained bottleneck spanning tree bound implemenation. 
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}lb.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{lib_2lb_2cbst_8c_7af9c47d10c6be4b45c74215d708d253}{init\_\-data} (int n, \hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int $\ast$$\ast$cur\_\-tree, int $\ast$$\ast$in\_\-heap, int $\ast$$\ast$d)
+\item 
+void \hyperlink{lib_2lb_2cbst_8c_eb7596255cffce8acb834e8b490d484f}{destroy\_\-data} (\hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int $\ast$$\ast$cur\_\-tree, int $\ast$$\ast$in\_\-heap, int $\ast$$\ast$d)
+\item 
+void \hyperlink{lib_2lb_2cbst_8c_78394cea1aa8e4a05bd842b05fe8e65e}{min\_\-span\_\-tree} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int C, int exclude\_\-cost, int $\ast$cur\_\-tree, int $\ast$tree, int $\ast$max\_\-cost, double $\ast$\hyperlink{cbtsp_8c_928b11f5716331f0b89abe7d8d4124b4}{length}, \hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap, int $\ast$in\_\-heap, int $\ast$d)
+\begin{CompactList}\small\item\em Solves a (slightly modified!) minimum spanning tree problem. \item\end{CompactList}\item 
+int \hyperlink{lib_2lb_2cbst_8c_ec2aba683fb10e482d8bd159f9fbf6ee}{arrow\_\-cbst\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, double \hyperlink{bin_2cbst_8c_0c7f495d279d6f237d38be875e03f593}{max\_\-length}, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Constrained bottleneck spanning tree (CBST) solver. \item\end{CompactList}\item 
+int \hyperlink{lib_2lb_2cbst_8c_612e61ddbeb12c909d155b27327a0486}{arrow\_\-cbst\_\-mst\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, int $\ast$tree, int $\ast$max\_\-cost, double $\ast$\hyperlink{cbtsp_8c_928b11f5716331f0b89abe7d8d4124b4}{length})
+\begin{CompactList}\small\item\em Minimum spanning tree (MST) solver. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Constrained bottleneck spanning tree bound implemenation. 
+
+Implemenation of the Constrained bottleneck spanning tree (CBST) bound used as a lower bound for the symmetric constrained bottleneck TSP objective value.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{lib_2lb_2cbst_8c-source}{cbst.c}.
+
+\subsection{Function Documentation}
+\hypertarget{lib_2lb_2cbst_8c_612e61ddbeb12c909d155b27327a0486}{
+\index{lib/lb/cbst.c@{lib/lb/cbst.c}!arrow\_\-cbst\_\-mst\_\-solve@{arrow\_\-cbst\_\-mst\_\-solve}}
+\index{arrow\_\-cbst\_\-mst\_\-solve@{arrow\_\-cbst\_\-mst\_\-solve}!lib/lb/cbst.c@{lib/lb/cbst.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-cbst\_\-mst\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  int $\ast$ {\em tree}, \/  int $\ast$ {\em max\_\-cost}, \/  double $\ast$ {\em length})}}
+\label{lib_2lb_2cbst_8c_612e61ddbeb12c909d155b27327a0486}
+
+
+Minimum spanning tree (MST) solver. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em info}]\mbox{[}in\mbox{]} problem info data \item[{\em tree}]\mbox{[}out\mbox{]} MST tree (tree\mbox{[}i\mbox{]} gives precessor for node i) \item[{\em max\_\-cost}]\mbox{[}out\mbox{]} the largest cost in the tree \item[{\em length}]\mbox{[}out\mbox{]} the length of all edges in the tree \end{description}
+\end{Desc}
+
+
+Definition at line 96 of file cbst.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, destroy\_\-data(), init\_\-data(), arrow\_\-problem\_\-info::max\_\-cost, min\_\-span\_\-tree(), and arrow\_\-problem::size.\hypertarget{lib_2lb_2cbst_8c_ec2aba683fb10e482d8bd159f9fbf6ee}{
+\index{lib/lb/cbst.c@{lib/lb/cbst.c}!arrow\_\-cbst\_\-solve@{arrow\_\-cbst\_\-solve}}
+\index{arrow\_\-cbst\_\-solve@{arrow\_\-cbst\_\-solve}!lib/lb/cbst.c@{lib/lb/cbst.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-cbst\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  double {\em max\_\-length}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
+\label{lib_2lb_2cbst_8c_ec2aba683fb10e482d8bd159f9fbf6ee}
+
+
+Constrained bottleneck spanning tree (CBST) solver. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em info}]\mbox{[}in\mbox{]} problem info data \item[{\em max\_\-length}]\mbox{[}in\mbox{]} maximum spanning tree length \item[{\em result}]\mbox{[}out\mbox{]} bound result \end{description}
+\end{Desc}
+
+
+Definition at line 46 of file cbst.c.
+
+References arrow\_\-debug, ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-zeit(), init\_\-data(), length, arrow\_\-problem\_\-info::max\_\-cost, min\_\-span\_\-tree(), arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, and arrow\_\-bound\_\-result::total\_\-time.
+
+Referenced by main().\hypertarget{lib_2lb_2cbst_8c_eb7596255cffce8acb834e8b490d484f}{
+\index{lib/lb/cbst.c@{lib/lb/cbst.c}!destroy\_\-data@{destroy\_\-data}}
+\index{destroy\_\-data@{destroy\_\-data}!lib/lb/cbst.c@{lib/lb/cbst.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void destroy\_\-data ({\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int $\ast$$\ast$ {\em cur\_\-tree}, \/  int $\ast$$\ast$ {\em in\_\-heap}, \/  int $\ast$$\ast$ {\em d})}}
+\label{lib_2lb_2cbst_8c_eb7596255cffce8acb834e8b490d484f}
+
+
+
+
+Definition at line 226 of file cbst.c.
+
+References arrow\_\-heap\_\-destruct().
+
+Referenced by arrow\_\-cbst\_\-mst\_\-solve(), and init\_\-data().\hypertarget{lib_2lb_2cbst_8c_7af9c47d10c6be4b45c74215d708d253}{
+\index{lib/lb/cbst.c@{lib/lb/cbst.c}!init\_\-data@{init\_\-data}}
+\index{init\_\-data@{init\_\-data}!lib/lb/cbst.c@{lib/lb/cbst.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int init\_\-data (int {\em n}, \/  {\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int $\ast$$\ast$ {\em cur\_\-tree}, \/  int $\ast$$\ast$ {\em in\_\-heap}, \/  int $\ast$$\ast$ {\em d})}}
+\label{lib_2lb_2cbst_8c_7af9c47d10c6be4b45c74215d708d253}
+
+
+
+
+Definition at line 197 of file cbst.c.
+
+References ARROW\_\-FAILURE, arrow\_\-heap\_\-init(), ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), and destroy\_\-data().\hypertarget{lib_2lb_2cbst_8c_78394cea1aa8e4a05bd842b05fe8e65e}{
+\index{lib/lb/cbst.c@{lib/lb/cbst.c}!min\_\-span\_\-tree@{min\_\-span\_\-tree}}
+\index{min\_\-span\_\-tree@{min\_\-span\_\-tree}!lib/lb/cbst.c@{lib/lb/cbst.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void min\_\-span\_\-tree ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em C}, \/  int {\em exclude\_\-cost}, \/  int $\ast$ {\em cur\_\-tree}, \/  int $\ast$ {\em tree}, \/  int $\ast$ {\em max\_\-cost}, \/  double $\ast$ {\em length}, \/  {\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int $\ast$ {\em in\_\-heap}, \/  int $\ast$ {\em d})}}
+\label{lib_2lb_2cbst_8c_78394cea1aa8e4a05bd842b05fe8e65e}
+
+
+Solves a (slightly modified!) minimum spanning tree problem. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem structure \item[{\em C}]\mbox{[}in\mbox{]} largest cost in problem \item[{\em exclude\_\-cost}]\mbox{[}in\mbox{]} excludes costs less than this value except... \item[{\em cur\_\-tree}]\mbox{[}in\mbox{]} includes any edge costs found in this tree \item[{\em tree}]\mbox{[}out\mbox{]} the resulting minimum spanning tree \item[{\em max\_\-cost}]\mbox{[}out\mbox{]} the largest cost in the resulting tree \item[{\em length}]\mbox{[}out\mbox{]} the total length of the resulting tree \item[{\em heap}]\mbox{[}out\mbox{]} a temporary heap structure \item[{\em in\_\-heap}]\mbox{[}out\mbox{]} a temporary integer array \item[{\em d}]\mbox{[}out\mbox{]} a temporary integer array \end{description}
+\end{Desc}
+
+
+Definition at line 123 of file cbst.c.
+
+References arrow\_\-heap\_\-change\_\-key(), arrow\_\-heap\_\-delete\_\-min(), arrow\_\-heap\_\-empty(), arrow\_\-heap\_\-get\_\-min(), arrow\_\-heap\_\-insert(), arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
+
+Referenced by arrow\_\-cbst\_\-mst\_\-solve(), and arrow\_\-cbst\_\-solve().

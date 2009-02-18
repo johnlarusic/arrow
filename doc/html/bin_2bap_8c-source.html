@@ -22,87 +22,89 @@
 <a name="l00006"></a>00006 <span class="comment"> * @author  John LaRusic</span>
 <a name="l00007"></a>00007 <span class="comment"> * @ingroup bin</span>
 <a name="l00008"></a>00008 <span class="comment"> ****************************************************************************/</span>
-<a name="l00009"></a>00009 <span class="preprocessor">#include "<a class="code" href="arrow_8h.html" title="Header file for the Arrow callable library.">arrow.h</a>"</span>
-<a name="l00010"></a>00010 
-<a name="l00011"></a>00011 <span class="comment">/* Global variables */</span>
-<a name="l00012"></a><a class="code" href="bin_2bap_8c.html#289c5900d90626d909f0a85d5a0ed61d">00012</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#289c5900d90626d909f0a85d5a0ed61d">program_name</a>;             <span class="comment">/**&lt; Program name */</span>
-<a name="l00013"></a><a class="code" href="bin_2bap_8c.html#a4f3a15de34c409bdec6ceacf93078ed">00013</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a> = NULL;        <span class="comment">/**&lt; Given input TSPLIB file */</span>
-<a name="l00014"></a><a class="code" href="bin_2bap_8c.html#bf4e392494984c6ef8259268eb1fe421">00014</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a> = NULL;
-<a name="l00015"></a>00015 
-<a name="l00016"></a>00016 <span class="comment">/* Program options */</span>
-<a name="l00017"></a><a class="code" href="bin_2bap_8c.html#9b58b2c4af931c8486a986c9deca40f5">00017</a> <span class="preprocessor">#define NUM_OPTS 2</span>
-<a name="l00018"></a><a class="code" href="bin_2bap_8c.html#cea6a9709d519c143f30db401a0d0c72">00018</a> <span class="preprocessor"></span><a class="code" href="structarrow__option.html" title="Program options structure.">arrow_option</a> <a class="code" href="bin_22mb_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>[<a class="code" href="bin_22mb_8c.html#9b58b2c4af931c8486a986c9deca40f5">NUM_OPTS</a>] = 
-<a name="l00019"></a>00019 {
-<a name="l00020"></a>00020     {<span class="charliteral">'i'</span>, <span class="stringliteral">"input"</span>, <span class="stringliteral">"TSPLIB input file"</span>, 
-<a name="l00021"></a>00021         <a class="code" href="arrow_8h.html#a5af4b3dd40c1687deb0e897317fac3d">ARROW_OPTION_STRING</a>, &amp;<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>, <a class="code" href="arrow_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>, ARROW_TRUE},
-<a name="l00022"></a>00022     {<span class="charliteral">'x'</span>, <span class="stringliteral">"xml"</span>, <span class="stringliteral">"File to write XML output to"</span>,
-<a name="l00023"></a>00023         <a class="code" href="arrow_8h.html#a5af4b3dd40c1687deb0e897317fac3d">ARROW_OPTION_STRING</a>, &amp;<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a>, <a class="code" href="arrow_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="arrow_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>}
-<a name="l00024"></a>00024 };
-<a name="l00025"></a><a class="code" href="bin_2bap_8c.html#3aad16fd4bea1b9717f232ea75ad6449">00025</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a> = <span class="stringliteral">"Bottleneck assignment problem solver"</span>;
-<a name="l00026"></a><a class="code" href="bin_2bap_8c.html#adebe2487a2c5240ab6cd02c83add0bf">00026</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a> = <span class="stringliteral">"-i tsplib.tsp [options] "</span>;
-<a name="l00027"></a>00027 
-<a name="l00028"></a>00028 <span class="comment">/* Main method */</span>
-<a name="l00029"></a>00029 <span class="keywordtype">int</span> 
-<a name="l00030"></a><a class="code" href="bin_2bap_8c.html#0ddf1224851353fc92bfbff6f499fa97">00030</a> <a class="code" href="bin_22mb_8c.html#0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])
-<a name="l00031"></a>00031 {   
-<a name="l00032"></a>00032     <span class="keywordtype">int</span> ret = <a class="code" href="arrow_8h.html#21afcc3dc34f8488ad437841f58225c4">ARROW_SUCCESS</a>;
-<a name="l00033"></a>00033     
-<a name="l00034"></a>00034     <a class="code" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> problem;
-<a name="l00035"></a>00035     <a class="code" href="structarrow__problem__info.html" title="Problem information data structure.">arrow_problem_info</a> info;
-<a name="l00036"></a>00036     <a class="code" href="structarrow__bound__result.html" title="A lower bound result.">arrow_bound_result</a> result;
-<a name="l00037"></a>00037     
-<a name="l00038"></a>00038     <span class="comment">/* Read program arguments */</span>
-<a name="l00039"></a>00039     <span class="keywordflow">if</span>(!<a class="code" href="arrow_8h.html#e187e044872b9130dc8451a7cbfd3f8d">arrow_options_parse</a>(<a class="code" href="bin_22mb_8c.html#9b58b2c4af931c8486a986c9deca40f5">NUM_OPTS</a>, options, <a class="code" href="bin_22mb_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a>, <a class="code" href="bin_22mb_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a>, argc, argv, NULL))
-<a name="l00040"></a>00040         <span class="keywordflow">return</span> EXIT_FAILURE;
-<a name="l00041"></a>00041 
-<a name="l00042"></a>00042     <span class="comment">/* Try and read the problem file and its info */</span>
-<a name="l00043"></a>00043     <span class="keywordflow">if</span>(!<a class="code" href="arrow_8h.html#b5b9bae9f92630983d3b3d39d86198f8" title="Reads a problem from a TSPLIB file.">arrow_problem_read</a>(<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>, &amp;problem))
-<a name="l00044"></a>00044         <span class="keywordflow">return</span> EXIT_FAILURE;
-<a name="l00045"></a>00045     <span class="keywordflow">if</span>(!<a class="code" href="arrow_8h.html#01623c45a7e1726ef7eeeec300e75bff" title="Builds ordered cost list and finds min/max cost in a problem.">arrow_problem_info_get</a>(&amp;problem, &amp;info))
-<a name="l00046"></a>00046         <span class="keywordflow">return</span> EXIT_FAILURE;
-<a name="l00047"></a>00047     
-<a name="l00048"></a>00048     <span class="comment">/* Solve BAP */</span>
-<a name="l00049"></a>00049     <span class="keywordflow">if</span>(!<a class="code" href="lib_2bap_8c.html#55ff81ad64c0e4aadc08860a8c2d2c44">arrow_bap_solve</a>(&amp;problem, &amp;info, &amp;result))
-<a name="l00050"></a>00050     {
-<a name="l00051"></a>00051         <a class="code" href="arrow_8h.html#2bc89592b4a27c03c1129b8e4b876a51">arrow_print_error</a>(<span class="stringliteral">"Could not solve BAP on file."</span>);
-<a name="l00052"></a>00052         <span class="keywordflow">return</span> EXIT_FAILURE;
-<a name="l00053"></a>00053     }
-<a name="l00054"></a>00054     
-<a name="l00055"></a>00055     printf(<span class="stringliteral">"\nBAP Solution: %d\n"</span>, result.<a class="code" href="structarrow__bound__result.html#acbca68de984376a60dbb9893935e0f4">obj_value</a>);
-<a name="l00056"></a>00056     printf(<span class="stringliteral">"Total Time: %5.2f\n"</span>, result.<a class="code" href="structarrow__bound__result.html#d27a3cae43bbe1ed2e2c60a4ef307b08">total_time</a>);
-<a name="l00057"></a>00057     
-<a name="l00058"></a>00058     <span class="comment">/* Print out XML file if required */</span>
-<a name="l00059"></a>00059     <span class="keywordflow">if</span>(<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a> != NULL)
-<a name="l00060"></a>00060     {
-<a name="l00061"></a>00061         FILE *xml;
-<a name="l00062"></a>00062         <span class="keywordflow">if</span>(!(xml = fopen(<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a>, <span class="stringliteral">"w"</span>)))
-<a name="l00063"></a>00063         {
-<a name="l00064"></a>00064             <a class="code" href="arrow_8h.html#2bc89592b4a27c03c1129b8e4b876a51">arrow_print_error</a>(<span class="stringliteral">"Could not open xml file for writing"</span>);
-<a name="l00065"></a>00065             ret = <a class="code" href="arrow_8h.html#a50e8b8f74e48535271458079c7506cb">ARROW_FAILURE</a>;
-<a name="l00066"></a>00066             <span class="keywordflow">goto</span> CLEANUP;
-<a name="l00067"></a>00067         }
-<a name="l00068"></a>00068         
-<a name="l00069"></a>00069         fprintf(xml, <span class="stringliteral">"&lt;arrow_bound type=\"BAP\" "</span>);
-<a name="l00070"></a>00070         fprintf(xml, <span class="stringliteral">"problem_file=\"%s\""</span>, <a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>);
-<a name="l00071"></a>00071         fprintf(xml, <span class="stringliteral">" command_args=\""</span>);
-<a name="l00072"></a>00072         <a class="code" href="arrow_8h.html#0bf303aee0600136e1720be7e6c60021" title="Prints out the given program arguments to the specified file.">arrow_util_print_program_args</a>(argc, argv, xml);
-<a name="l00073"></a>00073         fprintf(xml, <span class="stringliteral">"\"&gt;\n"</span>);
-<a name="l00074"></a>00074         fprintf(xml, <span class="stringliteral">"    &lt;objective_value&gt;%d&lt;/objective_value&gt;\n"</span>, 
-<a name="l00075"></a>00075                 result.<a class="code" href="structarrow__bound__result.html#acbca68de984376a60dbb9893935e0f4">obj_value</a>);
-<a name="l00076"></a>00076         fprintf(xml, <span class="stringliteral">"    &lt;total_time&gt;%5.2f&lt;/total_time&gt;\n"</span>, 
-<a name="l00077"></a>00077                 result.<a class="code" href="structarrow__bound__result.html#d27a3cae43bbe1ed2e2c60a4ef307b08">total_time</a>);
-<a name="l00078"></a>00078         fprintf(xml, <span class="stringliteral">"&lt;/arrow_bound&gt;\n"</span>);
-<a name="l00079"></a>00079         
-<a name="l00080"></a>00080         fclose(xml);
-<a name="l00081"></a>00081     }
-<a name="l00082"></a>00082         
-<a name="l00083"></a>00083 CLEANUP:
-<a name="l00084"></a>00084     <a class="code" href="arrow_8h.html#a702972ab510dcc6354d7679759611d1" title="Deallocates problem data structure.">arrow_problem_destruct</a>(&amp;problem);
-<a name="l00085"></a>00085     <a class="code" href="arrow_8h.html#09a5ba81556412e281fe6b863a6f08db" title="Deallocates problem info data structure.">arrow_problem_info_destruct</a>(&amp;info);
-<a name="l00086"></a>00086     <span class="keywordflow">return</span> ret;
-<a name="l00087"></a>00087 }
+<a name="l00009"></a>00009 <span class="preprocessor">#include "<a class="code" href="common_8h.html" title="Common functions and data structures.">common.h</a>"</span>
+<a name="l00010"></a>00010 <span class="preprocessor">#include "<a class="code" href="lb_8h.html" title="Lower bound functions for the bottleneck TSP.">lb.h</a>"</span>
+<a name="l00011"></a>00011 
+<a name="l00012"></a>00012 <span class="comment">/* Global variables */</span>
+<a name="l00013"></a><a class="code" href="bin_2bap_8c.html#289c5900d90626d909f0a85d5a0ed61d">00013</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#289c5900d90626d909f0a85d5a0ed61d">program_name</a>;             <span class="comment">/**&lt; Program name */</span>
+<a name="l00014"></a><a class="code" href="bin_2bap_8c.html#a4f3a15de34c409bdec6ceacf93078ed">00014</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a> = NULL;        <span class="comment">/**&lt; Given input TSPLIB file */</span>
+<a name="l00015"></a><a class="code" href="bin_2bap_8c.html#bf4e392494984c6ef8259268eb1fe421">00015</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a> = NULL;
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017 <span class="comment">/* Program options */</span>
+<a name="l00018"></a><a class="code" href="bin_2bap_8c.html#9b58b2c4af931c8486a986c9deca40f5">00018</a> <span class="preprocessor">#define NUM_OPTS 2</span>
+<a name="l00019"></a><a class="code" href="bin_2bap_8c.html#cea6a9709d519c143f30db401a0d0c72">00019</a> <span class="preprocessor"></span><a class="code" href="structarrow__option.html" title="Program options structure.">arrow_option</a> <a class="code" href="bin_22mb_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>[<a class="code" href="bin_22mb_8c.html#9b58b2c4af931c8486a986c9deca40f5">NUM_OPTS</a>] = 
+<a name="l00020"></a>00020 {
+<a name="l00021"></a>00021     {<span class="charliteral">'i'</span>, <span class="stringliteral">"input"</span>, <span class="stringliteral">"TSPLIB input file"</span>, 
+<a name="l00022"></a>00022         <a class="code" href="common_8h.html#a5af4b3dd40c1687deb0e897317fac3d">ARROW_OPTION_STRING</a>, &amp;<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>, <a class="code" href="common_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>, ARROW_TRUE},
+<a name="l00023"></a>00023     {<span class="charliteral">'x'</span>, <span class="stringliteral">"xml"</span>, <span class="stringliteral">"File to write XML output to"</span>,
+<a name="l00024"></a>00024         <a class="code" href="common_8h.html#a5af4b3dd40c1687deb0e897317fac3d">ARROW_OPTION_STRING</a>, &amp;<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a>, <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, <a class="code" href="common_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>}
+<a name="l00025"></a>00025 };
+<a name="l00026"></a><a class="code" href="bin_2bap_8c.html#3aad16fd4bea1b9717f232ea75ad6449">00026</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a> = <span class="stringliteral">"Bottleneck assignment problem solver"</span>;
+<a name="l00027"></a><a class="code" href="bin_2bap_8c.html#adebe2487a2c5240ab6cd02c83add0bf">00027</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a> = <span class="stringliteral">"-i tsplib.tsp [options] "</span>;
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029 <span class="comment">/* Main method */</span>
+<a name="l00030"></a>00030 <span class="keywordtype">int</span> 
+<a name="l00031"></a><a class="code" href="bin_2bap_8c.html#0ddf1224851353fc92bfbff6f499fa97">00031</a> <a class="code" href="bin_22mb_8c.html#0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])
+<a name="l00032"></a>00032 {   
+<a name="l00033"></a>00033     <span class="keywordtype">int</span> ret = <a class="code" href="common_8h.html#21afcc3dc34f8488ad437841f58225c4">ARROW_SUCCESS</a>;
+<a name="l00034"></a>00034     
+<a name="l00035"></a>00035     <a class="code" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> problem;
+<a name="l00036"></a>00036     <a class="code" href="structarrow__problem__info.html" title="Problem information data structure.">arrow_problem_info</a> info;
+<a name="l00037"></a>00037     <a class="code" href="structarrow__bound__result.html" title="A lower bound result.">arrow_bound_result</a> result;
+<a name="l00038"></a>00038     
+<a name="l00039"></a>00039     <span class="comment">/* Read program arguments */</span>
+<a name="l00040"></a>00040     <span class="keywordflow">if</span>(!<a class="code" href="common_8h.html#e187e044872b9130dc8451a7cbfd3f8d" title="Parses program options.">arrow_options_parse</a>(<a class="code" href="bin_22mb_8c.html#9b58b2c4af931c8486a986c9deca40f5">NUM_OPTS</a>, options, <a class="code" href="bin_22mb_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a>, <a class="code" href="bin_22mb_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a>, argc, argv, NULL))
+<a name="l00041"></a>00041         <span class="keywordflow">return</span> EXIT_FAILURE;
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043     <span class="comment">/* Try and read the problem file and its info */</span>
+<a name="l00044"></a>00044     <span class="keywordflow">if</span>(!<a class="code" href="common_8h.html#b5b9bae9f92630983d3b3d39d86198f8" title="Reads a problem from a TSPLIB file.">arrow_problem_read</a>(<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>, &amp;problem))
+<a name="l00045"></a>00045         <span class="keywordflow">return</span> EXIT_FAILURE;
+<a name="l00046"></a>00046     <span class="keywordflow">if</span>(!<a class="code" href="common_8h.html#3cccb8f9982d9a1ca2f5fcd1563d7d8d" title="Builds ordered cost list and finds min/max cost in a problem.">arrow_problem_info_get</a>(&amp;problem, <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>, &amp;info)) 
+<a name="l00047"></a>00047         <span class="keywordflow">return</span> EXIT_FAILURE;
+<a name="l00048"></a>00048     <span class="comment">/* Note: BAP algorithm does not need hash list */</span>
+<a name="l00049"></a>00049     
+<a name="l00050"></a>00050     <span class="comment">/* Solve BAP */</span>
+<a name="l00051"></a>00051     <span class="keywordflow">if</span>(!<a class="code" href="lb_8h.html#55ff81ad64c0e4aadc08860a8c2d2c44" title="Solves the bottleneck assignment problem (BAP).">arrow_bap_solve</a>(&amp;problem, &amp;info, &amp;result))
+<a name="l00052"></a>00052     {
+<a name="l00053"></a>00053         <a class="code" href="common_8h.html#c8a166e323227a8681ed32027ca1000a">arrow_print_error</a>(<span class="stringliteral">"Could not solve BAP on file."</span>);
+<a name="l00054"></a>00054         <span class="keywordflow">return</span> EXIT_FAILURE;
+<a name="l00055"></a>00055     }
+<a name="l00056"></a>00056     
+<a name="l00057"></a>00057     printf(<span class="stringliteral">"\nBAP Solution: %d\n"</span>, result.<a class="code" href="structarrow__bound__result.html#acbca68de984376a60dbb9893935e0f4">obj_value</a>);
+<a name="l00058"></a>00058     printf(<span class="stringliteral">"Total Time: %5.2f\n"</span>, result.<a class="code" href="structarrow__bound__result.html#d27a3cae43bbe1ed2e2c60a4ef307b08">total_time</a>);
+<a name="l00059"></a>00059     
+<a name="l00060"></a>00060     <span class="comment">/* Print out XML file if required */</span>
+<a name="l00061"></a>00061     <span class="keywordflow">if</span>(<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a> != NULL)
+<a name="l00062"></a>00062     {
+<a name="l00063"></a>00063         FILE *xml;
+<a name="l00064"></a>00064         <span class="keywordflow">if</span>(!(xml = fopen(<a class="code" href="bin_22mb_8c.html#bf4e392494984c6ef8259268eb1fe421">xml_file</a>, <span class="stringliteral">"w"</span>)))
+<a name="l00065"></a>00065         {
+<a name="l00066"></a>00066             <a class="code" href="common_8h.html#c8a166e323227a8681ed32027ca1000a">arrow_print_error</a>(<span class="stringliteral">"Could not open xml file for writing"</span>);
+<a name="l00067"></a>00067             ret = <a class="code" href="common_8h.html#a50e8b8f74e48535271458079c7506cb">ARROW_FAILURE</a>;
+<a name="l00068"></a>00068             <span class="keywordflow">goto</span> CLEANUP;
+<a name="l00069"></a>00069         }
+<a name="l00070"></a>00070         
+<a name="l00071"></a>00071         fprintf(xml, <span class="stringliteral">"&lt;arrow_bound type=\"BAP\" "</span>);
+<a name="l00072"></a>00072         fprintf(xml, <span class="stringliteral">"problem_file=\"%s\""</span>, <a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>);
+<a name="l00073"></a>00073         fprintf(xml, <span class="stringliteral">" command_args=\""</span>);
+<a name="l00074"></a>00074         <a class="code" href="common_8h.html#0bf303aee0600136e1720be7e6c60021" title="Prints out the given program arguments to the specified file.">arrow_util_print_program_args</a>(argc, argv, xml);
+<a name="l00075"></a>00075         fprintf(xml, <span class="stringliteral">"\"&gt;\n"</span>);
+<a name="l00076"></a>00076         fprintf(xml, <span class="stringliteral">"    &lt;objective_value&gt;%d&lt;/objective_value&gt;\n"</span>, 
+<a name="l00077"></a>00077                 result.<a class="code" href="structarrow__bound__result.html#acbca68de984376a60dbb9893935e0f4">obj_value</a>);
+<a name="l00078"></a>00078         fprintf(xml, <span class="stringliteral">"    &lt;total_time&gt;%.5f&lt;/total_time&gt;\n"</span>, 
+<a name="l00079"></a>00079                 result.<a class="code" href="structarrow__bound__result.html#d27a3cae43bbe1ed2e2c60a4ef307b08">total_time</a>);
+<a name="l00080"></a>00080         fprintf(xml, <span class="stringliteral">"&lt;/arrow_bound&gt;\n"</span>);
+<a name="l00081"></a>00081         
+<a name="l00082"></a>00082         fclose(xml);
+<a name="l00083"></a>00083     }
+<a name="l00084"></a>00084         
+<a name="l00085"></a>00085 CLEANUP:
+<a name="l00086"></a>00086     <a class="code" href="common_8h.html#a702972ab510dcc6354d7679759611d1" title="Deallocates problem data structure.">arrow_problem_destruct</a>(&amp;problem);
+<a name="l00087"></a>00087     <a class="code" href="common_8h.html#09a5ba81556412e281fe6b863a6f08db" title="Deallocates problem info data structure.">arrow_problem_info_destruct</a>(&amp;info);
+<a name="l00088"></a>00088     <span class="keywordflow">return</span> ret;
+<a name="l00089"></a>00089 }
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Jul 4 13:27:16 2008 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Feb 18 01:00:19 2009 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

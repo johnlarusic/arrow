@@ -1,0 +1,245 @@
+\hypertarget{lb_8h}{
+\section{include/lb.h File Reference}
+\label{lb_8h}\index{include/lb.h@{include/lb.h}}
+}
+Lower bound functions for the bottleneck TSP. 
+
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result}
+\begin{CompactList}\small\item\em A lower bound result. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{lb_8h_a3ac7f6280e1eaea38fafbe78375b13f}{arrow\_\-2mb\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves the 2-max bound (2MB) on the given problem. \item\end{CompactList}\item 
+int \hyperlink{lb_8h_55ff81ad64c0e4aadc08860a8c2d2c44}{arrow\_\-bap\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves the bottleneck assignment problem (BAP). \item\end{CompactList}\item 
+int \hyperlink{lb_8h_ff7006ace4173927265facbe5f895cf0}{arrow\_\-bbssp\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves the bottleneck biconnected spanning subgraph problem (BBSSP) on the given problem. \item\end{CompactList}\item 
+int \hyperlink{lb_8h_727cb19dd9cfa6315e1155796daef833}{arrow\_\-bbssp\_\-biconnected} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int max\_\-cost, int $\ast$result)
+\begin{CompactList}\small\item\em Determines if the graph is biconnected using only edges with costs less than or equal to the given value. \item\end{CompactList}\item 
+int \hyperlink{lb_8h_624fe95ca7b7eb623ee636c2f8cb1409}{arrow\_\-bscssp\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on the given graph. \item\end{CompactList}\item 
+int \hyperlink{lb_8h_33a2e1c3a014448c8684a6f6770e08a9}{arrow\_\-cbap\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, double \hyperlink{bin_2cbst_8c_0c7f495d279d6f237d38be875e03f593}{max\_\-length}, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves the constrained bottleneck assignment problem (CBAP). \item\end{CompactList}\item 
+int \hyperlink{lb_8h_d886215a5663a977758daca551470e64}{arrow\_\-cbap\_\-lap} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, double $\ast$result)
+\begin{CompactList}\small\item\em Solves the linear assignment problem (LAP). \item\end{CompactList}\item 
+int \hyperlink{lb_8h_ec2aba683fb10e482d8bd159f9fbf6ee}{arrow\_\-cbst\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, double \hyperlink{bin_2cbst_8c_0c7f495d279d6f237d38be875e03f593}{max\_\-length}, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Constrained bottleneck spanning tree (CBST) solver. \item\end{CompactList}\item 
+int \hyperlink{lb_8h_612e61ddbeb12c909d155b27327a0486}{arrow\_\-cbst\_\-mst\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, int $\ast$tree, int $\ast$max\_\-cost, double $\ast$\hyperlink{cbtsp_8c_928b11f5716331f0b89abe7d8d4124b4}{length})
+\begin{CompactList}\small\item\em Minimum spanning tree (MST) solver. \item\end{CompactList}\item 
+int \hyperlink{lb_8h_ad3367474556148e376254886b71947d}{arrow\_\-dcbpb\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves the degree constrained bottleneck paths bound (DCBPB). \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Lower bound functions for the bottleneck TSP. 
+
+Lower bound functions for the bottleneck TSP.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{lb_8h-source}{lb.h}.
+
+\subsection{Function Documentation}
+\hypertarget{lb_8h_a3ac7f6280e1eaea38fafbe78375b13f}{
+\index{lb.h@{lb.h}!arrow\_\-2mb\_\-solve@{arrow\_\-2mb\_\-solve}}
+\index{arrow\_\-2mb\_\-solve@{arrow\_\-2mb\_\-solve}!lb.h@{lb.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-2mb\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
+\label{lb_8h_a3ac7f6280e1eaea38fafbe78375b13f}
+
+
+Solves the 2-max bound (2MB) on the given problem. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em result}]\mbox{[}out\mbox{]} 2MB solution \end{description}
+\end{Desc}
+
+
+Definition at line 17 of file 2mb.c.
+
+References ARROW\_\-SUCCESS, arrow\_\-util\_\-zeit(), arrow\_\-problem::get\_\-cost, max(), arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-problem::symmetric, and arrow\_\-bound\_\-result::total\_\-time.
+
+Referenced by main().\hypertarget{lb_8h_55ff81ad64c0e4aadc08860a8c2d2c44}{
+\index{lb.h@{lb.h}!arrow\_\-bap\_\-solve@{arrow\_\-bap\_\-solve}}
+\index{arrow\_\-bap\_\-solve@{arrow\_\-bap\_\-solve}!lb.h@{lb.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bap\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
+\label{lb_8h_55ff81ad64c0e4aadc08860a8c2d2c44}
+
+
+Solves the bottleneck assignment problem (BAP). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em info}]\mbox{[}in\mbox{]} problem info \item[{\em result}]\mbox{[}out\mbox{]} BBSSP solution \end{description}
+\end{Desc}
+
+
+Definition at line 69 of file bap.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-create\_\-int\_\-matrix(), arrow\_\-util\_\-zeit(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, ford\_\-fulkerson\_\-labeling(), initialize\_\-flow\_\-data(), arrow\_\-bound\_\-result::obj\_\-value, shortest\_\-augmenting\_\-path(), arrow\_\-problem::size, and arrow\_\-bound\_\-result::total\_\-time.
+
+Referenced by main().\hypertarget{lb_8h_727cb19dd9cfa6315e1155796daef833}{
+\index{lb.h@{lb.h}!arrow\_\-bbssp\_\-biconnected@{arrow\_\-bbssp\_\-biconnected}}
+\index{arrow\_\-bbssp\_\-biconnected@{arrow\_\-bbssp\_\-biconnected}!lb.h@{lb.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bbssp\_\-biconnected ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em max\_\-cost}, \/  int $\ast$ {\em result})}}
+\label{lb_8h_727cb19dd9cfa6315e1155796daef833}
+
+
+Determines if the graph is biconnected using only edges with costs less than or equal to the given value. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} value to check biconnectivity question against \item[{\em result}]\mbox{[}out\mbox{]} ARROW\_\-TRUE if biconnected, ARROW\_\-FALSE otherwise. \end{description}
+\end{Desc}
+
+
+Definition at line 95 of file bbssp.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-TRUE, arrow\_\-util\_\-create\_\-int\_\-array(), find\_\-art\_\-points(), parent(), and arrow\_\-problem::size.
+
+Referenced by arrow\_\-bbssp\_\-solve().\hypertarget{lb_8h_ff7006ace4173927265facbe5f895cf0}{
+\index{lb.h@{lb.h}!arrow\_\-bbssp\_\-solve@{arrow\_\-bbssp\_\-solve}}
+\index{arrow\_\-bbssp\_\-solve@{arrow\_\-bbssp\_\-solve}!lb.h@{lb.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bbssp\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
+\label{lb_8h_ff7006ace4173927265facbe5f895cf0}
+
+
+Solves the bottleneck biconnected spanning subgraph problem (BBSSP) on the given problem. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em info}]\mbox{[}in\mbox{]} problem info \item[{\em result}]\mbox{[}out\mbox{]} BBSSP solution \end{description}
+\end{Desc}
+
+
+Definition at line 45 of file bbssp.c.
+
+References arrow\_\-bbssp\_\-biconnected(), ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-util\_\-zeit(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::symmetric, and arrow\_\-bound\_\-result::total\_\-time.
+
+Referenced by main().\hypertarget{lb_8h_624fe95ca7b7eb623ee636c2f8cb1409}{
+\index{lb.h@{lb.h}!arrow\_\-bscssp\_\-solve@{arrow\_\-bscssp\_\-solve}}
+\index{arrow\_\-bscssp\_\-solve@{arrow\_\-bscssp\_\-solve}!lb.h@{lb.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bscssp\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
+\label{lb_8h_624fe95ca7b7eb623ee636c2f8cb1409}
+
+
+Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on the given graph. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em info}]\mbox{[}in\mbox{]} problem info \item[{\em result}]\mbox{[}out\mbox{]} BSCSSP solution \end{description}
+\end{Desc}
+
+
+Definition at line 44 of file bscssp.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-util\_\-zeit(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-bound\_\-result::obj\_\-value, strongly\_\-connected(), and arrow\_\-bound\_\-result::total\_\-time.
+
+Referenced by main().\hypertarget{lb_8h_d886215a5663a977758daca551470e64}{
+\index{lb.h@{lb.h}!arrow\_\-cbap\_\-lap@{arrow\_\-cbap\_\-lap}}
+\index{arrow\_\-cbap\_\-lap@{arrow\_\-cbap\_\-lap}!lb.h@{lb.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-cbap\_\-lap ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  double $\ast$ {\em result})}}
+\label{lb_8h_d886215a5663a977758daca551470e64}
+
+
+Solves the linear assignment problem (LAP). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em result}]\mbox{[}out\mbox{]} LAP solution \end{description}
+\end{Desc}
+
+
+Definition at line 124 of file cbap.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, destruct\_\-data(), init\_\-data(), lap(), and arrow\_\-problem::size.\hypertarget{lb_8h_33a2e1c3a014448c8684a6f6770e08a9}{
+\index{lb.h@{lb.h}!arrow\_\-cbap\_\-solve@{arrow\_\-cbap\_\-solve}}
+\index{arrow\_\-cbap\_\-solve@{arrow\_\-cbap\_\-solve}!lb.h@{lb.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-cbap\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  double {\em max\_\-length}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
+\label{lb_8h_33a2e1c3a014448c8684a6f6770e08a9}
+
+
+Solves the constrained bottleneck assignment problem (CBAP). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em info}]\mbox{[}in\mbox{]} problem info \item[{\em max\_\-length}]\mbox{[}in\mbox{]} the maximum length of the assignment \item[{\em result}]\mbox{[}out\mbox{]} CBAP solution \end{description}
+\end{Desc}
+
+
+Definition at line 51 of file cbap.c.
+
+References arrow\_\-debug, ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-zeit(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, destruct\_\-data(), arrow\_\-problem::get\_\-cost, init\_\-data(), lap(), length, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, and arrow\_\-bound\_\-result::total\_\-time.
+
+Referenced by main().\hypertarget{lb_8h_612e61ddbeb12c909d155b27327a0486}{
+\index{lb.h@{lb.h}!arrow\_\-cbst\_\-mst\_\-solve@{arrow\_\-cbst\_\-mst\_\-solve}}
+\index{arrow\_\-cbst\_\-mst\_\-solve@{arrow\_\-cbst\_\-mst\_\-solve}!lb.h@{lb.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-cbst\_\-mst\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  int $\ast$ {\em tree}, \/  int $\ast$ {\em max\_\-cost}, \/  double $\ast$ {\em length})}}
+\label{lb_8h_612e61ddbeb12c909d155b27327a0486}
+
+
+Minimum spanning tree (MST) solver. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em info}]\mbox{[}in\mbox{]} problem info data \item[{\em tree}]\mbox{[}out\mbox{]} MST tree (tree\mbox{[}i\mbox{]} gives precessor for node i) \item[{\em max\_\-cost}]\mbox{[}out\mbox{]} the largest cost in the tree \item[{\em length}]\mbox{[}out\mbox{]} the length of all edges in the tree \end{description}
+\end{Desc}
+
+
+Definition at line 96 of file cbst.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, destroy\_\-data(), init\_\-data(), arrow\_\-problem\_\-info::max\_\-cost, min\_\-span\_\-tree(), and arrow\_\-problem::size.\hypertarget{lb_8h_ec2aba683fb10e482d8bd159f9fbf6ee}{
+\index{lb.h@{lb.h}!arrow\_\-cbst\_\-solve@{arrow\_\-cbst\_\-solve}}
+\index{arrow\_\-cbst\_\-solve@{arrow\_\-cbst\_\-solve}!lb.h@{lb.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-cbst\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  double {\em max\_\-length}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
+\label{lb_8h_ec2aba683fb10e482d8bd159f9fbf6ee}
+
+
+Constrained bottleneck spanning tree (CBST) solver. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em info}]\mbox{[}in\mbox{]} problem info data \item[{\em max\_\-length}]\mbox{[}in\mbox{]} maximum spanning tree length \item[{\em result}]\mbox{[}out\mbox{]} bound result \end{description}
+\end{Desc}
+
+
+Definition at line 46 of file cbst.c.
+
+References arrow\_\-debug, ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-zeit(), init\_\-data(), length, arrow\_\-problem\_\-info::max\_\-cost, min\_\-span\_\-tree(), arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, and arrow\_\-bound\_\-result::total\_\-time.
+
+Referenced by main().\hypertarget{lb_8h_ad3367474556148e376254886b71947d}{
+\index{lb.h@{lb.h}!arrow\_\-dcbpb\_\-solve@{arrow\_\-dcbpb\_\-solve}}
+\index{arrow\_\-dcbpb\_\-solve@{arrow\_\-dcbpb\_\-solve}!lb.h@{lb.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-dcbpb\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
+\label{lb_8h_ad3367474556148e376254886b71947d}
+
+
+Solves the degree constrained bottleneck paths bound (DCBPB). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em result}]\mbox{[}out\mbox{]} BPB solution \end{description}
+\end{Desc}
+
+
+Definition at line 40 of file dcbpb.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-create\_\-int\_\-matrix(), arrow\_\-util\_\-zeit(), bottleneck\_\-paths(), arrow\_\-problem::get\_\-cost, max(), arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, and arrow\_\-bound\_\-result::total\_\-time.
+
+Referenced by main().

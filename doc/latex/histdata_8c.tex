@@ -1,0 +1,125 @@
+\hypertarget{histdata_8c}{
+\section{bin/histdata.c File Reference}
+\label{histdata_8c}\index{bin/histdata.c@{bin/histdata.c}}
+}
+Edge length histogram data collector. 
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{histdata_8c_9b58b2c4af931c8486a986c9deca40f5}{NUM\_\-OPTS}~1
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{histdata_8c_0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+char $\ast$ \hyperlink{histdata_8c_289c5900d90626d909f0a85d5a0ed61d}{program\_\-name}
+\item 
+char $\ast$ \hyperlink{histdata_8c_a4f3a15de34c409bdec6ceacf93078ed}{input\_\-file} = NULL
+\item 
+\hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{histdata_8c_cea6a9709d519c143f30db401a0d0c72}{options} \mbox{[}NUM\_\-OPTS\mbox{]}
+\item 
+char $\ast$ \hyperlink{histdata_8c_3aad16fd4bea1b9717f232ea75ad6449}{desc} = \char`\"{}Prints a list of every cost in problem (for histogram.py)\char`\"{}
+\item 
+char $\ast$ \hyperlink{histdata_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage} = \char`\"{}-i tsplib.tsp\char`\"{}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Edge length histogram data collector. 
+
+Prints out a list of every edge length present in given problem. Used in conjunction with a Python script for generating a histogram plot.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{histdata_8c-source}{histdata.c}.
+
+\subsection{Define Documentation}
+\hypertarget{histdata_8c_9b58b2c4af931c8486a986c9deca40f5}{
+\index{histdata.c@{histdata.c}!NUM\_\-OPTS@{NUM\_\-OPTS}}
+\index{NUM\_\-OPTS@{NUM\_\-OPTS}!histdata.c@{histdata.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define NUM\_\-OPTS~1}}
+\label{histdata_8c_9b58b2c4af931c8486a986c9deca40f5}
+
+
+
+
+Definition at line 17 of file histdata.c.
+
+\subsection{Function Documentation}
+\hypertarget{histdata_8c_0ddf1224851353fc92bfbff6f499fa97}{
+\index{histdata.c@{histdata.c}!main@{main}}
+\index{main@{main}!histdata.c@{histdata.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]})}}
+\label{histdata_8c_0ddf1224851353fc92bfbff6f499fa97}
+
+
+
+
+Definition at line 28 of file histdata.c.
+
+References ARROW\_\-DEV\_\-NULL, arrow\_\-options\_\-parse(), arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-read(), arrow\_\-util\_\-redirect\_\-stdout\_\-to\_\-file(), arrow\_\-util\_\-restore\_\-stdout(), desc, arrow\_\-problem::get\_\-cost, input\_\-file, NUM\_\-OPTS, arrow\_\-problem::size, and usage.
+
+\subsection{Variable Documentation}
+\hypertarget{histdata_8c_3aad16fd4bea1b9717f232ea75ad6449}{
+\index{histdata.c@{histdata.c}!desc@{desc}}
+\index{desc@{desc}!histdata.c@{histdata.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf desc} = \char`\"{}Prints a list of every cost in problem (for histogram.py)\char`\"{}}}
+\label{histdata_8c_3aad16fd4bea1b9717f232ea75ad6449}
+
+
+
+
+Definition at line 23 of file histdata.c.\hypertarget{histdata_8c_a4f3a15de34c409bdec6ceacf93078ed}{
+\index{histdata.c@{histdata.c}!input\_\-file@{input\_\-file}}
+\index{input\_\-file@{input\_\-file}!histdata.c@{histdata.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf input\_\-file} = NULL}}
+\label{histdata_8c_a4f3a15de34c409bdec6ceacf93078ed}
+
+
+Given input TSPLIB file 
+
+Definition at line 14 of file histdata.c.\hypertarget{histdata_8c_cea6a9709d519c143f30db401a0d0c72}{
+\index{histdata.c@{histdata.c}!options@{options}}
+\index{options@{options}!histdata.c@{histdata.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf arrow\_\-option} {\bf options}\mbox{[}NUM\_\-OPTS\mbox{]}}}
+\label{histdata_8c_cea6a9709d519c143f30db401a0d0c72}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} 
+{
+    {'i', "input", "TSPLIB input file", 
+        ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 18 of file histdata.c.\hypertarget{histdata_8c_289c5900d90626d909f0a85d5a0ed61d}{
+\index{histdata.c@{histdata.c}!program\_\-name@{program\_\-name}}
+\index{program\_\-name@{program\_\-name}!histdata.c@{histdata.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf program\_\-name}}}
+\label{histdata_8c_289c5900d90626d909f0a85d5a0ed61d}
+
+
+Program name 
+
+Definition at line 13 of file histdata.c.\hypertarget{histdata_8c_adebe2487a2c5240ab6cd02c83add0bf}{
+\index{histdata.c@{histdata.c}!usage@{usage}}
+\index{usage@{usage}!histdata.c@{histdata.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf usage} = \char`\"{}-i tsplib.tsp\char`\"{}}}
+\label{histdata_8c_adebe2487a2c5240ab6cd02c83add0bf}
+
+
+
+
+Definition at line 24 of file histdata.c.
