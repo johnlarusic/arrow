@@ -177,13 +177,15 @@ arrow_btsp_fun_basic(int shallow, arrow_btsp_fun *fun);
 /**
  *  @brief  Controlled Type I Shake.
  *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
- *  @param  random_min [in] minimum random number to generate
- *  @param  random_max [in] maximum random number to generate
+ *  @param  infinity [in] value to use as "infinity"
+ *  @param  random_min [in] minimum random value to generate
+ *  @param  random_max [in] maximum random value to generate
  *  @param  info [in] information about the original problem
  *  @param  fun [out] function structure
  */
 int
-arrow_btsp_fun_basic_shake_i(int shallow, int random_min, int random_max, 
+arrow_btsp_fun_sbtsp_shake_1(int shallow, int infinity,
+                             int random_min, int random_max,
                              arrow_problem_info *info, arrow_btsp_fun *fun);
 
 /****************************************************************************

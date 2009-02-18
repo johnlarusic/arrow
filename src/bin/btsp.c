@@ -14,6 +14,7 @@
 /* Global variables */
 char *input_file = NULL;
 char *xml_file = NULL;
+int edge_infinity = -1;
 int random_restarts = -1;
 int stall_count = -1;
 int kicks = -1;
@@ -21,12 +22,17 @@ int confirm_sol = ARROW_FALSE;
 int supress_ebst = ARROW_FALSE;
 int find_short_tour = ARROW_FALSE;
 int supress_hash = ARROW_FALSE;
+int deep_copy = ARROW_FALSE;
 int lower_bound = -1;
 int upper_bound = INT_MAX;
-int basic_attempts = 1;
+int basic_attempts = 3;
+int shake_1_attempts = 1;
+int shake_1_rand_min = 0;
+int shake_1_rand_max = -1;
+int random_seed = 0;
 
 /* Program options */
-#define NUM_OPTS 12
+#define NUM_OPTS 17
 arrow_option options[NUM_OPTS] = 
 {
     {'i', "input", "TSPLIB input file", 
@@ -48,13 +54,25 @@ arrow_option options[NUM_OPTS] =
         ARROW_OPTION_INT, &find_short_tour, ARROW_FALSE, ARROW_FALSE},
     {'H', "supress-hash", "do not create hash table",
         ARROW_OPTION_INT, &supress_hash, ARROW_FALSE, ARROW_FALSE},
+    {'d', "deep-copy", "stores data in full cost-matrix",
+        ARROW_OPTION_INT, &deep_copy, ARROW_FALSE, ARROW_FALSE},
         
     {'l', "lower-bound", "initial lower bound",
         ARROW_OPTION_INT, &lower_bound, ARROW_FALSE, ARROW_TRUE},
     {'u', "upper-bound", "initial upper bound",
         ARROW_OPTION_INT, &upper_bound, ARROW_FALSE, ARROW_TRUE},
     {'a', "basic-attempts", "number of basic attempts",
-        ARROW_OPTION_INT, &basic_attempts, ARROW_FALSE, ARROW_TRUE}
+        ARROW_OPTION_INT, &basic_attempts, ARROW_FALSE, ARROW_TRUE},
+        
+    {'b', "shake-1-attempts", "number of shake type I attempts",
+        ARROW_OPTION_INT, &shake_1_attempts, ARROW_FALSE, ARROW_TRUE},
+    {'1', "shake-1-rand-min", "min value for shake type I random numbers",
+        ARROW_OPTION_INT, &shake_1_rand_min, ARROW_FALSE, ARROW_TRUE},
+    {'2', "shake-1-rand-max", "max value for shake type I random numbers",
+        ARROW_OPTION_INT, &shake_1_rand_max, ARROW_FALSE, ARROW_TRUE},
+        
+    {'g', "random-seed", "random number generator seed",
+        ARROW_OPTION_INT, &random_seed, ARROW_FALSE, ARROW_TRUE}
 };
 char *desc = "Bottleneck traveling salesman problem (BTSP) solver";
 char *usage = "-i tsplib.tsp [options]";
@@ -69,6 +87,7 @@ main(int argc, char *argv[])
     arrow_problem_info info;
     arrow_tsp_cc_lk_params lk_params;
     arrow_btsp_fun fun_basic;
+    arrow_btsp_fun fun_shake_1;
     arrow_btsp_result result;
     arrow_btsp_params btsp_params;
     
@@ -93,6 +112,25 @@ main(int argc, char *argv[])
     if(!arrow_problem_info_get(&problem, !supress_hash, &info))
         return EXIT_FAILURE;
     printf("Number of unique costs: %d\n", info.cost_list_length);
+    
+    /* Extra processing for arguments */
+    if(shake_1_rand_max < 0) 
+        shake_1_rand_max = (problem.size * problem.size) + shake_1_rand_min;
+    if(shake_1_rand_max - shake_1_rand_min < info.cost_list_length)
+    {
+        arrow_print_error("shake random interval not large enough");
+        return EXIT_FAILURE;
+    }
+    
+    /* Calculate a value for infinity if necessary */
+    if(edge_infinity < 0)
+    {
+        edge_infinity = (info.max_cost + shake_1_rand_max) * 2;
+        printf("infinity: %d\n", edge_infinity);
+    }
+    
+    /* Initialize random number generator */
+    arrow_util_random_seed(random_seed);
 
     /* Determine if we need to call the BBSSP to find a lower bound */
     if(lower_bound < 0)
@@ -119,7 +157,11 @@ main(int argc, char *argv[])
     /* Setup necessary function structures */
     if(arrow_btsp_fun_basic(ARROW_FALSE, &fun_basic) != ARROW_SUCCESS)
         return EXIT_FAILURE;
-    #define SOLVE_STEPS 1
+    if(!arrow_btsp_fun_sbtsp_shake_1(deep_copy, edge_infinity, shake_1_rand_min,
+                                     shake_1_rand_max, &info, &fun_shake_1))
+        return EXIT_FAILURE;
+        
+    #define SOLVE_STEPS 2
     arrow_btsp_solve_plan steps[SOLVE_STEPS] = 
     {
        {
@@ -127,6 +169,12 @@ main(int argc, char *argv[])
            (void *)&lk_params,              /* TSP solver parameters */
            fun_basic,                       /* fun (cost matrix function) */
            basic_attempts                   /* attempts */
+       },
+       {
+           ARROW_TSP_CC_LK,                 /* TSP solver */
+           (void *)&lk_params,              /* TSP solver parameters */
+           fun_shake_1,                     /* fun (cost matrix function) */
+           shake_1_attempts                 /* attempts */
        }
     };
     arrow_btsp_solve_plan confirm_plan = 
@@ -192,6 +240,7 @@ main(int argc, char *argv[])
 CLEANUP:
     arrow_btsp_result_destruct(&result);
     arrow_btsp_fun_destruct(&fun_basic);
+    arrow_btsp_fun_destruct(&fun_shake_1);
     arrow_tsp_cc_lk_params_destruct(&lk_params); 
     arrow_problem_destruct(&problem);
     return ret;
