@@ -191,9 +191,7 @@ main(int argc, char *argv[])
     
 CLEANUP:
     arrow_btsp_result_destruct(&result);
-    arrow_btsp_params_destruct(&btsp_params);
     arrow_btsp_fun_destruct(&fun_basic);
-    arrow_btsp_params_destruct(&btsp_params);
     arrow_tsp_cc_lk_params_destruct(&lk_params); 
     arrow_problem_destruct(&problem);
     return ret;

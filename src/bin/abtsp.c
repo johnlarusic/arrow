@@ -66,7 +66,7 @@ arrow_option options[NUM_OPTS] =
     {'a', "basic-attempts", "number of basic attempts",
         ARROW_OPTION_INT, &basic_attempts, ARROW_FALSE, ARROW_TRUE}
 };
-char *desc = "Bottleneck traveling salesman problem (BTSP) solver";
+char *desc = "Asymmetric bottleneck TSP solver";
 char *usage = "-i tsplib.tsp [options]";
 
 /* Main method */
@@ -288,9 +288,7 @@ main(int argc, char *argv[])
     
 CLEANUP:
     arrow_btsp_result_destruct(&result);
-    arrow_btsp_params_destruct(&btsp_params);
     arrow_btsp_fun_destruct(&fun_basic);
-    arrow_btsp_params_destruct(&btsp_params);
     arrow_tsp_cc_lk_params_destruct(&lk_params); 
     arrow_problem_destruct(&problem); 
     arrow_problem_destruct(&atsp_problem);

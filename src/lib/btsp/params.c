@@ -23,16 +23,4 @@ arrow_btsp_params_init(arrow_btsp_params *params)
     params->num_steps = 0;
 }
 
-void 
-arrow_btsp_params_destruct(arrow_btsp_params *params)
-{
-    if(params->num_steps > 0)
-    {
-        int i;
-        for(i = 0; i < params->num_steps; i++)
-        {
-            arrow_btsp_solve_plan_destruct(&(params->steps[i]));
-        }
-    }
-}
 

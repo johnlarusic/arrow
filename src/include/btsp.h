@@ -224,13 +224,6 @@ arrow_btsp_fun_constrained_shake(int shallow, double feasible_length,
 void
 arrow_btsp_params_init(arrow_btsp_params *params);
 
-/**
- *  @brief  Destructs a BTSP parameters structure.
- *  @param  params [out] BTSP parameters structure
- */
-void 
-arrow_btsp_params_destruct(arrow_btsp_params *params);
-
 
 /****************************************************************************
  *  result.c
