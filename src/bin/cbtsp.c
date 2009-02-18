@@ -22,6 +22,8 @@ int kicks = -1;
 int confirm_sol = ARROW_FALSE;
 int supress_ebst = ARROW_FALSE;
 int find_short_tour = ARROW_FALSE;
+int supress_hash = ARROW_FALSE;
+int deep_copy = ARROW_FALSE;
 int lower_bound = -1;
 int upper_bound = INT_MAX;
 int basic_attempts = 3;
@@ -32,7 +34,7 @@ int random_seed = 0;
 
 
 /* Program options */
-#define NUM_OPTS 17
+#define NUM_OPTS 19
 arrow_option options[NUM_OPTS] = 
 {
     {'i', "input", "TSPLIB input file", 
@@ -57,6 +59,10 @@ arrow_option options[NUM_OPTS] =
         ARROW_OPTION_INT, &supress_ebst, ARROW_FALSE, ARROW_FALSE},
     {'S', "find-short-tour", "finds a (relatively) short BTSP tour",
         ARROW_OPTION_INT, &find_short_tour, ARROW_FALSE, ARROW_FALSE},
+    {'H', "supress-hash", "do not create hash table",
+        ARROW_OPTION_INT, &supress_hash, ARROW_FALSE, ARROW_FALSE},
+    {'d', "deep-copy", "stores data in full cost-matrix",
+        ARROW_OPTION_INT, &deep_copy, ARROW_FALSE, ARROW_FALSE},
         
     {'l', "lower-bound", "initial lower bound",
         ARROW_OPTION_INT, &lower_bound, ARROW_FALSE, ARROW_TRUE},
@@ -76,7 +82,7 @@ arrow_option options[NUM_OPTS] =
     {'g', "random-seed", "random number generator seed",
         ARROW_OPTION_INT, &random_seed, ARROW_FALSE, ARROW_TRUE}
 };
-char *desc = "Bottleneck traveling salesman problem (BTSP) solver";
+char *desc = "Constarined bottleneck TSP solver";
 char *usage = "-i tsplib.tsp -L max_length [options]";
 
 /* Main method */
@@ -88,9 +94,10 @@ main(int argc, char *argv[])
     arrow_problem problem;
     arrow_problem_info info;
     arrow_tsp_cc_lk_params lk_params;
-    arrow_btsp_fun fun_con;
-    arrow_btsp_fun fun_con_shake;
+    arrow_btsp_fun fun_basic;
+    //arrow_btsp_fun fun_shake;
     arrow_btsp_result result;
+    arrow_btsp_params btsp_params;
     
     double start_time = arrow_util_zeit();
     double end_time;
@@ -103,8 +110,10 @@ main(int argc, char *argv[])
     /* Try and read the problem file and its info */
     if(!arrow_problem_read(input_file, &problem))
         return EXIT_FAILURE;
-    if(!arrow_problem_info_get(&problem, &info))
+    if(!arrow_problem_info_get(&problem, supress_hash, &info))
         return EXIT_FAILURE;
+    printf("Num costs in problem: %d\n", info.cost_list_length);
+    printf("Max cost in problem:  %d\n", info.max_cost);
         
     /* Extra processing for arguments */
     if(shake_rand_max < 0) shake_rand_max = 
@@ -141,33 +150,34 @@ main(int argc, char *argv[])
     lk_params.length_bound = length;
     
     /* Setup necessary function structures */
-    if(!arrow_btsp_fun_constrained(ARROW_FALSE, length, length + 1, &fun_con))
+    if(!arrow_btsp_fun_cbtsp_basic(deep_copy, length, length + 1, &fun_basic))
         return EXIT_FAILURE;
-        
+    /*    
     if(!arrow_btsp_fun_constrained_shake(ARROW_FALSE, length, length + 1, 
                                          shake_rand_min, shake_rand_max, 
                                          &problem, &info, &fun_con_shake))
         return EXIT_FAILURE;
+    */
     
-    #define SOLVE_STEPS 2
+    #define SOLVE_STEPS 1
     arrow_btsp_solve_plan steps[SOLVE_STEPS] = 
     {
-        {
-            ARROW_TSP_CC_LK,                 /* TSP solver */
-            (void *)&lk_params,              /* TSP solver parameters */
-            fun_con,                         /* fun (cost matrix function) */
-            basic_attempts                   /* attempts */
-        },
-        {
-            ARROW_TSP_CC_LK,                 /* TSP solver */
-            (void *)&lk_params,              /* TSP solver parameters */
-            fun_con_shake,                   /* fun (cost matrix function) */
-            shake_attempts                   /* attempts */
-        }
+       {
+           ARROW_TSP_CC_LK,                 /* TSP solver */
+           (void *)&lk_params,              /* TSP solver parameters */
+           fun_basic,                       /* fun (cost matrix function) */
+           basic_attempts                   /* attempts */
+       }
+    };
+    arrow_btsp_solve_plan confirm_plan = 
+    {
+       ARROW_TSP_CC_EXACT,
+       NULL,
+       fun_basic,
+       1
     };
     
     /* Setup BTSP parameters structure */
-    arrow_btsp_params btsp_params;
     arrow_btsp_params_init(&btsp_params);
     btsp_params.confirm_sol         = confirm_sol;
     btsp_params.supress_ebst        = supress_ebst;
@@ -176,11 +186,13 @@ main(int argc, char *argv[])
     btsp_params.upper_bound         = upper_bound;
     btsp_params.num_steps           = SOLVE_STEPS;
     btsp_params.steps               = steps;
+    btsp_params.confirm_plan        = confirm_plan;
     
-    /* Setup BTSP results structure */
+    /* Solve BTSP */
     arrow_btsp_result_init(&problem, &result);
     if(!arrow_btsp_solve(&problem, &info, &btsp_params, &result))
     {
+        arrow_print_error("Could not solve BTSP on file.\n");
         ret = EXIT_FAILURE;
         goto CLEANUP;
     }
@@ -264,8 +276,7 @@ main(int argc, char *argv[])
     
 CLEANUP:
     arrow_btsp_result_destruct(&result);
-    /*arrow_btsp_fun_destruct(&fun_constrained);*/
-    arrow_btsp_params_destruct(&btsp_params);
+    arrow_btsp_fun_destruct(&fun_basic);
     arrow_tsp_cc_lk_params_destruct(&lk_params);
     arrow_problem_destruct(&problem);
     return ret;

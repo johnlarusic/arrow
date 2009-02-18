@@ -74,8 +74,9 @@ arrow_btsp_fun_cbtsp_basic(int shallow, double feasible_length, int infinity,
         return ARROW_FAILURE;
     }
     
-    fun->data->infinity = infinity;
-    fun->data->feasible_length = feasible_length;
+    cbtsp_basic_data *cbtsp_data = (cbtsp_basic_data *)fun->data;
+    cbtsp_data->infinity = infinity;
+    cbtsp_data->feasible_length = feasible_length;
     
     fun->shallow = shallow;
     fun->get_cost = basic_cbtsp_get_cost;
@@ -105,7 +106,11 @@ basic_cbtsp_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
 void
 basic_cbtsp_destruct(arrow_btsp_fun *fun)
 {
-    free(fun->data);
+    if(fun->data != NULL)
+    {
+        free(fun->data);
+        fun->data = NULL;
+    }
 }
 
 int
