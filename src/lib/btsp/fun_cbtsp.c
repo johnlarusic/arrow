@@ -50,7 +50,7 @@ typedef struct cbtsp_shake_data
  *  @return cost between node i and node j
  */
 int
-basic_cbtsp_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
+cbtsp_basic_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
                      int delta, int i, int j);
 
 /**
@@ -58,14 +58,14 @@ basic_cbtsp_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
  *  @param  fun [out] the function structure to initialize
  */
 int
-basic_cbtsp_initialize(arrow_btsp_fun *fun);
+cbtsp_basic_initialize(arrow_btsp_fun *fun);
               
 /**
  *  @brief  Destructs the function data.
  *  @param  fun [out] the function structure to destruct
  */
 void
-basic_cbtsp_destruct(arrow_btsp_fun *fun);
+cbtsp_basic_destruct(arrow_btsp_fun *fun);
 
 /**
  *  @brief  Determines if the given tour is feasible or not.
@@ -77,7 +77,7 @@ basic_cbtsp_destruct(arrow_btsp_fun *fun);
  *  @return ARROW_TRUE if the tour is feasible, ARROW_FALSE if not
  */
 int
-basic_cbtsp_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem,
+cbtsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem,
                      int delta, double tour_length, int *tour);
                      
 /**
@@ -140,10 +140,10 @@ arrow_btsp_fun_cbtsp_basic(int shallow, double feasible_length, int infinity,
     cbtsp_data->feasible_length = feasible_length;
     
     fun->shallow = shallow;
-    fun->get_cost = basic_cbtsp_get_cost;
-    fun->initialize = basic_cbtsp_initialize;
-    fun->destruct = basic_cbtsp_destruct;
-    fun->feasible = basic_cbtsp_feasible;
+    fun->get_cost = cbtsp_basic_get_cost;
+    fun->initialize = cbtsp_basic_initialize;
+    fun->destruct = cbtsp_basic_destruct;
+    fun->feasible = cbtsp_basic_feasible;
     
     return ARROW_SUCCESS;
 }
@@ -190,7 +190,7 @@ arrow_btsp_fun_cbtsp_shake(int shallow, double feasible_length, int infinity,
  * Private function implementations
  ****************************************************************************/
 int
-basic_cbtsp_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
+cbtsp_basic_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
                      int delta, int i, int j)
 {
     cbtsp_basic_data *data = (cbtsp_basic_data *)fun->data;
@@ -203,13 +203,13 @@ basic_cbtsp_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
 }
 
 int
-basic_cbtsp_initialize(arrow_btsp_fun *fun)
+cbtsp_basic_initialize(arrow_btsp_fun *fun)
 { 
     return ARROW_SUCCESS;
 }
 
 void
-basic_cbtsp_destruct(arrow_btsp_fun *fun)
+cbtsp_basic_destruct(arrow_btsp_fun *fun)
 {
     if(fun->data != NULL)
     {
@@ -219,7 +219,7 @@ basic_cbtsp_destruct(arrow_btsp_fun *fun)
 }
 
 int
-basic_cbtsp_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem, 
+cbtsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem, 
                     int delta, double tour_length, int *tour)
 {
     cbtsp_basic_data *data = (cbtsp_basic_data *)fun->data;
