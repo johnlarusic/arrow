@@ -193,7 +193,7 @@ arrow_problem_info_get(arrow_problem *problem, int create_hash,
     }
     
     /* Convert tree to array */
-    arrow_bintree_to_array(&tree, &(info->cost_list));
+    arrow_bintree_to_new_array(&tree, &(info->cost_list));
     info->cost_list_length = tree.size;
     info->min_cost = min_cost;
     info->max_cost = max_cost;
