@@ -30,6 +30,13 @@
 int
 basic_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
                int delta, int i, int j);
+               
+/**
+ *  @brief  Initializes the function data.
+ *  @param  fun [out] the function structure to initialize
+ */
+int
+basic_initialize(arrow_btsp_fun *fun);
               
 /**
  *  @brief  Destructs the function data.
@@ -61,6 +68,7 @@ arrow_btsp_fun_basic(int shallow, arrow_btsp_fun *fun)
     fun->data = NULL;
     fun->shallow = shallow;
     fun->get_cost = basic_get_cost;
+    fun->initialize = basic_initialize;
     fun->destruct = basic_destruct;
     fun->feasible = basic_feasible;
     return ARROW_SUCCESS;
@@ -76,6 +84,12 @@ basic_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
 {
     int cost = base_problem->get_cost(base_problem, i, j);
     return (cost <= delta ? 0 : cost);
+}
+
+int
+basic_initialize(arrow_btsp_fun *fun)
+{ 
+    return ARROW_SUCCESS;
 }
 
 void

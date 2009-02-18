@@ -93,7 +93,13 @@ arrow_btsp_fun_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
     new_problem->size = old_problem->size;
     new_problem->symmetric = old_problem->symmetric;
     new_problem->shallow = fun->shallow;
-    strcpy(new_problem->name, old_problem->name);    
+    strcpy(new_problem->name, old_problem->name);
+    
+    if(!fun->initialize(fun))
+    {
+        arrow_print_error("Error initializing cost matrix function.");
+        return ARROW_FAILURE;
+    }
     
     if(fun->shallow)
         return apply_shallow(fun, old_problem, delta, new_problem);
