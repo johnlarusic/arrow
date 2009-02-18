@@ -50,7 +50,7 @@ apply_deep(arrow_btsp_fun *fun, arrow_problem *old_problem,
 
 /**
  *  @brief  Cost function for problems based upon cost matrix functions.
- *  @param  problem [in] problem structure
+ *  @param  this [in] problem structure
  *  @param  i [in] id of starting node
  *  @param  j [in] id of ending node
  *  @return cost between node i and node j
@@ -60,7 +60,7 @@ fun_get_cost(arrow_problem *this, int i, int j);
 
 /**
  *  @brief  Destructs problem based upon cost matrix functions.
- *  @param  problem [in] problem structure
+ *  @param  this [in] problem structure
  */
 void 
 fun_destruct(arrow_problem *this);

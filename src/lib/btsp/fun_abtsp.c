@@ -16,7 +16,7 @@
 /**
  *  @brief  Retrieves cost between nodes i and j from the function.
  *  @param  fun [in] function structure
- *  @param  problem [in] problem structure
+ *  @param  base_problem [in] problem structure
  *  @param  delta [in] delta parameter
  *  @param  i [in] id of start node
  *  @param  j [in] id of end node

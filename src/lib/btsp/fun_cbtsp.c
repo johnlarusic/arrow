@@ -43,7 +43,7 @@ typedef struct cbtsp_shake_data
 /**
  *  @brief  Retrieves cost between nodes i and j from the function.
  *  @param  fun [in] function structure
- *  @param  problem [in] problem structure
+ *  @param  base_problem [in] problem structure
  *  @param  delta [in] delta parameter
  *  @param  i [in] id of start node
  *  @param  j [in] id of end node
@@ -70,7 +70,7 @@ basic_cbtsp_destruct(arrow_btsp_fun *fun);
 /**
  *  @brief  Determines if the given tour is feasible or not.
  *  @param  fun [in] function structure
- *  @param  problem [in] the problem to check against
+ *  @param  base_problem [in] the problem to check against
  *  @param  delta [in] delta parameter
  *  @param  tour_length [in] the length of the given tour
  *  @param  tour [in] the tour in node-node format
@@ -83,7 +83,7 @@ basic_cbtsp_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem,
 /**
  *  @brief  Retrieves cost between nodes i and j from the function.
  *  @param  fun [in] function structure
- *  @param  problem [in] problem structure
+ *  @param  base_problem [in] problem structure
  *  @param  delta [in] delta parameter
  *  @param  i [in] id of start node
  *  @param  j [in] id of end node
@@ -110,7 +110,7 @@ cbtsp_shake_destruct(arrow_btsp_fun *fun);
 /**
  *  @brief  Determines if the given tour is feasible or not.
  *  @param  fun [in] function structure
- *  @param  problem [in] the problem to check against
+ *  @param  base_problem [in] the problem to check against
  *  @param  delta [in] delta parameter
  *  @param  tour_length [in] the length of the given tour
  *  @param  tour [in] the tour in node-node format

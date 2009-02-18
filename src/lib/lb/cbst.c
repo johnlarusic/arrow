@@ -30,7 +30,6 @@ destroy_data(arrow_heap *heap, int **cur_tree, int **in_heap, int **d);
  *  @param  max_cost [out] the largest cost in the resulting tree
  *  @param  length [out] the total length of the resulting tree
  *  @param  heap [out] a temporary heap structure
- *  @param  pred [out] a temporary integer array
  *  @param  in_heap [out] a temporary integer array
  *  @param  d [out] a temporary integer array
  */

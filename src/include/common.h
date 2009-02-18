@@ -416,7 +416,7 @@ typedef struct arrow_option
  *  @param  usage [in] usage message
  *  @param  argc [in] number of program arguments
  *  @param  argv [out] array of program arguments (might be rearranged)
- *  @param  opt_in [out] index first program option appears at
+ *  @param  opt_ind [out] index first program option appears at
  */
 int
 arrow_options_parse(int num_opts, arrow_option options[],  char *description, 
