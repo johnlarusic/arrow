@@ -16,7 +16,7 @@
 /**
  *  @brief  Info for shake type I cost matrix function.
  */
-typedef struct sbtsp_shake_1_data
+typedef struct btsp_shake_1_data
 {
     int infinity;               /**< value to use for "infinity" */
     arrow_problem_info *info;   /**< problem info */
@@ -24,7 +24,7 @@ typedef struct sbtsp_shake_1_data
     int random_max;             /**< maximum random number generated */
     int *random_list;           /**< random list of integers */
     int random_list_length;     /**< random list length */
-} sbtsp_shake_1_data;
+} btsp_shake_1_data;
 
 
 /****************************************************************************
@@ -40,7 +40,7 @@ typedef struct sbtsp_shake_1_data
  *  @return cost between node i and node j
  */
 int
-sbtsp_basic_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
+btsp_basic_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
                      int delta, int i, int j);
                
 /**
@@ -48,14 +48,14 @@ sbtsp_basic_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
  *  @param  fun [out] the function structure to initialize
  */
 int
-sbtsp_basic_initialize(arrow_btsp_fun *fun);
+btsp_basic_initialize(arrow_btsp_fun *fun);
               
 /**
  *  @brief  Destructs the function data.
  *  @param  fun [out] the function structure to destruct
  */
 void
-sbtsp_basic_destruct(arrow_btsp_fun *fun);
+btsp_basic_destruct(arrow_btsp_fun *fun);
 
 /**
  *  @brief  Determines if the given tour is feasible or not.
@@ -67,7 +67,7 @@ sbtsp_basic_destruct(arrow_btsp_fun *fun);
  *  @return ARROW_TRUE if the tour is feasible, ARROW_FALSE if not
  */
 int
-sbtsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *problem,
+btsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *problem,
                      int delta, double tour_length, int *tour);
                      
 /**
@@ -80,7 +80,7 @@ sbtsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *problem,
  *  @return cost between node i and node j
  */
 int
-sbtsp_shake_1_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
+btsp_shake_1_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
                      int delta, int i, int j);
 
 /**
@@ -88,14 +88,14 @@ sbtsp_shake_1_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
  *  @param  fun [out] the function structure to initialize
  */
 int
-sbtsp_shake_1_initialize(arrow_btsp_fun *fun);
+btsp_shake_1_initialize(arrow_btsp_fun *fun);
               
 /**
  *  @brief  Destructs the function data.
  *  @param  fun [out] the function structure to destruct
  */
 void
-sbtsp_shake_1_destruct(arrow_btsp_fun *fun);
+btsp_shake_1_destruct(arrow_btsp_fun *fun);
 
 
 /****************************************************************************
@@ -106,26 +106,26 @@ arrow_btsp_fun_basic(int shallow, arrow_btsp_fun *fun)
 {    
     fun->data = NULL;
     fun->shallow = shallow;
-    fun->get_cost = sbtsp_basic_get_cost;
-    fun->initialize = sbtsp_basic_initialize;
-    fun->destruct = sbtsp_basic_destruct;
-    fun->feasible = sbtsp_basic_feasible;
+    fun->get_cost = btsp_basic_get_cost;
+    fun->initialize = btsp_basic_initialize;
+    fun->destruct = btsp_basic_destruct;
+    fun->feasible = btsp_basic_feasible;
     return ARROW_SUCCESS;
 }
 
 int
-arrow_btsp_fun_sbtsp_shake_1(int shallow, int infinity, 
-                             int random_min, int random_max,
-                             arrow_problem_info *info, arrow_btsp_fun *fun)
+arrow_btsp_fun_shake_1(int shallow, int infinity, 
+                       int random_min, int random_max,
+                       arrow_problem_info *info, arrow_btsp_fun *fun)
 {
     fun->data = NULL;
-    if((fun->data = malloc(sizeof(sbtsp_shake_1_data))) == NULL)
+    if((fun->data = malloc(sizeof(btsp_shake_1_data))) == NULL)
     {
-        arrow_print_error("Could not allocate memory for sbtsp_shake_i_data");
+        arrow_print_error("Could not allocate memory for btsp_shake_i_data");
         return ARROW_FAILURE;
     }
     
-    sbtsp_shake_1_data *shake_data = (sbtsp_shake_1_data *)fun->data;
+    btsp_shake_1_data *shake_data = (btsp_shake_1_data *)fun->data;
     shake_data->infinity = infinity;
     shake_data->info = info;
     
@@ -141,10 +141,10 @@ arrow_btsp_fun_sbtsp_shake_1(int shallow, int infinity,
     }
     
     fun->shallow = shallow;
-    fun->get_cost = sbtsp_shake_1_get_cost;
-    fun->initialize = sbtsp_shake_1_initialize;
-    fun->destruct = sbtsp_shake_1_destruct;
-    fun->feasible = sbtsp_basic_feasible;
+    fun->get_cost = btsp_shake_1_get_cost;
+    fun->initialize = btsp_shake_1_initialize;
+    fun->destruct = btsp_shake_1_destruct;
+    fun->feasible = btsp_basic_feasible;
     
     return ARROW_SUCCESS;
 }
@@ -153,7 +153,7 @@ arrow_btsp_fun_sbtsp_shake_1(int shallow, int infinity,
  * Private function implementations
  ****************************************************************************/
 int
-sbtsp_basic_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
+btsp_basic_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
                      int delta, int i, int j)
 {
     int cost = base_problem->get_cost(base_problem, i, j);
@@ -167,17 +167,17 @@ sbtsp_basic_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
 }
 
 int
-sbtsp_basic_initialize(arrow_btsp_fun *fun)
+btsp_basic_initialize(arrow_btsp_fun *fun)
 { 
     return ARROW_SUCCESS;
 }
 
 void
-sbtsp_basic_destruct(arrow_btsp_fun *fun)
+btsp_basic_destruct(arrow_btsp_fun *fun)
 { }
 
 int
-sbtsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *problem, 
+btsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *problem, 
                      int delta, double tour_length, int *tour)
 {
     if(problem->fixed_edges > 0)
@@ -206,10 +206,10 @@ sbtsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *problem,
 }
 
 int
-sbtsp_shake_1_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
+btsp_shake_1_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
                        int delta, int i, int j)
 {
-    sbtsp_shake_1_data *data = (sbtsp_shake_1_data *)fun->data;
+    btsp_shake_1_data *data = (btsp_shake_1_data *)fun->data;
     int cost = base_problem->get_cost(base_problem, i, j);
     
     if(cost < 0)
@@ -229,10 +229,10 @@ sbtsp_shake_1_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
 }
 
 int
-sbtsp_shake_1_initialize(arrow_btsp_fun *fun)
+btsp_shake_1_initialize(arrow_btsp_fun *fun)
 { 
     int val;
-    sbtsp_shake_1_data *data = (sbtsp_shake_1_data *)fun->data;
+    btsp_shake_1_data *data = (btsp_shake_1_data *)fun->data;
     
     /* Need to generate a new list of random numbers */
     arrow_bintree tree;
@@ -248,11 +248,11 @@ sbtsp_shake_1_initialize(arrow_btsp_fun *fun)
 }
 
 void
-sbtsp_shake_1_destruct(arrow_btsp_fun *fun)
+btsp_shake_1_destruct(arrow_btsp_fun *fun)
 {
     if(fun->data != NULL)
     {
-        sbtsp_shake_1_data *data = (sbtsp_shake_1_data *)fun->data;
+        btsp_shake_1_data *data = (btsp_shake_1_data *)fun->data;
         free(data->random_list);
         
         free(fun->data);

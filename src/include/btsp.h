@@ -152,7 +152,7 @@ arrow_btsp_fun_destruct(arrow_btsp_fun *fun);
 
 
 /****************************************************************************
- *  fun_sbtsp.c
+ *  fun_btsp.c
  ****************************************************************************/
 /**
  *  @brief  Basic BTSP to TSP function.
@@ -172,9 +172,9 @@ arrow_btsp_fun_basic(int shallow, arrow_btsp_fun *fun);
  *  @param  fun [out] function structure
  */
 int
-arrow_btsp_fun_sbtsp_shake_1(int shallow, int infinity,
-                             int random_min, int random_max,
-                             arrow_problem_info *info, arrow_btsp_fun *fun);
+arrow_btsp_fun_shake_1(int shallow, int infinity,
+                       int random_min, int random_max,
+                       arrow_problem_info *info, arrow_btsp_fun *fun);
 
 /****************************************************************************
  *  fun_cbtsp.c

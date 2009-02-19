@@ -188,7 +188,7 @@ main(int argc, char *argv[])
     /* Setup necessary function structures */
     if(arrow_btsp_fun_basic(ARROW_FALSE, &fun_basic) != ARROW_SUCCESS)
         return EXIT_FAILURE;
-    if(!arrow_btsp_fun_sbtsp_shake_1(deep_copy, edge_infinity, shake_1_rand_min, shake_1_rand_max, &info, &fun_shake_1))
+    if(!arrow_btsp_fun_shake_1(deep_copy, edge_infinity, shake_1_rand_min, shake_1_rand_max, &info, &fun_shake_1))
         return EXIT_FAILURE;
         
     #define SOLVE_STEPS 2

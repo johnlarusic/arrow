@@ -21,7 +21,7 @@ lib_files = (
     'btsp/btsp.c', 
     'btsp/fun.c',
     'btsp/fun_cbtsp.c',
-    'btsp/fun_sbtsp.c',
+    'btsp/fun_btsp.c',
     'btsp/result.c',
     'btsp/params.c',
     'btsp/solve_plan.c',
