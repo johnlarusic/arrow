@@ -20,7 +20,6 @@ dir_bin = 'bin'
 lib_files = (
     'btsp/btsp.c', 
     'btsp/fun.c',
-    'btsp/fun_abtsp.c',
     'btsp/fun_cbtsp.c',
     'btsp/fun_sbtsp.c',
     'btsp/result.c',
@@ -50,8 +49,7 @@ lib_files = (
 # List of executables in the form of (NAME, SRC)
 executables = (
     ('2mb',         '2mb.c'),
-    ('abtsp',       'abtsp.c'),
-#    ('abtsp-rai',   'abtsp-rai.c'),
+    ('abtsp-rai',   'abtsp-rai.c'),
     ('bap',         'bap.c'),
     ('bbssp',       'bbssp.c'),
     ('btsp',        'btsp.c'),
@@ -62,8 +60,8 @@ executables = (
     ('hash',        'hash.c'),
     ('histdata',    'histdata.c'),
     ('subprob',     'subprob.c'),
-    ('tourinfo',    'tourinfo.c')#,
-    #('tsp',         'tsp.c')
+    ('tourinfo',    'tourinfo.c'),
+    ('tsp',         'tsp.c')
 )
 
 ##############################################################################

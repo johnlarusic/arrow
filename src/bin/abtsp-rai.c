@@ -84,7 +84,7 @@ main(int argc, char *argv[])
     }
     
     /* Gather basic info about the problem */
-    if(!arrow_problem_info_get(&problem, &info))
+    if(!arrow_problem_info_get(&problem, ARROW_FALSE, &info))
         return EXIT_FAILURE;
     printf("Num costs in problem: %d\n", info.cost_list_length);
     printf("Max cost in problem:  %d\n", info.max_cost);
@@ -221,9 +221,7 @@ main(int argc, char *argv[])
     
 CLEANUP:
     arrow_btsp_result_destruct(&result);
-    arrow_btsp_params_destruct(&btsp_params);
     arrow_btsp_fun_destruct(&fun_basic);
-    arrow_btsp_params_destruct(&btsp_params);
     arrow_problem_destruct(&problem); 
     return ret;
 }
