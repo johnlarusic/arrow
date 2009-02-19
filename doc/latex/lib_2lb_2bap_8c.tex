@@ -2,7 +2,8 @@
 \section{lib/lb/bap.c File Reference}
 \label{lib_2lb_2bap_8c}\index{lib/lb/bap.c@{lib/lb/bap.c}}
 }
-Bottleneck assignment problem (BAP) implemenation. 
+Bottleneck assignment problem (BAP) implemenation.  
+
 
 {\tt \#include \char`\"{}common.h\char`\"{}}\par
 {\tt \#include \char`\"{}lb.h\char`\"{}}\par
@@ -34,7 +35,7 @@ Definition in file \hyperlink{lib_2lb_2bap_8c-source}{bap.c}.
 \hypertarget{lib_2lb_2bap_8c_55ff81ad64c0e4aadc08860a8c2d2c44}{
 \index{lib/lb/bap.c@{lib/lb/bap.c}!arrow\_\-bap\_\-solve@{arrow\_\-bap\_\-solve}}
 \index{arrow\_\-bap\_\-solve@{arrow\_\-bap\_\-solve}!lib/lb/bap.c@{lib/lb/bap.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bap\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
+\subsubsection[{arrow\_\-bap\_\-solve}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bap\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
 \label{lib_2lb_2bap_8c_55ff81ad64c0e4aadc08860a8c2d2c44}
 
 
@@ -54,7 +55,7 @@ References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\
 Referenced by main().\hypertarget{lib_2lb_2bap_8c_ad6ac80eb0f38b5c874b91dbeb49a555}{
 \index{lib/lb/bap.c@{lib/lb/bap.c}!ford\_\-fulkerson\_\-labeling@{ford\_\-fulkerson\_\-labeling}}
 \index{ford\_\-fulkerson\_\-labeling@{ford\_\-fulkerson\_\-labeling}!lib/lb/bap.c@{lib/lb/bap.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void ford\_\-fulkerson\_\-labeling (int {\em n}, \/  int {\em s}, \/  int {\em t}, \/  int $\ast$$\ast$ {\em res}, \/  int $\ast$ {\em label}, \/  int $\ast$ {\em pred}, \/  int $\ast$ {\em flow}, \/  int $\ast$ {\em list})}}
+\subsubsection[{ford\_\-fulkerson\_\-labeling}]{\setlength{\rightskip}{0pt plus 5cm}void ford\_\-fulkerson\_\-labeling (int {\em n}, \/  int {\em s}, \/  int {\em t}, \/  int $\ast$$\ast$ {\em res}, \/  int $\ast$ {\em label}, \/  int $\ast$ {\em pred}, \/  int $\ast$ {\em flow}, \/  int $\ast$ {\em list})}}
 \label{lib_2lb_2bap_8c_ad6ac80eb0f38b5c874b91dbeb49a555}
 
 
@@ -67,7 +68,7 @@ References ARROW\_\-FALSE, and ARROW\_\-TRUE.
 Referenced by arrow\_\-bap\_\-solve().\hypertarget{lib_2lb_2bap_8c_130b34bc9719a82b72f18189b19663f6}{
 \index{lib/lb/bap.c@{lib/lb/bap.c}!initialize\_\-flow\_\-data@{initialize\_\-flow\_\-data}}
 \index{initialize\_\-flow\_\-data@{initialize\_\-flow\_\-data}!lib/lb/bap.c@{lib/lb/bap.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void initialize\_\-flow\_\-data ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em delta}, \/  int {\em s}, \/  int {\em t}, \/  int $\ast$$\ast$ {\em res}, \/  int $\ast$ {\em m}, \/  int $\ast$ {\em dist}, \/  int $\ast$ {\em pred})}}
+\subsubsection[{initialize\_\-flow\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}void initialize\_\-flow\_\-data ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em delta}, \/  int {\em s}, \/  int {\em t}, \/  int $\ast$$\ast$ {\em res}, \/  int $\ast$ {\em m}, \/  int $\ast$ {\em dist}, \/  int $\ast$ {\em pred})}}
 \label{lib_2lb_2bap_8c_130b34bc9719a82b72f18189b19663f6}
 
 
@@ -80,7 +81,7 @@ References arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
 Referenced by arrow\_\-bap\_\-solve().\hypertarget{lib_2lb_2bap_8c_bded8340dbd6b08609f5b197bb9bc78a}{
 \index{lib/lb/bap.c@{lib/lb/bap.c}!shortest\_\-augmenting\_\-path@{shortest\_\-augmenting\_\-path}}
 \index{shortest\_\-augmenting\_\-path@{shortest\_\-augmenting\_\-path}!lib/lb/bap.c@{lib/lb/bap.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void shortest\_\-augmenting\_\-path (int {\em n}, \/  int {\em s}, \/  int {\em t}, \/  int {\em stop}, \/  int $\ast$$\ast$ {\em res}, \/  int $\ast$ {\em dist}, \/  int $\ast$ {\em pred}, \/  int $\ast$ {\em flow})}}
+\subsubsection[{shortest\_\-augmenting\_\-path}]{\setlength{\rightskip}{0pt plus 5cm}void shortest\_\-augmenting\_\-path (int {\em n}, \/  int {\em s}, \/  int {\em t}, \/  int {\em stop}, \/  int $\ast$$\ast$ {\em res}, \/  int $\ast$ {\em dist}, \/  int $\ast$ {\em pred}, \/  int $\ast$ {\em flow})}}
 \label{lib_2lb_2bap_8c_bded8340dbd6b08609f5b197bb9bc78a}
 
 

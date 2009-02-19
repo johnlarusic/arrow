@@ -2,7 +2,8 @@
 \section{lib/common/problem.c File Reference}
 \label{problem_8c}\index{lib/common/problem.c@{lib/common/problem.c}}
 }
-Functions for working with problem data. 
+Functions for working with problem data.  
+
 
 {\tt \#include \char`\"{}common.h\char`\"{}}\par
 \subsection*{Data Structures}
@@ -68,7 +69,7 @@ Definition in file \hyperlink{problem_8c-source}{problem.c}.
 \hypertarget{problem_8c_d41995a5082f63244f11c428969fb282}{
 \index{problem.c@{problem.c}!abtsp\_\-destruct@{abtsp\_\-destruct}}
 \index{abtsp\_\-destruct@{abtsp\_\-destruct}!problem.c@{problem.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void abtsp\_\-destruct ({\bf arrow\_\-problem} $\ast$ {\em problem})}}
+\subsubsection[{abtsp\_\-destruct}]{\setlength{\rightskip}{0pt plus 5cm}void abtsp\_\-destruct ({\bf arrow\_\-problem} $\ast$ {\em problem})}}
 \label{problem_8c_d41995a5082f63244f11c428969fb282}
 
 
@@ -86,7 +87,7 @@ Definition at line 637 of file problem.c.
 Referenced by arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp().\hypertarget{problem_8c_aef13fe0d1df06dafbe804b1e082ba5b}{
 \index{problem.c@{problem.c}!abtsp\_\-get\_\-cost@{abtsp\_\-get\_\-cost}}
 \index{abtsp\_\-get\_\-cost@{abtsp\_\-get\_\-cost}!problem.c@{problem.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int abtsp\_\-get\_\-cost ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em i}, \/  int {\em j})}}
+\subsubsection[{abtsp\_\-get\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int abtsp\_\-get\_\-cost ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em i}, \/  int {\em j})}}
 \label{problem_8c_aef13fe0d1df06dafbe804b1e082ba5b}
 
 
@@ -108,7 +109,7 @@ References abtsp\_\-data::base, arrow\_\-problem::get\_\-cost, abtsp\_\-data::in
 Referenced by arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp().\hypertarget{problem_8c_904b6a44113cf39377e1bfbed3b5aed8}{
 \index{problem.c@{problem.c}!arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp@{arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp}}
 \index{arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp@{arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp}!problem.c@{problem.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp (int {\em shallow}, \/  {\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em infinity}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
+\subsubsection[{arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp (int {\em shallow}, \/  {\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em infinity}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
 \label{problem_8c_904b6a44113cf39377e1bfbed3b5aed8}
 
 
@@ -128,7 +129,7 @@ References abtsp\_\-destruct(), abtsp\_\-get\_\-cost(), ARROW\_\-FAILURE, arrow\
 Referenced by main().\hypertarget{problem_8c_a702972ab510dcc6354d7679759611d1}{
 \index{problem.c@{problem.c}!arrow\_\-problem\_\-destruct@{arrow\_\-problem\_\-destruct}}
 \index{arrow\_\-problem\_\-destruct@{arrow\_\-problem\_\-destruct}!problem.c@{problem.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-problem\_\-destruct ({\bf arrow\_\-problem} $\ast$ {\em problem})}}
+\subsubsection[{arrow\_\-problem\_\-destruct}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-problem\_\-destruct ({\bf arrow\_\-problem} $\ast$ {\em problem})}}
 \label{problem_8c_a702972ab510dcc6354d7679759611d1}
 
 
@@ -148,7 +149,7 @@ References arrow\_\-problem::data, and arrow\_\-problem::destruct.
 Referenced by feasible(), and main().\hypertarget{problem_8c_30d8e2e252dc1e485c7be5767af0f65b}{
 \index{problem.c@{problem.c}!arrow\_\-problem\_\-info\_\-cost\_\-index@{arrow\_\-problem\_\-info\_\-cost\_\-index}}
 \index{arrow\_\-problem\_\-info\_\-cost\_\-index@{arrow\_\-problem\_\-info\_\-cost\_\-index}!problem.c@{problem.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-info\_\-cost\_\-index ({\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  int {\em cost}, \/  int $\ast$ {\em pos})}}
+\subsubsection[{arrow\_\-problem\_\-info\_\-cost\_\-index}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-info\_\-cost\_\-index ({\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  int {\em cost}, \/  int $\ast$ {\em pos})}}
 \label{problem_8c_30d8e2e252dc1e485c7be5767af0f65b}
 
 
@@ -165,10 +166,10 @@ Definition at line 224 of file problem.c.
 
 References ARROW\_\-FAILURE, arrow\_\-hash\_\-search(), arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-binary\_\-search(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-problem\_\-info::hash, and arrow\_\-hash::num\_\-keys.
 
-Referenced by cbtsp\_\-shake\_\-get\_\-cost().\hypertarget{problem_8c_09a5ba81556412e281fe6b863a6f08db}{
+Referenced by cbtsp\_\-shake\_\-get\_\-cost(), and sbtsp\_\-shake\_\-1\_\-get\_\-cost().\hypertarget{problem_8c_09a5ba81556412e281fe6b863a6f08db}{
 \index{problem.c@{problem.c}!arrow\_\-problem\_\-info\_\-destruct@{arrow\_\-problem\_\-info\_\-destruct}}
 \index{arrow\_\-problem\_\-info\_\-destruct@{arrow\_\-problem\_\-info\_\-destruct}!problem.c@{problem.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-problem\_\-info\_\-destruct ({\bf arrow\_\-problem\_\-info} $\ast$ {\em info})}}
+\subsubsection[{arrow\_\-problem\_\-info\_\-destruct}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-problem\_\-info\_\-destruct ({\bf arrow\_\-problem\_\-info} $\ast$ {\em info})}}
 \label{problem_8c_09a5ba81556412e281fe6b863a6f08db}
 
 
@@ -188,7 +189,7 @@ References arrow\_\-hash\_\-destruct(), arrow\_\-problem\_\-info::cost\_\-list, 
 Referenced by main().\hypertarget{problem_8c_3cccb8f9982d9a1ca2f5fcd1563d7d8d}{
 \index{problem.c@{problem.c}!arrow\_\-problem\_\-info\_\-get@{arrow\_\-problem\_\-info\_\-get}}
 \index{arrow\_\-problem\_\-info\_\-get@{arrow\_\-problem\_\-info\_\-get}!problem.c@{problem.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-info\_\-get ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em create\_\-hash}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info})}}
+\subsubsection[{arrow\_\-problem\_\-info\_\-get}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-info\_\-get ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em create\_\-hash}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info})}}
 \label{problem_8c_3cccb8f9982d9a1ca2f5fcd1563d7d8d}
 
 
@@ -208,7 +209,7 @@ References arrow\_\-bintree\_\-destruct(), arrow\_\-bintree\_\-init(), arrow\_\-
 Referenced by main().\hypertarget{problem_8c_bf45d0065398894bdfb4b345d50363ea}{
 \index{problem.c@{problem.c}!arrow\_\-problem\_\-print@{arrow\_\-problem\_\-print}}
 \index{arrow\_\-problem\_\-print@{arrow\_\-problem\_\-print}!problem.c@{problem.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-problem\_\-print ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em pretty})}}
+\subsubsection[{arrow\_\-problem\_\-print}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-problem\_\-print ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em pretty})}}
 \label{problem_8c_bf45d0065398894bdfb4b345d50363ea}
 
 
@@ -226,7 +227,7 @@ Definition at line 249 of file problem.c.
 References arrow\_\-problem::get\_\-cost, arrow\_\-problem::shallow, arrow\_\-problem::size, and arrow\_\-problem::symmetric.\hypertarget{problem_8c_b5b9bae9f92630983d3b3d39d86198f8}{
 \index{problem.c@{problem.c}!arrow\_\-problem\_\-read@{arrow\_\-problem\_\-read}}
 \index{arrow\_\-problem\_\-read@{arrow\_\-problem\_\-read}!problem.c@{problem.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-read (char $\ast$ {\em file\_\-name}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem})}}
+\subsubsection[{arrow\_\-problem\_\-read}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-read (char $\ast$ {\em file\_\-name}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem})}}
 \label{problem_8c_b5b9bae9f92630983d3b3d39d86198f8}
 
 
@@ -246,7 +247,7 @@ References ARROW\_\-FAILURE, arrow\_\-print\_\-error, is\_\-asymmetric(), is\_\-
 Referenced by main().\hypertarget{problem_8c_b0ae70bd19a75c7f3164b81e4ed092ad}{
 \index{problem.c@{problem.c}!arrow\_\-problem\_\-read\_\-tour@{arrow\_\-problem\_\-read\_\-tour}}
 \index{arrow\_\-problem\_\-read\_\-tour@{arrow\_\-problem\_\-read\_\-tour}!problem.c@{problem.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-read\_\-tour (char $\ast$ {\em file\_\-name}, \/  int {\em size}, \/  int $\ast$ {\em tour})}}
+\subsubsection[{arrow\_\-problem\_\-read\_\-tour}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-read\_\-tour (char $\ast$ {\em file\_\-name}, \/  int {\em size}, \/  int $\ast$ {\em tour})}}
 \label{problem_8c_b0ae70bd19a75c7f3164b81e4ed092ad}
 
 
@@ -266,7 +267,7 @@ References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, and CONCORDE\_\-SUCCESS.
 Referenced by main().\hypertarget{problem_8c_723bed1edccabe6e8c0afb4a3cfb430f}{
 \index{problem.c@{problem.c}!concorde\_\-destruct@{concorde\_\-destruct}}
 \index{concorde\_\-destruct@{concorde\_\-destruct}!problem.c@{problem.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void concorde\_\-destruct ({\bf arrow\_\-problem} $\ast$ {\em problem})}}
+\subsubsection[{concorde\_\-destruct}]{\setlength{\rightskip}{0pt plus 5cm}void concorde\_\-destruct ({\bf arrow\_\-problem} $\ast$ {\em problem})}}
 \label{problem_8c_723bed1edccabe6e8c0afb4a3cfb430f}
 
 
@@ -286,7 +287,7 @@ References arrow\_\-problem::data.
 Referenced by read\_\-stsp().\hypertarget{problem_8c_a634c4ee36960c1a0d23addc8bc79fb3}{
 \index{problem.c@{problem.c}!concorde\_\-get\_\-cost@{concorde\_\-get\_\-cost}}
 \index{concorde\_\-get\_\-cost@{concorde\_\-get\_\-cost}!problem.c@{problem.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int concorde\_\-get\_\-cost ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em i}, \/  int {\em j})}}
+\subsubsection[{concorde\_\-get\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int concorde\_\-get\_\-cost ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em i}, \/  int {\em j})}}
 \label{problem_8c_a634c4ee36960c1a0d23addc8bc79fb3}
 
 
@@ -308,7 +309,7 @@ References arrow\_\-problem::data.
 Referenced by read\_\-stsp().\hypertarget{problem_8c_2f43e3b98a308cb6e08e754b63616c18}{
 \index{problem.c@{problem.c}!full\_\-matrix\_\-destruct@{full\_\-matrix\_\-destruct}}
 \index{full\_\-matrix\_\-destruct@{full\_\-matrix\_\-destruct}!problem.c@{problem.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void full\_\-matrix\_\-destruct ({\bf arrow\_\-problem} $\ast$ {\em problem})}}
+\subsubsection[{full\_\-matrix\_\-destruct}]{\setlength{\rightskip}{0pt plus 5cm}void full\_\-matrix\_\-destruct ({\bf arrow\_\-problem} $\ast$ {\em problem})}}
 \label{problem_8c_2f43e3b98a308cb6e08e754b63616c18}
 
 
@@ -328,7 +329,7 @@ References full\_\-matrix\_\-data::adj, full\_\-matrix\_\-data::adjspace, and ar
 Referenced by read\_\-atsp().\hypertarget{problem_8c_4deb566323c4ffa4dd98767baf50f89e}{
 \index{problem.c@{problem.c}!full\_\-matrix\_\-get\_\-cost@{full\_\-matrix\_\-get\_\-cost}}
 \index{full\_\-matrix\_\-get\_\-cost@{full\_\-matrix\_\-get\_\-cost}!problem.c@{problem.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int full\_\-matrix\_\-get\_\-cost ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em i}, \/  int {\em j})}}
+\subsubsection[{full\_\-matrix\_\-get\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int full\_\-matrix\_\-get\_\-cost ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em i}, \/  int {\em j})}}
 \label{problem_8c_4deb566323c4ffa4dd98767baf50f89e}
 
 
@@ -350,7 +351,7 @@ References full\_\-matrix\_\-data::adj, and arrow\_\-problem::data.
 Referenced by read\_\-atsp().\hypertarget{problem_8c_0a7e51deba64ca2ebd568beea8b96be3}{
 \index{problem.c@{problem.c}!is\_\-asymmetric@{is\_\-asymmetric}}
 \index{is\_\-asymmetric@{is\_\-asymmetric}!problem.c@{problem.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int is\_\-asymmetric (char $\ast$ {\em file\_\-name})}}
+\subsubsection[{is\_\-asymmetric}]{\setlength{\rightskip}{0pt plus 5cm}int is\_\-asymmetric (char $\ast$ {\em file\_\-name})}}
 \label{problem_8c_0a7e51deba64ca2ebd568beea8b96be3}
 
 
@@ -372,7 +373,7 @@ References arrow\_\-util\_\-regex\_\-match().
 Referenced by arrow\_\-problem\_\-read().\hypertarget{problem_8c_fa549be1b1392e88b285ed7fa50588ff}{
 \index{problem.c@{problem.c}!is\_\-symmetric@{is\_\-symmetric}}
 \index{is\_\-symmetric@{is\_\-symmetric}!problem.c@{problem.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int is\_\-symmetric (char $\ast$ {\em file\_\-name})}}
+\subsubsection[{is\_\-symmetric}]{\setlength{\rightskip}{0pt plus 5cm}int is\_\-symmetric (char $\ast$ {\em file\_\-name})}}
 \label{problem_8c_fa549be1b1392e88b285ed7fa50588ff}
 
 
@@ -394,7 +395,7 @@ References arrow\_\-util\_\-regex\_\-match().
 Referenced by arrow\_\-problem\_\-read().\hypertarget{problem_8c_ebc55389a5ecab4c7acc7650844da8cb}{
 \index{problem.c@{problem.c}!read\_\-atsp@{read\_\-atsp}}
 \index{read\_\-atsp@{read\_\-atsp}!problem.c@{problem.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int read\_\-atsp (char $\ast$ {\em file\_\-name}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem})}}
+\subsubsection[{read\_\-atsp}]{\setlength{\rightskip}{0pt plus 5cm}int read\_\-atsp (char $\ast$ {\em file\_\-name}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem})}}
 \label{problem_8c_ebc55389a5ecab4c7acc7650844da8cb}
 
 
@@ -414,7 +415,7 @@ References full\_\-matrix\_\-data::adj, full\_\-matrix\_\-data::adjspace, arrow\
 Referenced by arrow\_\-problem\_\-read().\hypertarget{problem_8c_6fa87c3803ac242364a3fb444b95374e}{
 \index{problem.c@{problem.c}!read\_\-stsp@{read\_\-stsp}}
 \index{read\_\-stsp@{read\_\-stsp}!problem.c@{problem.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int read\_\-stsp (char $\ast$ {\em file\_\-name}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem})}}
+\subsubsection[{read\_\-stsp}]{\setlength{\rightskip}{0pt plus 5cm}int read\_\-stsp (char $\ast$ {\em file\_\-name}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem})}}
 \label{problem_8c_6fa87c3803ac242364a3fb444b95374e}
 
 

@@ -2,7 +2,8 @@
 \section{lib/common/bintree.c File Reference}
 \label{bintree_8c}\index{lib/common/bintree.c@{lib/common/bintree.c}}
 }
-Binary tree implementation. 
+Binary tree implementation.  
+
 
 {\tt \#include \char`\"{}common.h\char`\"{}}\par
 \subsection*{Functions}
@@ -43,7 +44,7 @@ Definition in file \hyperlink{bintree_8c-source}{bintree.c}.
 \hypertarget{bintree_8c_ca9875422bf132eb9f5a4a2d10053207}{
 \index{bintree.c@{bintree.c}!arrow\_\-bintree\_\-destruct@{arrow\_\-bintree\_\-destruct}}
 \index{arrow\_\-bintree\_\-destruct@{arrow\_\-bintree\_\-destruct}!bintree.c@{bintree.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-bintree\_\-destruct ({\bf arrow\_\-bintree} $\ast$ {\em tree})}}
+\subsubsection[{arrow\_\-bintree\_\-destruct}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-bintree\_\-destruct ({\bf arrow\_\-bintree} $\ast$ {\em tree})}}
 \label{bintree_8c_ca9875422bf132eb9f5a4a2d10053207}
 
 
@@ -63,7 +64,7 @@ References destruct\_\-node(), arrow\_\-bintree::root\_\-node, and arrow\_\-bint
 Referenced by arrow\_\-problem\_\-info\_\-get().\hypertarget{bintree_8c_b28bc6559b228f0aa65cc671f67b9a09}{
 \index{bintree.c@{bintree.c}!arrow\_\-bintree\_\-init@{arrow\_\-bintree\_\-init}}
 \index{arrow\_\-bintree\_\-init@{arrow\_\-bintree\_\-init}!bintree.c@{bintree.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-bintree\_\-init ({\bf arrow\_\-bintree} $\ast$ {\em tree})}}
+\subsubsection[{arrow\_\-bintree\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-bintree\_\-init ({\bf arrow\_\-bintree} $\ast$ {\em tree})}}
 \label{bintree_8c_b28bc6559b228f0aa65cc671f67b9a09}
 
 
@@ -80,10 +81,10 @@ Definition at line 53 of file bintree.c.
 
 References arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
 
-Referenced by arrow\_\-problem\_\-info\_\-get(), and cbtsp\_\-shake\_\-initialize().\hypertarget{bintree_8c_75b4ee03b9667bd0e13e6cc71043e0a9}{
+Referenced by arrow\_\-problem\_\-info\_\-get(), cbtsp\_\-shake\_\-initialize(), and sbtsp\_\-shake\_\-1\_\-initialize().\hypertarget{bintree_8c_75b4ee03b9667bd0e13e6cc71043e0a9}{
 \index{bintree.c@{bintree.c}!arrow\_\-bintree\_\-insert@{arrow\_\-bintree\_\-insert}}
 \index{arrow\_\-bintree\_\-insert@{arrow\_\-bintree\_\-insert}!bintree.c@{bintree.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bintree\_\-insert ({\bf arrow\_\-bintree} $\ast$ {\em tree}, \/  int {\em value})}}
+\subsubsection[{arrow\_\-bintree\_\-insert}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bintree\_\-insert ({\bf arrow\_\-bintree} $\ast$ {\em tree}, \/  int {\em value})}}
 \label{bintree_8c_75b4ee03b9667bd0e13e6cc71043e0a9}
 
 
@@ -100,10 +101,10 @@ Definition at line 67 of file bintree.c.
 
 References construct\_\-node(), insert\_\-at(), arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
 
-Referenced by arrow\_\-problem\_\-info\_\-get(), and cbtsp\_\-shake\_\-initialize().\hypertarget{bintree_8c_3f841b62942349c0036ca9073f98a481}{
+Referenced by arrow\_\-problem\_\-info\_\-get(), cbtsp\_\-shake\_\-initialize(), and sbtsp\_\-shake\_\-1\_\-initialize().\hypertarget{bintree_8c_3f841b62942349c0036ca9073f98a481}{
 \index{bintree.c@{bintree.c}!arrow\_\-bintree\_\-to\_\-array@{arrow\_\-bintree\_\-to\_\-array}}
 \index{arrow\_\-bintree\_\-to\_\-array@{arrow\_\-bintree\_\-to\_\-array}!bintree.c@{bintree.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-bintree\_\-to\_\-array ({\bf arrow\_\-bintree} $\ast$ {\em tree}, \/  int $\ast$ {\em array})}}
+\subsubsection[{arrow\_\-bintree\_\-to\_\-array}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-bintree\_\-to\_\-array ({\bf arrow\_\-bintree} $\ast$ {\em tree}, \/  int $\ast$ {\em array})}}
 \label{bintree_8c_3f841b62942349c0036ca9073f98a481}
 
 
@@ -120,10 +121,10 @@ Definition at line 87 of file bintree.c.
 
 References fill\_\-array(), and arrow\_\-bintree::root\_\-node.
 
-Referenced by arrow\_\-bintree\_\-to\_\-new\_\-array(), and cbtsp\_\-shake\_\-initialize().\hypertarget{bintree_8c_11a76a726dfdd109e12cac7046cb431c}{
+Referenced by arrow\_\-bintree\_\-to\_\-new\_\-array(), cbtsp\_\-shake\_\-initialize(), and sbtsp\_\-shake\_\-1\_\-initialize().\hypertarget{bintree_8c_11a76a726dfdd109e12cac7046cb431c}{
 \index{bintree.c@{bintree.c}!arrow\_\-bintree\_\-to\_\-new\_\-array@{arrow\_\-bintree\_\-to\_\-new\_\-array}}
 \index{arrow\_\-bintree\_\-to\_\-new\_\-array@{arrow\_\-bintree\_\-to\_\-new\_\-array}!bintree.c@{bintree.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bintree\_\-to\_\-new\_\-array ({\bf arrow\_\-bintree} $\ast$ {\em tree}, \/  int $\ast$$\ast$ {\em array})}}
+\subsubsection[{arrow\_\-bintree\_\-to\_\-new\_\-array}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bintree\_\-to\_\-new\_\-array ({\bf arrow\_\-bintree} $\ast$ {\em tree}, \/  int $\ast$$\ast$ {\em array})}}
 \label{bintree_8c_11a76a726dfdd109e12cac7046cb431c}
 
 
@@ -143,7 +144,7 @@ References arrow\_\-bintree\_\-to\_\-array(), ARROW\_\-FAILURE, ARROW\_\-SUCCESS
 Referenced by arrow\_\-problem\_\-info\_\-get().\hypertarget{bintree_8c_c252d0df6e75c9b8abe610c6e54fb9bc}{
 \index{bintree.c@{bintree.c}!construct\_\-node@{construct\_\-node}}
 \index{construct\_\-node@{construct\_\-node}!bintree.c@{bintree.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int construct\_\-node ({\bf arrow\_\-bintree\_\-node} $\ast$$\ast$ {\em node}, \/  int {\em value})}}
+\subsubsection[{construct\_\-node}]{\setlength{\rightskip}{0pt plus 5cm}int construct\_\-node ({\bf arrow\_\-bintree\_\-node} $\ast$$\ast$ {\em node}, \/  int {\em value})}}
 \label{bintree_8c_c252d0df6e75c9b8abe610c6e54fb9bc}
 
 
@@ -163,7 +164,7 @@ References ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, and ARROW\
 Referenced by arrow\_\-bintree\_\-insert(), and insert\_\-at().\hypertarget{bintree_8c_5ecaa4df2e1066b8f541c223f4d19972}{
 \index{bintree.c@{bintree.c}!destruct\_\-node@{destruct\_\-node}}
 \index{destruct\_\-node@{destruct\_\-node}!bintree.c@{bintree.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void destruct\_\-node ({\bf arrow\_\-bintree\_\-node} $\ast$ {\em node})}}
+\subsubsection[{destruct\_\-node}]{\setlength{\rightskip}{0pt plus 5cm}void destruct\_\-node ({\bf arrow\_\-bintree\_\-node} $\ast$ {\em node})}}
 \label{bintree_8c_5ecaa4df2e1066b8f541c223f4d19972}
 
 
@@ -183,7 +184,7 @@ References ARROW\_\-TRUE, arrow\_\-bintree\_\-node::has\_\-left\_\-node, arrow\_
 Referenced by arrow\_\-bintree\_\-destruct().\hypertarget{bintree_8c_eb6da2680b6cbc9553d948a97e5707cf}{
 \index{bintree.c@{bintree.c}!fill\_\-array@{fill\_\-array}}
 \index{fill\_\-array@{fill\_\-array}!bintree.c@{bintree.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void fill\_\-array ({\bf arrow\_\-bintree\_\-node} $\ast$ {\em node}, \/  int $\ast$ {\em array}, \/  int $\ast$ {\em pos})}}
+\subsubsection[{fill\_\-array}]{\setlength{\rightskip}{0pt plus 5cm}void fill\_\-array ({\bf arrow\_\-bintree\_\-node} $\ast$ {\em node}, \/  int $\ast$ {\em array}, \/  int $\ast$ {\em pos})}}
 \label{bintree_8c_eb6da2680b6cbc9553d948a97e5707cf}
 
 
@@ -203,7 +204,7 @@ References arrow\_\-bintree\_\-node::data, arrow\_\-bintree\_\-node::has\_\-left
 Referenced by arrow\_\-bintree\_\-to\_\-array().\hypertarget{bintree_8c_363d994a11c0d61edb28f7ae03f1a6ac}{
 \index{bintree.c@{bintree.c}!insert\_\-at@{insert\_\-at}}
 \index{insert\_\-at@{insert\_\-at}!bintree.c@{bintree.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int insert\_\-at ({\bf arrow\_\-bintree} $\ast$ {\em tree}, \/  {\bf arrow\_\-bintree\_\-node} $\ast$ {\em node}, \/  int {\em value})}}
+\subsubsection[{insert\_\-at}]{\setlength{\rightskip}{0pt plus 5cm}int insert\_\-at ({\bf arrow\_\-bintree} $\ast$ {\em tree}, \/  {\bf arrow\_\-bintree\_\-node} $\ast$ {\em node}, \/  int {\em value})}}
 \label{bintree_8c_363d994a11c0d61edb28f7ae03f1a6ac}
 
 

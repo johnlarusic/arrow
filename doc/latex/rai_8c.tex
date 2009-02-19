@@ -2,7 +2,8 @@
 \section{lib/tsp/rai.c File Reference}
 \label{rai_8c}\index{lib/tsp/rai.c@{lib/tsp/rai.c}}
 }
-Random arbitrary insertion TSP heuristic. 
+Random arbitrary insertion TSP heuristic.  
+
 
 {\tt \#include \char`\"{}common.h\char`\"{}}\par
 {\tt \#include \char`\"{}tsp.h\char`\"{}}\par
@@ -38,7 +39,7 @@ Definition in file \hyperlink{rai_8c-source}{rai.c}.
 \hypertarget{rai_8c_7236b8bd57298ee7dbe317375ab167b4}{
 \index{rai.c@{rai.c}!arrow\_\-tsp\_\-rai\_\-solve@{arrow\_\-tsp\_\-rai\_\-solve}}
 \index{arrow\_\-tsp\_\-rai\_\-solve@{arrow\_\-tsp\_\-rai\_\-solve}!rai.c@{rai.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-rai\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-rai\_\-params} $\ast$ {\em params}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
+\subsubsection[{arrow\_\-tsp\_\-rai\_\-solve}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-rai\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-rai\_\-params} $\ast$ {\em params}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
 \label{rai_8c_7236b8bd57298ee7dbe317375ab167b4}
 
 
@@ -51,7 +52,7 @@ References arrow\_\-debug, ARROW\_\-FAILURE, arrow\_\-llist\_\-destruct(), arrow
 Referenced by arrow\_\-tsp\_\-solve().\hypertarget{rai_8c_a9b43abdd7f90bae9e816e1e963309b2}{
 \index{rai.c@{rai.c}!construct\_\-tour@{construct\_\-tour}}
 \index{construct\_\-tour@{construct\_\-tour}!rai.c@{rai.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void construct\_\-tour ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em solve\_\-btsp}, \/  int $\ast$ {\em node\_\-list}, \/  int {\em list\_\-size}, \/  {\bf arrow\_\-llist} $\ast$ {\em tour}, \/  double $\ast$ {\em length}, \/  {\bf arrow\_\-llist\_\-item} $\ast$$\ast$ {\em ins\_\-list})}}
+\subsubsection[{construct\_\-tour}]{\setlength{\rightskip}{0pt plus 5cm}void construct\_\-tour ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em solve\_\-btsp}, \/  int $\ast$ {\em node\_\-list}, \/  int {\em list\_\-size}, \/  {\bf arrow\_\-llist} $\ast$ {\em tour}, \/  double $\ast$ {\em length}, \/  {\bf arrow\_\-llist\_\-item} $\ast$$\ast$ {\em ins\_\-list})}}
 \label{rai_8c_a9b43abdd7f90bae9e816e1e963309b2}
 
 
@@ -71,7 +72,7 @@ References arrow\_\-llist\_\-insert\_\-after(), arrow\_\-llist\_\-insert\_\-tail
 Referenced by arrow\_\-tsp\_\-rai\_\-solve(), and improve\_\-tour().\hypertarget{rai_8c_b0bf46e69b5a6d92df5d285c39154d5c}{
 \index{rai.c@{rai.c}!improve\_\-tour@{improve\_\-tour}}
 \index{improve\_\-tour@{improve\_\-tour}!rai.c@{rai.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void improve\_\-tour ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em solve\_\-btsp}, \/  {\bf arrow\_\-llist} $\ast$ {\em best\_\-tour}, \/  double $\ast$ {\em length}, \/  {\bf arrow\_\-llist} $\ast$ {\em tour}, \/  {\bf arrow\_\-llist\_\-item} $\ast$$\ast$ {\em ins\_\-list}, \/  int $\ast$ {\em node\_\-list})}}
+\subsubsection[{improve\_\-tour}]{\setlength{\rightskip}{0pt plus 5cm}void improve\_\-tour ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em solve\_\-btsp}, \/  {\bf arrow\_\-llist} $\ast$ {\em best\_\-tour}, \/  double $\ast$ {\em length}, \/  {\bf arrow\_\-llist} $\ast$ {\em tour}, \/  {\bf arrow\_\-llist\_\-item} $\ast$$\ast$ {\em ins\_\-list}, \/  int $\ast$ {\em node\_\-list})}}
 \label{rai_8c_b0bf46e69b5a6d92df5d285c39154d5c}
 
 
@@ -91,7 +92,7 @@ References arrow\_\-debug, arrow\_\-llist\_\-destruct(), arrow\_\-llist\_\-inser
 Referenced by arrow\_\-tsp\_\-rai\_\-solve().\hypertarget{rai_8c_e2fd3841379dffc8324f9b251a6f6be2}{
 \index{rai.c@{rai.c}!max2@{max2}}
 \index{max2@{max2}!rai.c@{rai.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int max2 (int {\em i}, \/  int {\em j})}}
+\subsubsection[{max2}]{\setlength{\rightskip}{0pt plus 5cm}int max2 (int {\em i}, \/  int {\em j})}}
 \label{rai_8c_e2fd3841379dffc8324f9b251a6f6be2}
 
 
@@ -111,7 +112,7 @@ Definition at line 401 of file rai.c.
 References max().\hypertarget{rai_8c_7f7715f2c67cafb4fbe693c7b845da08}{
 \index{rai.c@{rai.c}!max3@{max3}}
 \index{max3@{max3}!rai.c@{rai.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int max3 (int {\em i}, \/  int {\em j}, \/  int {\em k})}}
+\subsubsection[{max3}]{\setlength{\rightskip}{0pt plus 5cm}int max3 (int {\em i}, \/  int {\em j}, \/  int {\em k})}}
 \label{rai_8c_7f7715f2c67cafb4fbe693c7b845da08}
 
 
@@ -133,7 +134,7 @@ References max().
 Referenced by construct\_\-tour().\hypertarget{rai_8c_01aa37114a0c37bea302a8a57ff69aae}{
 \index{rai.c@{rai.c}!min2@{min2}}
 \index{min2@{min2}!rai.c@{rai.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int min2 (int {\em i}, \/  int {\em j})}}
+\subsubsection[{min2}]{\setlength{\rightskip}{0pt plus 5cm}int min2 (int {\em i}, \/  int {\em j})}}
 \label{rai_8c_01aa37114a0c37bea302a8a57ff69aae}
 
 

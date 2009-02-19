@@ -2,23 +2,37 @@
 \section{lib/btsp/fun\_\-sbtsp.c File Reference}
 \label{fun__sbtsp_8c}\index{lib/btsp/fun\_\-sbtsp.c@{lib/btsp/fun\_\-sbtsp.c}}
 }
-Cost matrix functions for the symmetric BTSP. 
+Cost matrix functions for the symmetric BTSP.  
+
 
 {\tt \#include \char`\"{}common.h\char`\"{}}\par
 {\tt \#include \char`\"{}btsp.h\char`\"{}}\par
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structsbtsp__shake__1__data}{sbtsp\_\-shake\_\-1\_\-data}
+\begin{CompactList}\small\item\em Info for shake type I cost matrix function. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Functions}
 \begin{CompactItemize}
 \item 
-int \hyperlink{fun__sbtsp_8c_8a88f36c06363eb2903f21ddd93695e7}{basic\_\-get\_\-cost} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int delta, int i, int j)
+int \hyperlink{fun__sbtsp_8c_9a88a5ecd89faa9e80d46bd32529881d}{sbtsp\_\-basic\_\-get\_\-cost} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int delta, int i, int j)
 \begin{CompactList}\small\item\em Retrieves cost between nodes i and j from the function. \item\end{CompactList}\item 
-int \hyperlink{fun__sbtsp_8c_a795fb772ac5641554a4bbe588773e2d}{basic\_\-initialize} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+int \hyperlink{fun__sbtsp_8c_02c7d1731f3c26aa7bba342770870d68}{sbtsp\_\-basic\_\-initialize} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
 \begin{CompactList}\small\item\em Initializes the function data. \item\end{CompactList}\item 
-void \hyperlink{fun__sbtsp_8c_943121f5c798dd76e338def78e4df486}{basic\_\-destruct} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+void \hyperlink{fun__sbtsp_8c_d992b6de0dbd56f8404ed097b30b7f59}{sbtsp\_\-basic\_\-destruct} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
 \begin{CompactList}\small\item\em Destructs the function data. \item\end{CompactList}\item 
-int \hyperlink{fun__sbtsp_8c_762c64e6b461964435495575f35e343c}{basic\_\-feasible} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int delta, double tour\_\-length, int $\ast$tour)
+int \hyperlink{fun__sbtsp_8c_9ed6a8ca8a3d621d2ff9ef71fef8cc1e}{sbtsp\_\-basic\_\-feasible} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int delta, double tour\_\-length, int $\ast$tour)
 \begin{CompactList}\small\item\em Determines if the given tour is feasible or not. \item\end{CompactList}\item 
+int \hyperlink{fun__sbtsp_8c_cfccf3b47d65405438cec07be8a33815}{sbtsp\_\-shake\_\-1\_\-get\_\-cost} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int delta, int i, int j)
+\begin{CompactList}\small\item\em Retrieves cost between nodes i and j from the function. \item\end{CompactList}\item 
+int \hyperlink{fun__sbtsp_8c_d759779294dee926004ff0fe59a11c3a}{sbtsp\_\-shake\_\-1\_\-initialize} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Initializes the function data. \item\end{CompactList}\item 
+void \hyperlink{fun__sbtsp_8c_4e376bfcf19fbab813d622082e78d4a0}{sbtsp\_\-shake\_\-1\_\-destruct} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Destructs the function data. \item\end{CompactList}\item 
 int \hyperlink{fun__sbtsp_8c_a8030d26d0cc61ba064d0baedf766552}{arrow\_\-btsp\_\-fun\_\-basic} (int shallow, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
-\begin{CompactList}\small\item\em Basic BTSP to TSP function. \item\end{CompactList}\end{CompactItemize}
+\begin{CompactList}\small\item\em Basic BTSP to TSP function. \item\end{CompactList}\item 
+int \hyperlink{fun__sbtsp_8c_95aafcfb17030e1aadf79fcc598ce30e}{arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1} (int shallow, int infinity, int random\_\-min, int random\_\-max, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Controlled Type I Shake. \item\end{CompactList}\end{CompactItemize}
 
 
 \subsection{Detailed Description}
@@ -36,7 +50,7 @@ Definition in file \hyperlink{fun__sbtsp_8c-source}{fun\_\-sbtsp.c}.
 \hypertarget{fun__sbtsp_8c_a8030d26d0cc61ba064d0baedf766552}{
 \index{fun\_\-sbtsp.c@{fun\_\-sbtsp.c}!arrow\_\-btsp\_\-fun\_\-basic@{arrow\_\-btsp\_\-fun\_\-basic}}
 \index{arrow\_\-btsp\_\-fun\_\-basic@{arrow\_\-btsp\_\-fun\_\-basic}!fun_sbtsp.c@{fun\_\-sbtsp.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-basic (int {\em shallow}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\subsubsection[{arrow\_\-btsp\_\-fun\_\-basic}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-basic (int {\em shallow}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
 \label{fun__sbtsp_8c_a8030d26d0cc61ba064d0baedf766552}
 
 
@@ -49,15 +63,35 @@ Basic BTSP to TSP function.
 \end{Desc}
 
 
-Definition at line 66 of file fun\_\-sbtsp.c.
+Definition at line 105 of file fun\_\-sbtsp.c.
 
-References ARROW\_\-SUCCESS, basic\_\-destruct(), basic\_\-feasible(), basic\_\-get\_\-cost(), basic\_\-initialize(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, arrow\_\-btsp\_\-fun::initialize, and arrow\_\-btsp\_\-fun::shallow.
+References ARROW\_\-SUCCESS, arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, arrow\_\-btsp\_\-fun::initialize, sbtsp\_\-basic\_\-destruct(), sbtsp\_\-basic\_\-feasible(), sbtsp\_\-basic\_\-get\_\-cost(), sbtsp\_\-basic\_\-initialize(), and arrow\_\-btsp\_\-fun::shallow.
 
-Referenced by main().\hypertarget{fun__sbtsp_8c_943121f5c798dd76e338def78e4df486}{
-\index{fun\_\-sbtsp.c@{fun\_\-sbtsp.c}!basic\_\-destruct@{basic\_\-destruct}}
-\index{basic\_\-destruct@{basic\_\-destruct}!fun_sbtsp.c@{fun\_\-sbtsp.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void basic\_\-destruct ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
-\label{fun__sbtsp_8c_943121f5c798dd76e338def78e4df486}
+Referenced by main().\hypertarget{fun__sbtsp_8c_95aafcfb17030e1aadf79fcc598ce30e}{
+\index{fun\_\-sbtsp.c@{fun\_\-sbtsp.c}!arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1@{arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1}}
+\index{arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1@{arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1}!fun_sbtsp.c@{fun\_\-sbtsp.c}}
+\subsubsection[{arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1 (int {\em shallow}, \/  int {\em infinity}, \/  int {\em random\_\-min}, \/  int {\em random\_\-max}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__sbtsp_8c_95aafcfb17030e1aadf79fcc598ce30e}
+
+
+Controlled Type I Shake. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em infinity}]\mbox{[}in\mbox{]} value to use as \char`\"{}infinity\char`\"{} \item[{\em random\_\-min}]\mbox{[}in\mbox{]} minimum random value to generate \item[{\em random\_\-max}]\mbox{[}in\mbox{]} maximum random value to generate \item[{\em info}]\mbox{[}in\mbox{]} information about the original problem \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 117 of file fun\_\-sbtsp.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, sbtsp\_\-shake\_\-1\_\-data::infinity, sbtsp\_\-shake\_\-1\_\-data::info, arrow\_\-btsp\_\-fun::initialize, sbtsp\_\-shake\_\-1\_\-data::random\_\-list, sbtsp\_\-shake\_\-1\_\-data::random\_\-list\_\-length, sbtsp\_\-shake\_\-1\_\-data::random\_\-max, sbtsp\_\-shake\_\-1\_\-data::random\_\-min, sbtsp\_\-basic\_\-feasible(), sbtsp\_\-shake\_\-1\_\-destruct(), sbtsp\_\-shake\_\-1\_\-get\_\-cost(), sbtsp\_\-shake\_\-1\_\-initialize(), and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{fun__sbtsp_8c_d992b6de0dbd56f8404ed097b30b7f59}{
+\index{fun\_\-sbtsp.c@{fun\_\-sbtsp.c}!sbtsp\_\-basic\_\-destruct@{sbtsp\_\-basic\_\-destruct}}
+\index{sbtsp\_\-basic\_\-destruct@{sbtsp\_\-basic\_\-destruct}!fun_sbtsp.c@{fun\_\-sbtsp.c}}
+\subsubsection[{sbtsp\_\-basic\_\-destruct}]{\setlength{\rightskip}{0pt plus 5cm}void sbtsp\_\-basic\_\-destruct ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__sbtsp_8c_d992b6de0dbd56f8404ed097b30b7f59}
 
 
 Destructs the function data. 
@@ -69,13 +103,13 @@ Destructs the function data.
 \end{Desc}
 
 
-Definition at line 96 of file fun\_\-sbtsp.c.
+Definition at line 170 of file fun\_\-sbtsp.c.
 
-Referenced by arrow\_\-btsp\_\-fun\_\-basic().\hypertarget{fun__sbtsp_8c_762c64e6b461964435495575f35e343c}{
-\index{fun\_\-sbtsp.c@{fun\_\-sbtsp.c}!basic\_\-feasible@{basic\_\-feasible}}
-\index{basic\_\-feasible@{basic\_\-feasible}!fun_sbtsp.c@{fun\_\-sbtsp.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int basic\_\-feasible ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em delta}, \/  double {\em tour\_\-length}, \/  int $\ast$ {\em tour})}}
-\label{fun__sbtsp_8c_762c64e6b461964435495575f35e343c}
+Referenced by arrow\_\-btsp\_\-fun\_\-basic().\hypertarget{fun__sbtsp_8c_9ed6a8ca8a3d621d2ff9ef71fef8cc1e}{
+\index{fun\_\-sbtsp.c@{fun\_\-sbtsp.c}!sbtsp\_\-basic\_\-feasible@{sbtsp\_\-basic\_\-feasible}}
+\index{sbtsp\_\-basic\_\-feasible@{sbtsp\_\-basic\_\-feasible}!fun_sbtsp.c@{fun\_\-sbtsp.c}}
+\subsubsection[{sbtsp\_\-basic\_\-feasible}]{\setlength{\rightskip}{0pt plus 5cm}int sbtsp\_\-basic\_\-feasible ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em delta}, \/  double {\em tour\_\-length}, \/  int $\ast$ {\em tour})}}
+\label{fun__sbtsp_8c_9ed6a8ca8a3d621d2ff9ef71fef8cc1e}
 
 
 Determines if the given tour is feasible or not. 
@@ -89,15 +123,15 @@ Determines if the given tour is feasible or not.
 \item[Returns:]ARROW\_\-TRUE if the tour is feasible, ARROW\_\-FALSE if not \end{Desc}
 
 
-Definition at line 100 of file fun\_\-sbtsp.c.
+Definition at line 174 of file fun\_\-sbtsp.c.
 
 References ARROW\_\-FALSE, and ARROW\_\-TRUE.
 
-Referenced by arrow\_\-btsp\_\-fun\_\-basic().\hypertarget{fun__sbtsp_8c_8a88f36c06363eb2903f21ddd93695e7}{
-\index{fun\_\-sbtsp.c@{fun\_\-sbtsp.c}!basic\_\-get\_\-cost@{basic\_\-get\_\-cost}}
-\index{basic\_\-get\_\-cost@{basic\_\-get\_\-cost}!fun_sbtsp.c@{fun\_\-sbtsp.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int basic\_\-get\_\-cost ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em delta}, \/  int {\em i}, \/  int {\em j})}}
-\label{fun__sbtsp_8c_8a88f36c06363eb2903f21ddd93695e7}
+Referenced by arrow\_\-btsp\_\-fun\_\-basic(), and arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1().\hypertarget{fun__sbtsp_8c_9a88a5ecd89faa9e80d46bd32529881d}{
+\index{fun\_\-sbtsp.c@{fun\_\-sbtsp.c}!sbtsp\_\-basic\_\-get\_\-cost@{sbtsp\_\-basic\_\-get\_\-cost}}
+\index{sbtsp\_\-basic\_\-get\_\-cost@{sbtsp\_\-basic\_\-get\_\-cost}!fun_sbtsp.c@{fun\_\-sbtsp.c}}
+\subsubsection[{sbtsp\_\-basic\_\-get\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int sbtsp\_\-basic\_\-get\_\-cost ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em delta}, \/  int {\em i}, \/  int {\em j})}}
+\label{fun__sbtsp_8c_9a88a5ecd89faa9e80d46bd32529881d}
 
 
 Retrieves cost between nodes i and j from the function. 
@@ -111,15 +145,15 @@ Retrieves cost between nodes i and j from the function.
 \item[Returns:]cost between node i and node j \end{Desc}
 
 
-Definition at line 82 of file fun\_\-sbtsp.c.
+Definition at line 156 of file fun\_\-sbtsp.c.
 
 References arrow\_\-problem::get\_\-cost.
 
-Referenced by arrow\_\-btsp\_\-fun\_\-basic().\hypertarget{fun__sbtsp_8c_a795fb772ac5641554a4bbe588773e2d}{
-\index{fun\_\-sbtsp.c@{fun\_\-sbtsp.c}!basic\_\-initialize@{basic\_\-initialize}}
-\index{basic\_\-initialize@{basic\_\-initialize}!fun_sbtsp.c@{fun\_\-sbtsp.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int basic\_\-initialize ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
-\label{fun__sbtsp_8c_a795fb772ac5641554a4bbe588773e2d}
+Referenced by arrow\_\-btsp\_\-fun\_\-basic().\hypertarget{fun__sbtsp_8c_02c7d1731f3c26aa7bba342770870d68}{
+\index{fun\_\-sbtsp.c@{fun\_\-sbtsp.c}!sbtsp\_\-basic\_\-initialize@{sbtsp\_\-basic\_\-initialize}}
+\index{sbtsp\_\-basic\_\-initialize@{sbtsp\_\-basic\_\-initialize}!fun_sbtsp.c@{fun\_\-sbtsp.c}}
+\subsubsection[{sbtsp\_\-basic\_\-initialize}]{\setlength{\rightskip}{0pt plus 5cm}int sbtsp\_\-basic\_\-initialize ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__sbtsp_8c_02c7d1731f3c26aa7bba342770870d68}
 
 
 Initializes the function data. 
@@ -131,8 +165,70 @@ Initializes the function data.
 \end{Desc}
 
 
-Definition at line 90 of file fun\_\-sbtsp.c.
+Definition at line 164 of file fun\_\-sbtsp.c.
 
 References ARROW\_\-SUCCESS.
 
-Referenced by arrow\_\-btsp\_\-fun\_\-basic().
+Referenced by arrow\_\-btsp\_\-fun\_\-basic().\hypertarget{fun__sbtsp_8c_4e376bfcf19fbab813d622082e78d4a0}{
+\index{fun\_\-sbtsp.c@{fun\_\-sbtsp.c}!sbtsp\_\-shake\_\-1\_\-destruct@{sbtsp\_\-shake\_\-1\_\-destruct}}
+\index{sbtsp\_\-shake\_\-1\_\-destruct@{sbtsp\_\-shake\_\-1\_\-destruct}!fun_sbtsp.c@{fun\_\-sbtsp.c}}
+\subsubsection[{sbtsp\_\-shake\_\-1\_\-destruct}]{\setlength{\rightskip}{0pt plus 5cm}void sbtsp\_\-shake\_\-1\_\-destruct ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__sbtsp_8c_4e376bfcf19fbab813d622082e78d4a0}
+
+
+Destructs the function data. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} the function structure to destruct \end{description}
+\end{Desc}
+
+
+Definition at line 220 of file fun\_\-sbtsp.c.
+
+References arrow\_\-btsp\_\-fun::data, and sbtsp\_\-shake\_\-1\_\-data::random\_\-list.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1().\hypertarget{fun__sbtsp_8c_cfccf3b47d65405438cec07be8a33815}{
+\index{fun\_\-sbtsp.c@{fun\_\-sbtsp.c}!sbtsp\_\-shake\_\-1\_\-get\_\-cost@{sbtsp\_\-shake\_\-1\_\-get\_\-cost}}
+\index{sbtsp\_\-shake\_\-1\_\-get\_\-cost@{sbtsp\_\-shake\_\-1\_\-get\_\-cost}!fun_sbtsp.c@{fun\_\-sbtsp.c}}
+\subsubsection[{sbtsp\_\-shake\_\-1\_\-get\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int sbtsp\_\-shake\_\-1\_\-get\_\-cost ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em delta}, \/  int {\em i}, \/  int {\em j})}}
+\label{fun__sbtsp_8c_cfccf3b47d65405438cec07be8a33815}
+
+
+Retrieves cost between nodes i and j from the function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em base\_\-problem}]\mbox{[}in\mbox{]} problem structure \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em i}]\mbox{[}in\mbox{]} id of start node \item[{\em j}]\mbox{[}in\mbox{]} id of end node \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]cost between node i and node j \end{Desc}
+
+
+Definition at line 181 of file fun\_\-sbtsp.c.
+
+References arrow\_\-print\_\-error, arrow\_\-problem\_\-info\_\-cost\_\-index(), arrow\_\-btsp\_\-fun::data, arrow\_\-problem::get\_\-cost, sbtsp\_\-shake\_\-1\_\-data::infinity, sbtsp\_\-shake\_\-1\_\-data::info, and sbtsp\_\-shake\_\-1\_\-data::random\_\-list.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1().\hypertarget{fun__sbtsp_8c_d759779294dee926004ff0fe59a11c3a}{
+\index{fun\_\-sbtsp.c@{fun\_\-sbtsp.c}!sbtsp\_\-shake\_\-1\_\-initialize@{sbtsp\_\-shake\_\-1\_\-initialize}}
+\index{sbtsp\_\-shake\_\-1\_\-initialize@{sbtsp\_\-shake\_\-1\_\-initialize}!fun_sbtsp.c@{fun\_\-sbtsp.c}}
+\subsubsection[{sbtsp\_\-shake\_\-1\_\-initialize}]{\setlength{\rightskip}{0pt plus 5cm}int sbtsp\_\-shake\_\-1\_\-initialize ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__sbtsp_8c_d759779294dee926004ff0fe59a11c3a}
+
+
+Initializes the function data. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} the function structure to initialize \end{description}
+\end{Desc}
+
+
+Definition at line 201 of file fun\_\-sbtsp.c.
+
+References arrow\_\-bintree\_\-init(), arrow\_\-bintree\_\-insert(), arrow\_\-bintree\_\-to\_\-array(), ARROW\_\-SUCCESS, arrow\_\-util\_\-random\_\-between(), arrow\_\-btsp\_\-fun::data, sbtsp\_\-shake\_\-1\_\-data::random\_\-list, sbtsp\_\-shake\_\-1\_\-data::random\_\-list\_\-length, sbtsp\_\-shake\_\-1\_\-data::random\_\-max, and sbtsp\_\-shake\_\-1\_\-data::random\_\-min.
+
+Referenced by arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1().

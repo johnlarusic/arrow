@@ -2,7 +2,8 @@
 \section{lib/tsp/cc.c File Reference}
 \label{cc_8c}\index{lib/tsp/cc.c@{lib/tsp/cc.c}}
 }
-TSP solver and Lin-Kernighan heuristic. 
+TSP solver and Lin-Kernighan heuristic.  
+
 
 {\tt \#include \char`\"{}common.h\char`\"{}}\par
 {\tt \#include \char`\"{}tsp.h\char`\"{}}\par
@@ -42,7 +43,7 @@ Definition in file \hyperlink{cc_8c-source}{cc.c}.
 \hypertarget{cc_8c_93f8cd5c58da12d37ef8e3adfda1febe}{
 \index{cc.c@{cc.c}!arrow\_\-copy@{arrow\_\-copy}}
 \index{arrow\_\-copy@{arrow\_\-copy}!cc.c@{cc.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}static int arrow\_\-copy (int {\em ncount}, \/  struct CCdatagroup $\ast$ {\em in}, \/  struct CCdatagroup $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\subsubsection[{arrow\_\-copy}]{\setlength{\rightskip}{0pt plus 5cm}static int arrow\_\-copy (int {\em ncount}, \/  struct CCdatagroup $\ast$ {\em in}, \/  struct CCdatagroup $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
 \label{cc_8c_93f8cd5c58da12d37ef8e3adfda1febe}
 
 
@@ -60,7 +61,7 @@ Definition at line 361 of file cc.c.
 Referenced by arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), and arrow\_\-tsp\_\-cc\_\-lk\_\-solve().\hypertarget{cc_8c_14413a6385a9cdc12ad169f6dffe6105}{
 \index{cc.c@{cc.c}!arrow\_\-edgelen@{arrow\_\-edgelen}}
 \index{arrow\_\-edgelen@{arrow\_\-edgelen}!cc.c@{cc.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}static int arrow\_\-edgelen (int {\em i}, \/  int {\em j}, \/  struct CCdatagroup $\ast$ {\em dat})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\subsubsection[{arrow\_\-edgelen}]{\setlength{\rightskip}{0pt plus 5cm}static int arrow\_\-edgelen (int {\em i}, \/  int {\em j}, \/  struct CCdatagroup $\ast$ {\em dat})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
 \label{cc_8c_14413a6385a9cdc12ad169f6dffe6105}
 
 
@@ -80,7 +81,7 @@ References arrow\_\-problem::get\_\-cost.
 Referenced by arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), and arrow\_\-tsp\_\-cc\_\-lk\_\-solve().\hypertarget{cc_8c_0facfae73f4527eaede86b39bfbe3e2c}{
 \index{cc.c@{cc.c}!arrow\_\-tsp\_\-cc\_\-exact\_\-solve@{arrow\_\-tsp\_\-cc\_\-exact\_\-solve}}
 \index{arrow\_\-tsp\_\-cc\_\-exact\_\-solve@{arrow\_\-tsp\_\-cc\_\-exact\_\-solve}!cc.c@{cc.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-cc\_\-exact\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int $\ast$ {\em initial\_\-tour}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
+\subsubsection[{arrow\_\-tsp\_\-cc\_\-exact\_\-solve}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-cc\_\-exact\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int $\ast$ {\em initial\_\-tour}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
 \label{cc_8c_0facfae73f4527eaede86b39bfbe3e2c}
 
 
@@ -100,7 +101,7 @@ References arrow\_\-copy(), arrow\_\-debug, arrow\_\-edgelen(), ARROW\_\-FAILURE
 Referenced by arrow\_\-tsp\_\-solve(), and main().\hypertarget{cc_8c_2e3f26d69919dddd1eb0e6969d4dcd85}{
 \index{cc.c@{cc.c}!arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct@{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct}}
 \index{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct@{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct}!cc.c@{cc.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct ({\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params} $\ast$ {\em params})}}
+\subsubsection[{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct ({\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params} $\ast$ {\em params})}}
 \label{cc_8c_2e3f26d69919dddd1eb0e6969d4dcd85}
 
 
@@ -120,7 +121,7 @@ References arrow\_\-tsp\_\-cc\_\-lk\_\-params::initial\_\-tour.
 Referenced by arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), and main().\hypertarget{cc_8c_8ccbdc390843e8b51299a9d89183c25d}{
 \index{cc.c@{cc.c}!arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init@{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init}}
 \index{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init@{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init}!cc.c@{cc.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params} $\ast$ {\em params})}}
+\subsubsection[{arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params} $\ast$ {\em params})}}
 \label{cc_8c_8ccbdc390843e8b51299a9d89183c25d}
 
 
@@ -142,7 +143,7 @@ References arrow\_\-tsp\_\-cc\_\-lk\_\-params::initial\_\-tour, arrow\_\-tsp\_\-
 Referenced by arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), and main().\hypertarget{cc_8c_a51ad259e32d0cc792d02e5c93bca4f2}{
 \index{cc.c@{cc.c}!arrow\_\-tsp\_\-cc\_\-lk\_\-solve@{arrow\_\-tsp\_\-cc\_\-lk\_\-solve}}
 \index{arrow\_\-tsp\_\-cc\_\-lk\_\-solve@{arrow\_\-tsp\_\-cc\_\-lk\_\-solve}!cc.c@{cc.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-cc\_\-lk\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params} $\ast$ {\em params}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
+\subsubsection[{arrow\_\-tsp\_\-cc\_\-lk\_\-solve}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-cc\_\-lk\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-cc\_\-lk\_\-params} $\ast$ {\em params}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
 \label{cc_8c_a51ad259e32d0cc792d02e5c93bca4f2}
 
 
@@ -162,7 +163,7 @@ References arrow\_\-copy(), arrow\_\-debug, arrow\_\-edgelen(), ARROW\_\-FAILURE
 Referenced by arrow\_\-tsp\_\-solve().\hypertarget{cc_8c_262c0ed412c066c45212c2cc13e703b5}{
 \index{cc.c@{cc.c}!build\_\-initial\_\-tour@{build\_\-initial\_\-tour}}
 \index{build\_\-initial\_\-tour@{build\_\-initial\_\-tour}!cc.c@{cc.c}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int build\_\-initial\_\-tour (int {\em ncount}, \/  CCdatagroup $\ast$ {\em dat}, \/  CCedgegengroup $\ast$ {\em plan}, \/  CCrandstate $\ast$ {\em rstate}, \/  int $\ast$ {\em initial\_\-tour})}}
+\subsubsection[{build\_\-initial\_\-tour}]{\setlength{\rightskip}{0pt plus 5cm}int build\_\-initial\_\-tour (int {\em ncount}, \/  CCdatagroup $\ast$ {\em dat}, \/  CCedgegengroup $\ast$ {\em plan}, \/  CCrandstate $\ast$ {\em rstate}, \/  int $\ast$ {\em initial\_\-tour})}}
 \label{cc_8c_262c0ed412c066c45212c2cc13e703b5}
 
 
