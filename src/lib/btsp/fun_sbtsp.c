@@ -157,7 +157,13 @@ sbtsp_basic_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
                      int delta, int i, int j)
 {
     int cost = base_problem->get_cost(base_problem, i, j);
-    return (cost <= delta ? 0 : cost);
+    
+    if(cost < 0)
+        return cost;
+    else if(cost <= delta)
+        return 0;
+    else
+        return cost;
 }
 
 int
@@ -174,6 +180,28 @@ int
 sbtsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *problem, 
                      int delta, double tour_length, int *tour)
 {
+    if(problem->fixed_edges > 0)
+    {
+        int i, u, v, cost;
+        int fixed_edge_count = 0;
+    
+        for(i = 0; i < problem->size; i++)
+        {
+            u = tour[i];
+            v = tour[(i + 1) % problem->size];
+            cost = problem->get_cost(problem, u, v);
+        
+            if(cost > delta)
+                return ARROW_FALSE;
+           
+            if(cost < 0)
+                fixed_edge_count++;
+        }
+
+        if(fixed_edge_count < problem->fixed_edges)
+            return ARROW_FALSE;
+    }
+    
     return (tour_length <= 0 ? ARROW_TRUE : ARROW_FALSE);
 }
 
@@ -184,17 +212,20 @@ sbtsp_shake_1_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
     sbtsp_shake_1_data *data = (sbtsp_shake_1_data *)fun->data;
     int cost = base_problem->get_cost(base_problem, i, j);
     
-    int pos = -1;
-    if(!arrow_problem_info_cost_index(data->info, cost, &pos))
-    {
-        arrow_print_error("Could not find cost in ordered cost list!");
-        return data->infinity;
-    }
-    
-    if(cost <= delta)
+    if(cost < 0)
+        return cost;
+    else if(cost <= delta)
         return 0;
     else
+    {
+        int pos = -1;
+        if(!arrow_problem_info_cost_index(data->info, cost, &pos))
+        {
+            arrow_print_error("Could not find cost in ordered cost list!");
+            return data->infinity;
+        }
         return cost + data->random_list[pos];
+    }        
 }
 
 int
