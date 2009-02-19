@@ -435,6 +435,7 @@ typedef struct arrow_problem
     int type;           /**< problem type */
     int symmetric;      /**< indicates if cost matrix is symmetric */
     int shallow;        /**< indicates use of shallow copy of data */
+    int fixed_edges;    /**< number of fixed edges */
     char name[ARROW_PROBLEM_NAME_LENGTH]; /**< problem name */
     void *data;         /**< Pointer to structure for problem data. */
         

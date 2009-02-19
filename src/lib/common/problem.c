@@ -337,6 +337,7 @@ arrow_problem_abtsp_to_sbtsp(int shallow, arrow_problem *old_problem,
     new_problem->type = ARROW_PROBLEM_ABTSP_TO_SBTSP;
     new_problem->shallow = shallow;
     new_problem->symmetric = ARROW_TRUE;
+    new_problem->fixed_edges = old_problem->size;
     sprintf(new_problem->name, "%s", old_problem->name);
     
     abtsp_data *data = NULL;
@@ -401,6 +402,7 @@ read_stsp(char *file_name, arrow_problem *problem)
     problem->size = size;
     problem->type = ARROW_PROBLEM_DATA_CONCORDE;
     problem->symmetric = ARROW_TRUE;
+    problem->fixed_edges = 0;
     problem->data = (void *)dat;
     problem->shallow = ARROW_FALSE;
     problem->get_cost = concorde_get_cost;
@@ -587,6 +589,7 @@ read_atsp(char *file_name, arrow_problem *problem)
     problem->size = size;
     problem->type = ARROW_PROBLEM_DATA_FULL_MATRIX;
     problem->symmetric = ARROW_FALSE;
+    problem->fixed_edges = 0;
     problem->data = (void *)data;
     problem->shallow = ARROW_FALSE;
     problem->get_cost = full_matrix_get_cost;
