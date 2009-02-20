@@ -19,6 +19,7 @@ int edge_infinity = -1;
 int random_restarts = -1;
 int stall_count = -1;
 int kicks = -1;
+int solve_mstsp = ARROW_FALSE;
 int confirm_sol = ARROW_FALSE;
 int supress_ebst = ARROW_FALSE;
 int find_short_tour = ARROW_FALSE;
@@ -33,7 +34,7 @@ int shake_1_rand_max = -1;
 int random_seed = 0;
 
 /* Program options */
-#define NUM_OPTS 18
+#define NUM_OPTS 19
 arrow_option options[NUM_OPTS] = 
 {
     {'i', "input", "TSPLIB input file", 
@@ -42,6 +43,9 @@ arrow_option options[NUM_OPTS] =
         ARROW_OPTION_STRING, &xml_file, ARROW_FALSE, ARROW_TRUE},
     {'T', "tour", "file to write tour to",
         ARROW_OPTION_STRING, &tour_file, ARROW_FALSE, ARROW_TRUE},
+        
+    {'m', "solve-mstsp", "solves maximum scatter TSP",
+        ARROW_OPTION_INT, &solve_mstsp, ARROW_FALSE, ARROW_FALSE},
         
     {'r', "restarts", "number of random restarts",
         ARROW_OPTION_INT, &random_restarts, ARROW_FALSE, ARROW_TRUE},
@@ -89,6 +93,7 @@ main(int argc, char *argv[])
 
     arrow_problem input_problem;
     arrow_problem asym_problem;
+    arrow_problem mstsp_problem;
     arrow_problem *problem;
     arrow_problem_info info;
     arrow_tsp_cc_lk_params lk_params;
@@ -96,6 +101,9 @@ main(int argc, char *argv[])
     arrow_btsp_fun fun_shake_1;
     arrow_btsp_result result;
     arrow_btsp_params btsp_params;
+    
+    int mstsp_obj_value = -1;
+    double mstsp_tour_length = 0.0;
     
     double start_time = arrow_util_zeit();
     double end_time;
@@ -140,7 +148,17 @@ main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
     printf("Infinity Value:       %d\n", edge_infinity);
-    
+
+    /* If we want to solve maximum scatter TSP, create BTSP equivalent. */
+    if(solve_mstsp)
+    {
+        if(!arrow_problem_mstsp_to_btsp(deep_copy, problem, info.max_cost, &mstsp_problem))
+        {
+            arrow_print_error("Could not create MSTSP->BTSP transformation.");
+            return EXIT_FAILURE;
+        }
+        problem = &mstsp_problem;
+    }    
     
     /* If the problem's asymmetric, create symmetric from transformation. */
     if(!problem->symmetric)
@@ -151,8 +169,7 @@ main(int argc, char *argv[])
             return EXIT_FAILURE;
         }
         problem = &asym_problem;
-    }
-    
+    }    
         
     /* Initialize random number generator */
     arrow_util_random_seed(random_seed);
@@ -231,7 +248,7 @@ main(int argc, char *argv[])
     arrow_btsp_result_init(problem, &result);
     if(!arrow_btsp_solve(problem, &info, &btsp_params, &result))
     {
-        arrow_print_error("Could not solve BTSP on file.\n");
+        arrow_print_error("Could not solve BTSP on given problem.\n");
         ret = EXIT_FAILURE;
         goto CLEANUP;
     }
@@ -260,13 +277,18 @@ main(int argc, char *argv[])
     /* Perform sanity check on found tours, output them to file if requested */
     if(result.found_tour)
     {
+        if(solve_mstsp)
+            problem = &mstsp_problem;
+        else
+            problem = &input_problem;
+        
         double actual_length = 0.0;
         
-        for(i = 0; i < input_problem.size; i++)
+        for(i = 0; i < problem->size; i++)
         {
             u = result.tour[i];
-            v = result.tour[(i + 1) % input_problem.size];
-            cost = input_problem.get_cost(&input_problem, u, v);
+            v = result.tour[(i + 1) % problem->size];
+            cost = problem->get_cost(problem, u, v);
             
             if(cost > result.obj_value)
             {
@@ -283,11 +305,21 @@ main(int argc, char *argv[])
 
             actual_length += cost;
         }        
-        
-        if(result.tour_length != actual_length)
+    }
+    
+    
+    /* Conversions to MSTSP if necessary */
+    if(solve_mstsp)
+    {
+        if(result.found_tour)
         {
-            fprintf(stderr, "Returned tour length %.0f does not equal calculated length %.0f.\n",
-                    result.tour_length, actual_length);
+            mstsp_obj_value = result.obj_value + info.max_cost;
+            mstsp_tour_length = result.tour_length + input_problem.size * info.max_cost;
+        }
+        else
+        {
+            mstsp_obj_value = -1;
+            mstsp_tour_length = -1;
         }
     }
     
@@ -297,8 +329,13 @@ main(int argc, char *argv[])
     printf("Initial Lower Bound: %d\n", lower_bound);
     if(lower_bound_time >= 0.0)
         printf("Lower Bound Time: %.2f\n", lower_bound_time);
+    if(solve_mstsp)
+    {
+        printf("MSTSP Obj. Value: %d\n", mstsp_obj_value);
+        printf("MSTSP Tour Length: %.0f\n", mstsp_tour_length);
+    }        
     printf("Total Time: %.2f\n", end_time);
-    
+        
     /* Xml output */
     if(xml_file != NULL)
     {
@@ -310,15 +347,32 @@ main(int argc, char *argv[])
             goto CLEANUP;
         }
         
-        fprintf(xml, "<arrow_btsp problem_file=\"%s\"", input_file);
+        if(solve_mstsp)
+            fprintf(xml, "<arrow_mstsp ");
+        else
+            fprintf(xml, "<arrow_btsp ");
+            
+        fprintf(xml, "problem_file=\"%s\"", input_file);
         fprintf(xml, " command_args=\"");
         arrow_util_print_program_args(argc, argv, xml);
         fprintf(xml, "\">\n");
-
+        
+        if(solve_mstsp)
+        {
+            fprintf(xml, "   <mstsp_obj_value>%d</mstsp_obj_value\n",
+                    mstsp_obj_value);
+            fprintf(xml, "   <mstsp_tour_length>%.0f</mstsp_tour_length\n",
+                    mstsp_tour_length);
+        }
+        
         arrow_btsp_result_print_xml(&result, xml);
         
         fprintf(xml, "    <total_time>%.2f</total_time>\n", end_time);
-        fprintf(xml, "</arrow_btsp>\n");
+        
+        if(solve_mstsp)
+            fprintf(xml, "</arrow_mstsp>\n");
+        else
+            fprintf(xml, "</arrow_btsp>\n");
         
         fclose(xml);
     }
@@ -336,9 +390,17 @@ main(int argc, char *argv[])
             goto CLEANUP;
         }
     
-        sprintf(comment, "BTSP Tour; Length %.0f, Max Cost %d.",
-            result.tour_length, result.obj_value);
-    
+        if(solve_mstsp)
+        {
+            sprintf(comment, "MSTSP Tour; Length %.0f, Min Cost %d.",
+                mstsp_tour_length , mstsp_obj_value);
+        }
+        else
+        {
+            sprintf(comment, "BTSP Tour; Length %.0f, Max Cost %d.",
+                result.tour_length, result.obj_value);
+        }
+        
         arrow_util_write_tour(&input_problem, comment, result.tour, tour_out);
     
         fclose(tour_out);
@@ -351,6 +413,8 @@ CLEANUP:
     arrow_tsp_cc_lk_params_destruct(&lk_params);
     if(!input_problem.symmetric)
         arrow_problem_destruct(&asym_problem);
+    if(solve_mstsp)
+        arrow_problem_destruct(&mstsp_problem);
     arrow_problem_destruct(&input_problem);
     return ret;
 }

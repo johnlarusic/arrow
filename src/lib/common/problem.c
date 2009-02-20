@@ -24,6 +24,12 @@ typedef struct abtsp_data
     int infinity;         /**< value to represent infinity */
 } abtsp_data;
 
+typedef struct mstsp_data
+{
+    arrow_problem *base; /**< base problem */
+    int max_cost;
+} mstsp_data;
+
 /****************************************************************************
  * Private function prototypes
  ****************************************************************************/
@@ -109,6 +115,23 @@ abtsp_get_cost(arrow_problem *problem, int i, int j);
  */
 void
 abtsp_destruct(arrow_problem *problem);
+
+/**
+ *  @brief  Edge length function for MSTSP->BTSP data
+ *  @param  problem [in] pointer to arrow_problem structure
+ *  @param  i [in] id of starting node
+ *  @param  j [in] id of ending node
+ *  @return The cost between nodes i and j
+ */
+int 
+mstsp_get_cost(arrow_problem *problem, int i, int j);
+
+/**
+ *  @brief  Destructs data structure of a MSTSP->BTSP problem.
+ *  @param  problem [in] pointer to arrow_problem structure
+ */
+void
+mstsp_destruct(arrow_problem *problem);
 
 
 /****************************************************************************
@@ -352,6 +375,33 @@ arrow_problem_abtsp_to_sbtsp(int shallow, arrow_problem *old_problem,
 
     new_problem->get_cost = abtsp_get_cost;
     new_problem->destruct = abtsp_destruct;
+    
+    return ARROW_SUCCESS;
+}
+
+int
+arrow_problem_mstsp_to_btsp(int shallow, arrow_problem *old_problem,
+                            int max_cost, arrow_problem *new_problem)
+{
+    new_problem->size = old_problem->size;
+    new_problem->type = ARROW_PROBLEM_MSTSP_TO_BTSP;
+    new_problem->shallow = shallow;
+    new_problem->symmetric = old_problem->symmetric;
+    new_problem->fixed_edges = old_problem->fixed_edges;
+    sprintf(new_problem->name, "%s", old_problem->name);
+    
+    mstsp_data *data = NULL;
+    if((data = malloc(sizeof(mstsp_data))) == NULL)
+    {
+        arrow_print_error("Could not allocate memory for mstsp_data");
+        return ARROW_FAILURE;
+    }
+    data->base = old_problem;
+    data->max_cost = max_cost;
+    new_problem->data = data;
+
+    new_problem->get_cost = mstsp_get_cost;
+    new_problem->destruct = mstsp_destruct;
     
     return ARROW_SUCCESS;
 }
@@ -638,6 +688,19 @@ abtsp_get_cost(arrow_problem *this, int i, int j)
 
 void 
 abtsp_destruct(arrow_problem *this)
+{ 
+    free(this->data);
+}
+
+int 
+mstsp_get_cost(arrow_problem *this, int i, int j)
+{
+    mstsp_data *data = (mstsp_data *)this->data;
+    return data->max_cost - data->base->get_cost(data->base, i, j);
+}
+
+void 
+mstsp_destruct(arrow_problem *this)
 { 
     free(this->data);
 }

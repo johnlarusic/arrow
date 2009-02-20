@@ -65,6 +65,7 @@
 #define ARROW_PROBLEM_DATA_CONCORDE 2
 #define ARROW_PROBLEM_DATA_BTSP_FUN 3
 #define ARROW_PROBLEM_ABTSP_TO_SBTSP 4
+#define ARROW_PROBLEM_MSTSP_TO_BTSP 5
 
 #define ARROW_OPTION_INT 1
 #define ARROW_OPTION_DOUBLE 2
@@ -538,6 +539,17 @@ arrow_problem_read_tour(char *file_name, int size, int *tour);
 int
 arrow_problem_abtsp_to_sbtsp(int shallow, arrow_problem *old_problem,  
                              int infinity, arrow_problem *new_problem);
+
+/**
+ *	@brief	Transforms a MSTSP problem into the equivalent BTSP problem.
+ *  @param  shallow [in] if true only a shallow copy of data will be created
+ *  @param  old_problem [in] the MSTSP problem
+ *	@param	max_cost [in] the maximum cost in old_problem
+ *	@param	new_problem [out] the new BTSP problem
+ */
+int
+arrow_problem_mstsp_to_btsp(int shallow, arrow_problem *old_problem,
+                            int max_cost, arrow_problem *new_problem);
 
 
 /****************************************************************************
