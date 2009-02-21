@@ -117,6 +117,19 @@ btsp_asym_shift_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
 void
 btsp_asym_shift_destruct(arrow_btsp_fun *fun);
 
+/**
+ *  @brief  Determines if the given tour is feasible or not.
+ *  @param  fun [in] function structure
+ *  @param  problem [in] the problem to check against
+ *  @param  delta [in] delta parameter
+ *  @param  tour_length [in] the length of the given tour
+ *  @param  tour [in] the tour in node-node format
+ *  @return ARROW_TRUE if the tour is feasible, ARROW_FALSE if not
+ */
+int
+btsp_asym_shift_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem,
+                         int delta, double tour_length, int *tour);
+
 
 /****************************************************************************
  * Public function implementations
@@ -186,7 +199,7 @@ arrow_btsp_fun_asym_shift(int shallow, int shift, arrow_btsp_fun *fun)
     fun->get_cost = btsp_asym_shift_get_cost;
     fun->initialize = btsp_basic_initialize;
     fun->destruct = btsp_asym_shift_destruct;
-    fun->feasible = btsp_basic_feasible;
+    fun->feasible = btsp_asym_shift_feasible;
     
     return ARROW_SUCCESS;
 }
@@ -225,6 +238,7 @@ btsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem,
 {
     if(base_problem->fixed_edges > 0)
     {
+        arrow_debug("Checking for fixed edges...\n");
         int i, u, v, cost;
         int fixed_edge_count = 0;
     
@@ -235,14 +249,22 @@ btsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem,
             cost = base_problem->get_cost(base_problem, u, v);
         
             if(cost > delta)
+            {
+                arrow_debug("C[%d,%d] = %d > %d => non-feasible tour.\n",
+                            u, v, cost, delta);
+                arrow_debug("C^d[%d,%d] = %d\n", u, v, fun->get_cost(fun, base_problem, delta, u, v));
                 return ARROW_FALSE;
+            }
            
             if(cost < 0)
                 fixed_edge_count++;
         }
 
         if(fixed_edge_count < base_problem->fixed_edges)
+        {
+            arrow_debug("Not enough fixed edges included in solution.\n");
             return ARROW_FALSE;
+        }
     }
     
     return (tour_length <= 0 ? ARROW_TRUE : ARROW_FALSE);
@@ -306,8 +328,16 @@ btsp_shake_1_destruct(arrow_btsp_fun *fun)
 int
 btsp_asym_shift_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
                          int delta, int i, int j)
-{    
-    return base_problem->get_cost(base_problem, i, j) + *((int *)fun->data);
+{   
+    int shift = *((int *)fun->data);
+    int cost = base_problem->get_cost(base_problem, i, j);
+    
+    if(cost < 0)
+        return 0;
+    else if(cost <= delta)
+        return shift;
+    else
+        return cost + shift;
 }
 
 void
@@ -318,4 +348,13 @@ btsp_asym_shift_destruct(arrow_btsp_fun *fun)
         free(fun->data);
         fun->data = NULL;
     }
+}
+
+int
+btsp_asym_shift_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem, 
+                         int delta, double tour_length, int *tour)
+{
+    int shift = *((int *)fun->data);
+    double actual_tour_length = tour_length - shift * base_problem->size;
+    return btsp_basic_feasible(fun, base_problem, delta, actual_tour_length, tour);
 }
