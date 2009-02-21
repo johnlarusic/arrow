@@ -67,7 +67,7 @@ btsp_basic_destruct(arrow_btsp_fun *fun);
  *  @return ARROW_TRUE if the tour is feasible, ARROW_FALSE if not
  */
 int
-btsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *problem,
+btsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem,
                      int delta, double tour_length, int *tour);
                      
 /**
@@ -96,6 +96,26 @@ btsp_shake_1_initialize(arrow_btsp_fun *fun);
  */
 void
 btsp_shake_1_destruct(arrow_btsp_fun *fun);
+
+/**
+ *  @brief  Retrieves cost between nodes i and j from the function.
+ *  @param  fun [in] function structure
+ *  @param  base_problem [in] problem structure
+ *  @param  delta [in] delta parameter
+ *  @param  i [in] id of start node
+ *  @param  j [in] id of end node
+ *  @return cost between node i and node j
+ */
+int
+btsp_asym_shift_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
+                         int delta, int i, int j);
+
+/**
+ *  @brief  Destructs the function data.
+ *  @param  fun [out] the function structure to destruct
+ */
+void
+btsp_asym_shift_destruct(arrow_btsp_fun *fun);
 
 
 /****************************************************************************
@@ -149,6 +169,29 @@ arrow_btsp_fun_shake_1(int shallow, int infinity,
     return ARROW_SUCCESS;
 }
 
+int
+arrow_btsp_fun_asym_shift(int shallow, int shift, arrow_btsp_fun *fun)
+{
+    fun->data = NULL;
+    if((fun->data = malloc(sizeof(int))) == NULL)
+    {
+        arrow_print_error("Could not allocate memory for int");
+        return ARROW_FAILURE;
+    }
+    
+    int *shift_data = (int *)fun->data;
+    *shift_data = shift;
+        
+    fun->shallow = shallow;
+    fun->get_cost = btsp_asym_shift_get_cost;
+    fun->initialize = btsp_basic_initialize;
+    fun->destruct = btsp_asym_shift_destruct;
+    fun->feasible = btsp_basic_feasible;
+    
+    return ARROW_SUCCESS;
+}
+
+
 /****************************************************************************
  * Private function implementations
  ****************************************************************************/
@@ -177,19 +220,19 @@ btsp_basic_destruct(arrow_btsp_fun *fun)
 { }
 
 int
-btsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *problem, 
-                     int delta, double tour_length, int *tour)
+btsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem, 
+                    int delta, double tour_length, int *tour)
 {
-    if(problem->fixed_edges > 0)
+    if(base_problem->fixed_edges > 0)
     {
         int i, u, v, cost;
         int fixed_edge_count = 0;
     
-        for(i = 0; i < problem->size; i++)
+        for(i = 0; i < base_problem->size; i++)
         {
             u = tour[i];
-            v = tour[(i + 1) % problem->size];
-            cost = problem->get_cost(problem, u, v);
+            v = tour[(i + 1) % base_problem->size];
+            cost = base_problem->get_cost(base_problem, u, v);
         
             if(cost > delta)
                 return ARROW_FALSE;
@@ -198,7 +241,7 @@ btsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *problem,
                 fixed_edge_count++;
         }
 
-        if(fixed_edge_count < problem->fixed_edges)
+        if(fixed_edge_count < base_problem->fixed_edges)
             return ARROW_FALSE;
     }
     
@@ -260,3 +303,19 @@ btsp_shake_1_destruct(arrow_btsp_fun *fun)
     }
 }
 
+int
+btsp_asym_shift_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
+                         int delta, int i, int j)
+{    
+    return base_problem->get_cost(base_problem, i, j) + *((int *)fun->data);
+}
+
+void
+btsp_asym_shift_destruct(arrow_btsp_fun *fun)
+{
+    if(fun->data != NULL)
+    {    
+        free(fun->data);
+        fun->data = NULL;
+    }
+}

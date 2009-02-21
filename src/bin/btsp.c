@@ -99,6 +99,8 @@ main(int argc, char *argv[])
     arrow_tsp_cc_lk_params lk_params;
     arrow_btsp_fun fun_basic;
     arrow_btsp_fun fun_shake_1;
+    arrow_btsp_fun fun_asym_shift;
+    arrow_btsp_fun *fun_confirm;
     arrow_btsp_result result;
     arrow_btsp_params btsp_params;
     
@@ -224,11 +226,21 @@ main(int argc, char *argv[])
            shake_1_attempts                 /* attempts */
        }
     };
+    
+    
+    if(input_problem.symmetric)
+        fun_confirm = &fun_basic;
+    else
+    {
+        if(!arrow_btsp_fun_asym_shift(deep_copy, edge_infinity, &fun_asym_shift))
+            return EXIT_FAILURE;
+        fun_confirm = &fun_asym_shift;
+    }
     arrow_btsp_solve_plan confirm_plan = 
     {
        ARROW_TSP_CC_EXACT,
        NULL,
-       fun_basic,
+       *fun_confirm,
        1
     };
         
@@ -412,7 +424,10 @@ CLEANUP:
     arrow_btsp_fun_destruct(&fun_shake_1);
     arrow_tsp_cc_lk_params_destruct(&lk_params);
     if(!input_problem.symmetric)
+    {
+        arrow_btsp_fun_destruct(&fun_asym_shift);
         arrow_problem_destruct(&asym_problem);
+    }
     if(solve_mstsp)
         arrow_problem_destruct(&mstsp_problem);
     arrow_problem_destruct(&input_problem);

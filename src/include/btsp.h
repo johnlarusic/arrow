@@ -176,6 +176,16 @@ arrow_btsp_fun_shake_1(int shallow, int infinity,
                        int random_min, int random_max,
                        arrow_problem_info *info, arrow_btsp_fun *fun);
 
+/**
+ *  @brief  Shifts all costs by given amount; used to remove negative costs.
+ *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
+ *  @param  shift [in] value to shift all costs by
+ *  @param  fun [out] function structure
+ */
+int
+arrow_btsp_fun_asym_shift(int shallow, int shift, arrow_btsp_fun *fun);
+
+
 /****************************************************************************
  *  fun_cbtsp.c
  ****************************************************************************/
