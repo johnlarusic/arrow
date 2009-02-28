@@ -294,14 +294,12 @@ main(int argc, char *argv[])
         else
             problem = &input_problem;
         
-        double actual_length = 0.0;
-        
         for(i = 0; i < problem->size; i++)
         {
             u = result.tour[i];
             v = result.tour[(i + 1) % problem->size];
             cost = problem->get_cost(problem, u, v);
-            
+
             if(cost > result.obj_value)
             {
                 fprintf(stderr, "Found tour is no good!\n");
@@ -314,9 +312,7 @@ main(int argc, char *argv[])
                 fprintf(stderr, "Negative edge in tour -- is this okay?\n");
                 fprintf(stderr, "C[%d,%d] = %d\n", u, v, cost);
             }
-
-            actual_length += cost;
-        }        
+        }   
     }
     
     

@@ -216,12 +216,13 @@ CONFIRM:
             /* Copy over new best objective value and tour */
             result->obj_value = cur_result.obj_value;
             result->tour_length = cur_result.tour_length;
+            
             if(result->tour != NULL)
             {
                 result->found_tour = ARROW_TRUE;
                 for(i = 0; i < problem->size; i++)
                     result->tour[i] = cur_result.tour[i];
-            }   
+            }
         }
         else
         {
