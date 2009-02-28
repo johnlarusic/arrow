@@ -93,7 +93,7 @@ for lib_file in lib_files:
 # Setup environment and build library
 env_lib = Environment(
             variables = opts,
-            CCFLAGS = '"$lib_ccflags"',
+            CCFLAGS = '$lib_ccflags',
             CPPPATH = ['"$concorde_h_dir"', '"$lpsolver_h_dir"', inc_build]
           )
 env_lib.BuildDir(dir_build, dir_src)
@@ -105,8 +105,8 @@ env_lib.Library(target = 'arrow',
 ##############################################################################
 env_bin = Environment(
             variables = opts,
-            CCFLAGS = '"$bin_ccflags"',
-            LINKFLAGS = '"$bin_linkflags"',
+            CCFLAGS = '$bin_ccflags',
+            LINKFLAGS = '$bin_linkflags',
             CPPPATH = ['"$concorde_h_dir"', '"$lpsolver_h_dir"', inc_build],
             LIBS = ['arrow', 'cmph'],
             LIBPATH = ['.']
