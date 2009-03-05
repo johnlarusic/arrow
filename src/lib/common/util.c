@@ -272,3 +272,34 @@ arrow_util_sbtsp_to_abstp_tour(arrow_problem *problem, int *old_tour,
             new_tour[n - i - 1] = old_tour[2 * i];
     }
 }
+
+void
+arrow_util_write_problem(arrow_problem *problem, char *comment, FILE *out)
+{
+    int i, j;
+    
+    fprintf(out, "NAME : %s\n", problem->name);
+    fprintf(out, "TYPE : TSP\n");    
+    fprintf(out, "DIMENSION: %d\n", problem->size);
+    
+    if(comment != NULL)
+        fprintf(out, "COMMENT : %s\n", comment);
+        
+    fprintf(out, "EDGE_WEIGHT_TYPE: EXPLICIT\n");
+    fprintf(out, "EDGE_WEIGHT_FORMAT: LOWER_DIAG_ROW\n");
+    fprintf(out, "EDGE_WEIGHT_SECTION\n");
+    
+    for(i = 0; i < problem->size; i++)
+    {
+        for(j = 0; j <= i; j++)
+        {
+            if(i == j)
+                fprintf(out, "0\n");
+            else
+                fprintf(out, "%d\t", problem->get_cost(problem, i, j));
+        }
+    }
+        
+    fprintf(out, "EOF\n");
+}
+

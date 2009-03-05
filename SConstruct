@@ -57,6 +57,7 @@ executables = (
     ('cbst',        'cbst.c'),
     ('cbtsp',       'cbtsp.c'),
     ('dcbpb',       'dcbpb.c'),
+    ('delta-print', 'delta-print.c'),
     ('hash',        'hash.c'),
     ('histdata',    'histdata.c'),
     ('subprob',     'subprob.c'),

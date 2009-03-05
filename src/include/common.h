@@ -688,13 +688,35 @@ arrow_util_random_between(int min, int max);
 void
 arrow_util_permute_array(int size, int *array);
 
+/**
+ *  @brief  Writes a tour in TSPLIB format.
+ *  @param  problem [in] problem associated with tour.
+ *  @param  comment [in] additional comment (optional).
+ *  @param  tour [in] the tour to print out.
+ *  @param  out [out] the file descriptor id to print out to.
+ */
 void
 arrow_util_write_tour(arrow_problem *problem, char *comment, int *tour, 
                       FILE *out);
 
+/**
+ *  @brief  Converts a symmetric tour to an asymmetric tour
+ *  @param  problem [in] problem associated with tour.
+ *  @param  old_tour [in] the symmetric tour.
+ *  @param  new_tour [out] the asymmetric tour.
+ */
 void
 arrow_util_sbtsp_to_abstp_tour(arrow_problem *problem, int *old_tour,
                                int *new_tour);
+
+/**
+ *  @brief  Writes a problem in TSPLIB format as a lower diagonal matrix.
+ *  @param  problem [in] problem to print out.
+ *  @param  comment [in] additional comment (optional).
+ *  @param  out [out] the file descriptor id to print out to.
+ */
+void
+arrow_util_write_problem(arrow_problem *problem, char *comment, FILE *out);
 
 
 /****************************************************************************
