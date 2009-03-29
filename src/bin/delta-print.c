@@ -47,7 +47,7 @@ main(int argc, char *argv[])
         return EXIT_FAILURE;
     
     /* Need to supress output from Concorde */
-    arrow_util_redirect_stdout_to_file(ARROW_DEV_NULL, &stdout_id);
+    //arrow_util_redirect_stdout_to_file(ARROW_DEV_NULL, &stdout_id);
     
     /* Try and read the problem file and its info */    
     if(!arrow_problem_read(input_file, &input_problem))
@@ -57,7 +57,7 @@ main(int argc, char *argv[])
     /* Gather basic info about the problem */
     if(!arrow_problem_info_get(problem, ARROW_TRUE, &info))
         return EXIT_FAILURE;
-    edge_infinity = info.max_cost * 2;
+    edge_infinity = info.max_cost + 1;
         
     if(problem->symmetric)
     {
@@ -81,10 +81,10 @@ main(int argc, char *argv[])
     }
     
     /* Restore output */
-    arrow_util_restore_stdout(stdout_id);
+    //arrow_util_restore_stdout(stdout_id);
     
     /* Generate comment */
-    sprintf(comment, "Delta = %d", delta);
+    sprintf(comment, "Delta is %d, Infinity is %d", delta, edge_infinity);
     
     /* Print problem file out */
     arrow_util_write_problem(&delta_problem, comment, stdout);
