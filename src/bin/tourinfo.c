@@ -8,42 +8,21 @@
  ****************************************************************************/
 #include "common.h"
 
-/**
- *  @brief  Prints help/usage message.
- */
-void 
-print_help();
-
-/**
- *  @brief  Prints version message.
- */
-void 
-print_version();
-
-/**
- *  @brief  Prints usage message.
- */
-void 
-print_usage();
-
-/**
- *  @brief  Reads program arguments.
- */
-void 
-read_args(int argc, char *argv[]);
-
-/**
- *  @brief  Prints output in XML format.
- */
-void 
-print_xml_output(double length, int max_cost, int min_cost, 
-                 int argc, char *argv[]);
+/* Global variables */
+char *input_file = NULL;
+char *tour_file = NULL;
 
 /* Program options */
-char *program_name;             /**< Program name */
-char *problem_file;             /**< Given TSPLIB problem file */
-char *tour_file;                /**< Given TSPLIB tour file */
-int xml_output = ARROW_FALSE;   /**< Output output in XML format (or not) */
+#define NUM_OPTS 2
+arrow_option options[NUM_OPTS] = 
+{
+    {'i', "input", "TSPLIB input file", 
+        ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE},
+    {'T', "tour", "TSPLIB tour input file",
+        ARROW_OPTION_STRING, &tour_file, ARROW_TRUE, ARROW_TRUE},
+};
+char *desc = "Prints tour information";
+char *usage = "-i tsplib.tsp -t tsplib.tour";
 
 /****************************************************************************
  * Function implementations
@@ -54,23 +33,14 @@ main(int argc, char *argv[])
     arrow_problem problem;
     int *tour = NULL;
     int ret = ARROW_SUCCESS;
-    int stdout_id;
     
     /* Read program arguments */
-    program_name = argv[0];
-    read_args(argc, argv);
+    if(!arrow_options_parse(NUM_OPTS, options, desc, usage, argc, argv, NULL))
+        return EXIT_FAILURE;
     
-    /* Supress output if required */
-    if(xml_output) 
-        arrow_util_redirect_stdout_to_file(ARROW_DEV_NULL, &stdout_id);
-    
-    /* Read problem file */
-    if(!arrow_problem_read(problem_file, &problem))
-    {
-        arrow_print_error("Could not read problem file.\n");
-        ret = EXIT_FAILURE;
-        goto CLEANUP;
-    }
+    /* Read problem */
+    if(!arrow_problem_read(input_file, &problem))
+        return EXIT_FAILURE;
     
     /* Create tour array */
     if(!arrow_util_create_int_array(problem.size, &tour))
@@ -87,6 +57,7 @@ main(int argc, char *argv[])
         ret = EXIT_FAILURE;
         goto CLEANUP;
     }
+    printf("!!!\n");
     
     int cost;
     int max_cost = INT_MIN;
@@ -98,6 +69,7 @@ main(int argc, char *argv[])
     {
         u = tour[i];
         v = tour[(i + 1) % problem.size];
+        printf("C[%d,%d] = ...\n", u, v);
         cost = problem.get_cost(&problem, u, v);
         
         length += cost;
@@ -105,125 +77,13 @@ main(int argc, char *argv[])
         if(cost < min_cost) min_cost = cost;   
     }
     
-    if(xml_output)
-    {
-        arrow_util_restore_stdout(stdout_id);
-        print_xml_output(length, max_cost, min_cost, argc, argv);
-    }
-    else
-    {
-        printf("Tour Length: %.0f\n", length);
-        printf("Max Cost:    %d\n", max_cost);
-        printf("Min Cost:    %d\n", min_cost);
-    }
+    printf("Tour Length: %.0f\n", length);
+    printf("Max Cost:    %d\n", max_cost);
+    printf("Min Cost:    %d\n", min_cost);
     
 CLEANUP:
     arrow_problem_destruct(&problem);
     if(tour != NULL) free(tour);
-    
     return ret;
 }
 
-void 
-print_help()
-{
-    print_usage(program_name);
-    printf("\n");
-    printf("Displays basic information about a tour.\n");
-    printf("\n");
-    printf("Options:\n");
-    printf("  -h, --help                print this help, then exit\n");
-    printf("  -V, --version             print version number, then exit\n");
-    printf("  -x, --xml                 output in xml format\n");
-    printf("\n");
-    printf("Report bugs to <johnlr@gmail.com>.\n");
-}
-
-void 
-print_version()
-{
-    printf("%s (Arrow Tour Information) 1.0\n", program_name);
-    printf("(c) Copyright 2006-2008\n");
-    printf("    John LaRusic, Eric Aubanel, and Abraham Punnen.\n");
-    printf("\n");
-    printf("This is free software.  You may redistribute copies of it\n");
-    printf("under the terms of the GNU General Public License \n");
-    printf("    <http://www.gnu.org/licenses/gpl.html>.\n");
-    printf("There is NO WARRANTY, to the extent permitted by law.\n");
-    printf("\n");
-    printf("Written by John LaRusic.\n");
-}
-
-void 
-print_usage()
-{
-    printf("Usage: %s [options] tsplib_problem tsplib_tour\n", program_name);
-}
-
-void 
-read_args(int argc, char *argv[])
-{
-    int opt_idx;
-    char opt;
-    char *short_options = "hVxp:t:";
-    struct option long_options[] =
-    {
-        {"help",                no_argument,        0, 'h'},
-        {"version",             no_argument,        0, 'V'},
-        {"xml",                 no_argument,        0, 'x'},
-        {"problem",             required_argument,  0, 'p'},
-        {"tour",                required_argument,  0, 't'}
-    };
-
-    while(1)
-    {
-        opt = getopt_long(argc, argv, short_options, long_options, &opt_idx);
-        if(opt == -1) break;
-        
-        switch (opt)
-        {
-            case 'h':
-                print_help(argv[0]);
-                exit(EXIT_SUCCESS);
-                break;
-            case 'V':
-                print_version(argv[0]);
-                exit(EXIT_SUCCESS);
-                break;
-            case 'x':
-                xml_output = ARROW_TRUE;
-                break;
-                
-            case 'p':
-                problem_file = optarg;
-                break;
-            case 't':
-                tour_file = optarg;
-                break;
-                
-            default:
-                printf("Option: %c\n", opt);
-                print_usage(argv[0]);
-                exit(EXIT_FAILURE);
-        }
-    }
-}
-
-void 
-print_xml_output(double length, int max_cost, int min_cost, 
-                 int argc, char *argv[])
-{
-    printf("<arrow_tour_info problem_file=\"%s\" tour_file=\"%s\" command_args=\"", 
-           problem_file, tour_file);
-    int i;
-    for(i = 0; i < argc; i++)
-    {
-        if(i > 0) printf(" ");
-        printf("%s", argv[i]);
-    }
-    printf("\">\n");
-    printf("    <length>%.0f</length>\n", length);
-    printf("    <max_cost>%d</max_cost>\n", max_cost);
-    printf("    <min_cost>%d</min_cost>\n", min_cost);
-    printf("</<arrow_tour_info>\n");
-}
