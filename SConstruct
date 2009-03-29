@@ -52,6 +52,7 @@ executables = (
     ('abtsp-rai',   'abtsp-rai.c'),
     ('bap',         'bap.c'),
     ('bbssp',       'bbssp.c'),
+    ('bscssp',      'bscssp.c'),
     ('btsp',        'btsp.c'),
     ('cbap',        'cbap.c'),
     ('cbst',        'cbst.c'),
