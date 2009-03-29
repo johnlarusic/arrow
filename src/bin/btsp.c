@@ -34,7 +34,7 @@ int shake_1_rand_max = -1;
 int random_seed = 0;
 
 /* Program options */
-#define NUM_OPTS 19
+#define NUM_OPTS 20
 arrow_option options[NUM_OPTS] = 
 {
     {'i', "input", "TSPLIB input file", 
@@ -63,6 +63,8 @@ arrow_option options[NUM_OPTS] =
         ARROW_OPTION_INT, &supress_hash, ARROW_FALSE, ARROW_FALSE},
     {'d', "deep-copy", "stores data in full cost-matrix",
         ARROW_OPTION_INT, &deep_copy, ARROW_FALSE, ARROW_FALSE},
+    {'I', "infinity", "value to use as infinity",
+        ARROW_OPTION_INT, &edge_infinity, ARROW_FALSE, ARROW_TRUE},
         
     {'l', "lower-bound", "initial lower bound",
         ARROW_OPTION_INT, &lower_bound, ARROW_FALSE, ARROW_TRUE},
@@ -235,6 +237,7 @@ main(int argc, char *argv[])
         if(!arrow_btsp_fun_asym_shift(deep_copy, edge_infinity, &fun_asym_shift))
             return EXIT_FAILURE;
         fun_confirm = &fun_asym_shift;
+        steps[0].fun = fun_asym_shift;
     }
     arrow_btsp_solve_plan confirm_plan = 
     {
