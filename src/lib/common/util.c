@@ -252,7 +252,7 @@ arrow_util_write_tour(arrow_problem *problem, char *comment, int *tour,
     
     fprintf(out, "TOUR_SECTION\n");
     for(i = 0; i < problem->size; i++)
-        fprintf(out, "%d\n", tour[i]);
+        fprintf(out, "%d\n", tour[i] + 1);
     fprintf(out, "-1\n");
 }
 
