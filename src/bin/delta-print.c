@@ -32,7 +32,7 @@ int
 main(int argc, char *argv[])
 {   
     int ret = EXIT_SUCCESS;
-    int stdout_id;
+    //int stdout_id;
     int edge_infinity;
     char comment[100];
     arrow_problem *problem;
