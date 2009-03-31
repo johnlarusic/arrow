@@ -69,7 +69,8 @@ def main(argv=None):
     
     min_rand = -1.0
     max_rand =  1.0
-    mult = 1000
+    mult = 10000
+    infty = mult * 16
     
     random.seed(seed)
     
@@ -81,7 +82,9 @@ def main(argv=None):
         A[i] = random.uniform(min_rand, max_rand)
         B[i] = random.uniform(min_rand, max_rand)
         d = d + A[i] + B[i]
+        # print "%d\t%5.4f\t%5.4f" % (i, A[i], B[i])
     d = d / nodes
+    # print "d = %5.4f" % d
     
     print "NAME: %s" % name
     print "TYPE: ATSP"
@@ -94,11 +97,11 @@ def main(argv=None):
     for i in range(nodes):
         for j in range(nodes):
             if i == j:
-                print "9999\t" ,
+                print "%d\t" % infty ,
             else:
-                print "%d\t" % (math.floor(mult * ((d - (A[i] + B[j]))**2) + 0.5) + mult) ,
+                print "%d\t" % (math.floor(mult * (d - (A[i] + B[j]))**2 + 0.5)) ,
         print
     print "EOF"
-
+    
 if __name__ == "__main__":
     sys.exit(main())
