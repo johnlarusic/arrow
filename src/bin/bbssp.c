@@ -14,15 +14,18 @@
 char *program_name;             /**< Program name */
 char *input_file = NULL;        /**< Given input TSPLIB file */
 char *xml_file = NULL;
+int sym_transform = ARROW_FALSE;
 
 /* Program options */
-#define NUM_OPTS 2
+#define NUM_OPTS 3
 arrow_option options[NUM_OPTS] = 
 {
     {'i', "input", "TSPLIB input file", 
         ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE},
     {'x', "xml", "File to write XML output to",
-        ARROW_OPTION_STRING, &xml_file, ARROW_FALSE, ARROW_TRUE}
+        ARROW_OPTION_STRING, &xml_file, ARROW_FALSE, ARROW_TRUE},
+    {'s', "symmetric", "Transform asym. n city instance to sym. 2n city one",
+        ARROW_OPTION_INT, &sym_transform, ARROW_FALSE, ARROW_FALSE}
 };
 char *desc = "Bottleneck biconnected spanning subgraph solver";
 char *usage = "-i tsplib.tsp [options] ";
@@ -49,7 +52,7 @@ main(int argc, char *argv[])
     /* Note: algorithm does not require hash table */
     
     /* Solve BBSSP */
-    if(problem.symmetric)
+    if(problem.symmetric || !sym_transform)
     {
         if(!arrow_bbssp_solve(&problem, &info, &result))
         {
@@ -60,6 +63,7 @@ main(int argc, char *argv[])
     else
     {
         /* Create symmetric transformation first */
+        printf("Transforming n city asymmetric instance to 2n city symmetric one.\n");
         arrow_problem sym_problem;
         int infinity = info.max_cost * problem.size + 1;
         if(!arrow_problem_abtsp_to_sbtsp(ARROW_FALSE, &problem, infinity, &sym_problem))

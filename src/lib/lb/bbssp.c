@@ -50,12 +50,6 @@ arrow_bbssp_solve(arrow_problem *problem, arrow_problem_info *info,
     int connected;
     double start_time, end_time;
     
-    if(!problem->symmetric)
-    {
-        arrow_print_error("Solver only works on symmetric cost matrices.");
-        return ARROW_FAILURE;
-    }
-    
     /* Start binary search */
     start_time = arrow_util_zeit();
     low = 0;
@@ -172,7 +166,8 @@ find_art_points(arrow_problem *problem, int max_cost, int node, int depth_num,
 {
     /* "u" is the current node, and "v" will represent adjecent nodes */
     int u, v;
-    
+    int cost, cost2;
+
     /* 
        Some explanation of these variables:
        - depth_num is the level at which we first discovered node u
@@ -193,7 +188,18 @@ find_art_points(arrow_problem *problem, int max_cost, int node, int depth_num,
     /* Look at nodes adjacent to u */
     for(v = 0; v < problem->size; v++)
     {
-        if(problem->get_cost(problem, u, v) <= max_cost)
+        cost = problem->get_cost(problem, u, v);
+        
+        /* If our problem is asymmetric, then we consider a symmetric
+           instance, taking min{C[u,v],C[v,u]} as the edge cost. */
+        if(!problem->symmetric)
+        {
+            cost2 = problem->get_cost(problem, v, u);
+            if(cost2 < cost)
+                cost = cost2;
+        }
+        
+        if(cost <= max_cost)
         {
             /* If the node has yet to be visited, mark its parent as u */
             if(!visited[v])
