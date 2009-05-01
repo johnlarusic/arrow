@@ -38,27 +38,30 @@ arrow_2mb_solve(arrow_problem *problem, arrow_bound_result *result)
         
         for(j = 0; j < problem->size; j++)
         {
-            if(problem->symmetric)
+            if(i != j)
             {
-                cost = problem->get_cost(problem, i, j);
-                if(cost < alpha)
+                if(problem->symmetric)
                 {
-                    beta = alpha;
-                    alpha = cost;
+                    cost = problem->get_cost(problem, i, j);
+                    if(cost < alpha)
+                    {
+                        beta = alpha;
+                        alpha = cost;
+                    }
+                    else if(cost < beta)
+                    {
+                        beta = cost;
+                    }
                 }
-                else if(cost < beta)
+                else
                 {
-                    beta = cost;
-                }
-            }
-            else
-            {
-                cost = problem->get_cost(problem, i, j);
-                if(cost < alpha) alpha = cost;
+                    cost = problem->get_cost(problem, i, j);
+                    if(cost < alpha) alpha = cost;
                 
-                cost = problem->get_cost(problem, j, i);
-                if(cost < beta) beta = cost;
+                    cost = problem->get_cost(problem, j, i);
+                    if(cost < beta) beta = cost;
                     
+                }
             }
         }
         
