@@ -14,18 +14,24 @@
 char *program_name;             /**< Program name */
 char *input_file = NULL;        /**< Given input TSPLIB file */
 char *xml_file = NULL;
+int solve_mstsp = ARROW_FALSE;
 int sym_transform = ARROW_FALSE;
+int deep_copy = ARROW_FALSE;
 
 /* Program options */
-#define NUM_OPTS 3
+#define NUM_OPTS 5
 arrow_option options[NUM_OPTS] = 
 {
     {'i', "input", "TSPLIB input file", 
         ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE},
     {'x', "xml", "File to write XML output to",
         ARROW_OPTION_STRING, &xml_file, ARROW_FALSE, ARROW_TRUE},
+    {'m', "solve-mstsp", "solves maximum scatter TSP",
+        ARROW_OPTION_INT, &solve_mstsp, ARROW_FALSE, ARROW_FALSE},
     {'s', "symmetric", "Transform asym. n city instance to sym. 2n city one",
-        ARROW_OPTION_INT, &sym_transform, ARROW_FALSE, ARROW_FALSE}
+        ARROW_OPTION_INT, &sym_transform, ARROW_FALSE, ARROW_FALSE},
+    {'d', "deep-copy", "stores data in full cost-matrix",
+        ARROW_OPTION_INT, &deep_copy, ARROW_FALSE, ARROW_FALSE}
 };
 char *desc = "Bottleneck biconnected spanning subgraph solver";
 char *usage = "-i tsplib.tsp [options] ";
@@ -35,8 +41,11 @@ int
 main(int argc, char *argv[])
 {   
     int ret = ARROW_SUCCESS;
-    
-    arrow_problem problem;
+    int max_cost = INT_MAX;
+    arrow_problem *problem;
+    arrow_problem input_problem;
+    arrow_problem mstsp_problem;
+    arrow_problem sym_problem;
     arrow_problem_info info;
     arrow_bound_result result;
     
@@ -44,43 +53,53 @@ main(int argc, char *argv[])
     if(!arrow_options_parse(NUM_OPTS, options, desc, usage, argc, argv, NULL))
         return EXIT_FAILURE;
 
-    /* Try and read the problem file and its info */
-    if(!arrow_problem_read(input_file, &problem))
+    /* Try and read the problem file and its maximum cost */
+    problem = &input_problem;
+    if(!arrow_problem_read(input_file, problem))
         return EXIT_FAILURE;
-    if(!arrow_problem_info_get(&problem, ARROW_FALSE, &info))
-        return EXIT_FAILURE;
-    /* Note: algorithm does not require hash table */
     
-    /* Solve BBSSP */
-    if(problem.symmetric || !sym_transform)
+    /* If we want to solve maximum scatter TSP, create BTSP equivalent. */
+    if(solve_mstsp)
     {
-        if(!arrow_bbssp_solve(&problem, &info, &result))
+        printf("Transforming MSTSP instance into equivalent BTSP instance.\n");
+        max_cost = arrow_problem_max_cost(problem);
+        if(!arrow_problem_mstsp_to_btsp(deep_copy, problem, max_cost, &mstsp_problem))
         {
-            arrow_print_error("Could not solve BBSSP on file.");
+            arrow_print_error("Could not create MSTSP->BTSP transformation.");
             return EXIT_FAILURE;
         }
+        problem = &mstsp_problem;
     }
-    else
+    
+    /* Get problem information */
+    if(!arrow_problem_info_get(problem, ARROW_FALSE, &info))
+        return EXIT_FAILURE;
+    
+    /* Optionally transform problem into 2n symmetric version. */
+    if(!problem->symmetric  && sym_transform)
     {
-        /* Create symmetric transformation first */
-        printf("Transforming n city asymmetric instance to 2n city symmetric one.\n");
-        arrow_problem sym_problem;
-        int infinity = info.max_cost * problem.size + 1;
-        if(!arrow_problem_abtsp_to_sbtsp(ARROW_FALSE, &problem, infinity, &sym_problem))
+        printf("Transforming asymmetric instances into 2n symmetric instance.\n");
+        int infinity = info.max_cost * problem->size + 1;
+        if(!arrow_problem_abtsp_to_sbtsp(ARROW_FALSE, problem, infinity, &sym_problem))
         {
             arrow_print_error("Could not create transformation.");
             return EXIT_FAILURE;
         }
-                
-        if(!arrow_bbssp_solve(&sym_problem, &info, &result))
-        {
-            arrow_print_error("Could not solve BBSSP on file.");
-            return EXIT_FAILURE;
-        }
-        arrow_problem_destruct(&sym_problem);
+        problem = &sym_problem;
+    }
+    
+    /* Solve BBSSP */
+    if(!arrow_bbssp_solve(problem, &info, &result))
+    {
+        arrow_print_error("Could not solve BBSSP on file.");
+        return EXIT_FAILURE;
     }
     
     printf("\nBBSSP Solution: %d\n", result.obj_value);
+    if(solve_mstsp)
+    {
+        printf("MSTSP Equivalent: %d\n", max_cost - result.obj_value);
+    }
     printf("Total Time: %5.2f\n", result.total_time);
     
     /* Print out XML file if required */
@@ -101,7 +120,12 @@ main(int argc, char *argv[])
         fprintf(xml, "\">\n");
         fprintf(xml, "    <objective_value>%d</objective_value>\n", 
                 result.obj_value);
-        fprintf(xml, "    <total_time>%5.2f</total_time>\n", 
+        if(solve_mstsp)
+        {
+            fprintf(xml, "    <mstsp_equivalent>%d</mstsp_equivalent>\n",
+                max_cost - result.obj_value);
+        }
+        fprintf(xml, "    <total_time>%.2f</total_time>\n", 
                 result.total_time);
         fprintf(xml, "</arrow_bound>\n");
         
@@ -109,7 +133,11 @@ main(int argc, char *argv[])
     }
         
 CLEANUP:
-    arrow_problem_destruct(&problem);
+    if(!input_problem.symmetric && sym_transform)
+        arrow_problem_destruct(&sym_problem);
+    if(solve_mstsp)
+        arrow_problem_destruct(&mstsp_problem);
+    arrow_problem_destruct(&input_problem);
     arrow_problem_info_destruct(&info);
     return ret;
 }
