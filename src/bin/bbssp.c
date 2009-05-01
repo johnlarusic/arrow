@@ -53,7 +53,7 @@ main(int argc, char *argv[])
     if(!arrow_options_parse(NUM_OPTS, options, desc, usage, argc, argv, NULL))
         return EXIT_FAILURE;
 
-    /* Try and read the problem file and its maximum cost */
+    /* Read the problem file */
     problem = &input_problem;
     if(!arrow_problem_read(input_file, problem))
         return EXIT_FAILURE;
