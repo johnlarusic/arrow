@@ -512,6 +512,15 @@ int
 arrow_problem_info_cost_index(arrow_problem_info *info, int cost, int *pos);
 
 /**
+ *  @brief  Finds the largest cost in a problem (cheaper than calling
+            arrow_problem_info_get)
+ *  @param  problem [in] problem data structure
+ *  @return The largest cost in the problem.
+ */
+int
+arrow_problem_max_cost(arrow_problem *problem);
+
+/**
  *  @brief  Prints out information about a problem.
  *  @param  problem [in] problem data structure
  *  @param  pretty [in] if ARROW_TRUE, formats output to 8 nodes/row

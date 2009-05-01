@@ -268,6 +268,29 @@ arrow_problem_info_cost_index(arrow_problem_info *info, int cost, int *pos)
     return ret;
 }
 
+int
+arrow_problem_max_cost(arrow_problem *problem)
+{
+    int i, j;
+    int cost;
+    int max_cost = INT_MIN;
+    
+    for(i = 0; i < problem->size; i++)
+    {
+        j = (problem->symmetric == ARROW_TRUE ? i + 1 : 0);
+        for(; j < problem->size; j++)
+        {
+            if(i != j)
+            {
+                cost = problem->get_cost(problem, i, j);
+                if(cost > max_cost) max_cost = cost;
+            }
+        }
+    }
+    
+    return max_cost;
+}
+
 void
 arrow_problem_print(arrow_problem *problem, int pretty)
 {
