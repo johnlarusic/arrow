@@ -106,6 +106,7 @@ main(int argc, char *argv[])
     arrow_btsp_result result;
     arrow_btsp_params btsp_params;
     
+    int max_cost = INT_MIN;
     int mstsp_obj_value = -1;
     double mstsp_tour_length = 0.0;
     
@@ -124,7 +125,25 @@ main(int argc, char *argv[])
     problem = &input_problem;
     if(!arrow_problem_read(input_file, problem))
         return EXIT_FAILURE;
-    
+        
+    /* If we want to solve maximum scatter TSP, create BTSP equivalent. */
+    if(solve_mstsp)
+    {
+        printf("Transforming MSTSP instance into equivalent BTSP instance.\n");
+        max_cost = arrow_problem_max_cost(problem);
+        printf("Max Cost in MSTSP instance: %d\n", max_cost);
+        if(!arrow_problem_mstsp_to_btsp(deep_copy, problem, max_cost, &mstsp_problem))
+        {
+            arrow_print_error("Could not create MSTSP->BTSP transformation.");
+            return EXIT_FAILURE;
+        }
+        problem = &mstsp_problem;
+        
+        if(lower_bound >= 0)
+            lower_bound = max_cost - lower_bound;
+        if(upper_bound >= 0)
+            upper_bound = max_cost - upper_bound;
+    }
     
     /* Gather basic info about the problem */
     if(!arrow_problem_info_get(problem, !supress_hash, &info))
@@ -142,7 +161,6 @@ main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
     
-    
     /* Calculate a value for "infinity" if necessary */
     if(edge_infinity < 0)
         edge_infinity = (info.max_cost + shake_1_rand_max) * 2;
@@ -153,16 +171,6 @@ main(int argc, char *argv[])
     }
     printf("Infinity Value:       %d\n", edge_infinity);
 
-    /* If we want to solve maximum scatter TSP, create BTSP equivalent. */
-    if(solve_mstsp)
-    {
-        if(!arrow_problem_mstsp_to_btsp(deep_copy, problem, info.max_cost, &mstsp_problem))
-        {
-            arrow_print_error("Could not create MSTSP->BTSP transformation.");
-            return EXIT_FAILURE;
-        }
-        problem = &mstsp_problem;
-    }    
     
     /* If the problem's asymmetric, create symmetric from transformation. */
     if(!problem->symmetric)
@@ -194,6 +202,9 @@ main(int argc, char *argv[])
         lower_bound_time = bbssp_result.total_time;
         printf("BBSSP lower bound is %d\n.", lower_bound);
     }
+    
+    if(upper_bound < lower_bound)
+        upper_bound = INT_MAX;
     
     
     /* Setup LK parameters structure */
@@ -324,8 +335,8 @@ main(int argc, char *argv[])
     {
         if(result.found_tour)
         {
-            mstsp_obj_value = result.obj_value + info.max_cost;
-            mstsp_tour_length = result.tour_length + input_problem.size * info.max_cost;
+            mstsp_obj_value = max_cost - result.obj_value;
+            mstsp_tour_length = input_problem.size * info.max_cost - result.tour_length;
         }
         else
         {
