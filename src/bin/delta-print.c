@@ -14,15 +14,21 @@
 char *program_name;             /**< Program name */
 char *input_file = NULL;        /**< Given input TSPLIB file */
 int delta = 0;                  /**< Delta value */
+int solve_mstsp = ARROW_FALSE;
+int deep_copy = ARROW_FALSE;
 
 /* Program options */
-#define NUM_OPTS 2
+#define NUM_OPTS 4
 arrow_option options[NUM_OPTS] = 
 {
     {'i', "input", "TSPLIB input file", 
         ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE},
     {'d', "delta", "Delta value", 
-        ARROW_OPTION_INT, &delta, ARROW_TRUE, ARROW_TRUE}
+        ARROW_OPTION_INT, &delta, ARROW_TRUE, ARROW_TRUE},
+    {'m', "solve-mstsp", "solves maximum scatter TSP",
+        ARROW_OPTION_INT, &solve_mstsp, ARROW_FALSE, ARROW_FALSE},
+    {'d', "deep-copy", "stores data in full cost-matrix",
+        ARROW_OPTION_INT, &deep_copy, ARROW_FALSE, ARROW_FALSE}
 };
 char *desc = "Prints cost matrix for delta feasibility problem";
 char *usage = "-i tsplib.tsp -d #";
@@ -34,9 +40,11 @@ main(int argc, char *argv[])
     int ret = EXIT_SUCCESS;
     //int stdout_id;
     int edge_infinity;
+    int max_cost = INT_MAX;
     char comment[100];
     arrow_problem *problem;
     arrow_problem input_problem;
+    arrow_problem mstsp_problem;
     arrow_problem asym_problem;
     arrow_problem delta_problem;
     arrow_problem_info info;
@@ -53,6 +61,20 @@ main(int argc, char *argv[])
     if(!arrow_problem_read(input_file, &input_problem))
         return EXIT_FAILURE;
     problem = &input_problem;
+    
+    /* If we want to solve maximum scatter TSP, create BTSP equivalent. */
+    if(solve_mstsp)
+    {
+        printf("Transforming MSTSP instance into equivalent BTSP instance.\n");
+        max_cost = arrow_problem_max_cost(problem);
+        if(!arrow_problem_mstsp_to_btsp(deep_copy, problem, max_cost, &mstsp_problem))
+        {
+            arrow_print_error("Could not create MSTSP->BTSP transformation.");
+            return EXIT_FAILURE;
+        }
+        problem = &mstsp_problem;
+        delta = max_cost - delta;
+    }
         
     /* Gather basic info about the problem */
     if(!arrow_problem_info_get(problem, ARROW_TRUE, &info))
@@ -94,6 +116,8 @@ main(int argc, char *argv[])
     arrow_btsp_fun_destruct(&fun_basic);
     if(!input_problem.symmetric)
         arrow_problem_destruct(&asym_problem);
+    if(solve_mstsp)
+        arrow_problem_destruct(&mstsp_problem);
     arrow_problem_destruct(&input_problem);
     return ret;
 }
