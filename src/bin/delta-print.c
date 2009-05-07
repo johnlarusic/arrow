@@ -16,9 +16,10 @@ char *input_file = NULL;        /**< Given input TSPLIB file */
 int delta = 0;                  /**< Delta value */
 int solve_mstsp = ARROW_FALSE;
 int deep_copy = ARROW_FALSE;
+int edge_infinity = -1;
 
 /* Program options */
-#define NUM_OPTS 4
+#define NUM_OPTS 5
 arrow_option options[NUM_OPTS] = 
 {
     {'i', "input", "TSPLIB input file", 
@@ -27,8 +28,10 @@ arrow_option options[NUM_OPTS] =
         ARROW_OPTION_INT, &delta, ARROW_TRUE, ARROW_TRUE},
     {'m', "solve-mstsp", "solves maximum scatter TSP",
         ARROW_OPTION_INT, &solve_mstsp, ARROW_FALSE, ARROW_FALSE},
-    {'d', "deep-copy", "stores data in full cost-matrix",
-        ARROW_OPTION_INT, &deep_copy, ARROW_FALSE, ARROW_FALSE}
+    {'D', "deep-copy", "stores data in full cost-matrix",
+        ARROW_OPTION_INT, &deep_copy, ARROW_FALSE, ARROW_FALSE},
+    {'I', "infinity", "value to use as infinity",
+        ARROW_OPTION_INT, &edge_infinity, ARROW_FALSE, ARROW_TRUE},        
 };
 char *desc = "Prints cost matrix for delta feasibility problem";
 char *usage = "-i tsplib.tsp -d #";
@@ -39,7 +42,6 @@ main(int argc, char *argv[])
 {   
     int ret = EXIT_SUCCESS;
     //int stdout_id;
-    int edge_infinity;
     int max_cost = INT_MAX;
     char comment[100];
     arrow_problem *problem;
@@ -47,17 +49,13 @@ main(int argc, char *argv[])
     arrow_problem mstsp_problem;
     arrow_problem asym_problem;
     arrow_problem delta_problem;
-    arrow_problem_info info;
     arrow_btsp_fun fun_basic;
     
     /* Read program arguments */
     if(!arrow_options_parse(NUM_OPTS, options, desc, usage, argc, argv, NULL))
         return EXIT_FAILURE;
     
-    /* Need to supress output from Concorde */
-    //arrow_util_redirect_stdout_to_file(ARROW_DEV_NULL, &stdout_id);
-    
-    /* Try and read the problem file and its info */    
+    /* Try and read the problem file */    
     if(!arrow_problem_read(input_file, &input_problem))
         return EXIT_FAILURE;
     problem = &input_problem;
@@ -75,12 +73,11 @@ main(int argc, char *argv[])
         problem = &mstsp_problem;
         delta = max_cost - delta;
     }
-        
-    /* Gather basic info about the problem */
-    if(!arrow_problem_info_get(problem, ARROW_TRUE, &info))
-        return EXIT_FAILURE;
-    edge_infinity = info.max_cost + 1;
-        
+    
+    /* Calculate the value for "infinity" if necessary */
+    if(edge_infinity < 0)
+        edge_infinity = arrow_problem_max_cost(problem) + 1;
+       
     if(problem->symmetric)
     {
         if(arrow_btsp_fun_basic(ARROW_FALSE, &fun_basic) != ARROW_SUCCESS)
