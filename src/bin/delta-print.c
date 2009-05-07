@@ -106,8 +106,12 @@ main(int argc, char *argv[])
     //arrow_util_restore_stdout(stdout_id);
     
     /* Generate comment */
-    sprintf(comment, "Delta is %d, Infinity is %d", delta, edge_infinity);
-    
+    if(solve_mstsp)
+        sprintf(comment, "Delta is %d, Infinity is %d, Original Max Cost %d", delta, 
+                edge_infinity, max_cost);
+    else
+        sprintf(comment, "Delta is %d, Infinity is %d", delta, edge_infinity);
+        
     /* Print problem file out */
     arrow_util_write_problem(&delta_problem, comment, stdout);
     
