@@ -19,6 +19,7 @@
  *          only costs less than or equal to 'max_cost' out from the given
  *          node.
  *  @param  problem [in] problem data structure
+ *  @param  min_cost [in] the smallest cost to consider as being in the graph
  *  @param  max_cost [in] the largest cost to consider as being in the graph
  *  @param  node [in] the node to search outward from
  *  @param  depth_num [in] level at which the given node was first discovered
@@ -33,9 +34,9 @@
  *  @param  art_point [out] indicates if the node is an articulation point
  */
 int
-find_art_points(arrow_problem *problem, int max_cost, int node, int depth_num, 
-                int root_children, int *visited, int *depth, int *low, 
-                int *parent, int *art_point);
+find_art_points(arrow_problem *problem, int min_cost, int max_cost, int node,
+                int depth_num, int root_children, int *visited, int *depth, 
+                int *low, int *parent, int *art_point);
 
 
 /****************************************************************************
@@ -60,8 +61,8 @@ arrow_bbssp_solve(arrow_problem *problem, arrow_problem_info *info,
         
         /* Determine is graph is biconnected if we consider only costs less
          * than or equal to the median value. */
-        ret = arrow_bbssp_biconnected(problem, info->cost_list[median],
-                                      &connected);
+        ret = arrow_bbssp_biconnected(problem, INT_MIN, 
+                                      info->cost_list[median], &connected);
         
         if(ret == ARROW_FAILURE)
         {
@@ -86,7 +87,8 @@ arrow_bbssp_solve(arrow_problem *problem, arrow_problem_info *info,
 
 
 int
-arrow_bbssp_biconnected(arrow_problem *problem, int max_cost, int *result)
+arrow_bbssp_biconnected(arrow_problem *problem, int min_cost, int max_cost, 
+                        int *result)
 {
     int ret;
     int u;
@@ -135,8 +137,8 @@ arrow_bbssp_biconnected(arrow_problem *problem, int max_cost, int *result)
     *result = ARROW_TRUE;
     
     /* Find any and all articulation points from the first vertex */
-    ret = find_art_points(problem, max_cost, 0, 0, 0, visited, depth, low, 
-                          parent, art_point);
+    ret = find_art_points(problem, min_cost, max_cost, 0, 0, 0, visited,
+                          depth, low, parent, art_point);
     
     /* Check for articulation points or unvisited nodes */
     for(u = 0; u < problem->size; u++)
@@ -160,9 +162,9 @@ CLEANUP:
  * Private function implementations
  ****************************************************************************/
 int
-find_art_points(arrow_problem *problem, int max_cost, int node, int depth_num, 
-                int root_children, int *visited, int *depth, int *low, 
-                int *parent, int *art_point)
+find_art_points(arrow_problem *problem, int min_cost, int max_cost, int node,
+                int depth_num, int root_children, int *visited, int *depth, 
+                int *low, int *parent, int *art_point)
 {
     /* "u" is the current node, and "v" will represent adjecent nodes */
     int u, v;
@@ -199,7 +201,7 @@ find_art_points(arrow_problem *problem, int max_cost, int node, int depth_num,
                 cost = cost2;
         }
         
-        if(cost <= max_cost)
+        if((cost >= min_cost) && (cost <= max_cost))
         {
             /* If the node has yet to be visited, mark its parent as u */
             if(!visited[v])
@@ -210,7 +212,7 @@ find_art_points(arrow_problem *problem, int max_cost, int node, int depth_num,
                 if(parent[u] == -1) root_children++;
                 
                 /* Recurse on v */
-                find_art_points(problem, max_cost, v, depth_num, 
+                find_art_points(problem, min_cost, max_cost, v, depth_num, 
                                 root_children, visited, depth, low, 
                                 parent, art_point);
                 

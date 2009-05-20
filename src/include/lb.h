@@ -69,11 +69,13 @@ arrow_bbssp_solve(arrow_problem *problem, arrow_problem_info *info,
  *  @brief  Determines if the graph is biconnected using only edges with costs
             less than or equal to the given value.
  *  @param  problem [in] problem data
- *  @param  max_cost [in] value to check biconnectivity question against
+ *  @param  min_cost [in] min value to check biconnectivity question against
+ *  @param  max_cost [in] max value to check biconnectivity question against
  *  @param  result [out] ARROW_TRUE if biconnected, ARROW_FALSE otherwise.
  */
 int
-arrow_bbssp_biconnected(arrow_problem *problem, int max_cost, int *result);
+arrow_bbssp_biconnected(arrow_problem *problem, int min_Cost, int max_cost, 
+                        int *result);
 
 
 /****************************************************************************
@@ -104,7 +106,7 @@ arrow_bscssp_connected(arrow_problem *problem, int min_cost, int max_cost,
 
 
 /****************************************************************************
- *  bscssp.c
+ *  cbap.c
  ****************************************************************************/
 /**
  *  @brief  Solves the constrained bottleneck assignment problem (CBAP).
