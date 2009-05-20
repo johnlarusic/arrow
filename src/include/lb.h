@@ -90,6 +90,18 @@ int
 arrow_bscssp_solve(arrow_problem *problem, arrow_problem_info *info, 
                    arrow_bound_result *result);
 
+/**
+ *  @brief  Determines if the problem is strongly connected using only costs
+ *          min_cost <= c_ij <= max_cost.
+ *  @param  problem [in] problem data
+ *  @param  min_cost [in] minimum cost to consider in problem
+ *  @param  max_cost [in] maximum cost to consider in problem
+ *  @param  result [out] ARROW_TRUE if strongly connected
+ */
+int
+arrow_bscssp_connected(arrow_problem *problem, int min_cost, int max_cost, 
+                       int *result);
+
 
 /****************************************************************************
  *  bscssp.c

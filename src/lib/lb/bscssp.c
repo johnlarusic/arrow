@@ -16,27 +16,20 @@
  * Private function prototypes
  ****************************************************************************/
 /**
- *  @brief  Determines if the given graph is strongly connected.
- *  @param  problem [in] the problem instance
- *  @param  delta [in] delta parameter
- *  @param  result [out] the result!
- */
-int
-strongly_connected(arrow_problem *problem, int delta, int *result);
-
-/**
  *  @brief  Performs a recursive depth-first search to test for connectivity
  *  @param  problem [in] the problem instance
- *  @param  delta [in] delta parameter
+ *  @param  min_cost [in] minimum cost to consider in problem
+ *  @param  max_cost [in] maximum cost to consider in problem
  *  @param  i [in] node index to search from
  *  @param  transpose [in] if true, calculates costs with transposed cost
  *              matrix
  *  @param  visited [out] array that marks nodes that have been visited
  */
 void
-strongly_connected_dfs(arrow_problem *problem, int delta, int i, 
-                       int transpose, int *visited);
-                       
+strongly_connected_dfs(arrow_problem *problem, int min_cost, int max_cost,
+                       int i, int transpose, int *visited);
+
+
 /****************************************************************************
  * Public function implementations
  ****************************************************************************/
@@ -59,8 +52,8 @@ arrow_bscssp_solve(arrow_problem *problem, arrow_problem_info *info,
         
         /* Determine is graph is biconnected if we consider only costs less
          * than or equal to the median value. */
-        ret = strongly_connected(problem, info->cost_list[median], 
-                                 &connected);
+        ret = arrow_bscssp_connected(problem, INT_MIN, info->cost_list[median],
+                                     &connected);
         
         if(ret == ARROW_FAILURE)
         {
@@ -84,7 +77,8 @@ arrow_bscssp_solve(arrow_problem *problem, arrow_problem_info *info,
 }
 
 int
-strongly_connected(arrow_problem *problem, int delta, int *result)
+arrow_bscssp_connected(arrow_problem *problem, int min_cost, int max_cost, 
+                       int *result)
 {
     int i;
     int ret = ARROW_SUCCESS;
@@ -101,7 +95,7 @@ strongly_connected(arrow_problem *problem, int delta, int *result)
     for(i = 0; i < problem->size; i++)
         visited[i] = 0;
 
-    strongly_connected_dfs(problem, delta, 0, ARROW_FALSE, visited);
+    strongly_connected_dfs(problem, min_cost, max_cost, 0, ARROW_FALSE, visited);
     
     for(i = 0; i < problem->size; i++)
     {
@@ -114,7 +108,7 @@ strongly_connected(arrow_problem *problem, int delta, int *result)
     }
     
     /* Now perform the same search with the transposed cost matrix */
-    strongly_connected_dfs(problem, delta, 0, ARROW_TRUE, visited);
+    strongly_connected_dfs(problem, min_cost, max_cost, 0, ARROW_TRUE, visited);
     
     for(i = 0; i < problem->size; i++)
     {
@@ -131,8 +125,8 @@ CLEANUP:
 }
 
 void
-strongly_connected_dfs(arrow_problem *problem, int delta, int i, 
-                       int transpose, int *visited)
+strongly_connected_dfs(arrow_problem *problem, int min_cost, int max_cost,
+                       int i, int transpose, int *visited)
 {
     int j, cost;
     visited[i] = ARROW_TRUE;
@@ -146,10 +140,9 @@ strongly_connected_dfs(arrow_problem *problem, int delta, int i,
             else
                 cost = problem->get_cost(problem, i, j);
             
-            if(cost <= delta)
-            {
-                strongly_connected_dfs(problem, delta, j, transpose, visited);
-            }
+            if((cost >= min_cost) && (cost <= max_cost))
+                strongly_connected_dfs(problem, min_cost, max_cost, 
+                                       j, transpose, visited);
         }
     }
 }
