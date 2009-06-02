@@ -16,7 +16,8 @@
 /*
  *  @brief  Initialize flow data structures.
  *  @param  problem [in] problem data
- *  @param  delta [in] delta parameter
+ *  @param  min_cost [in] minimum cost to consider in problem
+ *  @param  max_cost [in] maximum cost to consider in problem
  *  @param  s [in] source node index
  *  @param  t [in] sink node index
  *  @param  res [out] residual graph to construct
@@ -25,8 +26,8 @@
  *  @param  pred [out] predecessor labels
  */
 void
-initialize_flow_data(arrow_problem *problem, int delta, int s, int t,
-                     int **res, int *m, int *dist, int *pred);
+initialize_flow_data(arrow_problem *problem, int min_cost, int max_cost,
+                     int s, int t, int **res, int *m, int *dist, int *pred);
 
 /*
  *  @brief  Shortest augmenting path algorithm for max-flow.
@@ -116,7 +117,7 @@ arrow_bap_solve(arrow_problem *problem, arrow_problem_info *info,
         delta = info->cost_list[median];      
         flow = 0;
         
-        initialize_flow_data(problem, delta, s, t, res, &m, dist, pred);
+        initialize_flow_data(problem, INT_MIN, delta, s, t, res, &m, dist, pred);
 
         stop = (int)(2 * pow(n, 2.0 / 3.0) + 0.5);
         m = (int)(sqrt(m * 1.0) + 0.5);
@@ -147,21 +148,88 @@ CLEANUP:
     return ret;
 }
 
+int
+arrow_bap_has_assignment(arrow_problem *problem, int min_cost, int max_cost, 
+                         int *result)
+{
+    int ret = ARROW_SUCCESS;
+    int m, stop;
+    
+    int n = problem->size * 2 + 2;
+    int s = n - 2;
+    int t = n - 1;
+    
+    int **res;
+    int *res_space;
+    int *dist;
+    int *pred;
+    int *list;
+    
+    int flow = 0;
+    *result = ARROW_FALSE;
+    
+    /* Dynamic memory allocation GO! */
+    if(!arrow_util_create_int_matrix(n, n, &res, &res_space))
+    {
+        ret = ARROW_FAILURE;
+        goto CLEANUP;
+    }
+    if(!arrow_util_create_int_array(n, &dist))
+    {
+        ret = ARROW_FAILURE;
+        goto CLEANUP;
+    }
+    if(!arrow_util_create_int_array(n, &pred))
+    {
+        ret = ARROW_FAILURE;
+        goto CLEANUP;
+    }
+    if(!arrow_util_create_int_array(n, &list))
+    {
+        ret = ARROW_FAILURE;
+        goto CLEANUP;
+    }
+    
+    initialize_flow_data(problem, min_cost, max_cost, s, t, res, &m, dist, pred);
+
+    stop = (int)(2 * pow(n, 2.0 / 3.0) + 0.5);
+    m = (int)(sqrt(m * 1.0) + 0.5);
+    if(m < stop) stop = m;
+
+    shortest_augmenting_path(n, s, t, stop, res, dist, pred, &flow);
+    if(flow < problem->size)
+        ford_fulkerson_labeling(n, s, t, res, dist, pred, &flow, list);
+    
+    if(flow == problem->size)
+        *result = ARROW_TRUE;
+    
+CLEANUP:
+    if(dist != NULL) free(dist);
+    if(pred != NULL) free(pred);
+    if(res_space != NULL) free(res_space);
+    if(res != NULL) free(res);
+    if(list != NULL) free(list);
+    
+    return ret;
+}
+
+
 /****************************************************************************
  * Private function implementations
  ****************************************************************************/
 void
-initialize_flow_data(arrow_problem *problem, int delta, int s, int t,
-                     int **res, int *m, int *dist, int *pred)
+initialize_flow_data(arrow_problem *problem, int min_cost, int max_cost, 
+                     int s, int t, int **res, int *m, int *dist, int *pred)
 {
-    int i, j;
+    int i, j, cost;
     
     *m = problem->size * 2;
     for(i = 0; i < problem->size; i++)
     {
         for(j = 0; j < problem->size; j++)
         {
-            if((i != j) && (problem->get_cost(problem, i, j) <= delta))
+            cost = problem->get_cost(problem, i, j);
+            if((i != j) && (cost >= min_cost) && (cost <= max_cost))
             {
                 res[i][j + problem->size] = 1;
                 (*m)++;

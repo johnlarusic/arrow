@@ -50,6 +50,17 @@ int
 arrow_bap_solve(arrow_problem *problem, arrow_problem_info *info, 
                 arrow_bound_result *result);
 
+/**
+ *  @brief  Determines if the problem has an assignment using only costs
+ *          min_cost <= c_ij <= max_cost.
+ *  @param  problem [in] problem data
+ *  @param  min_cost [in] minimum cost to consider in problem
+ *  @param  max_cost [in] maximum cost to consider in problem
+ *  @param  result [out] ARROW_TRUE if an assignment is possible.
+ */
+int
+arrow_bap_has_assignment(arrow_problem *problem, int min_cost, int max_cost, 
+                         int *result);
 
 /****************************************************************************
  *  bbssp.c
@@ -69,8 +80,8 @@ arrow_bbssp_solve(arrow_problem *problem, arrow_problem_info *info,
  *  @brief  Determines if the graph is biconnected using only edges with costs
             less than or equal to the given value.
  *  @param  problem [in] problem data
- *  @param  min_cost [in] min value to check biconnectivity question against
- *  @param  max_cost [in] max value to check biconnectivity question against
+ *  @param  min_cost [in] minimum cost to consider in problem
+ *  @param  max_cost [in] maximum cost to consider in problem
  *  @param  result [out] ARROW_TRUE if biconnected, ARROW_FALSE otherwise.
  */
 int
