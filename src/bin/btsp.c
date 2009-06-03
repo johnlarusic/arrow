@@ -314,7 +314,7 @@ main(int argc, char *argv[])
             v = result.tour[(i + 1) % problem->size];
             cost = problem->get_cost(problem, u, v);
 
-            if(cost > result.obj_value)
+            if(cost > result.max_cost)
             {
                 fprintf(stderr, "Found tour is no good!\n");
                 fprintf(stderr, "C[%d,%d] = %d\n", u, v, cost);
@@ -335,7 +335,7 @@ main(int argc, char *argv[])
     {
         if(result.found_tour)
         {
-            mstsp_obj_value = max_cost - result.obj_value;
+            mstsp_obj_value = max_cost - result.max_cost;
             mstsp_tour_length = input_problem.size * info.max_cost - result.tour_length;
         }
         else
@@ -420,7 +420,7 @@ main(int argc, char *argv[])
         else
         {
             sprintf(comment, "BTSP Tour; Length %.0f, Max Cost %d.",
-                result.tour_length, result.obj_value);
+                result.tour_length, result.max_cost);
         }
         
         arrow_util_write_tour(&input_problem, comment, result.tour, tour_out);

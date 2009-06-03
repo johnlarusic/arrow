@@ -93,7 +93,7 @@ main(int argc, char *argv[])
     }
 
     /* Apply function! */
-    if(!arrow_btsp_fun_apply(&fun_basic, problem, delta, &delta_problem))
+    if(!arrow_btsp_fun_apply(&fun_basic, problem, INT_MIN, delta, &delta_problem))
     {
         arrow_print_error("Could not apply function to problem.\n");
         return EXIT_FAILURE;

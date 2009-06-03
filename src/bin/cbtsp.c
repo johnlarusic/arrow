@@ -225,7 +225,7 @@ main(int argc, char *argv[])
             cost = problem.get_cost(&problem, u, v);
             len += cost;
             if(cost > max_cost) max_cost = cost;
-            if(cost > result.obj_value)
+            if(cost > result.max_cost)
             {
                 fprintf(stderr, "FUCK. %s\n", input_file);
                 return EXIT_FAILURE;
@@ -256,7 +256,7 @@ main(int argc, char *argv[])
         }
         
         sprintf(comment, "CBTSP Tour (k = %.0f); Length %.0f, Max Cost %d.",
-            length, result.tour_length, result.obj_value);
+            length, result.tour_length, result.max_cost);
         
         arrow_util_write_tour(&problem, comment, result.tour, tour);
         
