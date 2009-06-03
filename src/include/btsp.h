@@ -27,7 +27,8 @@
 typedef struct arrow_btsp_result
 {
     int found_tour;         /**< true if a tour was found, false otherwise */
-    int obj_value;          /**< objective value (largest cost in tour) */
+    int min_cost;           /**< smallest cost in tour */
+    int max_cost;           /**< smallest cost in tour */
     double tour_length;     /**< length of the tour found */
     int *tour;              /**< tour that was found in node-node format */
     int optimal;            /**< indicates if the solution is optimal */
@@ -49,14 +50,15 @@ typedef struct arrow_btsp_fun
      *  @brief  Retrieves cost between nodes i and j from the function.
      *  @param  fun [in] function structure
      *  @param  problem [in] problem structure
-     *  @param  delta [in] delta parameter
+     *  @param  min_cost [in] min_cost to consider for active edges
+     *  @param  max_cost [in] max_cost to consider for active edges
      *  @param  i [in] id of start node
      *  @param  j [in] id of end node
      *  @return cost between node i and node j
      */
     int 
     (*get_cost)(struct arrow_btsp_fun *fun, arrow_problem *base_problem,
-                int delta, int i, int j);
+                int min_cost, int max_cost, int i, int j);
                 
     /**
      *  @brief  Initializes the function structure for a new problem
@@ -76,14 +78,15 @@ typedef struct arrow_btsp_fun
      *  @brief  Determines if the given tour is feasible or not.
      *  @param  fun [in] function structure
      *  @param  problem [in] the problem to check against
-     *  @param  delta [in] the delta parameter
+     *  @param  min_cost [in] min_cost to consider for active edges
+     *  @param  max_cost [in] max_cost to consider for active edges
      *  @param  tour_length [in] the length of the given tour
      *  @param  tour [in] the tour in node-node format
      *  @return ARROW_TRUE if the tour is feasible, ARROW_FALSE if not
      */
     int
     (*feasible)(struct arrow_btsp_fun *fun, arrow_problem *base_problem,
-                int delta, double tour_length, int *tour);
+                int min_cost, int max_cost, double tour_length, int *tour);
 } arrow_btsp_fun;
 
 /**
@@ -129,6 +132,26 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
 
 
 /****************************************************************************
+ * feasible.c
+ ****************************************************************************/
+/**
+ *  @brief  Solves the feasibility problem which attempts to determine if 
+ *          there is a Hamiltonian cycle using min_cost <= costs <= max_cost.
+ *  @param  problem [in] problem to solve
+ *  @param  num_steps [in] total number of steps in solve plan
+ *  @param  steps [in] solve plan step details
+ *  @param  min_cost [in] min_cost to consider for active edges
+ *  @param  max_cost [in] max_cost to consider for active edges
+ *  @param  feasible [out] true if a feasible tour exists, false otherwise
+ *  @param  result [out] resulting BTSP tour found
+ */
+int
+arrow_btsp_feasible(arrow_problem *problem, int num_steps, 
+                    arrow_btsp_solve_plan *steps, int min_cost, int max_cost, 
+                    int *feasible, arrow_btsp_result *result);
+
+
+/****************************************************************************
  *  fun.c
  ****************************************************************************/
 /**
@@ -136,12 +159,13 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
  *          problem.
  *  @param  fun [in] function structure
  *  @param  old_problem [in] existing problem
- *  @param  delta [in] delta parameter
+ *  @param  min_cost [in] min_cost to consider for active edges
+ *  @param  max_cost [in] max_cost to consider for active edges
  *  @param  new_problem [out] new problem to create
  */
 int
 arrow_btsp_fun_apply(arrow_btsp_fun *fun, arrow_problem *old_problem, 
-                     int delta, arrow_problem *new_problem);
+                     int min_cost, int max_cost, arrow_problem *new_problem);
  
 /**
  *  @brief  Destructs a function structure

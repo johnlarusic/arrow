@@ -17,7 +17,8 @@ typedef struct fun_data
 {
     arrow_btsp_fun *fun;            /**< cost matrix function */
     arrow_problem *base_problem;    /**< base problem for function */
-    int delta;                      /**< delta parameter */
+    int min_cost;               /**< min cost to consider for active edges */
+    int max_cost;               /**< max cost to consider for active edges */
 } fun_data;
 
 
@@ -29,24 +30,26 @@ typedef struct fun_data
  *          cost matrix function and some base problem.
  *  @param  fun [in] the cost matrix function
  *  @param  old_problem [in] the base problem
- *  @param  delta [in] delta parameter
+ *  @param  min_cost [in] min_cost to consider for active edges
+ *  @param  max_cost [in] max_cost to consider for active edges
  *  @param  new_problem [out] the newly created, "shallow" problem
  */
 int
 apply_shallow(arrow_btsp_fun *fun, arrow_problem *old_problem, 
-              int delta, arrow_problem *new_problem);
+              int min_cost, int max_cost, arrow_problem *new_problem);
 
 /**
  *  @brief  Creates a deep data structure with data applied with given
  *          cost matrix function and some base problem.
  *  @param  fun [in] the cost matrix function
  *  @param  old_problem [in] the base problem
- *  @param  delta [in] delta parameter
+ *  @param  min_cost [in] min_cost to consider for active edges
+ *  @param  max_cost [in] max_cost to consider for active edges
  *  @param  new_problem [out] the newly created, "deep" problem
  */
 int
 apply_deep(arrow_btsp_fun *fun, arrow_problem *old_problem, 
-           int delta, arrow_problem *new_problem);
+           int min_cost, int max_cost, arrow_problem *new_problem);
 
 /**
  *  @brief  Cost function for problems based upon cost matrix functions.
@@ -88,7 +91,7 @@ cc_destruct(arrow_problem *problem);
  ****************************************************************************/
 int
 arrow_btsp_fun_apply(arrow_btsp_fun *fun, arrow_problem *old_problem, 
-                     int delta, arrow_problem *new_problem)
+                     int min_cost, int max_cost, arrow_problem *new_problem)
 {
     new_problem->size = old_problem->size;
     new_problem->symmetric = old_problem->symmetric;
@@ -102,9 +105,9 @@ arrow_btsp_fun_apply(arrow_btsp_fun *fun, arrow_problem *old_problem,
     }
     
     if(fun->shallow)
-        return apply_shallow(fun, old_problem, delta, new_problem);
+        return apply_shallow(fun, old_problem, min_cost, max_cost, new_problem);
     else
-        return apply_deep(fun, old_problem, delta, new_problem);
+        return apply_deep(fun, old_problem, min_cost, max_cost, new_problem);
 }
 
 void
@@ -119,7 +122,7 @@ arrow_btsp_fun_destruct(arrow_btsp_fun *fun)
  ****************************************************************************/
 int
 apply_shallow(arrow_btsp_fun *fun, arrow_problem *old_problem, 
-              int delta, arrow_problem *new_problem)
+              int min_cost, int max_cost, arrow_problem *new_problem)
 {
     fun_data *data = NULL;
     if((data = malloc(sizeof(fun_data))) == NULL)
@@ -130,7 +133,8 @@ apply_shallow(arrow_btsp_fun *fun, arrow_problem *old_problem,
     
     data->fun = fun;
     data->base_problem = old_problem;
-    data->delta = delta;
+    data->min_cost = min_cost;
+    data->max_cost = max_cost;
     
     new_problem->type = ARROW_PROBLEM_DATA_BTSP_FUN;
     new_problem->data = (void *)data;
@@ -142,7 +146,7 @@ apply_shallow(arrow_btsp_fun *fun, arrow_problem *old_problem,
 
 int
 apply_deep(arrow_btsp_fun *fun, arrow_problem *old_problem, 
-           int delta, arrow_problem *new_problem)
+           int min_cost, int max_cost, arrow_problem *new_problem)
 {
     int i, j;
     int size = old_problem->size;    
@@ -164,7 +168,8 @@ apply_deep(arrow_btsp_fun *fun, arrow_problem *old_problem,
     for(i = 0; i < size; i++)
     {
         for(j = 0; j < i; j++)
-            dat->adj[i][j] = fun->get_cost(fun, old_problem, delta, i, j);
+            dat->adj[i][j] = 
+                fun->get_cost(fun, old_problem, min_cost, max_cost, i, j);
     }
     
     new_problem->type = ARROW_PROBLEM_DATA_CONCORDE;
@@ -179,7 +184,7 @@ int
 fun_get_cost(arrow_problem *this, int i, int j)
 {
     fun_data *d = (fun_data *)(this->data);
-    return d->fun->get_cost(d->fun, d->base_problem, d->delta, i, j);
+    return d->fun->get_cost(d->fun, d->base_problem, d->min_cost, d->max_cost, i, j);
 }
 
 void 

@@ -6,7 +6,7 @@
  *
  * @author  John LaRusic
  * @ingroup lib
- ****************************************************************************/
+ ****************************************************************************/ 
 #include "common.h"
 #include "btsp.h"
 
@@ -34,14 +34,15 @@ typedef struct btsp_shake_1_data
  *  @brief  Retrieves cost between nodes i and j from the function.
  *  @param  fun [in] function structure
  *  @param  base_problem [in] problem structure
- *  @param  delta [in] delta parameter
+ *  @param  min_cost [in] min_cost to consider for active edges
+ *  @param  max_cost [in] max_cost to consider for active edges
  *  @param  i [in] id of start node
  *  @param  j [in] id of end node
  *  @return cost between node i and node j
  */
 int
 btsp_basic_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
-                     int delta, int i, int j);
+                     int min_cost, int max_cost, int i, int j);
                
 /**
  *  @brief  Initializes the function data.
@@ -61,27 +62,29 @@ btsp_basic_destruct(arrow_btsp_fun *fun);
  *  @brief  Determines if the given tour is feasible or not.
  *  @param  fun [in] function structure
  *  @param  problem [in] the problem to check against
- *  @param  delta [in] delta parameter
+ *  @param  min_cost [in] min_cost to consider for active edges
+ *  @param  max_cost [in] max_cost to consider for active edges
  *  @param  tour_length [in] the length of the given tour
  *  @param  tour [in] the tour in node-node format
  *  @return ARROW_TRUE if the tour is feasible, ARROW_FALSE if not
  */
 int
 btsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem,
-                     int delta, double tour_length, int *tour);
+                    int min_cost, int max_cost, double tour_length, int *tour);
                      
 /**
  *  @brief  Retrieves cost between nodes i and j from the function.
  *  @param  fun [in] function structure
  *  @param  base_problem [in] problem structure
- *  @param  delta [in] delta parameter
+ *  @param  min_cost [in] min_cost to consider for active edges
+ *  @param  max_cost [in] max_cost to consider for active edges
  *  @param  i [in] id of start node
  *  @param  j [in] id of end node
  *  @return cost between node i and node j
  */
 int
 btsp_shake_1_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
-                     int delta, int i, int j);
+                      int min_cost, int max_cost, int i, int j);
 
 /**
  *  @brief  Initializes the function data.
@@ -101,14 +104,15 @@ btsp_shake_1_destruct(arrow_btsp_fun *fun);
  *  @brief  Retrieves cost between nodes i and j from the function.
  *  @param  fun [in] function structure
  *  @param  base_problem [in] problem structure
- *  @param  delta [in] delta parameter
+ *  @param  min_cost [in] min_cost to consider for active edges
+ *  @param  max_cost [in] max_cost to consider for active edges
  *  @param  i [in] id of start node
  *  @param  j [in] id of end node
  *  @return cost between node i and node j
  */
 int
 btsp_asym_shift_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
-                         int delta, int i, int j);
+                         int min_cost, int max_cost, int i, int j);
 
 /**
  *  @brief  Destructs the function data.
@@ -121,14 +125,15 @@ btsp_asym_shift_destruct(arrow_btsp_fun *fun);
  *  @brief  Determines if the given tour is feasible or not.
  *  @param  fun [in] function structure
  *  @param  problem [in] the problem to check against
- *  @param  delta [in] delta parameter
+ *  @param  min_cost [in] min_cost to consider for active edges
+ *  @param  max_cost [in] max_cost to consider for active edges
  *  @param  tour_length [in] the length of the given tour
  *  @param  tour [in] the tour in node-node format
  *  @return ARROW_TRUE if the tour is feasible, ARROW_FALSE if not
  */
 int
 btsp_asym_shift_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem,
-                         int delta, double tour_length, int *tour);
+                         int min_cost, int max_cost, double tour_length, int *tour);
 
 
 /****************************************************************************
@@ -210,13 +215,13 @@ arrow_btsp_fun_asym_shift(int shallow, int shift, arrow_btsp_fun *fun)
  ****************************************************************************/
 int
 btsp_basic_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
-                     int delta, int i, int j)
+                    int min_cost, int max_cost, int i, int j)
 {
     int cost = base_problem->get_cost(base_problem, i, j);
     
     if(cost < 0)
         return cost;
-    else if(cost <= delta)
+    else if((cost >= min_cost) && (cost <= max_cost))
         return 0;
     else
         return cost;
@@ -234,8 +239,8 @@ btsp_basic_destruct(arrow_btsp_fun *fun)
 
 int
 btsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem, 
-                    int delta, double tour_length, int *tour)
-{
+                    int min_cost, int max_cost, double tour_length, int *tour)
+{    
     if(base_problem->fixed_edges > 0)
     {
         arrow_debug("Checking for fixed edges...\n");
@@ -248,11 +253,10 @@ btsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem,
             v = tour[(i + 1) % base_problem->size];
             cost = base_problem->get_cost(base_problem, u, v);
         
-            if(cost > delta)
+            if((cost < min_cost) || (cost > max_cost))
             {
-                arrow_debug("C[%d,%d] = %d > %d => non-feasible tour.\n",
-                            u, v, cost, delta);
-                arrow_debug("C^d[%d,%d] = %d\n", u, v, fun->get_cost(fun, base_problem, delta, u, v));
+                arrow_debug("%d > C[%d,%d] = %d > %d => non-feasible tour.\n",
+                            min_cost, u, v, cost, max_cost);
                 return ARROW_FALSE;
             }
            
@@ -272,14 +276,14 @@ btsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem,
 
 int
 btsp_shake_1_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
-                       int delta, int i, int j)
+                      int min_cost, int max_cost, int i, int j)
 {
     btsp_shake_1_data *data = (btsp_shake_1_data *)fun->data;
     int cost = base_problem->get_cost(base_problem, i, j);
     
     if(cost < 0)
         return cost;
-    else if(cost <= delta)
+    else if((cost >= min_cost) && (cost <= max_cost))
         return 0;
     else
     {
@@ -327,14 +331,14 @@ btsp_shake_1_destruct(arrow_btsp_fun *fun)
 
 int
 btsp_asym_shift_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
-                         int delta, int i, int j)
+                         int min_cost, int max_cost, int i, int j)
 {   
     int shift = *((int *)fun->data);
     int cost = base_problem->get_cost(base_problem, i, j);
     
     if(cost < 0)
         return 0;
-    else if(cost <= delta)
+    else if((cost >= min_cost) && (cost <= max_cost))
         return shift;
     else
         return cost + shift;
@@ -352,9 +356,9 @@ btsp_asym_shift_destruct(arrow_btsp_fun *fun)
 
 int
 btsp_asym_shift_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem, 
-                         int delta, double tour_length, int *tour)
+                         int min_cost, int max_cost, double tour_length, int *tour)
 {
     int shift = *((int *)fun->data);
     double actual_tour_length = tour_length - shift * base_problem->size;
-    return btsp_basic_feasible(fun, base_problem, delta, actual_tour_length, tour);
+    return btsp_basic_feasible(fun, base_problem, min_cost, max_cost, actual_tour_length, tour);
 }

@@ -22,7 +22,8 @@ arrow_btsp_result_init(arrow_problem *problem, arrow_btsp_result *result)
         return ARROW_FAILURE;
     }
     result->found_tour = ARROW_FALSE;
-    result->obj_value = INT_MAX;
+    result->min_cost = INT_MIN;
+    result->max_cost = INT_MAX;
     result->tour_length = DBL_MAX;
     result->bin_search_steps = 0;
     
@@ -53,7 +54,7 @@ arrow_btsp_result_print_xml(arrow_btsp_result *result, FILE *out)
 
     if(result->found_tour)
     {
-        arrow_xml_element_int("objective_value", result->obj_value, out);
+        arrow_xml_element_int("objective_value", result->max_cost, out);
         arrow_xml_element_double("tour_length", result->tour_length, out);
     }
     else
@@ -100,7 +101,8 @@ arrow_btsp_result_print_pretty(arrow_btsp_result *result, FILE *out)
     fprintf(out, "Found Tour: %s\n", (result->found_tour ? "Yes" : "No"));
     if(result->found_tour)
     {
-        fprintf(out, "Max. Cost: %d\n", result->obj_value);
+        fprintf(out, "Min. Cost: %d\n", result->min_cost);
+        fprintf(out, "Max. Cost: %d\n", result->max_cost);
         fprintf(out, "Tour Length: %.0f\n", result->tour_length);
     }
     
