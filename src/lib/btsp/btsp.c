@@ -10,25 +10,6 @@
 #include "btsp.h"
 
 /****************************************************************************
- * Private function prototypes
- ****************************************************************************/
-/**
- *  @brief  Solves the feasibility problem which attempts to determine if 
- *          there is a Hamiltonian cycle using costs <= delta.
- *  @param  problem [in] problem to solve
- *  @param  num_steps [in] total number of steps in solve plan
- *  @param  steps [in] solve plan step details
- *  @param  min_cost [in] min_cost to consider for active edges
- *  @param  max_cost [in] max_cost to consider for active edges
- *  @param  feasible [out] true if a feasible tour exists, false otherwise
- *  @param  result [out] resulting BTSP tour found
- */
-int
-feasible(arrow_problem *problem, int num_steps, arrow_btsp_solve_plan *steps, 
-         int min_cost, int max_cost, int *feasible, arrow_btsp_result *result);
-
-
-/****************************************************************************
  * Public function implementations
  ****************************************************************************/
 int 
