@@ -18,7 +18,8 @@ dir_bin = 'bin'
 
 # List of library files
 lib_files = (
-    'btsp/btsp.c', 
+    'btsp/btsp.c',
+    'btsp/feasible.c',
     'btsp/fun.c',
     'btsp/fun_cbtsp.c',
     'btsp/fun_btsp.c',
