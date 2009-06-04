@@ -52,6 +52,7 @@ lib_files = (
 executables = (
     ('2mb',         '2mb.c'),
     ('abtsp-rai',   'abtsp-rai.c'),
+    ('baltsp',      'baltsp.c'),
     ('bap',         'bap.c'),
     ('bbssp',       'bbssp.c'),
     ('bscssp',      'bscssp.c'),
