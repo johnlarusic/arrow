@@ -113,6 +113,8 @@ typedef struct arrow_btsp_params
     int num_steps;                  /**< the number of solve plan steps */
     arrow_btsp_solve_plan *steps;   /**< solve plan steps */
     arrow_btsp_solve_plan confirm_plan;   /**< confirm plan */
+    int infinity;                   /**< value to use for "infinity" */
+    int deep_copy;
 } arrow_btsp_params;
 
 

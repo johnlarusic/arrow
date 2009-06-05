@@ -28,6 +28,7 @@ int shake_1_attempts = 1;
 int shake_1_rand_min = 0;
 int shake_1_rand_max = -1;
 int random_seed = 0;
+int lb_only;
 
 /* Program options */
 #define NUM_OPTS 17
@@ -68,7 +69,10 @@ arrow_option options[NUM_OPTS] =
         ARROW_OPTION_INT, &shake_1_rand_max, ARROW_FALSE, ARROW_TRUE},
         
     {'g', "random-seed", "random number generator seed",
-        ARROW_OPTION_INT, &random_seed, ARROW_FALSE, ARROW_TRUE}
+        ARROW_OPTION_INT, &random_seed, ARROW_FALSE, ARROW_TRUE},
+        
+    {'L', "lb-only", "only check lower bound gap",
+        ARROW_OPTION_INT, &lb_only, ARROW_FALSE, ARROW_FALSE}
 };
 char *desc = "Balanced traveling salesman problem (BalTSP) solver";
 char *usage = "-i tsplib.tsp [options]";
@@ -80,22 +84,18 @@ main(int argc, char *argv[])
     int ret = EXIT_SUCCESS;
     int i, u, v, cost;
 
-    arrow_problem input_problem;
-    arrow_problem asym_problem;
-    arrow_problem *problem;
+    arrow_problem problem;
     arrow_problem_info info;
     arrow_tsp_cc_lk_params lk_params;
     arrow_btsp_fun fun_basic;
     arrow_btsp_fun fun_shake_1;
-    arrow_btsp_fun fun_asym_shift;
-    arrow_btsp_fun *fun_confirm;
     arrow_bound_result lb_result;
     arrow_btsp_result tour_result;
     arrow_btsp_params btsp_params;
     
     double start_time = arrow_util_zeit();
     double end_time;
-    double lower_bound_time = -1.0;
+    double avg_time;
     
     
     /* Read program arguments */
@@ -103,22 +103,19 @@ main(int argc, char *argv[])
         return EXIT_FAILURE;
     
     
-    /* Try and read the problem file.  We assume it's symmetric, but do some
-       stick handling if it turns out to be asymmetric later. */
-    problem = &input_problem;
-    if(!arrow_problem_read(input_file, problem))
+    /* Try and read the problem file. */
+    if(!arrow_problem_read(input_file, &problem))
         return EXIT_FAILURE;
     
     /* Gather basic info about the problem */
-    if(!arrow_problem_info_get(problem, !supress_hash, &info))
+    if(!arrow_problem_info_get(&problem, !supress_hash, &info))
         return EXIT_FAILURE;
     printf("Num costs in problem: %d\n", info.cost_list_length);
     printf("Max cost in problem:  %d\n", info.max_cost);
     
-    
     /* Extra processing for arguments */
     if(shake_1_rand_max < 0) 
-        shake_1_rand_max = (input_problem.size * input_problem.size) + shake_1_rand_min;
+        shake_1_rand_max = (problem.size * problem.size) + shake_1_rand_min;
     if(shake_1_rand_max - shake_1_rand_min < info.cost_list_length)
     {
         arrow_print_error("shake random interval not large enough");
@@ -133,19 +130,7 @@ main(int argc, char *argv[])
         arrow_print_error("Infinity value is not large enough\n");
         return EXIT_FAILURE;
     }
-    printf("Infinity Value:       %d\n", edge_infinity);
-
-    
-    /* If the problem's asymmetric, create symmetric from transformation. */
-    if(!problem->symmetric)
-    {
-        if(!arrow_problem_abtsp_to_sbtsp(deep_copy, problem, edge_infinity, &asym_problem))
-        {
-            arrow_print_error("Could not create symmetric transformation.");
-            return EXIT_FAILURE;
-        }
-        problem = &asym_problem;
-    }    
+    printf("Infinity Value:       %d\n", edge_infinity); 
         
     /* Initialize random number generator */
     arrow_util_random_seed(random_seed);
@@ -156,13 +141,13 @@ main(int argc, char *argv[])
         upper_bound = info.max_cost;
     
     /* Setup LK parameters structure */
-    arrow_tsp_cc_lk_params_init(problem, &lk_params);
+    arrow_tsp_cc_lk_params_init(&problem, &lk_params);
     if(random_restarts >= 0)    lk_params.random_restarts  = random_restarts;
     if(stall_count >= 0)        lk_params.stall_count      = stall_count;
     if(kicks >= 0)              lk_params.kicks            = kicks;
     
-    if(!input_problem.symmetric)
-        lk_params.length_bound = (edge_infinity * -1.0) * input_problem.size;
+    if(!problem.symmetric)
+        lk_params.length_bound = (edge_infinity * -1.0) * problem.size;
 
     /* Setup necessary function structures */
     if(arrow_btsp_fun_basic(ARROW_FALSE, &fun_basic) != ARROW_SUCCESS)
@@ -186,17 +171,6 @@ main(int argc, char *argv[])
            shake_1_attempts                 /* attempts */
        }
     };
-    
-    
-    if(input_problem.symmetric)
-        fun_confirm = &fun_basic;
-    else
-    {
-        if(!arrow_btsp_fun_asym_shift(deep_copy, edge_infinity, &fun_asym_shift))
-            return EXIT_FAILURE;
-        fun_confirm = &fun_asym_shift;
-        steps[0].fun = fun_asym_shift;
-    }
         
     /* Setup BTSP parameters structure */
     arrow_btsp_params_init(&btsp_params);
@@ -207,11 +181,13 @@ main(int argc, char *argv[])
     btsp_params.upper_bound         = upper_bound;
     btsp_params.num_steps           = SOLVE_STEPS;
     btsp_params.steps               = steps;
+    btsp_params.infinity            = edge_infinity;
+    btsp_params.deep_copy           = deep_copy;
+    
     
     /* Setup BTSP results structure and solve BTSP */
-    arrow_btsp_result_init(problem, &tour_result);
-    
-    if(!arrow_balanced_tsp_solve(problem, &info, &btsp_params, 
+    arrow_btsp_result_init(&problem, &tour_result);
+    if(!arrow_balanced_tsp_solve(&problem, &info, &btsp_params, lb_only,
                                  &lb_result, &tour_result))
     {
         arrow_print_error("Could not solve BTSP on given problem.\n");
@@ -221,35 +197,14 @@ main(int argc, char *argv[])
     end_time = arrow_util_zeit() - start_time;
     
     
-    /* If necessary, transform symmetric tour to equivalent asymmetric tour */
-    if(tour_result.found_tour && !input_problem.symmetric)
-    {    
-        int *actual_tour;
-        if(!arrow_util_create_int_array(input_problem.size, &actual_tour))
-        {
-            arrow_print_error("Could not create actual_tour array.\n");
-            ret = EXIT_FAILURE;
-            goto CLEANUP;
-        }
-        arrow_util_sbtsp_to_abstp_tour(problem, tour_result.tour, actual_tour);
-        free(tour_result.tour);
-        tour_result.tour = actual_tour;
-        
-        tour_result.tour_length = 
-            tour_result.tour_length + input_problem.size * edge_infinity;
-    }
-    
-    
     /* Perform sanity check on found tours, output them to file if requested */
     if(tour_result.found_tour)
-    {
-        problem = &input_problem;
-        
-        for(i = 0; i < problem->size; i++)
+    {        
+        for(i = 0; i < problem.size; i++)
         {
             u = tour_result.tour[i];
-            v = tour_result.tour[(i + 1) % problem->size];
-            cost = problem->get_cost(problem, u, v);
+            v = tour_result.tour[(i + 1) % problem.size];
+            cost = problem.get_cost(&problem, u, v);
 
             if((cost < tour_result.min_cost) || (cost > tour_result.max_cost))
             {
@@ -265,35 +220,138 @@ main(int argc, char *argv[])
             }
         }   
     }
-        
     
     /* Standard output */
     printf("Lower Bound: %d\n", lb_result.obj_value);
-    if(lower_bound_time >= 0.0)
-        printf("Lower Bound Time: %.2f\n", lb_result.total_time);      
+    printf("Lower Bound Time: %.2f\n", lb_result.total_time);      
     
     printf("Found Tour: %s\n", (tour_result.found_tour ? "Yes" : "No"));
     if(tour_result.found_tour)
     {
-        printf("Min. Cost: %d\n", tour_result.min_cost);
-        printf("Max. Cost: %d\n", tour_result.max_cost);
+        printf("Obj. Value:  %d\n", tour_result.max_cost - tour_result.min_cost);
+        printf("Min. Cost:   %d\n", tour_result.min_cost);
+        printf("Max. Cost:   %d\n", tour_result.max_cost);
         printf("Tour Length: %.0f\n", tour_result.tour_length);
     }
+    printf("Search steps: %d\n", tour_result.bin_search_steps);
     
-    printf("Optimal?: %s\n", (tour_result.optimal == ARROW_TRUE ? "Yes" : "???"));
+    for(i = 0; i < ARROW_TSP_SOLVER_COUNT; i++)
+    {
+        if(tour_result.solver_attempts[i] > 0)
+        {
+            avg_time = tour_result.solver_time[i] / 
+                (tour_result.solver_attempts[i] * 1.0);
+            
+            printf(" - ");
+            arrow_tsp_long_name(i, stdout);
+            printf("\n");
+            printf("   - Calls: %d\n", tour_result.solver_attempts[i]);
+            printf("   - Avg Time: %.2f\n", avg_time);
+        }
+    }
+    
     printf("Total Tour Solve Time: %.2f\n", tour_result.total_time);
     printf("Total Time: %.2f\n", end_time);
+    
+    
+    /* Xml output */
+    if(xml_file != NULL)
+    {
+        FILE *xml;
+        if(!(xml = fopen(xml_file, "w")))
+        {
+            arrow_print_error("Could not open xml file for writing");
+            ret = ARROW_FAILURE;
+            goto CLEANUP;
+        }
+        
+        fprintf(xml, "<arrow_baltsp ");
+            
+        fprintf(xml, "problem_file=\"%s\"", input_file);
+        fprintf(xml, " command_args=\"");
+        arrow_util_print_program_args(argc, argv, xml);
+        fprintf(xml, "\">\n");
+    
+        arrow_xml_element_int("lower_bound", lb_result.obj_value, xml);
+        arrow_xml_element_double("lower_bound_time", lb_result.total_time, xml);
+    
+        arrow_xml_element_bool("found_tour", tour_result.found_tour, xml);
+        if(tour_result.found_tour)
+        {
+            arrow_xml_element_int("objective_value", tour_result.max_cost - tour_result.min_cost, xml);
+            arrow_xml_element_int("tour_min_cost", tour_result.min_cost, xml);
+            arrow_xml_element_int("tour_max_cost", tour_result.max_cost, xml);
+            arrow_xml_element_double("tour_length", tour_result.tour_length, xml);
+        }
+        else
+        {
+            arrow_xml_element_int("objective_value", -1, xml);
+            arrow_xml_element_int("tour_min_cost", -1, xml);
+            arrow_xml_element_int("tour_max_cost", -1, xml);
+            arrow_xml_element_double("tour_length", -1.0, xml);
+        }
+
+        arrow_xml_element_int("search_steps", tour_result.bin_search_steps, xml);
+
+        arrow_xml_element_open("solver_info", xml);
+        for(i = 0; i < ARROW_TSP_SOLVER_COUNT; i++)
+        {
+            if(tour_result.solver_attempts[i] > 0)
+            {
+                arrow_xml_element_start("solver", xml);
+            
+                arrow_xml_attribute_int("solver_type", i, xml);
+                arrow_xml_attribute_start("solver_name", xml);
+                arrow_tsp_short_name(i, xml);
+                arrow_xml_attribute_end(xml);
+                arrow_xml_element_end(xml);
+            
+                avg_time = tour_result.solver_time[i] / (tour_result.solver_attempts[i] * 1.0);
+                arrow_xml_element_int("attempts", tour_result.solver_attempts[i], xml);
+                arrow_xml_element_double("avg_time", avg_time, xml);            
+            
+                arrow_xml_element_close("solver", xml);
+            }
+        }
+        arrow_xml_element_close("solver_info", xml);
+    
+        arrow_xml_element_double("tour_total_time", tour_result.total_time, xml);
+        arrow_xml_element_double("total_time", end_time, xml);
+        
+        fprintf(xml, "</arrow_baltsp>\n");
+        
+        fclose(xml);
+    }
+    
+    
+    /* Tour file output */
+    if((tour_file != NULL) && tour_result.found_tour)
+    {
+        FILE *tour_out;
+        char comment[256];
+    
+        if(!(tour_out = fopen(tour_file, "w")))
+        {
+            arrow_print_error("Could not open tour file for writing");
+            ret = ARROW_FAILURE;
+            goto CLEANUP;
+        }
+    
+        sprintf(comment, "Balanced TSP Tour; Length %.0f, Min Cost %d, Max Cost %d.",
+                tour_result.tour_length, tour_result.min_cost, tour_result.max_cost);
+        
+        arrow_util_write_tour(&problem, comment, tour_result.tour, tour_out);
+    
+        fclose(tour_out);
+    }
+    
+    
     
 CLEANUP:
     arrow_btsp_result_destruct(&tour_result);
     arrow_btsp_fun_destruct(&fun_basic);
     arrow_btsp_fun_destruct(&fun_shake_1);
     arrow_tsp_cc_lk_params_destruct(&lk_params);
-    if(!input_problem.symmetric)
-    {
-        arrow_btsp_fun_destruct(&fun_asym_shift);
-        arrow_problem_destruct(&asym_problem);
-    }
-    arrow_problem_destruct(&input_problem);
+    arrow_problem_destruct(&problem);
     return ret;
 }

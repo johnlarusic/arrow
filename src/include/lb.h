@@ -85,7 +85,7 @@ arrow_bbssp_solve(arrow_problem *problem, arrow_problem_info *info,
  *  @param  result [out] ARROW_TRUE if biconnected, ARROW_FALSE otherwise.
  */
 int
-arrow_bbssp_biconnected(arrow_problem *problem, int min_Cost, int max_cost, 
+arrow_bbssp_biconnected(arrow_problem *problem, int min_cost, int max_cost, 
                         int *result);
 
 

@@ -253,7 +253,7 @@ btsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem,
             v = tour[(i + 1) % base_problem->size];
             cost = base_problem->get_cost(base_problem, u, v);
         
-            if((cost < min_cost) || (cost > max_cost))
+            if((cost >= 0) && ((cost < min_cost) || (cost > max_cost)))
             {
                 arrow_debug("%d > C[%d,%d] = %d > %d => non-feasible tour.\n",
                             min_cost, u, v, cost, max_cost);

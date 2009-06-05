@@ -18,6 +18,7 @@ arrow_btsp_feasible(arrow_problem *problem, int num_steps,
                     int *feasible, arrow_btsp_result *result)
 {
     printf("Feasible?: %d <= C[i,j] <= %d\n", min_cost, max_cost);
+    printf("is_symmetric = %d; size = %d;\n", problem->symmetric, problem->size);
     
     int ret = ARROW_SUCCESS;
     int i, j, k;
@@ -93,6 +94,7 @@ arrow_btsp_feasible(arrow_problem *problem, int num_steps,
                 {
                     u = tsp_result.tour[k];
                     v = tsp_result.tour[(k + 1) % problem->size];
+                    
                     len += problem->get_cost(problem, u, v);
                     if(result->tour != NULL)
                         result->tour[k] = tsp_result.tour[k];
