@@ -178,6 +178,7 @@ arrow_options_parse(int num_opts, arrow_option options[], char *description,
 CLEANUP:    
     free(short_options);
     free(long_options);
+    free(given);
     
     return ret;
 }
