@@ -117,9 +117,6 @@ arrow_bbssp_biconnected(arrow_problem *problem, int min_cost, int max_cost,
     ret = arrow_util_create_int_array(problem->size, &parent);
     if(ret == ARROW_FAILURE) goto CLEANUP;
 
-    ret = arrow_util_create_int_array(problem->size, &visited);
-    if(ret == ARROW_FAILURE) goto CLEANUP;
-
     ret = arrow_util_create_int_array(problem->size, &art_point);
     if(ret == ARROW_FAILURE) goto CLEANUP;
 

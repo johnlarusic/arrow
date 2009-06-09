@@ -353,5 +353,8 @@ CLEANUP:
     arrow_btsp_fun_destruct(&fun_shake_1);
     arrow_tsp_cc_lk_params_destruct(&lk_params);
     arrow_problem_destruct(&problem);
+    
+    while (1) sleep(60);
+    
     return ret;
 }
