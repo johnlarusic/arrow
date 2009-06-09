@@ -299,7 +299,11 @@ CLEANUP:
     arrow_debug(" - Cleaning up\n");
     CC_IFFREE(cyc, int);
     CC_IFFREE(elist, int);
-    if(params == NULL) arrow_tsp_cc_lk_params_destruct(&lk_params);
+    CC_IFFREE(bestcyc, int);
+    
+    if(params == NULL)
+        arrow_tsp_cc_lk_params_destruct(&lk_params);
+    
     arrow_debug("Leaving arrow_tsp_cc_lk_solve\n");
     return ret;
 }

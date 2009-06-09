@@ -103,8 +103,10 @@ arrow_btsp_feasible(arrow_problem *problem, int num_steps,
                 result->tour_length = len;
                     
                 arrow_debug("Finished feasibility question.\n");
+                arrow_problem_destruct(&new_problem);
                 goto CLEANUP;
             }
+            
             /** TODO: Find a better way of doing this upper bound update */
             /*
             else if(plan->upper_bound_update)
@@ -137,6 +139,7 @@ arrow_btsp_feasible(arrow_problem *problem, int num_steps,
                 }
             }
             */
+            
             /* Clean up */
             arrow_problem_destruct(&new_problem);
         }

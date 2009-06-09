@@ -312,6 +312,7 @@ btsp_shake_1_initialize(arrow_btsp_fun *fun)
         arrow_bintree_insert(&tree, val);
     }
     arrow_bintree_to_array(&tree, data->random_list);
+    arrow_bintree_destruct(&tree);
     
     return ARROW_SUCCESS;
 }

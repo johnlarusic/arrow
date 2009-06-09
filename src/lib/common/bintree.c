@@ -61,6 +61,9 @@ arrow_bintree_destruct(arrow_bintree *tree)
 {
     if(tree->size > 0)
         destruct_node(tree->root_node);
+    free(tree->root_node);
+    tree->root_node = NULL;
+    tree->size = 0;
 }
 
 int

@@ -63,10 +63,10 @@ fun_get_cost(arrow_problem *this, int i, int j);
 
 /**
  *  @brief  Destructs problem based upon cost matrix functions.
- *  @param  this [in] problem structure
+ *  @param  problem [in] problem structure
  */
 void 
-fun_destruct(arrow_problem *this);
+fun_destruct(arrow_problem *problem);
 
 /**
  *  @brief  Cost function for problems based upon Concorde's data structure.
@@ -149,7 +149,7 @@ apply_deep(arrow_btsp_fun *fun, arrow_problem *old_problem,
            int min_cost, int max_cost, arrow_problem *new_problem)
 {
     int i, j;
-    int size = old_problem->size;    
+    int size = old_problem->size;
     
     CCdatagroup *dat = NULL;
     if((dat = malloc(sizeof(CCdatagroup))) == NULL)
@@ -188,8 +188,11 @@ fun_get_cost(arrow_problem *this, int i, int j)
 }
 
 void 
-fun_destruct(arrow_problem *this)
-{ }
+fun_destruct(arrow_problem *problem)
+{ 
+    if(problem->data != NULL)
+        free(problem->data);
+}
 
 int 
 cc_get_cost(arrow_problem *problem, int i, int j)
@@ -205,5 +208,6 @@ cc_destruct(arrow_problem *problem)
     {
         CCdatagroup *dat = (CCdatagroup *)problem->data;
         CCutil_freedatagroup(dat);
+        free(problem->data);
     }
 }
