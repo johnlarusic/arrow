@@ -149,6 +149,7 @@ main(int argc, char *argv[])
     if(!arrow_problem_info_get(problem, !supress_hash, &info))
         return EXIT_FAILURE;
     printf("Num costs in problem: %d\n", info.cost_list_length);
+    printf("Min cost in problem:  %d\n", info.min_cost);
     printf("Max cost in problem:  %d\n", info.max_cost);
     
     
@@ -187,10 +188,10 @@ main(int argc, char *argv[])
     arrow_util_random_seed(random_seed);
 
 
-    /* Determine if we need to call the BBSSP to find a lower bound */
     if(lower_bound < 0)
     {
         /* TODO: Add support for other lower bounds here */
+        /*
         printf("Solving BBSSP to find a lower bound\n");
         arrow_bound_result bbssp_result;
         if(!arrow_bbssp_solve(problem, &info, &bbssp_result))
@@ -201,10 +202,12 @@ main(int argc, char *argv[])
         lower_bound = bbssp_result.obj_value;
         lower_bound_time = bbssp_result.total_time;
         printf("BBSSP lower bound is %d\n.", lower_bound);
+        */
+        lower_bound = info.min_cost;
     }
     
     if(upper_bound < lower_bound)
-        upper_bound = INT_MAX;
+        upper_bound = info.max_cost;
     
     
     /* Setup LK parameters structure */
