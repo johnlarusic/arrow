@@ -128,7 +128,17 @@ arrow_bap_solve(arrow_problem *problem, arrow_problem_info *info,
         m = (int)(sqrt(m * 1.0) + 0.5);
         arrow_debug("n^2/3 = %d; m^1/2 = %d\n", stop, m);
         if(m < stop) stop = m;
-
+        
+        printf("\nRESIDUAL GRAPH\n");
+        int i, j;
+        for(i = 0; i < n; i++)
+        {
+            for(j = 0; j < n; j++)
+                printf("%d\t", res[i][j]);
+            printf("\n");
+        }
+        printf("\n");
+        
         shortest_augmenting_path(n, s, t, stop, res, dist, pred, &flow);
         arrow_debug("Flow after shortest augmenting path routine: %d\n", flow);
         if(flow < problem->size)
@@ -285,7 +295,7 @@ shortest_augmenting_path(int n, int s, int t, int stop,
         min_d = n + 1;        
         admissable = ARROW_FALSE;
         
-        arrow_debug(" - i = %d\n", i);
+        //arrow_debug(" - i = %d\n", i);
         
         for(j = 0; j < n; j++)
         {            
@@ -293,26 +303,26 @@ shortest_augmenting_path(int n, int s, int t, int stop,
             {
                 if(dist[i] == dist[j] + 1)
                 {
-                    arrow_debug(" - found admissable arc (%d,%d)\n", i, j);
+                    //arrow_debug(" - found admissable arc (%d,%d)\n", i, j);
                     admissable = ARROW_TRUE;
-                    arrow_debug(" - pred[%d] = %d\n", j, i);
+                    //arrow_debug(" - pred[%d] = %d\n", j, i);
                     pred[j] = i;
-                    arrow_debug(" - i = %d\n", j);
+                    //arrow_debug(" - i = %d\n", j);
                     i = j;
                     
                     if(i == t)
                     {
-                        arrow_debug(" - i == t, so augment!\n");
+                        //arrow_debug(" - i == t, so augment!\n");
                         (*flow)++;
-                        arrow_debug(" - flow is now %d\n", *flow);
+                        //arrow_debug(" - flow is now %d\n", *flow);
                         u = i;
                         v = pred[u];
                         while(u != s)
                         {
                             res[u][v] = 1;
                             res[v][u] = -1;
-                            arrow_debug(" - res[%d][%d] = 1\n", u, v);
-                            arrow_debug(" - res[%d][%d] = -1\n", v, u);
+                            //arrow_debug(" - res[%d][%d] = 1\n", u, v);
+                            //arrow_debug(" - res[%d][%d] = -1\n", v, u);
                             u = v;
                             v = pred[u];
                         }
@@ -331,14 +341,14 @@ shortest_augmenting_path(int n, int s, int t, int stop,
         
         if(!admissable)
         {
-            arrow_debug(" - No admissable arcs found; retreat!\n");
+            //arrow_debug(" - No admissable arcs found; retreat!\n");
             dist[i] = min_d;
-            arrow_debug(" - dist[%d] = %d\n", i, min_d);
+            //arrow_debug(" - dist[%d] = %d\n", i, min_d);
             if(i != s)
                 i = pred[i];
         }
         
-        arrow_debug("\n");
+        //arrow_debug("\n");
     }
 }
 
