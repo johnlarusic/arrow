@@ -114,18 +114,29 @@ arrow_bap_solve(arrow_problem *problem, arrow_problem_info *info,
     while(low != high)
     {
         median = ((high - low) / 2) + low;
-        delta = info->cost_list[median];      
+        delta = info->cost_list[median];  
+        arrow_debug("Low = %d, High = %d\n", info->cost_list[low], info->cost_list[high]);
+        arrow_debug("Checking if assignment possible for C[i,j] <= %d\n", delta);
+            
         flow = 0;
         
         initialize_flow_data(problem, INT_MIN, delta, s, t, res, &m, dist, pred);
 
         stop = (int)(2 * pow(n, 2.0 / 3.0) + 0.5);
         m = (int)(sqrt(m * 1.0) + 0.5);
+        arrow_debug("n^2/3 = %d; m^1/2 = %d\n", stop, m);
         if(m < stop) stop = m;
 
         shortest_augmenting_path(n, s, t, stop, res, dist, pred, &flow);
+        arrow_debug("Flow after shortest augmenting path routine: %d\n", flow);
         if(flow < problem->size)
+        {
             ford_fulkerson_labeling(n, s, t, res, dist, pred, &flow, list);
+            arrow_debug("Flow after Ford Fulkerson labelling: %d\n", flow);
+        }
+        else
+            arrow_debug("No need to call Ford Fulkerson labelling.\n");
+        arrow_debug("\n");
         
         if(flow == problem->size)
             high = median;
