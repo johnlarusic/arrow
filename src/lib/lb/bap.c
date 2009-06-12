@@ -117,7 +117,7 @@ arrow_bap_solve(arrow_problem *problem, arrow_problem_info *info,
     {
         median = ((high - low) / 2) + low;
         delta = info->cost_list[median];  
-        arrow_debug("Low = %d, High = %d\n", info->cost_list[low], info->cost_list[high]);
+        arrow_debug("Low[%d] = %d, High[%d] = %d\n", low, info->cost_list[low], high, info->cost_list[high]);
         arrow_debug("Checking if assignment possible for C[i,j] <= %d\n", delta);
             
         flow = 0;
@@ -285,25 +285,34 @@ shortest_augmenting_path(int n, int s, int t, int stop,
         min_d = n + 1;        
         admissable = ARROW_FALSE;
         
+        arrow_debug(" - i = %d\n", i);
+        
         for(j = 0; j < n; j++)
-        {
+        {            
             if(res[i][j] > 0)
             {
                 if(dist[i] == dist[j] + 1)
                 {
+                    arrow_debug(" - found admissable arc (%d,%d)\n", i, j);
                     admissable = ARROW_TRUE;
+                    arrow_debug(" - pred[%d] = %d\n", j, i);
                     pred[j] = i;
+                    arrow_debug(" - i = %d\n", j);
                     i = j;
                     
                     if(i == t)
                     {
+                        arrow_debug(" - i == t, so augment!\n");
                         (*flow)++;
+                        arrow_debug(" - flow is now %d\n", *flow);
                         u = i;
                         v = pred[u];
                         while(u != s)
                         {
                             res[u][v] = 1;
                             res[v][u] = -1;
+                            arrow_debug(" - res[%d][%d] = 1\n", u, v);
+                            arrow_debug(" - res[%d][%d] = -1\n", v, u);
                             u = v;
                             v = pred[u];
                         }
@@ -322,10 +331,14 @@ shortest_augmenting_path(int n, int s, int t, int stop,
         
         if(!admissable)
         {
+            arrow_debug(" - No admissable arcs found; retreat!\n");
             dist[i] = min_d;
-            if(i != s) 
+            arrow_debug(" - dist[%d] = %d\n", i, min_d);
+            if(i != s)
                 i = pred[i];
         }
+        
+        arrow_debug("\n");
     }
 }
 
