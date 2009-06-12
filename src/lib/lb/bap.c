@@ -108,6 +108,8 @@ arrow_bap_solve(arrow_problem *problem, arrow_problem_info *info,
         ret = ARROW_FAILURE;
         goto CLEANUP;
     }
+    
+    arrow_debug("Number of Unique Costs: %d\n", info->cost_list_length);
 
     low = 0;
     high = info->cost_list_length - 1;
