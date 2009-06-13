@@ -129,16 +129,6 @@ arrow_bap_solve(arrow_problem *problem, arrow_problem_info *info,
         arrow_debug("n^2/3 = %d; m^1/2 = %d\n", stop, m);
         if(m < stop) stop = m;
         
-        printf("\nRESIDUAL GRAPH\n");
-        int i, j;
-        for(i = 0; i < n; i++)
-        {
-            for(j = 0; j < n; j++)
-                printf("%d\t", res[i][j]);
-            printf("\n");
-        }
-        printf("\n");
-        
         shortest_augmenting_path(n, s, t, stop, res, dist, pred, &flow);
         arrow_debug("Flow after shortest augmenting path routine: %d\n", flow);
         if(flow < problem->size)
