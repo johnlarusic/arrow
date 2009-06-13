@@ -281,6 +281,11 @@ initialize_flow_data(arrow_problem *problem, int min_cost, int max_cost,
         pred[i] = -1;
         pred[i + problem->size] = -1;
     }
+    res[s][s] = 0;
+    res[s][t] = 0;
+    res[t][s] = 0;
+    res[t][t] = 0;
+    
     dist[s] = 3;  dist[t] = 0;
     pred[s] = -1; pred[t] = -1;
 }
