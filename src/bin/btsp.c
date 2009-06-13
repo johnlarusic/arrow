@@ -221,7 +221,7 @@ main(int argc, char *argv[])
 
 
     /* Setup necessary function structures */
-    if(arrow_btsp_fun_basic(ARROW_FALSE, &fun_basic) != ARROW_SUCCESS)
+    if(arrow_btsp_fun_basic(deep_copy, &fun_basic) != ARROW_SUCCESS)
         return EXIT_FAILURE;
     if(!arrow_btsp_fun_shake_1(deep_copy, edge_infinity, shake_1_rand_min, shake_1_rand_max, &info, &fun_shake_1))
         return EXIT_FAILURE;
@@ -251,7 +251,6 @@ main(int argc, char *argv[])
         if(!arrow_btsp_fun_asym_shift(deep_copy, edge_infinity, &fun_asym_shift))
             return EXIT_FAILURE;
         fun_confirm = &fun_asym_shift;
-        steps[0].fun = fun_asym_shift;
     }
     arrow_btsp_solve_plan confirm_plan = 
     {
