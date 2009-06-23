@@ -16,7 +16,6 @@ char *input_file = NULL;
 char *xml_file = NULL;
 char *tour_file = NULL;
 int edge_infinity = -1;
-int random_restarts = -1;
 int stall_count = -1;
 int kicks = -1;
 int solve_mstsp = ARROW_FALSE;
@@ -28,13 +27,15 @@ int deep_copy = ARROW_FALSE;
 int lower_bound = -1;
 int upper_bound = INT_MAX;
 int basic_attempts = 3;
+int basic_restarts = 1;
 int shake_1_attempts = 1;
+int shake_1_restarts = 1;
 int shake_1_rand_min = 0;
 int shake_1_rand_max = -1;
 int random_seed = 0;
 
 /* Program options */
-#define NUM_OPTS 20
+#define NUM_OPTS 21
 arrow_option options[NUM_OPTS] = 
 {
     {'i', "input", "TSPLIB input file", 
@@ -47,8 +48,6 @@ arrow_option options[NUM_OPTS] =
     {'m', "solve-mstsp", "solves maximum scatter TSP",
         ARROW_OPTION_INT, &solve_mstsp, ARROW_FALSE, ARROW_FALSE},
         
-    {'r', "restarts", "number of random restarts",
-        ARROW_OPTION_INT, &random_restarts, ARROW_FALSE, ARROW_TRUE},
     {'s', "stall-count", "max number of 4-swaps w/o progress",
         ARROW_OPTION_INT, &stall_count, ARROW_FALSE, ARROW_TRUE},
     {'k', "kicks", "number of 4-swap kicks",
@@ -70,11 +69,16 @@ arrow_option options[NUM_OPTS] =
         ARROW_OPTION_INT, &lower_bound, ARROW_FALSE, ARROW_TRUE},
     {'u', "upper-bound", "initial upper bound",
         ARROW_OPTION_INT, &upper_bound, ARROW_FALSE, ARROW_TRUE},
+        
     {'a', "basic-attempts", "number of basic attempts",
         ARROW_OPTION_INT, &basic_attempts, ARROW_FALSE, ARROW_TRUE},
+    {'A', "basic-restarts", "number of basic restarts",
+        ARROW_OPTION_INT, &basic_restarts, ARROW_FALSE, ARROW_TRUE},
         
     {'b', "shake-1-attempts", "number of shake type I attempts",
         ARROW_OPTION_INT, &shake_1_attempts, ARROW_FALSE, ARROW_TRUE},
+    {'B', "shake-1-restarts", "number of basic restarts",
+        ARROW_OPTION_INT, &shake_1_restarts, ARROW_FALSE, ARROW_TRUE},
     {'1', "shake-1-rand-min", "min value for shake type I random numbers",
         ARROW_OPTION_INT, &shake_1_rand_min, ARROW_FALSE, ARROW_TRUE},
     {'2', "shake-1-rand-max", "max value for shake type I random numbers",
@@ -98,7 +102,8 @@ main(int argc, char *argv[])
     arrow_problem mstsp_problem;
     arrow_problem *problem;
     arrow_problem_info info;
-    arrow_tsp_cc_lk_params lk_params;
+    arrow_tsp_cc_lk_params lk_basic_params;
+    arrow_tsp_cc_lk_params lk_shake_1_params;
     arrow_btsp_fun fun_basic;
     arrow_btsp_fun fun_shake_1;
     arrow_btsp_fun fun_asym_shift;
@@ -211,13 +216,28 @@ main(int argc, char *argv[])
     
     
     /* Setup LK parameters structure */
-    arrow_tsp_cc_lk_params_init(problem, &lk_params);
-    if(random_restarts >= 0)    lk_params.random_restarts  = random_restarts;
-    if(stall_count >= 0)        lk_params.stall_count      = stall_count;
-    if(kicks >= 0)              lk_params.kicks            = kicks;
-    
+    arrow_tsp_cc_lk_params_init(problem, &lk_basic_params);
+    arrow_tsp_cc_lk_params_init(problem, &lk_shake_1_params);
+    if(basic_restarts >= 0)
+        lk_basic_params.random_restarts  = basic_restarts;
+    if(shake_1_restarts >= 0)
+        lk_shake_1_params.random_restarts = shake_1_restarts;   
+    if(stall_count >= 0)
+    {
+        lk_basic_params.stall_count = stall_count;
+        lk_shake_1_params.stall_count = stall_count;
+    }
+    if(kicks >= 0)
+    {
+        lk_basic_params.kicks = kicks;
+        lk_shake_1_params.kicks = kicks;
+    }
     if(!input_problem.symmetric)
-        lk_params.length_bound = (edge_infinity * -1.0) * input_problem.size;
+    {
+        double length_bound = (edge_infinity * -1.0) * input_problem.size;
+        lk_basic_params.length_bound = length_bound;
+        lk_shake_1_params.length_bound = length_bound;
+    }
 
 
     /* Setup necessary function structures */
@@ -231,13 +251,13 @@ main(int argc, char *argv[])
     {
        {
            ARROW_TSP_CC_LK,                 /* TSP solver */
-           (void *)&lk_params,              /* TSP solver parameters */
+           (void *)&lk_basic_params,              /* TSP solver parameters */
            fun_basic,                       /* fun (cost matrix function) */
            basic_attempts                   /* attempts */
        },
        {
            ARROW_TSP_CC_LK,                 /* TSP solver */
-           (void *)&lk_params,              /* TSP solver parameters */
+           (void *)&lk_shake_1_params,              /* TSP solver parameters */
            fun_shake_1,                     /* fun (cost matrix function) */
            shake_1_attempts                 /* attempts */
        }
@@ -434,7 +454,8 @@ CLEANUP:
     arrow_btsp_result_destruct(&result);
     arrow_btsp_fun_destruct(&fun_basic);
     arrow_btsp_fun_destruct(&fun_shake_1);
-    arrow_tsp_cc_lk_params_destruct(&lk_params);
+    arrow_tsp_cc_lk_params_destruct(&lk_basic_params);
+    arrow_tsp_cc_lk_params_destruct(&lk_shake_1_params);
     if(!input_problem.symmetric)
     {
         arrow_btsp_fun_destruct(&fun_asym_shift);
