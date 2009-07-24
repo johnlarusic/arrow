@@ -1,7 +1,7 @@
 /**********************************************************doxygen*//** @file
- * @brief   Bottleneck TSP heuristic.
+ * @brief   Balanced-DT TSP heuristic.
  *
- * Runs the Bottleneck TSP heuristic on the given input file.  
+ * Runs the Balanced-DT TSP heuristic on the given input file.  
  *
  * @author  John LaRusic
  * @ingroup bin
@@ -187,8 +187,8 @@ main(int argc, char *argv[])
     
     /* Setup BTSP results structure and solve BTSP */
     arrow_btsp_result_init(&problem, &tour_result);
-    if(!arrow_balanced_tsp_solve(&problem, &info, &btsp_params, lb_only,
-                                 &lb_result, &tour_result))
+    if(!arrow_balanced_tsp_dt(&problem, &info, &btsp_params, lb_only,
+                              &lb_result, &tour_result))
     {
         arrow_print_error("Could not solve BTSP on given problem.\n");
         ret = EXIT_FAILURE;
