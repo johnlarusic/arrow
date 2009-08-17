@@ -23,6 +23,7 @@ arrow_btsp_feasible(arrow_problem *problem, int num_steps,
     int ret = ARROW_SUCCESS;
     int i, j, k;
     int u, v;
+    int cost;
     double len;
        
     *feasible = ARROW_FALSE;
@@ -86,16 +87,22 @@ arrow_btsp_feasible(arrow_problem *problem, int num_steps,
                 /* Set this tour to the output variables then exit */
                 arrow_debug(" - tour found is feasible.\n");
                 result->found_tour = ARROW_TRUE;
-                result->min_cost = min_cost;
-                result->max_cost = max_cost;
+                result->min_cost = INT_MAX;
+                result->max_cost = INT_MIN;
 
                 len = 0.0;
                 for(k = 0; k < problem->size; k++)
                 {
                     u = tsp_result.tour[k];
                     v = tsp_result.tour[(k + 1) % problem->size];
+                    cost = problem->get_cost(problem, u, v);
                     
-                    len += problem->get_cost(problem, u, v);
+                    /* See if we've got a better min/max cost */
+                    if(cost < result->min_cost) result->min_cost = cost;
+                    if(cost > result->max_cost) result->max_cost = cost;
+                    
+                    /* Calculate the actual length of the tour */
+                    len += cost;
                     if(result->tour != NULL)
                         result->tour[k] = tsp_result.tour[k];
                 }
