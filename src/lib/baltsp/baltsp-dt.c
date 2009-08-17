@@ -99,11 +99,23 @@ arrow_balanced_tsp_dt(arrow_problem *problem,
     
     /* Main loop */
     arrow_debug("Starting balanced search [%d,%d]\n", params->lower_bound, params->upper_bound);
-    while((low <= high) && (low <= max) && (high < info->cost_list_length))
-    {
+    while((low <= high) && (high < info->cost_list_length))
+    {        
         low_val = info->cost_list[low];
         high_val = info->cost_list[high];
         printf("%d <= C[i,j] <= %d: ", low_val, high_val);
+        
+        if(best_tour_high - best_tour_low + params->upper_bound <= high_val)
+        {
+            arrow_debug("best_tour_high - best_tour_low + params->upper_bound <= high_val: quit search!\n");
+            if(low > max) arrow_debug("low > max: quit search!\n");
+            break;
+        }
+        if(low > max)
+        {
+            arrow_debug("low > max: quit search!\n");
+            break;
+        }
         
         tour_result->bin_search_steps++;
         
@@ -180,7 +192,9 @@ arrow_balanced_tsp_dt(arrow_problem *problem,
                 best_tour_low = cur_tour_result.min_cost;
                 best_tour_high = cur_tour_result.max_cost;
             }
-            low++;
+                    
+            while(tour_result->min_cost >= info->cost_list[low])
+                low++;
         }
         else
         {
