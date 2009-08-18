@@ -25,7 +25,7 @@ int
 arrow_balanced_tsp_dt(arrow_problem *problem, 
                       arrow_problem_info *info,
                       arrow_btsp_params *params, 
-                      int lb_only,
+                      int lb_only, int with_improvements,
                       arrow_bound_result *lb_result,
                       arrow_btsp_result *tour_result);
 

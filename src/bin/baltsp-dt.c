@@ -29,10 +29,11 @@ int shake_attempts = 1;
 int shake_rand_min = 0;
 int shake_rand_max = -1;
 int random_seed = 0;
-int lb_only;
+int lb_only = ARROW_FALSE;
+int with_improvements = ARROW_FALSE;
 
 /* Program options */
-#define NUM_OPTS 18
+#define NUM_OPTS 19
 arrow_option options[NUM_OPTS] = 
 {
     {'i', "input", "TSPLIB input file", 
@@ -75,7 +76,9 @@ arrow_option options[NUM_OPTS] =
         ARROW_OPTION_INT, &random_seed, ARROW_FALSE, ARROW_TRUE},
         
     {'L', "lb-only", "only check lower bound gap",
-        ARROW_OPTION_INT, &lb_only, ARROW_FALSE, ARROW_FALSE}
+        ARROW_OPTION_INT, &lb_only, ARROW_FALSE, ARROW_FALSE},
+    {'W', "with-improvements", "use improvements (faster, poor quality solution)",
+        ARROW_OPTION_INT, &with_improvements, ARROW_FALSE, ARROW_FALSE}
 };
 char *desc = "Balanced traveling salesman problem (BalTSP) solver";
 char *usage = "-i tsplib.tsp [options]";
@@ -200,7 +203,7 @@ main(int argc, char *argv[])
     /* Setup BTSP results structure and solve BTSP */
     arrow_btsp_result_init(&problem, &tour_result);
     if(!arrow_balanced_tsp_dt(&problem, &info, &btsp_params, lb_only,
-                              &lb_result, &tour_result))
+                              with_improvements, &lb_result, &tour_result))
     {
         arrow_print_error("Could not solve BTSP on given problem.\n");
         ret = EXIT_FAILURE;

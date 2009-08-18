@@ -24,7 +24,7 @@ int
 arrow_balanced_tsp_dt(arrow_problem *problem, 
                       arrow_problem_info *info,
                       arrow_btsp_params *params, 
-                      int lb_only,
+                      int lb_only, int with_improvements,
                       arrow_bound_result *lb_result,
                       arrow_btsp_result *tour_result)
 {
@@ -34,13 +34,15 @@ arrow_balanced_tsp_dt(arrow_problem *problem,
     int best_lb_low, best_lb_high;
     int best_tour_low, best_tour_high;
     int low_val, high_val, max;
-    int best_gap;
+    int best_gap, cur_gap;
     double start_time, end_time;
     arrow_problem asym_problem;
     arrow_problem *solve_problem;
     arrow_btsp_result cur_tour_result;
     
     /* Print out debug information */
+    arrow_debug("LB Only? %s\n", (lb_only ? "Yes" : "No"));
+    arrow_debug("With Improvements? %s\n", (with_improvements ? "Yes" : "No"));
     arrow_debug("Initial Lower Bound: %d\n", params->lower_bound);
     arrow_debug("Initial Upper Bound: %d\n", params->upper_bound);
     if(params->num_steps > 0)
@@ -105,11 +107,14 @@ arrow_balanced_tsp_dt(arrow_problem *problem,
         high_val = info->cost_list[high];
         printf("%d <= C[i,j] <= %d: ", low_val, high_val);
         
-        if(best_tour_high - best_tour_low + params->upper_bound <= high_val)
+        if(with_improvements)
         {
-            arrow_debug("best_tour_high - best_tour_low + params->upper_bound <= high_val: quit search!\n");
-            if(low > max) arrow_debug("low > max: quit search!\n");
-            break;
+            if(best_tour_high - best_tour_low + params->upper_bound <= high_val)
+            {
+                arrow_debug("Tour is heuristically optimal.\n");
+                if(low > max) arrow_debug("low > max: quit search!\n");
+                break;
+            }
         }
         if(low > max)
         {
@@ -133,8 +138,11 @@ arrow_balanced_tsp_dt(arrow_problem *problem,
         /* If the lower bounds check out, then ask feasibility question */
         if(is_feasible)
         {
-            best_lb_low = low_val;
-            best_lb_high = high_val;
+            if(high_val - low_val < best_lb_high - best_lb_low)
+            {
+                best_lb_low = low_val;
+                best_lb_high = high_val;
+            }
             
             if(!lb_only)
             {
@@ -163,38 +171,52 @@ arrow_balanced_tsp_dt(arrow_problem *problem,
             if(lb_only)
             {
                 arrow_debug("LB is feasible\n");
+                low++;
             }
             else
             {
                 arrow_debug("Found a feasible tour!\n");
-            
-                /* Copy over new best objective value and tour */
-                tour_result->min_cost = cur_tour_result.min_cost;
-                tour_result->max_cost = cur_tour_result.max_cost;
-                tour_result->tour_length = cur_tour_result.tour_length;
                 
-                if(tour_result->tour != NULL)
+                best_gap = best_tour_high - best_tour_low;
+                cur_gap = cur_tour_result.max_cost - cur_tour_result.min_cost; 
+                
+                if(cur_gap < best_gap)
                 {
-                    tour_result->found_tour = ARROW_TRUE;
-                    if(problem->symmetric)
-                    {
-                        for(i = 0; i < problem->size; i++)
-                            tour_result->tour[i] = cur_tour_result.tour[i];
-                    }
-                    else
-                    {
-                        arrow_util_sbtsp_to_abstp_tour(solve_problem, cur_tour_result.tour, 
-                                                       tour_result->tour);
-                        tour_result->tour_length += problem->size * params->infinity;
-                    }
-                }
-            
-                best_tour_low = cur_tour_result.min_cost;
-                best_tour_high = cur_tour_result.max_cost;
-            }
+                    arrow_debug("Tour is better than the current best solution.\n");
                     
-            while(tour_result->min_cost >= info->cost_list[low])
-                low++;
+                    /* Copy over new best objective value and tour */
+                    tour_result->min_cost = cur_tour_result.min_cost;
+                    tour_result->max_cost = cur_tour_result.max_cost;
+                    tour_result->tour_length = cur_tour_result.tour_length;
+                
+                    if(tour_result->tour != NULL)
+                    {
+                        tour_result->found_tour = ARROW_TRUE;
+                        if(problem->symmetric)
+                        {
+                            for(i = 0; i < problem->size; i++)
+                                tour_result->tour[i] = cur_tour_result.tour[i];
+                        }
+                        else
+                        {
+                            arrow_util_sbtsp_to_abstp_tour(solve_problem, cur_tour_result.tour, 
+                                                           tour_result->tour);
+                            tour_result->tour_length += problem->size * params->infinity;
+                        }
+                    }
+            
+                    best_tour_low = cur_tour_result.min_cost;
+                    best_tour_high = cur_tour_result.max_cost;
+                    
+                    while(tour_result->min_cost >= info->cost_list[low])
+                        low++;
+                }
+                else
+                {
+                    arrow_debug("Found tour is no better than current best\n");
+                    low++;
+                }
+            }
         }
         else
         {
@@ -206,9 +228,12 @@ arrow_balanced_tsp_dt(arrow_problem *problem,
                 best_gap = best_lb_high - best_lb_low;
             else
                 best_gap = best_tour_high - best_tour_low;
-                
-            while(info->cost_list[high] - info->cost_list[low] >= best_gap)
-                low++;
+            
+            if(with_improvements)
+            {
+                while(info->cost_list[high] - info->cost_list[low] >= best_gap)
+                    low++;
+            }
         }
         
         if(!lb_only) arrow_debug("\n");
