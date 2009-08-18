@@ -1,8 +1,8 @@
 /**********************************************************doxygen*//** @file
- * @brief   Balanced traveling salesman problem (Balanced TSP) methods.
+ * @brief   Balanced traveling salesman problem double threshold algorithm.
  *
- * Heuristic for solving the balanced traveling salesman problem 
- * (Balanced TSP).
+ * Heuristic for solving the balanced traveling salesman problem double
+ * threshold algorithm (BalTSP DT-Algorithm).
  *
  * @author  John LaRusic
  * @ingroup lib
@@ -13,6 +13,17 @@
 #include "baltsp.h"
 
 
+/****************************************************************************
+ * Private function prototypes
+ ****************************************************************************/
+/**
+ *  @brief  Determines if a tour is feasible given min/max costs based upon
+ *          lower bounds for the BTSP.
+ *  @param  problem [in] problem structure
+ *  @param  min_cost [in] min_cost to consider for active edges
+ *  @param  max_cost [in] max_cost to consider for active edges
+ *  @param  is_feasible [out] ARROW_TRUE if tour feasibly could exist
+ */
 int balanced_lb_feasible(arrow_problem *problem, int min_cost, int max_cost, 
                          int *is_feasible);
 
