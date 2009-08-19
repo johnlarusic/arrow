@@ -19,10 +19,21 @@
 #include "btsp.h"
 
 /****************************************************************************
- *  baltsp.c
+ *  baltsp-dt.c
  ****************************************************************************/
 int 
 arrow_balanced_tsp_dt(arrow_problem *problem, 
+                      arrow_problem_info *info,
+                      arrow_btsp_params *params, 
+                      int lb_only, int with_improvements,
+                      arrow_bound_result *lb_result,
+                      arrow_btsp_result *tour_result);
+
+/****************************************************************************
+ *  baltsp-ib.c
+ ****************************************************************************/
+int 
+arrow_balanced_tsp_ib(arrow_problem *problem, 
                       arrow_problem_info *info,
                       arrow_btsp_params *params, 
                       int lb_only, int with_improvements,
@@ -61,7 +72,14 @@ int
 arrow_baltsp_fun_shake(int shallow, int infinity, 
                        int random_min, int random_max,
                        arrow_problem_info *info, arrow_btsp_fun *fun);
- 
+
+/**
+ *  @brief  BalTSP Iterative Bottleneck transformation.
+ *  @param  shallow [in] ARROW_TRUE for shallow copy, ARROW_FALSE for deep
+ *  @param  fun [out] function structure
+ */
+int
+arrow_baltsp_fun_ib(int shallow, arrow_btsp_fun *fun);
  
 /* End C++ wrapper */
 #ifdef __cplusplus

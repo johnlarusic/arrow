@@ -122,6 +122,7 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
             }
             
             /* Copy over new best objective value and tour */
+            result->min_cost = cur_result.min_cost;
             result->max_cost = cur_result.max_cost;
             result->tour_length = cur_result.tour_length;
             if(result->tour != NULL)

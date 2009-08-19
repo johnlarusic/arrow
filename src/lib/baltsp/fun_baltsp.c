@@ -128,6 +128,34 @@ baltsp_shake_initialize(arrow_btsp_fun *fun);
 void
 baltsp_shake_destruct(arrow_btsp_fun *fun);
 
+/**
+ *  @brief  Retrieves cost between nodes i and j from the function.
+ *  @param  fun [in] function structure
+ *  @param  base_problem [in] problem structure
+ *  @param  min_cost [in] min_cost to consider for active edges
+ *  @param  max_cost [in] max_cost to consider for active edges
+ *  @param  i [in] id of start node
+ *  @param  j [in] id of end node
+ *  @return cost between node i and node j
+ */
+int
+baltsp_ib_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
+                   int min_cost, int max_cost, int i, int j);
+               
+/**
+ *  @brief  Determines if the given tour is feasible or not.
+ *  @param  fun [in] function structure
+ *  @param  problem [in] the problem to check against
+ *  @param  min_cost [in] min_cost to consider for active edges
+ *  @param  max_cost [in] max_cost to consider for active edges
+ *  @param  tour_length [in] the length of the given tour
+ *  @param  tour [in] the tour in node-node format
+ *  @return ARROW_TRUE if the tour is feasible, ARROW_FALSE if not
+ */
+int
+baltsp_ib_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem,
+                   int min_cost, int max_cost, double tour_length, int *tour);
+
 
 /****************************************************************************
  * Public function implementations
@@ -189,6 +217,18 @@ arrow_baltsp_fun_shake(int shallow, int infinity,
     fun->destruct = baltsp_shake_destruct;
     fun->feasible = baltsp_basic_feasible;
     
+    return ARROW_SUCCESS;
+}
+
+int
+arrow_baltsp_fun_ib(int shallow, arrow_btsp_fun *fun)
+{    
+    fun->data = NULL;
+    fun->shallow = shallow;
+    fun->get_cost = baltsp_ib_get_cost;
+    fun->initialize = baltsp_basic_initialize;
+    fun->destruct = baltsp_basic_destruct;
+    fun->feasible = baltsp_ib_feasible;
     return ARROW_SUCCESS;
 }
 
@@ -298,4 +338,25 @@ baltsp_shake_destruct(arrow_btsp_fun *fun)
         free(fun->data);
         fun->data = NULL;
     }
+}
+
+int
+baltsp_ib_get_cost(arrow_btsp_fun *fun, arrow_problem *base_problem,
+                    int min_cost, int max_cost, int i, int j)
+{
+    int cost = base_problem->get_cost(base_problem, i, j);
+    int infinity = base_problem->size * (max_cost + 1);
+    
+    if(cost >= min_cost)
+        return cost;
+    else
+        return infinity;
+}
+
+int
+baltsp_ib_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem, 
+                   int min_cost, int max_cost, double tour_length, int *tour)
+{
+    int infinity = base_problem->size * (max_cost + 1);
+    return (tour_length < infinity ? ARROW_TRUE : ARROW_FALSE);
 }
