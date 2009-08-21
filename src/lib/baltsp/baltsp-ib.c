@@ -29,7 +29,7 @@ btsp_lower_bound(arrow_problem *problem, arrow_problem_info *info, int *lower_bo
  *  @param  problem [in] problem structure
  *  @param  info [in] problem info
  *  @param  max_index [in] largest index to bother searching
- *  @param  gap_bound [out] array of gap bounds for each cost
+ *  @param  btsp_lbs [out] array of BTSP bounds for each cost
  *  @param  best_gap [out] smallest gap bound calculated
  *  @param  best_low [out] lower cost value for the best gap bound
  *  @param  best_high [out] upper cost value for the best gap bound
@@ -37,9 +37,60 @@ btsp_lower_bound(arrow_problem *problem, arrow_problem_info *info, int *lower_bo
  */
 int
 btsp_bounds(arrow_problem *problem, arrow_problem_info *info, int max_index, 
-            int *gap_bound, int *best_gap, int *best_low, int *best_high, 
+            int *btsp_lbs, int *best_gap, int *best_low, int *best_high, 
             double *total_time);
 
+/**
+ *  @brief  Calculates a sorted tree of unique BalTSP lower bounds
+ *  @param  info [in] problem info
+ *  @param  btsp_lbs [out] array of BTSP bounds for each cost
+ *  @param  max_index [in] largest index to bother searching
+ *  @param  tree [out] sorted tree of unique BalTSP lower bounds
+ */
+int
+baltsp_bounds_tree(arrow_problem_info *info, int *btsp_lbs, int max_index, 
+                   arrow_bintree *tree);
+
+/**
+ *  @brief  Fills the tiers of linked lists corresponding to BalTSP
+ *          lower bounds
+ *  @param  info [in] problem info
+ *  @param  btsp_lbs [out] array of BTSP bounds for each cost
+ *  @param  max_index [in] largest index to bother searching
+ *  @param  baltsp_lbs [in] array of BalTSP lower bounds
+ *  @param  num_baltsp_lbs [in] size of baltsp_lbs array
+ *  @param  tiers [out] array of linked lists to be filled
+ */
+int
+fill_tiers(arrow_problem_info *info, int *btsp_lbs, int max_index, 
+           int *baltsp_lb, int num_baltsp_lbs, arrow_llist *tiers);
+
+/**
+ *  @brief  Initializes tiers
+ *  @param  num_tiers [in] number of tiers to create
+ *  @param  tiers [out] array of linked lists to create
+ */
+int
+init_tiers(int num_tiers, arrow_llist **tiers);
+
+/**
+ *  @brief  Destructs tiers
+ *  @param  num_tiers [in] number of tiers to destroy
+ *  @param  tiers [out] array of linked lists to destroy
+ */
+void
+destruct_tiers(int num_tiers, arrow_llist **tiers);
+
+/**
+ *  @brief  Fills cost_order with a good order for processing them with the 
+ *          IB-algorithm.
+ *  @param  info [in] problem info
+ *  @param  max_index [in] largest index to bother searching
+ *  @param  btsp_lbs [in] array of BTSP bounds for each cost
+ *  @param  cost_order [out] specifically ordered array of costs
+ */
+int
+find_cost_order(arrow_problem_info *info, int max_index, int *btsp_lbs, int *cost_order);
 
 /****************************************************************************
  * Public function implementations
@@ -53,12 +104,13 @@ arrow_balanced_tsp_ib(arrow_problem *problem,
                       arrow_btsp_result *tour_result)
 {
     int ret = ARROW_SUCCESS;
-    int i, low;
+    int i, k, low_idx;
     int best_lb_low, best_lb_high;
     int best_tour_low, best_tour_high;
     int low_val, max;
     int best_gap, cur_gap, lb_gap;
-    int *btsp_lb;
+    int *btsp_lbs;
+    int *cost_order;
     double start_time, end_time;
     arrow_btsp_fun fun_ib;
     arrow_problem *solve_problem;
@@ -113,15 +165,24 @@ arrow_balanced_tsp_ib(arrow_problem *problem,
         goto CLEANUP;
     }
     
-    /* Calculate BTSP bounds for each unique cost */
-    if(!arrow_util_create_int_array(max + 1, &btsp_lb))
+    /* Initialize a couple of arrays */
+    if(!arrow_util_create_int_array(max + 1, &btsp_lbs))
     {
         arrow_print_error("Could not create gap_bound array\n");
+        btsp_lbs = NULL;
+        ret = ARROW_FAILURE;
+        goto CLEANUP;
+    }
+    if(!arrow_util_create_int_array(max + 1, &cost_order))
+    {
+        arrow_print_error("Could not create cost_order array\n");
+        cost_order = NULL;
         ret = ARROW_FAILURE;
         goto CLEANUP;
     }
     
-    if(!btsp_bounds(problem, info, max, btsp_lb, &(lb_result->obj_value), 
+    /* Calculate BTSP lower bounds for each cost */
+    if(!btsp_bounds(problem, info, max, btsp_lbs, &(lb_result->obj_value), 
                     &best_lb_low, &best_lb_high, &(lb_result->total_time)))
     {
         arrow_print_error("Could not calculate gap bounds\n");
@@ -130,101 +191,117 @@ arrow_balanced_tsp_ib(arrow_problem *problem,
     }
     
     /* Print values out for debug purposes */
-    arrow_debug("z_i\tLB\tGAP\n");
+    arrow_debug("Balanced TSP Gaps\n");
+    arrow_debug("i\tz_i\tLB\tGAP\n");
     for(i = 0; i <= max; i++)
     {
-        arrow_debug("%d\t%d\t%d\n", info->cost_list[i], btsp_lb[i], 
-                    btsp_lb[i] - info->cost_list[i]);
+        arrow_debug("%d\t%d\t%d\t%d\n", i, info->cost_list[i], btsp_lbs[i], 
+                    btsp_lbs[i] - info->cost_list[i]);
     }    
+    
+    /* Find a good cost order */
+    if(!find_cost_order(info, max, btsp_lbs, cost_order))
+    {
+        arrow_print_error("Could not find good cost order\n");
+        ret = ARROW_FAILURE;
+        goto CLEANUP;
+    }
    
     /* Main loop */
-    if(!lb_only)
+    if(lb_only) goto CLEANUP;
+    
+    arrow_debug("Starting iterative bottleneck search\n");
+    for(i = 0; i <= max; i++)
     {
-        arrow_debug("Starting iterative bottleneck search\n");
-        low = 0;
-        while(low <= max)
-        {        
-            low_val = info->cost_list[low];
-            printf("C[i,j] >= %d:\n", low_val);
-            
-            tour_result->bin_search_steps++;
-            
-            lb_gap = btsp_lb[low] - low_val;
-            best_gap = best_tour_high - best_tour_low;
+        low_idx = cost_order[i];
+        printf("Cost Index: %d\n", low_idx);
+        low_val = info->cost_list[low_idx];
+        printf("C[i,j] >= %d:\n", low_val);
+        
+        tour_result->bin_search_steps++;
+        
+        lb_gap = btsp_lbs[low_idx] - low_val;
+        best_gap = best_tour_high - best_tour_low;
 
-            arrow_debug("LB-Gap %d vs. Best-Gap %d\n", lb_gap, best_gap);
-            
-            /* If the lower bounds look promising, then ask feasibility question */
-            if(lb_gap < best_gap)
-            {
-                /* Create problem that ignores C[i,j] < low_val */
-                if(!arrow_btsp_fun_apply(&fun_ib, solve_problem, low_val, info->max_cost, &ib_problem))
-                {
-                    arrow_debug("Could not create IB cost matrix\n");
-                    ret = ARROW_FAILURE;
-                    goto CLEANUP;
-                }
-                        
-                arrow_debug("LB is promising, now trying to find a tour...\n");
-                start_time = arrow_util_zeit();
-                params->lower_bound = btsp_lb[low];
-                if(!arrow_btsp_solve(&ib_problem, info, params, &cur_tour_result))
-                {
-                    arrow_debug("Error searching for BTSP tour\n");
-                    ret = ARROW_FAILURE;
-                    goto CLEANUP;
-                }
-                end_time = arrow_util_zeit();
-                tour_result->total_time += end_time - start_time;
-            
-                for(i = 0; i < ARROW_TSP_SOLVER_COUNT; i++)
-                {
-                    tour_result->solver_attempts[i] += cur_tour_result.solver_attempts[i];
-                    tour_result->solver_time[i] += cur_tour_result.solver_time[i];
-                }
-                
-                arrow_problem_destruct(&ib_problem);
-            
-                /* See if we improved the best known gap */
-                cur_gap = cur_tour_result.max_cost - cur_tour_result.min_cost;
-                if(cur_gap < best_gap)
-                {
-                    arrow_debug("Tour is better than the current best solution.\n");
-                    tour_result->min_cost = cur_tour_result.min_cost;
-                    tour_result->max_cost = cur_tour_result.max_cost;
-                    tour_result->tour_length = cur_tour_result.tour_length;
-                    tour_result->found_tour = ARROW_TRUE;
-                
-                    if(tour_result->tour != NULL)
-                    {
-                        for(i = 0; i < problem->size; i++)
-                            tour_result->tour[i] = cur_tour_result.tour[i];
-                    }
+        arrow_debug("LB-Gap %d vs. Best-Gap %d\n", lb_gap, best_gap);
         
-                    best_tour_low = cur_tour_result.min_cost;
-                    best_tour_high = cur_tour_result.max_cost;
-                    arrow_debug("Tour exists in [%d,%d] = %d\n", best_tour_low, best_tour_high,
-                        best_tour_high - best_tour_low);
-                }
-                else
+        /* Since we solve these problems in order of smallest Balanced TSP gap
+           to largest, if at any point we notice our best gap is greater than
+           the lower bound gap, we can quit the search */
+        if(best_gap <= lb_gap)
+        {
+            arrow_debug("Best known solution better than the current lower bound, so quit.\n");
+            break;
+        }
+        
+        /* Create problem that ignores C[i,j] < low_val */
+        if(!arrow_btsp_fun_apply(&fun_ib, solve_problem, low_val, info->max_cost, &ib_problem))
+        {
+            arrow_debug("Could not create IB cost matrix\n");
+            ret = ARROW_FAILURE;
+            goto CLEANUP;
+        }
+        printf("fixed_edges in original: %d\n", solve_problem->fixed_edges);
+        printf("fixed_edges in ib problem: %d\n", ib_problem.fixed_edges);
+                
+        start_time = arrow_util_zeit();
+        params->lower_bound = btsp_lbs[low_idx];
+        if(!arrow_btsp_solve(&ib_problem, info, params, &cur_tour_result))
+        {
+            arrow_debug("Error searching for BTSP tour\n");
+            ret = ARROW_FAILURE;
+            goto CLEANUP;
+        }
+        end_time = arrow_util_zeit();
+        tour_result->total_time += end_time - start_time;
+    
+        for(k = 0; k < ARROW_TSP_SOLVER_COUNT; k++)
+        {
+            tour_result->solver_attempts[k] += cur_tour_result.solver_attempts[k];
+            tour_result->solver_time[k] += cur_tour_result.solver_time[k];
+        }
+        
+        arrow_problem_destruct(&ib_problem);
+    
+        /* See if we improved the best known gap */
+        if(cur_tour_result.found_tour)
+        {
+            cur_gap = cur_tour_result.max_cost - cur_tour_result.min_cost;
+            if(cur_gap < best_gap)
+            {
+                arrow_debug("Tour is better than the current best solution.\n");
+                tour_result->min_cost = cur_tour_result.min_cost;
+                tour_result->max_cost = cur_tour_result.max_cost;
+                tour_result->tour_length = cur_tour_result.tour_length;
+                tour_result->found_tour = ARROW_TRUE;
+        
+                if(tour_result->tour != NULL)
                 {
-                    arrow_debug("Tour is no better than the current best solution.\n");
+                    for(k = 0; k < problem->size; k++)
+                        tour_result->tour[k] = cur_tour_result.tour[k];
                 }
+
+                best_tour_low = cur_tour_result.min_cost;
+                best_tour_high = cur_tour_result.max_cost;
+                arrow_debug("Tour exists in [%d,%d] = %d\n", best_tour_low, best_tour_high,
+                    best_tour_high - best_tour_low);
             }
-            
-            low++;
-        
-            if(btsp_lb[low] >= info->max_cost)
+            else
             {
-                arrow_debug("Lower Bound is equal to max cost in problem so we can quit\n");
-                break;
+                arrow_debug("Tour is no better than the current best solution.\n");
             }
         }
-        arrow_debug("\n");
+        else
+        {
+            arrow_debug("Could not find tour\n");
+        }
+        
     }
+    arrow_debug("\n");
 
 CLEANUP:
-    free(btsp_lb);
+    if(cost_order != NULL) free(cost_order);
+    if(btsp_lbs != NULL) free(btsp_lbs);
     arrow_btsp_fun_destruct(&fun_ib);
     arrow_btsp_result_destruct(&cur_tour_result);
     return ARROW_SUCCESS;
@@ -235,7 +312,8 @@ CLEANUP:
  * Private function implementations
  ****************************************************************************/
 int 
-btsp_lower_bound(arrow_problem *problem, arrow_problem_info *info, int *lower_bound)
+btsp_lower_bound(arrow_problem *problem, arrow_problem_info *info, 
+                 int *lower_bound)
 {
     arrow_bound_result result;
     
@@ -251,7 +329,7 @@ btsp_lower_bound(arrow_problem *problem, arrow_problem_info *info, int *lower_bo
 
 int
 btsp_bounds(arrow_problem *problem, arrow_problem_info *info, int max_index, 
-            int *btsp_lb, int *best_gap, int *best_low, int *best_high, 
+            int *btsp_lbs, int *best_gap, int *best_low, int *best_high, 
             double *total_time)
 {
     int ret = ARROW_SUCCESS;
@@ -300,7 +378,7 @@ btsp_bounds(arrow_problem *problem, arrow_problem_info *info, int max_index,
         
         /* Store calculated value for later, update best lower bound */
         gap = lb - cost;
-        btsp_lb[i] = lb;    
+        btsp_lbs[i] = lb;    
         if(gap < *best_gap)
         {
             *best_low = cost;
@@ -319,54 +397,170 @@ CLEANUP:
 }
 
 int
-gap_tiers(arrow_problem_info *info, int *gap_bound, int max_index, arrow_llist **tier)
+baltsp_bounds_tree(arrow_problem_info *info, int *btsp_lbs, int max_index, 
+                   arrow_bintree *tree)
 {
-    int ret = ARROW_SUCCESS;
     int i;
-    int *gap;
-    int gap_length;
-    arrow_bintree tree;
-    arrow_hash hash;
     
     /* Sort the unique gap values */
-    arrow_bintree_init(&tree);        
+    arrow_bintree_init(tree);        
     for(i = 0; i <= max_index; i++)
     {    
-        if(!arrow_bintree_insert(&tree, gap_bound[i] - info->cost_list[i]))
+        if(!arrow_bintree_insert(tree, btsp_lbs[i] - info->cost_list[i]))
         {
-            arrow_print_error("Could not sort gap bounds");
-            goto CLEANUP;
+            arrow_print_error("Could not sort BalTSP lower bounds");
+            arrow_bintree_destruct(tree);
+            return ARROW_FAILURE;
         }
     }
     
-    /* Convert tree to an array */
-    arrow_bintree_to_new_array(&tree, &gap);
-    gap_length = tree.size;
+    return ARROW_SUCCESS;
+}
+
+int
+fill_tiers(arrow_problem_info *info, int *btsp_lbs, int max_index, 
+           int *baltsp_lb, int num_baltsp_lbs, arrow_llist *tiers)
+{
+    int ret = ARROW_SUCCESS;
+    int i;
+    int cost;
+    int gap;
+    int idx;
+    arrow_hash hash;
+    arrow_llist *list;
     
     /* Create a hash of the unique values */
-    if(!arrow_hash_cost_list(gap, gap_length, &hash))
+    if(!arrow_hash_cost_list(baltsp_lb, num_baltsp_lbs, &hash))
     {
-        arrow_print_error("Could not create hash of unique gap bounds");
+        arrow_print_error("Could not create hash of unique BalTSP bounds");
         goto CLEANUP;
     }
     
-    /* We create a tier for each unique gap bound */
-    if((*tier = malloc(gap_length * sizeof(arrow_llist))) == NULL)
+    for(i = 0; i <= max_index; i++)
+    {
+        cost = info->cost_list[i];
+        gap = btsp_lbs[i] - cost;
+        idx = arrow_hash_search(&hash, gap);
+        
+        list = &(tiers[idx]);
+        arrow_llist_insert_tail(list, i);
+    }
+
+CLEANUP:
+    arrow_hash_destruct(&hash);
+    return ret;
+}
+
+int
+init_tiers(int num_tiers, arrow_llist **tiers)
+{
+    int i;
+    arrow_llist *tier;
+    
+    /* Allocate memory */
+    if((*tiers = malloc(num_tiers * sizeof(arrow_llist))) == NULL)
     {
         arrow_print_error("Error allocating memory for array of linked lists.");
-        *tier = NULL;
+        *tiers = NULL;
+        return ARROW_FAILURE;
+    }
+    
+    /* Initialize lists */
+    for(i = 0; i < num_tiers; i++)
+    {
+        tier = &((*tiers)[i]);
+        arrow_llist_init(tier);
+    }
+    
+    return ARROW_SUCCESS;
+}
+
+void
+destruct_tiers(int num_tiers, arrow_llist **tiers)
+{
+    int i;
+    arrow_llist *tier;
+    
+    if(*tiers != NULL)
+    {
+        for(i = 0; i < num_tiers; i++)
+        {
+            tier = &((*tiers)[i]);
+            arrow_llist_destruct(tier);
+        }
+        free(*tiers);
+    }
+}
+
+int
+find_cost_order(arrow_problem_info *info, int max_index, int *btsp_lbs, int *cost_order)
+{
+    int ret = ARROW_SUCCESS;
+    int i, k;
+    int idx;
+    int *baltsp_lbs;
+    int num_tiers;
+    arrow_llist *tier;
+    arrow_llist *tiers;
+    arrow_bintree tree;
+        
+    /* Find a list of unique BalTSP lower bounds */
+    if(!baltsp_bounds_tree(info, btsp_lbs, max_index, &tree))
+    {
+        arrow_print_error("Could not create BalTSP bounds list");
+        return ARROW_FAILURE;
+    }
+    
+    /* Create array for holding Balanced TSP lower bounds */
+    if(!arrow_util_create_int_array(tree.size, &baltsp_lbs))
+    {
+        arrow_print_error("Could not create baltsp_lbs array\n");
+        baltsp_lbs = NULL;
         ret = ARROW_FAILURE;
         goto CLEANUP;
     }
     
-    /* Initialize each tier of linked lists */
-    for(i = 0; i < gap_length; i++)
-        arrow_llist_init(&((*tier)[i]));
-
+    /* Convert tree to an array */
+    arrow_bintree_to_array(&tree, baltsp_lbs);
+    num_tiers = tree.size;
     
+    /* Create and fill the list of tiers with costs corresponding to each 
+       BalTSP lower bound */
+    if(!init_tiers(num_tiers, &tiers))
+    {
+        arrow_print_error("Could not create tiers of linked lists");
+        tiers = NULL;
+        ret = ARROW_FAILURE;
+        goto CLEANUP;
+    }
+    if(!fill_tiers(info, btsp_lbs, max_index, baltsp_lbs, num_tiers, tiers))
+    {
+        arrow_print_error("Could not fill tiers of linked lists");
+        ret = ARROW_FAILURE;
+        goto CLEANUP;
+    }
+    
+    /* Fill cost_order according to order in tiers */
+    i = 0;
+    for(k = 0; k < num_tiers; k++)
+    {
+        tier = &(tiers[k]);
+        while(tier->size > 0)
+        {
+            arrow_llist_remove_head(tier, &idx);
+            cost_order[i] = idx;
+            i++;
+        }
+    }
 
+    arrow_debug("Cost index order: ");
+    for(i = 0; i <= max_index; i++)
+        arrow_debug("%d, ", cost_order[i]);
+    arrow_debug("EOL\n\n");
+          
 CLEANUP:
-    arrow_hash_destruct(&hash);
+    free(baltsp_lbs);
+    destruct_tiers(num_tiers, &tiers);
     arrow_bintree_destruct(&tree);
     return ret;
 }
