@@ -266,19 +266,30 @@ int balanced_lb_feasible(arrow_problem *problem, int min_cost, int max_cost,
 {
     *is_feasible = ARROW_FALSE;
         
+    if(!arrow_bbssp_biconnected(problem, min_cost, max_cost, is_feasible))
+    {
+        printf("Could not solve BBSSP for balanced LB.\n");
+        return ARROW_FAILURE;
+    }
+    if(!*is_feasible)
+    {
+        printf("BBSSP is infeasible.\n");
+        return ARROW_SUCCESS;
+    }
+
+    if(!arrow_bap_has_assignment(problem, min_cost, max_cost, is_feasible))
+    {
+        arrow_print_error("Could not solve BAP for balanced LB\n");
+        return ARROW_FAILURE;
+    }
+    if(!*is_feasible)
+    {
+        printf("BAP is infeasible.\n");
+        return ARROW_SUCCESS;
+    }
+
     if(!problem->symmetric)
     {
-        if(!arrow_bap_has_assignment(problem, min_cost, max_cost, is_feasible))
-        {
-            arrow_print_error("Could not solve BAP for balanced LB\n");
-            return ARROW_FAILURE;
-        }
-        if(!*is_feasible)
-        {
-            printf("BAP is infeasible.\n");
-            return ARROW_SUCCESS;
-        }
-        
         if(!arrow_bscssp_connected(problem, min_cost, max_cost, is_feasible))
         {
             arrow_print_error("Could not solve BSCSSP for balanced LB\n");
@@ -290,18 +301,6 @@ int balanced_lb_feasible(arrow_problem *problem, int min_cost, int max_cost,
             return ARROW_SUCCESS;
         }
     }
-    
-    if(!arrow_bbssp_biconnected(problem, min_cost, max_cost, is_feasible))
-    {
-        printf("Could not solve BBSSP for balanced LB.\n");
-        return ARROW_FAILURE;
-    }
-    if(!*is_feasible)
-    {
-        printf("BBSSP is infeasible.\n");
-        return ARROW_SUCCESS;
-    }
-    
     
     return ARROW_SUCCESS;
 }
