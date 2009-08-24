@@ -28,7 +28,8 @@ btsp_lower_bound(arrow_problem *problem, arrow_problem_info *info, int *lower_bo
  *  @brief  Calculates BTSP lower bounds for each unique cost
  *  @param  problem [in] problem structure
  *  @param  info [in] problem info
- *  @param  max_index [in] largest index to bother searching
+ *  @param  max_index [in/out] largest index to bother searching (can change if
+ *              lower bounds infeasible for some value)
  *  @param  btsp_lbs [out] array of BTSP bounds for each cost
  *  @param  best_gap [out] smallest gap bound calculated
  *  @param  best_low [out] lower cost value for the best gap bound
@@ -36,7 +37,7 @@ btsp_lower_bound(arrow_problem *problem, arrow_problem_info *info, int *lower_bo
  *  @param  total_time [out] total time spent calculating lower bound values
  */
 int
-btsp_bounds(arrow_problem *problem, arrow_problem_info *info, int max_index, 
+btsp_bounds(arrow_problem *problem, arrow_problem_info *info, int *max_index, 
             int *btsp_lbs, int *best_gap, int *best_low, int *best_high, 
             double *total_time);
 
@@ -173,16 +174,9 @@ arrow_balanced_tsp_ib(arrow_problem *problem,
         ret = ARROW_FAILURE;
         goto CLEANUP;
     }
-    if(!arrow_util_create_int_array(max + 1, &cost_order))
-    {
-        arrow_print_error("Could not create cost_order array\n");
-        cost_order = NULL;
-        ret = ARROW_FAILURE;
-        goto CLEANUP;
-    }
-    
+        
     /* Calculate BTSP lower bounds for each cost */
-    if(!btsp_bounds(problem, info, max, btsp_lbs, &(lb_result->obj_value), 
+    if(!btsp_bounds(problem, info, &max, btsp_lbs, &(lb_result->obj_value), 
                     &best_lb_low, &best_lb_high, &(lb_result->total_time)))
     {
         arrow_print_error("Could not calculate gap bounds\n");
@@ -198,8 +192,15 @@ arrow_balanced_tsp_ib(arrow_problem *problem,
         arrow_debug("%d\t%d\t%d\t%d\n", i, info->cost_list[i], btsp_lbs[i], 
                     btsp_lbs[i] - info->cost_list[i]);
     }    
-    
+        
     /* Find a good cost order */
+    if(!arrow_util_create_int_array(max + 1, &cost_order))
+    {
+        arrow_print_error("Could not create cost_order array\n");
+        cost_order = NULL;
+        ret = ARROW_FAILURE;
+        goto CLEANUP;
+    }
     if(!find_cost_order(info, max, btsp_lbs, cost_order))
     {
         arrow_print_error("Could not find good cost order\n");
@@ -323,12 +324,12 @@ btsp_lower_bound(arrow_problem *problem, arrow_problem_info *info,
         return ARROW_FAILURE;
     }
     *lower_bound = result.obj_value;
-    
+        
     return ARROW_SUCCESS;
 }
 
 int
-btsp_bounds(arrow_problem *problem, arrow_problem_info *info, int max_index, 
+btsp_bounds(arrow_problem *problem, arrow_problem_info *info, int *max_index, 
             int *btsp_lbs, int *best_gap, int *best_low, int *best_high, 
             double *total_time)
 {
@@ -353,7 +354,7 @@ btsp_bounds(arrow_problem *problem, arrow_problem_info *info, int max_index,
     *best_gap = INT_MAX;
     *total_time = 0.0;
     
-    for(i = 0; i <= max_index; i++)
+    for(i = 0; i <= *max_index; i++)
     {
         cost = info->cost_list[i];
         
@@ -375,6 +376,16 @@ btsp_bounds(arrow_problem *problem, arrow_problem_info *info, int max_index,
         }
         end_time = arrow_util_zeit();
         *total_time += (end_time - start_time);
+        
+        /* A negative value indicates an infeasible lower bound, so we quit here */
+        if(lb < 0)
+        {
+            arrow_debug("Negative value for the lower bound #%d, so quit\n", i);
+            arrow_debug("Old Max Index Value: %d\n", *max_index);
+            *max_index = i - 1;
+            arrow_debug("New Max Index Value: %d\n", *max_index);
+            break;
+        }
         
         /* Store calculated value for later, update best lower bound */
         gap = lb - cost;

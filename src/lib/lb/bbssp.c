@@ -80,7 +80,11 @@ arrow_bbssp_solve(arrow_problem *problem, arrow_problem_info *info,
     end_time = arrow_util_zeit();
     
     /* Return the cost we converged to as the answer */
-    result->obj_value = info->cost_list[low];
+    if((result->obj_value == info->max_cost) && !connected)
+        result->obj_value = -1;
+    else
+        result->obj_value = info->cost_list[low];
+        
     result->total_time = end_time - start_time;
     return ARROW_SUCCESS;
 }
