@@ -138,17 +138,17 @@ arrow_tsp_cc_lk_solve(arrow_problem *problem, arrow_tsp_cc_lk_params *params,
     
     /* Some of the following code is heavily copied from the find_tour
        method in Concorde's TSP/concorde.c */
-    arrow_debug("Entering arrow_tsp_cc_lk_solve\n");
+    //arrow_debug("Entering arrow_tsp_cc_lk_solve\n");
     
     /* Determine if we need to setup the userdat structure */
     if(problem->type == ARROW_PROBLEM_DATA_CONCORDE)
     {
-        arrow_debug("Using passed Concorde data structure\n");
+        //arrow_debug("Using passed Concorde data structure\n");
         dat = (CCdatagroup *)problem->data;
     }
     else
     {
-        arrow_debug("Using passed Arrow data structure\n");
+        //arrow_debug("Using passed Arrow data structure\n");
         dat = &arrow_data;
         CCutil_init_datagroup(dat);
         arrow_data.userdat.data = problem;
@@ -160,21 +160,22 @@ arrow_tsp_cc_lk_solve(arrow_problem *problem, arrow_tsp_cc_lk_params *params,
     /* Set default params if none are passed */
     if(params == NULL)
     {
-        arrow_debug(" - No parameters set, so using default.\n");
+        //arrow_debug(" - No parameters set, so using default.\n");
         arrow_tsp_cc_lk_params_init(problem, &lk_params);
     }
     else
     {
-        arrow_debug(" - Passed parameters.\n");
+        //arrow_debug(" - Passed parameters.\n");
         lk_params = *params;
     }
+    /*
     arrow_debug("     - random_restarts = %d\n", lk_params.random_restarts);
     arrow_debug("     - stall_count = %d\n", lk_params.stall_count);
     arrow_debug("     - kicks = %d\n", lk_params.kicks);
     arrow_debug("     - kick_type = %d\n", lk_params.kick_type);
     arrow_debug("     - time_bound = %1.2f\n", lk_params.time_bound);
     arrow_debug("     - length_bound = %.0f\n", lk_params.length_bound);
-    
+    */
     CCutil_sprand((int)CCutil_real_zeit(), &rstate);
     
     /* cyc temporarily holds a tour found by the LK algorithm */
@@ -193,7 +194,7 @@ arrow_tsp_cc_lk_solve(arrow_problem *problem, arrow_tsp_cc_lk_params *params,
     
     /* We start by building up a set of "good" edges for the heuristic
        to chew upon */
-    arrow_debug(" - Building set of 'good' edges... ");
+    //arrow_debug(" - Building set of 'good' edges... ");
     CCedgegen_init_edgegengroup(&plan);
     plan.quadnearest = 2;
     cc_ret = CCedgegen_edges(&plan, problem->size, dat, 
@@ -205,14 +206,14 @@ arrow_tsp_cc_lk_solve(arrow_problem *problem, arrow_tsp_cc_lk_params *params,
         goto CLEANUP;
     }
     plan.quadnearest = 0;
-    arrow_debug("done.\n");
+    //arrow_debug("done.\n");
     
     /* If none is passed, we construct an initial starting tour */
     if(lk_params.initial_tour == NULL)
     {
-        arrow_debug(" - Building initial tour... ");
+        //arrow_debug(" - Building initial tour... ");
         build_initial_tour(problem->size, dat, &plan, &rstate, cyc);
-        arrow_debug("done.\n");
+        //arrow_debug("done.\n");
     }
     else
     {
@@ -278,7 +279,7 @@ arrow_tsp_cc_lk_solve(arrow_problem *problem, arrow_tsp_cc_lk_params *params,
     }
     else
     {
-        printf(" - Copying over found tour\n");
+        //printf(" - Copying over found tour\n");
         result->obj_value = bestval;
         if(result->tour != NULL)
         {
@@ -287,8 +288,8 @@ arrow_tsp_cc_lk_solve(arrow_problem *problem, arrow_tsp_cc_lk_params *params,
                 result->tour[i] = bestcyc[i];
             }
         }
-        else
-            arrow_debug("tour is NULL\n");
+        //else
+            //arrow_debug("tour is NULL\n");
     }
 
 CLEANUP:
@@ -296,7 +297,7 @@ CLEANUP:
     end_time = arrow_util_zeit();
     result->total_time = end_time - start_time;
     
-    arrow_debug(" - Cleaning up\n");
+    //arrow_debug(" - Cleaning up\n");
     CC_IFFREE(cyc, int);
     CC_IFFREE(elist, int);
     CC_IFFREE(bestcyc, int);
@@ -304,7 +305,7 @@ CLEANUP:
     if(params == NULL)
         arrow_tsp_cc_lk_params_destruct(&lk_params);
     
-    arrow_debug("Leaving arrow_tsp_cc_lk_solve\n");
+    //arrow_debug("Leaving arrow_tsp_cc_lk_solve\n");
     return ret;
 }
 
