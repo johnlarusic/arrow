@@ -28,6 +28,7 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
     result->found_tour = ARROW_FALSE;
 
     /* Print out debug information */
+    /*
     arrow_debug("Confirm solution?: %s\n", 
         params->confirm_sol == ARROW_TRUE ? "Yes" : "No");
     arrow_debug("Supress EBST?: %s\n", 
@@ -41,6 +42,7 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
         arrow_debug("Total solve steps: %d\n", params->num_steps);
     }
     arrow_debug("\n");
+    */
     
     /* Start enhanced threshold heuristic */
     arrow_debug("Starting enhanced threshold heuristic\n");

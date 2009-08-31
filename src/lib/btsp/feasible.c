@@ -17,8 +17,8 @@ arrow_btsp_feasible(arrow_problem *problem, int num_steps,
                     arrow_btsp_solve_plan *steps, int min_cost, int max_cost, 
                     int *feasible, arrow_btsp_result *result)
 {
-    printf("Feasible?: %d <= C[i,j] <= %d\n", min_cost, max_cost);
-    printf("is_symmetric = %d; size = %d;\n", problem->symmetric, problem->size);
+    //printf("Feasible?: %d <= C[i,j] <= %d\n", min_cost, max_cost);
+    //printf("is_symmetric = %d; size = %d;\n", problem->symmetric, problem->size);
     
     int ret = ARROW_SUCCESS;
     int i, j, k;

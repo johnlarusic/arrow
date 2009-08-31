@@ -243,7 +243,7 @@ btsp_basic_feasible(arrow_btsp_fun *fun, arrow_problem *base_problem,
 {    
     if(base_problem->fixed_edges > 0)
     {
-        arrow_debug("Checking for fixed edges...\n");
+        //arrow_debug("Checking for fixed edges...\n");
         int i, u, v, cost;
         int fixed_edge_count = 0;
     
