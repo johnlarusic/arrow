@@ -110,6 +110,7 @@ arrow_balanced_tsp_ib(arrow_problem *problem,
     int best_tour_low, best_tour_high;
     int low_val, max;
     int best_gap, cur_gap, lb_gap;
+    int no_tour_cost;
     int *btsp_lbs;
     int *cost_order;
     double start_time, end_time;
@@ -185,13 +186,15 @@ arrow_balanced_tsp_ib(arrow_problem *problem,
     }
     
     /* Print values out for debug purposes */
+    /*
     arrow_debug("Balanced TSP Gaps\n");
     arrow_debug("i\tz_i\tLB\tGAP\n");
     for(i = 0; i <= max; i++)
     {
         arrow_debug("%d\t%d\t%d\t%d\n", i, info->cost_list[i], btsp_lbs[i], 
                     btsp_lbs[i] - info->cost_list[i]);
-    }    
+    }
+    */
         
     /* Find a good cost order */
     if(!arrow_util_create_int_array(max + 1, &cost_order))
@@ -212,91 +215,108 @@ arrow_balanced_tsp_ib(arrow_problem *problem,
     if(lb_only) goto CLEANUP;
     
     arrow_debug("Starting iterative bottleneck search\n");
+    no_tour_cost = info->max_cost + 1;
     for(i = 0; i <= max; i++)
     {
         low_idx = cost_order[i];
+        printf("------------------------------------\n");
         printf("Cost Index: %d\n", low_idx);
         low_val = info->cost_list[low_idx];
         printf("C[i,j] >= %d:\n", low_val);
         
-        tour_result->bin_search_steps++;
-        
-        lb_gap = btsp_lbs[low_idx] - low_val;
-        best_gap = best_tour_high - best_tour_low;
-
-        arrow_debug("LB-Gap %d vs. Best-Gap %d\n", lb_gap, best_gap);
-        
-        /* Since we solve these problems in order of smallest Balanced TSP gap
-           to largest, if at any point we notice our best gap is greater than
-           the lower bound gap, we can quit the search */
-        if(best_gap <= lb_gap)
+        if(low_val > no_tour_cost)
         {
-            arrow_debug("Best known solution better than the current lower bound, so quit.\n");
-            break;
-        }
-        
-        /* Create problem that ignores C[i,j] < low_val */
-        if(!arrow_btsp_fun_apply(&fun_ib, solve_problem, low_val, info->max_cost, &ib_problem))
-        {
-            arrow_debug("Could not create IB cost matrix\n");
-            ret = ARROW_FAILURE;
-            goto CLEANUP;
-        }
-        printf("fixed_edges in original: %d\n", solve_problem->fixed_edges);
-        printf("fixed_edges in ib problem: %d\n", ib_problem.fixed_edges);
-                
-        start_time = arrow_util_zeit();
-        params->lower_bound = btsp_lbs[low_idx];
-        if(!arrow_btsp_solve(&ib_problem, info, params, &cur_tour_result))
-        {
-            arrow_debug("Error searching for BTSP tour\n");
-            ret = ARROW_FAILURE;
-            goto CLEANUP;
-        }
-        end_time = arrow_util_zeit();
-        tour_result->total_time += end_time - start_time;
-    
-        for(k = 0; k < ARROW_TSP_SOLVER_COUNT; k++)
-        {
-            tour_result->solver_attempts[k] += cur_tour_result.solver_attempts[k];
-            tour_result->solver_time[k] += cur_tour_result.solver_time[k];
-        }
-        
-        arrow_problem_destruct(&ib_problem);
-    
-        /* See if we improved the best known gap */
-        if(cur_tour_result.found_tour)
-        {
-            cur_gap = cur_tour_result.max_cost - cur_tour_result.min_cost;
-            if(cur_gap < best_gap)
-            {
-                arrow_debug("Tour is better than the current best solution.\n");
-                tour_result->min_cost = cur_tour_result.min_cost;
-                tour_result->max_cost = cur_tour_result.max_cost;
-                tour_result->tour_length = cur_tour_result.tour_length;
-                tour_result->found_tour = ARROW_TRUE;
-        
-                if(tour_result->tour != NULL)
-                {
-                    for(k = 0; k < problem->size; k++)
-                        tour_result->tour[k] = cur_tour_result.tour[k];
-                }
-
-                best_tour_low = cur_tour_result.min_cost;
-                best_tour_high = cur_tour_result.max_cost;
-                arrow_debug("Tour exists in [%d,%d] = %d\n", best_tour_low, best_tour_high,
-                    best_tour_high - best_tour_low);
-            }
-            else
-            {
-                arrow_debug("Tour is no better than the current best solution.\n");
-            }
+            arrow_debug("No tour exists for C[i.j] >= %d, so skip.\n", no_tour_cost);
         }
         else
         {
-            arrow_debug("Could not find tour\n");
-        }
+            tour_result->bin_search_steps++;
         
+            lb_gap = btsp_lbs[low_idx] - low_val;
+            best_gap = best_tour_high - best_tour_low;
+
+            arrow_debug("LB-Gap %d vs. Best-Gap %d\n", lb_gap, best_gap);
+        
+            /* Since we solve these problems in order of smallest Balanced TSP gap
+               to largest, if at any point we notice our best gap is greater than
+               the lower bound gap, we can quit the search */
+            if(best_gap <= lb_gap)
+            {
+                arrow_debug("Best known solution better than the current lower bound, so quit.\n");
+                break;
+            }
+        
+            /* Create problem that ignores C[i,j] < low_val */
+            if(!arrow_btsp_fun_apply(&fun_ib, solve_problem, low_val, info->max_cost, &ib_problem))
+            {
+                arrow_debug("Could not create IB cost matrix\n");
+                ret = ARROW_FAILURE;
+                goto CLEANUP;
+            }
+            //printf("fixed_edges in original: %d\n", solve_problem->fixed_edges);
+            //printf("fixed_edges in ib problem: %d\n", ib_problem.fixed_edges);
+                
+            start_time = arrow_util_zeit();
+            params->lower_bound = btsp_lbs[low_idx];
+            if(!arrow_btsp_solve(&ib_problem, info, params, &cur_tour_result))
+            {
+                arrow_debug("Error searching for BTSP tour\n");
+                ret = ARROW_FAILURE;
+                goto CLEANUP;
+            }
+            end_time = arrow_util_zeit();
+            tour_result->total_time += end_time - start_time;
+    
+            for(k = 0; k < ARROW_TSP_SOLVER_COUNT; k++)
+            {
+                tour_result->solver_attempts[k] += cur_tour_result.solver_attempts[k];
+                tour_result->solver_time[k] += cur_tour_result.solver_time[k];
+            }
+        
+            arrow_problem_destruct(&ib_problem);
+    
+            /* See if we improved the best known gap */
+            if(cur_tour_result.found_tour)
+            {
+                arrow_debug("Tour exists in [%d,%d] = %d\n", cur_tour_result.min_cost, 
+                    cur_tour_result.max_cost,
+                    cur_tour_result.max_cost - cur_tour_result.min_cost);
+                
+                cur_gap = cur_tour_result.max_cost - cur_tour_result.min_cost;
+                if(cur_gap < best_gap)
+                {
+                    arrow_debug("Tour is better than the current best solution.\n");
+                    tour_result->min_cost = cur_tour_result.min_cost;
+                    tour_result->max_cost = cur_tour_result.max_cost;
+                    tour_result->tour_length = cur_tour_result.tour_length;
+                    tour_result->found_tour = ARROW_TRUE;
+        
+                    if(tour_result->tour != NULL)
+                    {
+                        for(k = 0; k < problem->size; k++)
+                            tour_result->tour[k] = cur_tour_result.tour[k];
+                    }
+
+                    best_tour_low = cur_tour_result.min_cost;
+                    best_tour_high = cur_tour_result.max_cost;
+                }
+                else
+                {
+                    arrow_debug("Tour is no better than the current best solution.\n");
+                }
+            }
+            else
+            {
+                arrow_debug("Could not find tour\n");
+                
+                if(low_val < no_tour_cost)
+                {
+                    arrow_debug("no_tour_cost now %d\n", low_val);
+                    no_tour_cost = low_val;
+                }
+            }
+        }
+        arrow_debug("\n");
     }
     arrow_debug("\n");
 
@@ -564,11 +584,13 @@ find_cost_order(arrow_problem_info *info, int max_index, int *btsp_lbs, int *cos
         }
     }
 
+    /*
     arrow_debug("Cost index order: ");
     for(i = 0; i <= max_index; i++)
         arrow_debug("%d, ", cost_order[i]);
     arrow_debug("EOL\n\n");
-          
+    */
+         
 CLEANUP:
     free(baltsp_lbs);
     destruct_tiers(num_tiers, &tiers);
