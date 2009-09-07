@@ -117,6 +117,12 @@ arrow_btsp_solve(arrow_problem *problem, arrow_problem_info *info,
                 arrow_util_binary_search(info->cost_list, 
                                          info->cost_list_length,
                                          cur_result.max_cost, &high);
+                                         
+                if(low > high)
+                {
+                    arrow_debug(" - Median smaller than low value, so set low = high\n");
+                    low = high;
+                }
             }
             else
             {
