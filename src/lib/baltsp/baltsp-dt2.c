@@ -236,7 +236,7 @@ arrow_balanced_tsp_dt2(arrow_problem *problem,
             /* Theorem 2 Improvement */
             if(params->with_improvements)
             {
-                while(info->cost_list[high] - info->cost_list[low] >= best_gap)
+                while(info->cost_list[high] - info->cost_list[low] > best_gap)
                     low++;
             }
             
@@ -246,14 +246,15 @@ arrow_balanced_tsp_dt2(arrow_problem *problem,
         else
         {
             high++;
-        
+            
             /* Theorem 2 Improvement */
-            best_gap = best_tour_high - best_tour_low;    
+            /*
             if(params->with_improvements)
             {
                 while(info->cost_list[high] - info->cost_list[low] >= best_gap)
                     low++;
             }
+            */
         }
         
         arrow_debug("low = %d, high = %d\n", low, high);
