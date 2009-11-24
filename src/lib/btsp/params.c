@@ -22,5 +22,3 @@ arrow_btsp_params_init(arrow_btsp_params *params)
     params->upper_bound = INT_MAX;
     params->num_steps = 0;
 }
-
-
