@@ -180,8 +180,10 @@ min_span_tree(arrow_problem *problem, int C, int exclude_cost,
                    cost and not in the current solution */
                 //arrow_debug("   - (%d,%d): cost: %d, d[%d] = %d, cur_tree[%d] = %d\n",
                 //            i, j, cost, j, d[j], j, cur_tree[j]);
-                if((d[j] > cost) && 
+                /*if((d[j] > cost) && 
                    ((cost > exclude_cost) || (cur_tree[j] != i)))
+                */
+                if((d[j] > cost) && (cost > exclude_cost))
                 {
                     d[j] = cost;
                     tree[j] = i;
