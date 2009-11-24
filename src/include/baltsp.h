@@ -18,6 +18,22 @@
 #include "lb.h"
 #include "btsp.h"
 
+/**
+ *  @brief  BTSP algorithm parameters
+ */
+typedef struct arrow_baltsp_params
+{
+    int with_improvements;          /**< use running-time improvments */
+    int lower_bound;                /**< balanced TSP lower bound */
+    int btsp_min_cost;              /**< smallest cost in a BTSP tour */
+    int btsp_max_cost;              /**< largest cost in a BTSP tour */
+    int mstsp_min_cost;             /**< smallest cost in a MSTSP tour */
+    int num_steps;                  /**< the number of solve plan steps */
+    arrow_btsp_solve_plan *steps;   /**< solve plan steps */
+    int infinity;                   /**< value to use for "infinity" */
+    int deep_copy;
+} arrow_baltsp_params;
+
 /****************************************************************************
  *  baltsp-dt.c
  ****************************************************************************/
@@ -28,6 +44,16 @@ arrow_balanced_tsp_dt(arrow_problem *problem,
                       int lb_only, int with_improvements,
                       arrow_bound_result *lb_result,
                       arrow_btsp_result *tour_result);
+
+/****************************************************************************
+ *  baltsp-dt2.c
+ ****************************************************************************/
+int 
+arrow_balanced_tsp_dt2(arrow_problem *problem, 
+                       arrow_problem_info *info,
+                       arrow_baltsp_params *params, 
+                       double *lb_time,
+                       arrow_btsp_result *tour_result);
 
 /****************************************************************************
  *  baltsp-ib.c
@@ -80,6 +106,17 @@ arrow_baltsp_fun_shake(int shallow, int infinity,
  */
 int
 arrow_baltsp_fun_ib(int shallow, arrow_btsp_fun *fun);
+
+int
+arrow_baltsp_fun_dt2(int shallow, int random_min, int random_max,
+                     arrow_problem_info *info, arrow_btsp_fun *fun);
+
+
+/****************************************************************************
+ *  fun_baltsp.c
+ ****************************************************************************/
+void
+arrow_baltsp_params_init(arrow_baltsp_params *params);
  
 /* End C++ wrapper */
 #ifdef __cplusplus
