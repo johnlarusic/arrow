@@ -67,6 +67,17 @@ arrow_balanced_tsp_ib(arrow_problem *problem,
                       arrow_btsp_result *tour_result);
 
 /****************************************************************************
+ *  baltsp-ib2.c
+ ****************************************************************************/
+int 
+arrow_balanced_tsp_ib2(arrow_problem *problem, 
+                       arrow_problem_info *info,
+                       arrow_baltsp_params *params,
+                       arrow_btsp_params *btsp_params,
+                       double *lb_time,
+                       arrow_btsp_result *tour_result);
+
+/****************************************************************************
  *  fun_baltsp.c
  ****************************************************************************/
 /**
