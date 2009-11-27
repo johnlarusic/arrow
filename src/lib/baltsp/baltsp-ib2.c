@@ -244,8 +244,6 @@ arrow_balanced_tsp_ib2(arrow_problem *problem,
                 tour_result->solver_attempts[k] += cur_tour_result.solver_attempts[k];
                 tour_result->solver_time[k] += cur_tour_result.solver_time[k];
             }
-    
-            arrow_problem_destruct(&ib_problem);
 
             /* See if we improved the best known gap */
             if(cur_tour_result.found_tour)
@@ -415,6 +413,7 @@ arrow_balanced_tsp_ib2(arrow_problem *problem,
                 break;
             }
         }
+        arrow_problem_destruct(&ib_problem);
         arrow_debug("\n");
     }
     arrow_debug("\n");
