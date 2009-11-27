@@ -34,6 +34,20 @@ typedef struct arrow_baltsp_params
     int deep_copy;
 } arrow_baltsp_params;
 
+
+/****************************************************************************
+ *  baltsp-db.c
+ ****************************************************************************/
+int 
+arrow_balanced_tsp_db(arrow_problem *btsp_problem, 
+                      arrow_problem *mstsp_problem,
+                      arrow_problem_info *info,
+                      arrow_baltsp_params *params,
+                      arrow_btsp_params *btsp_params,
+                      double *lb_time,
+                      arrow_btsp_result *tour_result);
+                      
+
 /****************************************************************************
  *  baltsp-dt.c
  ****************************************************************************/

@@ -18,6 +18,7 @@ dir_bin = 'bin'
 
 # List of library files
 lib_files = (
+    'baltsp/baltsp-db.c',
     'baltsp/baltsp-dt.c',
     'baltsp/baltsp-dt2.c',
     'baltsp/baltsp-ib.c',
@@ -60,7 +61,8 @@ executables = (
     ('baltsp-dt',   'baltsp-dt.c'),
     ('baltsp-dt2',  'baltsp-dt2.c'),
     ('baltsp-ib',   'baltsp-ib.c'),
-    ('baltsp-ib2',   'baltsp-ib2.c'),
+    ('baltsp-ib2',  'baltsp-ib2.c'),
+    ('baltsp-db',   'baltsp-db.c'),
     ('bap',         'bap.c'),
     ('bbssp',       'bbssp.c'),
     ('bscssp',      'bscssp.c'),
