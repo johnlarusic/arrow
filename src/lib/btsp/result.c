@@ -55,6 +55,8 @@ arrow_btsp_result_print_xml(arrow_btsp_result *result, FILE *out)
     if(result->found_tour)
     {
         arrow_xml_element_int("objective_value", result->max_cost, out);
+        arrow_xml_element_int("min_cost", result->min_cost, out);
+        arrow_xml_element_int("max_cost", result->max_cost, out);
         arrow_xml_element_double("tour_length", result->tour_length, out);
     }
     else
