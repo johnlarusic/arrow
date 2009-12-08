@@ -21,4 +21,5 @@ arrow_baltsp_params_init(arrow_baltsp_params *params)
     params->btsp_max_cost = INT_MAX;
     params->mstsp_min_cost = INT_MAX;
     params->num_steps = 0;
+    params->timebound = 18000.0;
 }

@@ -32,6 +32,7 @@ typedef struct arrow_baltsp_params
     arrow_btsp_solve_plan *steps;   /**< solve plan steps */
     int infinity;                   /**< value to use for "infinity" */
     int deep_copy;
+    double timebound;               /**< maximum time to spend on problem */
 } arrow_baltsp_params;
 
 

@@ -194,6 +194,13 @@ arrow_balanced_tsp_ib2(arrow_problem *problem,
     arrow_debug("Starting balanced search [%d,...]\n", info->cost_list[low]);
     while((low <= max) && (high < info->cost_list_length))
     {
+        /* Check to see if we're under the time bound */
+        if(tour_result->total_time > params->timebound)
+        {
+            arrow_debug("Reached timebound of %.0fs.\n", params->timebound);
+            break;
+        }
+        
         printf("------------------------------------\n");
         low_val = info->cost_list[low];
         printf("C[i,j] >= %d: \n", low_val);

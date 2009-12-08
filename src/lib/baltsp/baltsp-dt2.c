@@ -124,8 +124,15 @@ arrow_balanced_tsp_dt2(arrow_problem *problem,
     /* Main loop */
     arrow_debug("Starting balanced search [%d,%d]\n", info->cost_list[low], info->cost_list[high]);
     while((low <= high) && (low <= max) && (high < info->cost_list_length))
-    {        
-        low_val = info->cost_list[low];
+    {   
+        /* Check to see if we're under the time bound */
+        if(tour_result->total_time > params->timebound)
+        {
+            arrow_debug("Reached timebound of %.0fs.\n", params->timebound);
+            break;
+        }
+        
+        low_val = infgito->cost_list[low];
         high_val = info->cost_list[high];
         printf("%d <= C[i,j] <= %d: ", low_val, high_val);
                 
