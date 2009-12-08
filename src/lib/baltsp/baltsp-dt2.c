@@ -132,7 +132,7 @@ arrow_balanced_tsp_dt2(arrow_problem *problem,
             break;
         }
         
-        low_val = infgito->cost_list[low];
+        low_val = info->cost_list[low];
         high_val = info->cost_list[high];
         printf("%d <= C[i,j] <= %d: ", low_val, high_val);
                 
