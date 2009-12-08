@@ -403,9 +403,9 @@ main(int argc, char *argv[])
         
         if(solve_mstsp)
         {
-            fprintf(xml, "   <mstsp_obj_value>%d</mstsp_obj_value\n",
+            fprintf(xml, "   <mstsp_obj_value>%d</mstsp_obj_value>\n",
                     mstsp_obj_value);
-            fprintf(xml, "   <mstsp_tour_length>%.0f</mstsp_tour_length\n",
+            fprintf(xml, "   <mstsp_tour_length>%.0f</mstsp_tour_length>\n",
                     mstsp_tour_length);
         }
         
