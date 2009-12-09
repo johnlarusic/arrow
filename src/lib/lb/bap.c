@@ -73,6 +73,7 @@ arrow_bap_solve(arrow_problem *problem, arrow_problem_info *info,
     int ret = ARROW_SUCCESS;
     int m, stop;
     int low, high, median, delta, flow;
+    int found_assignment;
     double start_time, end_time;
     
     int n = problem->size * 2 + 2;
@@ -86,6 +87,7 @@ arrow_bap_solve(arrow_problem *problem, arrow_problem_info *info,
     int *list;
     
     start_time = arrow_util_zeit();
+    found_assignment = ARROW_FALSE;
     
     /* Dynamic memory allocation GO! */
     if(!arrow_util_create_int_matrix(n, n, &res, &res_space))
@@ -109,7 +111,7 @@ arrow_bap_solve(arrow_problem *problem, arrow_problem_info *info,
         goto CLEANUP;
     }
     
-    arrow_debug("Number of Unique Costs: %d\n", info->cost_list_length);
+    /*arrow_debug("Number of Unique Costs: %d\n", info->cost_list_length);*/
 
     low = 0;
     high = info->cost_list_length - 1;
@@ -117,38 +119,49 @@ arrow_bap_solve(arrow_problem *problem, arrow_problem_info *info,
     {
         median = ((high - low) / 2) + low;
         delta = info->cost_list[median];  
+        /*
         arrow_debug("Low[%d] = %d, High[%d] = %d\n", low, info->cost_list[low], high, info->cost_list[high]);
         arrow_debug("Checking if assignment possible for C[i,j] <= %d\n", delta);
-            
+        */  
         flow = 0;
         
         initialize_flow_data(problem, INT_MIN, delta, s, t, res, &m, dist, pred);
 
         stop = (int)(2 * pow(n, 2.0 / 3.0) + 0.5);
         m = (int)(sqrt(m * 1.0) + 0.5);
-        arrow_debug("n^2/3 = %d; m^1/2 = %d\n", stop, m);
+        /*arrow_debug("n^2/3 = %d; m^1/2 = %d\n", stop, m);*/
         if(m < stop) stop = m;
         
         shortest_augmenting_path(n, s, t, stop, res, dist, pred, &flow);
-        arrow_debug("Flow after shortest augmenting path routine: %d\n", flow);
+        /*arrow_debug("Flow after shortest augmenting path routine: %d\n", flow);*/
         if(flow < problem->size)
         {
             ford_fulkerson_labeling(n, s, t, res, dist, pred, &flow, list);
-            arrow_debug("Flow after Ford Fulkerson labelling: %d\n", flow);
+            /*arrow_debug("Flow after Ford Fulkerson labelling: %d\n", flow);*/
         }
+        /*
         else
             arrow_debug("No need to call Ford Fulkerson labelling.\n");
         arrow_debug("\n");
+        */
         
         if(flow == problem->size)
+        {
+            found_assignment = ARROW_TRUE;
             high = median;
+        }
         else
+        {
             low = median + 1;
+        }
     }
     end_time = arrow_util_zeit();
     
     /* Return the cost we converged to as the answer */
-    result->obj_value = info->cost_list[low];
+    if(!found_assignment)
+        result->obj_value = -1;
+    else
+        result->obj_value = info->cost_list[low];
     result->total_time = end_time - start_time;
     
 CLEANUP:

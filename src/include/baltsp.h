@@ -92,6 +92,13 @@ arrow_balanced_tsp_ib2(arrow_problem *problem,
                        double *lb_time,
                        arrow_btsp_result *tour_result);
 
+int
+arrow_balanced_tsp_lb(arrow_problem *problem, 
+                      arrow_problem_info *info,
+                      int btsp_min_cost, int btsp_max_cost, 
+                      int mstsp_min_cost,
+                      int *lb_result);
+
 /****************************************************************************
  *  fun_baltsp.c
  ****************************************************************************/
