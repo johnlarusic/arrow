@@ -227,7 +227,13 @@ arrow_balanced_tsp_ib2(arrow_problem *problem,
         
         arrow_debug("best_lb - low_val = %d - %d = %d vs best_gap = %d\n",
                     btsp_lb, low_val, btsp_lb - low_val, best_gap);
-        if(btsp_lb - low_val > best_gap)
+                    
+        if(btsp_lb > info->max_cost)
+        {
+            arrow_debug("End of the line!\n");
+            low = max + 1;
+        }
+        else if(btsp_lb - low_val > best_gap)
         {
             arrow_debug("BTSP lower bound says this index is not worth searching\n");
             low++;
@@ -446,7 +452,20 @@ btsp_lower_bound(arrow_problem *problem, arrow_problem_info *info,
         arrow_debug("Error finding BBSSP lower bound\n");
         return ARROW_FAILURE;
     }
-    *lower_bound = result.obj_value;
+    if(result.obj_value == -1)
+        *lower_bound = info->max_cost + 1;
+    else
+        *lower_bound = result.obj_value;
+    
+    if(!arrow_bap_solve(problem, info, &result))
+    {
+        arrow_debug("Error finding BAP lower bound\n");
+        return ARROW_FAILURE;
+    }
+    if(result.obj_value == -1)
+        *lower_bound = info->max_cost + 1;
+    else if(result.obj_value > *lower_bound)
+        *lower_bound = result.obj_value;
         
     return ARROW_SUCCESS;
 }
