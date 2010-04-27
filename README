@@ -1,1 +1,113 @@
-README!!!
+ABOUT ARROW
+-------------------------------------------------------------------------------
+Arrow is the result of a Master's thesis a heuristic for the Bottleneck 
+Traveling Salesman Problem and related problems (John LaRusic, "The bottleneck 
+traveling salesman problem and some variations", Simon Fraser University, 2010). 
+
+Arrow is a callable C library.  It also consists of a number of user programs
+that call pieces from the callable C library.  These are found in the "bin" 
+directory after Arrow is compiled, and the programs are as follows.
+
+ - Bottleneck TSP heuristics and lower bounds:
+   - btsp:       using the Lin-Kernighan TSP heuristic
+   - abtsp-rai:  using a Random Arbitrary Insertion (RAI) TSP heuristic
+   - 2mb:        2-Max Bound solver
+   - bap:        Bottleneck Assignment Problem solver
+   - bbssp:      Bottleneck Biconnected Spanning Subgraph Problem solver
+   - bscssp:     Bottleneck Strongly-Connected Spanning Subgraph Problem solver
+   - dcbpb:      Enhanced Bidirectional Bottleneck Paths Bound solver
+                 (originally, the Degree-Constrained Bottleneck Paths Bound)
+
+   Note: all BTSP heuristics/lower bounds can be used to solve the Maximum 
+   Scatter TSP and upper bounds using the "-m" option.
+
+ - Constrained BTSP and Lower bounds:
+   - cbtsp:      Constrained BTSP solver (uses Lin-Kernighan TSP heuristic)
+   - cbap:       Constrained Bottleneck Assignment Problem solver
+   - cbst:       Constrained Bottleneck Spanning Trees solver
+
+ - Balanced TSP heuristics and lower bounds:
+   - baltsp-db:  Double Bottleneck heuristic
+   - baltsp-dt:  Initial Double-Threshold heuristic (ignore)
+   - baltsp-dt2: Final Double-Threshold heuristic
+   - baltsp-ib:  Initial Iterative Bottleneck heuristic (ignore)
+   - baltsp-ib2: Final Iterative Bottleneck heuristic
+   - baltsp-lb:  Balanced TSP lower bound
+ 
+ - Other utilities/creations:
+   - cost-list:   Prints the distinct cost list for the given problem
+   - delta-print: Prints the cost matrix for the delta-feasibility problem
+   - hash:        Tests hashing functions
+   - histdata:    Prints out each cost in the problem, used in conjunction with
+                  the histogram.py Python script.
+   - linkern:     Tests the linking to the Concorde Lin-Kernighan TSP heuristic
+   - subprob:     Generates a smaller problem by taking a subset of a larger
+                  problem (used for generating some asymmetric TSP instances)
+   - tourinfo:    Prints out information about the given tour
+   - tsp:         Tests the linking to the Concorde TSP solver
+
+There are also some Python scripts that might be useful to some.  These are
+found in the "scripts" directory.
+
+   - atsp_to_stsp.py:  In conjunction with the delta-print program, converts an
+                       asymmetric TSP instance into a symmetric TSP instance
+   - histogram.py:     Displays a histogram of costs, used in conjunction with
+                       the histdata program
+   - nozzle-vanes.py:  Generates nozzle guide vane problems
+   - rand-density.py:  Generates problems with the specified density
+   - sym_tour_to_asym: Converts a symmetric tour to an asymmetric tour
+
+   Note: there are a handful of other Python scripts and shell scripts that do
+   random stuff, mostly with running lots of experiments or generating problem
+   files.  I leave the discovery of these to the curious.
+
+Please see John LaRusic's masters thesis for more information about these 
+algorithms.
+
+
+INSTALLING ARROW
+-------------------------------------------------------------------------------
+Please read "INSTALL" for somewhat complete (if cryptic) installation 
+instructions.
+
+
+USING ARROW
+-------------------------------------------------------------------------------
+All the programs generally take the following form:
+  > ./bin/btsp -i TSPLIB.tsp 
+
+Somewhat helpful help for each user program can be found by calling the program
+with the --help switch, e.g.
+  > ./bin/btsp --help
+
+Documentation for using the callable library is incomplete, but can be found
+in the "doc" folder.  All source code is found in the "src" directory, and the
+"src/bin" directory provides examples of using the callable library.
+
+
+ACKNOWLEDGEMENTS
+-------------------------------------------------------------------------------
+This project would not have been successful without the support of the
+following individuals:
+
+  - Abraham Punnen, Simon Fraser University (John's MSc senior supervisor)
+  - Eric Aubanel, University of New Brunswick (John's BCS supervisor)
+  - David Applegate, Robert Bixby, Vašek Chvátal, and William Cook for their
+    excellent TSP package, Concorde
+  - All the authors of the external packages used in Arrow
+  - Everyone who supported John in writing his MSc thesis
+
+
+LICENSE
+-------------------------------------------------------------------------------
+This program is free software: you can redistribute it and/or modify it under 
+the terms of the GNU General Public License as published by the Free Software 
+Foundation, either version 2 of the License, or (at your option) any later 
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT 
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with 
+this program.  If not, see <http://www.gnu.org/licenses/>.
