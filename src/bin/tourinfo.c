@@ -65,12 +65,14 @@ main(int argc, char *argv[])
     double length = 0.0;
     int i, u, v;
     
+    int shift = (tour[0] == -1);
+    
     for(i = 0; i < problem.size; i++)
     {
-        u = tour[i];
-        v = tour[(i + 1) % problem.size];
-        printf("C[%d,%d] = ...\n", u, v);
-        cost = problem.get_cost(&problem, u, v);
+        u = tour[i] + shift;
+        v = tour[(i + 1) % problem.size] + shift;
+        cost = problem.get_cost(&problem, v, u);
+        printf("C[%d,%d] = %d\n", u, v, cost);
         
         length += cost;
         if(cost > max_cost) max_cost = cost;
