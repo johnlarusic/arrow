@@ -1,0 +1,108 @@
+\hypertarget{structbaltsp__shake__data}{
+\section{baltsp\_\-shake\_\-data Struct Reference}
+\label{structbaltsp__shake__data}\index{baltsp\_\-shake\_\-data@{baltsp\_\-shake\_\-data}}
+}
+Info for shake type I cost matrix function.  
+
+
+Collaboration diagram for baltsp\_\-shake\_\-data:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=126pt]{structbaltsp__shake__data__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+int \hyperlink{structbaltsp__shake__data_850137b81fe1ba06ba33e37fc15bdaa3}{infinity}
+\item 
+\hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$ \hyperlink{structbaltsp__shake__data_9175ba75e968eb15f5313d626cde03ad}{info}
+\item 
+int \hyperlink{structbaltsp__shake__data_be2ebebdb37a3ff79d221c8793f8745e}{random\_\-min}
+\item 
+int \hyperlink{structbaltsp__shake__data_4a9235d8af82165777da9bf0b721bb5a}{random\_\-max}
+\item 
+int $\ast$ \hyperlink{structbaltsp__shake__data_2a89132e849b979fc187dc9fb180397e}{random\_\-list}
+\item 
+int \hyperlink{structbaltsp__shake__data_01579fcf6bec2dbaf736a5f8e0f21950}{random\_\-list\_\-length}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Info for shake type I cost matrix function. 
+
+Definition at line 19 of file fun\_\-baltsp.c.
+
+\subsection{Field Documentation}
+\hypertarget{structbaltsp__shake__data_850137b81fe1ba06ba33e37fc15bdaa3}{
+\index{baltsp\_\-shake\_\-data@{baltsp\_\-shake\_\-data}!infinity@{infinity}}
+\index{infinity@{infinity}!baltsp_shake_data@{baltsp\_\-shake\_\-data}}
+\subsubsection[{infinity}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf baltsp\_\-shake\_\-data::infinity}}}
+\label{structbaltsp__shake__data_850137b81fe1ba06ba33e37fc15bdaa3}
+
+
+value to use for \char`\"{}infinity\char`\"{} 
+
+Definition at line 21 of file fun\_\-baltsp.c.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-dt2(), arrow\_\-baltsp\_\-fun\_\-shake(), baltsp\_\-dt2\_\-get\_\-cost(), and baltsp\_\-shake\_\-get\_\-cost().\hypertarget{structbaltsp__shake__data_9175ba75e968eb15f5313d626cde03ad}{
+\index{baltsp\_\-shake\_\-data@{baltsp\_\-shake\_\-data}!info@{info}}
+\index{info@{info}!baltsp_shake_data@{baltsp\_\-shake\_\-data}}
+\subsubsection[{info}]{\setlength{\rightskip}{0pt plus 5cm}{\bf arrow\_\-problem\_\-info}$\ast$ {\bf baltsp\_\-shake\_\-data::info}}}
+\label{structbaltsp__shake__data_9175ba75e968eb15f5313d626cde03ad}
+
+
+problem info 
+
+Definition at line 22 of file fun\_\-baltsp.c.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-dt2(), arrow\_\-baltsp\_\-fun\_\-shake(), baltsp\_\-dt2\_\-get\_\-cost(), baltsp\_\-dt2\_\-initialize(), and baltsp\_\-shake\_\-get\_\-cost().\hypertarget{structbaltsp__shake__data_2a89132e849b979fc187dc9fb180397e}{
+\index{baltsp\_\-shake\_\-data@{baltsp\_\-shake\_\-data}!random\_\-list@{random\_\-list}}
+\index{random\_\-list@{random\_\-list}!baltsp_shake_data@{baltsp\_\-shake\_\-data}}
+\subsubsection[{random\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ {\bf baltsp\_\-shake\_\-data::random\_\-list}}}
+\label{structbaltsp__shake__data_2a89132e849b979fc187dc9fb180397e}
+
+
+random list of integers 
+
+Definition at line 25 of file fun\_\-baltsp.c.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-dt2(), arrow\_\-baltsp\_\-fun\_\-shake(), baltsp\_\-dt2\_\-feasible(), baltsp\_\-dt2\_\-get\_\-cost(), baltsp\_\-dt2\_\-initialize(), baltsp\_\-shake\_\-destruct(), baltsp\_\-shake\_\-get\_\-cost(), and baltsp\_\-shake\_\-initialize().\hypertarget{structbaltsp__shake__data_01579fcf6bec2dbaf736a5f8e0f21950}{
+\index{baltsp\_\-shake\_\-data@{baltsp\_\-shake\_\-data}!random\_\-list\_\-length@{random\_\-list\_\-length}}
+\index{random\_\-list\_\-length@{random\_\-list\_\-length}!baltsp_shake_data@{baltsp\_\-shake\_\-data}}
+\subsubsection[{random\_\-list\_\-length}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf baltsp\_\-shake\_\-data::random\_\-list\_\-length}}}
+\label{structbaltsp__shake__data_01579fcf6bec2dbaf736a5f8e0f21950}
+
+
+random list length 
+
+Definition at line 26 of file fun\_\-baltsp.c.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-dt2(), arrow\_\-baltsp\_\-fun\_\-shake(), and baltsp\_\-shake\_\-initialize().\hypertarget{structbaltsp__shake__data_4a9235d8af82165777da9bf0b721bb5a}{
+\index{baltsp\_\-shake\_\-data@{baltsp\_\-shake\_\-data}!random\_\-max@{random\_\-max}}
+\index{random\_\-max@{random\_\-max}!baltsp_shake_data@{baltsp\_\-shake\_\-data}}
+\subsubsection[{random\_\-max}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf baltsp\_\-shake\_\-data::random\_\-max}}}
+\label{structbaltsp__shake__data_4a9235d8af82165777da9bf0b721bb5a}
+
+
+maximum random number generated 
+
+Definition at line 24 of file fun\_\-baltsp.c.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-dt2(), arrow\_\-baltsp\_\-fun\_\-shake(), baltsp\_\-dt2\_\-get\_\-cost(), and baltsp\_\-shake\_\-initialize().\hypertarget{structbaltsp__shake__data_be2ebebdb37a3ff79d221c8793f8745e}{
+\index{baltsp\_\-shake\_\-data@{baltsp\_\-shake\_\-data}!random\_\-min@{random\_\-min}}
+\index{random\_\-min@{random\_\-min}!baltsp_shake_data@{baltsp\_\-shake\_\-data}}
+\subsubsection[{random\_\-min}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf baltsp\_\-shake\_\-data::random\_\-min}}}
+\label{structbaltsp__shake__data_be2ebebdb37a3ff79d221c8793f8745e}
+
+
+minimum random number generated 
+
+Definition at line 23 of file fun\_\-baltsp.c.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-dt2(), arrow\_\-baltsp\_\-fun\_\-shake(), baltsp\_\-dt2\_\-get\_\-cost(), and baltsp\_\-shake\_\-initialize().
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+lib/baltsp/\hyperlink{fun__baltsp_8c}{fun\_\-baltsp.c}\end{CompactItemize}

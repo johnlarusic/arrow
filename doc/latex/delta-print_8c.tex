@@ -1,0 +1,181 @@
+\hypertarget{delta-print_8c}{
+\section{bin/delta-print.c File Reference}
+\label{delta-print_8c}\index{bin/delta-print.c@{bin/delta-print.c}}
+}
+Prints cost matrix for delta feasibility problem.  
+
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}btsp.h\char`\"{}}\par
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{delta-print_8c_9b58b2c4af931c8486a986c9deca40f5}{NUM\_\-OPTS}~5
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{delta-print_8c_0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+char $\ast$ \hyperlink{delta-print_8c_289c5900d90626d909f0a85d5a0ed61d}{program\_\-name}
+\item 
+char $\ast$ \hyperlink{delta-print_8c_a4f3a15de34c409bdec6ceacf93078ed}{input\_\-file} = NULL
+\item 
+int \hyperlink{delta-print_8c_1dfcb70b9229f2da17dd5922b87ecf2c}{delta} = 0
+\item 
+int \hyperlink{delta-print_8c_786cdab056142ae00a268cabebd5ced7}{solve\_\-mstsp} = ARROW\_\-FALSE
+\item 
+int \hyperlink{delta-print_8c_7298da576a5b127d04b4c46b3bc78821}{deep\_\-copy} = ARROW\_\-FALSE
+\item 
+int \hyperlink{delta-print_8c_61a12d5995172f376610cce2f19e5855}{edge\_\-infinity} = -1
+\item 
+\hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{delta-print_8c_cea6a9709d519c143f30db401a0d0c72}{options} \mbox{[}NUM\_\-OPTS\mbox{]}
+\item 
+char $\ast$ \hyperlink{delta-print_8c_3aad16fd4bea1b9717f232ea75ad6449}{desc} = \char`\"{}Prints cost matrix for \hyperlink{delta-print_8c_1dfcb70b9229f2da17dd5922b87ecf2c}{delta} feasibility problem\char`\"{}
+\item 
+char $\ast$ \hyperlink{delta-print_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage} = \char`\"{}-i tsplib.tsp -d \#\char`\"{}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Prints cost matrix for delta feasibility problem. 
+
+Prints cost matrix for delta feasibility problem. For use for verifying problem optimality with Concorde.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{delta-print_8c-source}{delta-print.c}.
+
+\subsection{Define Documentation}
+\hypertarget{delta-print_8c_9b58b2c4af931c8486a986c9deca40f5}{
+\index{delta-print.c@{delta-print.c}!NUM\_\-OPTS@{NUM\_\-OPTS}}
+\index{NUM\_\-OPTS@{NUM\_\-OPTS}!delta-print.c@{delta-print.c}}
+\subsubsection[{NUM\_\-OPTS}]{\setlength{\rightskip}{0pt plus 5cm}\#define NUM\_\-OPTS~5}}
+\label{delta-print_8c_9b58b2c4af931c8486a986c9deca40f5}
+
+
+
+
+Definition at line 22 of file delta-print.c.
+
+\subsection{Function Documentation}
+\hypertarget{delta-print_8c_0ddf1224851353fc92bfbff6f499fa97}{
+\index{delta-print.c@{delta-print.c}!main@{main}}
+\index{main@{main}!delta-print.c@{delta-print.c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]})}}
+\label{delta-print_8c_0ddf1224851353fc92bfbff6f499fa97}
+
+
+
+
+Definition at line 41 of file delta-print.c.
+
+References arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-asym\_\-shift(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-destruct(), ARROW\_\-FALSE, arrow\_\-options\_\-parse(), arrow\_\-print\_\-error, arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-max\_\-cost(), arrow\_\-problem\_\-mstsp\_\-to\_\-btsp(), arrow\_\-problem\_\-read(), ARROW\_\-SUCCESS, arrow\_\-util\_\-write\_\-problem(), deep\_\-copy, delta, desc, edge\_\-infinity, input\_\-file, NUM\_\-OPTS, solve\_\-mstsp, arrow\_\-problem::symmetric, and usage.
+
+\subsection{Variable Documentation}
+\hypertarget{delta-print_8c_7298da576a5b127d04b4c46b3bc78821}{
+\index{delta-print.c@{delta-print.c}!deep\_\-copy@{deep\_\-copy}}
+\index{deep\_\-copy@{deep\_\-copy}!delta-print.c@{delta-print.c}}
+\subsubsection[{deep\_\-copy}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf deep\_\-copy} = ARROW\_\-FALSE}}
+\label{delta-print_8c_7298da576a5b127d04b4c46b3bc78821}
+
+
+
+
+Definition at line 18 of file delta-print.c.\hypertarget{delta-print_8c_1dfcb70b9229f2da17dd5922b87ecf2c}{
+\index{delta-print.c@{delta-print.c}!delta@{delta}}
+\index{delta@{delta}!delta-print.c@{delta-print.c}}
+\subsubsection[{delta}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf delta} = 0}}
+\label{delta-print_8c_1dfcb70b9229f2da17dd5922b87ecf2c}
+
+
+Delta value 
+
+Definition at line 16 of file delta-print.c.
+
+Referenced by arrow\_\-bap\_\-solve(), arrow\_\-cbap\_\-solve(), and main().\hypertarget{delta-print_8c_3aad16fd4bea1b9717f232ea75ad6449}{
+\index{delta-print.c@{delta-print.c}!desc@{desc}}
+\index{desc@{desc}!delta-print.c@{delta-print.c}}
+\subsubsection[{desc}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf desc} = \char`\"{}Prints cost matrix for {\bf delta} feasibility problem\char`\"{}}}
+\label{delta-print_8c_3aad16fd4bea1b9717f232ea75ad6449}
+
+
+
+
+Definition at line 36 of file delta-print.c.\hypertarget{delta-print_8c_61a12d5995172f376610cce2f19e5855}{
+\index{delta-print.c@{delta-print.c}!edge\_\-infinity@{edge\_\-infinity}}
+\index{edge\_\-infinity@{edge\_\-infinity}!delta-print.c@{delta-print.c}}
+\subsubsection[{edge\_\-infinity}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf edge\_\-infinity} = -1}}
+\label{delta-print_8c_61a12d5995172f376610cce2f19e5855}
+
+
+
+
+Definition at line 19 of file delta-print.c.\hypertarget{delta-print_8c_a4f3a15de34c409bdec6ceacf93078ed}{
+\index{delta-print.c@{delta-print.c}!input\_\-file@{input\_\-file}}
+\index{input\_\-file@{input\_\-file}!delta-print.c@{delta-print.c}}
+\subsubsection[{input\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf input\_\-file} = NULL}}
+\label{delta-print_8c_a4f3a15de34c409bdec6ceacf93078ed}
+
+
+Given input TSPLIB file 
+
+Definition at line 15 of file delta-print.c.\hypertarget{delta-print_8c_cea6a9709d519c143f30db401a0d0c72}{
+\index{delta-print.c@{delta-print.c}!options@{options}}
+\index{options@{options}!delta-print.c@{delta-print.c}}
+\subsubsection[{options}]{\setlength{\rightskip}{0pt plus 5cm}{\bf arrow\_\-option} {\bf options}\mbox{[}NUM\_\-OPTS\mbox{]}}}
+\label{delta-print_8c_cea6a9709d519c143f30db401a0d0c72}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} 
+{
+    {'i', "input", "TSPLIB input file", 
+        ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE},
+    {'d', "delta", "Delta value", 
+        ARROW_OPTION_INT, &delta, ARROW_TRUE, ARROW_TRUE},
+    {'m', "solve-mstsp", "solves maximum scatter TSP",
+        ARROW_OPTION_INT, &solve_mstsp, ARROW_FALSE, ARROW_FALSE},
+    {'D', "deep-copy", "stores data in full cost-matrix",
+        ARROW_OPTION_INT, &deep_copy, ARROW_FALSE, ARROW_FALSE},
+    {'I', "infinity", "value to use as infinity",
+        ARROW_OPTION_INT, &edge_infinity, ARROW_FALSE, ARROW_TRUE},        
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 23 of file delta-print.c.\hypertarget{delta-print_8c_289c5900d90626d909f0a85d5a0ed61d}{
+\index{delta-print.c@{delta-print.c}!program\_\-name@{program\_\-name}}
+\index{program\_\-name@{program\_\-name}!delta-print.c@{delta-print.c}}
+\subsubsection[{program\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf program\_\-name}}}
+\label{delta-print_8c_289c5900d90626d909f0a85d5a0ed61d}
+
+
+Program name 
+
+Definition at line 14 of file delta-print.c.\hypertarget{delta-print_8c_786cdab056142ae00a268cabebd5ced7}{
+\index{delta-print.c@{delta-print.c}!solve\_\-mstsp@{solve\_\-mstsp}}
+\index{solve\_\-mstsp@{solve\_\-mstsp}!delta-print.c@{delta-print.c}}
+\subsubsection[{solve\_\-mstsp}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf solve\_\-mstsp} = ARROW\_\-FALSE}}
+\label{delta-print_8c_786cdab056142ae00a268cabebd5ced7}
+
+
+
+
+Definition at line 17 of file delta-print.c.\hypertarget{delta-print_8c_adebe2487a2c5240ab6cd02c83add0bf}{
+\index{delta-print.c@{delta-print.c}!usage@{usage}}
+\index{usage@{usage}!delta-print.c@{delta-print.c}}
+\subsubsection[{usage}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf usage} = \char`\"{}-i tsplib.tsp -d \#\char`\"{}}}
+\label{delta-print_8c_adebe2487a2c5240ab6cd02c83add0bf}
+
+
+
+
+Definition at line 37 of file delta-print.c.

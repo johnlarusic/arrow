@@ -1,0 +1,51 @@
+\hypertarget{feasible_8c}{
+\section{lib/btsp/feasible.c File Reference}
+\label{feasible_8c}\index{lib/btsp/feasible.c@{lib/btsp/feasible.c}}
+}
+Bottleneck traveling salesman problem (BTSP) methods.  
+
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}btsp.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{feasible_8c_56402f1b03eb02ddd7e0846600e886ba}{arrow\_\-btsp\_\-feasible} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int num\_\-steps, \hyperlink{structarrow__btsp__solve__plan}{arrow\_\-btsp\_\-solve\_\-plan} $\ast$steps, int min\_\-cost, int max\_\-cost, int $\ast$feasible, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves the feasibility problem which attempts to determine if there is a Hamiltonian cycle using min\_\-cost $<$= costs $<$= max\_\-cost. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Bottleneck traveling salesman problem (BTSP) methods. 
+
+Heuristic for solving the bottleneck traveling salesman problem (BTSP).
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{feasible_8c-source}{feasible.c}.
+
+\subsection{Function Documentation}
+\hypertarget{feasible_8c_56402f1b03eb02ddd7e0846600e886ba}{
+\index{feasible.c@{feasible.c}!arrow\_\-btsp\_\-feasible@{arrow\_\-btsp\_\-feasible}}
+\index{arrow\_\-btsp\_\-feasible@{arrow\_\-btsp\_\-feasible}!feasible.c@{feasible.c}}
+\subsubsection[{arrow\_\-btsp\_\-feasible}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-feasible ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em num\_\-steps}, \/  {\bf arrow\_\-btsp\_\-solve\_\-plan} $\ast$ {\em steps}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  int $\ast$ {\em feasible}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em result})}}
+\label{feasible_8c_56402f1b03eb02ddd7e0846600e886ba}
+
+
+Solves the feasibility problem which attempts to determine if there is a Hamiltonian cycle using min\_\-cost $<$= costs $<$= max\_\-cost. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em num\_\-steps}]\mbox{[}in\mbox{]} total number of steps in solve plan \item[{\em steps}]\mbox{[}in\mbox{]} solve plan step details \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em feasible}]\mbox{[}out\mbox{]} true if a feasible tour exists, false otherwise \item[{\em result}]\mbox{[}out\mbox{]} resulting BTSP tour found \end{description}
+\end{Desc}
+
+
+TODO: Find a better way of doing this upper bound update 
+
+Definition at line 16 of file feasible.c.
+
+References arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-problem\_\-destruct(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-tsp\_\-result\_\-destruct(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-tsp\_\-solve(), ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-btsp\_\-solve\_\-plan::attempts, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-solve\_\-plan::fun, arrow\_\-problem::get\_\-cost, arrow\_\-btsp\_\-result::max\_\-cost, arrow\_\-btsp\_\-result::min\_\-cost, arrow\_\-tsp\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-tsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, arrow\_\-tsp\_\-result::tour, arrow\_\-btsp\_\-result::tour\_\-length, arrow\_\-btsp\_\-solve\_\-plan::tsp\_\-params, and arrow\_\-btsp\_\-solve\_\-plan::tsp\_\-solver.
+
+Referenced by arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-dt2(), arrow\_\-balanced\_\-tsp\_\-ib2(), and arrow\_\-btsp\_\-solve().

@@ -1,0 +1,240 @@
+\hypertarget{baltsp_8h}{
+\section{include/baltsp.h File Reference}
+\label{baltsp_8h}\index{include/baltsp.h@{include/baltsp.h}}
+}
+Functions for solving the bottleneck TSP.  
+
+
+{\tt \#include \char`\"{}lb.h\char`\"{}}\par
+{\tt \#include \char`\"{}btsp.h\char`\"{}}\par
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structarrow__baltsp__params}{arrow\_\-baltsp\_\-params}
+\begin{CompactList}\small\item\em BTSP algorithm parameters. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{baltsp_8h_1d70c3ec49bdea00ae8f19b56a441ed4}{arrow\_\-balanced\_\-tsp\_\-db} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$btsp\_\-problem, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$mstsp\_\-problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__baltsp__params}{arrow\_\-baltsp\_\-params} $\ast$params, \hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params} $\ast$btsp\_\-params, double $\ast$lb\_\-time, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$tour\_\-result)
+\item 
+int \hyperlink{baltsp_8h_abd717f64120ef3834dcdc1c8c98e336}{arrow\_\-balanced\_\-tsp\_\-dt} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params} $\ast$params, int \hyperlink{bin_2baltsp-ib_8c_f328dea7847a1b1888dc14a570d0ec45}{lb\_\-only}, int \hyperlink{bin_2baltsp-ib2_8c_91079460b00ac08193d5ee47094f8f70}{with\_\-improvements}, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$lb\_\-result, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$tour\_\-result)
+\item 
+int \hyperlink{baltsp_8h_9e38b4149294169d7385216213f247fe}{arrow\_\-balanced\_\-tsp\_\-dt2} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__baltsp__params}{arrow\_\-baltsp\_\-params} $\ast$params, double $\ast$lb\_\-time, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$tour\_\-result)
+\item 
+int \hyperlink{baltsp_8h_b416a4231c1efde53cc8191486a8db4d}{arrow\_\-balanced\_\-tsp\_\-ib} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params} $\ast$params, int \hyperlink{bin_2baltsp-ib_8c_f328dea7847a1b1888dc14a570d0ec45}{lb\_\-only}, int \hyperlink{bin_2baltsp-ib2_8c_91079460b00ac08193d5ee47094f8f70}{with\_\-improvements}, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$lb\_\-result, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$tour\_\-result)
+\item 
+int \hyperlink{baltsp_8h_f99b10e444262402df58c126c5818b75}{arrow\_\-balanced\_\-tsp\_\-ib2} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__baltsp__params}{arrow\_\-baltsp\_\-params} $\ast$params, \hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params} $\ast$btsp\_\-params, double $\ast$lb\_\-time, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$tour\_\-result)
+\item 
+int \hyperlink{baltsp_8h_a07f69e287f6e6242771ce651c1d65c2}{arrow\_\-balanced\_\-tsp\_\-lb} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, int \hyperlink{bin_2baltsp-lb_8c_97987334c96a847ff74c2c6c83d78a73}{btsp\_\-min\_\-cost}, int \hyperlink{bin_2baltsp-lb_8c_8135b6557d64f65441d8f07fdc21ffdc}{btsp\_\-max\_\-cost}, int \hyperlink{bin_2baltsp-lb_8c_79e1b33b7d744b8baacfe9c0b2e73013}{mstsp\_\-min\_\-cost}, int $\ast$lb\_\-result)
+\item 
+int \hyperlink{baltsp_8h_35cf1dd5c19877bb323b99351e6de277}{arrow\_\-baltsp\_\-fun\_\-basic} (int shallow, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Basic BalTSP to TSP function. \item\end{CompactList}\item 
+int \hyperlink{baltsp_8h_19561224419b3bb0e308764e66471804}{arrow\_\-baltsp\_\-fun\_\-ut} (int shallow, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em BalTSP to TSP function that favours values closer to the max\_\-cost. \item\end{CompactList}\item 
+int \hyperlink{baltsp_8h_005b27ac9628b3eb66aae7088947e098}{arrow\_\-baltsp\_\-fun\_\-shake} (int shallow, int infinity, int random\_\-min, int random\_\-max, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em BalTSP Controled Shake. \item\end{CompactList}\item 
+int \hyperlink{baltsp_8h_9281456d186780f37a034abd1006dc6e}{arrow\_\-baltsp\_\-fun\_\-ib} (int shallow, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em BalTSP Iterative Bottleneck transformation. \item\end{CompactList}\item 
+int \hyperlink{baltsp_8h_ae78a88357c30410a5c2627b43322e15}{arrow\_\-baltsp\_\-fun\_\-dt2} (int shallow, int random\_\-min, int random\_\-max, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\item 
+void \hyperlink{baltsp_8h_7e94ccdcf80624682db13f6a46d3c1a2}{arrow\_\-baltsp\_\-params\_\-init} (\hyperlink{structarrow__baltsp__params}{arrow\_\-baltsp\_\-params} $\ast$params)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Functions for solving the bottleneck TSP. 
+
+Functions for solving the bottleneck TSP.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{baltsp_8h-source}{baltsp.h}.
+
+\subsection{Function Documentation}
+\hypertarget{baltsp_8h_1d70c3ec49bdea00ae8f19b56a441ed4}{
+\index{baltsp.h@{baltsp.h}!arrow\_\-balanced\_\-tsp\_\-db@{arrow\_\-balanced\_\-tsp\_\-db}}
+\index{arrow\_\-balanced\_\-tsp\_\-db@{arrow\_\-balanced\_\-tsp\_\-db}!baltsp.h@{baltsp.h}}
+\subsubsection[{arrow\_\-balanced\_\-tsp\_\-db}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-balanced\_\-tsp\_\-db ({\bf arrow\_\-problem} $\ast$ {\em btsp\_\-problem}, \/  {\bf arrow\_\-problem} $\ast$ {\em mstsp\_\-problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-baltsp\_\-params} $\ast$ {\em params}, \/  {\bf arrow\_\-btsp\_\-params} $\ast$ {\em btsp\_\-params}, \/  double $\ast$ {\em lb\_\-time}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em tour\_\-result})}}
+\label{baltsp_8h_1d70c3ec49bdea00ae8f19b56a441ed4}
+
+
+
+
+Definition at line 100 of file baltsp-db.c.
+
+References arrow\_\-baltsp\_\-fun\_\-ib(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-destruct(), arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-cost\_\-index(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour(), arrow\_\-util\_\-zeit(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, btsp\_\-lower\_\-bound(), arrow\_\-baltsp\_\-params::btsp\_\-max\_\-cost, arrow\_\-baltsp\_\-params::btsp\_\-min\_\-cost, arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-params::infinity, arrow\_\-btsp\_\-params::lower\_\-bound, arrow\_\-baltsp\_\-params::lower\_\-bound, max(), arrow\_\-btsp\_\-result::max\_\-cost, arrow\_\-problem\_\-info::max\_\-cost, arrow\_\-btsp\_\-result::min\_\-cost, arrow\_\-baltsp\_\-params::mstsp\_\-min\_\-cost, arrow\_\-baltsp\_\-params::num\_\-steps, arrow\_\-btsp\_\-result::optimal, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-problem::symmetric, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, arrow\_\-btsp\_\-result::tour\_\-length, arrow\_\-btsp\_\-params::upper\_\-bound, and arrow\_\-baltsp\_\-params::with\_\-improvements.
+
+Referenced by main().\hypertarget{baltsp_8h_abd717f64120ef3834dcdc1c8c98e336}{
+\index{baltsp.h@{baltsp.h}!arrow\_\-balanced\_\-tsp\_\-dt@{arrow\_\-balanced\_\-tsp\_\-dt}}
+\index{arrow\_\-balanced\_\-tsp\_\-dt@{arrow\_\-balanced\_\-tsp\_\-dt}!baltsp.h@{baltsp.h}}
+\subsubsection[{arrow\_\-balanced\_\-tsp\_\-dt}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-balanced\_\-tsp\_\-dt ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-btsp\_\-params} $\ast$ {\em params}, \/  int {\em lb\_\-only}, \/  int {\em with\_\-improvements}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em lb\_\-result}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em tour\_\-result})}}
+\label{baltsp_8h_abd717f64120ef3834dcdc1c8c98e336}
+
+
+
+
+Definition at line 35 of file baltsp-dt.c.
+
+References arrow\_\-btsp\_\-feasible(), arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-cost\_\-index(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour(), arrow\_\-util\_\-zeit(), balanced\_\-lb\_\-feasible(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-params::deep\_\-copy, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-params::infinity, arrow\_\-btsp\_\-params::lower\_\-bound, max(), arrow\_\-btsp\_\-result::max\_\-cost, arrow\_\-problem\_\-info::max\_\-cost, arrow\_\-btsp\_\-result::min\_\-cost, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-btsp\_\-result::optimal, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-params::steps, arrow\_\-problem::symmetric, arrow\_\-bound\_\-result::total\_\-time, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, arrow\_\-btsp\_\-result::tour\_\-length, and arrow\_\-btsp\_\-params::upper\_\-bound.
+
+Referenced by main().\hypertarget{baltsp_8h_9e38b4149294169d7385216213f247fe}{
+\index{baltsp.h@{baltsp.h}!arrow\_\-balanced\_\-tsp\_\-dt2@{arrow\_\-balanced\_\-tsp\_\-dt2}}
+\index{arrow\_\-balanced\_\-tsp\_\-dt2@{arrow\_\-balanced\_\-tsp\_\-dt2}!baltsp.h@{baltsp.h}}
+\subsubsection[{arrow\_\-balanced\_\-tsp\_\-dt2}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-balanced\_\-tsp\_\-dt2 ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-baltsp\_\-params} $\ast$ {\em params}, \/  double $\ast$ {\em lb\_\-time}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em tour\_\-result})}}
+\label{baltsp_8h_9e38b4149294169d7385216213f247fe}
+
+
+
+
+Definition at line 36 of file baltsp-dt2.c.
+
+References arrow\_\-btsp\_\-feasible(), arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-cost\_\-index(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour(), arrow\_\-util\_\-zeit(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-baltsp\_\-params::btsp\_\-max\_\-cost, arrow\_\-baltsp\_\-params::btsp\_\-min\_\-cost, arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-baltsp\_\-params::deep\_\-copy, dt2\_\-lb\_\-feasible(), arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-baltsp\_\-params::infinity, arrow\_\-baltsp\_\-params::lower\_\-bound, max(), arrow\_\-btsp\_\-result::max\_\-cost, arrow\_\-problem\_\-info::max\_\-cost, arrow\_\-btsp\_\-result::min\_\-cost, arrow\_\-baltsp\_\-params::mstsp\_\-min\_\-cost, arrow\_\-baltsp\_\-params::num\_\-steps, arrow\_\-btsp\_\-result::optimal, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-baltsp\_\-params::steps, arrow\_\-problem::symmetric, arrow\_\-baltsp\_\-params::timebound, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, arrow\_\-btsp\_\-result::tour\_\-length, and arrow\_\-baltsp\_\-params::with\_\-improvements.
+
+Referenced by main().\hypertarget{baltsp_8h_b416a4231c1efde53cc8191486a8db4d}{
+\index{baltsp.h@{baltsp.h}!arrow\_\-balanced\_\-tsp\_\-ib@{arrow\_\-balanced\_\-tsp\_\-ib}}
+\index{arrow\_\-balanced\_\-tsp\_\-ib@{arrow\_\-balanced\_\-tsp\_\-ib}!baltsp.h@{baltsp.h}}
+\subsubsection[{arrow\_\-balanced\_\-tsp\_\-ib}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-balanced\_\-tsp\_\-ib ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-btsp\_\-params} $\ast$ {\em params}, \/  int {\em lb\_\-only}, \/  int {\em with\_\-improvements}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em lb\_\-result}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em tour\_\-result})}}
+\label{baltsp_8h_b416a4231c1efde53cc8191486a8db4d}
+
+
+
+
+Definition at line 100 of file baltsp-ib.c.
+
+References arrow\_\-baltsp\_\-fun\_\-ib(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-destruct(), arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-cost\_\-index(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-zeit(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, btsp\_\-bounds(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, find\_\-cost\_\-order(), arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-params::lower\_\-bound, max(), arrow\_\-btsp\_\-result::max\_\-cost, arrow\_\-problem\_\-info::max\_\-cost, arrow\_\-btsp\_\-result::min\_\-cost, arrow\_\-problem\_\-info::min\_\-cost, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-btsp\_\-result::optimal, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-bound\_\-result::total\_\-time, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, arrow\_\-btsp\_\-result::tour\_\-length, and arrow\_\-btsp\_\-params::upper\_\-bound.
+
+Referenced by main().\hypertarget{baltsp_8h_f99b10e444262402df58c126c5818b75}{
+\index{baltsp.h@{baltsp.h}!arrow\_\-balanced\_\-tsp\_\-ib2@{arrow\_\-balanced\_\-tsp\_\-ib2}}
+\index{arrow\_\-balanced\_\-tsp\_\-ib2@{arrow\_\-balanced\_\-tsp\_\-ib2}!baltsp.h@{baltsp.h}}
+\subsubsection[{arrow\_\-balanced\_\-tsp\_\-ib2}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-balanced\_\-tsp\_\-ib2 ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-baltsp\_\-params} $\ast$ {\em params}, \/  {\bf arrow\_\-btsp\_\-params} $\ast$ {\em btsp\_\-params}, \/  double $\ast$ {\em lb\_\-time}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em tour\_\-result})}}
+\label{baltsp_8h_f99b10e444262402df58c126c5818b75}
+
+
+
+
+Definition at line 100 of file baltsp-ib2.c.
+
+References arrow\_\-baltsp\_\-fun\_\-ib(), arrow\_\-btsp\_\-feasible(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-destruct(), arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-cost\_\-index(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour(), arrow\_\-util\_\-zeit(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, btsp\_\-lower\_\-bound(), arrow\_\-baltsp\_\-params::btsp\_\-max\_\-cost, arrow\_\-baltsp\_\-params::btsp\_\-min\_\-cost, arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-baltsp\_\-params::infinity, arrow\_\-btsp\_\-params::lower\_\-bound, arrow\_\-baltsp\_\-params::lower\_\-bound, max(), arrow\_\-btsp\_\-result::max\_\-cost, arrow\_\-problem\_\-info::max\_\-cost, arrow\_\-btsp\_\-result::min\_\-cost, arrow\_\-baltsp\_\-params::mstsp\_\-min\_\-cost, arrow\_\-baltsp\_\-params::num\_\-steps, arrow\_\-btsp\_\-result::optimal, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-baltsp\_\-params::steps, arrow\_\-problem::symmetric, arrow\_\-baltsp\_\-params::timebound, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, arrow\_\-btsp\_\-result::tour\_\-length, arrow\_\-btsp\_\-params::upper\_\-bound, and arrow\_\-baltsp\_\-params::with\_\-improvements.
+
+Referenced by main().\hypertarget{baltsp_8h_a07f69e287f6e6242771ce651c1d65c2}{
+\index{baltsp.h@{baltsp.h}!arrow\_\-balanced\_\-tsp\_\-lb@{arrow\_\-balanced\_\-tsp\_\-lb}}
+\index{arrow\_\-balanced\_\-tsp\_\-lb@{arrow\_\-balanced\_\-tsp\_\-lb}!baltsp.h@{baltsp.h}}
+\subsubsection[{arrow\_\-balanced\_\-tsp\_\-lb}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-balanced\_\-tsp\_\-lb ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  int {\em btsp\_\-min\_\-cost}, \/  int {\em btsp\_\-max\_\-cost}, \/  int {\em mstsp\_\-min\_\-cost}, \/  int $\ast$ {\em lb\_\-result})}}
+\label{baltsp_8h_a07f69e287f6e6242771ce651c1d65c2}
+
+
+
+
+Definition at line 100 of file baltsp-lb.c.
+
+References arrow\_\-baltsp\_\-fun\_\-ib(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-destruct(), arrow\_\-debug, ARROW\_\-FAILURE, arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-cost\_\-index(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, btsp\_\-lower\_\-bound(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, max(), and arrow\_\-problem\_\-info::max\_\-cost.
+
+Referenced by main().\hypertarget{baltsp_8h_35cf1dd5c19877bb323b99351e6de277}{
+\index{baltsp.h@{baltsp.h}!arrow\_\-baltsp\_\-fun\_\-basic@{arrow\_\-baltsp\_\-fun\_\-basic}}
+\index{arrow\_\-baltsp\_\-fun\_\-basic@{arrow\_\-baltsp\_\-fun\_\-basic}!baltsp.h@{baltsp.h}}
+\subsubsection[{arrow\_\-baltsp\_\-fun\_\-basic}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-baltsp\_\-fun\_\-basic (int {\em shallow}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{baltsp_8h_35cf1dd5c19877bb323b99351e6de277}
+
+
+Basic BalTSP to TSP function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 206 of file fun\_\-baltsp.c.
+
+References ARROW\_\-SUCCESS, baltsp\_\-basic\_\-destruct(), baltsp\_\-basic\_\-feasible(), baltsp\_\-basic\_\-get\_\-cost(), baltsp\_\-basic\_\-initialize(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, arrow\_\-btsp\_\-fun::initialize, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{baltsp_8h_ae78a88357c30410a5c2627b43322e15}{
+\index{baltsp.h@{baltsp.h}!arrow\_\-baltsp\_\-fun\_\-dt2@{arrow\_\-baltsp\_\-fun\_\-dt2}}
+\index{arrow\_\-baltsp\_\-fun\_\-dt2@{arrow\_\-baltsp\_\-fun\_\-dt2}!baltsp.h@{baltsp.h}}
+\subsubsection[{arrow\_\-baltsp\_\-fun\_\-dt2}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-baltsp\_\-fun\_\-dt2 (int {\em shallow}, \/  int {\em random\_\-min}, \/  int {\em random\_\-max}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{baltsp_8h_ae78a88357c30410a5c2627b43322e15}
+
+
+
+
+Definition at line 278 of file fun\_\-baltsp.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), baltsp\_\-dt2\_\-feasible(), baltsp\_\-dt2\_\-get\_\-cost(), baltsp\_\-dt2\_\-initialize(), baltsp\_\-shake\_\-destruct(), arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, baltsp\_\-shake\_\-data::infinity, baltsp\_\-shake\_\-data::info, arrow\_\-btsp\_\-fun::initialize, baltsp\_\-shake\_\-data::random\_\-list, baltsp\_\-shake\_\-data::random\_\-list\_\-length, baltsp\_\-shake\_\-data::random\_\-max, baltsp\_\-shake\_\-data::random\_\-min, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{baltsp_8h_9281456d186780f37a034abd1006dc6e}{
+\index{baltsp.h@{baltsp.h}!arrow\_\-baltsp\_\-fun\_\-ib@{arrow\_\-baltsp\_\-fun\_\-ib}}
+\index{arrow\_\-baltsp\_\-fun\_\-ib@{arrow\_\-baltsp\_\-fun\_\-ib}!baltsp.h@{baltsp.h}}
+\subsubsection[{arrow\_\-baltsp\_\-fun\_\-ib}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-baltsp\_\-fun\_\-ib (int {\em shallow}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{baltsp_8h_9281456d186780f37a034abd1006dc6e}
+
+
+BalTSP Iterative Bottleneck transformation. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 266 of file fun\_\-baltsp.c.
+
+References ARROW\_\-SUCCESS, baltsp\_\-basic\_\-destruct(), baltsp\_\-basic\_\-initialize(), baltsp\_\-ib\_\-feasible(), baltsp\_\-ib\_\-get\_\-cost(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, arrow\_\-btsp\_\-fun::initialize, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-balanced\_\-tsp\_\-lb(), and btsp\_\-bounds().\hypertarget{baltsp_8h_005b27ac9628b3eb66aae7088947e098}{
+\index{baltsp.h@{baltsp.h}!arrow\_\-baltsp\_\-fun\_\-shake@{arrow\_\-baltsp\_\-fun\_\-shake}}
+\index{arrow\_\-baltsp\_\-fun\_\-shake@{arrow\_\-baltsp\_\-fun\_\-shake}!baltsp.h@{baltsp.h}}
+\subsubsection[{arrow\_\-baltsp\_\-fun\_\-shake}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-baltsp\_\-fun\_\-shake (int {\em shallow}, \/  int {\em infinity}, \/  int {\em random\_\-min}, \/  int {\em random\_\-max}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{baltsp_8h_005b27ac9628b3eb66aae7088947e098}
+
+
+BalTSP Controled Shake. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em infinity}]\mbox{[}in\mbox{]} value to use as \char`\"{}infinity\char`\"{} \item[{\em random\_\-min}]\mbox{[}in\mbox{]} minimum random value to generate \item[{\em random\_\-max}]\mbox{[}in\mbox{]} maximum random value to generate \item[{\em info}]\mbox{[}in\mbox{]} information about the original problem \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 230 of file fun\_\-baltsp.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), baltsp\_\-basic\_\-feasible(), baltsp\_\-shake\_\-destruct(), baltsp\_\-shake\_\-get\_\-cost(), baltsp\_\-shake\_\-initialize(), arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, baltsp\_\-shake\_\-data::infinity, baltsp\_\-shake\_\-data::info, arrow\_\-btsp\_\-fun::initialize, baltsp\_\-shake\_\-data::random\_\-list, baltsp\_\-shake\_\-data::random\_\-list\_\-length, baltsp\_\-shake\_\-data::random\_\-max, baltsp\_\-shake\_\-data::random\_\-min, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{baltsp_8h_19561224419b3bb0e308764e66471804}{
+\index{baltsp.h@{baltsp.h}!arrow\_\-baltsp\_\-fun\_\-ut@{arrow\_\-baltsp\_\-fun\_\-ut}}
+\index{arrow\_\-baltsp\_\-fun\_\-ut@{arrow\_\-baltsp\_\-fun\_\-ut}!baltsp.h@{baltsp.h}}
+\subsubsection[{arrow\_\-baltsp\_\-fun\_\-ut}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-baltsp\_\-fun\_\-ut (int {\em shallow}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{baltsp_8h_19561224419b3bb0e308764e66471804}
+
+
+BalTSP to TSP function that favours values closer to the max\_\-cost. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 218 of file fun\_\-baltsp.c.
+
+References ARROW\_\-SUCCESS, baltsp\_\-basic\_\-destruct(), baltsp\_\-basic\_\-initialize(), baltsp\_\-ut\_\-feasible(), baltsp\_\-ut\_\-get\_\-cost(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, arrow\_\-btsp\_\-fun::initialize, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{baltsp_8h_7e94ccdcf80624682db13f6a46d3c1a2}{
+\index{baltsp.h@{baltsp.h}!arrow\_\-baltsp\_\-params\_\-init@{arrow\_\-baltsp\_\-params\_\-init}}
+\index{arrow\_\-baltsp\_\-params\_\-init@{arrow\_\-baltsp\_\-params\_\-init}!baltsp.h@{baltsp.h}}
+\subsubsection[{arrow\_\-baltsp\_\-params\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-baltsp\_\-params\_\-init ({\bf arrow\_\-baltsp\_\-params} $\ast$ {\em params})}}
+\label{baltsp_8h_7e94ccdcf80624682db13f6a46d3c1a2}
+
+
+
+
+Definition at line 16 of file params.c.
+
+References ARROW\_\-FALSE, arrow\_\-baltsp\_\-params::btsp\_\-max\_\-cost, arrow\_\-baltsp\_\-params::btsp\_\-min\_\-cost, arrow\_\-baltsp\_\-params::lower\_\-bound, arrow\_\-baltsp\_\-params::mstsp\_\-min\_\-cost, arrow\_\-baltsp\_\-params::num\_\-steps, arrow\_\-baltsp\_\-params::timebound, and arrow\_\-baltsp\_\-params::with\_\-improvements.
+
+Referenced by main().

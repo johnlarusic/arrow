@@ -1,0 +1,66 @@
+\hypertarget{lib_2baltsp_2baltsp-dt_8c}{
+\section{lib/baltsp/baltsp-dt.c File Reference}
+\label{lib_2baltsp_2baltsp-dt_8c}\index{lib/baltsp/baltsp-dt.c@{lib/baltsp/baltsp-dt.c}}
+}
+Balanced traveling salesman problem double threshold algorithm.  
+
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}lb.h\char`\"{}}\par
+{\tt \#include \char`\"{}btsp.h\char`\"{}}\par
+{\tt \#include \char`\"{}baltsp.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{lib_2baltsp_2baltsp-dt_8c_9428697bd562becac6ddd6fa733bbe81}{balanced\_\-lb\_\-feasible} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int min\_\-cost, int max\_\-cost, int $\ast$is\_\-feasible)
+\begin{CompactList}\small\item\em Determines if a tour is feasible given min/max costs based upon lower bounds for the BTSP. \item\end{CompactList}\item 
+int \hyperlink{lib_2baltsp_2baltsp-dt_8c_abd717f64120ef3834dcdc1c8c98e336}{arrow\_\-balanced\_\-tsp\_\-dt} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params} $\ast$params, int \hyperlink{bin_2baltsp-ib_8c_f328dea7847a1b1888dc14a570d0ec45}{lb\_\-only}, int \hyperlink{bin_2baltsp-ib2_8c_91079460b00ac08193d5ee47094f8f70}{with\_\-improvements}, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$lb\_\-result, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$tour\_\-result)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Balanced traveling salesman problem double threshold algorithm. 
+
+Heuristic for solving the balanced traveling salesman problem double threshold algorithm (BalTSP DT-Algorithm).
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{lib_2baltsp_2baltsp-dt_8c-source}{baltsp-dt.c}.
+
+\subsection{Function Documentation}
+\hypertarget{lib_2baltsp_2baltsp-dt_8c_abd717f64120ef3834dcdc1c8c98e336}{
+\index{lib/baltsp/baltsp-dt.c@{lib/baltsp/baltsp-dt.c}!arrow\_\-balanced\_\-tsp\_\-dt@{arrow\_\-balanced\_\-tsp\_\-dt}}
+\index{arrow\_\-balanced\_\-tsp\_\-dt@{arrow\_\-balanced\_\-tsp\_\-dt}!lib/baltsp/baltsp-dt.c@{lib/baltsp/baltsp-dt.c}}
+\subsubsection[{arrow\_\-balanced\_\-tsp\_\-dt}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-balanced\_\-tsp\_\-dt ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-btsp\_\-params} $\ast$ {\em params}, \/  int {\em lb\_\-only}, \/  int {\em with\_\-improvements}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em lb\_\-result}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em tour\_\-result})}}
+\label{lib_2baltsp_2baltsp-dt_8c_abd717f64120ef3834dcdc1c8c98e336}
+
+
+
+
+Definition at line 35 of file baltsp-dt.c.
+
+References arrow\_\-btsp\_\-feasible(), arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-cost\_\-index(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour(), arrow\_\-util\_\-zeit(), balanced\_\-lb\_\-feasible(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-params::deep\_\-copy, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-params::infinity, arrow\_\-btsp\_\-params::lower\_\-bound, max(), arrow\_\-btsp\_\-result::max\_\-cost, arrow\_\-problem\_\-info::max\_\-cost, arrow\_\-btsp\_\-result::min\_\-cost, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-btsp\_\-result::optimal, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-params::steps, arrow\_\-problem::symmetric, arrow\_\-bound\_\-result::total\_\-time, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, arrow\_\-btsp\_\-result::tour\_\-length, and arrow\_\-btsp\_\-params::upper\_\-bound.
+
+Referenced by main().\hypertarget{lib_2baltsp_2baltsp-dt_8c_9428697bd562becac6ddd6fa733bbe81}{
+\index{lib/baltsp/baltsp-dt.c@{lib/baltsp/baltsp-dt.c}!balanced\_\-lb\_\-feasible@{balanced\_\-lb\_\-feasible}}
+\index{balanced\_\-lb\_\-feasible@{balanced\_\-lb\_\-feasible}!lib/baltsp/baltsp-dt.c@{lib/baltsp/baltsp-dt.c}}
+\subsubsection[{balanced\_\-lb\_\-feasible}]{\setlength{\rightskip}{0pt plus 5cm}int balanced\_\-lb\_\-feasible ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  int $\ast$ {\em is\_\-feasible})}}
+\label{lib_2baltsp_2baltsp-dt_8c_9428697bd562becac6ddd6fa733bbe81}
+
+
+Determines if a tour is feasible given min/max costs based upon lower bounds for the BTSP. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem structure \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em is\_\-feasible}]\mbox{[}out\mbox{]} ARROW\_\-TRUE if tour feasibly could exist \end{description}
+\end{Desc}
+
+
+Definition at line 264 of file baltsp-dt.c.
+
+References arrow\_\-bap\_\-has\_\-assignment(), arrow\_\-bbssp\_\-biconnected(), arrow\_\-bscssp\_\-connected(), ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, and arrow\_\-problem::symmetric.
+
+Referenced by arrow\_\-balanced\_\-tsp\_\-dt().

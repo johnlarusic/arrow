@@ -1,0 +1,475 @@
+\hypertarget{fun__baltsp_8c}{
+\section{lib/baltsp/fun\_\-baltsp.c File Reference}
+\label{fun__baltsp_8c}\index{lib/baltsp/fun\_\-baltsp.c@{lib/baltsp/fun\_\-baltsp.c}}
+}
+Cost matrix functions for the Balanced TSP.  
+
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}baltsp.h\char`\"{}}\par
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structbaltsp__shake__data}{baltsp\_\-shake\_\-data}
+\begin{CompactList}\small\item\em Info for shake type I cost matrix function. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{fun__baltsp_8c_a59ca0d93a4b14efa7f5760ad7a74c00}{baltsp\_\-basic\_\-get\_\-cost} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int min\_\-cost, int max\_\-cost, int i, int j)
+\begin{CompactList}\small\item\em Retrieves cost between nodes i and j from the function. \item\end{CompactList}\item 
+int \hyperlink{fun__baltsp_8c_9158f3ec3e62ff2d8e7f4d3b3059a501}{baltsp\_\-basic\_\-initialize} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Initializes the function data. \item\end{CompactList}\item 
+void \hyperlink{fun__baltsp_8c_6ce941163ff144b09f2f813b00333c23}{baltsp\_\-basic\_\-destruct} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Destructs the function data. \item\end{CompactList}\item 
+int \hyperlink{fun__baltsp_8c_4c887f6b4f2729f9ac31b490aa05e36f}{baltsp\_\-basic\_\-feasible} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int min\_\-cost, int max\_\-cost, double tour\_\-length, int $\ast$tour)
+\begin{CompactList}\small\item\em Determines if the given tour is feasible or not. \item\end{CompactList}\item 
+int \hyperlink{fun__baltsp_8c_c0fbdf78d96322bb66df7865257dbb12}{baltsp\_\-ut\_\-get\_\-cost} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int min\_\-cost, int max\_\-cost, int i, int j)
+\begin{CompactList}\small\item\em Retrieves cost between nodes i and j from the function. \item\end{CompactList}\item 
+int \hyperlink{fun__baltsp_8c_9d248655d0f6d87c1af5dac666df426a}{baltsp\_\-ut\_\-feasible} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int min\_\-cost, int max\_\-cost, double tour\_\-length, int $\ast$tour)
+\begin{CompactList}\small\item\em Determines if the given tour is feasible or not. \item\end{CompactList}\item 
+int \hyperlink{fun__baltsp_8c_0320e7e0589ef17f28678035ee916e8c}{baltsp\_\-shake\_\-get\_\-cost} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int min\_\-cost, int max\_\-cost, int i, int j)
+\begin{CompactList}\small\item\em Retrieves cost between nodes i and j from the function. \item\end{CompactList}\item 
+int \hyperlink{fun__baltsp_8c_a79950caf77487f1aa0085c3de4b378a}{baltsp\_\-shake\_\-initialize} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Initializes the function data. \item\end{CompactList}\item 
+void \hyperlink{fun__baltsp_8c_3b34b017357d067d2c9d64da6e8b92cc}{baltsp\_\-shake\_\-destruct} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Destructs the function data. \item\end{CompactList}\item 
+int \hyperlink{fun__baltsp_8c_369802d3825b364ba9d57e1cc490b964}{baltsp\_\-ib\_\-get\_\-cost} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int min\_\-cost, int max\_\-cost, int i, int j)
+\begin{CompactList}\small\item\em Retrieves cost between nodes i and j from the function. \item\end{CompactList}\item 
+int \hyperlink{fun__baltsp_8c_a80b8820a4673a53d0ee00063dc80ba9}{baltsp\_\-ib\_\-feasible} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int min\_\-cost, int max\_\-cost, double tour\_\-length, int $\ast$tour)
+\begin{CompactList}\small\item\em Determines if the given tour is feasible or not. \item\end{CompactList}\item 
+int \hyperlink{fun__baltsp_8c_e3e9cda63bd9a15e1b79fcdac9434540}{baltsp\_\-dt2\_\-get\_\-cost} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int min\_\-cost, int max\_\-cost, int i, int j)
+\begin{CompactList}\small\item\em Retrieves cost between nodes i and j from the function. \item\end{CompactList}\item 
+int \hyperlink{fun__baltsp_8c_d20092694bb0e6f63214be6ddb544b7c}{baltsp\_\-dt2\_\-initialize} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Initializes the function data. \item\end{CompactList}\item 
+void \hyperlink{fun__baltsp_8c_8601088f36643347f0ac34d9b975c400}{baltsp\_\-dt2\_\-destruct} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Destructs the function data. \item\end{CompactList}\item 
+int \hyperlink{fun__baltsp_8c_c24a0082c65f6abb905be22b891f5ca1}{baltsp\_\-dt2\_\-feasible} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int min\_\-cost, int max\_\-cost, double tour\_\-length, int $\ast$tour)
+\begin{CompactList}\small\item\em Determines if the given tour is feasible or not. \item\end{CompactList}\item 
+int \hyperlink{fun__baltsp_8c_35cf1dd5c19877bb323b99351e6de277}{arrow\_\-baltsp\_\-fun\_\-basic} (int shallow, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Basic BalTSP to TSP function. \item\end{CompactList}\item 
+int \hyperlink{fun__baltsp_8c_19561224419b3bb0e308764e66471804}{arrow\_\-baltsp\_\-fun\_\-ut} (int shallow, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em BalTSP to TSP function that favours values closer to the max\_\-cost. \item\end{CompactList}\item 
+int \hyperlink{fun__baltsp_8c_005b27ac9628b3eb66aae7088947e098}{arrow\_\-baltsp\_\-fun\_\-shake} (int shallow, int infinity, int random\_\-min, int random\_\-max, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em BalTSP Controled Shake. \item\end{CompactList}\item 
+int \hyperlink{fun__baltsp_8c_9281456d186780f37a034abd1006dc6e}{arrow\_\-baltsp\_\-fun\_\-ib} (int shallow, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em BalTSP Iterative Bottleneck transformation. \item\end{CompactList}\item 
+int \hyperlink{fun__baltsp_8c_ae78a88357c30410a5c2627b43322e15}{arrow\_\-baltsp\_\-fun\_\-dt2} (int shallow, int random\_\-min, int random\_\-max, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Cost matrix functions for the Balanced TSP. 
+
+Cost matrix transformation functions for the balanced traveling salesman problem (BalTSP).
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{fun__baltsp_8c-source}{fun\_\-baltsp.c}.
+
+\subsection{Function Documentation}
+\hypertarget{fun__baltsp_8c_35cf1dd5c19877bb323b99351e6de277}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!arrow\_\-baltsp\_\-fun\_\-basic@{arrow\_\-baltsp\_\-fun\_\-basic}}
+\index{arrow\_\-baltsp\_\-fun\_\-basic@{arrow\_\-baltsp\_\-fun\_\-basic}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{arrow\_\-baltsp\_\-fun\_\-basic}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-baltsp\_\-fun\_\-basic (int {\em shallow}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__baltsp_8c_35cf1dd5c19877bb323b99351e6de277}
+
+
+Basic BalTSP to TSP function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 206 of file fun\_\-baltsp.c.
+
+References ARROW\_\-SUCCESS, baltsp\_\-basic\_\-destruct(), baltsp\_\-basic\_\-feasible(), baltsp\_\-basic\_\-get\_\-cost(), baltsp\_\-basic\_\-initialize(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, arrow\_\-btsp\_\-fun::initialize, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{fun__baltsp_8c_ae78a88357c30410a5c2627b43322e15}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!arrow\_\-baltsp\_\-fun\_\-dt2@{arrow\_\-baltsp\_\-fun\_\-dt2}}
+\index{arrow\_\-baltsp\_\-fun\_\-dt2@{arrow\_\-baltsp\_\-fun\_\-dt2}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{arrow\_\-baltsp\_\-fun\_\-dt2}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-baltsp\_\-fun\_\-dt2 (int {\em shallow}, \/  int {\em random\_\-min}, \/  int {\em random\_\-max}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__baltsp_8c_ae78a88357c30410a5c2627b43322e15}
+
+
+
+
+Definition at line 278 of file fun\_\-baltsp.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), baltsp\_\-dt2\_\-feasible(), baltsp\_\-dt2\_\-get\_\-cost(), baltsp\_\-dt2\_\-initialize(), baltsp\_\-shake\_\-destruct(), arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, baltsp\_\-shake\_\-data::infinity, baltsp\_\-shake\_\-data::info, arrow\_\-btsp\_\-fun::initialize, baltsp\_\-shake\_\-data::random\_\-list, baltsp\_\-shake\_\-data::random\_\-list\_\-length, baltsp\_\-shake\_\-data::random\_\-max, baltsp\_\-shake\_\-data::random\_\-min, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{fun__baltsp_8c_9281456d186780f37a034abd1006dc6e}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!arrow\_\-baltsp\_\-fun\_\-ib@{arrow\_\-baltsp\_\-fun\_\-ib}}
+\index{arrow\_\-baltsp\_\-fun\_\-ib@{arrow\_\-baltsp\_\-fun\_\-ib}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{arrow\_\-baltsp\_\-fun\_\-ib}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-baltsp\_\-fun\_\-ib (int {\em shallow}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__baltsp_8c_9281456d186780f37a034abd1006dc6e}
+
+
+BalTSP Iterative Bottleneck transformation. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 266 of file fun\_\-baltsp.c.
+
+References ARROW\_\-SUCCESS, baltsp\_\-basic\_\-destruct(), baltsp\_\-basic\_\-initialize(), baltsp\_\-ib\_\-feasible(), baltsp\_\-ib\_\-get\_\-cost(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, arrow\_\-btsp\_\-fun::initialize, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-balanced\_\-tsp\_\-lb(), and btsp\_\-bounds().\hypertarget{fun__baltsp_8c_005b27ac9628b3eb66aae7088947e098}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!arrow\_\-baltsp\_\-fun\_\-shake@{arrow\_\-baltsp\_\-fun\_\-shake}}
+\index{arrow\_\-baltsp\_\-fun\_\-shake@{arrow\_\-baltsp\_\-fun\_\-shake}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{arrow\_\-baltsp\_\-fun\_\-shake}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-baltsp\_\-fun\_\-shake (int {\em shallow}, \/  int {\em infinity}, \/  int {\em random\_\-min}, \/  int {\em random\_\-max}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__baltsp_8c_005b27ac9628b3eb66aae7088947e098}
+
+
+BalTSP Controled Shake. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em infinity}]\mbox{[}in\mbox{]} value to use as \char`\"{}infinity\char`\"{} \item[{\em random\_\-min}]\mbox{[}in\mbox{]} minimum random value to generate \item[{\em random\_\-max}]\mbox{[}in\mbox{]} maximum random value to generate \item[{\em info}]\mbox{[}in\mbox{]} information about the original problem \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 230 of file fun\_\-baltsp.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), baltsp\_\-basic\_\-feasible(), baltsp\_\-shake\_\-destruct(), baltsp\_\-shake\_\-get\_\-cost(), baltsp\_\-shake\_\-initialize(), arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, baltsp\_\-shake\_\-data::infinity, baltsp\_\-shake\_\-data::info, arrow\_\-btsp\_\-fun::initialize, baltsp\_\-shake\_\-data::random\_\-list, baltsp\_\-shake\_\-data::random\_\-list\_\-length, baltsp\_\-shake\_\-data::random\_\-max, baltsp\_\-shake\_\-data::random\_\-min, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{fun__baltsp_8c_19561224419b3bb0e308764e66471804}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!arrow\_\-baltsp\_\-fun\_\-ut@{arrow\_\-baltsp\_\-fun\_\-ut}}
+\index{arrow\_\-baltsp\_\-fun\_\-ut@{arrow\_\-baltsp\_\-fun\_\-ut}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{arrow\_\-baltsp\_\-fun\_\-ut}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-baltsp\_\-fun\_\-ut (int {\em shallow}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__baltsp_8c_19561224419b3bb0e308764e66471804}
+
+
+BalTSP to TSP function that favours values closer to the max\_\-cost. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 218 of file fun\_\-baltsp.c.
+
+References ARROW\_\-SUCCESS, baltsp\_\-basic\_\-destruct(), baltsp\_\-basic\_\-initialize(), baltsp\_\-ut\_\-feasible(), baltsp\_\-ut\_\-get\_\-cost(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, arrow\_\-btsp\_\-fun::initialize, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{fun__baltsp_8c_6ce941163ff144b09f2f813b00333c23}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!baltsp\_\-basic\_\-destruct@{baltsp\_\-basic\_\-destruct}}
+\index{baltsp\_\-basic\_\-destruct@{baltsp\_\-basic\_\-destruct}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{baltsp\_\-basic\_\-destruct}]{\setlength{\rightskip}{0pt plus 5cm}void baltsp\_\-basic\_\-destruct ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__baltsp_8c_6ce941163ff144b09f2f813b00333c23}
+
+
+Destructs the function data. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} the function structure to destruct \end{description}
+\end{Desc}
+
+
+Definition at line 334 of file fun\_\-baltsp.c.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-basic(), arrow\_\-baltsp\_\-fun\_\-ib(), and arrow\_\-baltsp\_\-fun\_\-ut().\hypertarget{fun__baltsp_8c_4c887f6b4f2729f9ac31b490aa05e36f}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!baltsp\_\-basic\_\-feasible@{baltsp\_\-basic\_\-feasible}}
+\index{baltsp\_\-basic\_\-feasible@{baltsp\_\-basic\_\-feasible}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{baltsp\_\-basic\_\-feasible}]{\setlength{\rightskip}{0pt plus 5cm}int baltsp\_\-basic\_\-feasible ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  double {\em tour\_\-length}, \/  int $\ast$ {\em tour})}}
+\label{fun__baltsp_8c_4c887f6b4f2729f9ac31b490aa05e36f}
+
+
+Determines if the given tour is feasible or not. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em problem}]\mbox{[}in\mbox{]} the problem to check against \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em tour\_\-length}]\mbox{[}in\mbox{]} the length of the given tour \item[{\em tour}]\mbox{[}in\mbox{]} the tour in node-node format \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]ARROW\_\-TRUE if the tour is feasible, ARROW\_\-FALSE if not \end{Desc}
+
+
+Definition at line 338 of file fun\_\-baltsp.c.
+
+References ARROW\_\-FALSE, and ARROW\_\-TRUE.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-basic(), and arrow\_\-baltsp\_\-fun\_\-shake().\hypertarget{fun__baltsp_8c_a59ca0d93a4b14efa7f5760ad7a74c00}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!baltsp\_\-basic\_\-get\_\-cost@{baltsp\_\-basic\_\-get\_\-cost}}
+\index{baltsp\_\-basic\_\-get\_\-cost@{baltsp\_\-basic\_\-get\_\-cost}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{baltsp\_\-basic\_\-get\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int baltsp\_\-basic\_\-get\_\-cost ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  int {\em i}, \/  int {\em j})}}
+\label{fun__baltsp_8c_a59ca0d93a4b14efa7f5760ad7a74c00}
+
+
+Retrieves cost between nodes i and j from the function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em base\_\-problem}]\mbox{[}in\mbox{]} problem structure \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em i}]\mbox{[}in\mbox{]} id of start node \item[{\em j}]\mbox{[}in\mbox{]} id of end node \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]cost between node i and node j \end{Desc}
+
+
+Definition at line 316 of file fun\_\-baltsp.c.
+
+References arrow\_\-problem::get\_\-cost.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-basic().\hypertarget{fun__baltsp_8c_9158f3ec3e62ff2d8e7f4d3b3059a501}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!baltsp\_\-basic\_\-initialize@{baltsp\_\-basic\_\-initialize}}
+\index{baltsp\_\-basic\_\-initialize@{baltsp\_\-basic\_\-initialize}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{baltsp\_\-basic\_\-initialize}]{\setlength{\rightskip}{0pt plus 5cm}int baltsp\_\-basic\_\-initialize ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__baltsp_8c_9158f3ec3e62ff2d8e7f4d3b3059a501}
+
+
+Initializes the function data. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} the function structure to initialize \end{description}
+\end{Desc}
+
+
+Definition at line 328 of file fun\_\-baltsp.c.
+
+References ARROW\_\-SUCCESS.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-basic(), arrow\_\-baltsp\_\-fun\_\-ib(), and arrow\_\-baltsp\_\-fun\_\-ut().\hypertarget{fun__baltsp_8c_8601088f36643347f0ac34d9b975c400}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!baltsp\_\-dt2\_\-destruct@{baltsp\_\-dt2\_\-destruct}}
+\index{baltsp\_\-dt2\_\-destruct@{baltsp\_\-dt2\_\-destruct}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{baltsp\_\-dt2\_\-destruct}]{\setlength{\rightskip}{0pt plus 5cm}void baltsp\_\-dt2\_\-destruct ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__baltsp_8c_8601088f36643347f0ac34d9b975c400}
+
+
+Destructs the function data. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} the function structure to destruct \end{description}
+\end{Desc}
+\hypertarget{fun__baltsp_8c_c24a0082c65f6abb905be22b891f5ca1}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!baltsp\_\-dt2\_\-feasible@{baltsp\_\-dt2\_\-feasible}}
+\index{baltsp\_\-dt2\_\-feasible@{baltsp\_\-dt2\_\-feasible}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{baltsp\_\-dt2\_\-feasible}]{\setlength{\rightskip}{0pt plus 5cm}int baltsp\_\-dt2\_\-feasible ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  double {\em tour\_\-length}, \/  int $\ast$ {\em tour})}}
+\label{fun__baltsp_8c_c24a0082c65f6abb905be22b891f5ca1}
+
+
+Determines if the given tour is feasible or not. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em problem}]\mbox{[}in\mbox{]} the problem to check against \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em tour\_\-length}]\mbox{[}in\mbox{]} the length of the given tour \item[{\em tour}]\mbox{[}in\mbox{]} the tour in node-node format \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]ARROW\_\-TRUE if the tour is feasible, ARROW\_\-FALSE if not \end{Desc}
+
+
+Definition at line 492 of file fun\_\-baltsp.c.
+
+References ARROW\_\-FALSE, ARROW\_\-TRUE, arrow\_\-btsp\_\-fun::data, baltsp\_\-shake\_\-data::random\_\-list, and arrow\_\-problem::size.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-dt2().\hypertarget{fun__baltsp_8c_e3e9cda63bd9a15e1b79fcdac9434540}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!baltsp\_\-dt2\_\-get\_\-cost@{baltsp\_\-dt2\_\-get\_\-cost}}
+\index{baltsp\_\-dt2\_\-get\_\-cost@{baltsp\_\-dt2\_\-get\_\-cost}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{baltsp\_\-dt2\_\-get\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int baltsp\_\-dt2\_\-get\_\-cost ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  int {\em i}, \/  int {\em j})}}
+\label{fun__baltsp_8c_e3e9cda63bd9a15e1b79fcdac9434540}
+
+
+Retrieves cost between nodes i and j from the function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em base\_\-problem}]\mbox{[}in\mbox{]} problem structure \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em i}]\mbox{[}in\mbox{]} id of start node \item[{\em j}]\mbox{[}in\mbox{]} id of end node \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]cost between node i and node j \end{Desc}
+
+
+Definition at line 441 of file fun\_\-baltsp.c.
+
+References arrow\_\-print\_\-error, arrow\_\-problem\_\-info\_\-cost\_\-index(), arrow\_\-util\_\-random\_\-between(), arrow\_\-btsp\_\-fun::data, arrow\_\-problem::get\_\-cost, baltsp\_\-shake\_\-data::infinity, baltsp\_\-shake\_\-data::info, baltsp\_\-shake\_\-data::random\_\-list, baltsp\_\-shake\_\-data::random\_\-max, baltsp\_\-shake\_\-data::random\_\-min, and arrow\_\-problem::size.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-dt2().\hypertarget{fun__baltsp_8c_d20092694bb0e6f63214be6ddb544b7c}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!baltsp\_\-dt2\_\-initialize@{baltsp\_\-dt2\_\-initialize}}
+\index{baltsp\_\-dt2\_\-initialize@{baltsp\_\-dt2\_\-initialize}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{baltsp\_\-dt2\_\-initialize}]{\setlength{\rightskip}{0pt plus 5cm}int baltsp\_\-dt2\_\-initialize ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__baltsp_8c_d20092694bb0e6f63214be6ddb544b7c}
+
+
+Initializes the function data. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} the function structure to initialize \end{description}
+\end{Desc}
+
+
+Definition at line 466 of file fun\_\-baltsp.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, baltsp\_\-shake\_\-initialize(), arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-fun::data, baltsp\_\-shake\_\-data::info, and baltsp\_\-shake\_\-data::random\_\-list.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-dt2().\hypertarget{fun__baltsp_8c_a80b8820a4673a53d0ee00063dc80ba9}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!baltsp\_\-ib\_\-feasible@{baltsp\_\-ib\_\-feasible}}
+\index{baltsp\_\-ib\_\-feasible@{baltsp\_\-ib\_\-feasible}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{baltsp\_\-ib\_\-feasible}]{\setlength{\rightskip}{0pt plus 5cm}int baltsp\_\-ib\_\-feasible ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  double {\em tour\_\-length}, \/  int $\ast$ {\em tour})}}
+\label{fun__baltsp_8c_a80b8820a4673a53d0ee00063dc80ba9}
+
+
+Determines if the given tour is feasible or not. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em problem}]\mbox{[}in\mbox{]} the problem to check against \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em tour\_\-length}]\mbox{[}in\mbox{]} the length of the given tour \item[{\em tour}]\mbox{[}in\mbox{]} the tour in node-node format \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]ARROW\_\-TRUE if the tour is feasible, ARROW\_\-FALSE if not \end{Desc}
+
+
+Definition at line 433 of file fun\_\-baltsp.c.
+
+References ARROW\_\-FALSE, ARROW\_\-TRUE, and arrow\_\-problem::size.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-ib().\hypertarget{fun__baltsp_8c_369802d3825b364ba9d57e1cc490b964}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!baltsp\_\-ib\_\-get\_\-cost@{baltsp\_\-ib\_\-get\_\-cost}}
+\index{baltsp\_\-ib\_\-get\_\-cost@{baltsp\_\-ib\_\-get\_\-cost}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{baltsp\_\-ib\_\-get\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int baltsp\_\-ib\_\-get\_\-cost ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  int {\em i}, \/  int {\em j})}}
+\label{fun__baltsp_8c_369802d3825b364ba9d57e1cc490b964}
+
+
+Retrieves cost between nodes i and j from the function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em base\_\-problem}]\mbox{[}in\mbox{]} problem structure \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em i}]\mbox{[}in\mbox{]} id of start node \item[{\em j}]\mbox{[}in\mbox{]} id of end node \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]cost between node i and node j \end{Desc}
+
+
+Definition at line 420 of file fun\_\-baltsp.c.
+
+References arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-ib().\hypertarget{fun__baltsp_8c_3b34b017357d067d2c9d64da6e8b92cc}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!baltsp\_\-shake\_\-destruct@{baltsp\_\-shake\_\-destruct}}
+\index{baltsp\_\-shake\_\-destruct@{baltsp\_\-shake\_\-destruct}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{baltsp\_\-shake\_\-destruct}]{\setlength{\rightskip}{0pt plus 5cm}void baltsp\_\-shake\_\-destruct ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__baltsp_8c_3b34b017357d067d2c9d64da6e8b92cc}
+
+
+Destructs the function data. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} the function structure to destruct \end{description}
+\end{Desc}
+
+
+Definition at line 407 of file fun\_\-baltsp.c.
+
+References arrow\_\-btsp\_\-fun::data, and baltsp\_\-shake\_\-data::random\_\-list.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-dt2(), and arrow\_\-baltsp\_\-fun\_\-shake().\hypertarget{fun__baltsp_8c_0320e7e0589ef17f28678035ee916e8c}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!baltsp\_\-shake\_\-get\_\-cost@{baltsp\_\-shake\_\-get\_\-cost}}
+\index{baltsp\_\-shake\_\-get\_\-cost@{baltsp\_\-shake\_\-get\_\-cost}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{baltsp\_\-shake\_\-get\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int baltsp\_\-shake\_\-get\_\-cost ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  int {\em i}, \/  int {\em j})}}
+\label{fun__baltsp_8c_0320e7e0589ef17f28678035ee916e8c}
+
+
+Retrieves cost between nodes i and j from the function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em base\_\-problem}]\mbox{[}in\mbox{]} problem structure \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em i}]\mbox{[}in\mbox{]} id of start node \item[{\em j}]\mbox{[}in\mbox{]} id of end node \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]cost between node i and node j \end{Desc}
+
+
+Definition at line 366 of file fun\_\-baltsp.c.
+
+References arrow\_\-print\_\-error, arrow\_\-problem\_\-info\_\-cost\_\-index(), arrow\_\-btsp\_\-fun::data, arrow\_\-problem::get\_\-cost, baltsp\_\-shake\_\-data::infinity, baltsp\_\-shake\_\-data::info, and baltsp\_\-shake\_\-data::random\_\-list.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-shake().\hypertarget{fun__baltsp_8c_a79950caf77487f1aa0085c3de4b378a}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!baltsp\_\-shake\_\-initialize@{baltsp\_\-shake\_\-initialize}}
+\index{baltsp\_\-shake\_\-initialize@{baltsp\_\-shake\_\-initialize}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{baltsp\_\-shake\_\-initialize}]{\setlength{\rightskip}{0pt plus 5cm}int baltsp\_\-shake\_\-initialize ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{fun__baltsp_8c_a79950caf77487f1aa0085c3de4b378a}
+
+
+Initializes the function data. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}out\mbox{]} the function structure to initialize \end{description}
+\end{Desc}
+
+
+Definition at line 387 of file fun\_\-baltsp.c.
+
+References arrow\_\-bintree\_\-destruct(), arrow\_\-bintree\_\-init(), arrow\_\-bintree\_\-insert(), arrow\_\-bintree\_\-to\_\-array(), ARROW\_\-SUCCESS, arrow\_\-util\_\-random\_\-between(), arrow\_\-btsp\_\-fun::data, baltsp\_\-shake\_\-data::random\_\-list, baltsp\_\-shake\_\-data::random\_\-list\_\-length, baltsp\_\-shake\_\-data::random\_\-max, and baltsp\_\-shake\_\-data::random\_\-min.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-shake(), and baltsp\_\-dt2\_\-initialize().\hypertarget{fun__baltsp_8c_9d248655d0f6d87c1af5dac666df426a}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!baltsp\_\-ut\_\-feasible@{baltsp\_\-ut\_\-feasible}}
+\index{baltsp\_\-ut\_\-feasible@{baltsp\_\-ut\_\-feasible}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{baltsp\_\-ut\_\-feasible}]{\setlength{\rightskip}{0pt plus 5cm}int baltsp\_\-ut\_\-feasible ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  double {\em tour\_\-length}, \/  int $\ast$ {\em tour})}}
+\label{fun__baltsp_8c_9d248655d0f6d87c1af5dac666df426a}
+
+
+Determines if the given tour is feasible or not. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em problem}]\mbox{[}in\mbox{]} the problem to check against \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em tour\_\-length}]\mbox{[}in\mbox{]} the length of the given tour \item[{\em tour}]\mbox{[}in\mbox{]} the tour in node-node format \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]ARROW\_\-TRUE if the tour is feasible, ARROW\_\-FALSE if not \end{Desc}
+
+
+Definition at line 358 of file fun\_\-baltsp.c.
+
+References ARROW\_\-FALSE, ARROW\_\-TRUE, and arrow\_\-problem::size.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-ut().\hypertarget{fun__baltsp_8c_c0fbdf78d96322bb66df7865257dbb12}{
+\index{fun\_\-baltsp.c@{fun\_\-baltsp.c}!baltsp\_\-ut\_\-get\_\-cost@{baltsp\_\-ut\_\-get\_\-cost}}
+\index{baltsp\_\-ut\_\-get\_\-cost@{baltsp\_\-ut\_\-get\_\-cost}!fun_baltsp.c@{fun\_\-baltsp.c}}
+\subsubsection[{baltsp\_\-ut\_\-get\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int baltsp\_\-ut\_\-get\_\-cost ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  int {\em i}, \/  int {\em j})}}
+\label{fun__baltsp_8c_c0fbdf78d96322bb66df7865257dbb12}
+
+
+Retrieves cost between nodes i and j from the function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em base\_\-problem}]\mbox{[}in\mbox{]} problem structure \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em i}]\mbox{[}in\mbox{]} id of start node \item[{\em j}]\mbox{[}in\mbox{]} id of end node \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]cost between node i and node j \end{Desc}
+
+
+Definition at line 345 of file fun\_\-baltsp.c.
+
+References arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
+
+Referenced by arrow\_\-baltsp\_\-fun\_\-ut().

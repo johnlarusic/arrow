@@ -1,0 +1,153 @@
+\hypertarget{cost-list_8c}{
+\section{bin/cost-list.c File Reference}
+\label{cost-list_8c}\index{bin/cost-list.c@{bin/cost-list.c}}
+}
+Prints cost matrix for delta feasibility problem.  
+
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}btsp.h\char`\"{}}\par
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{cost-list_8c_9b58b2c4af931c8486a986c9deca40f5}{NUM\_\-OPTS}~3
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{cost-list_8c_0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+char $\ast$ \hyperlink{cost-list_8c_289c5900d90626d909f0a85d5a0ed61d}{program\_\-name}
+\item 
+char $\ast$ \hyperlink{cost-list_8c_a4f3a15de34c409bdec6ceacf93078ed}{input\_\-file} = NULL
+\item 
+int \hyperlink{cost-list_8c_ed7394fd8e0c2796b26b9654fd10fd9d}{lower\_\-bound} = -2
+\item 
+int \hyperlink{cost-list_8c_f5a34eb1d01ffd792adcadc9627ffcb8}{upper\_\-bound} = INT\_\-MAX
+\item 
+\hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{cost-list_8c_cea6a9709d519c143f30db401a0d0c72}{options} \mbox{[}NUM\_\-OPTS\mbox{]}
+\item 
+char $\ast$ \hyperlink{cost-list_8c_3aad16fd4bea1b9717f232ea75ad6449}{desc} = \char`\"{}Prints cost list for problem\char`\"{}
+\item 
+char $\ast$ \hyperlink{cost-list_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage} = \char`\"{}-i tsplib.tsp -d \#\char`\"{}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Prints cost matrix for delta feasibility problem. 
+
+Prints cost matrix for delta feasibility problem. For use for verifying problem optimality with Concorde.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{cost-list_8c-source}{cost-list.c}.
+
+\subsection{Define Documentation}
+\hypertarget{cost-list_8c_9b58b2c4af931c8486a986c9deca40f5}{
+\index{cost-list.c@{cost-list.c}!NUM\_\-OPTS@{NUM\_\-OPTS}}
+\index{NUM\_\-OPTS@{NUM\_\-OPTS}!cost-list.c@{cost-list.c}}
+\subsubsection[{NUM\_\-OPTS}]{\setlength{\rightskip}{0pt plus 5cm}\#define NUM\_\-OPTS~3}}
+\label{cost-list_8c_9b58b2c4af931c8486a986c9deca40f5}
+
+
+
+
+Definition at line 20 of file cost-list.c.
+
+\subsection{Function Documentation}
+\hypertarget{cost-list_8c_0ddf1224851353fc92bfbff6f499fa97}{
+\index{cost-list.c@{cost-list.c}!main@{main}}
+\index{main@{main}!cost-list.c@{cost-list.c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]})}}
+\label{cost-list_8c_0ddf1224851353fc92bfbff6f499fa97}
+
+
+
+
+Definition at line 35 of file cost-list.c.
+
+References arrow\_\-options\_\-parse(), arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-cost\_\-index(), arrow\_\-problem\_\-info\_\-destruct(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read(), ARROW\_\-TRUE, arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, desc, input\_\-file, lower\_\-bound, NUM\_\-OPTS, upper\_\-bound, and usage.
+
+\subsection{Variable Documentation}
+\hypertarget{cost-list_8c_3aad16fd4bea1b9717f232ea75ad6449}{
+\index{cost-list.c@{cost-list.c}!desc@{desc}}
+\index{desc@{desc}!cost-list.c@{cost-list.c}}
+\subsubsection[{desc}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf desc} = \char`\"{}Prints cost list for problem\char`\"{}}}
+\label{cost-list_8c_3aad16fd4bea1b9717f232ea75ad6449}
+
+
+
+
+Definition at line 30 of file cost-list.c.\hypertarget{cost-list_8c_a4f3a15de34c409bdec6ceacf93078ed}{
+\index{cost-list.c@{cost-list.c}!input\_\-file@{input\_\-file}}
+\index{input\_\-file@{input\_\-file}!cost-list.c@{cost-list.c}}
+\subsubsection[{input\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf input\_\-file} = NULL}}
+\label{cost-list_8c_a4f3a15de34c409bdec6ceacf93078ed}
+
+
+Given input TSPLIB file 
+
+Definition at line 15 of file cost-list.c.\hypertarget{cost-list_8c_ed7394fd8e0c2796b26b9654fd10fd9d}{
+\index{cost-list.c@{cost-list.c}!lower\_\-bound@{lower\_\-bound}}
+\index{lower\_\-bound@{lower\_\-bound}!cost-list.c@{cost-list.c}}
+\subsubsection[{lower\_\-bound}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf lower\_\-bound} = -2}}
+\label{cost-list_8c_ed7394fd8e0c2796b26b9654fd10fd9d}
+
+
+
+
+Definition at line 16 of file cost-list.c.\hypertarget{cost-list_8c_cea6a9709d519c143f30db401a0d0c72}{
+\index{cost-list.c@{cost-list.c}!options@{options}}
+\index{options@{options}!cost-list.c@{cost-list.c}}
+\subsubsection[{options}]{\setlength{\rightskip}{0pt plus 5cm}{\bf arrow\_\-option} {\bf options}\mbox{[}NUM\_\-OPTS\mbox{]}}}
+\label{cost-list_8c_cea6a9709d519c143f30db401a0d0c72}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+    {'i', "input", "TSPLIB input file", 
+        ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE},
+    {'l', "lower-bound", "initial lower bound",
+        ARROW_OPTION_INT, &lower_bound, ARROW_FALSE, ARROW_TRUE},
+    {'u', "upper-bound", "initial upper bound",
+        ARROW_OPTION_INT, &upper_bound, ARROW_FALSE, ARROW_TRUE}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 21 of file cost-list.c.\hypertarget{cost-list_8c_289c5900d90626d909f0a85d5a0ed61d}{
+\index{cost-list.c@{cost-list.c}!program\_\-name@{program\_\-name}}
+\index{program\_\-name@{program\_\-name}!cost-list.c@{cost-list.c}}
+\subsubsection[{program\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf program\_\-name}}}
+\label{cost-list_8c_289c5900d90626d909f0a85d5a0ed61d}
+
+
+Program name 
+
+Definition at line 14 of file cost-list.c.\hypertarget{cost-list_8c_f5a34eb1d01ffd792adcadc9627ffcb8}{
+\index{cost-list.c@{cost-list.c}!upper\_\-bound@{upper\_\-bound}}
+\index{upper\_\-bound@{upper\_\-bound}!cost-list.c@{cost-list.c}}
+\subsubsection[{upper\_\-bound}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf upper\_\-bound} = INT\_\-MAX}}
+\label{cost-list_8c_f5a34eb1d01ffd792adcadc9627ffcb8}
+
+
+
+
+Definition at line 17 of file cost-list.c.\hypertarget{cost-list_8c_adebe2487a2c5240ab6cd02c83add0bf}{
+\index{cost-list.c@{cost-list.c}!usage@{usage}}
+\index{usage@{usage}!cost-list.c@{cost-list.c}}
+\subsubsection[{usage}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf usage} = \char`\"{}-i tsplib.tsp -d \#\char`\"{}}}
+\label{cost-list_8c_adebe2487a2c5240ab6cd02c83add0bf}
+
+
+
+
+Definition at line 31 of file cost-list.c.

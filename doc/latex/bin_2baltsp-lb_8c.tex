@@ -1,0 +1,193 @@
+\hypertarget{bin_2baltsp-lb_8c}{
+\section{bin/baltsp-lb.c File Reference}
+\label{bin_2baltsp-lb_8c}\index{bin/baltsp-lb.c@{bin/baltsp-lb.c}}
+}
+Bottleneck Assignment Problem solver.  
+
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}baltsp.h\char`\"{}}\par
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{bin_2baltsp-lb_8c_9b58b2c4af931c8486a986c9deca40f5}{NUM\_\-OPTS}~6
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{bin_2baltsp-lb_8c_0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+char $\ast$ \hyperlink{bin_2baltsp-lb_8c_289c5900d90626d909f0a85d5a0ed61d}{program\_\-name}
+\item 
+char $\ast$ \hyperlink{bin_2baltsp-lb_8c_a4f3a15de34c409bdec6ceacf93078ed}{input\_\-file} = NULL
+\item 
+char $\ast$ \hyperlink{bin_2baltsp-lb_8c_bf4e392494984c6ef8259268eb1fe421}{xml\_\-file} = NULL
+\item 
+int \hyperlink{bin_2baltsp-lb_8c_7298da576a5b127d04b4c46b3bc78821}{deep\_\-copy} = ARROW\_\-FALSE
+\item 
+int \hyperlink{bin_2baltsp-lb_8c_97987334c96a847ff74c2c6c83d78a73}{btsp\_\-min\_\-cost} = -1
+\item 
+int \hyperlink{bin_2baltsp-lb_8c_8135b6557d64f65441d8f07fdc21ffdc}{btsp\_\-max\_\-cost} = -1
+\item 
+int \hyperlink{bin_2baltsp-lb_8c_79e1b33b7d744b8baacfe9c0b2e73013}{mstsp\_\-min\_\-cost} = -1
+\item 
+\hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{bin_2baltsp-lb_8c_cea6a9709d519c143f30db401a0d0c72}{options} \mbox{[}NUM\_\-OPTS\mbox{]}
+\item 
+char $\ast$ \hyperlink{bin_2baltsp-lb_8c_3aad16fd4bea1b9717f232ea75ad6449}{desc} = \char`\"{}Bottleneck assignment problem solver\char`\"{}
+\item 
+char $\ast$ \hyperlink{bin_2baltsp-lb_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage} = \char`\"{}-i tsplib.tsp \mbox{[}\hyperlink{tourinfo_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{]} \char`\"{}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Bottleneck Assignment Problem solver. 
+
+Solves the bottleneck assignment problem (BAP) on the given input file.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{bin_2baltsp-lb_8c-source}{baltsp-lb.c}.
+
+\subsection{Define Documentation}
+\hypertarget{bin_2baltsp-lb_8c_9b58b2c4af931c8486a986c9deca40f5}{
+\index{bin/baltsp-lb.c@{bin/baltsp-lb.c}!NUM\_\-OPTS@{NUM\_\-OPTS}}
+\index{NUM\_\-OPTS@{NUM\_\-OPTS}!bin/baltsp-lb.c@{bin/baltsp-lb.c}}
+\subsubsection[{NUM\_\-OPTS}]{\setlength{\rightskip}{0pt plus 5cm}\#define NUM\_\-OPTS~6}}
+\label{bin_2baltsp-lb_8c_9b58b2c4af931c8486a986c9deca40f5}
+
+
+
+
+Definition at line 22 of file baltsp-lb.c.
+
+\subsection{Function Documentation}
+\hypertarget{bin_2baltsp-lb_8c_0ddf1224851353fc92bfbff6f499fa97}{
+\index{bin/baltsp-lb.c@{bin/baltsp-lb.c}!main@{main}}
+\index{main@{main}!bin/baltsp-lb.c@{bin/baltsp-lb.c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]})}}
+\label{bin_2baltsp-lb_8c_0ddf1224851353fc92bfbff6f499fa97}
+
+
+
+
+Definition at line 44 of file baltsp-lb.c.
+
+References arrow\_\-balanced\_\-tsp\_\-lb(), ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-options\_\-parse(), arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-destruct(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read(), ARROW\_\-SUCCESS, arrow\_\-util\_\-print\_\-program\_\-args(), arrow\_\-util\_\-zeit(), btsp\_\-max\_\-cost, btsp\_\-min\_\-cost, desc, input\_\-file, mstsp\_\-min\_\-cost, NUM\_\-OPTS, usage, and xml\_\-file.
+
+\subsection{Variable Documentation}
+\hypertarget{bin_2baltsp-lb_8c_8135b6557d64f65441d8f07fdc21ffdc}{
+\index{bin/baltsp-lb.c@{bin/baltsp-lb.c}!btsp\_\-max\_\-cost@{btsp\_\-max\_\-cost}}
+\index{btsp\_\-max\_\-cost@{btsp\_\-max\_\-cost}!bin/baltsp-lb.c@{bin/baltsp-lb.c}}
+\subsubsection[{btsp\_\-max\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf btsp\_\-max\_\-cost} = -1}}
+\label{bin_2baltsp-lb_8c_8135b6557d64f65441d8f07fdc21ffdc}
+
+
+
+
+Definition at line 18 of file baltsp-lb.c.\hypertarget{bin_2baltsp-lb_8c_97987334c96a847ff74c2c6c83d78a73}{
+\index{bin/baltsp-lb.c@{bin/baltsp-lb.c}!btsp\_\-min\_\-cost@{btsp\_\-min\_\-cost}}
+\index{btsp\_\-min\_\-cost@{btsp\_\-min\_\-cost}!bin/baltsp-lb.c@{bin/baltsp-lb.c}}
+\subsubsection[{btsp\_\-min\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf btsp\_\-min\_\-cost} = -1}}
+\label{bin_2baltsp-lb_8c_97987334c96a847ff74c2c6c83d78a73}
+
+
+
+
+Definition at line 17 of file baltsp-lb.c.\hypertarget{bin_2baltsp-lb_8c_7298da576a5b127d04b4c46b3bc78821}{
+\index{bin/baltsp-lb.c@{bin/baltsp-lb.c}!deep\_\-copy@{deep\_\-copy}}
+\index{deep\_\-copy@{deep\_\-copy}!bin/baltsp-lb.c@{bin/baltsp-lb.c}}
+\subsubsection[{deep\_\-copy}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf deep\_\-copy} = ARROW\_\-FALSE}}
+\label{bin_2baltsp-lb_8c_7298da576a5b127d04b4c46b3bc78821}
+
+
+
+
+Definition at line 16 of file baltsp-lb.c.\hypertarget{bin_2baltsp-lb_8c_3aad16fd4bea1b9717f232ea75ad6449}{
+\index{bin/baltsp-lb.c@{bin/baltsp-lb.c}!desc@{desc}}
+\index{desc@{desc}!bin/baltsp-lb.c@{bin/baltsp-lb.c}}
+\subsubsection[{desc}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf desc} = \char`\"{}Bottleneck assignment problem solver\char`\"{}}}
+\label{bin_2baltsp-lb_8c_3aad16fd4bea1b9717f232ea75ad6449}
+
+
+
+
+Definition at line 39 of file baltsp-lb.c.\hypertarget{bin_2baltsp-lb_8c_a4f3a15de34c409bdec6ceacf93078ed}{
+\index{bin/baltsp-lb.c@{bin/baltsp-lb.c}!input\_\-file@{input\_\-file}}
+\index{input\_\-file@{input\_\-file}!bin/baltsp-lb.c@{bin/baltsp-lb.c}}
+\subsubsection[{input\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf input\_\-file} = NULL}}
+\label{bin_2baltsp-lb_8c_a4f3a15de34c409bdec6ceacf93078ed}
+
+
+Given input TSPLIB file 
+
+Definition at line 14 of file baltsp-lb.c.\hypertarget{bin_2baltsp-lb_8c_79e1b33b7d744b8baacfe9c0b2e73013}{
+\index{bin/baltsp-lb.c@{bin/baltsp-lb.c}!mstsp\_\-min\_\-cost@{mstsp\_\-min\_\-cost}}
+\index{mstsp\_\-min\_\-cost@{mstsp\_\-min\_\-cost}!bin/baltsp-lb.c@{bin/baltsp-lb.c}}
+\subsubsection[{mstsp\_\-min\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf mstsp\_\-min\_\-cost} = -1}}
+\label{bin_2baltsp-lb_8c_79e1b33b7d744b8baacfe9c0b2e73013}
+
+
+
+
+Definition at line 19 of file baltsp-lb.c.\hypertarget{bin_2baltsp-lb_8c_cea6a9709d519c143f30db401a0d0c72}{
+\index{bin/baltsp-lb.c@{bin/baltsp-lb.c}!options@{options}}
+\index{options@{options}!bin/baltsp-lb.c@{bin/baltsp-lb.c}}
+\subsubsection[{options}]{\setlength{\rightskip}{0pt plus 5cm}{\bf arrow\_\-option} {\bf options}\mbox{[}NUM\_\-OPTS\mbox{]}}}
+\label{bin_2baltsp-lb_8c_cea6a9709d519c143f30db401a0d0c72}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} 
+{
+    {'i', "input", "TSPLIB input file", 
+        ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE},
+    {'x', "xml", "File to write XML output to",
+        ARROW_OPTION_STRING, &xml_file, ARROW_FALSE, ARROW_TRUE},
+    {'d', "deep-copy", "stores data in full cost-matrix",
+        ARROW_OPTION_INT, &deep_copy, ARROW_FALSE, ARROW_FALSE},
+        
+    {'t', "btsp-min-cost", "min cost in BTSP tour",
+        ARROW_OPTION_INT, &btsp_min_cost, ARROW_FALSE, ARROW_TRUE},
+    {'u', "btsp-max-cost", "max cost in BTSP tour",
+        ARROW_OPTION_INT, &btsp_max_cost, ARROW_FALSE, ARROW_TRUE},
+    {'v', "mstsp-min-cost", "min cost in MSTSP tour",
+        ARROW_OPTION_INT, &mstsp_min_cost, ARROW_FALSE, ARROW_TRUE}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 23 of file baltsp-lb.c.\hypertarget{bin_2baltsp-lb_8c_289c5900d90626d909f0a85d5a0ed61d}{
+\index{bin/baltsp-lb.c@{bin/baltsp-lb.c}!program\_\-name@{program\_\-name}}
+\index{program\_\-name@{program\_\-name}!bin/baltsp-lb.c@{bin/baltsp-lb.c}}
+\subsubsection[{program\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf program\_\-name}}}
+\label{bin_2baltsp-lb_8c_289c5900d90626d909f0a85d5a0ed61d}
+
+
+Program name 
+
+Definition at line 13 of file baltsp-lb.c.\hypertarget{bin_2baltsp-lb_8c_adebe2487a2c5240ab6cd02c83add0bf}{
+\index{bin/baltsp-lb.c@{bin/baltsp-lb.c}!usage@{usage}}
+\index{usage@{usage}!bin/baltsp-lb.c@{bin/baltsp-lb.c}}
+\subsubsection[{usage}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf usage} = \char`\"{}-i tsplib.tsp \mbox{[}{\bf options}\mbox{]} \char`\"{}}}
+\label{bin_2baltsp-lb_8c_adebe2487a2c5240ab6cd02c83add0bf}
+
+
+
+
+Definition at line 40 of file baltsp-lb.c.\hypertarget{bin_2baltsp-lb_8c_bf4e392494984c6ef8259268eb1fe421}{
+\index{bin/baltsp-lb.c@{bin/baltsp-lb.c}!xml\_\-file@{xml\_\-file}}
+\index{xml\_\-file@{xml\_\-file}!bin/baltsp-lb.c@{bin/baltsp-lb.c}}
+\subsubsection[{xml\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf xml\_\-file} = NULL}}
+\label{bin_2baltsp-lb_8c_bf4e392494984c6ef8259268eb1fe421}
+
+
+
+
+Definition at line 15 of file baltsp-lb.c.

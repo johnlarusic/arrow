@@ -1,0 +1,198 @@
+\hypertarget{lib_2baltsp_2baltsp-db_8c}{
+\section{lib/baltsp/baltsp-db.c File Reference}
+\label{lib_2baltsp_2baltsp-db_8c}\index{lib/baltsp/baltsp-db.c@{lib/baltsp/baltsp-db.c}}
+}
+Balanced traveling salesman problem iterative bottleneck algorithm.  
+
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}lb.h\char`\"{}}\par
+{\tt \#include \char`\"{}btsp.h\char`\"{}}\par
+{\tt \#include \char`\"{}baltsp.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{lib_2baltsp_2baltsp-db_8c_90a22293c99499a2da22fd0d1a16acb4}{btsp\_\-lower\_\-bound} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, int $\ast$\hyperlink{cost-list_8c_ed7394fd8e0c2796b26b9654fd10fd9d}{lower\_\-bound})
+\begin{CompactList}\small\item\em Calculates the best BTSP lower bound. \item\end{CompactList}\item 
+int \hyperlink{lib_2baltsp_2baltsp-db_8c_793295ba41f25b193913629e408dd58e}{btsp\_\-bounds} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, int $\ast$max\_\-index, int $\ast$btsp\_\-lbs, int $\ast$best\_\-gap, int $\ast$best\_\-low, int $\ast$best\_\-high, double $\ast$total\_\-time)
+\begin{CompactList}\small\item\em Calculates BTSP lower bounds for each unique cost. \item\end{CompactList}\item 
+int \hyperlink{lib_2baltsp_2baltsp-db_8c_f169c033b4bdc2c08c544daf0e91aa9a}{baltsp\_\-bounds\_\-tree} (\hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, int $\ast$btsp\_\-lbs, int max\_\-index, \hyperlink{structarrow__bintree}{arrow\_\-bintree} $\ast$tree)
+\begin{CompactList}\small\item\em Calculates a sorted tree of unique BalTSP lower bounds. \item\end{CompactList}\item 
+int \hyperlink{lib_2baltsp_2baltsp-db_8c_42c557c4a5d3133300ce63b8b5e291c5}{fill\_\-tiers} (\hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, int $\ast$btsp\_\-lbs, int max\_\-index, int $\ast$baltsp\_\-lb, int num\_\-baltsp\_\-lbs, \hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$tiers)
+\begin{CompactList}\small\item\em Fills the tiers of linked lists corresponding to BalTSP lower bounds. \item\end{CompactList}\item 
+int \hyperlink{lib_2baltsp_2baltsp-db_8c_05a2ff158dd6edc613a6623787c04a31}{init\_\-tiers} (int num\_\-tiers, \hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$$\ast$tiers)
+\begin{CompactList}\small\item\em Initializes tiers. \item\end{CompactList}\item 
+void \hyperlink{lib_2baltsp_2baltsp-db_8c_086f8eb237774105f487040ef6ac62df}{destruct\_\-tiers} (int num\_\-tiers, \hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$$\ast$tiers)
+\begin{CompactList}\small\item\em Destructs tiers. \item\end{CompactList}\item 
+int \hyperlink{lib_2baltsp_2baltsp-db_8c_fe2b4359a26c49fe7602c86021b91ee7}{find\_\-cost\_\-order} (\hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, int max\_\-index, int $\ast$btsp\_\-lbs, int $\ast$cost\_\-order)
+\begin{CompactList}\small\item\em Fills cost\_\-order with a good order for processing them with the IB-algorithm. \item\end{CompactList}\item 
+int \hyperlink{lib_2baltsp_2baltsp-db_8c_1d70c3ec49bdea00ae8f19b56a441ed4}{arrow\_\-balanced\_\-tsp\_\-db} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$btsp\_\-problem, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$mstsp\_\-problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__baltsp__params}{arrow\_\-baltsp\_\-params} $\ast$params, \hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params} $\ast$btsp\_\-params, double $\ast$lb\_\-time, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$tour\_\-result)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Balanced traveling salesman problem iterative bottleneck algorithm. 
+
+Heuristic for solving the balanced traveling salesman problem iterative bottleneck algorithm (BalTSP IB-Algorithm).
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{lib_2baltsp_2baltsp-db_8c-source}{baltsp-db.c}.
+
+\subsection{Function Documentation}
+\hypertarget{lib_2baltsp_2baltsp-db_8c_1d70c3ec49bdea00ae8f19b56a441ed4}{
+\index{lib/baltsp/baltsp-db.c@{lib/baltsp/baltsp-db.c}!arrow\_\-balanced\_\-tsp\_\-db@{arrow\_\-balanced\_\-tsp\_\-db}}
+\index{arrow\_\-balanced\_\-tsp\_\-db@{arrow\_\-balanced\_\-tsp\_\-db}!lib/baltsp/baltsp-db.c@{lib/baltsp/baltsp-db.c}}
+\subsubsection[{arrow\_\-balanced\_\-tsp\_\-db}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-balanced\_\-tsp\_\-db ({\bf arrow\_\-problem} $\ast$ {\em btsp\_\-problem}, \/  {\bf arrow\_\-problem} $\ast$ {\em mstsp\_\-problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-baltsp\_\-params} $\ast$ {\em params}, \/  {\bf arrow\_\-btsp\_\-params} $\ast$ {\em btsp\_\-params}, \/  double $\ast$ {\em lb\_\-time}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em tour\_\-result})}}
+\label{lib_2baltsp_2baltsp-db_8c_1d70c3ec49bdea00ae8f19b56a441ed4}
+
+
+
+
+Definition at line 100 of file baltsp-db.c.
+
+References arrow\_\-baltsp\_\-fun\_\-ib(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-destruct(), arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-cost\_\-index(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour(), arrow\_\-util\_\-zeit(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, btsp\_\-lower\_\-bound(), arrow\_\-baltsp\_\-params::btsp\_\-max\_\-cost, arrow\_\-baltsp\_\-params::btsp\_\-min\_\-cost, arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-params::infinity, arrow\_\-btsp\_\-params::lower\_\-bound, arrow\_\-baltsp\_\-params::lower\_\-bound, max(), arrow\_\-btsp\_\-result::max\_\-cost, arrow\_\-problem\_\-info::max\_\-cost, arrow\_\-btsp\_\-result::min\_\-cost, arrow\_\-baltsp\_\-params::mstsp\_\-min\_\-cost, arrow\_\-baltsp\_\-params::num\_\-steps, arrow\_\-btsp\_\-result::optimal, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-problem::symmetric, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, arrow\_\-btsp\_\-result::tour\_\-length, arrow\_\-btsp\_\-params::upper\_\-bound, and arrow\_\-baltsp\_\-params::with\_\-improvements.
+
+Referenced by main().\hypertarget{lib_2baltsp_2baltsp-db_8c_f169c033b4bdc2c08c544daf0e91aa9a}{
+\index{lib/baltsp/baltsp-db.c@{lib/baltsp/baltsp-db.c}!baltsp\_\-bounds\_\-tree@{baltsp\_\-bounds\_\-tree}}
+\index{baltsp\_\-bounds\_\-tree@{baltsp\_\-bounds\_\-tree}!lib/baltsp/baltsp-db.c@{lib/baltsp/baltsp-db.c}}
+\subsubsection[{baltsp\_\-bounds\_\-tree}]{\setlength{\rightskip}{0pt plus 5cm}int baltsp\_\-bounds\_\-tree ({\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  int $\ast$ {\em btsp\_\-lbs}, \/  int {\em max\_\-index}, \/  {\bf arrow\_\-bintree} $\ast$ {\em tree})}}
+\label{lib_2baltsp_2baltsp-db_8c_f169c033b4bdc2c08c544daf0e91aa9a}
+
+
+Calculates a sorted tree of unique BalTSP lower bounds. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em info}]\mbox{[}in\mbox{]} problem info \item[{\em btsp\_\-lbs}]\mbox{[}out\mbox{]} array of BTSP bounds for each cost \item[{\em max\_\-index}]\mbox{[}in\mbox{]} largest index to bother searching \item[{\em tree}]\mbox{[}out\mbox{]} sorted tree of unique BalTSP lower bounds \end{description}
+\end{Desc}
+
+
+Definition at line 547 of file baltsp-db.c.
+
+References arrow\_\-bintree\_\-destruct(), arrow\_\-bintree\_\-init(), arrow\_\-bintree\_\-insert(), ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, and arrow\_\-problem\_\-info::cost\_\-list.
+
+Referenced by find\_\-cost\_\-order().\hypertarget{lib_2baltsp_2baltsp-db_8c_793295ba41f25b193913629e408dd58e}{
+\index{lib/baltsp/baltsp-db.c@{lib/baltsp/baltsp-db.c}!btsp\_\-bounds@{btsp\_\-bounds}}
+\index{btsp\_\-bounds@{btsp\_\-bounds}!lib/baltsp/baltsp-db.c@{lib/baltsp/baltsp-db.c}}
+\subsubsection[{btsp\_\-bounds}]{\setlength{\rightskip}{0pt plus 5cm}int btsp\_\-bounds ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  int $\ast$ {\em max\_\-index}, \/  int $\ast$ {\em btsp\_\-lbs}, \/  int $\ast$ {\em best\_\-gap}, \/  int $\ast$ {\em best\_\-low}, \/  int $\ast$ {\em best\_\-high}, \/  double $\ast$ {\em total\_\-time})}}
+\label{lib_2baltsp_2baltsp-db_8c_793295ba41f25b193913629e408dd58e}
+
+
+Calculates BTSP lower bounds for each unique cost. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem structure \item[{\em info}]\mbox{[}in\mbox{]} problem info \item[{\em max\_\-index}]\mbox{[}in/out\mbox{]} largest index to bother searching (can change if lower bounds infeasible for some value) \item[{\em btsp\_\-lbs}]\mbox{[}out\mbox{]} array of BTSP bounds for each cost \item[{\em best\_\-gap}]\mbox{[}out\mbox{]} smallest gap bound calculated \item[{\em best\_\-low}]\mbox{[}out\mbox{]} lower cost value for the best gap bound \item[{\em best\_\-high}]\mbox{[}out\mbox{]} upper cost value for the best gap bound \item[{\em total\_\-time}]\mbox{[}out\mbox{]} total time spent calculating lower bound values \end{description}
+\end{Desc}
+
+
+Definition at line 468 of file baltsp-db.c.
+
+References arrow\_\-baltsp\_\-fun\_\-ib(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-destruct(), arrow\_\-debug, ARROW\_\-FAILURE, arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-util\_\-zeit(), btsp\_\-lower\_\-bound(), arrow\_\-problem\_\-info::cost\_\-list, and arrow\_\-problem\_\-info::max\_\-cost.
+
+Referenced by arrow\_\-balanced\_\-tsp\_\-ib().\hypertarget{lib_2baltsp_2baltsp-db_8c_90a22293c99499a2da22fd0d1a16acb4}{
+\index{lib/baltsp/baltsp-db.c@{lib/baltsp/baltsp-db.c}!btsp\_\-lower\_\-bound@{btsp\_\-lower\_\-bound}}
+\index{btsp\_\-lower\_\-bound@{btsp\_\-lower\_\-bound}!lib/baltsp/baltsp-db.c@{lib/baltsp/baltsp-db.c}}
+\subsubsection[{btsp\_\-lower\_\-bound}]{\setlength{\rightskip}{0pt plus 5cm}int btsp\_\-lower\_\-bound ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  int $\ast$ {\em lower\_\-bound})}}
+\label{lib_2baltsp_2baltsp-db_8c_90a22293c99499a2da22fd0d1a16acb4}
+
+
+Calculates the best BTSP lower bound. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem structure \item[{\em lower\_\-bound}]\mbox{[}out\mbox{]} the best lower bound value \end{description}
+\end{Desc}
+
+
+Definition at line 452 of file baltsp-db.c.
+
+References arrow\_\-bbssp\_\-solve(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-SUCCESS, and arrow\_\-bound\_\-result::obj\_\-value.
+
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-balanced\_\-tsp\_\-lb(), and btsp\_\-bounds().\hypertarget{lib_2baltsp_2baltsp-db_8c_086f8eb237774105f487040ef6ac62df}{
+\index{lib/baltsp/baltsp-db.c@{lib/baltsp/baltsp-db.c}!destruct\_\-tiers@{destruct\_\-tiers}}
+\index{destruct\_\-tiers@{destruct\_\-tiers}!lib/baltsp/baltsp-db.c@{lib/baltsp/baltsp-db.c}}
+\subsubsection[{destruct\_\-tiers}]{\setlength{\rightskip}{0pt plus 5cm}void destruct\_\-tiers (int {\em num\_\-tiers}, \/  {\bf arrow\_\-llist} $\ast$$\ast$ {\em tiers})}}
+\label{lib_2baltsp_2baltsp-db_8c_086f8eb237774105f487040ef6ac62df}
+
+
+Destructs tiers. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em num\_\-tiers}]\mbox{[}in\mbox{]} number of tiers to destroy \item[{\em tiers}]\mbox{[}out\mbox{]} array of linked lists to destroy \end{description}
+\end{Desc}
+
+
+Definition at line 626 of file baltsp-db.c.
+
+References arrow\_\-llist\_\-destruct().
+
+Referenced by find\_\-cost\_\-order().\hypertarget{lib_2baltsp_2baltsp-db_8c_42c557c4a5d3133300ce63b8b5e291c5}{
+\index{lib/baltsp/baltsp-db.c@{lib/baltsp/baltsp-db.c}!fill\_\-tiers@{fill\_\-tiers}}
+\index{fill\_\-tiers@{fill\_\-tiers}!lib/baltsp/baltsp-db.c@{lib/baltsp/baltsp-db.c}}
+\subsubsection[{fill\_\-tiers}]{\setlength{\rightskip}{0pt plus 5cm}int fill\_\-tiers ({\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  int $\ast$ {\em btsp\_\-lbs}, \/  int {\em max\_\-index}, \/  int $\ast$ {\em baltsp\_\-lb}, \/  int {\em num\_\-baltsp\_\-lbs}, \/  {\bf arrow\_\-llist} $\ast$ {\em tiers})}}
+\label{lib_2baltsp_2baltsp-db_8c_42c557c4a5d3133300ce63b8b5e291c5}
+
+
+Fills the tiers of linked lists corresponding to BalTSP lower bounds. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em info}]\mbox{[}in\mbox{]} problem info \item[{\em btsp\_\-lbs}]\mbox{[}out\mbox{]} array of BTSP bounds for each cost \item[{\em max\_\-index}]\mbox{[}in\mbox{]} largest index to bother searching \item[{\em baltsp\_\-lbs}]\mbox{[}in\mbox{]} array of BalTSP lower bounds \item[{\em num\_\-baltsp\_\-lbs}]\mbox{[}in\mbox{]} size of baltsp\_\-lbs array \item[{\em tiers}]\mbox{[}out\mbox{]} array of linked lists to be filled \end{description}
+\end{Desc}
+
+
+Definition at line 568 of file baltsp-db.c.
+
+References arrow\_\-hash\_\-cost\_\-list(), arrow\_\-hash\_\-destruct(), arrow\_\-hash\_\-search(), arrow\_\-llist\_\-insert\_\-tail(), arrow\_\-print\_\-error, ARROW\_\-SUCCESS, and arrow\_\-problem\_\-info::cost\_\-list.
+
+Referenced by find\_\-cost\_\-order().\hypertarget{lib_2baltsp_2baltsp-db_8c_fe2b4359a26c49fe7602c86021b91ee7}{
+\index{lib/baltsp/baltsp-db.c@{lib/baltsp/baltsp-db.c}!find\_\-cost\_\-order@{find\_\-cost\_\-order}}
+\index{find\_\-cost\_\-order@{find\_\-cost\_\-order}!lib/baltsp/baltsp-db.c@{lib/baltsp/baltsp-db.c}}
+\subsubsection[{find\_\-cost\_\-order}]{\setlength{\rightskip}{0pt plus 5cm}int find\_\-cost\_\-order ({\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  int {\em max\_\-index}, \/  int $\ast$ {\em btsp\_\-lbs}, \/  int $\ast$ {\em cost\_\-order})}}
+\label{lib_2baltsp_2baltsp-db_8c_fe2b4359a26c49fe7602c86021b91ee7}
+
+
+Fills cost\_\-order with a good order for processing them with the IB-algorithm. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em info}]\mbox{[}in\mbox{]} problem info \item[{\em max\_\-index}]\mbox{[}in\mbox{]} largest index to bother searching \item[{\em btsp\_\-lbs}]\mbox{[}in\mbox{]} array of BTSP bounds for each cost \item[{\em cost\_\-order}]\mbox{[}out\mbox{]} specifically ordered array of costs \end{description}
+\end{Desc}
+
+
+Definition at line 643 of file baltsp-db.c.
+
+References arrow\_\-bintree\_\-destruct(), arrow\_\-bintree\_\-to\_\-array(), ARROW\_\-FAILURE, arrow\_\-llist\_\-remove\_\-head(), arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), baltsp\_\-bounds\_\-tree(), destruct\_\-tiers(), fill\_\-tiers(), init\_\-tiers(), arrow\_\-llist::size, and arrow\_\-bintree::size.
+
+Referenced by arrow\_\-balanced\_\-tsp\_\-ib().\hypertarget{lib_2baltsp_2baltsp-db_8c_05a2ff158dd6edc613a6623787c04a31}{
+\index{lib/baltsp/baltsp-db.c@{lib/baltsp/baltsp-db.c}!init\_\-tiers@{init\_\-tiers}}
+\index{init\_\-tiers@{init\_\-tiers}!lib/baltsp/baltsp-db.c@{lib/baltsp/baltsp-db.c}}
+\subsubsection[{init\_\-tiers}]{\setlength{\rightskip}{0pt plus 5cm}int init\_\-tiers (int {\em num\_\-tiers}, \/  {\bf arrow\_\-llist} $\ast$$\ast$ {\em tiers})}}
+\label{lib_2baltsp_2baltsp-db_8c_05a2ff158dd6edc613a6623787c04a31}
+
+
+Initializes tiers. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em num\_\-tiers}]\mbox{[}in\mbox{]} number of tiers to create \item[{\em tiers}]\mbox{[}out\mbox{]} array of linked lists to create \end{description}
+\end{Desc}
+
+
+Definition at line 602 of file baltsp-db.c.
+
+References ARROW\_\-FAILURE, arrow\_\-llist\_\-init(), arrow\_\-print\_\-error, and ARROW\_\-SUCCESS.
+
+Referenced by find\_\-cost\_\-order().

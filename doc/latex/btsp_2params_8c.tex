@@ -1,0 +1,49 @@
+\hypertarget{btsp_2params_8c}{
+\section{lib/btsp/params.c File Reference}
+\label{btsp_2params_8c}\index{lib/btsp/params.c@{lib/btsp/params.c}}
+}
+BTSP parameters structure and methods.  
+
+
+{\tt \#include \char`\"{}common.h\char`\"{}}\par
+{\tt \#include \char`\"{}btsp.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{btsp_2params_8c_9ee14515eed23a56303e338258725b7c}{arrow\_\-btsp\_\-params\_\-init} (\hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params} $\ast$params)
+\begin{CompactList}\small\item\em Inititalizes BTSP parameter structure. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+BTSP parameters structure and methods. 
+
+Bottleneck traveling salesman problem parameters structure.
+
+\begin{Desc}
+\item[Author:]John LaRusic \end{Desc}
+
+
+Definition in file \hyperlink{btsp_2params_8c-source}{params.c}.
+
+\subsection{Function Documentation}
+\hypertarget{btsp_2params_8c_9ee14515eed23a56303e338258725b7c}{
+\index{btsp/params.c@{btsp/params.c}!arrow\_\-btsp\_\-params\_\-init@{arrow\_\-btsp\_\-params\_\-init}}
+\index{arrow\_\-btsp\_\-params\_\-init@{arrow\_\-btsp\_\-params\_\-init}!btsp/params.c@{btsp/params.c}}
+\subsubsection[{arrow\_\-btsp\_\-params\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-params\_\-init ({\bf arrow\_\-btsp\_\-params} $\ast$ {\em params})}}
+\label{btsp_2params_8c_9ee14515eed23a56303e338258725b7c}
+
+
+Inititalizes BTSP parameter structure. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em params}]\mbox{[}out\mbox{]} BTSP parameters structure \end{description}
+\end{Desc}
+
+
+Definition at line 16 of file params.c.
+
+References ARROW\_\-FALSE, arrow\_\-btsp\_\-params::confirm\_\-sol, arrow\_\-btsp\_\-params::find\_\-short\_\-tour, arrow\_\-btsp\_\-params::lower\_\-bound, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-btsp\_\-params::supress\_\-ebst, and arrow\_\-btsp\_\-params::upper\_\-bound.
+
+Referenced by main().
