@@ -20,6 +20,43 @@ Creates an asymmetric TSPLIB nozzle vane assembly problem.
 class Usage(Exception):
     def __init__(self, msg):
         self.msg = msg
+        
+def vane(name, nodes, seed, M):
+    min_rand = -1.0
+    max_rand =  1.0
+    mult = 10 ** M
+    infty = mult * 16
+    
+    random.seed(seed)
+    
+    d = 0
+    A = range(nodes)
+    B = range(nodes)
+    
+    for i in range(nodes):
+        A[i] = random.uniform(min_rand, max_rand)
+        B[i] = random.uniform(min_rand, max_rand)
+        d = d + A[i] + B[i]
+    d = d / nodes
+    
+    print "NAME: %s" % name
+    print "TYPE: ATSP"
+    print "COMMENT: seed %d" % seed
+    print "DIMENSION: %d" % nodes
+    print "EDGE_WEIGHT_TYPE: EXPLICIT"
+    print "EDGE_WEIGHT_FORMAT: FULL_MATRIX"
+    print "EDGE_WEIGHT_SECTION"
+    
+    for i in range(nodes):
+        for j in range(nodes):
+            if i == j:
+                print "%d\t" % infty ,
+            else:
+                dec_cost = (d - (A[i] + B[j]))**2
+                int_cost = math.floor(mult * dec_cost + 0.5)
+                print "%d\t" % int_cost ,
+        print
+    print "EOF"
 
 
 def main(argv=None):
@@ -67,41 +104,8 @@ def main(argv=None):
     if name == "":
         name = "vane%d.%d" % (nodes, seed)
     
-    min_rand = -1.0
-    max_rand =  1.0
-    mult = 10000
-    infty = mult * 16
-    
-    random.seed(seed)
-    
-    d = 0
-    A = range(nodes)
-    B = range(nodes)
-    
-    for i in range(nodes):
-        A[i] = random.uniform(min_rand, max_rand)
-        B[i] = random.uniform(min_rand, max_rand)
-        d = d + A[i] + B[i]
-        # print "%d\t%5.4f\t%5.4f" % (i, A[i], B[i])
-    d = d / nodes
-    # print "d = %5.4f" % d
-    
-    print "NAME: %s" % name
-    print "TYPE: ATSP"
-    print "COMMENT: seed %d" % seed
-    print "DIMENSION: %d" % nodes
-    print "EDGE_WEIGHT_TYPE: EXPLICIT"
-    print "EDGE_WEIGHT_FORMAT: FULL_MATRIX"
-    print "EDGE_WEIGHT_SECTION"
-    
-    for i in range(nodes):
-        for j in range(nodes):
-            if i == j:
-                print "%d\t" % infty ,
-            else:
-                print "%d\t" % (math.floor(mult * (d - (A[i] + B[j]))**2 + 0.5)) ,
-        print
-    print "EOF"
+    vane(name, nodes, seed, 5)
+
     
 if __name__ == "__main__":
     sys.exit(main())
