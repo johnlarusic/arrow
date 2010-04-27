@@ -32,15 +32,15 @@
 <a href="lib_2lb_2bscssp_8c-source.html">Go to the source code of this file.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2lb_2bscssp_8c.html#9e926af0b819301883ed15e5f04ebb74">strongly_connected</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int delta, int *result)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2lb_2bscssp_8c.html#0a54d92d6e9f5ee9b369762e01fe3190">strongly_connected_dfs</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int min_cost, int max_cost, int i, int transpose, int *visited)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determines if the given graph is strongly connected.  <a href="#9e926af0b819301883ed15e5f04ebb74"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2lb_2bscssp_8c.html#a70ee7be765d6a4170f76491066da1fc">strongly_connected_dfs</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int delta, int i, int transpose, int *visited)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Performs a recursive depth-first search to test for connectivity.  <a href="#a70ee7be765d6a4170f76491066da1fc"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Performs a recursive depth-first search to test for connectivity.  <a href="#0a54d92d6e9f5ee9b369762e01fe3190"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2lb_2bscssp_8c.html#624fe95ca7b7eb623ee636c2f8cb1409">arrow_bscssp_solve</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *info, <a class="el" href="structarrow__bound__result.html">arrow_bound_result</a> *result)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on the given graph.  <a href="#624fe95ca7b7eb623ee636c2f8cb1409"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2lb_2bscssp_8c.html#d3a1c2417150edda25946ccdc1f56115">arrow_bscssp_connected</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int min_cost, int max_cost, int *result)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determines if the problem is strongly connected using only costs min_cost &lt;= c_ij &lt;= max_cost.  <a href="#d3a1c2417150edda25946ccdc1f56115"></a><br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Bottleneck strongly connected spanning subgraph problem implemenation. 
@@ -50,6 +50,63 @@ Implemenation of the bottleneck strongly connected spanning subgraph problem (BS
 
 <p>Definition in file <a class="el" href="lib_2lb_2bscssp_8c-source.html">bscssp.c</a>.</p>
 <hr><h2>Function Documentation</h2>
+<a class="anchor" name="d3a1c2417150edda25946ccdc1f56115"></a><!-- doxytag: member="bscssp.c::arrow_bscssp_connected" ref="d3a1c2417150edda25946ccdc1f56115" args="(arrow_problem *problem, int min_cost, int max_cost, int *result)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_bscssp_connected           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>min_cost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>max_cost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>result</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Determines if the problem is strongly connected using only costs min_cost &lt;= c_ij &lt;= max_cost. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] problem data </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>min_cost</em>&nbsp;</td><td>[in] minimum cost to consider in problem </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>max_cost</em>&nbsp;</td><td>[in] maximum cost to consider in problem </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>result</em>&nbsp;</td><td>[out] ARROW_TRUE if strongly connected </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00080">80</a> of file <a class="el" href="lib_2lb_2bscssp_8c-source.html">bscssp.c</a>.</p>
+
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>, and <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00128">strongly_connected_dfs()</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00037">arrow_bscssp_solve()</a>, <a class="el" href="lib_2baltsp_2baltsp-dt_8c-source.html#l00264">balanced_lb_feasible()</a>, and <a class="el" href="lib_2baltsp_2baltsp-dt2_8c-source.html#l00280">dt2_lb_feasible()</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="624fe95ca7b7eb623ee636c2f8cb1409"></a><!-- doxytag: member="bscssp.c::arrow_bscssp_solve" ref="624fe95ca7b7eb623ee636c2f8cb1409" args="(arrow_problem *problem, arrow_problem_info *info, arrow_bound_result *result)" -->
 <div class="memitem">
 <div class="memproto">
@@ -92,65 +149,15 @@ Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on t
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00044">44</a> of file <a class="el" href="lib_2lb_2bscssp_8c-source.html">bscssp.c</a>.</p>
+<p>Definition at line <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00037">37</a> of file <a class="el" href="lib_2lb_2bscssp_8c-source.html">bscssp.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="common_8h-source.html#l00464">arrow_problem_info::cost_list</a>, <a class="el" href="common_8h-source.html#l00465">arrow_problem_info::cost_list_length</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00087">strongly_connected()</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
+<p>References <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00080">arrow_bscssp_connected()</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="common_8h-source.html#l00466">arrow_problem_info::cost_list</a>, <a class="el" href="common_8h-source.html#l00467">arrow_problem_info::cost_list_length</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_2bscssp_8c-source.html#l00032">main()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="9e926af0b819301883ed15e5f04ebb74"></a><!-- doxytag: member="bscssp.c::strongly_connected" ref="9e926af0b819301883ed15e5f04ebb74" args="(arrow_problem *problem, int delta, int *result)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int strongly_connected           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
-          <td class="paramname"> <em>problem</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>delta</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *&nbsp;</td>
-          <td class="paramname"> <em>result</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Determines if the given graph is strongly connected. 
-<p>
-<dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] the problem instance </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>delta</em>&nbsp;</td><td>[in] delta parameter </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>result</em>&nbsp;</td><td>[out] the result! </td></tr>
-  </table>
-</dl>
-
-<p>Definition at line <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00087">87</a> of file <a class="el" href="lib_2lb_2bscssp_8c-source.html">bscssp.c</a>.</p>
-
-<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, and <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00134">strongly_connected_dfs()</a>.</p>
-
-<p>Referenced by <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00044">arrow_bscssp_solve()</a>.</p>
+<p>Referenced by <a class="el" href="bin_2bscssp_8c-source.html#l00038">main()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="a70ee7be765d6a4170f76491066da1fc"></a><!-- doxytag: member="bscssp.c::strongly_connected_dfs" ref="a70ee7be765d6a4170f76491066da1fc" args="(arrow_problem *problem, int delta, int i, int transpose, int *visited)" -->
+<a class="anchor" name="0a54d92d6e9f5ee9b369762e01fe3190"></a><!-- doxytag: member="bscssp.c::strongly_connected_dfs" ref="0a54d92d6e9f5ee9b369762e01fe3190" args="(arrow_problem *problem, int min_cost, int max_cost, int i, int transpose, int *visited)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -164,7 +171,13 @@ Determines if the given graph is strongly connected.
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>delta</em>, </td>
+          <td class="paramname"> <em>min_cost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>max_cost</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -199,23 +212,24 @@ Performs a recursive depth-first search to test for connectivity.
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] the problem instance </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>delta</em>&nbsp;</td><td>[in] delta parameter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>min_cost</em>&nbsp;</td><td>[in] minimum cost to consider in problem </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>max_cost</em>&nbsp;</td><td>[in] maximum cost to consider in problem </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>[in] node index to search from </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>transpose</em>&nbsp;</td><td>[in] if true, calculates costs with transposed cost matrix </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>visited</em>&nbsp;</td><td>[out] array that marks nodes that have been visited </td></tr>
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00134">134</a> of file <a class="el" href="lib_2lb_2bscssp_8c-source.html">bscssp.c</a>.</p>
+<p>Definition at line <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00128">128</a> of file <a class="el" href="lib_2lb_2bscssp_8c-source.html">bscssp.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, and <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, and <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00087">strongly_connected()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00080">arrow_bscssp_connected()</a>.</p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 19 14:09:06 2009 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Apr 26 20:22:28 2010 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

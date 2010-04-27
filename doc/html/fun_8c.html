@@ -35,27 +35,27 @@
 <tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfun__data.html">fun_data</a></td></tr>
 
 <tr><td colspan="2"><br><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun_8c.html#de2840141c73da39d21d95d8e1cfc0ab">apply_shallow</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *old_problem, int delta, <a class="el" href="structarrow__problem.html">arrow_problem</a> *new_problem)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun_8c.html#c5fc841fbbbaca2f84004f3dcc38f67d">apply_shallow</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *old_problem, int min_cost, int max_cost, <a class="el" href="structarrow__problem.html">arrow_problem</a> *new_problem)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a shallow data structure with data applied with given cost matrix function and some base problem.  <a href="#de2840141c73da39d21d95d8e1cfc0ab"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun_8c.html#1432bc88412006e39a1c14b1ae61c773">apply_deep</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *old_problem, int delta, <a class="el" href="structarrow__problem.html">arrow_problem</a> *new_problem)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a shallow data structure with data applied with given cost matrix function and some base problem.  <a href="#c5fc841fbbbaca2f84004f3dcc38f67d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun_8c.html#3ef2703b4df42754387c302430d54546">apply_deep</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *old_problem, int min_cost, int max_cost, <a class="el" href="structarrow__problem.html">arrow_problem</a> *new_problem)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a deep data structure with data applied with given cost matrix function and some base problem.  <a href="#1432bc88412006e39a1c14b1ae61c773"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a deep data structure with data applied with given cost matrix function and some base problem.  <a href="#3ef2703b4df42754387c302430d54546"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun_8c.html#5c147cc48c0dad29b311e3a874a910f7">fun_get_cost</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *this, int i, int j)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Cost function for problems based upon cost matrix functions.  <a href="#5c147cc48c0dad29b311e3a874a910f7"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun_8c.html#0f816f318217fd3c09736f9a306b3a35">fun_destruct</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *this)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun_8c.html#f671b5cccb34ad02696337d0706f8269">fun_destruct</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructs problem based upon cost matrix functions.  <a href="#0f816f318217fd3c09736f9a306b3a35"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructs problem based upon cost matrix functions.  <a href="#f671b5cccb34ad02696337d0706f8269"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun_8c.html#c28fb4bd25a57cb2b87751821c785cdd">cc_get_cost</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int i, int j)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Cost function for problems based upon Concorde's data structure.  <a href="#c28fb4bd25a57cb2b87751821c785cdd"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun_8c.html#d521c0bf7249e07ca31c90bb98f7995a">cc_destruct</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructs problems based upon Concorde's data structure.  <a href="#d521c0bf7249e07ca31c90bb98f7995a"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun_8c.html#d9cf4e03bd60c7efc575dd29868456bf">arrow_btsp_fun_apply</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *old_problem, int delta, <a class="el" href="structarrow__problem.html">arrow_problem</a> *new_problem)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun_8c.html#7e4caceb39f62e2f9e13ac888361a479">arrow_btsp_fun_apply</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *old_problem, int min_cost, int max_cost, <a class="el" href="structarrow__problem.html">arrow_problem</a> *new_problem)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Applies the given function to the given problem to create a new problem.  <a href="#d9cf4e03bd60c7efc575dd29868456bf"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Applies the given function to the given problem to create a new problem.  <a href="#7e4caceb39f62e2f9e13ac888361a479"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun_8c.html#f0b2cce4c9dced6fe48fbc29877bbd8d">arrow_btsp_fun_destruct</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructs a function structure.  <a href="#f0b2cce4c9dced6fe48fbc29877bbd8d"></a><br></td></tr>
@@ -68,7 +68,7 @@ Cost matrix transformation functions for the bottleneck traveling salesman probl
 
 <p>Definition in file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
 <hr><h2>Function Documentation</h2>
-<a class="anchor" name="1432bc88412006e39a1c14b1ae61c773"></a><!-- doxytag: member="fun.c::apply_deep" ref="1432bc88412006e39a1c14b1ae61c773" args="(arrow_btsp_fun *fun, arrow_problem *old_problem, int delta, arrow_problem *new_problem)" -->
+<a class="anchor" name="3ef2703b4df42754387c302430d54546"></a><!-- doxytag: member="fun.c::apply_deep" ref="3ef2703b4df42754387c302430d54546" args="(arrow_btsp_fun *fun, arrow_problem *old_problem, int min_cost, int max_cost, arrow_problem *new_problem)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -88,7 +88,13 @@ Cost matrix transformation functions for the bottleneck traveling salesman probl
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>delta</em>, </td>
+          <td class="paramname"> <em>min_cost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>max_cost</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -112,20 +118,21 @@ Creates a deep data structure with data applied with given cost matrix function 
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>fun</em>&nbsp;</td><td>[in] the cost matrix function </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>old_problem</em>&nbsp;</td><td>[in] the base problem </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>delta</em>&nbsp;</td><td>[in] delta parameter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>min_cost</em>&nbsp;</td><td>[in] min_cost to consider for active edges </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>max_cost</em>&nbsp;</td><td>[in] max_cost to consider for active edges </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>new_problem</em>&nbsp;</td><td>[out] the newly created, "deep" problem </td></tr>
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="fun_8c-source.html#l00144">144</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
+<p>Definition at line <a class="el" href="fun_8c-source.html#l00149">149</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00065">ARROW_PROBLEM_DATA_CONCORDE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00115">arrow_util_CCdatagroup_init_matrix()</a>, <a class="el" href="fun_8c-source.html#l00197">cc_destruct()</a>, <a class="el" href="fun_8c-source.html#l00190">cc_get_cost()</a>, <a class="el" href="common_8h-source.html#l00439">arrow_problem::data</a>, <a class="el" href="structarrow__problem.html#ff7c7873a7e7130a16e2a49da20ee625">arrow_problem::destruct</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="structarrow__btsp__fun.html#56eb57e90eae76571a024894bd0fe570">arrow_btsp_fun::get_cost</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, and <a class="el" href="common_8h-source.html#l00435">arrow_problem::type</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00065">ARROW_PROBLEM_DATA_CONCORDE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00115">arrow_util_CCdatagroup_init_matrix()</a>, <a class="el" href="fun_8c-source.html#l00206">cc_destruct()</a>, <a class="el" href="fun_8c-source.html#l00199">cc_get_cost()</a>, <a class="el" href="common_8h-source.html#l00441">arrow_problem::data</a>, <a class="el" href="structarrow__problem.html#ff7c7873a7e7130a16e2a49da20ee625">arrow_problem::destruct</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="structarrow__btsp__fun.html#ffc634f9d1a545f890b0b2007aff544d">arrow_btsp_fun::get_cost</a>, <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>, and <a class="el" href="common_8h-source.html#l00436">arrow_problem::type</a>.</p>
 
-<p>Referenced by <a class="el" href="fun_8c-source.html#l00090">arrow_btsp_fun_apply()</a>.</p>
+<p>Referenced by <a class="el" href="fun_8c-source.html#l00093">arrow_btsp_fun_apply()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="de2840141c73da39d21d95d8e1cfc0ab"></a><!-- doxytag: member="fun.c::apply_shallow" ref="de2840141c73da39d21d95d8e1cfc0ab" args="(arrow_btsp_fun *fun, arrow_problem *old_problem, int delta, arrow_problem *new_problem)" -->
+<a class="anchor" name="c5fc841fbbbaca2f84004f3dcc38f67d"></a><!-- doxytag: member="fun.c::apply_shallow" ref="c5fc841fbbbaca2f84004f3dcc38f67d" args="(arrow_btsp_fun *fun, arrow_problem *old_problem, int min_cost, int max_cost, arrow_problem *new_problem)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -145,7 +152,13 @@ Creates a deep data structure with data applied with given cost matrix function 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>delta</em>, </td>
+          <td class="paramname"> <em>min_cost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>max_cost</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -169,20 +182,21 @@ Creates a shallow data structure with data applied with given cost matrix functi
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>fun</em>&nbsp;</td><td>[in] the cost matrix function </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>old_problem</em>&nbsp;</td><td>[in] the base problem </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>delta</em>&nbsp;</td><td>[in] delta parameter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>min_cost</em>&nbsp;</td><td>[in] min_cost to consider for active edges </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>max_cost</em>&nbsp;</td><td>[in] max_cost to consider for active edges </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>new_problem</em>&nbsp;</td><td>[out] the newly created, "shallow" problem </td></tr>
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="fun_8c-source.html#l00121">121</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
+<p>Definition at line <a class="el" href="fun_8c-source.html#l00125">125</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00066">ARROW_PROBLEM_DATA_BTSP_FUN</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="fun_8c-source.html#l00019">fun_data::base_problem</a>, <a class="el" href="common_8h-source.html#l00439">arrow_problem::data</a>, <a class="el" href="fun_8c-source.html#l00020">fun_data::delta</a>, <a class="el" href="structarrow__problem.html#ff7c7873a7e7130a16e2a49da20ee625">arrow_problem::destruct</a>, <a class="el" href="fun_8c-source.html#l00018">fun_data::fun</a>, <a class="el" href="fun_8c-source.html#l00186">fun_destruct()</a>, <a class="el" href="fun_8c-source.html#l00179">fun_get_cost()</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, and <a class="el" href="common_8h-source.html#l00435">arrow_problem::type</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00066">ARROW_PROBLEM_DATA_BTSP_FUN</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="fun_8c-source.html#l00019">fun_data::base_problem</a>, <a class="el" href="common_8h-source.html#l00441">arrow_problem::data</a>, <a class="el" href="structarrow__problem.html#ff7c7873a7e7130a16e2a49da20ee625">arrow_problem::destruct</a>, <a class="el" href="fun_8c-source.html#l00018">fun_data::fun</a>, <a class="el" href="fun_8c-source.html#l00192">fun_destruct()</a>, <a class="el" href="fun_8c-source.html#l00185">fun_get_cost()</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="fun_8c-source.html#l00021">fun_data::max_cost</a>, <a class="el" href="fun_8c-source.html#l00020">fun_data::min_cost</a>, and <a class="el" href="common_8h-source.html#l00436">arrow_problem::type</a>.</p>
 
-<p>Referenced by <a class="el" href="fun_8c-source.html#l00090">arrow_btsp_fun_apply()</a>.</p>
+<p>Referenced by <a class="el" href="fun_8c-source.html#l00093">arrow_btsp_fun_apply()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="d9cf4e03bd60c7efc575dd29868456bf"></a><!-- doxytag: member="fun.c::arrow_btsp_fun_apply" ref="d9cf4e03bd60c7efc575dd29868456bf" args="(arrow_btsp_fun *fun, arrow_problem *old_problem, int delta, arrow_problem *new_problem)" -->
+<a class="anchor" name="7e4caceb39f62e2f9e13ac888361a479"></a><!-- doxytag: member="fun.c::arrow_btsp_fun_apply" ref="7e4caceb39f62e2f9e13ac888361a479" args="(arrow_btsp_fun *fun, arrow_problem *old_problem, int min_cost, int max_cost, arrow_problem *new_problem)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -202,7 +216,13 @@ Creates a shallow data structure with data applied with given cost matrix functi
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>delta</em>, </td>
+          <td class="paramname"> <em>min_cost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>max_cost</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -226,16 +246,17 @@ Applies the given function to the given problem to create a new problem.
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>fun</em>&nbsp;</td><td>[in] function structure </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>old_problem</em>&nbsp;</td><td>[in] existing problem </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>delta</em>&nbsp;</td><td>[in] delta parameter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>min_cost</em>&nbsp;</td><td>[in] min_cost to consider for active edges </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>max_cost</em>&nbsp;</td><td>[in] max_cost to consider for active edges </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>new_problem</em>&nbsp;</td><td>[out] new problem to create </td></tr>
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="fun_8c-source.html#l00090">90</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
+<p>Definition at line <a class="el" href="fun_8c-source.html#l00093">93</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
 
-<p>References <a class="el" href="fun_8c-source.html#l00144">apply_deep()</a>, <a class="el" href="fun_8c-source.html#l00121">apply_shallow()</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="structarrow__btsp__fun.html#c588686921bd526653a7e0d7816aee44">arrow_btsp_fun::initialize</a>, <a class="el" href="common_8h-source.html#l00438">arrow_problem::name</a>, <a class="el" href="btsp_8h-source.html#l00046">arrow_btsp_fun::shallow</a>, <a class="el" href="common_8h-source.html#l00437">arrow_problem::shallow</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, and <a class="el" href="common_8h-source.html#l00436">arrow_problem::symmetric</a>.</p>
+<p>References <a class="el" href="fun_8c-source.html#l00149">apply_deep()</a>, <a class="el" href="fun_8c-source.html#l00125">apply_shallow()</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00439">arrow_problem::fixed_edges</a>, <a class="el" href="structarrow__btsp__fun.html#c588686921bd526653a7e0d7816aee44">arrow_btsp_fun::initialize</a>, <a class="el" href="common_8h-source.html#l00440">arrow_problem::name</a>, <a class="el" href="btsp_8h-source.html#l00047">arrow_btsp_fun::shallow</a>, <a class="el" href="common_8h-source.html#l00438">arrow_problem::shallow</a>, <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>, and <a class="el" href="common_8h-source.html#l00437">arrow_problem::symmetric</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2btsp_2btsp_8c-source.html#l00257">feasible()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2baltsp_2baltsp-db_8c-source.html#l00100">arrow_balanced_tsp_db()</a>, <a class="el" href="lib_2baltsp_2baltsp-ib_8c-source.html#l00100">arrow_balanced_tsp_ib()</a>, <a class="el" href="lib_2baltsp_2baltsp-ib2_8c-source.html#l00100">arrow_balanced_tsp_ib2()</a>, <a class="el" href="lib_2baltsp_2baltsp-lb_8c-source.html#l00100">arrow_balanced_tsp_lb()</a>, <a class="el" href="feasible_8c-source.html#l00016">arrow_btsp_feasible()</a>, <a class="el" href="lib_2baltsp_2baltsp-db_8c-source.html#l00468">btsp_bounds()</a>, and <a class="el" href="delta-print_8c-source.html#l00041">main()</a>.</p>
 
 </div>
 </div><p>
@@ -264,11 +285,11 @@ Destructs a function structure.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="fun_8c-source.html#l00111">111</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
+<p>Definition at line <a class="el" href="fun_8c-source.html#l00115">115</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
 
 <p>References <a class="el" href="structarrow__btsp__fun.html#6c66b7591252728aaa441139c623446a">arrow_btsp_fun::destruct</a>.</p>
 
-<p>Referenced by <a class="el" href="solve__plan_8c-source.html#l00022">arrow_btsp_solve_plan_destruct()</a>, and <a class="el" href="abtsp-rai_8c-source.html#l00056">main()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2baltsp_2baltsp-db_8c-source.html#l00100">arrow_balanced_tsp_db()</a>, <a class="el" href="lib_2baltsp_2baltsp-ib_8c-source.html#l00100">arrow_balanced_tsp_ib()</a>, <a class="el" href="lib_2baltsp_2baltsp-ib2_8c-source.html#l00100">arrow_balanced_tsp_ib2()</a>, <a class="el" href="lib_2baltsp_2baltsp-lb_8c-source.html#l00100">arrow_balanced_tsp_lb()</a>, <a class="el" href="solve__plan_8c-source.html#l00022">arrow_btsp_solve_plan_destruct()</a>, <a class="el" href="lib_2baltsp_2baltsp-db_8c-source.html#l00468">btsp_bounds()</a>, and <a class="el" href="abtsp-rai_8c-source.html#l00056">main()</a>.</p>
 
 </div>
 </div><p>
@@ -297,11 +318,11 @@ Destructs problems based upon Concorde's data structure.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="fun_8c-source.html#l00197">197</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
+<p>Definition at line <a class="el" href="fun_8c-source.html#l00206">206</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00439">arrow_problem::data</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00441">arrow_problem::data</a>.</p>
 
-<p>Referenced by <a class="el" href="fun_8c-source.html#l00144">apply_deep()</a>.</p>
+<p>Referenced by <a class="el" href="fun_8c-source.html#l00149">apply_deep()</a>.</p>
 
 </div>
 </div><p>
@@ -348,15 +369,15 @@ Cost function for problems based upon Concorde's data structure.
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>cost between node i and node j </dd></dl>
 
-<p>Definition at line <a class="el" href="fun_8c-source.html#l00190">190</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
+<p>Definition at line <a class="el" href="fun_8c-source.html#l00199">199</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00439">arrow_problem::data</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00441">arrow_problem::data</a>.</p>
 
-<p>Referenced by <a class="el" href="fun_8c-source.html#l00144">apply_deep()</a>.</p>
+<p>Referenced by <a class="el" href="fun_8c-source.html#l00149">apply_deep()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="0f816f318217fd3c09736f9a306b3a35"></a><!-- doxytag: member="fun.c::fun_destruct" ref="0f816f318217fd3c09736f9a306b3a35" args="(arrow_problem *this)" -->
+<a class="anchor" name="f671b5cccb34ad02696337d0706f8269"></a><!-- doxytag: member="fun.c::fun_destruct" ref="f671b5cccb34ad02696337d0706f8269" args="(arrow_problem *problem)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -364,7 +385,7 @@ Cost function for problems based upon Concorde's data structure.
           <td class="memname">void fun_destruct           </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
-          <td class="paramname"> <em>this</em>          </td>
+          <td class="paramname"> <em>problem</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -377,13 +398,15 @@ Destructs problem based upon cost matrix functions.
 <p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>this</em>&nbsp;</td><td>[in] problem structure </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] problem structure </td></tr>
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="fun_8c-source.html#l00186">186</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
+<p>Definition at line <a class="el" href="fun_8c-source.html#l00192">192</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
 
-<p>Referenced by <a class="el" href="fun_8c-source.html#l00121">apply_shallow()</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00441">arrow_problem::data</a>.</p>
+
+<p>Referenced by <a class="el" href="fun_8c-source.html#l00125">apply_shallow()</a>.</p>
 
 </div>
 </div><p>
@@ -430,16 +453,16 @@ Cost function for problems based upon cost matrix functions.
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>cost between node i and node j </dd></dl>
 
-<p>Definition at line <a class="el" href="fun_8c-source.html#l00179">179</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
+<p>Definition at line <a class="el" href="fun_8c-source.html#l00185">185</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
 
-<p>References <a class="el" href="fun_8c-source.html#l00019">fun_data::base_problem</a>, <a class="el" href="fun_8c-source.html#l00020">fun_data::delta</a>, <a class="el" href="fun_8c-source.html#l00018">fun_data::fun</a>, and <a class="el" href="structarrow__btsp__fun.html#56eb57e90eae76571a024894bd0fe570">arrow_btsp_fun::get_cost</a>.</p>
+<p>References <a class="el" href="fun_8c-source.html#l00019">fun_data::base_problem</a>, <a class="el" href="fun_8c-source.html#l00018">fun_data::fun</a>, <a class="el" href="structarrow__btsp__fun.html#ffc634f9d1a545f890b0b2007aff544d">arrow_btsp_fun::get_cost</a>, <a class="el" href="fun_8c-source.html#l00021">fun_data::max_cost</a>, and <a class="el" href="fun_8c-source.html#l00020">fun_data::min_cost</a>.</p>
 
-<p>Referenced by <a class="el" href="fun_8c-source.html#l00121">apply_shallow()</a>.</p>
+<p>Referenced by <a class="el" href="fun_8c-source.html#l00125">apply_shallow()</a>.</p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 19 14:09:06 2009 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Apr 26 20:22:29 2010 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

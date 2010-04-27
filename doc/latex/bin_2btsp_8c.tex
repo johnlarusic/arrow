@@ -12,7 +12,7 @@ Bottleneck TSP heuristic.
 \subsection*{Defines}
 \begin{CompactItemize}
 \item 
-\#define \hyperlink{bin_2btsp_8c_9b58b2c4af931c8486a986c9deca40f5}{NUM\_\-OPTS}~17
+\#define \hyperlink{bin_2btsp_8c_9b58b2c4af931c8486a986c9deca40f5}{NUM\_\-OPTS}~21
 \item 
 \#define \hyperlink{bin_2btsp_8c_ceebcce8f411269df7b99e78247d7497}{SOLVE\_\-STEPS}~2
 \end{CompactItemize}
@@ -28,13 +28,15 @@ char $\ast$ \hyperlink{bin_2btsp_8c_a4f3a15de34c409bdec6ceacf93078ed}{input\_\-f
 \item 
 char $\ast$ \hyperlink{bin_2btsp_8c_bf4e392494984c6ef8259268eb1fe421}{xml\_\-file} = NULL
 \item 
-int \hyperlink{bin_2btsp_8c_61a12d5995172f376610cce2f19e5855}{edge\_\-infinity} = -1
+char $\ast$ \hyperlink{bin_2btsp_8c_b818a82f867be75d7c4d92d792b0943e}{tour\_\-file} = NULL
 \item 
-int \hyperlink{bin_2btsp_8c_e6a9db0fe5c8a0407d62dec2f7a14959}{random\_\-restarts} = -1
+int \hyperlink{bin_2btsp_8c_61a12d5995172f376610cce2f19e5855}{edge\_\-infinity} = -1
 \item 
 int \hyperlink{bin_2btsp_8c_a1641a28cf3ea572a56763e84518c17b}{stall\_\-count} = -1
 \item 
 int \hyperlink{bin_2btsp_8c_b8f057ba1ad6b7f0c46f8140b25b3467}{kicks} = -1
+\item 
+int \hyperlink{bin_2btsp_8c_786cdab056142ae00a268cabebd5ced7}{solve\_\-mstsp} = ARROW\_\-FALSE
 \item 
 int \hyperlink{bin_2btsp_8c_5f4aa75866b44d2dc5f30ee0175d44ff}{confirm\_\-sol} = ARROW\_\-FALSE
 \item 
@@ -52,7 +54,11 @@ int \hyperlink{bin_2btsp_8c_f5a34eb1d01ffd792adcadc9627ffcb8}{upper\_\-bound} = 
 \item 
 int \hyperlink{bin_2btsp_8c_227b7ec968925f365b96a92ace419c56}{basic\_\-attempts} = 3
 \item 
+int \hyperlink{bin_2btsp_8c_0118ab412f3a2f2db67d662a2b8a01d4}{basic\_\-restarts} = 1
+\item 
 int \hyperlink{bin_2btsp_8c_c2041d46e90c37d8b2600ebf251aafed}{shake\_\-1\_\-attempts} = 1
+\item 
+int \hyperlink{bin_2btsp_8c_d661b5ff7a633b8232af870123c479bf}{shake\_\-1\_\-restarts} = 1
 \item 
 int \hyperlink{bin_2btsp_8c_e7072960072c9404fd0fb28d077d24bd}{shake\_\-1\_\-rand\_\-min} = 0
 \item 
@@ -64,7 +70,7 @@ int \hyperlink{bin_2btsp_8c_d9059bc845096b2f05414a66c836b4ee}{random\_\-seed} = 
 \item 
 char $\ast$ \hyperlink{bin_2btsp_8c_3aad16fd4bea1b9717f232ea75ad6449}{desc} = \char`\"{}Bottleneck traveling salesman problem (BTSP) solver\char`\"{}
 \item 
-char $\ast$ \hyperlink{bin_2btsp_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage} = \char`\"{}-i tsplib.tsp \mbox{[}\hyperlink{subprob_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{]}\char`\"{}
+char $\ast$ \hyperlink{bin_2btsp_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage} = \char`\"{}-i tsplib.tsp \mbox{[}\hyperlink{tourinfo_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{]}\char`\"{}
 \end{CompactItemize}
 
 
@@ -83,13 +89,13 @@ Definition in file \hyperlink{bin_2btsp_8c-source}{btsp.c}.
 \hypertarget{bin_2btsp_8c_9b58b2c4af931c8486a986c9deca40f5}{
 \index{bin/btsp.c@{bin/btsp.c}!NUM\_\-OPTS@{NUM\_\-OPTS}}
 \index{NUM\_\-OPTS@{NUM\_\-OPTS}!bin/btsp.c@{bin/btsp.c}}
-\subsubsection[{NUM\_\-OPTS}]{\setlength{\rightskip}{0pt plus 5cm}\#define NUM\_\-OPTS~17}}
+\subsubsection[{NUM\_\-OPTS}]{\setlength{\rightskip}{0pt plus 5cm}\#define NUM\_\-OPTS~21}}
 \label{bin_2btsp_8c_9b58b2c4af931c8486a986c9deca40f5}
 
 
 
 
-Definition at line 35 of file btsp.c.\hypertarget{bin_2btsp_8c_ceebcce8f411269df7b99e78247d7497}{
+Definition at line 38 of file btsp.c.\hypertarget{bin_2btsp_8c_ceebcce8f411269df7b99e78247d7497}{
 \index{bin/btsp.c@{bin/btsp.c}!SOLVE\_\-STEPS@{SOLVE\_\-STEPS}}
 \index{SOLVE\_\-STEPS@{SOLVE\_\-STEPS}!bin/btsp.c@{bin/btsp.c}}
 \subsubsection[{SOLVE\_\-STEPS}]{\setlength{\rightskip}{0pt plus 5cm}\#define SOLVE\_\-STEPS~2}}
@@ -108,9 +114,9 @@ Definition at line 35 of file btsp.c.\hypertarget{bin_2btsp_8c_ceebcce8f411269df
 
 
 
-Definition at line 82 of file btsp.c.
+Definition at line 95 of file btsp.c.
 
-References arrow\_\-bbssp\_\-solve(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-destruct(), arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1(), arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-result\_\-print\_\-xml(), arrow\_\-btsp\_\-solve(), ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-options\_\-parse(), arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read(), ARROW\_\-SUCCESS, ARROW\_\-TSP\_\-CC\_\-EXACT, ARROW\_\-TSP\_\-CC\_\-LK, arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct(), arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init(), arrow\_\-util\_\-print\_\-program\_\-args(), arrow\_\-util\_\-random\_\-seed(), arrow\_\-util\_\-zeit(), basic\_\-attempts, arrow\_\-btsp\_\-params::confirm\_\-plan, confirm\_\-sol, arrow\_\-btsp\_\-params::confirm\_\-sol, arrow\_\-problem\_\-info::cost\_\-list\_\-length, deep\_\-copy, desc, edge\_\-infinity, find\_\-short\_\-tour, arrow\_\-btsp\_\-params::find\_\-short\_\-tour, input\_\-file, arrow\_\-tsp\_\-cc\_\-lk\_\-params::kicks, kicks, arrow\_\-btsp\_\-params::lower\_\-bound, lower\_\-bound, arrow\_\-problem\_\-info::max\_\-cost, NUM\_\-OPTS, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-tsp\_\-cc\_\-lk\_\-params::random\_\-restarts, random\_\-restarts, random\_\-seed, shake\_\-1\_\-attempts, shake\_\-1\_\-rand\_\-max, shake\_\-1\_\-rand\_\-min, arrow\_\-problem::size, SOLVE\_\-STEPS, arrow\_\-tsp\_\-cc\_\-lk\_\-params::stall\_\-count, stall\_\-count, arrow\_\-btsp\_\-params::steps, supress\_\-ebst, arrow\_\-btsp\_\-params::supress\_\-ebst, supress\_\-hash, arrow\_\-problem::symmetric, arrow\_\-bound\_\-result::total\_\-time, upper\_\-bound, arrow\_\-btsp\_\-params::upper\_\-bound, usage, and xml\_\-file.
+References arrow\_\-btsp\_\-fun\_\-asym\_\-shift(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-destruct(), arrow\_\-btsp\_\-fun\_\-shake\_\-1(), arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-result\_\-print\_\-xml(), arrow\_\-btsp\_\-solve(), ARROW\_\-FAILURE, arrow\_\-options\_\-parse(), arrow\_\-print\_\-error, arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-max\_\-cost(), arrow\_\-problem\_\-mstsp\_\-to\_\-btsp(), arrow\_\-problem\_\-read(), ARROW\_\-SUCCESS, ARROW\_\-TSP\_\-CC\_\-EXACT, ARROW\_\-TSP\_\-CC\_\-LK, arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct(), arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init(), arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-print\_\-program\_\-args(), arrow\_\-util\_\-random\_\-seed(), arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour(), arrow\_\-util\_\-write\_\-tour(), arrow\_\-util\_\-zeit(), basic\_\-attempts, basic\_\-restarts, arrow\_\-btsp\_\-params::confirm\_\-plan, confirm\_\-sol, arrow\_\-btsp\_\-params::confirm\_\-sol, arrow\_\-problem\_\-info::cost\_\-list\_\-length, deep\_\-copy, desc, edge\_\-infinity, find\_\-short\_\-tour, arrow\_\-btsp\_\-params::find\_\-short\_\-tour, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-problem::get\_\-cost, input\_\-file, arrow\_\-tsp\_\-cc\_\-lk\_\-params::kicks, kicks, arrow\_\-tsp\_\-cc\_\-lk\_\-params::length\_\-bound, arrow\_\-btsp\_\-params::lower\_\-bound, lower\_\-bound, arrow\_\-btsp\_\-result::max\_\-cost, arrow\_\-problem\_\-info::max\_\-cost, arrow\_\-problem\_\-info::min\_\-cost, NUM\_\-OPTS, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-tsp\_\-cc\_\-lk\_\-params::random\_\-restarts, random\_\-seed, shake\_\-1\_\-attempts, shake\_\-1\_\-rand\_\-max, shake\_\-1\_\-rand\_\-min, shake\_\-1\_\-restarts, arrow\_\-problem::size, solve\_\-mstsp, SOLVE\_\-STEPS, arrow\_\-tsp\_\-cc\_\-lk\_\-params::stall\_\-count, stall\_\-count, arrow\_\-btsp\_\-params::steps, supress\_\-ebst, arrow\_\-btsp\_\-params::supress\_\-ebst, supress\_\-hash, arrow\_\-problem::symmetric, arrow\_\-btsp\_\-result::tour, tour\_\-file, arrow\_\-btsp\_\-result::tour\_\-length, arrow\_\-btsp\_\-params::upper\_\-bound, upper\_\-bound, usage, and xml\_\-file.
 
 \subsection{Variable Documentation}
 \hypertarget{bin_2btsp_8c_227b7ec968925f365b96a92ace419c56}{
@@ -122,7 +128,18 @@ References arrow\_\-bbssp\_\-solve(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-
 
 
 
-Definition at line 28 of file btsp.c.\hypertarget{bin_2btsp_8c_5f4aa75866b44d2dc5f30ee0175d44ff}{
+Definition at line 29 of file btsp.c.\hypertarget{bin_2btsp_8c_0118ab412f3a2f2db67d662a2b8a01d4}{
+\index{bin/btsp.c@{bin/btsp.c}!basic\_\-restarts@{basic\_\-restarts}}
+\index{basic\_\-restarts@{basic\_\-restarts}!bin/btsp.c@{bin/btsp.c}}
+\subsubsection[{basic\_\-restarts}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf basic\_\-restarts} = 1}}
+\label{bin_2btsp_8c_0118ab412f3a2f2db67d662a2b8a01d4}
+
+
+
+
+Definition at line 30 of file btsp.c.
+
+Referenced by main().\hypertarget{bin_2btsp_8c_5f4aa75866b44d2dc5f30ee0175d44ff}{
 \index{bin/btsp.c@{bin/btsp.c}!confirm\_\-sol@{confirm\_\-sol}}
 \index{confirm\_\-sol@{confirm\_\-sol}!bin/btsp.c@{bin/btsp.c}}
 \subsubsection[{confirm\_\-sol}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf confirm\_\-sol} = ARROW\_\-FALSE}}
@@ -131,7 +148,9 @@ Definition at line 28 of file btsp.c.\hypertarget{bin_2btsp_8c_5f4aa75866b44d2dc
 
 
 
-Definition at line 21 of file btsp.c.\hypertarget{bin_2btsp_8c_7298da576a5b127d04b4c46b3bc78821}{
+Definition at line 22 of file btsp.c.
+
+Referenced by main().\hypertarget{bin_2btsp_8c_7298da576a5b127d04b4c46b3bc78821}{
 \index{bin/btsp.c@{bin/btsp.c}!deep\_\-copy@{deep\_\-copy}}
 \index{deep\_\-copy@{deep\_\-copy}!bin/btsp.c@{bin/btsp.c}}
 \subsubsection[{deep\_\-copy}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf deep\_\-copy} = ARROW\_\-FALSE}}
@@ -140,7 +159,7 @@ Definition at line 21 of file btsp.c.\hypertarget{bin_2btsp_8c_7298da576a5b127d0
 
 
 
-Definition at line 25 of file btsp.c.\hypertarget{bin_2btsp_8c_3aad16fd4bea1b9717f232ea75ad6449}{
+Definition at line 26 of file btsp.c.\hypertarget{bin_2btsp_8c_3aad16fd4bea1b9717f232ea75ad6449}{
 \index{bin/btsp.c@{bin/btsp.c}!desc@{desc}}
 \index{desc@{desc}!bin/btsp.c@{bin/btsp.c}}
 \subsubsection[{desc}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf desc} = \char`\"{}Bottleneck traveling salesman problem (BTSP) solver\char`\"{}}}
@@ -149,7 +168,7 @@ Definition at line 25 of file btsp.c.\hypertarget{bin_2btsp_8c_3aad16fd4bea1b971
 
 
 
-Definition at line 77 of file btsp.c.\hypertarget{bin_2btsp_8c_61a12d5995172f376610cce2f19e5855}{
+Definition at line 90 of file btsp.c.\hypertarget{bin_2btsp_8c_61a12d5995172f376610cce2f19e5855}{
 \index{bin/btsp.c@{bin/btsp.c}!edge\_\-infinity@{edge\_\-infinity}}
 \index{edge\_\-infinity@{edge\_\-infinity}!bin/btsp.c@{bin/btsp.c}}
 \subsubsection[{edge\_\-infinity}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf edge\_\-infinity} = -1}}
@@ -158,7 +177,7 @@ Definition at line 77 of file btsp.c.\hypertarget{bin_2btsp_8c_61a12d5995172f376
 
 
 
-Definition at line 17 of file btsp.c.\hypertarget{bin_2btsp_8c_ed48edf71a0207dcdec06e399c24df88}{
+Definition at line 18 of file btsp.c.\hypertarget{bin_2btsp_8c_ed48edf71a0207dcdec06e399c24df88}{
 \index{bin/btsp.c@{bin/btsp.c}!find\_\-short\_\-tour@{find\_\-short\_\-tour}}
 \index{find\_\-short\_\-tour@{find\_\-short\_\-tour}!bin/btsp.c@{bin/btsp.c}}
 \subsubsection[{find\_\-short\_\-tour}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf find\_\-short\_\-tour} = ARROW\_\-FALSE}}
@@ -167,7 +186,9 @@ Definition at line 17 of file btsp.c.\hypertarget{bin_2btsp_8c_ed48edf71a0207dcd
 
 
 
-Definition at line 23 of file btsp.c.\hypertarget{bin_2btsp_8c_a4f3a15de34c409bdec6ceacf93078ed}{
+Definition at line 24 of file btsp.c.
+
+Referenced by main().\hypertarget{bin_2btsp_8c_a4f3a15de34c409bdec6ceacf93078ed}{
 \index{bin/btsp.c@{bin/btsp.c}!input\_\-file@{input\_\-file}}
 \index{input\_\-file@{input\_\-file}!bin/btsp.c@{bin/btsp.c}}
 \subsubsection[{input\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf input\_\-file} = NULL}}
@@ -194,7 +215,7 @@ Definition at line 20 of file btsp.c.\hypertarget{bin_2btsp_8c_ed7394fd8e0c2796b
 
 
 
-Definition at line 26 of file btsp.c.\hypertarget{bin_2btsp_8c_cea6a9709d519c143f30db401a0d0c72}{
+Definition at line 27 of file btsp.c.\hypertarget{bin_2btsp_8c_cea6a9709d519c143f30db401a0d0c72}{
 \index{bin/btsp.c@{bin/btsp.c}!options@{options}}
 \index{options@{options}!bin/btsp.c@{bin/btsp.c}}
 \subsubsection[{options}]{\setlength{\rightskip}{0pt plus 5cm}{\bf arrow\_\-option} {\bf options}\mbox{[}NUM\_\-OPTS\mbox{]}}}
@@ -203,16 +224,7 @@ Definition at line 26 of file btsp.c.\hypertarget{bin_2btsp_8c_cea6a9709d519c143
 
 
 
-Definition at line 36 of file btsp.c.\hypertarget{bin_2btsp_8c_e6a9db0fe5c8a0407d62dec2f7a14959}{
-\index{bin/btsp.c@{bin/btsp.c}!random\_\-restarts@{random\_\-restarts}}
-\index{random\_\-restarts@{random\_\-restarts}!bin/btsp.c@{bin/btsp.c}}
-\subsubsection[{random\_\-restarts}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf random\_\-restarts} = -1}}
-\label{bin_2btsp_8c_e6a9db0fe5c8a0407d62dec2f7a14959}
-
-
-
-
-Definition at line 18 of file btsp.c.\hypertarget{bin_2btsp_8c_d9059bc845096b2f05414a66c836b4ee}{
+Definition at line 39 of file btsp.c.\hypertarget{bin_2btsp_8c_d9059bc845096b2f05414a66c836b4ee}{
 \index{bin/btsp.c@{bin/btsp.c}!random\_\-seed@{random\_\-seed}}
 \index{random\_\-seed@{random\_\-seed}!bin/btsp.c@{bin/btsp.c}}
 \subsubsection[{random\_\-seed}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf random\_\-seed} = 0}}
@@ -221,9 +233,7 @@ Definition at line 18 of file btsp.c.\hypertarget{bin_2btsp_8c_d9059bc845096b2f0
 
 
 
-Definition at line 32 of file btsp.c.
-
-Referenced by main().\hypertarget{bin_2btsp_8c_c2041d46e90c37d8b2600ebf251aafed}{
+Definition at line 35 of file btsp.c.\hypertarget{bin_2btsp_8c_c2041d46e90c37d8b2600ebf251aafed}{
 \index{bin/btsp.c@{bin/btsp.c}!shake\_\-1\_\-attempts@{shake\_\-1\_\-attempts}}
 \index{shake\_\-1\_\-attempts@{shake\_\-1\_\-attempts}!bin/btsp.c@{bin/btsp.c}}
 \subsubsection[{shake\_\-1\_\-attempts}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf shake\_\-1\_\-attempts} = 1}}
@@ -232,7 +242,7 @@ Referenced by main().\hypertarget{bin_2btsp_8c_c2041d46e90c37d8b2600ebf251aafed}
 
 
 
-Definition at line 29 of file btsp.c.
+Definition at line 31 of file btsp.c.
 
 Referenced by main().\hypertarget{bin_2btsp_8c_bd3104dffdd911b8b4c53f333dc19354}{
 \index{bin/btsp.c@{bin/btsp.c}!shake\_\-1\_\-rand\_\-max@{shake\_\-1\_\-rand\_\-max}}
@@ -243,7 +253,7 @@ Referenced by main().\hypertarget{bin_2btsp_8c_bd3104dffdd911b8b4c53f333dc19354}
 
 
 
-Definition at line 31 of file btsp.c.
+Definition at line 34 of file btsp.c.
 
 Referenced by main().\hypertarget{bin_2btsp_8c_e7072960072c9404fd0fb28d077d24bd}{
 \index{bin/btsp.c@{bin/btsp.c}!shake\_\-1\_\-rand\_\-min@{shake\_\-1\_\-rand\_\-min}}
@@ -254,9 +264,29 @@ Referenced by main().\hypertarget{bin_2btsp_8c_e7072960072c9404fd0fb28d077d24bd}
 
 
 
-Definition at line 30 of file btsp.c.
+Definition at line 33 of file btsp.c.
 
-Referenced by main().\hypertarget{bin_2btsp_8c_a1641a28cf3ea572a56763e84518c17b}{
+Referenced by main().\hypertarget{bin_2btsp_8c_d661b5ff7a633b8232af870123c479bf}{
+\index{bin/btsp.c@{bin/btsp.c}!shake\_\-1\_\-restarts@{shake\_\-1\_\-restarts}}
+\index{shake\_\-1\_\-restarts@{shake\_\-1\_\-restarts}!bin/btsp.c@{bin/btsp.c}}
+\subsubsection[{shake\_\-1\_\-restarts}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf shake\_\-1\_\-restarts} = 1}}
+\label{bin_2btsp_8c_d661b5ff7a633b8232af870123c479bf}
+
+
+
+
+Definition at line 32 of file btsp.c.
+
+Referenced by main().\hypertarget{bin_2btsp_8c_786cdab056142ae00a268cabebd5ced7}{
+\index{bin/btsp.c@{bin/btsp.c}!solve\_\-mstsp@{solve\_\-mstsp}}
+\index{solve\_\-mstsp@{solve\_\-mstsp}!bin/btsp.c@{bin/btsp.c}}
+\subsubsection[{solve\_\-mstsp}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf solve\_\-mstsp} = ARROW\_\-FALSE}}
+\label{bin_2btsp_8c_786cdab056142ae00a268cabebd5ced7}
+
+
+
+
+Definition at line 21 of file btsp.c.\hypertarget{bin_2btsp_8c_a1641a28cf3ea572a56763e84518c17b}{
 \index{bin/btsp.c@{bin/btsp.c}!stall\_\-count@{stall\_\-count}}
 \index{stall\_\-count@{stall\_\-count}!bin/btsp.c@{bin/btsp.c}}
 \subsubsection[{stall\_\-count}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf stall\_\-count} = -1}}
@@ -274,7 +304,7 @@ Definition at line 19 of file btsp.c.\hypertarget{bin_2btsp_8c_502a0aac74d070b87
 
 
 
-Definition at line 22 of file btsp.c.\hypertarget{bin_2btsp_8c_c022145e682345ed4064bad274e5a4f1}{
+Definition at line 23 of file btsp.c.\hypertarget{bin_2btsp_8c_c022145e682345ed4064bad274e5a4f1}{
 \index{bin/btsp.c@{bin/btsp.c}!supress\_\-hash@{supress\_\-hash}}
 \index{supress\_\-hash@{supress\_\-hash}!bin/btsp.c@{bin/btsp.c}}
 \subsubsection[{supress\_\-hash}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf supress\_\-hash} = ARROW\_\-FALSE}}
@@ -283,7 +313,16 @@ Definition at line 22 of file btsp.c.\hypertarget{bin_2btsp_8c_c022145e682345ed4
 
 
 
-Definition at line 24 of file btsp.c.\hypertarget{bin_2btsp_8c_f5a34eb1d01ffd792adcadc9627ffcb8}{
+Definition at line 25 of file btsp.c.\hypertarget{bin_2btsp_8c_b818a82f867be75d7c4d92d792b0943e}{
+\index{bin/btsp.c@{bin/btsp.c}!tour\_\-file@{tour\_\-file}}
+\index{tour\_\-file@{tour\_\-file}!bin/btsp.c@{bin/btsp.c}}
+\subsubsection[{tour\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf tour\_\-file} = NULL}}
+\label{bin_2btsp_8c_b818a82f867be75d7c4d92d792b0943e}
+
+
+
+
+Definition at line 17 of file btsp.c.\hypertarget{bin_2btsp_8c_f5a34eb1d01ffd792adcadc9627ffcb8}{
 \index{bin/btsp.c@{bin/btsp.c}!upper\_\-bound@{upper\_\-bound}}
 \index{upper\_\-bound@{upper\_\-bound}!bin/btsp.c@{bin/btsp.c}}
 \subsubsection[{upper\_\-bound}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf upper\_\-bound} = INT\_\-MAX}}
@@ -292,7 +331,7 @@ Definition at line 24 of file btsp.c.\hypertarget{bin_2btsp_8c_f5a34eb1d01ffd792
 
 
 
-Definition at line 27 of file btsp.c.\hypertarget{bin_2btsp_8c_adebe2487a2c5240ab6cd02c83add0bf}{
+Definition at line 28 of file btsp.c.\hypertarget{bin_2btsp_8c_adebe2487a2c5240ab6cd02c83add0bf}{
 \index{bin/btsp.c@{bin/btsp.c}!usage@{usage}}
 \index{usage@{usage}!bin/btsp.c@{bin/btsp.c}}
 \subsubsection[{usage}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf usage} = \char`\"{}-i tsplib.tsp \mbox{[}{\bf options}\mbox{]}\char`\"{}}}
@@ -301,7 +340,7 @@ Definition at line 27 of file btsp.c.\hypertarget{bin_2btsp_8c_adebe2487a2c5240a
 
 
 
-Definition at line 78 of file btsp.c.\hypertarget{bin_2btsp_8c_bf4e392494984c6ef8259268eb1fe421}{
+Definition at line 91 of file btsp.c.\hypertarget{bin_2btsp_8c_bf4e392494984c6ef8259268eb1fe421}{
 \index{bin/btsp.c@{bin/btsp.c}!xml\_\-file@{xml\_\-file}}
 \index{xml\_\-file@{xml\_\-file}!bin/btsp.c@{bin/btsp.c}}
 \subsubsection[{xml\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf xml\_\-file} = NULL}}

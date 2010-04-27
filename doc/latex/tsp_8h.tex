@@ -119,7 +119,7 @@ Referenced by arrow\_\-tsp\_\-long\_\-name(), arrow\_\-tsp\_\-short\_\-name(), a
 
 Definition at line 18 of file tsp.h.
 
-Referenced by arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-result\_\-print\_\-xml(), arrow\_\-btsp\_\-solve(), and feasible().
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-dt2(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-btsp\_\-feasible(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-result\_\-print\_\-xml(), arrow\_\-btsp\_\-solve(), and main().
 
 \subsection{Function Documentation}
 \hypertarget{tsp_8h_0facfae73f4527eaede86b39bfbe3e2c}{
@@ -224,7 +224,7 @@ Definition at line 61 of file tsp.c.
 
 References arrow\_\-print\_\-error, ARROW\_\-TSP\_\-CC\_\-EXACT, ARROW\_\-TSP\_\-CC\_\-LK, and ARROW\_\-TSP\_\-RAI.
 
-Referenced by arrow\_\-btsp\_\-result\_\-print\_\-pretty().\hypertarget{tsp_8h_7236b8bd57298ee7dbe317375ab167b4}{
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-pretty(), and main().\hypertarget{tsp_8h_7236b8bd57298ee7dbe317375ab167b4}{
 \index{tsp.h@{tsp.h}!arrow\_\-tsp\_\-rai\_\-solve@{arrow\_\-tsp\_\-rai\_\-solve}}
 \index{arrow\_\-tsp\_\-rai\_\-solve@{arrow\_\-tsp\_\-rai\_\-solve}!tsp.h@{tsp.h}}
 \subsubsection[{arrow\_\-tsp\_\-rai\_\-solve}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-rai\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-rai\_\-params} $\ast$ {\em params}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
@@ -257,7 +257,7 @@ Definition at line 30 of file result.c.
 
 References arrow\_\-tsp\_\-result::tour.
 
-Referenced by feasible(), and main().\hypertarget{tsp_8h_124a14a04e51fdd8e05f0aed7dfdd44c}{
+Referenced by arrow\_\-btsp\_\-feasible(), and main().\hypertarget{tsp_8h_124a14a04e51fdd8e05f0aed7dfdd44c}{
 \index{tsp.h@{tsp.h}!arrow\_\-tsp\_\-result\_\-init@{arrow\_\-tsp\_\-result\_\-init}}
 \index{arrow\_\-tsp\_\-result\_\-init@{arrow\_\-tsp\_\-result\_\-init}!tsp.h@{tsp.h}}
 \subsubsection[{arrow\_\-tsp\_\-result\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-result\_\-init ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
@@ -277,7 +277,7 @@ Definition at line 16 of file result.c.
 
 References ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-tsp\_\-result::found\_\-tour, arrow\_\-tsp\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-tsp\_\-result::total\_\-time, and arrow\_\-tsp\_\-result::tour.
 
-Referenced by feasible(), and main().\hypertarget{tsp_8h_6ee8b5b058f03a5c00e54e186d00d7fc}{
+Referenced by arrow\_\-btsp\_\-feasible(), and main().\hypertarget{tsp_8h_6ee8b5b058f03a5c00e54e186d00d7fc}{
 \index{tsp.h@{tsp.h}!arrow\_\-tsp\_\-short\_\-name@{arrow\_\-tsp\_\-short\_\-name}}
 \index{arrow\_\-tsp\_\-short\_\-name@{arrow\_\-tsp\_\-short\_\-name}!tsp.h@{tsp.h}}
 \subsubsection[{arrow\_\-tsp\_\-short\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-tsp\_\-short\_\-name (int {\em tsp\_\-solver}, \/  FILE $\ast$ {\em out})}}
@@ -297,7 +297,7 @@ Definition at line 45 of file tsp.c.
 
 References arrow\_\-print\_\-error, ARROW\_\-TSP\_\-CC\_\-EXACT, ARROW\_\-TSP\_\-CC\_\-LK, and ARROW\_\-TSP\_\-RAI.
 
-Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{tsp_8h_83a75ed402c5d7d82eaa305d2d08349c}{
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml(), and main().\hypertarget{tsp_8h_83a75ed402c5d7d82eaa305d2d08349c}{
 \index{tsp.h@{tsp.h}!arrow\_\-tsp\_\-solve@{arrow\_\-tsp\_\-solve}}
 \index{arrow\_\-tsp\_\-solve@{arrow\_\-tsp\_\-solve}!tsp.h@{tsp.h}}
 \subsubsection[{arrow\_\-tsp\_\-solve}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-tsp\_\-solve (int {\em tsp\_\-solver}, \/  {\bf arrow\_\-problem} $\ast$ {\em problem}, \/  void $\ast$ {\em params}, \/  {\bf arrow\_\-tsp\_\-result} $\ast$ {\em result})}}
@@ -324,4 +324,4 @@ Definition at line 20 of file tsp.c.
 
 References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-TSP\_\-CC\_\-EXACT, arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), ARROW\_\-TSP\_\-CC\_\-LK, arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), ARROW\_\-TSP\_\-RAI, and arrow\_\-tsp\_\-rai\_\-solve().
 
-Referenced by feasible().
+Referenced by arrow\_\-btsp\_\-feasible().

@@ -36,9 +36,9 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2lb_2cbap_8c.html#49170e8eae9b6170375a6e3c8fa0c3e6">destruct_data</a> (int **x, int **y, int **pi, int **d, int **pred, int **label, <a class="el" href="structarrow__heap.html">arrow_heap</a> *heap)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2lb_2cbap_8c.html#99c7a8b71e6063f6bdc57a0adb920bd2">lap</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int delta, int *x, int *y, int *pi, int *d, int *pred, int *label, <a class="el" href="structarrow__heap.html">arrow_heap</a> *heap)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2lb_2cbap_8c.html#99c7a8b71e6063f6bdc57a0adb920bd2">lap</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int <a class="el" href="delta-print_8c.html#1dfcb70b9229f2da17dd5922b87ecf2c">delta</a>, int *x, int *y, int *pi, int *d, int *pred, int *label, <a class="el" href="structarrow__heap.html">arrow_heap</a> *heap)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2lb_2cbap_8c.html#b086dfbdeea8fc31342b66704b7e0259">dijkstra</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int delta, int *x, int *y, int *pi, int s, int *t, int *d, int *pred, int *label, <a class="el" href="structarrow__heap.html">arrow_heap</a> *heap)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2lb_2cbap_8c.html#b086dfbdeea8fc31342b66704b7e0259">dijkstra</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int <a class="el" href="delta-print_8c.html#1dfcb70b9229f2da17dd5922b87ecf2c">delta</a>, int *x, int *y, int *pi, int s, int *t, int *d, int *pred, int *label, <a class="el" href="structarrow__heap.html">arrow_heap</a> *heap)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2lb_2cbap_8c.html#1ca0b562a9c0fb4ef4a3c82605690e90">augment</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int s, int t, int *pred, int *x, int *y)</td></tr>
 
@@ -96,7 +96,7 @@ Solves the linear assignment problem (LAP).
 
 <p>Definition at line <a class="el" href="lib_2lb_2cbap_8c-source.html#l00124">124</a> of file <a class="el" href="lib_2lb_2cbap_8c-source.html">cbap.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00175">destruct_data()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00149">init_data()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00188">lap()</a>, and <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00175">destruct_data()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00149">init_data()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00188">lap()</a>, and <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>.</p>
 
 </div>
 </div><p>
@@ -151,7 +151,7 @@ Solves the constrained bottleneck assignment problem (CBAP).
 
 <p>Definition at line <a class="el" href="lib_2lb_2cbap_8c-source.html#l00051">51</a> of file <a class="el" href="lib_2lb_2cbap_8c-source.html">cbap.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00038">arrow_debug</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00145">arrow_util_binary_search()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="common_8h-source.html#l00464">arrow_problem_info::cost_list</a>, <a class="el" href="common_8h-source.html#l00465">arrow_problem_info::cost_list_length</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00175">destruct_data()</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00149">init_data()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00188">lap()</a>, <a class="el" href="cbtsp_8c-source.html#l00018">length</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00038">arrow_debug</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00145">arrow_util_binary_search()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="common_8h-source.html#l00466">arrow_problem_info::cost_list</a>, <a class="el" href="common_8h-source.html#l00467">arrow_problem_info::cost_list_length</a>, <a class="el" href="delta-print_8c-source.html#l00016">delta</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00175">destruct_data()</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00149">init_data()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00188">lap()</a>, <a class="el" href="cbtsp_8c-source.html#l00018">length</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
 
 <p>Referenced by <a class="el" href="bin_2cbap_8c-source.html#l00035">main()</a>.</p>
 
@@ -362,7 +362,7 @@ Solves the constrained bottleneck assignment problem (CBAP).
 
 <p>Definition at line <a class="el" href="lib_2lb_2cbap_8c-source.html#l00232">232</a> of file <a class="el" href="lib_2lb_2cbap_8c-source.html">cbap.c</a>.</p>
 
-<p>References <a class="el" href="heap_8c-source.html#l00177">arrow_heap_change_key()</a>, <a class="el" href="heap_8c-source.html#l00196">arrow_heap_delete_min()</a>, <a class="el" href="heap_8c-source.html#l00128">arrow_heap_empty()</a>, <a class="el" href="heap_8c-source.html#l00190">arrow_heap_get_min()</a>, <a class="el" href="heap_8c-source.html#l00171">arrow_heap_in()</a>, <a class="el" href="heap_8c-source.html#l00141">arrow_heap_insert()</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="common_8h-source.html#l00198">arrow_heap::size</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, and <a class="el" href="subprob_8c-source.html#l00015">start</a>.</p>
+<p>References <a class="el" href="heap_8c-source.html#l00177">arrow_heap_change_key()</a>, <a class="el" href="heap_8c-source.html#l00196">arrow_heap_delete_min()</a>, <a class="el" href="heap_8c-source.html#l00128">arrow_heap_empty()</a>, <a class="el" href="heap_8c-source.html#l00190">arrow_heap_get_min()</a>, <a class="el" href="heap_8c-source.html#l00171">arrow_heap_in()</a>, <a class="el" href="heap_8c-source.html#l00141">arrow_heap_insert()</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="common_8h-source.html#l00199">arrow_heap::size</a>, <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>, and <a class="el" href="subprob_8c-source.html#l00015">start</a>.</p>
 
 <p>Referenced by <a class="el" href="lib_2lb_2cbap_8c-source.html#l00188">lap()</a>.</p>
 
@@ -510,14 +510,14 @@ Solves the constrained bottleneck assignment problem (CBAP).
 
 <p>Definition at line <a class="el" href="lib_2lb_2cbap_8c-source.html#l00188">188</a> of file <a class="el" href="lib_2lb_2cbap_8c-source.html">cbap.c</a>.</p>
 
-<p>References <a class="el" href="lib_2lb_2cbap_8c-source.html#l00327">augment()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00232">dijkstra()</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, and <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>.</p>
+<p>References <a class="el" href="lib_2lb_2cbap_8c-source.html#l00327">augment()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00232">dijkstra()</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, and <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>.</p>
 
 <p>Referenced by <a class="el" href="lib_2lb_2cbap_8c-source.html#l00124">arrow_cbap_lap()</a>, and <a class="el" href="lib_2lb_2cbap_8c-source.html#l00051">arrow_cbap_solve()</a>.</p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 19 14:09:06 2009 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Apr 26 20:22:29 2010 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

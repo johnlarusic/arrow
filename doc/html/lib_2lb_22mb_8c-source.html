@@ -60,48 +60,51 @@
 <a name="l00038"></a>00038         
 <a name="l00039"></a>00039         <span class="keywordflow">for</span>(j = 0; j &lt; problem-&gt;<a class="code" href="structarrow__problem.html#de8573ddc391d06b08b65923fca693ec">size</a>; j++)
 <a name="l00040"></a>00040         {
-<a name="l00041"></a>00041             <span class="keywordflow">if</span>(problem-&gt;<a class="code" href="structarrow__problem.html#168ab92e9d7a873740a2550f4d3510d9">symmetric</a>)
+<a name="l00041"></a>00041             <span class="keywordflow">if</span>(i != j)
 <a name="l00042"></a>00042             {
-<a name="l00043"></a>00043                 cost = problem-&gt;<a class="code" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769" title="Returns the cost between node i and node j.">get_cost</a>(problem, i, j);
-<a name="l00044"></a>00044                 <span class="keywordflow">if</span>(cost &lt; alpha)
-<a name="l00045"></a>00045                 {
-<a name="l00046"></a>00046                     beta = alpha;
-<a name="l00047"></a>00047                     alpha = cost;
-<a name="l00048"></a>00048                 }
-<a name="l00049"></a>00049                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(cost &lt; beta)
-<a name="l00050"></a>00050                 {
-<a name="l00051"></a>00051                     beta = cost;
-<a name="l00052"></a>00052                 }
-<a name="l00053"></a>00053             }
-<a name="l00054"></a>00054             <span class="keywordflow">else</span>
-<a name="l00055"></a>00055             {
-<a name="l00056"></a>00056                 cost = problem-&gt;<a class="code" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769" title="Returns the cost between node i and node j.">get_cost</a>(problem, i, j);
-<a name="l00057"></a>00057                 <span class="keywordflow">if</span>(cost &lt; alpha) alpha = cost;
-<a name="l00058"></a>00058                 
-<a name="l00059"></a>00059                 cost = problem-&gt;<a class="code" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769" title="Returns the cost between node i and node j.">get_cost</a>(problem, j, i);
-<a name="l00060"></a>00060                 <span class="keywordflow">if</span>(cost &lt; beta) beta = cost;
-<a name="l00061"></a>00061                     
-<a name="l00062"></a>00062             }
-<a name="l00063"></a>00063         }
-<a name="l00064"></a>00064         
-<a name="l00065"></a>00065         <span class="keywordflow">if</span>(problem-&gt;<a class="code" href="structarrow__problem.html#168ab92e9d7a873740a2550f4d3510d9">symmetric</a>)
-<a name="l00066"></a>00066         {
-<a name="l00067"></a>00067             <span class="keywordflow">if</span>(max &lt; beta) max = beta;
-<a name="l00068"></a>00068         }
-<a name="l00069"></a>00069         <span class="keywordflow">else</span>
-<a name="l00070"></a>00070         {
-<a name="l00071"></a>00071             <span class="keywordflow">if</span>(max &lt; alpha) max = alpha;
-<a name="l00072"></a>00072             <span class="keywordflow">if</span>(max &lt; beta) max = beta;
-<a name="l00073"></a>00073         }
-<a name="l00074"></a>00074     }
-<a name="l00075"></a>00075     end_time = <a class="code" href="common_8h.html#05b2e96c9991c51368c1f8d5a77d3ccf" title="Used to measure timings.">arrow_util_zeit</a>();
-<a name="l00076"></a>00076     
-<a name="l00077"></a>00077     result-&gt;<a class="code" href="structarrow__bound__result.html#acbca68de984376a60dbb9893935e0f4">obj_value</a> = max;
-<a name="l00078"></a>00078     result-&gt;<a class="code" href="structarrow__bound__result.html#d27a3cae43bbe1ed2e2c60a4ef307b08">total_time</a> = end_time - start_time;
-<a name="l00079"></a>00079     <span class="keywordflow">return</span> <a class="code" href="common_8h.html#21afcc3dc34f8488ad437841f58225c4">ARROW_SUCCESS</a>;   
-<a name="l00080"></a>00080 }
+<a name="l00043"></a>00043                 <span class="keywordflow">if</span>(problem-&gt;<a class="code" href="structarrow__problem.html#168ab92e9d7a873740a2550f4d3510d9">symmetric</a>)
+<a name="l00044"></a>00044                 {
+<a name="l00045"></a>00045                     cost = problem-&gt;<a class="code" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769" title="Returns the cost between node i and node j.">get_cost</a>(problem, i, j);
+<a name="l00046"></a>00046                     <span class="keywordflow">if</span>(cost &lt; alpha)
+<a name="l00047"></a>00047                     {
+<a name="l00048"></a>00048                         beta = alpha;
+<a name="l00049"></a>00049                         alpha = cost;
+<a name="l00050"></a>00050                     }
+<a name="l00051"></a>00051                     <span class="keywordflow">else</span> <span class="keywordflow">if</span>(cost &lt; beta)
+<a name="l00052"></a>00052                     {
+<a name="l00053"></a>00053                         beta = cost;
+<a name="l00054"></a>00054                     }
+<a name="l00055"></a>00055                 }
+<a name="l00056"></a>00056                 <span class="keywordflow">else</span>
+<a name="l00057"></a>00057                 {
+<a name="l00058"></a>00058                     cost = problem-&gt;<a class="code" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769" title="Returns the cost between node i and node j.">get_cost</a>(problem, i, j);
+<a name="l00059"></a>00059                     <span class="keywordflow">if</span>(cost &lt; alpha) alpha = cost;
+<a name="l00060"></a>00060                 
+<a name="l00061"></a>00061                     cost = problem-&gt;<a class="code" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769" title="Returns the cost between node i and node j.">get_cost</a>(problem, j, i);
+<a name="l00062"></a>00062                     <span class="keywordflow">if</span>(cost &lt; beta) beta = cost;
+<a name="l00063"></a>00063                     
+<a name="l00064"></a>00064                 }
+<a name="l00065"></a>00065             }
+<a name="l00066"></a>00066         }
+<a name="l00067"></a>00067         
+<a name="l00068"></a>00068         <span class="keywordflow">if</span>(problem-&gt;<a class="code" href="structarrow__problem.html#168ab92e9d7a873740a2550f4d3510d9">symmetric</a>)
+<a name="l00069"></a>00069         {
+<a name="l00070"></a>00070             <span class="keywordflow">if</span>(max &lt; beta) max = beta;
+<a name="l00071"></a>00071         }
+<a name="l00072"></a>00072         <span class="keywordflow">else</span>
+<a name="l00073"></a>00073         {
+<a name="l00074"></a>00074             <span class="keywordflow">if</span>(max &lt; alpha) max = alpha;
+<a name="l00075"></a>00075             <span class="keywordflow">if</span>(max &lt; beta) max = beta;
+<a name="l00076"></a>00076         }
+<a name="l00077"></a>00077     }
+<a name="l00078"></a>00078     end_time = <a class="code" href="common_8h.html#05b2e96c9991c51368c1f8d5a77d3ccf" title="Used to measure timings.">arrow_util_zeit</a>();
+<a name="l00079"></a>00079     
+<a name="l00080"></a>00080     result-&gt;<a class="code" href="structarrow__bound__result.html#acbca68de984376a60dbb9893935e0f4">obj_value</a> = max;
+<a name="l00081"></a>00081     result-&gt;<a class="code" href="structarrow__bound__result.html#d27a3cae43bbe1ed2e2c60a4ef307b08">total_time</a> = end_time - start_time;
+<a name="l00082"></a>00082     <span class="keywordflow">return</span> <a class="code" href="common_8h.html#21afcc3dc34f8488ad437841f58225c4">ARROW_SUCCESS</a>;   
+<a name="l00083"></a>00083 }
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 19 14:09:05 2009 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Apr 26 20:22:27 2010 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

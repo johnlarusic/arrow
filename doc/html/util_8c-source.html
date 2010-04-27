@@ -260,7 +260,7 @@
 <a name="l00238"></a>00238 }
 <a name="l00239"></a>00239 
 <a name="l00240"></a>00240 <span class="keywordtype">void</span>
-<a name="l00241"></a><a class="code" href="util_8c.html#6921d887eca515c1ad59629e25a0c237">00241</a> <a class="code" href="common_8h.html#6921d887eca515c1ad59629e25a0c237">arrow_util_write_tour</a>(<a class="code" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> *problem, <span class="keywordtype">char</span> *comment, <span class="keywordtype">int</span> *tour, 
+<a name="l00241"></a><a class="code" href="util_8c.html#6921d887eca515c1ad59629e25a0c237">00241</a> <a class="code" href="common_8h.html#6921d887eca515c1ad59629e25a0c237" title="Writes a tour in TSPLIB format.">arrow_util_write_tour</a>(<a class="code" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> *problem, <span class="keywordtype">char</span> *comment, <span class="keywordtype">int</span> *tour, 
 <a name="l00242"></a>00242                       FILE *out)
 <a name="l00243"></a>00243 {
 <a name="l00244"></a>00244     <span class="keywordtype">int</span> i;
@@ -274,35 +274,59 @@
 <a name="l00252"></a>00252     
 <a name="l00253"></a>00253     fprintf(out, <span class="stringliteral">"TOUR_SECTION\n"</span>);
 <a name="l00254"></a>00254     <span class="keywordflow">for</span>(i = 0; i &lt; problem-&gt;<a class="code" href="structarrow__problem.html#de8573ddc391d06b08b65923fca693ec">size</a>; i++)
-<a name="l00255"></a>00255         fprintf(out, <span class="stringliteral">"%d\n"</span>, tour[i]);
+<a name="l00255"></a>00255         fprintf(out, <span class="stringliteral">"%d\n"</span>, tour[i] + 1);
 <a name="l00256"></a>00256     fprintf(out, <span class="stringliteral">"-1\n"</span>);
 <a name="l00257"></a>00257 }
 <a name="l00258"></a>00258 
 <a name="l00259"></a>00259 <span class="keywordtype">void</span>
-<a name="l00260"></a><a class="code" href="util_8c.html#8a7327192a37674e2559d82448a565b1">00260</a> <a class="code" href="common_8h.html#8a7327192a37674e2559d82448a565b1">arrow_util_sbtsp_to_abstp_tour</a>(<a class="code" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> *problem, <span class="keywordtype">int</span> *old_tour,
+<a name="l00260"></a><a class="code" href="util_8c.html#8a7327192a37674e2559d82448a565b1">00260</a> <a class="code" href="common_8h.html#8a7327192a37674e2559d82448a565b1" title="Converts a symmetric tour to an asymmetric tour.">arrow_util_sbtsp_to_abstp_tour</a>(<a class="code" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> *problem, <span class="keywordtype">int</span> *old_tour,
 <a name="l00261"></a>00261                                <span class="keywordtype">int</span> *new_tour)
 <a name="l00262"></a>00262 {
-<a name="l00263"></a>00263     <span class="keywordtype">int</span> i, u, v, cost;
+<a name="l00263"></a>00263     <span class="keywordtype">int</span> i;
 <a name="l00264"></a>00264     <span class="keywordtype">int</span> n = problem-&gt;<a class="code" href="structarrow__problem.html#de8573ddc391d06b08b65923fca693ec">size</a> / 2;
 <a name="l00265"></a>00265     <span class="keywordtype">int</span> dir = problem-&gt;<a class="code" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769" title="Returns the cost between node i and node j.">get_cost</a>(problem, old_tour[0], old_tour[1]);
-<a name="l00266"></a>00266     
-<a name="l00267"></a>00267     <span class="keywordflow">for</span>(i = 0; i &lt; problem-&gt;<a class="code" href="structarrow__problem.html#de8573ddc391d06b08b65923fca693ec">size</a>; i++)
+<a name="l00266"></a>00266         
+<a name="l00267"></a>00267     <span class="keywordflow">for</span>(i = 0; i &lt; n; i++)
 <a name="l00268"></a>00268     {
-<a name="l00269"></a>00269         u = old_tour[i];
-<a name="l00270"></a>00270         v = old_tour[(i + 1) % problem-&gt;<a class="code" href="structarrow__problem.html#de8573ddc391d06b08b65923fca693ec">size</a>];
-<a name="l00271"></a>00271         cost = problem-&gt;<a class="code" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769" title="Returns the cost between node i and node j.">get_cost</a>(problem, u, v);
-<a name="l00272"></a>00272     }
-<a name="l00273"></a>00273     
-<a name="l00274"></a>00274     <span class="keywordflow">for</span>(i = 0; i &lt; n; i++)
-<a name="l00275"></a>00275     {
-<a name="l00276"></a>00276         <span class="keywordflow">if</span>(dir &gt;= 0)
-<a name="l00277"></a>00277             new_tour[i] = old_tour[2 * i];
-<a name="l00278"></a>00278         <span class="keywordflow">else</span>
-<a name="l00279"></a>00279             new_tour[n - i - 1] = old_tour[2 * i];
-<a name="l00280"></a>00280     }
-<a name="l00281"></a>00281 }
+<a name="l00269"></a>00269         <span class="keywordflow">if</span>(dir &gt;= 0)
+<a name="l00270"></a>00270             new_tour[i] = old_tour[2 * i];
+<a name="l00271"></a>00271         <span class="keywordflow">else</span>
+<a name="l00272"></a>00272             new_tour[n - i - 1] = old_tour[2 * i];
+<a name="l00273"></a>00273     }
+<a name="l00274"></a>00274 }
+<a name="l00275"></a>00275 
+<a name="l00276"></a>00276 <span class="keywordtype">void</span>
+<a name="l00277"></a><a class="code" href="util_8c.html#0541e6b62dd904dfdb630bf21aeef425">00277</a> <a class="code" href="common_8h.html#0541e6b62dd904dfdb630bf21aeef425" title="Writes a problem in TSPLIB format as a lower diagonal matrix.">arrow_util_write_problem</a>(<a class="code" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> *problem, <span class="keywordtype">char</span> *comment, FILE *out)
+<a name="l00278"></a>00278 {
+<a name="l00279"></a>00279     <span class="keywordtype">int</span> i, j;
+<a name="l00280"></a>00280     
+<a name="l00281"></a>00281     fprintf(out, <span class="stringliteral">"NAME : %s\n"</span>, problem-&gt;<a class="code" href="structarrow__problem.html#8b7fec7ddd0462d3d841b87e287cff9f">name</a>);
+<a name="l00282"></a>00282     fprintf(out, <span class="stringliteral">"TYPE : TSP\n"</span>);    
+<a name="l00283"></a>00283     fprintf(out, <span class="stringliteral">"DIMENSION: %d\n"</span>, problem-&gt;<a class="code" href="structarrow__problem.html#de8573ddc391d06b08b65923fca693ec">size</a>);
+<a name="l00284"></a>00284     
+<a name="l00285"></a>00285     <span class="keywordflow">if</span>(comment != NULL)
+<a name="l00286"></a>00286         fprintf(out, <span class="stringliteral">"COMMENT : %s\n"</span>, comment);
+<a name="l00287"></a>00287         
+<a name="l00288"></a>00288     fprintf(out, <span class="stringliteral">"EDGE_WEIGHT_TYPE: EXPLICIT\n"</span>);
+<a name="l00289"></a>00289     fprintf(out, <span class="stringliteral">"EDGE_WEIGHT_FORMAT: LOWER_DIAG_ROW\n"</span>);
+<a name="l00290"></a>00290     fprintf(out, <span class="stringliteral">"EDGE_WEIGHT_SECTION\n"</span>);
+<a name="l00291"></a>00291     
+<a name="l00292"></a>00292     <span class="keywordflow">for</span>(i = 0; i &lt; problem-&gt;<a class="code" href="structarrow__problem.html#de8573ddc391d06b08b65923fca693ec">size</a>; i++)
+<a name="l00293"></a>00293     {
+<a name="l00294"></a>00294         <span class="keywordflow">for</span>(j = 0; j &lt;= i; j++)
+<a name="l00295"></a>00295         {
+<a name="l00296"></a>00296             <span class="keywordflow">if</span>(i == j)
+<a name="l00297"></a>00297                 fprintf(out, <span class="stringliteral">"0\n"</span>);
+<a name="l00298"></a>00298             <span class="keywordflow">else</span>
+<a name="l00299"></a>00299                 fprintf(out, <span class="stringliteral">"%d\t"</span>, problem-&gt;<a class="code" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769" title="Returns the cost between node i and node j.">get_cost</a>(problem, i, j));
+<a name="l00300"></a>00300         }
+<a name="l00301"></a>00301     }
+<a name="l00302"></a>00302         
+<a name="l00303"></a>00303     fprintf(out, <span class="stringliteral">"EOF\n"</span>);
+<a name="l00304"></a>00304 }
+<a name="l00305"></a>00305 
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 19 14:09:06 2009 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Apr 26 20:22:28 2010 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

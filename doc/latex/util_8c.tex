@@ -40,9 +40,11 @@ int \hyperlink{util_8c_529c872ac72eaf0046ad149abf7b6179}{arrow\_\-util\_\-random
 void \hyperlink{util_8c_4be50d1d9906ae44ddb69b1e8fb05153}{arrow\_\-util\_\-permute\_\-array} (int size, int $\ast$array)
 \begin{CompactList}\small\item\em Randomly permutes the elements of the given array. \item\end{CompactList}\item 
 void \hyperlink{util_8c_6921d887eca515c1ad59629e25a0c237}{arrow\_\-util\_\-write\_\-tour} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, char $\ast$comment, int $\ast$tour, FILE $\ast$out)
-\item 
+\begin{CompactList}\small\item\em Writes a tour in TSPLIB format. \item\end{CompactList}\item 
 void \hyperlink{util_8c_8a7327192a37674e2559d82448a565b1}{arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int $\ast$old\_\-tour, int $\ast$new\_\-tour)
-\end{CompactItemize}
+\begin{CompactList}\small\item\em Converts a symmetric tour to an asymmetric tour. \item\end{CompactList}\item 
+void \hyperlink{util_8c_0541e6b62dd904dfdb630bf21aeef425}{arrow\_\-util\_\-write\_\-problem} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, char $\ast$comment, FILE $\ast$out)
+\begin{CompactList}\small\item\em Writes a problem in TSPLIB format as a lower diagonal matrix. \item\end{CompactList}\end{CompactItemize}
 
 
 \subsection{Detailed Description}
@@ -133,7 +135,7 @@ Definition at line 15 of file util.c.
 
 References ARROW\_\-FAILURE, arrow\_\-print\_\-error, and ARROW\_\-SUCCESS.
 
-Referenced by arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-biconnected(), arrow\_\-bintree\_\-to\_\-new\_\-array(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-cbst\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-heap\_\-init(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-util\_\-create\_\-int\_\-matrix(), init\_\-data(), main(), and strongly\_\-connected().\hypertarget{util_8c_2801c2cc414251180545168ba9abe911}{
+Referenced by arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-baltsp\_\-fun\_\-dt2(), arrow\_\-baltsp\_\-fun\_\-shake(), arrow\_\-bap\_\-has\_\-assignment(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-biconnected(), arrow\_\-bintree\_\-to\_\-new\_\-array(), arrow\_\-bscssp\_\-connected(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-shake\_\-1(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-cbst\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-heap\_\-init(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-util\_\-create\_\-int\_\-matrix(), find\_\-cost\_\-order(), init\_\-data(), and main().\hypertarget{util_8c_2801c2cc414251180545168ba9abe911}{
 \index{util.c@{util.c}!arrow\_\-util\_\-create\_\-int\_\-matrix@{arrow\_\-util\_\-create\_\-int\_\-matrix}}
 \index{arrow\_\-util\_\-create\_\-int\_\-matrix@{arrow\_\-util\_\-create\_\-int\_\-matrix}!util.c@{util.c}}
 \subsubsection[{arrow\_\-util\_\-create\_\-int\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-create\_\-int\_\-matrix (int {\em rows}, \/  int {\em cols}, \/  int $\ast$$\ast$$\ast$ {\em matrix}, \/  int $\ast$$\ast$ {\em space})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
@@ -153,7 +155,7 @@ Definition at line 27 of file util.c.
 
 References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, and arrow\_\-util\_\-create\_\-int\_\-array().
 
-Referenced by arrow\_\-bap\_\-solve(), and arrow\_\-dcbpb\_\-solve().\hypertarget{util_8c_4be50d1d9906ae44ddb69b1e8fb05153}{
+Referenced by arrow\_\-bap\_\-has\_\-assignment(), arrow\_\-bap\_\-solve(), and arrow\_\-dcbpb\_\-solve().\hypertarget{util_8c_4be50d1d9906ae44ddb69b1e8fb05153}{
 \index{util.c@{util.c}!arrow\_\-util\_\-permute\_\-array@{arrow\_\-util\_\-permute\_\-array}}
 \index{arrow\_\-util\_\-permute\_\-array@{arrow\_\-util\_\-permute\_\-array}!util.c@{util.c}}
 \subsubsection[{arrow\_\-util\_\-permute\_\-array}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-permute\_\-array (int {\em size}, \/  int $\ast$ {\em array})}}
@@ -240,7 +242,7 @@ Returns a random number between min and max.
 
 Definition at line 221 of file util.c.
 
-Referenced by arrow\_\-util\_\-permute\_\-array(), cbtsp\_\-shake\_\-initialize(), construct\_\-tour(), improve\_\-tour(), and sbtsp\_\-shake\_\-1\_\-initialize().\hypertarget{util_8c_448b71093a175c0f40f9cbe612b1c709}{
+Referenced by arrow\_\-util\_\-permute\_\-array(), baltsp\_\-dt2\_\-get\_\-cost(), baltsp\_\-shake\_\-initialize(), btsp\_\-shake\_\-1\_\-initialize(), cbtsp\_\-shake\_\-initialize(), construct\_\-tour(), and improve\_\-tour().\hypertarget{util_8c_448b71093a175c0f40f9cbe612b1c709}{
 \index{util.c@{util.c}!arrow\_\-util\_\-random\_\-seed@{arrow\_\-util\_\-random\_\-seed}}
 \index{arrow\_\-util\_\-random\_\-seed@{arrow\_\-util\_\-random\_\-seed}!util.c@{util.c}}
 \subsubsection[{arrow\_\-util\_\-random\_\-seed}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-random\_\-seed (int {\em seed})}}
@@ -323,11 +325,38 @@ Referenced by main().\hypertarget{util_8c_8a7327192a37674e2559d82448a565b1}{
 \label{util_8c_8a7327192a37674e2559d82448a565b1}
 
 
+Converts a symmetric tour to an asymmetric tour. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem associated with tour. \item[{\em old\_\-tour}]\mbox{[}in\mbox{]} the symmetric tour. \item[{\em new\_\-tour}]\mbox{[}out\mbox{]} the asymmetric tour. \end{description}
+\end{Desc}
 
 
 Definition at line 260 of file util.c.
 
 References arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
+
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-dt2(), arrow\_\-balanced\_\-tsp\_\-ib2(), and main().\hypertarget{util_8c_0541e6b62dd904dfdb630bf21aeef425}{
+\index{util.c@{util.c}!arrow\_\-util\_\-write\_\-problem@{arrow\_\-util\_\-write\_\-problem}}
+\index{arrow\_\-util\_\-write\_\-problem@{arrow\_\-util\_\-write\_\-problem}!util.c@{util.c}}
+\subsubsection[{arrow\_\-util\_\-write\_\-problem}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-write\_\-problem ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  char $\ast$ {\em comment}, \/  FILE $\ast$ {\em out})}}
+\label{util_8c_0541e6b62dd904dfdb630bf21aeef425}
+
+
+Writes a problem in TSPLIB format as a lower diagonal matrix. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to print out. \item[{\em comment}]\mbox{[}in\mbox{]} additional comment (optional). \item[{\em out}]\mbox{[}out\mbox{]} the file descriptor id to print out to. \end{description}
+\end{Desc}
+
+
+Definition at line 277 of file util.c.
+
+References arrow\_\-problem::get\_\-cost, arrow\_\-problem::name, and arrow\_\-problem::size.
 
 Referenced by main().\hypertarget{util_8c_6921d887eca515c1ad59629e25a0c237}{
 \index{util.c@{util.c}!arrow\_\-util\_\-write\_\-tour@{arrow\_\-util\_\-write\_\-tour}}
@@ -336,6 +365,13 @@ Referenced by main().\hypertarget{util_8c_6921d887eca515c1ad59629e25a0c237}{
 \label{util_8c_6921d887eca515c1ad59629e25a0c237}
 
 
+Writes a tour in TSPLIB format. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem associated with tour. \item[{\em comment}]\mbox{[}in\mbox{]} additional comment (optional). \item[{\em tour}]\mbox{[}in\mbox{]} the tour to print out. \item[{\em out}]\mbox{[}out\mbox{]} the file descriptor id to print out to. \end{description}
+\end{Desc}
 
 
 Definition at line 241 of file util.c.
@@ -357,4 +393,4 @@ Used to measure timings.
 
 Definition at line 63 of file util.c.
 
-Referenced by arrow\_\-2mb\_\-solve(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), and main().
+Referenced by arrow\_\-2mb\_\-solve(), arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-dt2(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), btsp\_\-bounds(), and main().

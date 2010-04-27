@@ -10,7 +10,7 @@ Bottleneck Assignment Problem solver.
 \subsection*{Defines}
 \begin{CompactItemize}
 \item 
-\#define \hyperlink{bin_2bap_8c_9b58b2c4af931c8486a986c9deca40f5}{NUM\_\-OPTS}~2
+\#define \hyperlink{bin_2bap_8c_9b58b2c4af931c8486a986c9deca40f5}{NUM\_\-OPTS}~4
 \end{CompactItemize}
 \subsection*{Functions}
 \begin{CompactItemize}
@@ -26,11 +26,15 @@ char $\ast$ \hyperlink{bin_2bap_8c_a4f3a15de34c409bdec6ceacf93078ed}{input\_\-fi
 \item 
 char $\ast$ \hyperlink{bin_2bap_8c_bf4e392494984c6ef8259268eb1fe421}{xml\_\-file} = NULL
 \item 
+int \hyperlink{bin_2bap_8c_786cdab056142ae00a268cabebd5ced7}{solve\_\-mstsp} = ARROW\_\-FALSE
+\item 
+int \hyperlink{bin_2bap_8c_7298da576a5b127d04b4c46b3bc78821}{deep\_\-copy} = ARROW\_\-FALSE
+\item 
 \hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{bin_2bap_8c_cea6a9709d519c143f30db401a0d0c72}{options} \mbox{[}NUM\_\-OPTS\mbox{]}
 \item 
 char $\ast$ \hyperlink{bin_2bap_8c_3aad16fd4bea1b9717f232ea75ad6449}{desc} = \char`\"{}Bottleneck assignment problem solver\char`\"{}
 \item 
-char $\ast$ \hyperlink{bin_2bap_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage} = \char`\"{}-i tsplib.tsp \mbox{[}\hyperlink{subprob_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{]} \char`\"{}
+char $\ast$ \hyperlink{bin_2bap_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage} = \char`\"{}-i tsplib.tsp \mbox{[}\hyperlink{tourinfo_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{]} \char`\"{}
 \end{CompactItemize}
 
 
@@ -49,13 +53,13 @@ Definition in file \hyperlink{bin_2bap_8c-source}{bap.c}.
 \hypertarget{bin_2bap_8c_9b58b2c4af931c8486a986c9deca40f5}{
 \index{bin/bap.c@{bin/bap.c}!NUM\_\-OPTS@{NUM\_\-OPTS}}
 \index{NUM\_\-OPTS@{NUM\_\-OPTS}!bin/bap.c@{bin/bap.c}}
-\subsubsection[{NUM\_\-OPTS}]{\setlength{\rightskip}{0pt plus 5cm}\#define NUM\_\-OPTS~2}}
+\subsubsection[{NUM\_\-OPTS}]{\setlength{\rightskip}{0pt plus 5cm}\#define NUM\_\-OPTS~4}}
 \label{bin_2bap_8c_9b58b2c4af931c8486a986c9deca40f5}
 
 
 
 
-Definition at line 18 of file bap.c.
+Definition at line 20 of file bap.c.
 
 \subsection{Function Documentation}
 \hypertarget{bin_2bap_8c_0ddf1224851353fc92bfbff6f499fa97}{
@@ -67,12 +71,21 @@ Definition at line 18 of file bap.c.
 
 
 
-Definition at line 31 of file bap.c.
+Definition at line 37 of file bap.c.
 
-References arrow\_\-bap\_\-solve(), ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-options\_\-parse(), arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-destruct(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read(), ARROW\_\-SUCCESS, arrow\_\-util\_\-print\_\-program\_\-args(), desc, input\_\-file, NUM\_\-OPTS, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-bound\_\-result::total\_\-time, usage, and xml\_\-file.
+References arrow\_\-bap\_\-solve(), ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-options\_\-parse(), arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-destruct(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-max\_\-cost(), arrow\_\-problem\_\-mstsp\_\-to\_\-btsp(), arrow\_\-problem\_\-read(), ARROW\_\-SUCCESS, arrow\_\-util\_\-print\_\-program\_\-args(), deep\_\-copy, desc, input\_\-file, NUM\_\-OPTS, arrow\_\-bound\_\-result::obj\_\-value, solve\_\-mstsp, arrow\_\-bound\_\-result::total\_\-time, usage, and xml\_\-file.
 
 \subsection{Variable Documentation}
-\hypertarget{bin_2bap_8c_3aad16fd4bea1b9717f232ea75ad6449}{
+\hypertarget{bin_2bap_8c_7298da576a5b127d04b4c46b3bc78821}{
+\index{bin/bap.c@{bin/bap.c}!deep\_\-copy@{deep\_\-copy}}
+\index{deep\_\-copy@{deep\_\-copy}!bin/bap.c@{bin/bap.c}}
+\subsubsection[{deep\_\-copy}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf deep\_\-copy} = ARROW\_\-FALSE}}
+\label{bin_2bap_8c_7298da576a5b127d04b4c46b3bc78821}
+
+
+
+
+Definition at line 17 of file bap.c.\hypertarget{bin_2bap_8c_3aad16fd4bea1b9717f232ea75ad6449}{
 \index{bin/bap.c@{bin/bap.c}!desc@{desc}}
 \index{desc@{desc}!bin/bap.c@{bin/bap.c}}
 \subsubsection[{desc}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf desc} = \char`\"{}Bottleneck assignment problem solver\char`\"{}}}
@@ -81,7 +94,7 @@ References arrow\_\-bap\_\-solve(), ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-o
 
 
 
-Definition at line 26 of file bap.c.\hypertarget{bin_2bap_8c_a4f3a15de34c409bdec6ceacf93078ed}{
+Definition at line 32 of file bap.c.\hypertarget{bin_2bap_8c_a4f3a15de34c409bdec6ceacf93078ed}{
 \index{bin/bap.c@{bin/bap.c}!input\_\-file@{input\_\-file}}
 \index{input\_\-file@{input\_\-file}!bin/bap.c@{bin/bap.c}}
 \subsubsection[{input\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf input\_\-file} = NULL}}
@@ -104,13 +117,17 @@ Definition at line 14 of file bap.c.\hypertarget{bin_2bap_8c_cea6a9709d519c143f3
     {'i', "input", "TSPLIB input file", 
         ARROW_OPTION_STRING, &input_file, ARROW_TRUE, ARROW_TRUE},
     {'x', "xml", "File to write XML output to",
-        ARROW_OPTION_STRING, &xml_file, ARROW_FALSE, ARROW_TRUE}
+        ARROW_OPTION_STRING, &xml_file, ARROW_FALSE, ARROW_TRUE},
+    {'m', "solve-mstsp", "solves maximum scatter TSP",
+        ARROW_OPTION_INT, &solve_mstsp, ARROW_FALSE, ARROW_FALSE},
+    {'d', "deep-copy", "stores data in full cost-matrix",
+        ARROW_OPTION_INT, &deep_copy, ARROW_FALSE, ARROW_FALSE}
 }
 \end{verbatim}
 \end{Code}
 
 
-Definition at line 19 of file bap.c.\hypertarget{bin_2bap_8c_289c5900d90626d909f0a85d5a0ed61d}{
+Definition at line 21 of file bap.c.\hypertarget{bin_2bap_8c_289c5900d90626d909f0a85d5a0ed61d}{
 \index{bin/bap.c@{bin/bap.c}!program\_\-name@{program\_\-name}}
 \index{program\_\-name@{program\_\-name}!bin/bap.c@{bin/bap.c}}
 \subsubsection[{program\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf program\_\-name}}}
@@ -119,7 +136,16 @@ Definition at line 19 of file bap.c.\hypertarget{bin_2bap_8c_289c5900d90626d909f
 
 Program name 
 
-Definition at line 13 of file bap.c.\hypertarget{bin_2bap_8c_adebe2487a2c5240ab6cd02c83add0bf}{
+Definition at line 13 of file bap.c.\hypertarget{bin_2bap_8c_786cdab056142ae00a268cabebd5ced7}{
+\index{bin/bap.c@{bin/bap.c}!solve\_\-mstsp@{solve\_\-mstsp}}
+\index{solve\_\-mstsp@{solve\_\-mstsp}!bin/bap.c@{bin/bap.c}}
+\subsubsection[{solve\_\-mstsp}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf solve\_\-mstsp} = ARROW\_\-FALSE}}
+\label{bin_2bap_8c_786cdab056142ae00a268cabebd5ced7}
+
+
+
+
+Definition at line 16 of file bap.c.\hypertarget{bin_2bap_8c_adebe2487a2c5240ab6cd02c83add0bf}{
 \index{bin/bap.c@{bin/bap.c}!usage@{usage}}
 \index{usage@{usage}!bin/bap.c@{bin/bap.c}}
 \subsubsection[{usage}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf usage} = \char`\"{}-i tsplib.tsp \mbox{[}{\bf options}\mbox{]} \char`\"{}}}
@@ -128,7 +154,7 @@ Definition at line 13 of file bap.c.\hypertarget{bin_2bap_8c_adebe2487a2c5240ab6
 
 
 
-Definition at line 27 of file bap.c.\hypertarget{bin_2bap_8c_bf4e392494984c6ef8259268eb1fe421}{
+Definition at line 33 of file bap.c.\hypertarget{bin_2bap_8c_bf4e392494984c6ef8259268eb1fe421}{
 \index{bin/bap.c@{bin/bap.c}!xml\_\-file@{xml\_\-file}}
 \index{xml\_\-file@{xml\_\-file}!bin/bap.c@{bin/bap.c}}
 \subsubsection[{xml\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf xml\_\-file} = NULL}}

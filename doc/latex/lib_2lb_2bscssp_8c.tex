@@ -10,12 +10,12 @@ Bottleneck strongly connected spanning subgraph problem implemenation.
 \subsection*{Functions}
 \begin{CompactItemize}
 \item 
-int \hyperlink{lib_2lb_2bscssp_8c_9e926af0b819301883ed15e5f04ebb74}{strongly\_\-connected} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int delta, int $\ast$result)
-\begin{CompactList}\small\item\em Determines if the given graph is strongly connected. \item\end{CompactList}\item 
-void \hyperlink{lib_2lb_2bscssp_8c_a70ee7be765d6a4170f76491066da1fc}{strongly\_\-connected\_\-dfs} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int delta, int i, int transpose, int $\ast$visited)
+void \hyperlink{lib_2lb_2bscssp_8c_0a54d92d6e9f5ee9b369762e01fe3190}{strongly\_\-connected\_\-dfs} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int min\_\-cost, int max\_\-cost, int i, int transpose, int $\ast$visited)
 \begin{CompactList}\small\item\em Performs a recursive depth-first search to test for connectivity. \item\end{CompactList}\item 
 int \hyperlink{lib_2lb_2bscssp_8c_624fe95ca7b7eb623ee636c2f8cb1409}{arrow\_\-bscssp\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
-\begin{CompactList}\small\item\em Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on the given graph. \item\end{CompactList}\end{CompactItemize}
+\begin{CompactList}\small\item\em Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on the given graph. \item\end{CompactList}\item 
+int \hyperlink{lib_2lb_2bscssp_8c_d3a1c2417150edda25946ccdc1f56115}{arrow\_\-bscssp\_\-connected} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int min\_\-cost, int max\_\-cost, int $\ast$result)
+\begin{CompactList}\small\item\em Determines if the problem is strongly connected using only costs min\_\-cost $<$= c\_\-ij $<$= max\_\-cost. \item\end{CompactList}\end{CompactItemize}
 
 
 \subsection{Detailed Description}
@@ -30,7 +30,27 @@ Implemenation of the bottleneck strongly connected spanning subgraph problem (BS
 Definition in file \hyperlink{lib_2lb_2bscssp_8c-source}{bscssp.c}.
 
 \subsection{Function Documentation}
-\hypertarget{lib_2lb_2bscssp_8c_624fe95ca7b7eb623ee636c2f8cb1409}{
+\hypertarget{lib_2lb_2bscssp_8c_d3a1c2417150edda25946ccdc1f56115}{
+\index{lib/lb/bscssp.c@{lib/lb/bscssp.c}!arrow\_\-bscssp\_\-connected@{arrow\_\-bscssp\_\-connected}}
+\index{arrow\_\-bscssp\_\-connected@{arrow\_\-bscssp\_\-connected}!lib/lb/bscssp.c@{lib/lb/bscssp.c}}
+\subsubsection[{arrow\_\-bscssp\_\-connected}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bscssp\_\-connected ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  int $\ast$ {\em result})}}
+\label{lib_2lb_2bscssp_8c_d3a1c2417150edda25946ccdc1f56115}
+
+
+Determines if the problem is strongly connected using only costs min\_\-cost $<$= c\_\-ij $<$= max\_\-cost. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} minimum cost to consider in problem \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} maximum cost to consider in problem \item[{\em result}]\mbox{[}out\mbox{]} ARROW\_\-TRUE if strongly connected \end{description}
+\end{Desc}
+
+
+Definition at line 80 of file bscssp.c.
+
+References ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-problem::size, and strongly\_\-connected\_\-dfs().
+
+Referenced by arrow\_\-bscssp\_\-solve(), balanced\_\-lb\_\-feasible(), and dt2\_\-lb\_\-feasible().\hypertarget{lib_2lb_2bscssp_8c_624fe95ca7b7eb623ee636c2f8cb1409}{
 \index{lib/lb/bscssp.c@{lib/lb/bscssp.c}!arrow\_\-bscssp\_\-solve@{arrow\_\-bscssp\_\-solve}}
 \index{arrow\_\-bscssp\_\-solve@{arrow\_\-bscssp\_\-solve}!lib/lb/bscssp.c@{lib/lb/bscssp.c}}
 \subsubsection[{arrow\_\-bscssp\_\-solve}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bscssp\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
@@ -46,35 +66,15 @@ Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on t
 \end{Desc}
 
 
-Definition at line 44 of file bscssp.c.
+Definition at line 37 of file bscssp.c.
 
-References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-util\_\-zeit(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-bound\_\-result::obj\_\-value, strongly\_\-connected(), and arrow\_\-bound\_\-result::total\_\-time.
+References arrow\_\-bscssp\_\-connected(), ARROW\_\-FAILURE, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-util\_\-zeit(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-bound\_\-result::obj\_\-value, and arrow\_\-bound\_\-result::total\_\-time.
 
-Referenced by main().\hypertarget{lib_2lb_2bscssp_8c_9e926af0b819301883ed15e5f04ebb74}{
-\index{lib/lb/bscssp.c@{lib/lb/bscssp.c}!strongly\_\-connected@{strongly\_\-connected}}
-\index{strongly\_\-connected@{strongly\_\-connected}!lib/lb/bscssp.c@{lib/lb/bscssp.c}}
-\subsubsection[{strongly\_\-connected}]{\setlength{\rightskip}{0pt plus 5cm}int strongly\_\-connected ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em delta}, \/  int $\ast$ {\em result})}}
-\label{lib_2lb_2bscssp_8c_9e926af0b819301883ed15e5f04ebb74}
-
-
-Determines if the given graph is strongly connected. 
-
-\begin{Desc}
-\item[Parameters:]
-\begin{description}
-\item[{\em problem}]\mbox{[}in\mbox{]} the problem instance \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em result}]\mbox{[}out\mbox{]} the result! \end{description}
-\end{Desc}
-
-
-Definition at line 87 of file bscssp.c.
-
-References ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-problem::size, and strongly\_\-connected\_\-dfs().
-
-Referenced by arrow\_\-bscssp\_\-solve().\hypertarget{lib_2lb_2bscssp_8c_a70ee7be765d6a4170f76491066da1fc}{
+Referenced by main().\hypertarget{lib_2lb_2bscssp_8c_0a54d92d6e9f5ee9b369762e01fe3190}{
 \index{lib/lb/bscssp.c@{lib/lb/bscssp.c}!strongly\_\-connected\_\-dfs@{strongly\_\-connected\_\-dfs}}
 \index{strongly\_\-connected\_\-dfs@{strongly\_\-connected\_\-dfs}!lib/lb/bscssp.c@{lib/lb/bscssp.c}}
-\subsubsection[{strongly\_\-connected\_\-dfs}]{\setlength{\rightskip}{0pt plus 5cm}void strongly\_\-connected\_\-dfs ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em delta}, \/  int {\em i}, \/  int {\em transpose}, \/  int $\ast$ {\em visited})}}
-\label{lib_2lb_2bscssp_8c_a70ee7be765d6a4170f76491066da1fc}
+\subsubsection[{strongly\_\-connected\_\-dfs}]{\setlength{\rightskip}{0pt plus 5cm}void strongly\_\-connected\_\-dfs ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  int {\em i}, \/  int {\em transpose}, \/  int $\ast$ {\em visited})}}
+\label{lib_2lb_2bscssp_8c_0a54d92d6e9f5ee9b369762e01fe3190}
 
 
 Performs a recursive depth-first search to test for connectivity. 
@@ -82,12 +82,12 @@ Performs a recursive depth-first search to test for connectivity.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em problem}]\mbox{[}in\mbox{]} the problem instance \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em i}]\mbox{[}in\mbox{]} node index to search from \item[{\em transpose}]\mbox{[}in\mbox{]} if true, calculates costs with transposed cost matrix \item[{\em visited}]\mbox{[}out\mbox{]} array that marks nodes that have been visited \end{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} the problem instance \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} minimum cost to consider in problem \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} maximum cost to consider in problem \item[{\em i}]\mbox{[}in\mbox{]} node index to search from \item[{\em transpose}]\mbox{[}in\mbox{]} if true, calculates costs with transposed cost matrix \item[{\em visited}]\mbox{[}out\mbox{]} array that marks nodes that have been visited \end{description}
 \end{Desc}
 
 
-Definition at line 134 of file bscssp.c.
+Definition at line 128 of file bscssp.c.
 
 References ARROW\_\-TRUE, arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
 
-Referenced by strongly\_\-connected().
+Referenced by arrow\_\-bscssp\_\-connected().

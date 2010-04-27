@@ -17,21 +17,21 @@ struct \hyperlink{structcbtsp__shake__data}{cbtsp\_\-shake\_\-data}
 \subsection*{Functions}
 \begin{CompactItemize}
 \item 
-int \hyperlink{fun__cbtsp_8c_7812c70c58b22442f1bbb5ad70bffb3b}{cbtsp\_\-basic\_\-get\_\-cost} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int delta, int i, int j)
+int \hyperlink{fun__cbtsp_8c_10deffb59f4e212f4e8c5356c8311817}{cbtsp\_\-basic\_\-get\_\-cost} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int min\_\-cost, int max\_\-cost, int i, int j)
 \begin{CompactList}\small\item\em Retrieves cost between nodes i and j from the function. \item\end{CompactList}\item 
 int \hyperlink{fun__cbtsp_8c_623bd01fc554f1cf9d538056ac1d4628}{cbtsp\_\-basic\_\-initialize} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
 \begin{CompactList}\small\item\em Initializes the function data. \item\end{CompactList}\item 
 void \hyperlink{fun__cbtsp_8c_443a8ac65ff633d0ee94e4d19bdf22a7}{cbtsp\_\-basic\_\-destruct} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
 \begin{CompactList}\small\item\em Destructs the function data. \item\end{CompactList}\item 
-int \hyperlink{fun__cbtsp_8c_00ff8d02e5fe8381dd404c4b7119ccca}{cbtsp\_\-basic\_\-feasible} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int delta, double tour\_\-length, int $\ast$tour)
+int \hyperlink{fun__cbtsp_8c_6a4df6f26171a0c5350b97d9d73d4907}{cbtsp\_\-basic\_\-feasible} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int min\_\-cost, int max\_\-cost, double tour\_\-length, int $\ast$tour)
 \begin{CompactList}\small\item\em Determines if the given tour is feasible or not. \item\end{CompactList}\item 
-int \hyperlink{fun__cbtsp_8c_3199482f634e211d36970ade8f948ea1}{cbtsp\_\-shake\_\-get\_\-cost} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int delta, int i, int j)
+int \hyperlink{fun__cbtsp_8c_b0e23b21b0da3c1672bfbddc5f144524}{cbtsp\_\-shake\_\-get\_\-cost} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int min\_\-cost, int max\_\-cost, int i, int j)
 \begin{CompactList}\small\item\em Retrieves cost between nodes i and j from the function. \item\end{CompactList}\item 
 int \hyperlink{fun__cbtsp_8c_2c86bf9441946ae191f42461104545ba}{cbtsp\_\-shake\_\-initialize} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
 \begin{CompactList}\small\item\em Initializes the function data. \item\end{CompactList}\item 
 void \hyperlink{fun__cbtsp_8c_9dc6bdfa3208011e77093b8646bc986d}{cbtsp\_\-shake\_\-destruct} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
 \begin{CompactList}\small\item\em Destructs the function data. \item\end{CompactList}\item 
-int \hyperlink{fun__cbtsp_8c_9af3257a6751785471e13609f41a6e21}{cbtsp\_\-shake\_\-feasible} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int delta, double tour\_\-length, int $\ast$tour)
+int \hyperlink{fun__cbtsp_8c_f575207718c3a34144934879020b475a}{cbtsp\_\-shake\_\-feasible} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int min\_\-cost, int max\_\-cost, double tour\_\-length, int $\ast$tour)
 \begin{CompactList}\small\item\em Determines if the given tour is feasible or not. \item\end{CompactList}\item 
 int \hyperlink{fun__cbtsp_8c_ec30be80a8e806be7b889794a305cf0e}{arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic} (int shallow, double feasible\_\-length, int infinity, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
 \begin{CompactList}\small\item\em Constrained BTSP to TSP function. \item\end{CompactList}\item 
@@ -67,7 +67,7 @@ Constrained BTSP to TSP function.
 \end{Desc}
 
 
-Definition at line 128 of file fun\_\-cbtsp.c.
+Definition at line 132 of file fun\_\-cbtsp.c.
 
 References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, cbtsp\_\-basic\_\-destruct(), cbtsp\_\-basic\_\-feasible(), cbtsp\_\-basic\_\-get\_\-cost(), cbtsp\_\-basic\_\-initialize(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, cbtsp\_\-basic\_\-data::feasible\_\-length, arrow\_\-btsp\_\-fun::get\_\-cost, cbtsp\_\-basic\_\-data::infinity, arrow\_\-btsp\_\-fun::initialize, and arrow\_\-btsp\_\-fun::shallow.
 
@@ -87,7 +87,7 @@ Constrained \char`\"{}Shake\char`\"{} BTSP to TSP function.
 \end{Desc}
 
 
-Definition at line 152 of file fun\_\-cbtsp.c.
+Definition at line 156 of file fun\_\-cbtsp.c.
 
 References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), cbtsp\_\-shake\_\-destruct(), cbtsp\_\-shake\_\-feasible(), cbtsp\_\-shake\_\-get\_\-cost(), cbtsp\_\-shake\_\-initialize(), arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, cbtsp\_\-shake\_\-data::feasible\_\-length, arrow\_\-btsp\_\-fun::get\_\-cost, cbtsp\_\-shake\_\-data::infinity, cbtsp\_\-shake\_\-data::info, arrow\_\-btsp\_\-fun::initialize, cbtsp\_\-shake\_\-data::random\_\-list, cbtsp\_\-shake\_\-data::random\_\-list\_\-length, cbtsp\_\-shake\_\-data::random\_\-max, cbtsp\_\-shake\_\-data::random\_\-min, and arrow\_\-btsp\_\-fun::shallow.
 
@@ -107,15 +107,15 @@ Destructs the function data.
 \end{Desc}
 
 
-Definition at line 212 of file fun\_\-cbtsp.c.
+Definition at line 216 of file fun\_\-cbtsp.c.
 
 References arrow\_\-btsp\_\-fun::data.
 
-Referenced by arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic().\hypertarget{fun__cbtsp_8c_00ff8d02e5fe8381dd404c4b7119ccca}{
+Referenced by arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic().\hypertarget{fun__cbtsp_8c_6a4df6f26171a0c5350b97d9d73d4907}{
 \index{fun\_\-cbtsp.c@{fun\_\-cbtsp.c}!cbtsp\_\-basic\_\-feasible@{cbtsp\_\-basic\_\-feasible}}
 \index{cbtsp\_\-basic\_\-feasible@{cbtsp\_\-basic\_\-feasible}!fun_cbtsp.c@{fun\_\-cbtsp.c}}
-\subsubsection[{cbtsp\_\-basic\_\-feasible}]{\setlength{\rightskip}{0pt plus 5cm}int cbtsp\_\-basic\_\-feasible ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em delta}, \/  double {\em tour\_\-length}, \/  int $\ast$ {\em tour})}}
-\label{fun__cbtsp_8c_00ff8d02e5fe8381dd404c4b7119ccca}
+\subsubsection[{cbtsp\_\-basic\_\-feasible}]{\setlength{\rightskip}{0pt plus 5cm}int cbtsp\_\-basic\_\-feasible ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  double {\em tour\_\-length}, \/  int $\ast$ {\em tour})}}
+\label{fun__cbtsp_8c_6a4df6f26171a0c5350b97d9d73d4907}
 
 
 Determines if the given tour is feasible or not. 
@@ -123,21 +123,21 @@ Determines if the given tour is feasible or not.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em base\_\-problem}]\mbox{[}in\mbox{]} the problem to check against \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em tour\_\-length}]\mbox{[}in\mbox{]} the length of the given tour \item[{\em tour}]\mbox{[}in\mbox{]} the tour in node-node format \end{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em base\_\-problem}]\mbox{[}in\mbox{]} the problem to check against \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em tour\_\-length}]\mbox{[}in\mbox{]} the length of the given tour \item[{\em tour}]\mbox{[}in\mbox{]} the tour in node-node format \end{description}
 \end{Desc}
 \begin{Desc}
 \item[Returns:]ARROW\_\-TRUE if the tour is feasible, ARROW\_\-FALSE if not \end{Desc}
 
 
-Definition at line 222 of file fun\_\-cbtsp.c.
+Definition at line 226 of file fun\_\-cbtsp.c.
 
 References ARROW\_\-FALSE, ARROW\_\-TRUE, and arrow\_\-btsp\_\-fun::data.
 
-Referenced by arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic().\hypertarget{fun__cbtsp_8c_7812c70c58b22442f1bbb5ad70bffb3b}{
+Referenced by arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic().\hypertarget{fun__cbtsp_8c_10deffb59f4e212f4e8c5356c8311817}{
 \index{fun\_\-cbtsp.c@{fun\_\-cbtsp.c}!cbtsp\_\-basic\_\-get\_\-cost@{cbtsp\_\-basic\_\-get\_\-cost}}
 \index{cbtsp\_\-basic\_\-get\_\-cost@{cbtsp\_\-basic\_\-get\_\-cost}!fun_cbtsp.c@{fun\_\-cbtsp.c}}
-\subsubsection[{cbtsp\_\-basic\_\-get\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int cbtsp\_\-basic\_\-get\_\-cost ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em delta}, \/  int {\em i}, \/  int {\em j})}}
-\label{fun__cbtsp_8c_7812c70c58b22442f1bbb5ad70bffb3b}
+\subsubsection[{cbtsp\_\-basic\_\-get\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int cbtsp\_\-basic\_\-get\_\-cost ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  int {\em i}, \/  int {\em j})}}
+\label{fun__cbtsp_8c_10deffb59f4e212f4e8c5356c8311817}
 
 
 Retrieves cost between nodes i and j from the function. 
@@ -145,13 +145,13 @@ Retrieves cost between nodes i and j from the function.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em base\_\-problem}]\mbox{[}in\mbox{]} problem structure \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em i}]\mbox{[}in\mbox{]} id of start node \item[{\em j}]\mbox{[}in\mbox{]} id of end node \end{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em base\_\-problem}]\mbox{[}in\mbox{]} problem structure \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em i}]\mbox{[}in\mbox{]} id of start node \item[{\em j}]\mbox{[}in\mbox{]} id of end node \end{description}
 \end{Desc}
 \begin{Desc}
 \item[Returns:]cost between node i and node j \end{Desc}
 
 
-Definition at line 193 of file fun\_\-cbtsp.c.
+Definition at line 197 of file fun\_\-cbtsp.c.
 
 References arrow\_\-btsp\_\-fun::data, arrow\_\-problem::get\_\-cost, and cbtsp\_\-basic\_\-data::infinity.
 
@@ -171,7 +171,7 @@ Initializes the function data.
 \end{Desc}
 
 
-Definition at line 206 of file fun\_\-cbtsp.c.
+Definition at line 210 of file fun\_\-cbtsp.c.
 
 References ARROW\_\-SUCCESS.
 
@@ -191,15 +191,15 @@ Destructs the function data.
 \end{Desc}
 
 
-Definition at line 269 of file fun\_\-cbtsp.c.
+Definition at line 273 of file fun\_\-cbtsp.c.
 
 References arrow\_\-btsp\_\-fun::data, and cbtsp\_\-shake\_\-data::random\_\-list.
 
-Referenced by arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake().\hypertarget{fun__cbtsp_8c_9af3257a6751785471e13609f41a6e21}{
+Referenced by arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake().\hypertarget{fun__cbtsp_8c_f575207718c3a34144934879020b475a}{
 \index{fun\_\-cbtsp.c@{fun\_\-cbtsp.c}!cbtsp\_\-shake\_\-feasible@{cbtsp\_\-shake\_\-feasible}}
 \index{cbtsp\_\-shake\_\-feasible@{cbtsp\_\-shake\_\-feasible}!fun_cbtsp.c@{fun\_\-cbtsp.c}}
-\subsubsection[{cbtsp\_\-shake\_\-feasible}]{\setlength{\rightskip}{0pt plus 5cm}int cbtsp\_\-shake\_\-feasible ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em delta}, \/  double {\em tour\_\-length}, \/  int $\ast$ {\em tour})}}
-\label{fun__cbtsp_8c_9af3257a6751785471e13609f41a6e21}
+\subsubsection[{cbtsp\_\-shake\_\-feasible}]{\setlength{\rightskip}{0pt plus 5cm}int cbtsp\_\-shake\_\-feasible ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  double {\em tour\_\-length}, \/  int $\ast$ {\em tour})}}
+\label{fun__cbtsp_8c_f575207718c3a34144934879020b475a}
 
 
 Determines if the given tour is feasible or not. 
@@ -207,21 +207,21 @@ Determines if the given tour is feasible or not.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em base\_\-problem}]\mbox{[}in\mbox{]} the problem to check against \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em tour\_\-length}]\mbox{[}in\mbox{]} the length of the given tour \item[{\em tour}]\mbox{[}in\mbox{]} the tour in node-node format \end{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em base\_\-problem}]\mbox{[}in\mbox{]} the problem to check against \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em tour\_\-length}]\mbox{[}in\mbox{]} the length of the given tour \item[{\em tour}]\mbox{[}in\mbox{]} the tour in node-node format \end{description}
 \end{Desc}
 \begin{Desc}
 \item[Returns:]ARROW\_\-TRUE if the tour is feasible, ARROW\_\-FALSE if not \end{Desc}
 
 
-Definition at line 282 of file fun\_\-cbtsp.c.
+Definition at line 286 of file fun\_\-cbtsp.c.
 
 References ARROW\_\-FALSE, ARROW\_\-TRUE, arrow\_\-btsp\_\-fun::data, cbtsp\_\-shake\_\-data::feasible\_\-length, arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
 
-Referenced by arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake().\hypertarget{fun__cbtsp_8c_3199482f634e211d36970ade8f948ea1}{
+Referenced by arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake().\hypertarget{fun__cbtsp_8c_b0e23b21b0da3c1672bfbddc5f144524}{
 \index{fun\_\-cbtsp.c@{fun\_\-cbtsp.c}!cbtsp\_\-shake\_\-get\_\-cost@{cbtsp\_\-shake\_\-get\_\-cost}}
 \index{cbtsp\_\-shake\_\-get\_\-cost@{cbtsp\_\-shake\_\-get\_\-cost}!fun_cbtsp.c@{fun\_\-cbtsp.c}}
-\subsubsection[{cbtsp\_\-shake\_\-get\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int cbtsp\_\-shake\_\-get\_\-cost ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em delta}, \/  int {\em i}, \/  int {\em j})}}
-\label{fun__cbtsp_8c_3199482f634e211d36970ade8f948ea1}
+\subsubsection[{cbtsp\_\-shake\_\-get\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int cbtsp\_\-shake\_\-get\_\-cost ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em base\_\-problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  int {\em i}, \/  int {\em j})}}
+\label{fun__cbtsp_8c_b0e23b21b0da3c1672bfbddc5f144524}
 
 
 Retrieves cost between nodes i and j from the function. 
@@ -229,13 +229,13 @@ Retrieves cost between nodes i and j from the function.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em base\_\-problem}]\mbox{[}in\mbox{]} problem structure \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em i}]\mbox{[}in\mbox{]} id of start node \item[{\em j}]\mbox{[}in\mbox{]} id of end node \end{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em base\_\-problem}]\mbox{[}in\mbox{]} problem structure \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em i}]\mbox{[}in\mbox{]} id of start node \item[{\em j}]\mbox{[}in\mbox{]} id of end node \end{description}
 \end{Desc}
 \begin{Desc}
 \item[Returns:]cost between node i and node j \end{Desc}
 
 
-Definition at line 230 of file fun\_\-cbtsp.c.
+Definition at line 234 of file fun\_\-cbtsp.c.
 
 References arrow\_\-print\_\-error, arrow\_\-problem\_\-info\_\-cost\_\-index(), arrow\_\-btsp\_\-fun::data, arrow\_\-problem::get\_\-cost, cbtsp\_\-shake\_\-data::infinity, cbtsp\_\-shake\_\-data::info, and cbtsp\_\-shake\_\-data::random\_\-list.
 
@@ -255,7 +255,7 @@ Initializes the function data.
 \end{Desc}
 
 
-Definition at line 250 of file fun\_\-cbtsp.c.
+Definition at line 254 of file fun\_\-cbtsp.c.
 
 References arrow\_\-bintree\_\-init(), arrow\_\-bintree\_\-insert(), arrow\_\-bintree\_\-to\_\-array(), ARROW\_\-SUCCESS, arrow\_\-util\_\-random\_\-between(), arrow\_\-btsp\_\-fun::data, cbtsp\_\-shake\_\-data::random\_\-list, cbtsp\_\-shake\_\-data::random\_\-list\_\-length, cbtsp\_\-shake\_\-data::random\_\-max, and cbtsp\_\-shake\_\-data::random\_\-min.
 

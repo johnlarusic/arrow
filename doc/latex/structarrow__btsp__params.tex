@@ -32,13 +32,17 @@ int \hyperlink{structarrow__btsp__params_2897d24f2fdd53c723609cf68880f55e}{num\_
 \hyperlink{structarrow__btsp__solve__plan}{arrow\_\-btsp\_\-solve\_\-plan} $\ast$ \hyperlink{structarrow__btsp__params_49aedb95b2fc4a725e3bb8485470484b}{steps}
 \item 
 \hyperlink{structarrow__btsp__solve__plan}{arrow\_\-btsp\_\-solve\_\-plan} \hyperlink{structarrow__btsp__params_f6a3bf7e56264d14b9dceb4ce779363c}{confirm\_\-plan}
+\item 
+int \hyperlink{structarrow__btsp__params_a035c57dbce866d9b880f2cb9b5a74ed}{infinity}
+\item 
+int \hyperlink{structarrow__btsp__params_9f41e1fdf1d45581136187929ca57615}{deep\_\-copy}
 \end{CompactItemize}
 
 
 \subsection{Detailed Description}
 BTSP algorithm parameters. 
 
-Definition at line 103 of file btsp.h.
+Definition at line 106 of file btsp.h.
 
 \subsection{Field Documentation}
 \hypertarget{structarrow__btsp__params_f6a3bf7e56264d14b9dceb4ce779363c}{
@@ -50,7 +54,7 @@ Definition at line 103 of file btsp.h.
 
 confirm plan 
 
-Definition at line 112 of file btsp.h.
+Definition at line 115 of file btsp.h.
 
 Referenced by arrow\_\-btsp\_\-solve(), and main().\hypertarget{structarrow__btsp__params_2c579feb3ff41f4d73b5de97596fe465}{
 \index{arrow\_\-btsp\_\-params@{arrow\_\-btsp\_\-params}!confirm\_\-sol@{confirm\_\-sol}}
@@ -61,9 +65,20 @@ Referenced by arrow\_\-btsp\_\-solve(), and main().\hypertarget{structarrow__bts
 
 confirm sol. with exact solver? 
 
-Definition at line 105 of file btsp.h.
+Definition at line 108 of file btsp.h.
 
-Referenced by arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-solve(), and main().\hypertarget{structarrow__btsp__params_f5fd677200b64930838c6905cbada990}{
+Referenced by arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-solve(), and main().\hypertarget{structarrow__btsp__params_9f41e1fdf1d45581136187929ca57615}{
+\index{arrow\_\-btsp\_\-params@{arrow\_\-btsp\_\-params}!deep\_\-copy@{deep\_\-copy}}
+\index{deep\_\-copy@{deep\_\-copy}!arrow_btsp_params@{arrow\_\-btsp\_\-params}}
+\subsubsection[{deep\_\-copy}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-btsp\_\-params::deep\_\-copy}}}
+\label{structarrow__btsp__params_9f41e1fdf1d45581136187929ca57615}
+
+
+
+
+Definition at line 117 of file btsp.h.
+
+Referenced by arrow\_\-balanced\_\-tsp\_\-dt(), and main().\hypertarget{structarrow__btsp__params_f5fd677200b64930838c6905cbada990}{
 \index{arrow\_\-btsp\_\-params@{arrow\_\-btsp\_\-params}!find\_\-short\_\-tour@{find\_\-short\_\-tour}}
 \index{find\_\-short\_\-tour@{find\_\-short\_\-tour}!arrow_btsp_params@{arrow\_\-btsp\_\-params}}
 \subsubsection[{find\_\-short\_\-tour}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-btsp\_\-params::find\_\-short\_\-tour}}}
@@ -72,9 +87,20 @@ Referenced by arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-solve(), and m
 
 find short BSTP tour? 
 
-Definition at line 107 of file btsp.h.
+Definition at line 110 of file btsp.h.
 
-Referenced by arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-solve(), and main().\hypertarget{structarrow__btsp__params_da747e3797f9327834e4dbb1459d2786}{
+Referenced by arrow\_\-btsp\_\-params\_\-init(), and main().\hypertarget{structarrow__btsp__params_a035c57dbce866d9b880f2cb9b5a74ed}{
+\index{arrow\_\-btsp\_\-params@{arrow\_\-btsp\_\-params}!infinity@{infinity}}
+\index{infinity@{infinity}!arrow_btsp_params@{arrow\_\-btsp\_\-params}}
+\subsubsection[{infinity}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-btsp\_\-params::infinity}}}
+\label{structarrow__btsp__params_a035c57dbce866d9b880f2cb9b5a74ed}
+
+
+value to use for \char`\"{}infinity\char`\"{} 
+
+Definition at line 116 of file btsp.h.
+
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-dt(), and main().\hypertarget{structarrow__btsp__params_da747e3797f9327834e4dbb1459d2786}{
 \index{arrow\_\-btsp\_\-params@{arrow\_\-btsp\_\-params}!lower\_\-bound@{lower\_\-bound}}
 \index{lower\_\-bound@{lower\_\-bound}!arrow_btsp_params@{arrow\_\-btsp\_\-params}}
 \subsubsection[{lower\_\-bound}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-btsp\_\-params::lower\_\-bound}}}
@@ -83,9 +109,9 @@ Referenced by arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-solve(), and m
 
 initial lower bound 
 
-Definition at line 108 of file btsp.h.
+Definition at line 111 of file btsp.h.
 
-Referenced by arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-solve(), and main().\hypertarget{structarrow__btsp__params_2897d24f2fdd53c723609cf68880f55e}{
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-solve(), and main().\hypertarget{structarrow__btsp__params_2897d24f2fdd53c723609cf68880f55e}{
 \index{arrow\_\-btsp\_\-params@{arrow\_\-btsp\_\-params}!num\_\-steps@{num\_\-steps}}
 \index{num\_\-steps@{num\_\-steps}!arrow_btsp_params@{arrow\_\-btsp\_\-params}}
 \subsubsection[{num\_\-steps}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-btsp\_\-params::num\_\-steps}}}
@@ -94,9 +120,9 @@ Referenced by arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-solve(), and m
 
 the number of solve plan steps 
 
-Definition at line 110 of file btsp.h.
+Definition at line 113 of file btsp.h.
 
-Referenced by arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-solve(), and main().\hypertarget{structarrow__btsp__params_49aedb95b2fc4a725e3bb8485470484b}{
+Referenced by arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-solve(), and main().\hypertarget{structarrow__btsp__params_49aedb95b2fc4a725e3bb8485470484b}{
 \index{arrow\_\-btsp\_\-params@{arrow\_\-btsp\_\-params}!steps@{steps}}
 \index{steps@{steps}!arrow_btsp_params@{arrow\_\-btsp\_\-params}}
 \subsubsection[{steps}]{\setlength{\rightskip}{0pt plus 5cm}{\bf arrow\_\-btsp\_\-solve\_\-plan}$\ast$ {\bf arrow\_\-btsp\_\-params::steps}}}
@@ -105,9 +131,9 @@ Referenced by arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-solve(), and m
 
 solve plan steps 
 
-Definition at line 111 of file btsp.h.
+Definition at line 114 of file btsp.h.
 
-Referenced by arrow\_\-btsp\_\-solve(), and main().\hypertarget{structarrow__btsp__params_cd85b850ac7c8495a4689100e8c3182c}{
+Referenced by arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-btsp\_\-solve(), and main().\hypertarget{structarrow__btsp__params_cd85b850ac7c8495a4689100e8c3182c}{
 \index{arrow\_\-btsp\_\-params@{arrow\_\-btsp\_\-params}!supress\_\-ebst@{supress\_\-ebst}}
 \index{supress\_\-ebst@{supress\_\-ebst}!arrow_btsp_params@{arrow\_\-btsp\_\-params}}
 \subsubsection[{supress\_\-ebst}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-btsp\_\-params::supress\_\-ebst}}}
@@ -116,7 +142,7 @@ Referenced by arrow\_\-btsp\_\-solve(), and main().\hypertarget{structarrow__bts
 
 supress EBST-heuristic? 
 
-Definition at line 106 of file btsp.h.
+Definition at line 109 of file btsp.h.
 
 Referenced by arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-solve(), and main().\hypertarget{structarrow__btsp__params_b8749004215015a78139b8e4e1fb8905}{
 \index{arrow\_\-btsp\_\-params@{arrow\_\-btsp\_\-params}!upper\_\-bound@{upper\_\-bound}}
@@ -127,9 +153,9 @@ Referenced by arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-solve(), and m
 
 initial upper bound 
 
-Definition at line 109 of file btsp.h.
+Definition at line 112 of file btsp.h.
 
-Referenced by arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-solve(), and main().
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-solve(), and main().
 
 The documentation for this struct was generated from the following file:\begin{CompactItemize}
 \item 

@@ -44,112 +44,116 @@
 <a name="l00022"></a>00022         <span class="keywordflow">return</span> <a class="code" href="common_8h.html#a50e8b8f74e48535271458079c7506cb">ARROW_FAILURE</a>;
 <a name="l00023"></a>00023     }
 <a name="l00024"></a>00024     result-&gt;<a class="code" href="structarrow__btsp__result.html#6ba21b4231cfe2c1e437a9f7e8f31aa6">found_tour</a> = <a class="code" href="common_8h.html#518134a9986d0e6bf31ec2480116ac76">ARROW_FALSE</a>;
-<a name="l00025"></a>00025     result-&gt;<a class="code" href="structarrow__btsp__result.html#ea5f7f45bf61f33ca6b57829da92e041">obj_value</a> = INT_MAX;
-<a name="l00026"></a>00026     result-&gt;<a class="code" href="structarrow__btsp__result.html#3c0b8827a873df71166e7fe9419c45c2">tour_length</a> = DBL_MAX;
-<a name="l00027"></a>00027     result-&gt;<a class="code" href="structarrow__btsp__result.html#80106c5f0b8f82353ad6771ad9eaac71">bin_search_steps</a> = 0;
-<a name="l00028"></a>00028     
-<a name="l00029"></a>00029     <span class="keywordflow">for</span>(i = 0; i &lt; <a class="code" href="tsp_8h.html#683eb4a805e8b2c7172396e03f7474a4">ARROW_TSP_SOLVER_COUNT</a>; i++)
-<a name="l00030"></a>00030     {
-<a name="l00031"></a>00031         result-&gt;<a class="code" href="structarrow__btsp__result.html#b1d423ab6eda81de4c3bde1685976593">solver_attempts</a>[i] = 0;
-<a name="l00032"></a>00032         result-&gt;<a class="code" href="structarrow__btsp__result.html#f13227603570821a0ba7d6466f39f00c">solver_time</a>[i] = 0.0;
-<a name="l00033"></a>00033     }
-<a name="l00034"></a>00034     
-<a name="l00035"></a>00035     result-&gt;<a class="code" href="structarrow__btsp__result.html#dea5711f0a574d98f66d1b20011a68de">total_time</a> = 0.0;
-<a name="l00036"></a>00036     <span class="keywordflow">return</span> <a class="code" href="common_8h.html#21afcc3dc34f8488ad437841f58225c4">ARROW_SUCCESS</a>;
-<a name="l00037"></a>00037 }
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 <span class="keywordtype">void</span> 
-<a name="l00040"></a><a class="code" href="btsp_2result_8c.html#11d150bd3219a6ba3d9ccd3f0c952b2a">00040</a> <a class="code" href="btsp_8h.html#11d150bd3219a6ba3d9ccd3f0c952b2a" title="Destructs a BTSP result structure.">arrow_btsp_result_destruct</a>(<a class="code" href="structarrow__btsp__result.html" title="BTSP result.">arrow_btsp_result</a> *result)
-<a name="l00041"></a>00041 {
-<a name="l00042"></a>00042     <span class="keywordflow">if</span>(result-&gt;<a class="code" href="structarrow__btsp__result.html#ebd9a553dc3bf31f52eda0b293b0e272">tour</a> != NULL)
-<a name="l00043"></a>00043         free(result-&gt;<a class="code" href="structarrow__btsp__result.html#ebd9a553dc3bf31f52eda0b293b0e272">tour</a>);
-<a name="l00044"></a>00044 }
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="keywordtype">void</span>
-<a name="l00047"></a><a class="code" href="btsp_2result_8c.html#102ec7a76adc418a3381c3234a5f0207">00047</a> <a class="code" href="btsp_8h.html#102ec7a76adc418a3381c3234a5f0207" title="Prints results out in XML format.">arrow_btsp_result_print_xml</a>(<a class="code" href="structarrow__btsp__result.html" title="BTSP result.">arrow_btsp_result</a> *result, FILE *out)
-<a name="l00048"></a>00048 {
-<a name="l00049"></a>00049     <span class="keywordtype">int</span> i;
-<a name="l00050"></a>00050     <span class="keywordtype">double</span> avg_time;
-<a name="l00051"></a>00051     
-<a name="l00052"></a>00052     <a class="code" href="common_8h.html#793061e9078fa317e78f2d40d96f9fed" title="Writes an XML tag out for a boolean value.">arrow_xml_element_bool</a>(<span class="stringliteral">"found_tour"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#6ba21b4231cfe2c1e437a9f7e8f31aa6">found_tour</a>, out);
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054     <span class="keywordflow">if</span>(result-&gt;<a class="code" href="structarrow__btsp__result.html#6ba21b4231cfe2c1e437a9f7e8f31aa6">found_tour</a>)
-<a name="l00055"></a>00055     {
-<a name="l00056"></a>00056         <a class="code" href="common_8h.html#ac92580a7e7c1ebb1c72f68d7005fe68" title="Writes an XML tag out for an integer value.">arrow_xml_element_int</a>(<span class="stringliteral">"objective_value"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#ea5f7f45bf61f33ca6b57829da92e041">obj_value</a>, out);
-<a name="l00057"></a>00057         <a class="code" href="common_8h.html#286f1861006d22d745bd3c2681ee7aab" title="Writes an XML tag out for a double value.">arrow_xml_element_double</a>(<span class="stringliteral">"tour_length"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#3c0b8827a873df71166e7fe9419c45c2">tour_length</a>, out);
-<a name="l00058"></a>00058     }
-<a name="l00059"></a>00059     <span class="keywordflow">else</span>
-<a name="l00060"></a>00060     {
-<a name="l00061"></a>00061         <a class="code" href="common_8h.html#ac92580a7e7c1ebb1c72f68d7005fe68" title="Writes an XML tag out for an integer value.">arrow_xml_element_int</a>(<span class="stringliteral">"objective_value"</span>, -1, out);
-<a name="l00062"></a>00062         <a class="code" href="common_8h.html#286f1861006d22d745bd3c2681ee7aab" title="Writes an XML tag out for a double value.">arrow_xml_element_double</a>(<span class="stringliteral">"tour_length"</span>, -1.0, out);
-<a name="l00063"></a>00063     }
-<a name="l00064"></a>00064     <a class="code" href="common_8h.html#793061e9078fa317e78f2d40d96f9fed" title="Writes an XML tag out for a boolean value.">arrow_xml_element_bool</a>(<span class="stringliteral">"optimal"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#febcf61e24bf277eeb7795c18bd42b8b">optimal</a>, out);
-<a name="l00065"></a>00065     <a class="code" href="common_8h.html#ac92580a7e7c1ebb1c72f68d7005fe68" title="Writes an XML tag out for an integer value.">arrow_xml_element_int</a>(<span class="stringliteral">"bin_search_steps"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#80106c5f0b8f82353ad6771ad9eaac71">bin_search_steps</a>, out);
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067     <a class="code" href="common_8h.html#77af49c39afb3b1de9e757ae01f8f039">arrow_xml_element_open</a>(<span class="stringliteral">"solver_info"</span>, out);
-<a name="l00068"></a>00068     <span class="keywordflow">for</span>(i = 0; i &lt; <a class="code" href="tsp_8h.html#683eb4a805e8b2c7172396e03f7474a4">ARROW_TSP_SOLVER_COUNT</a>; i++)
-<a name="l00069"></a>00069     {
-<a name="l00070"></a>00070         <span class="keywordflow">if</span>(result-&gt;<a class="code" href="structarrow__btsp__result.html#b1d423ab6eda81de4c3bde1685976593">solver_attempts</a>[i] &gt; 0)
-<a name="l00071"></a>00071         {
-<a name="l00072"></a>00072             <a class="code" href="common_8h.html#37c3860e01ae53d1c110671d080fa52f">arrow_xml_element_start</a>(<span class="stringliteral">"solver"</span>, out);
-<a name="l00073"></a>00073             
-<a name="l00074"></a>00074             <a class="code" href="common_8h.html#ee90512e0cef8151422883d3598b5a4b">arrow_xml_attribute_int</a>(<span class="stringliteral">"solver_type"</span>, i, out);
-<a name="l00075"></a>00075             <a class="code" href="common_8h.html#8c807a02bc67af49cd8ed343b0f43c03">arrow_xml_attribute_start</a>(<span class="stringliteral">"solver_name"</span>, out);
-<a name="l00076"></a>00076             <a class="code" href="tsp_8h.html#6ee8b5b058f03a5c00e54e186d00d7fc" title="Prints out the short name for the given solver.">arrow_tsp_short_name</a>(i, out);
-<a name="l00077"></a>00077             <a class="code" href="common_8h.html#c1e8bb3469598aa8f1a77d01d234fbdc">arrow_xml_attribute_end</a>(out);
-<a name="l00078"></a>00078             <a class="code" href="common_8h.html#2a4cb1e33c581013142df340cbf007b1">arrow_xml_element_end</a>(out);
-<a name="l00079"></a>00079             
-<a name="l00080"></a>00080             avg_time = result-&gt;<a class="code" href="structarrow__btsp__result.html#f13227603570821a0ba7d6466f39f00c">solver_time</a>[i] 
-<a name="l00081"></a>00081                 / (result-&gt;<a class="code" href="structarrow__btsp__result.html#b1d423ab6eda81de4c3bde1685976593">solver_attempts</a>[i] * 1.0);
-<a name="l00082"></a>00082             <a class="code" href="common_8h.html#ac92580a7e7c1ebb1c72f68d7005fe68" title="Writes an XML tag out for an integer value.">arrow_xml_element_int</a>(<span class="stringliteral">"attempts"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#b1d423ab6eda81de4c3bde1685976593">solver_attempts</a>[i], 
-<a name="l00083"></a>00083                                   out);
-<a name="l00084"></a>00084             <a class="code" href="common_8h.html#286f1861006d22d745bd3c2681ee7aab" title="Writes an XML tag out for a double value.">arrow_xml_element_double</a>(<span class="stringliteral">"avg_time"</span>, avg_time, out);            
-<a name="l00085"></a>00085             
-<a name="l00086"></a>00086             <a class="code" href="common_8h.html#706aca3669fa276b37aebb5e0d74c542">arrow_xml_element_close</a>(<span class="stringliteral">"solver"</span>, out);
-<a name="l00087"></a>00087         }
-<a name="l00088"></a>00088     }
-<a name="l00089"></a>00089     <a class="code" href="common_8h.html#706aca3669fa276b37aebb5e0d74c542">arrow_xml_element_close</a>(<span class="stringliteral">"solver_info"</span>, out);
-<a name="l00090"></a>00090     
-<a name="l00091"></a>00091     <a class="code" href="common_8h.html#286f1861006d22d745bd3c2681ee7aab" title="Writes an XML tag out for a double value.">arrow_xml_element_double</a>(<span class="stringliteral">"btsp_total_time"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#dea5711f0a574d98f66d1b20011a68de">total_time</a>, out);
-<a name="l00092"></a>00092 }
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094 <span class="keywordtype">void</span>
-<a name="l00095"></a><a class="code" href="btsp_2result_8c.html#0da381fd362478a3abbfd73cc3df460b">00095</a> <a class="code" href="btsp_8h.html#0da381fd362478a3abbfd73cc3df460b" title="Prints results out.">arrow_btsp_result_print_pretty</a>(<a class="code" href="structarrow__btsp__result.html" title="BTSP result.">arrow_btsp_result</a> *result, FILE *out)
-<a name="l00096"></a>00096 {
-<a name="l00097"></a>00097     <span class="keywordtype">int</span> i;
-<a name="l00098"></a>00098     <span class="keywordtype">double</span> avg_time;
-<a name="l00099"></a>00099     
-<a name="l00100"></a>00100     fprintf(out, <span class="stringliteral">"Found Tour: %s\n"</span>, (result-&gt;<a class="code" href="structarrow__btsp__result.html#6ba21b4231cfe2c1e437a9f7e8f31aa6">found_tour</a> ? <span class="stringliteral">"Yes"</span> : <span class="stringliteral">"No"</span>));
-<a name="l00101"></a>00101     <span class="keywordflow">if</span>(result-&gt;<a class="code" href="structarrow__btsp__result.html#6ba21b4231cfe2c1e437a9f7e8f31aa6">found_tour</a>)
-<a name="l00102"></a>00102     {
-<a name="l00103"></a>00103         fprintf(out, <span class="stringliteral">"Max. Cost: %d\n"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#ea5f7f45bf61f33ca6b57829da92e041">obj_value</a>);
-<a name="l00104"></a>00104         fprintf(out, <span class="stringliteral">"Tour Length: %.0f\n"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#3c0b8827a873df71166e7fe9419c45c2">tour_length</a>);
-<a name="l00105"></a>00105     }
-<a name="l00106"></a>00106     
-<a name="l00107"></a>00107     fprintf(out, <span class="stringliteral">"Optimal?: %s\n"</span>, 
-<a name="l00108"></a>00108             (result-&gt;<a class="code" href="structarrow__btsp__result.html#febcf61e24bf277eeb7795c18bd42b8b">optimal</a> == <a class="code" href="common_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a> ? <span class="stringliteral">"Yes"</span> : <span class="stringliteral">"???"</span>));
-<a name="l00109"></a>00109     fprintf(out, <span class="stringliteral">"Binary Search Steps: %d\n"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#80106c5f0b8f82353ad6771ad9eaac71">bin_search_steps</a>);
+<a name="l00025"></a>00025     result-&gt;<a class="code" href="structarrow__btsp__result.html#8c80e92a356cdd42d176a3947fcc5665">min_cost</a> = INT_MIN;
+<a name="l00026"></a>00026     result-&gt;<a class="code" href="structarrow__btsp__result.html#06f661dc0e63cb5fd1888303b3ec626f">max_cost</a> = INT_MAX;
+<a name="l00027"></a>00027     result-&gt;<a class="code" href="structarrow__btsp__result.html#3c0b8827a873df71166e7fe9419c45c2">tour_length</a> = DBL_MAX;
+<a name="l00028"></a>00028     result-&gt;<a class="code" href="structarrow__btsp__result.html#80106c5f0b8f82353ad6771ad9eaac71">bin_search_steps</a> = 0;
+<a name="l00029"></a>00029     
+<a name="l00030"></a>00030     <span class="keywordflow">for</span>(i = 0; i &lt; <a class="code" href="tsp_8h.html#683eb4a805e8b2c7172396e03f7474a4">ARROW_TSP_SOLVER_COUNT</a>; i++)
+<a name="l00031"></a>00031     {
+<a name="l00032"></a>00032         result-&gt;<a class="code" href="structarrow__btsp__result.html#b1d423ab6eda81de4c3bde1685976593">solver_attempts</a>[i] = 0;
+<a name="l00033"></a>00033         result-&gt;<a class="code" href="structarrow__btsp__result.html#f13227603570821a0ba7d6466f39f00c">solver_time</a>[i] = 0.0;
+<a name="l00034"></a>00034     }
+<a name="l00035"></a>00035     
+<a name="l00036"></a>00036     result-&gt;<a class="code" href="structarrow__btsp__result.html#dea5711f0a574d98f66d1b20011a68de">total_time</a> = 0.0;
+<a name="l00037"></a>00037     <span class="keywordflow">return</span> <a class="code" href="common_8h.html#21afcc3dc34f8488ad437841f58225c4">ARROW_SUCCESS</a>;
+<a name="l00038"></a>00038 }
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040 <span class="keywordtype">void</span> 
+<a name="l00041"></a><a class="code" href="btsp_2result_8c.html#11d150bd3219a6ba3d9ccd3f0c952b2a">00041</a> <a class="code" href="btsp_8h.html#11d150bd3219a6ba3d9ccd3f0c952b2a" title="Destructs a BTSP result structure.">arrow_btsp_result_destruct</a>(<a class="code" href="structarrow__btsp__result.html" title="BTSP result.">arrow_btsp_result</a> *result)
+<a name="l00042"></a>00042 {
+<a name="l00043"></a>00043     <span class="keywordflow">if</span>(result-&gt;<a class="code" href="structarrow__btsp__result.html#ebd9a553dc3bf31f52eda0b293b0e272">tour</a> != NULL)
+<a name="l00044"></a>00044         free(result-&gt;<a class="code" href="structarrow__btsp__result.html#ebd9a553dc3bf31f52eda0b293b0e272">tour</a>);
+<a name="l00045"></a>00045 }
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047 <span class="keywordtype">void</span>
+<a name="l00048"></a><a class="code" href="btsp_2result_8c.html#102ec7a76adc418a3381c3234a5f0207">00048</a> <a class="code" href="btsp_8h.html#102ec7a76adc418a3381c3234a5f0207" title="Prints results out in XML format.">arrow_btsp_result_print_xml</a>(<a class="code" href="structarrow__btsp__result.html" title="BTSP result.">arrow_btsp_result</a> *result, FILE *out)
+<a name="l00049"></a>00049 {
+<a name="l00050"></a>00050     <span class="keywordtype">int</span> i;
+<a name="l00051"></a>00051     <span class="keywordtype">double</span> avg_time;
+<a name="l00052"></a>00052     
+<a name="l00053"></a>00053     <a class="code" href="common_8h.html#793061e9078fa317e78f2d40d96f9fed" title="Writes an XML tag out for a boolean value.">arrow_xml_element_bool</a>(<span class="stringliteral">"found_tour"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#6ba21b4231cfe2c1e437a9f7e8f31aa6">found_tour</a>, out);
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055     <span class="keywordflow">if</span>(result-&gt;<a class="code" href="structarrow__btsp__result.html#6ba21b4231cfe2c1e437a9f7e8f31aa6">found_tour</a>)
+<a name="l00056"></a>00056     {
+<a name="l00057"></a>00057         <a class="code" href="common_8h.html#ac92580a7e7c1ebb1c72f68d7005fe68" title="Writes an XML tag out for an integer value.">arrow_xml_element_int</a>(<span class="stringliteral">"objective_value"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#06f661dc0e63cb5fd1888303b3ec626f">max_cost</a>, out);
+<a name="l00058"></a>00058         <a class="code" href="common_8h.html#ac92580a7e7c1ebb1c72f68d7005fe68" title="Writes an XML tag out for an integer value.">arrow_xml_element_int</a>(<span class="stringliteral">"min_cost"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#8c80e92a356cdd42d176a3947fcc5665">min_cost</a>, out);
+<a name="l00059"></a>00059         <a class="code" href="common_8h.html#ac92580a7e7c1ebb1c72f68d7005fe68" title="Writes an XML tag out for an integer value.">arrow_xml_element_int</a>(<span class="stringliteral">"max_cost"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#06f661dc0e63cb5fd1888303b3ec626f">max_cost</a>, out);
+<a name="l00060"></a>00060         <a class="code" href="common_8h.html#286f1861006d22d745bd3c2681ee7aab" title="Writes an XML tag out for a double value.">arrow_xml_element_double</a>(<span class="stringliteral">"tour_length"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#3c0b8827a873df71166e7fe9419c45c2">tour_length</a>, out);
+<a name="l00061"></a>00061     }
+<a name="l00062"></a>00062     <span class="keywordflow">else</span>
+<a name="l00063"></a>00063     {
+<a name="l00064"></a>00064         <a class="code" href="common_8h.html#ac92580a7e7c1ebb1c72f68d7005fe68" title="Writes an XML tag out for an integer value.">arrow_xml_element_int</a>(<span class="stringliteral">"objective_value"</span>, -1, out);
+<a name="l00065"></a>00065         <a class="code" href="common_8h.html#286f1861006d22d745bd3c2681ee7aab" title="Writes an XML tag out for a double value.">arrow_xml_element_double</a>(<span class="stringliteral">"tour_length"</span>, -1.0, out);
+<a name="l00066"></a>00066     }
+<a name="l00067"></a>00067     <a class="code" href="common_8h.html#793061e9078fa317e78f2d40d96f9fed" title="Writes an XML tag out for a boolean value.">arrow_xml_element_bool</a>(<span class="stringliteral">"optimal"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#febcf61e24bf277eeb7795c18bd42b8b">optimal</a>, out);
+<a name="l00068"></a>00068     <a class="code" href="common_8h.html#ac92580a7e7c1ebb1c72f68d7005fe68" title="Writes an XML tag out for an integer value.">arrow_xml_element_int</a>(<span class="stringliteral">"bin_search_steps"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#80106c5f0b8f82353ad6771ad9eaac71">bin_search_steps</a>, out);
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070     <a class="code" href="common_8h.html#77af49c39afb3b1de9e757ae01f8f039">arrow_xml_element_open</a>(<span class="stringliteral">"solver_info"</span>, out);
+<a name="l00071"></a>00071     <span class="keywordflow">for</span>(i = 0; i &lt; <a class="code" href="tsp_8h.html#683eb4a805e8b2c7172396e03f7474a4">ARROW_TSP_SOLVER_COUNT</a>; i++)
+<a name="l00072"></a>00072     {
+<a name="l00073"></a>00073         <span class="keywordflow">if</span>(result-&gt;<a class="code" href="structarrow__btsp__result.html#b1d423ab6eda81de4c3bde1685976593">solver_attempts</a>[i] &gt; 0)
+<a name="l00074"></a>00074         {
+<a name="l00075"></a>00075             <a class="code" href="common_8h.html#37c3860e01ae53d1c110671d080fa52f">arrow_xml_element_start</a>(<span class="stringliteral">"solver"</span>, out);
+<a name="l00076"></a>00076             
+<a name="l00077"></a>00077             <a class="code" href="common_8h.html#ee90512e0cef8151422883d3598b5a4b">arrow_xml_attribute_int</a>(<span class="stringliteral">"solver_type"</span>, i, out);
+<a name="l00078"></a>00078             <a class="code" href="common_8h.html#8c807a02bc67af49cd8ed343b0f43c03">arrow_xml_attribute_start</a>(<span class="stringliteral">"solver_name"</span>, out);
+<a name="l00079"></a>00079             <a class="code" href="tsp_8h.html#6ee8b5b058f03a5c00e54e186d00d7fc" title="Prints out the short name for the given solver.">arrow_tsp_short_name</a>(i, out);
+<a name="l00080"></a>00080             <a class="code" href="common_8h.html#c1e8bb3469598aa8f1a77d01d234fbdc">arrow_xml_attribute_end</a>(out);
+<a name="l00081"></a>00081             <a class="code" href="common_8h.html#2a4cb1e33c581013142df340cbf007b1">arrow_xml_element_end</a>(out);
+<a name="l00082"></a>00082             
+<a name="l00083"></a>00083             avg_time = result-&gt;<a class="code" href="structarrow__btsp__result.html#f13227603570821a0ba7d6466f39f00c">solver_time</a>[i] 
+<a name="l00084"></a>00084                 / (result-&gt;<a class="code" href="structarrow__btsp__result.html#b1d423ab6eda81de4c3bde1685976593">solver_attempts</a>[i] * 1.0);
+<a name="l00085"></a>00085             <a class="code" href="common_8h.html#ac92580a7e7c1ebb1c72f68d7005fe68" title="Writes an XML tag out for an integer value.">arrow_xml_element_int</a>(<span class="stringliteral">"attempts"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#b1d423ab6eda81de4c3bde1685976593">solver_attempts</a>[i], 
+<a name="l00086"></a>00086                                   out);
+<a name="l00087"></a>00087             <a class="code" href="common_8h.html#286f1861006d22d745bd3c2681ee7aab" title="Writes an XML tag out for a double value.">arrow_xml_element_double</a>(<span class="stringliteral">"avg_time"</span>, avg_time, out);            
+<a name="l00088"></a>00088             
+<a name="l00089"></a>00089             <a class="code" href="common_8h.html#706aca3669fa276b37aebb5e0d74c542">arrow_xml_element_close</a>(<span class="stringliteral">"solver"</span>, out);
+<a name="l00090"></a>00090         }
+<a name="l00091"></a>00091     }
+<a name="l00092"></a>00092     <a class="code" href="common_8h.html#706aca3669fa276b37aebb5e0d74c542">arrow_xml_element_close</a>(<span class="stringliteral">"solver_info"</span>, out);
+<a name="l00093"></a>00093     
+<a name="l00094"></a>00094     <a class="code" href="common_8h.html#286f1861006d22d745bd3c2681ee7aab" title="Writes an XML tag out for a double value.">arrow_xml_element_double</a>(<span class="stringliteral">"btsp_total_time"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#dea5711f0a574d98f66d1b20011a68de">total_time</a>, out);
+<a name="l00095"></a>00095 }
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097 <span class="keywordtype">void</span>
+<a name="l00098"></a><a class="code" href="btsp_2result_8c.html#0da381fd362478a3abbfd73cc3df460b">00098</a> <a class="code" href="btsp_8h.html#0da381fd362478a3abbfd73cc3df460b" title="Prints results out.">arrow_btsp_result_print_pretty</a>(<a class="code" href="structarrow__btsp__result.html" title="BTSP result.">arrow_btsp_result</a> *result, FILE *out)
+<a name="l00099"></a>00099 {
+<a name="l00100"></a>00100     <span class="keywordtype">int</span> i;
+<a name="l00101"></a>00101     <span class="keywordtype">double</span> avg_time;
+<a name="l00102"></a>00102     
+<a name="l00103"></a>00103     fprintf(out, <span class="stringliteral">"Found Tour: %s\n"</span>, (result-&gt;<a class="code" href="structarrow__btsp__result.html#6ba21b4231cfe2c1e437a9f7e8f31aa6">found_tour</a> ? <span class="stringliteral">"Yes"</span> : <span class="stringliteral">"No"</span>));
+<a name="l00104"></a>00104     <span class="keywordflow">if</span>(result-&gt;<a class="code" href="structarrow__btsp__result.html#6ba21b4231cfe2c1e437a9f7e8f31aa6">found_tour</a>)
+<a name="l00105"></a>00105     {
+<a name="l00106"></a>00106         fprintf(out, <span class="stringliteral">"Min. Cost: %d\n"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#8c80e92a356cdd42d176a3947fcc5665">min_cost</a>);
+<a name="l00107"></a>00107         fprintf(out, <span class="stringliteral">"Max. Cost: %d\n"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#06f661dc0e63cb5fd1888303b3ec626f">max_cost</a>);
+<a name="l00108"></a>00108         fprintf(out, <span class="stringliteral">"Tour Length: %.0f\n"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#3c0b8827a873df71166e7fe9419c45c2">tour_length</a>);
+<a name="l00109"></a>00109     }
 <a name="l00110"></a>00110     
-<a name="l00111"></a>00111     fprintf(out, <span class="stringliteral">"Solver Information:\n"</span>);
-<a name="l00112"></a>00112     <span class="keywordflow">for</span>(i = 0; i &lt; <a class="code" href="tsp_8h.html#683eb4a805e8b2c7172396e03f7474a4">ARROW_TSP_SOLVER_COUNT</a>; i++)
-<a name="l00113"></a>00113     {
-<a name="l00114"></a>00114         <span class="keywordflow">if</span>(result-&gt;<a class="code" href="structarrow__btsp__result.html#b1d423ab6eda81de4c3bde1685976593">solver_attempts</a>[i] &gt; 0)
-<a name="l00115"></a>00115         {
-<a name="l00116"></a>00116             avg_time = result-&gt;<a class="code" href="structarrow__btsp__result.html#f13227603570821a0ba7d6466f39f00c">solver_time</a>[i] / 
-<a name="l00117"></a>00117                 (result-&gt;<a class="code" href="structarrow__btsp__result.html#b1d423ab6eda81de4c3bde1685976593">solver_attempts</a>[i] * 1.0);
-<a name="l00118"></a>00118             
-<a name="l00119"></a>00119             fprintf(out, <span class="stringliteral">" - "</span>);
-<a name="l00120"></a>00120             <a class="code" href="tsp_8h.html#f82f3196a6663d14324cb5c27615f983" title="Prints out the long name for the given solver.">arrow_tsp_long_name</a>(i, out);
-<a name="l00121"></a>00121             fprintf(out, <span class="stringliteral">"\n"</span>);
-<a name="l00122"></a>00122             fprintf(out, <span class="stringliteral">"   - Calls: %d\n"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#b1d423ab6eda81de4c3bde1685976593">solver_attempts</a>[i]);
-<a name="l00123"></a>00123             fprintf(out, <span class="stringliteral">"   - Avg Time: %.2f\n"</span>, avg_time);
-<a name="l00124"></a>00124         }
-<a name="l00125"></a>00125     }
-<a name="l00126"></a>00126     
-<a name="l00127"></a>00127     fprintf(out, <span class="stringliteral">"Total BTSP Time: %.2f\n"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#dea5711f0a574d98f66d1b20011a68de">total_time</a>);
-<a name="l00128"></a>00128 }
+<a name="l00111"></a>00111     fprintf(out, <span class="stringliteral">"Optimal?: %s\n"</span>, 
+<a name="l00112"></a>00112             (result-&gt;<a class="code" href="structarrow__btsp__result.html#febcf61e24bf277eeb7795c18bd42b8b">optimal</a> == <a class="code" href="common_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a> ? <span class="stringliteral">"Yes"</span> : <span class="stringliteral">"???"</span>));
+<a name="l00113"></a>00113     fprintf(out, <span class="stringliteral">"Binary Search Steps: %d\n"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#80106c5f0b8f82353ad6771ad9eaac71">bin_search_steps</a>);
+<a name="l00114"></a>00114     
+<a name="l00115"></a>00115     fprintf(out, <span class="stringliteral">"Solver Information:\n"</span>);
+<a name="l00116"></a>00116     <span class="keywordflow">for</span>(i = 0; i &lt; <a class="code" href="tsp_8h.html#683eb4a805e8b2c7172396e03f7474a4">ARROW_TSP_SOLVER_COUNT</a>; i++)
+<a name="l00117"></a>00117     {
+<a name="l00118"></a>00118         <span class="keywordflow">if</span>(result-&gt;<a class="code" href="structarrow__btsp__result.html#b1d423ab6eda81de4c3bde1685976593">solver_attempts</a>[i] &gt; 0)
+<a name="l00119"></a>00119         {
+<a name="l00120"></a>00120             avg_time = result-&gt;<a class="code" href="structarrow__btsp__result.html#f13227603570821a0ba7d6466f39f00c">solver_time</a>[i] / 
+<a name="l00121"></a>00121                 (result-&gt;<a class="code" href="structarrow__btsp__result.html#b1d423ab6eda81de4c3bde1685976593">solver_attempts</a>[i] * 1.0);
+<a name="l00122"></a>00122             
+<a name="l00123"></a>00123             fprintf(out, <span class="stringliteral">" - "</span>);
+<a name="l00124"></a>00124             <a class="code" href="tsp_8h.html#f82f3196a6663d14324cb5c27615f983" title="Prints out the long name for the given solver.">arrow_tsp_long_name</a>(i, out);
+<a name="l00125"></a>00125             fprintf(out, <span class="stringliteral">"\n"</span>);
+<a name="l00126"></a>00126             fprintf(out, <span class="stringliteral">"   - Calls: %d\n"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#b1d423ab6eda81de4c3bde1685976593">solver_attempts</a>[i]);
+<a name="l00127"></a>00127             fprintf(out, <span class="stringliteral">"   - Avg Time: %.2f\n"</span>, avg_time);
+<a name="l00128"></a>00128         }
+<a name="l00129"></a>00129     }
+<a name="l00130"></a>00130     
+<a name="l00131"></a>00131     fprintf(out, <span class="stringliteral">"Total BTSP Time: %.2f\n"</span>, result-&gt;<a class="code" href="structarrow__btsp__result.html#dea5711f0a574d98f66d1b20011a68de">total_time</a>);
+<a name="l00132"></a>00132 }
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 19 14:09:05 2009 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Apr 26 20:22:28 2010 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

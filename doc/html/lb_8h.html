@@ -40,15 +40,21 @@
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lb_8h.html#55ff81ad64c0e4aadc08860a8c2d2c44">arrow_bap_solve</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *info, <a class="el" href="structarrow__bound__result.html">arrow_bound_result</a> *result)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solves the bottleneck assignment problem (BAP).  <a href="#55ff81ad64c0e4aadc08860a8c2d2c44"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lb_8h.html#e159c6743ba801d78a5c07bb41b06bdf">arrow_bap_has_assignment</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int min_cost, int max_cost, int *result)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determines if the problem has an assignment using only costs min_cost &lt;= c_ij &lt;= max_cost.  <a href="#e159c6743ba801d78a5c07bb41b06bdf"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lb_8h.html#ff7006ace4173927265facbe5f895cf0">arrow_bbssp_solve</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *info, <a class="el" href="structarrow__bound__result.html">arrow_bound_result</a> *result)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solves the bottleneck biconnected spanning subgraph problem (BBSSP) on the given problem.  <a href="#ff7006ace4173927265facbe5f895cf0"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lb_8h.html#727cb19dd9cfa6315e1155796daef833">arrow_bbssp_biconnected</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int max_cost, int *result)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lb_8h.html#8db45f55426229d30241396020ae4c5a">arrow_bbssp_biconnected</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int min_cost, int max_cost, int *result)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determines if the graph is biconnected using only edges with costs less than or equal to the given value.  <a href="#727cb19dd9cfa6315e1155796daef833"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determines if the graph is biconnected using only edges with costs less than or equal to the given value.  <a href="#8db45f55426229d30241396020ae4c5a"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lb_8h.html#624fe95ca7b7eb623ee636c2f8cb1409">arrow_bscssp_solve</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *info, <a class="el" href="structarrow__bound__result.html">arrow_bound_result</a> *result)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on the given graph.  <a href="#624fe95ca7b7eb623ee636c2f8cb1409"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lb_8h.html#d3a1c2417150edda25946ccdc1f56115">arrow_bscssp_connected</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int min_cost, int max_cost, int *result)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determines if the problem is strongly connected using only costs min_cost &lt;= c_ij &lt;= max_cost.  <a href="#d3a1c2417150edda25946ccdc1f56115"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lb_8h.html#33a2e1c3a014448c8684a6f6770e08a9">arrow_cbap_solve</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *info, double <a class="el" href="bin_2cbst_8c.html#0c7f495d279d6f237d38be875e03f593">max_length</a>, <a class="el" href="structarrow__bound__result.html">arrow_bound_result</a> *result)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solves the constrained bottleneck assignment problem (CBAP).  <a href="#33a2e1c3a014448c8684a6f6770e08a9"></a><br></td></tr>
@@ -110,9 +116,66 @@ Solves the 2-max bound (2MB) on the given problem.
 
 <p>Definition at line <a class="el" href="lib_2lb_22mb_8c-source.html#l00017">17</a> of file <a class="el" href="lib_2lb_22mb_8c-source.html">2mb.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="lib_2lb_2dcbpb_8c-source.html#l00216">max()</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, <a class="el" href="common_8h-source.html#l00436">arrow_problem::symmetric</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="lib_2lb_2dcbpb_8c-source.html#l00216">max()</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>, <a class="el" href="common_8h-source.html#l00437">arrow_problem::symmetric</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_22mb_8c-source.html#l00031">main()</a>.</p>
+<p>Referenced by <a class="el" href="bin_22mb_8c-source.html#l00037">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e159c6743ba801d78a5c07bb41b06bdf"></a><!-- doxytag: member="lb.h::arrow_bap_has_assignment" ref="e159c6743ba801d78a5c07bb41b06bdf" args="(arrow_problem *problem, int min_cost, int max_cost, int *result)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_bap_has_assignment           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>min_cost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>max_cost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>result</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Determines if the problem has an assignment using only costs min_cost &lt;= c_ij &lt;= max_cost. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] problem data </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>min_cost</em>&nbsp;</td><td>[in] minimum cost to consider in problem </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>max_cost</em>&nbsp;</td><td>[in] maximum cost to consider in problem </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>result</em>&nbsp;</td><td>[out] ARROW_TRUE if an assignment is possible. </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="lib_2lb_2bap_8c-source.html#l00178">178</a> of file <a class="el" href="lib_2lb_2bap_8c-source.html">bap.c</a>.</p>
+
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="util_8c-source.html#l00027">arrow_util_create_int_matrix()</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00367">ford_fulkerson_labeling()</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00247">initialize_flow_data()</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00297">shortest_augmenting_path()</a>, and <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2baltsp_2baltsp-dt_8c-source.html#l00264">balanced_lb_feasible()</a>, and <a class="el" href="lib_2baltsp_2baltsp-dt2_8c-source.html#l00280">dt2_lb_feasible()</a>.</p>
 
 </div>
 </div><p>
@@ -158,15 +221,15 @@ Solves the bottleneck assignment problem (BAP).
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="lib_2lb_2bap_8c-source.html#l00069">69</a> of file <a class="el" href="lib_2lb_2bap_8c-source.html">bap.c</a>.</p>
+<p>Definition at line <a class="el" href="lib_2lb_2bap_8c-source.html#l00070">70</a> of file <a class="el" href="lib_2lb_2bap_8c-source.html">bap.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="util_8c-source.html#l00027">arrow_util_create_int_matrix()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="common_8h-source.html#l00464">arrow_problem_info::cost_list</a>, <a class="el" href="common_8h-source.html#l00465">arrow_problem_info::cost_list_length</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00252">ford_fulkerson_labeling()</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00154">initialize_flow_data()</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00195">shortest_augmenting_path()</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="util_8c-source.html#l00027">arrow_util_create_int_matrix()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="common_8h-source.html#l00466">arrow_problem_info::cost_list</a>, <a class="el" href="common_8h-source.html#l00467">arrow_problem_info::cost_list_length</a>, <a class="el" href="delta-print_8c-source.html#l00016">delta</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00367">ford_fulkerson_labeling()</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00247">initialize_flow_data()</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00297">shortest_augmenting_path()</a>, <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_2bap_8c-source.html#l00031">main()</a>.</p>
+<p>Referenced by <a class="el" href="bin_2bap_8c-source.html#l00037">main()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="727cb19dd9cfa6315e1155796daef833"></a><!-- doxytag: member="lb.h::arrow_bbssp_biconnected" ref="727cb19dd9cfa6315e1155796daef833" args="(arrow_problem *problem, int max_cost, int *result)" -->
+<a class="anchor" name="8db45f55426229d30241396020ae4c5a"></a><!-- doxytag: member="lb.h::arrow_bbssp_biconnected" ref="8db45f55426229d30241396020ae4c5a" args="(arrow_problem *problem, int min_cost, int max_cost, int *result)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -175,6 +238,12 @@ Solves the bottleneck assignment problem (BAP).
           <td>(</td>
           <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
           <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>min_cost</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -203,16 +272,17 @@ Determines if the graph is biconnected using only edges with costs less than or 
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] problem data </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>max_cost</em>&nbsp;</td><td>[in] value to check biconnectivity question against </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>min_cost</em>&nbsp;</td><td>[in] minimum cost to consider in problem </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>max_cost</em>&nbsp;</td><td>[in] maximum cost to consider in problem </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>result</em>&nbsp;</td><td>[out] ARROW_TRUE if biconnected, ARROW_FALSE otherwise. </td></tr>
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="lib_2lb_2bbssp_8c-source.html#l00095">95</a> of file <a class="el" href="lib_2lb_2bbssp_8c-source.html">bbssp.c</a>.</p>
+<p>Definition at line <a class="el" href="lib_2lb_2bbssp_8c-source.html#l00094">94</a> of file <a class="el" href="lib_2lb_2bbssp_8c-source.html">bbssp.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="lib_2lb_2bbssp_8c-source.html#l00169">find_art_points()</a>, <a class="el" href="heap_8c-source.html#l00259">parent()</a>, and <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="lib_2lb_2bbssp_8c-source.html#l00166">find_art_points()</a>, <a class="el" href="heap_8c-source.html#l00259">parent()</a>, and <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2lb_2bbssp_8c-source.html#l00045">arrow_bbssp_solve()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2lb_2bbssp_8c-source.html#l00046">arrow_bbssp_solve()</a>, <a class="el" href="lib_2baltsp_2baltsp-dt_8c-source.html#l00264">balanced_lb_feasible()</a>, and <a class="el" href="lib_2baltsp_2baltsp-dt2_8c-source.html#l00280">dt2_lb_feasible()</a>.</p>
 
 </div>
 </div><p>
@@ -258,11 +328,68 @@ Solves the bottleneck biconnected spanning subgraph problem (BBSSP) on the given
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="lib_2lb_2bbssp_8c-source.html#l00045">45</a> of file <a class="el" href="lib_2lb_2bbssp_8c-source.html">bbssp.c</a>.</p>
+<p>Definition at line <a class="el" href="lib_2lb_2bbssp_8c-source.html#l00046">46</a> of file <a class="el" href="lib_2lb_2bbssp_8c-source.html">bbssp.c</a>.</p>
 
-<p>References <a class="el" href="lib_2lb_2bbssp_8c-source.html#l00095">arrow_bbssp_biconnected()</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="common_8h-source.html#l00464">arrow_problem_info::cost_list</a>, <a class="el" href="common_8h-source.html#l00465">arrow_problem_info::cost_list_length</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="common_8h-source.html#l00436">arrow_problem::symmetric</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
+<p>References <a class="el" href="lib_2lb_2bbssp_8c-source.html#l00094">arrow_bbssp_biconnected()</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="common_8h-source.html#l00466">arrow_problem_info::cost_list</a>, <a class="el" href="common_8h-source.html#l00467">arrow_problem_info::cost_list_length</a>, <a class="el" href="common_8h-source.html#l00469">arrow_problem_info::max_cost</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_2bbssp_8c-source.html#l00032">main()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2baltsp_2baltsp-db_8c-source.html#l00452">btsp_lower_bound()</a>, and <a class="el" href="bin_2bbssp_8c-source.html#l00041">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d3a1c2417150edda25946ccdc1f56115"></a><!-- doxytag: member="lb.h::arrow_bscssp_connected" ref="d3a1c2417150edda25946ccdc1f56115" args="(arrow_problem *problem, int min_cost, int max_cost, int *result)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_bscssp_connected           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>min_cost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>max_cost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>result</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Determines if the problem is strongly connected using only costs min_cost &lt;= c_ij &lt;= max_cost. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] problem data </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>min_cost</em>&nbsp;</td><td>[in] minimum cost to consider in problem </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>max_cost</em>&nbsp;</td><td>[in] maximum cost to consider in problem </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>result</em>&nbsp;</td><td>[out] ARROW_TRUE if strongly connected </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00080">80</a> of file <a class="el" href="lib_2lb_2bscssp_8c-source.html">bscssp.c</a>.</p>
+
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>, and <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00128">strongly_connected_dfs()</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00037">arrow_bscssp_solve()</a>, <a class="el" href="lib_2baltsp_2baltsp-dt_8c-source.html#l00264">balanced_lb_feasible()</a>, and <a class="el" href="lib_2baltsp_2baltsp-dt2_8c-source.html#l00280">dt2_lb_feasible()</a>.</p>
 
 </div>
 </div><p>
@@ -308,11 +435,11 @@ Solves the bottleneck strongly connected spanning subgraph problem (BSCSSP) on t
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00044">44</a> of file <a class="el" href="lib_2lb_2bscssp_8c-source.html">bscssp.c</a>.</p>
+<p>Definition at line <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00037">37</a> of file <a class="el" href="lib_2lb_2bscssp_8c-source.html">bscssp.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="common_8h-source.html#l00464">arrow_problem_info::cost_list</a>, <a class="el" href="common_8h-source.html#l00465">arrow_problem_info::cost_list_length</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00087">strongly_connected()</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
+<p>References <a class="el" href="lib_2lb_2bscssp_8c-source.html#l00080">arrow_bscssp_connected()</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="common_8h-source.html#l00466">arrow_problem_info::cost_list</a>, <a class="el" href="common_8h-source.html#l00467">arrow_problem_info::cost_list_length</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_2bscssp_8c-source.html#l00032">main()</a>.</p>
+<p>Referenced by <a class="el" href="bin_2bscssp_8c-source.html#l00038">main()</a>.</p>
 
 </div>
 </div><p>
@@ -353,7 +480,7 @@ Solves the linear assignment problem (LAP).
 
 <p>Definition at line <a class="el" href="lib_2lb_2cbap_8c-source.html#l00124">124</a> of file <a class="el" href="lib_2lb_2cbap_8c-source.html">cbap.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00175">destruct_data()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00149">init_data()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00188">lap()</a>, and <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00175">destruct_data()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00149">init_data()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00188">lap()</a>, and <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>.</p>
 
 </div>
 </div><p>
@@ -408,7 +535,7 @@ Solves the constrained bottleneck assignment problem (CBAP).
 
 <p>Definition at line <a class="el" href="lib_2lb_2cbap_8c-source.html#l00051">51</a> of file <a class="el" href="lib_2lb_2cbap_8c-source.html">cbap.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00038">arrow_debug</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00145">arrow_util_binary_search()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="common_8h-source.html#l00464">arrow_problem_info::cost_list</a>, <a class="el" href="common_8h-source.html#l00465">arrow_problem_info::cost_list_length</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00175">destruct_data()</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00149">init_data()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00188">lap()</a>, <a class="el" href="cbtsp_8c-source.html#l00018">length</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00038">arrow_debug</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00145">arrow_util_binary_search()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="common_8h-source.html#l00466">arrow_problem_info::cost_list</a>, <a class="el" href="common_8h-source.html#l00467">arrow_problem_info::cost_list_length</a>, <a class="el" href="delta-print_8c-source.html#l00016">delta</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00175">destruct_data()</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00149">init_data()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00188">lap()</a>, <a class="el" href="cbtsp_8c-source.html#l00018">length</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
 
 <p>Referenced by <a class="el" href="bin_2cbap_8c-source.html#l00035">main()</a>.</p>
 
@@ -472,7 +599,7 @@ Minimum spanning tree (MST) solver.
 
 <p>Definition at line <a class="el" href="lib_2lb_2cbst_8c-source.html#l00096">96</a> of file <a class="el" href="lib_2lb_2cbst_8c-source.html">cbst.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="lib_2lb_2cbst_8c-source.html#l00226">destroy_data()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00149">init_data()</a>, <a class="el" href="common_8h-source.html#l00467">arrow_problem_info::max_cost</a>, <a class="el" href="lib_2lb_2cbst_8c-source.html#l00123">min_span_tree()</a>, and <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="lib_2lb_2cbst_8c-source.html#l00228">destroy_data()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00149">init_data()</a>, <a class="el" href="common_8h-source.html#l00469">arrow_problem_info::max_cost</a>, <a class="el" href="lib_2lb_2cbst_8c-source.html#l00123">min_span_tree()</a>, and <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>.</p>
 
 </div>
 </div><p>
@@ -527,7 +654,7 @@ Constrained bottleneck spanning tree (CBST) solver.
 
 <p>Definition at line <a class="el" href="lib_2lb_2cbst_8c-source.html#l00046">46</a> of file <a class="el" href="lib_2lb_2cbst_8c-source.html">cbst.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00038">arrow_debug</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00149">init_data()</a>, <a class="el" href="cbtsp_8c-source.html#l00018">length</a>, <a class="el" href="common_8h-source.html#l00467">arrow_problem_info::max_cost</a>, <a class="el" href="lib_2lb_2cbst_8c-source.html#l00123">min_span_tree()</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00038">arrow_debug</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="lib_2lb_2cbap_8c-source.html#l00149">init_data()</a>, <a class="el" href="cbtsp_8c-source.html#l00018">length</a>, <a class="el" href="common_8h-source.html#l00469">arrow_problem_info::max_cost</a>, <a class="el" href="lib_2lb_2cbst_8c-source.html#l00123">min_span_tree()</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
 
 <p>Referenced by <a class="el" href="bin_2cbst_8c-source.html#l00035">main()</a>.</p>
 
@@ -570,14 +697,14 @@ Solves the degree constrained bottleneck paths bound (DCBPB).
 
 <p>Definition at line <a class="el" href="lib_2lb_2dcbpb_8c-source.html#l00040">40</a> of file <a class="el" href="lib_2lb_2dcbpb_8c-source.html">dcbpb.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="util_8c-source.html#l00027">arrow_util_create_int_matrix()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="lib_2lb_2dcbpb_8c-source.html#l00179">bottleneck_paths()</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="lib_2lb_2dcbpb_8c-source.html#l00216">max()</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="util_8c-source.html#l00027">arrow_util_create_int_matrix()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="lib_2lb_2dcbpb_8c-source.html#l00179">bottleneck_paths()</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="lib_2lb_2dcbpb_8c-source.html#l00216">max()</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_2dcbpb_8c-source.html#l00032">main()</a>.</p>
+<p>Referenced by <a class="el" href="bin_2dcbpb_8c-source.html#l00038">main()</a>.</p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 19 14:09:06 2009 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Apr 26 20:22:29 2010 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

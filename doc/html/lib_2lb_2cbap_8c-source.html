@@ -55,11 +55,11 @@
 <a name="l00033"></a>00033               <a class="code" href="structarrow__heap.html" title="Binary heap.">arrow_heap</a> *heap);
 <a name="l00034"></a>00034 
 <a name="l00035"></a>00035 <span class="keywordtype">double</span>
-<a name="l00036"></a>00036 <a class="code" href="lib_2lb_2cbap_8c.html#99c7a8b71e6063f6bdc57a0adb920bd2">lap</a>(<a class="code" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> *problem, <span class="keywordtype">int</span> delta, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, 
+<a name="l00036"></a>00036 <a class="code" href="lib_2lb_2cbap_8c.html#99c7a8b71e6063f6bdc57a0adb920bd2">lap</a>(<a class="code" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> *problem, <span class="keywordtype">int</span> <a class="code" href="delta-print_8c.html#1dfcb70b9229f2da17dd5922b87ecf2c">delta</a>, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, 
 <a name="l00037"></a>00037     <span class="keywordtype">int</span> *pi, <span class="keywordtype">int</span> *d, <span class="keywordtype">int</span> *pred, <span class="keywordtype">int</span> *label, <a class="code" href="structarrow__heap.html" title="Binary heap.">arrow_heap</a> *heap);
 <a name="l00038"></a>00038 
 <a name="l00039"></a>00039 <span class="keywordtype">void</span>
-<a name="l00040"></a>00040 <a class="code" href="lib_2lb_2cbap_8c.html#b086dfbdeea8fc31342b66704b7e0259">dijkstra</a>(<a class="code" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> *problem, <span class="keywordtype">int</span> delta, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *pi, <span class="keywordtype">int</span> s, 
+<a name="l00040"></a>00040 <a class="code" href="lib_2lb_2cbap_8c.html#b086dfbdeea8fc31342b66704b7e0259">dijkstra</a>(<a class="code" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> *problem, <span class="keywordtype">int</span> <a class="code" href="delta-print_8c.html#1dfcb70b9229f2da17dd5922b87ecf2c">delta</a>, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *pi, <span class="keywordtype">int</span> s, 
 <a name="l00041"></a>00041          <span class="keywordtype">int</span> *t, <span class="keywordtype">int</span> *d, <span class="keywordtype">int</span> *pred, <span class="keywordtype">int</span> *label, <a class="code" href="structarrow__heap.html" title="Binary heap.">arrow_heap</a> *heap);
 <a name="l00042"></a>00042 
 <a name="l00043"></a>00043 <span class="keywordtype">void</span>
@@ -76,7 +76,7 @@
 <a name="l00054"></a>00054     <span class="keywordtype">int</span> ret = <a class="code" href="common_8h.html#21afcc3dc34f8488ad437841f58225c4">ARROW_SUCCESS</a>;
 <a name="l00055"></a>00055     <span class="keywordtype">int</span> n = problem-&gt;<a class="code" href="structarrow__problem.html#de8573ddc391d06b08b65923fca693ec">size</a> * 2;
 <a name="l00056"></a>00056     <span class="keywordtype">int</span> i, cost, max_cost;
-<a name="l00057"></a>00057     <span class="keywordtype">int</span> low, high, median, delta;
+<a name="l00057"></a>00057     <span class="keywordtype">int</span> low, high, median, <a class="code" href="delta-print_8c.html#1dfcb70b9229f2da17dd5922b87ecf2c">delta</a>;
 <a name="l00058"></a>00058     <span class="keywordtype">int</span> *x, *y, *pi, *d, *pred, *label;
 <a name="l00059"></a>00059     <span class="keywordtype">double</span> <a class="code" href="cbtsp_8c.html#928b11f5716331f0b89abe7d8d4124b4">length</a>;
 <a name="l00060"></a>00060     <span class="keywordtype">double</span> start_time, end_time;
@@ -207,7 +207,7 @@
 <a name="l00185"></a>00185 }
 <a name="l00186"></a>00186 
 <a name="l00187"></a>00187 <span class="keywordtype">double</span>
-<a name="l00188"></a><a class="code" href="lib_2lb_2cbap_8c.html#99c7a8b71e6063f6bdc57a0adb920bd2">00188</a> <a class="code" href="lib_2lb_2cbap_8c.html#99c7a8b71e6063f6bdc57a0adb920bd2">lap</a>(<a class="code" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> *problem, <span class="keywordtype">int</span> delta, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, 
+<a name="l00188"></a><a class="code" href="lib_2lb_2cbap_8c.html#99c7a8b71e6063f6bdc57a0adb920bd2">00188</a> <a class="code" href="lib_2lb_2cbap_8c.html#99c7a8b71e6063f6bdc57a0adb920bd2">lap</a>(<a class="code" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> *problem, <span class="keywordtype">int</span> <a class="code" href="delta-print_8c.html#1dfcb70b9229f2da17dd5922b87ecf2c">delta</a>, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, 
 <a name="l00189"></a>00189     <span class="keywordtype">int</span> *pi, <span class="keywordtype">int</span> *d, <span class="keywordtype">int</span> *pred, <span class="keywordtype">int</span> *label, <a class="code" href="structarrow__heap.html" title="Binary heap.">arrow_heap</a> *heap)
 <a name="l00190"></a>00190 {
 <a name="l00191"></a>00191     <span class="keywordtype">int</span> i, j, t;
@@ -251,7 +251,7 @@
 <a name="l00229"></a>00229 }
 <a name="l00230"></a>00230 
 <a name="l00231"></a>00231 <span class="keywordtype">void</span>
-<a name="l00232"></a><a class="code" href="lib_2lb_2cbap_8c.html#b086dfbdeea8fc31342b66704b7e0259">00232</a> <a class="code" href="lib_2lb_2cbap_8c.html#b086dfbdeea8fc31342b66704b7e0259">dijkstra</a>(<a class="code" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> *problem, <span class="keywordtype">int</span> delta, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *pi, <span class="keywordtype">int</span> s, 
+<a name="l00232"></a><a class="code" href="lib_2lb_2cbap_8c.html#b086dfbdeea8fc31342b66704b7e0259">00232</a> <a class="code" href="lib_2lb_2cbap_8c.html#b086dfbdeea8fc31342b66704b7e0259">dijkstra</a>(<a class="code" href="structarrow__problem.html" title="Problem data structure.">arrow_problem</a> *problem, <span class="keywordtype">int</span> <a class="code" href="delta-print_8c.html#1dfcb70b9229f2da17dd5922b87ecf2c">delta</a>, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *pi, <span class="keywordtype">int</span> s, 
 <a name="l00233"></a>00233          <span class="keywordtype">int</span> *t, <span class="keywordtype">int</span> *d, <span class="keywordtype">int</span> *pred, <span class="keywordtype">int</span> *label, <a class="code" href="structarrow__heap.html" title="Binary heap.">arrow_heap</a> *heap)
 <a name="l00234"></a>00234 {
 <a name="l00235"></a>00235     <span class="keywordtype">int</span> i, j, u, v;
@@ -361,7 +361,7 @@
 <a name="l00339"></a>00339 
 <a name="l00340"></a>00340 
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 19 14:09:05 2009 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Apr 26 20:22:28 2010 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

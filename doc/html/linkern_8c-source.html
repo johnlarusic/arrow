@@ -62,9 +62,9 @@
 <a name="l00040"></a>00040 <span class="comment">/* Program options */</span>
 <a name="l00041"></a><a class="code" href="linkern_8c.html#289c5900d90626d909f0a85d5a0ed61d">00041</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#289c5900d90626d909f0a85d5a0ed61d">program_name</a>;             <span class="comment">/**&lt; Program name */</span>
 <a name="l00042"></a><a class="code" href="linkern_8c.html#a4f3a15de34c409bdec6ceacf93078ed">00042</a> <span class="keywordtype">char</span> *<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>;               <span class="comment">/**&lt; Given input TSPLIB file */</span>
-<a name="l00043"></a><a class="code" href="linkern_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">00043</a> <span class="keywordtype">int</span> <a class="code" href="abtsp_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">random_restarts</a> = -1;
-<a name="l00044"></a><a class="code" href="linkern_8c.html#a1641a28cf3ea572a56763e84518c17b">00044</a> <span class="keywordtype">int</span> <a class="code" href="abtsp_8c.html#a1641a28cf3ea572a56763e84518c17b">stall_count</a> = -1;
-<a name="l00045"></a><a class="code" href="linkern_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">00045</a> <span class="keywordtype">int</span> <a class="code" href="abtsp_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">kicks</a> = -1;
+<a name="l00043"></a><a class="code" href="linkern_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">00043</a> <span class="keywordtype">int</span> <a class="code" href="bin_2baltsp-db_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">random_restarts</a> = -1;
+<a name="l00044"></a><a class="code" href="linkern_8c.html#a1641a28cf3ea572a56763e84518c17b">00044</a> <span class="keywordtype">int</span> <a class="code" href="bin_2baltsp-db_8c.html#a1641a28cf3ea572a56763e84518c17b">stall_count</a> = -1;
+<a name="l00045"></a><a class="code" href="linkern_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">00045</a> <span class="keywordtype">int</span> <a class="code" href="bin_2baltsp-db_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">kicks</a> = -1;
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 <span class="comment">/****************************************************************************</span>
 <a name="l00048"></a>00048 <span class="comment"> * Function implementations</span>
@@ -86,9 +86,9 @@
 <a name="l00064"></a>00064     <span class="comment">/* Setup Lk parameters structure */</span>
 <a name="l00065"></a>00065     <a class="code" href="structarrow__tsp__cc__lk__params.html" title="LK algorithm parameters.">arrow_tsp_cc_lk_params</a> params;
 <a name="l00066"></a>00066     <a class="code" href="tsp_8h.html#8ccbdc390843e8b51299a9d89183c25d" title="Sets default parameters for Lin-Kernighan heuristic:random_restarts = 0stall_count...">arrow_tsp_cc_lk_params_init</a>(&amp;problem, &amp;params);
-<a name="l00067"></a>00067     <span class="keywordflow">if</span>(<a class="code" href="abtsp_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">random_restarts</a> &gt;= 0)    params.<a class="code" href="structarrow__tsp__cc__lk__params.html#291c8a0ec4208ae75229c223dcf1160a">random_restarts</a>  = <a class="code" href="abtsp_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">random_restarts</a>;
-<a name="l00068"></a>00068     <span class="keywordflow">if</span>(<a class="code" href="abtsp_8c.html#a1641a28cf3ea572a56763e84518c17b">stall_count</a> &gt;= 0)        params.<a class="code" href="structarrow__tsp__cc__lk__params.html#dee46e401d6f6eca9f9a0d1f376c6ebe">stall_count</a>      = <a class="code" href="abtsp_8c.html#a1641a28cf3ea572a56763e84518c17b">stall_count</a>;
-<a name="l00069"></a>00069     <span class="keywordflow">if</span>(<a class="code" href="abtsp_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">kicks</a> &gt;= 0)              params.<a class="code" href="structarrow__tsp__cc__lk__params.html#5912b1978195270052497e56d8dbffae">kicks</a>            = <a class="code" href="abtsp_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">kicks</a>;
+<a name="l00067"></a>00067     <span class="keywordflow">if</span>(<a class="code" href="bin_2baltsp-db_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">random_restarts</a> &gt;= 0)    params.<a class="code" href="structarrow__tsp__cc__lk__params.html#291c8a0ec4208ae75229c223dcf1160a">random_restarts</a>  = <a class="code" href="bin_2baltsp-db_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">random_restarts</a>;
+<a name="l00068"></a>00068     <span class="keywordflow">if</span>(<a class="code" href="bin_2baltsp-db_8c.html#a1641a28cf3ea572a56763e84518c17b">stall_count</a> &gt;= 0)        params.<a class="code" href="structarrow__tsp__cc__lk__params.html#dee46e401d6f6eca9f9a0d1f376c6ebe">stall_count</a>      = <a class="code" href="bin_2baltsp-db_8c.html#a1641a28cf3ea572a56763e84518c17b">stall_count</a>;
+<a name="l00069"></a>00069     <span class="keywordflow">if</span>(<a class="code" href="bin_2baltsp-db_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">kicks</a> &gt;= 0)              params.<a class="code" href="structarrow__tsp__cc__lk__params.html#5912b1978195270052497e56d8dbffae">kicks</a>            = <a class="code" href="bin_2baltsp-db_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">kicks</a>;
 <a name="l00070"></a>00070     
 <a name="l00071"></a>00071     <span class="comment">/* Solve TSP */</span>
 <a name="l00072"></a>00072     <a class="code" href="structarrow__tsp__result.html" title="TSP result (including result from LK heuristic).">arrow_tsp_result</a> result;
@@ -177,13 +177,13 @@
 <a name="l00155"></a>00155                 exit(EXIT_SUCCESS);
 <a name="l00156"></a>00156                 <span class="keywordflow">break</span>;
 <a name="l00157"></a>00157             <span class="keywordflow">case</span> <span class="charliteral">'r'</span>:
-<a name="l00158"></a>00158                 <a class="code" href="abtsp_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">random_restarts</a> = atoi(optarg);
+<a name="l00158"></a>00158                 <a class="code" href="bin_2baltsp-db_8c.html#e6a9db0fe5c8a0407d62dec2f7a14959">random_restarts</a> = atoi(optarg);
 <a name="l00159"></a>00159                 <span class="keywordflow">break</span>;
 <a name="l00160"></a>00160             <span class="keywordflow">case</span> <span class="charliteral">'s'</span>:
-<a name="l00161"></a>00161                 <a class="code" href="abtsp_8c.html#a1641a28cf3ea572a56763e84518c17b">stall_count</a> = atoi(optarg);
+<a name="l00161"></a>00161                 <a class="code" href="bin_2baltsp-db_8c.html#a1641a28cf3ea572a56763e84518c17b">stall_count</a> = atoi(optarg);
 <a name="l00162"></a>00162                 <span class="keywordflow">break</span>;
 <a name="l00163"></a>00163             <span class="keywordflow">case</span> <span class="charliteral">'k'</span>:
-<a name="l00164"></a>00164                 <a class="code" href="abtsp_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">kicks</a> = atoi(optarg);
+<a name="l00164"></a>00164                 <a class="code" href="bin_2baltsp-db_8c.html#b8f057ba1ad6b7f0c46f8140b25b3467">kicks</a> = atoi(optarg);
 <a name="l00165"></a>00165                 <span class="keywordflow">break</span>;
 <a name="l00166"></a>00166             <span class="keywordflow">default</span>:
 <a name="l00167"></a>00167                 printf(<span class="stringliteral">"Option: %c\n"</span>, opt);
@@ -208,7 +208,7 @@
 <a name="l00186"></a>00186     <a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a> = argv[optind];    
 <a name="l00187"></a>00187 }
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 19 14:09:05 2009 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Apr 26 20:22:28 2010 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

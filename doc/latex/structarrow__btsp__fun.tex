@@ -14,20 +14,20 @@ void $\ast$ \hyperlink{structarrow__btsp__fun_9c1a276685fb0cac372faef2dd2ba99a}{
 \item 
 int \hyperlink{structarrow__btsp__fun_1950686e4862a4b1bd68d1ada85e2c79}{shallow}
 \item 
-int($\ast$ \hyperlink{structarrow__btsp__fun_56eb57e90eae76571a024894bd0fe570}{get\_\-cost} )(struct \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int delta, int i, int j)
+int($\ast$ \hyperlink{structarrow__btsp__fun_ffc634f9d1a545f890b0b2007aff544d}{get\_\-cost} )(struct \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int min\_\-cost, int max\_\-cost, int i, int j)
 \begin{CompactList}\small\item\em Retrieves cost between nodes i and j from the function. \item\end{CompactList}\item 
 int($\ast$ \hyperlink{structarrow__btsp__fun_c588686921bd526653a7e0d7816aee44}{initialize} )(struct \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
 \begin{CompactList}\small\item\em Initializes the function structure for a new problem. \item\end{CompactList}\item 
 void($\ast$ \hyperlink{structarrow__btsp__fun_6c66b7591252728aaa441139c623446a}{destruct} )(struct \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
 \begin{CompactList}\small\item\em Destructs the function structure. \item\end{CompactList}\item 
-int($\ast$ \hyperlink{structarrow__btsp__fun_39eb61a5ad9a5786e773cce4affd2150}{feasible} )(struct \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int delta, double tour\_\-length, int $\ast$tour)
+int($\ast$ \hyperlink{structarrow__btsp__fun_98369e55806c13b3ba90c8c1cbe1f8a4}{feasible} )(struct \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$base\_\-problem, int min\_\-cost, int max\_\-cost, double tour\_\-length, int $\ast$tour)
 \begin{CompactList}\small\item\em Determines if the given tour is feasible or not. \item\end{CompactList}\end{CompactItemize}
 
 
 \subsection{Detailed Description}
 BTSP Cost matrix function definition. 
 
-Definition at line 43 of file btsp.h.
+Definition at line 44 of file btsp.h.
 
 \subsection{Field Documentation}
 \hypertarget{structarrow__btsp__fun_9c1a276685fb0cac372faef2dd2ba99a}{
@@ -39,9 +39,9 @@ Definition at line 43 of file btsp.h.
 
 data required by function 
 
-Definition at line 45 of file btsp.h.
+Definition at line 46 of file btsp.h.
 
-Referenced by arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-basic\_\-atsp(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1(), cbtsp\_\-basic\_\-destruct(), cbtsp\_\-basic\_\-feasible(), cbtsp\_\-basic\_\-get\_\-cost(), cbtsp\_\-shake\_\-destruct(), cbtsp\_\-shake\_\-feasible(), cbtsp\_\-shake\_\-get\_\-cost(), cbtsp\_\-shake\_\-initialize(), sbtsp\_\-shake\_\-1\_\-destruct(), sbtsp\_\-shake\_\-1\_\-get\_\-cost(), and sbtsp\_\-shake\_\-1\_\-initialize().\hypertarget{structarrow__btsp__fun_6c66b7591252728aaa441139c623446a}{
+Referenced by arrow\_\-baltsp\_\-fun\_\-basic(), arrow\_\-baltsp\_\-fun\_\-dt2(), arrow\_\-baltsp\_\-fun\_\-ib(), arrow\_\-baltsp\_\-fun\_\-shake(), arrow\_\-baltsp\_\-fun\_\-ut(), arrow\_\-btsp\_\-fun\_\-asym\_\-shift(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-shake\_\-1(), baltsp\_\-dt2\_\-feasible(), baltsp\_\-dt2\_\-get\_\-cost(), baltsp\_\-dt2\_\-initialize(), baltsp\_\-shake\_\-destruct(), baltsp\_\-shake\_\-get\_\-cost(), baltsp\_\-shake\_\-initialize(), btsp\_\-asym\_\-shift\_\-destruct(), btsp\_\-asym\_\-shift\_\-feasible(), btsp\_\-asym\_\-shift\_\-get\_\-cost(), btsp\_\-shake\_\-1\_\-destruct(), btsp\_\-shake\_\-1\_\-get\_\-cost(), btsp\_\-shake\_\-1\_\-initialize(), cbtsp\_\-basic\_\-destruct(), cbtsp\_\-basic\_\-feasible(), cbtsp\_\-basic\_\-get\_\-cost(), cbtsp\_\-shake\_\-destruct(), cbtsp\_\-shake\_\-feasible(), cbtsp\_\-shake\_\-get\_\-cost(), and cbtsp\_\-shake\_\-initialize().\hypertarget{structarrow__btsp__fun_6c66b7591252728aaa441139c623446a}{
 \index{arrow\_\-btsp\_\-fun@{arrow\_\-btsp\_\-fun}!destruct@{destruct}}
 \index{destruct@{destruct}!arrow_btsp_fun@{arrow\_\-btsp\_\-fun}}
 \subsubsection[{destruct}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ {\bf arrow\_\-btsp\_\-fun::destruct})(struct {\bf arrow\_\-btsp\_\-fun} $\ast$fun)}}
@@ -57,11 +57,11 @@ Destructs the function structure.
 \end{Desc}
 
 
-Referenced by arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-basic\_\-atsp(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-destruct(), and arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1().\hypertarget{structarrow__btsp__fun_39eb61a5ad9a5786e773cce4affd2150}{
+Referenced by arrow\_\-baltsp\_\-fun\_\-basic(), arrow\_\-baltsp\_\-fun\_\-dt2(), arrow\_\-baltsp\_\-fun\_\-ib(), arrow\_\-baltsp\_\-fun\_\-shake(), arrow\_\-baltsp\_\-fun\_\-ut(), arrow\_\-btsp\_\-fun\_\-asym\_\-shift(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-destruct(), and arrow\_\-btsp\_\-fun\_\-shake\_\-1().\hypertarget{structarrow__btsp__fun_98369e55806c13b3ba90c8c1cbe1f8a4}{
 \index{arrow\_\-btsp\_\-fun@{arrow\_\-btsp\_\-fun}!feasible@{feasible}}
 \index{feasible@{feasible}!arrow_btsp_fun@{arrow\_\-btsp\_\-fun}}
-\subsubsection[{feasible}]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf arrow\_\-btsp\_\-fun::feasible})(struct {\bf arrow\_\-btsp\_\-fun} $\ast$fun, {\bf arrow\_\-problem} $\ast$base\_\-problem, int delta, double tour\_\-length, int $\ast$tour)}}
-\label{structarrow__btsp__fun_39eb61a5ad9a5786e773cce4affd2150}
+\subsubsection[{feasible}]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf arrow\_\-btsp\_\-fun::feasible})(struct {\bf arrow\_\-btsp\_\-fun} $\ast$fun, {\bf arrow\_\-problem} $\ast$base\_\-problem, int min\_\-cost, int max\_\-cost, double tour\_\-length, int $\ast$tour)}}
+\label{structarrow__btsp__fun_98369e55806c13b3ba90c8c1cbe1f8a4}
 
 
 Determines if the given tour is feasible or not. 
@@ -69,17 +69,17 @@ Determines if the given tour is feasible or not.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em problem}]\mbox{[}in\mbox{]} the problem to check against \item[{\em delta}]\mbox{[}in\mbox{]} the delta parameter \item[{\em tour\_\-length}]\mbox{[}in\mbox{]} the length of the given tour \item[{\em tour}]\mbox{[}in\mbox{]} the tour in node-node format \end{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em problem}]\mbox{[}in\mbox{]} the problem to check against \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em tour\_\-length}]\mbox{[}in\mbox{]} the length of the given tour \item[{\em tour}]\mbox{[}in\mbox{]} the tour in node-node format \end{description}
 \end{Desc}
 \begin{Desc}
 \item[Returns:]ARROW\_\-TRUE if the tour is feasible, ARROW\_\-FALSE if not \end{Desc}
 
 
-Referenced by arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-basic\_\-atsp(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1(), and feasible().\hypertarget{structarrow__btsp__fun_56eb57e90eae76571a024894bd0fe570}{
+Referenced by arrow\_\-baltsp\_\-fun\_\-basic(), arrow\_\-baltsp\_\-fun\_\-dt2(), arrow\_\-baltsp\_\-fun\_\-ib(), arrow\_\-baltsp\_\-fun\_\-shake(), arrow\_\-baltsp\_\-fun\_\-ut(), arrow\_\-btsp\_\-feasible(), arrow\_\-btsp\_\-fun\_\-asym\_\-shift(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), and arrow\_\-btsp\_\-fun\_\-shake\_\-1().\hypertarget{structarrow__btsp__fun_ffc634f9d1a545f890b0b2007aff544d}{
 \index{arrow\_\-btsp\_\-fun@{arrow\_\-btsp\_\-fun}!get\_\-cost@{get\_\-cost}}
 \index{get\_\-cost@{get\_\-cost}!arrow_btsp_fun@{arrow\_\-btsp\_\-fun}}
-\subsubsection[{get\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf arrow\_\-btsp\_\-fun::get\_\-cost})(struct {\bf arrow\_\-btsp\_\-fun} $\ast$fun, {\bf arrow\_\-problem} $\ast$base\_\-problem, int delta, int i, int j)}}
-\label{structarrow__btsp__fun_56eb57e90eae76571a024894bd0fe570}
+\subsubsection[{get\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf arrow\_\-btsp\_\-fun::get\_\-cost})(struct {\bf arrow\_\-btsp\_\-fun} $\ast$fun, {\bf arrow\_\-problem} $\ast$base\_\-problem, int min\_\-cost, int max\_\-cost, int i, int j)}}
+\label{structarrow__btsp__fun_ffc634f9d1a545f890b0b2007aff544d}
 
 
 Retrieves cost between nodes i and j from the function. 
@@ -87,13 +87,13 @@ Retrieves cost between nodes i and j from the function.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em problem}]\mbox{[}in\mbox{]} problem structure \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em i}]\mbox{[}in\mbox{]} id of start node \item[{\em j}]\mbox{[}in\mbox{]} id of end node \end{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em problem}]\mbox{[}in\mbox{]} problem structure \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em i}]\mbox{[}in\mbox{]} id of start node \item[{\em j}]\mbox{[}in\mbox{]} id of end node \end{description}
 \end{Desc}
 \begin{Desc}
 \item[Returns:]cost between node i and node j \end{Desc}
 
 
-Referenced by apply\_\-deep(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-basic\_\-atsp(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1(), and fun\_\-get\_\-cost().\hypertarget{structarrow__btsp__fun_c588686921bd526653a7e0d7816aee44}{
+Referenced by apply\_\-deep(), arrow\_\-baltsp\_\-fun\_\-basic(), arrow\_\-baltsp\_\-fun\_\-dt2(), arrow\_\-baltsp\_\-fun\_\-ib(), arrow\_\-baltsp\_\-fun\_\-shake(), arrow\_\-baltsp\_\-fun\_\-ut(), arrow\_\-btsp\_\-fun\_\-asym\_\-shift(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-shake\_\-1(), and fun\_\-get\_\-cost().\hypertarget{structarrow__btsp__fun_c588686921bd526653a7e0d7816aee44}{
 \index{arrow\_\-btsp\_\-fun@{arrow\_\-btsp\_\-fun}!initialize@{initialize}}
 \index{initialize@{initialize}!arrow_btsp_fun@{arrow\_\-btsp\_\-fun}}
 \subsubsection[{initialize}]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf arrow\_\-btsp\_\-fun::initialize})(struct {\bf arrow\_\-btsp\_\-fun} $\ast$fun)}}
@@ -109,7 +109,7 @@ Initializes the function structure for a new problem.
 \end{Desc}
 
 
-Referenced by arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-basic\_\-atsp(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), and arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1().\hypertarget{structarrow__btsp__fun_1950686e4862a4b1bd68d1ada85e2c79}{
+Referenced by arrow\_\-baltsp\_\-fun\_\-basic(), arrow\_\-baltsp\_\-fun\_\-dt2(), arrow\_\-baltsp\_\-fun\_\-ib(), arrow\_\-baltsp\_\-fun\_\-shake(), arrow\_\-baltsp\_\-fun\_\-ut(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-asym\_\-shift(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), and arrow\_\-btsp\_\-fun\_\-shake\_\-1().\hypertarget{structarrow__btsp__fun_1950686e4862a4b1bd68d1ada85e2c79}{
 \index{arrow\_\-btsp\_\-fun@{arrow\_\-btsp\_\-fun}!shallow@{shallow}}
 \index{shallow@{shallow}!arrow_btsp_fun@{arrow\_\-btsp\_\-fun}}
 \subsubsection[{shallow}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf arrow\_\-btsp\_\-fun::shallow}}}
@@ -118,9 +118,9 @@ Referenced by arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-basic(), 
 
 indicates use of shallow copy of data 
 
-Definition at line 46 of file btsp.h.
+Definition at line 47 of file btsp.h.
 
-Referenced by arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-basic\_\-atsp(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), and arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1().
+Referenced by arrow\_\-baltsp\_\-fun\_\-basic(), arrow\_\-baltsp\_\-fun\_\-dt2(), arrow\_\-baltsp\_\-fun\_\-ib(), arrow\_\-baltsp\_\-fun\_\-shake(), arrow\_\-baltsp\_\-fun\_\-ut(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-asym\_\-shift(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), and arrow\_\-btsp\_\-fun\_\-shake\_\-1().
 
 The documentation for this struct was generated from the following file:\begin{CompactItemize}
 \item 

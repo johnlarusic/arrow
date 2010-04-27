@@ -61,7 +61,7 @@ Definition at line 60 of file bintree.c.
 
 References destruct\_\-node(), arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
 
-Referenced by arrow\_\-problem\_\-info\_\-get().\hypertarget{bintree_8c_b28bc6559b228f0aa65cc671f67b9a09}{
+Referenced by arrow\_\-problem\_\-info\_\-get(), baltsp\_\-bounds\_\-tree(), baltsp\_\-shake\_\-initialize(), btsp\_\-shake\_\-1\_\-initialize(), and find\_\-cost\_\-order().\hypertarget{bintree_8c_b28bc6559b228f0aa65cc671f67b9a09}{
 \index{bintree.c@{bintree.c}!arrow\_\-bintree\_\-init@{arrow\_\-bintree\_\-init}}
 \index{arrow\_\-bintree\_\-init@{arrow\_\-bintree\_\-init}!bintree.c@{bintree.c}}
 \subsubsection[{arrow\_\-bintree\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-bintree\_\-init ({\bf arrow\_\-bintree} $\ast$ {\em tree})}}
@@ -81,7 +81,7 @@ Definition at line 53 of file bintree.c.
 
 References arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
 
-Referenced by arrow\_\-problem\_\-info\_\-get(), cbtsp\_\-shake\_\-initialize(), and sbtsp\_\-shake\_\-1\_\-initialize().\hypertarget{bintree_8c_75b4ee03b9667bd0e13e6cc71043e0a9}{
+Referenced by arrow\_\-problem\_\-info\_\-get(), baltsp\_\-bounds\_\-tree(), baltsp\_\-shake\_\-initialize(), btsp\_\-shake\_\-1\_\-initialize(), and cbtsp\_\-shake\_\-initialize().\hypertarget{bintree_8c_75b4ee03b9667bd0e13e6cc71043e0a9}{
 \index{bintree.c@{bintree.c}!arrow\_\-bintree\_\-insert@{arrow\_\-bintree\_\-insert}}
 \index{arrow\_\-bintree\_\-insert@{arrow\_\-bintree\_\-insert}!bintree.c@{bintree.c}}
 \subsubsection[{arrow\_\-bintree\_\-insert}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bintree\_\-insert ({\bf arrow\_\-bintree} $\ast$ {\em tree}, \/  int {\em value})}}
@@ -97,11 +97,11 @@ Inserts a value into the binary tree.
 \end{Desc}
 
 
-Definition at line 67 of file bintree.c.
+Definition at line 70 of file bintree.c.
 
 References construct\_\-node(), insert\_\-at(), arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
 
-Referenced by arrow\_\-problem\_\-info\_\-get(), cbtsp\_\-shake\_\-initialize(), and sbtsp\_\-shake\_\-1\_\-initialize().\hypertarget{bintree_8c_3f841b62942349c0036ca9073f98a481}{
+Referenced by arrow\_\-problem\_\-info\_\-get(), baltsp\_\-bounds\_\-tree(), baltsp\_\-shake\_\-initialize(), btsp\_\-shake\_\-1\_\-initialize(), and cbtsp\_\-shake\_\-initialize().\hypertarget{bintree_8c_3f841b62942349c0036ca9073f98a481}{
 \index{bintree.c@{bintree.c}!arrow\_\-bintree\_\-to\_\-array@{arrow\_\-bintree\_\-to\_\-array}}
 \index{arrow\_\-bintree\_\-to\_\-array@{arrow\_\-bintree\_\-to\_\-array}!bintree.c@{bintree.c}}
 \subsubsection[{arrow\_\-bintree\_\-to\_\-array}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-bintree\_\-to\_\-array ({\bf arrow\_\-bintree} $\ast$ {\em tree}, \/  int $\ast$ {\em array})}}
@@ -117,11 +117,11 @@ Initializes the binary tree data structure into an existing array.
 \end{Desc}
 
 
-Definition at line 87 of file bintree.c.
+Definition at line 90 of file bintree.c.
 
 References fill\_\-array(), and arrow\_\-bintree::root\_\-node.
 
-Referenced by arrow\_\-bintree\_\-to\_\-new\_\-array(), cbtsp\_\-shake\_\-initialize(), and sbtsp\_\-shake\_\-1\_\-initialize().\hypertarget{bintree_8c_11a76a726dfdd109e12cac7046cb431c}{
+Referenced by arrow\_\-bintree\_\-to\_\-new\_\-array(), baltsp\_\-shake\_\-initialize(), btsp\_\-shake\_\-1\_\-initialize(), cbtsp\_\-shake\_\-initialize(), and find\_\-cost\_\-order().\hypertarget{bintree_8c_11a76a726dfdd109e12cac7046cb431c}{
 \index{bintree.c@{bintree.c}!arrow\_\-bintree\_\-to\_\-new\_\-array@{arrow\_\-bintree\_\-to\_\-new\_\-array}}
 \index{arrow\_\-bintree\_\-to\_\-new\_\-array@{arrow\_\-bintree\_\-to\_\-new\_\-array}!bintree.c@{bintree.c}}
 \subsubsection[{arrow\_\-bintree\_\-to\_\-new\_\-array}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bintree\_\-to\_\-new\_\-array ({\bf arrow\_\-bintree} $\ast$ {\em tree}, \/  int $\ast$$\ast$ {\em array})}}
@@ -137,7 +137,7 @@ Initializes the binary tree data structure into a new array.
 \end{Desc}
 
 
-Definition at line 94 of file bintree.c.
+Definition at line 97 of file bintree.c.
 
 References arrow\_\-bintree\_\-to\_\-array(), ARROW\_\-FAILURE, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), and arrow\_\-bintree::size.
 
@@ -157,7 +157,7 @@ Constructs a new node structure with the given value.
 \end{Desc}
 
 
-Definition at line 107 of file bintree.c.
+Definition at line 110 of file bintree.c.
 
 References ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-print\_\-error, and ARROW\_\-SUCCESS.
 
@@ -177,7 +177,7 @@ Frees the memory of the given node and its child nodes.
 \end{Desc}
 
 
-Definition at line 126 of file bintree.c.
+Definition at line 129 of file bintree.c.
 
 References ARROW\_\-TRUE, arrow\_\-bintree\_\-node::has\_\-left\_\-node, arrow\_\-bintree\_\-node::has\_\-right\_\-node, arrow\_\-bintree\_\-node::left\_\-node, and arrow\_\-bintree\_\-node::right\_\-node.
 
@@ -197,7 +197,7 @@ Recursive helper function to fill an array in nondecreasing order.
 \end{Desc}
 
 
-Definition at line 192 of file bintree.c.
+Definition at line 195 of file bintree.c.
 
 References arrow\_\-bintree\_\-node::data, arrow\_\-bintree\_\-node::has\_\-left\_\-node, arrow\_\-bintree\_\-node::has\_\-right\_\-node, arrow\_\-bintree\_\-node::left\_\-node, and arrow\_\-bintree\_\-node::right\_\-node.
 
@@ -217,7 +217,7 @@ Inserts a given value into the tree at the given node, or one of its child nodes
 \end{Desc}
 
 
-Definition at line 143 of file bintree.c.
+Definition at line 146 of file bintree.c.
 
 References ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-SUCCESS, ARROW\_\-TRUE, construct\_\-node(), arrow\_\-bintree\_\-node::data, arrow\_\-bintree\_\-node::has\_\-left\_\-node, arrow\_\-bintree\_\-node::has\_\-right\_\-node, arrow\_\-bintree\_\-node::left\_\-node, arrow\_\-bintree\_\-node::right\_\-node, and arrow\_\-bintree::size.
 

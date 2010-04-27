@@ -32,7 +32,7 @@
 <a href="lib_2lb_2bap_8c-source.html">Go to the source code of this file.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2lb_2bap_8c.html#130b34bc9719a82b72f18189b19663f6">initialize_flow_data</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int delta, int s, int t, int **res, int *m, int *dist, int *pred)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2lb_2bap_8c.html#c226b9017790fe3787a3efca75385b2e">initialize_flow_data</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int min_cost, int max_cost, int s, int t, int **res, int *m, int *dist, int *pred)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2lb_2bap_8c.html#bded8340dbd6b08609f5b197bb9bc78a">shortest_augmenting_path</a> (int n, int s, int t, int stop, int **res, int *dist, int *pred, int *flow)</td></tr>
 
@@ -41,6 +41,9 @@
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2lb_2bap_8c.html#55ff81ad64c0e4aadc08860a8c2d2c44">arrow_bap_solve</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, <a class="el" href="structarrow__problem__info.html">arrow_problem_info</a> *info, <a class="el" href="structarrow__bound__result.html">arrow_bound_result</a> *result)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solves the bottleneck assignment problem (BAP).  <a href="#55ff81ad64c0e4aadc08860a8c2d2c44"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2lb_2bap_8c.html#e159c6743ba801d78a5c07bb41b06bdf">arrow_bap_has_assignment</a> (<a class="el" href="structarrow__problem.html">arrow_problem</a> *problem, int min_cost, int max_cost, int *result)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determines if the problem has an assignment using only costs min_cost &lt;= c_ij &lt;= max_cost.  <a href="#e159c6743ba801d78a5c07bb41b06bdf"></a><br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Bottleneck assignment problem (BAP) implemenation. 
@@ -50,6 +53,63 @@ Implemenation of the bottleneck assignment problem (BAP) that's used as a lower 
 
 <p>Definition in file <a class="el" href="lib_2lb_2bap_8c-source.html">bap.c</a>.</p>
 <hr><h2>Function Documentation</h2>
+<a class="anchor" name="e159c6743ba801d78a5c07bb41b06bdf"></a><!-- doxytag: member="bap.c::arrow_bap_has_assignment" ref="e159c6743ba801d78a5c07bb41b06bdf" args="(arrow_problem *problem, int min_cost, int max_cost, int *result)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int arrow_bap_has_assignment           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td>
+          <td class="paramname"> <em>problem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>min_cost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>max_cost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>result</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Determines if the problem has an assignment using only costs min_cost &lt;= c_ij &lt;= max_cost. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] problem data </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>min_cost</em>&nbsp;</td><td>[in] minimum cost to consider in problem </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>max_cost</em>&nbsp;</td><td>[in] maximum cost to consider in problem </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>result</em>&nbsp;</td><td>[out] ARROW_TRUE if an assignment is possible. </td></tr>
+  </table>
+</dl>
+
+<p>Definition at line <a class="el" href="lib_2lb_2bap_8c-source.html#l00178">178</a> of file <a class="el" href="lib_2lb_2bap_8c-source.html">bap.c</a>.</p>
+
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="util_8c-source.html#l00027">arrow_util_create_int_matrix()</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00367">ford_fulkerson_labeling()</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00247">initialize_flow_data()</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00297">shortest_augmenting_path()</a>, and <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2baltsp_2baltsp-dt_8c-source.html#l00264">balanced_lb_feasible()</a>, and <a class="el" href="lib_2baltsp_2baltsp-dt2_8c-source.html#l00280">dt2_lb_feasible()</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="55ff81ad64c0e4aadc08860a8c2d2c44"></a><!-- doxytag: member="bap.c::arrow_bap_solve" ref="55ff81ad64c0e4aadc08860a8c2d2c44" args="(arrow_problem *problem, arrow_problem_info *info, arrow_bound_result *result)" -->
 <div class="memitem">
 <div class="memproto">
@@ -92,11 +152,11 @@ Solves the bottleneck assignment problem (BAP).
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="lib_2lb_2bap_8c-source.html#l00069">69</a> of file <a class="el" href="lib_2lb_2bap_8c-source.html">bap.c</a>.</p>
+<p>Definition at line <a class="el" href="lib_2lb_2bap_8c-source.html#l00070">70</a> of file <a class="el" href="lib_2lb_2bap_8c-source.html">bap.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="util_8c-source.html#l00027">arrow_util_create_int_matrix()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="common_8h-source.html#l00464">arrow_problem_info::cost_list</a>, <a class="el" href="common_8h-source.html#l00465">arrow_problem_info::cost_list_length</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00252">ford_fulkerson_labeling()</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00154">initialize_flow_data()</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00195">shortest_augmenting_path()</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="util_8c-source.html#l00027">arrow_util_create_int_matrix()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="common_8h-source.html#l00466">arrow_problem_info::cost_list</a>, <a class="el" href="common_8h-source.html#l00467">arrow_problem_info::cost_list_length</a>, <a class="el" href="delta-print_8c-source.html#l00016">delta</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00367">ford_fulkerson_labeling()</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00247">initialize_flow_data()</a>, <a class="el" href="lb_8h-source.html#l00023">arrow_bound_result::obj_value</a>, <a class="el" href="lib_2lb_2bap_8c-source.html#l00297">shortest_augmenting_path()</a>, <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>, and <a class="el" href="lb_8h-source.html#l00024">arrow_bound_result::total_time</a>.</p>
 
-<p>Referenced by <a class="el" href="bin_2bap_8c-source.html#l00031">main()</a>.</p>
+<p>Referenced by <a class="el" href="bin_2bap_8c-source.html#l00037">main()</a>.</p>
 
 </div>
 </div><p>
@@ -163,15 +223,15 @@ Solves the bottleneck assignment problem (BAP).
 
 <p>
 
-<p>Definition at line <a class="el" href="lib_2lb_2bap_8c-source.html#l00252">252</a> of file <a class="el" href="lib_2lb_2bap_8c-source.html">bap.c</a>.</p>
+<p>Definition at line <a class="el" href="lib_2lb_2bap_8c-source.html#l00367">367</a> of file <a class="el" href="lib_2lb_2bap_8c-source.html">bap.c</a>.</p>
 
 <p>References <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, and <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2lb_2bap_8c-source.html#l00069">arrow_bap_solve()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2lb_2bap_8c-source.html#l00178">arrow_bap_has_assignment()</a>, and <a class="el" href="lib_2lb_2bap_8c-source.html#l00070">arrow_bap_solve()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="130b34bc9719a82b72f18189b19663f6"></a><!-- doxytag: member="bap.c::initialize_flow_data" ref="130b34bc9719a82b72f18189b19663f6" args="(arrow_problem *problem, int delta, int s, int t, int **res, int *m, int *dist, int *pred)" -->
+<a class="anchor" name="c226b9017790fe3787a3efca75385b2e"></a><!-- doxytag: member="bap.c::initialize_flow_data" ref="c226b9017790fe3787a3efca75385b2e" args="(arrow_problem *problem, int min_cost, int max_cost, int s, int t, int **res, int *m, int *dist, int *pred)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -185,7 +245,13 @@ Solves the bottleneck assignment problem (BAP).
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>delta</em>, </td>
+          <td class="paramname"> <em>min_cost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>max_cost</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -234,11 +300,11 @@ Solves the bottleneck assignment problem (BAP).
 
 <p>
 
-<p>Definition at line <a class="el" href="lib_2lb_2bap_8c-source.html#l00154">154</a> of file <a class="el" href="lib_2lb_2bap_8c-source.html">bap.c</a>.</p>
+<p>Definition at line <a class="el" href="lib_2lb_2bap_8c-source.html#l00247">247</a> of file <a class="el" href="lib_2lb_2bap_8c-source.html">bap.c</a>.</p>
 
-<p>References <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, and <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>.</p>
+<p>References <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, and <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2lb_2bap_8c-source.html#l00069">arrow_bap_solve()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2lb_2bap_8c-source.html#l00178">arrow_bap_has_assignment()</a>, and <a class="el" href="lib_2lb_2bap_8c-source.html#l00070">arrow_bap_solve()</a>.</p>
 
 </div>
 </div><p>
@@ -305,16 +371,16 @@ Solves the bottleneck assignment problem (BAP).
 
 <p>
 
-<p>Definition at line <a class="el" href="lib_2lb_2bap_8c-source.html#l00195">195</a> of file <a class="el" href="lib_2lb_2bap_8c-source.html">bap.c</a>.</p>
+<p>Definition at line <a class="el" href="lib_2lb_2bap_8c-source.html#l00297">297</a> of file <a class="el" href="lib_2lb_2bap_8c-source.html">bap.c</a>.</p>
 
 <p>References <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, and <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2lb_2bap_8c-source.html#l00069">arrow_bap_solve()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2lb_2bap_8c-source.html#l00178">arrow_bap_has_assignment()</a>, and <a class="el" href="lib_2lb_2bap_8c-source.html#l00070">arrow_bap_solve()</a>.</p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 19 14:09:06 2009 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Apr 26 20:22:28 2010 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

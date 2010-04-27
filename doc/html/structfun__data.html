@@ -36,7 +36,9 @@ Collaboration diagram for fun_data:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="structarrow__problem.html">arrow_problem</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfun__data.html#8975a7eed7c3a3fa00f7a15c54e1c80b">base_problem</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfun__data.html#1d0479ab1ce43aa65ba7cac44874d414">delta</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfun__data.html#7e1ccad6deed6f629864205a7c25794c">min_cost</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfun__data.html#f149f55b8d22a020fcebd8f55325d1e5">max_cost</a></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -58,26 +60,7 @@ Collaboration diagram for fun_data:</div>
 base problem for function 
 <p>Definition at line <a class="el" href="fun_8c-source.html#l00019">19</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
 
-<p>Referenced by <a class="el" href="fun_8c-source.html#l00121">apply_shallow()</a>, and <a class="el" href="fun_8c-source.html#l00179">fun_get_cost()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="1d0479ab1ce43aa65ba7cac44874d414"></a><!-- doxytag: member="fun_data::delta" ref="1d0479ab1ce43aa65ba7cac44874d414" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int <a class="el" href="structfun__data.html#1d0479ab1ce43aa65ba7cac44874d414">fun_data::delta</a>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-delta parameter 
-<p>Definition at line <a class="el" href="fun_8c-source.html#l00020">20</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
-
-<p>Referenced by <a class="el" href="fun_8c-source.html#l00121">apply_shallow()</a>, and <a class="el" href="fun_8c-source.html#l00179">fun_get_cost()</a>.</p>
+<p>Referenced by <a class="el" href="fun_8c-source.html#l00125">apply_shallow()</a>, and <a class="el" href="fun_8c-source.html#l00185">fun_get_cost()</a>.</p>
 
 </div>
 </div><p>
@@ -96,14 +79,52 @@ delta parameter
 cost matrix function 
 <p>Definition at line <a class="el" href="fun_8c-source.html#l00018">18</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
 
-<p>Referenced by <a class="el" href="fun_8c-source.html#l00121">apply_shallow()</a>, and <a class="el" href="fun_8c-source.html#l00179">fun_get_cost()</a>.</p>
+<p>Referenced by <a class="el" href="fun_8c-source.html#l00125">apply_shallow()</a>, and <a class="el" href="fun_8c-source.html#l00185">fun_get_cost()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f149f55b8d22a020fcebd8f55325d1e5"></a><!-- doxytag: member="fun_data::max_cost" ref="f149f55b8d22a020fcebd8f55325d1e5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="structfun__data.html#f149f55b8d22a020fcebd8f55325d1e5">fun_data::max_cost</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+max cost to consider for active edges 
+<p>Definition at line <a class="el" href="fun_8c-source.html#l00021">21</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
+
+<p>Referenced by <a class="el" href="fun_8c-source.html#l00125">apply_shallow()</a>, and <a class="el" href="fun_8c-source.html#l00185">fun_get_cost()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7e1ccad6deed6f629864205a7c25794c"></a><!-- doxytag: member="fun_data::min_cost" ref="7e1ccad6deed6f629864205a7c25794c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="structfun__data.html#7e1ccad6deed6f629864205a7c25794c">fun_data::min_cost</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+min cost to consider for active edges 
+<p>Definition at line <a class="el" href="fun_8c-source.html#l00020">20</a> of file <a class="el" href="fun_8c-source.html">fun.c</a>.</p>
+
+<p>Referenced by <a class="el" href="fun_8c-source.html#l00125">apply_shallow()</a>, and <a class="el" href="fun_8c-source.html#l00185">fun_get_cost()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this struct was generated from the following file:<ul>
 <li>lib/btsp/<a class="el" href="fun_8c-source.html">fun.c</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 19 14:09:07 2009 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Apr 26 20:22:29 2010 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

@@ -30,32 +30,22 @@
 <p>
 <a href="tourinfo_8c-source.html">Go to the source code of this file.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Defines</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="tourinfo_8c.html#9b58b2c4af931c8486a986c9deca40f5">NUM_OPTS</a>&nbsp;&nbsp;&nbsp;2</td></tr>
+
 <tr><td colspan="2"><br><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="tourinfo_8c.html#853216ac51aa181669ff4d3de74058a7">print_help</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prints help/usage message.  <a href="#853216ac51aa181669ff4d3de74058a7"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="tourinfo_8c.html#6302aaae12249e8ea16bfdc7de892f21">print_version</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prints version message.  <a href="#6302aaae12249e8ea16bfdc7de892f21"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="tourinfo_8c.html#e5ad5cbeccaedc03a48d3c7eaa803e79">print_usage</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prints usage message.  <a href="#e5ad5cbeccaedc03a48d3c7eaa803e79"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="tourinfo_8c.html#72d0810dad1a2062df342005c15106b9">read_args</a> (int argc, char *argv[])</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reads program arguments.  <a href="#72d0810dad1a2062df342005c15106b9"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="tourinfo_8c.html#ca25a74e65f1464ca819401162b4de7a">print_xml_output</a> (double <a class="el" href="cbtsp_8c.html#928b11f5716331f0b89abe7d8d4124b4">length</a>, int max_cost, int min_cost, int argc, char *argv[])</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prints output in XML format.  <a href="#ca25a74e65f1464ca819401162b4de7a"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="tourinfo_8c.html#0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 
 <tr><td colspan="2"><br><h2>Variables</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="tourinfo_8c.html#289c5900d90626d909f0a85d5a0ed61d">program_name</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="tourinfo_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a> = NULL</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="tourinfo_8c.html#11f01103a19bd5a96cc616e65ed84637">problem_file</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="tourinfo_8c.html#b818a82f867be75d7c4d92d792b0943e">tour_file</a> = NULL</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="tourinfo_8c.html#b818a82f867be75d7c4d92d792b0943e">tour_file</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="structarrow__option.html">arrow_option</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="tourinfo_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a> [NUM_OPTS]</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="tourinfo_8c.html#78435df485756d3c16e77edcd8f6b938">xml_output</a> = ARROW_FALSE</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="tourinfo_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a> = &quot;Prints tour information&quot;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="tourinfo_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a> = &quot;-i tsplib.tsp -t tsplib.tour&quot;</td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -65,6 +55,24 @@ Displays tour information for a given problem input and tour input<p>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>John LaRusic </dd></dl>
 
 <p>Definition in file <a class="el" href="tourinfo_8c-source.html">tourinfo.c</a>.</p>
+<hr><h2>Define Documentation</h2>
+<a class="anchor" name="9b58b2c4af931c8486a986c9deca40f5"></a><!-- doxytag: member="tourinfo.c::NUM_OPTS" ref="9b58b2c4af931c8486a986c9deca40f5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NUM_OPTS&nbsp;&nbsp;&nbsp;2          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="tourinfo_8c-source.html#l00016">16</a> of file <a class="el" href="tourinfo_8c-source.html">tourinfo.c</a>.</p>
+
+</div>
+</div><p>
 <hr><h2>Function Documentation</h2>
 <a class="anchor" name="0ddf1224851353fc92bfbff6f499fa97"></a><!-- doxytag: member="tourinfo.c::main" ref="0ddf1224851353fc92bfbff6f499fa97" args="(int argc, char *argv[])" -->
 <div class="memitem">
@@ -93,195 +101,68 @@ Displays tour information for a given problem input and tour input<p>
 
 <p>
 
-<p>Definition at line <a class="el" href="tourinfo_8c-source.html#l00052">52</a> of file <a class="el" href="tourinfo_8c-source.html">tourinfo.c</a>.</p>
+<p>Definition at line <a class="el" href="tourinfo_8c-source.html#l00031">31</a> of file <a class="el" href="tourinfo_8c-source.html">tourinfo.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00056">ARROW_DEV_NULL</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="problem_8c-source.html#l00153">arrow_problem_destruct()</a>, <a class="el" href="problem_8c-source.html#l00118">arrow_problem_read()</a>, <a class="el" href="problem_8c-source.html#l00324">arrow_problem_read_tour()</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="util_8c-source.html#l00069">arrow_util_redirect_stdout_to_file()</a>, <a class="el" href="util_8c-source.html#l00078">arrow_util_restore_stdout()</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="cbtsp_8c-source.html#l00018">length</a>, <a class="el" href="tourinfo_8c-source.html#l00213">print_xml_output()</a>, <a class="el" href="tourinfo_8c-source.html#l00044">problem_file</a>, <a class="el" href="bin_22mb_8c-source.html#l00013">program_name</a>, <a class="el" href="linkern_8c-source.html#l00128">read_args()</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, <a class="el" href="abtsp-rai_8c-source.html#l00017">tour_file</a>, and <a class="el" href="tourinfo_8c-source.html#l00046">xml_output</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="853216ac51aa181669ff4d3de74058a7"></a><!-- doxytag: member="tourinfo.c::print_help" ref="853216ac51aa181669ff4d3de74058a7" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void print_help           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Prints help/usage message. 
-<p>
-
-</div>
-</div><p>
-<a class="anchor" name="e5ad5cbeccaedc03a48d3c7eaa803e79"></a><!-- doxytag: member="tourinfo.c::print_usage" ref="e5ad5cbeccaedc03a48d3c7eaa803e79" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void print_usage           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Prints usage message. 
-<p>
-
-</div>
-</div><p>
-<a class="anchor" name="6302aaae12249e8ea16bfdc7de892f21"></a><!-- doxytag: member="tourinfo.c::print_version" ref="6302aaae12249e8ea16bfdc7de892f21" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void print_version           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Prints version message. 
-<p>
-
-</div>
-</div><p>
-<a class="anchor" name="ca25a74e65f1464ca819401162b4de7a"></a><!-- doxytag: member="tourinfo.c::print_xml_output" ref="ca25a74e65f1464ca819401162b4de7a" args="(double length, int max_cost, int min_cost, int argc, char *argv[])" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void print_xml_output           </td>
-          <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>length</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>max_cost</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>min_cost</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>argc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&nbsp;</td>
-          <td class="paramname"> <em>argv</em>[]</td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Prints output in XML format. 
-<p>
-
-<p>Definition at line <a class="el" href="tourinfo_8c-source.html#l00213">213</a> of file <a class="el" href="tourinfo_8c-source.html">tourinfo.c</a>.</p>
-
-<p>References <a class="el" href="tourinfo_8c-source.html#l00044">problem_file</a>, and <a class="el" href="abtsp-rai_8c-source.html#l00017">tour_file</a>.</p>
-
-<p>Referenced by <a class="el" href="tourinfo_8c-source.html#l00052">main()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="72d0810dad1a2062df342005c15106b9"></a><!-- doxytag: member="tourinfo.c::read_args" ref="72d0810dad1a2062df342005c15106b9" args="(int argc, char *argv[])" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void read_args           </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>argc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&nbsp;</td>
-          <td class="paramname"> <em>argv</em>[]</td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Reads program arguments. 
-<p>
+<p>References <a class="el" href="options_8c-source.html#l00024">arrow_options_parse()</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="problem_8c-source.html#l00176">arrow_problem_destruct()</a>, <a class="el" href="problem_8c-source.html#l00141">arrow_problem_read()</a>, <a class="el" href="problem_8c-source.html#l00370">arrow_problem_read_tour()</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="bin_22mb_8c-source.html#l00032">desc</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="bin_22mb_8c-source.html#l00014">input_file</a>, <a class="el" href="cbtsp_8c-source.html#l00018">length</a>, <a class="el" href="bin_22mb_8c-source.html#l00020">NUM_OPTS</a>, <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>, <a class="el" href="abtsp-rai_8c-source.html#l00017">tour_file</a>, and <a class="el" href="bin_22mb_8c-source.html#l00033">usage</a>.</p>
 
 </div>
 </div><p>
 <hr><h2>Variable Documentation</h2>
-<a class="anchor" name="11f01103a19bd5a96cc616e65ed84637"></a><!-- doxytag: member="tourinfo.c::problem_file" ref="11f01103a19bd5a96cc616e65ed84637" args="" -->
+<a class="anchor" name="3aad16fd4bea1b9717f232ea75ad6449"></a><!-- doxytag: member="tourinfo.c::desc" ref="3aad16fd4bea1b9717f232ea75ad6449" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* <a class="el" href="tourinfo_8c.html#11f01103a19bd5a96cc616e65ed84637">problem_file</a>          </td>
+          <td class="memname">char* <a class="el" href="tourinfo_8c.html#3aad16fd4bea1b9717f232ea75ad6449">desc</a> = &quot;Prints tour information&quot;          </td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-Given TSPLIB problem file 
-<p>Definition at line <a class="el" href="tourinfo_8c-source.html#l00044">44</a> of file <a class="el" href="tourinfo_8c-source.html">tourinfo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="tourinfo_8c-source.html#l00052">main()</a>, and <a class="el" href="tourinfo_8c-source.html#l00213">print_xml_output()</a>.</p>
+<p>Definition at line <a class="el" href="tourinfo_8c-source.html#l00024">24</a> of file <a class="el" href="tourinfo_8c-source.html">tourinfo.c</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="289c5900d90626d909f0a85d5a0ed61d"></a><!-- doxytag: member="tourinfo.c::program_name" ref="289c5900d90626d909f0a85d5a0ed61d" args="" -->
+<a class="anchor" name="a4f3a15de34c409bdec6ceacf93078ed"></a><!-- doxytag: member="tourinfo.c::input_file" ref="a4f3a15de34c409bdec6ceacf93078ed" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* <a class="el" href="bin_2tsp_8c.html#289c5900d90626d909f0a85d5a0ed61d">program_name</a>          </td>
+          <td class="memname">char* <a class="el" href="bin_2tsp_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a> = NULL          </td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-Program name 
-<p>Definition at line <a class="el" href="tourinfo_8c-source.html#l00043">43</a> of file <a class="el" href="tourinfo_8c-source.html">tourinfo.c</a>.</p>
+
+<p>Definition at line <a class="el" href="tourinfo_8c-source.html#l00012">12</a> of file <a class="el" href="tourinfo_8c-source.html">tourinfo.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cea6a9709d519c143f30db401a0d0c72"></a><!-- doxytag: member="tourinfo.c::options" ref="cea6a9709d519c143f30db401a0d0c72" args="[NUM_OPTS]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structarrow__option.html">arrow_option</a> <a class="el" href="tourinfo_8c.html#cea6a9709d519c143f30db401a0d0c72">options</a>[NUM_OPTS]          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Initial value:</b><div class="fragment"><pre class="fragment"> 
+{
+    {<span class="charliteral">'i'</span>, <span class="stringliteral">"input"</span>, <span class="stringliteral">"TSPLIB input file"</span>, 
+        <a class="code" href="common_8h.html#a5af4b3dd40c1687deb0e897317fac3d">ARROW_OPTION_STRING</a>, &amp;<a class="code" href="bin_22mb_8c.html#a4f3a15de34c409bdec6ceacf93078ed">input_file</a>, <a class="code" href="common_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>, ARROW_TRUE},
+    {<span class="charliteral">'T'</span>, <span class="stringliteral">"tour"</span>, <span class="stringliteral">"TSPLIB tour input file"</span>,
+        <a class="code" href="common_8h.html#a5af4b3dd40c1687deb0e897317fac3d">ARROW_OPTION_STRING</a>, &amp;<a class="code" href="abtsp-rai_8c.html#b818a82f867be75d7c4d92d792b0943e">tour_file</a>, <a class="code" href="common_8h.html#42c447b913ad11889bf816691e423644">ARROW_TRUE</a>, ARROW_TRUE},
+}
+</pre></div>
+<p>Definition at line <a class="el" href="tourinfo_8c-source.html#l00017">17</a> of file <a class="el" href="tourinfo_8c-source.html">tourinfo.c</a>.</p>
 
 </div>
 </div><p>
@@ -290,39 +171,37 @@ Program name
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* <a class="el" href="tourinfo_8c.html#b818a82f867be75d7c4d92d792b0943e">tour_file</a>          </td>
+          <td class="memname">char* <a class="el" href="tourinfo_8c.html#b818a82f867be75d7c4d92d792b0943e">tour_file</a> = NULL          </td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-Given TSPLIB tour file 
-<p>Definition at line <a class="el" href="tourinfo_8c-source.html#l00045">45</a> of file <a class="el" href="tourinfo_8c-source.html">tourinfo.c</a>.</p>
+
+<p>Definition at line <a class="el" href="tourinfo_8c-source.html#l00013">13</a> of file <a class="el" href="tourinfo_8c-source.html">tourinfo.c</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="78435df485756d3c16e77edcd8f6b938"></a><!-- doxytag: member="tourinfo.c::xml_output" ref="78435df485756d3c16e77edcd8f6b938" args="" -->
+<a class="anchor" name="adebe2487a2c5240ab6cd02c83add0bf"></a><!-- doxytag: member="tourinfo.c::usage" ref="adebe2487a2c5240ab6cd02c83add0bf" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="tourinfo_8c.html#78435df485756d3c16e77edcd8f6b938">xml_output</a> = ARROW_FALSE          </td>
+          <td class="memname">char* <a class="el" href="tourinfo_8c.html#adebe2487a2c5240ab6cd02c83add0bf">usage</a> = &quot;-i tsplib.tsp -t tsplib.tour&quot;          </td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-Output output in XML format (or not) 
-<p>Definition at line <a class="el" href="tourinfo_8c-source.html#l00046">46</a> of file <a class="el" href="tourinfo_8c-source.html">tourinfo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="tourinfo_8c-source.html#l00052">main()</a>.</p>
+<p>Definition at line <a class="el" href="tourinfo_8c-source.html#l00025">25</a> of file <a class="el" href="tourinfo_8c-source.html">tourinfo.c</a>.</p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 19 14:09:06 2009 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Apr 26 20:22:29 2010 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

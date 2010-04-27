@@ -39,30 +39,30 @@
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Info for shake constrained cost matrix function.  <a href="structcbtsp__shake__data.html#_details">More...</a><br></td></tr>
 <tr><td colspan="2"><br><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__cbtsp_8c.html#7812c70c58b22442f1bbb5ad70bffb3b">cbtsp_basic_get_cost</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *base_problem, int delta, int i, int j)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__cbtsp_8c.html#10deffb59f4e212f4e8c5356c8311817">cbtsp_basic_get_cost</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *base_problem, int min_cost, int max_cost, int i, int j)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieves cost between nodes i and j from the function.  <a href="#7812c70c58b22442f1bbb5ad70bffb3b"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieves cost between nodes i and j from the function.  <a href="#10deffb59f4e212f4e8c5356c8311817"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__cbtsp_8c.html#623bd01fc554f1cf9d538056ac1d4628">cbtsp_basic_initialize</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initializes the function data.  <a href="#623bd01fc554f1cf9d538056ac1d4628"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__cbtsp_8c.html#443a8ac65ff633d0ee94e4d19bdf22a7">cbtsp_basic_destruct</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructs the function data.  <a href="#443a8ac65ff633d0ee94e4d19bdf22a7"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__cbtsp_8c.html#00ff8d02e5fe8381dd404c4b7119ccca">cbtsp_basic_feasible</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *base_problem, int delta, double tour_length, int *tour)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__cbtsp_8c.html#6a4df6f26171a0c5350b97d9d73d4907">cbtsp_basic_feasible</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *base_problem, int min_cost, int max_cost, double tour_length, int *tour)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determines if the given tour is feasible or not.  <a href="#00ff8d02e5fe8381dd404c4b7119ccca"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__cbtsp_8c.html#3199482f634e211d36970ade8f948ea1">cbtsp_shake_get_cost</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *base_problem, int delta, int i, int j)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determines if the given tour is feasible or not.  <a href="#6a4df6f26171a0c5350b97d9d73d4907"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__cbtsp_8c.html#b0e23b21b0da3c1672bfbddc5f144524">cbtsp_shake_get_cost</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *base_problem, int min_cost, int max_cost, int i, int j)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieves cost between nodes i and j from the function.  <a href="#3199482f634e211d36970ade8f948ea1"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieves cost between nodes i and j from the function.  <a href="#b0e23b21b0da3c1672bfbddc5f144524"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__cbtsp_8c.html#2c86bf9441946ae191f42461104545ba">cbtsp_shake_initialize</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initializes the function data.  <a href="#2c86bf9441946ae191f42461104545ba"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__cbtsp_8c.html#9dc6bdfa3208011e77093b8646bc986d">cbtsp_shake_destruct</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructs the function data.  <a href="#9dc6bdfa3208011e77093b8646bc986d"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__cbtsp_8c.html#9af3257a6751785471e13609f41a6e21">cbtsp_shake_feasible</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *base_problem, int delta, double tour_length, int *tour)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__cbtsp_8c.html#f575207718c3a34144934879020b475a">cbtsp_shake_feasible</a> (<a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *base_problem, int min_cost, int max_cost, double tour_length, int *tour)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determines if the given tour is feasible or not.  <a href="#9af3257a6751785471e13609f41a6e21"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determines if the given tour is feasible or not.  <a href="#f575207718c3a34144934879020b475a"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__cbtsp_8c.html#ec30be80a8e806be7b889794a305cf0e">arrow_btsp_fun_cbtsp_basic</a> (int shallow, double feasible_length, int infinity, <a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constrained BTSP to TSP function.  <a href="#ec30be80a8e806be7b889794a305cf0e"></a><br></td></tr>
@@ -127,9 +127,9 @@ Constrained BTSP to TSP function.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00128">128</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00132">132</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00212">cbtsp_basic_destruct()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00222">cbtsp_basic_feasible()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00193">cbtsp_basic_get_cost()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00206">cbtsp_basic_initialize()</a>, <a class="el" href="btsp_8h-source.html#l00045">arrow_btsp_fun::data</a>, <a class="el" href="structarrow__btsp__fun.html#6c66b7591252728aaa441139c623446a">arrow_btsp_fun::destruct</a>, <a class="el" href="structarrow__btsp__fun.html#39eb61a5ad9a5786e773cce4affd2150">arrow_btsp_fun::feasible</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00022">cbtsp_basic_data::feasible_length</a>, <a class="el" href="structarrow__btsp__fun.html#56eb57e90eae76571a024894bd0fe570">arrow_btsp_fun::get_cost</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00021">cbtsp_basic_data::infinity</a>, <a class="el" href="structarrow__btsp__fun.html#c588686921bd526653a7e0d7816aee44">arrow_btsp_fun::initialize</a>, and <a class="el" href="btsp_8h-source.html#l00046">arrow_btsp_fun::shallow</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00216">cbtsp_basic_destruct()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00226">cbtsp_basic_feasible()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00197">cbtsp_basic_get_cost()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00210">cbtsp_basic_initialize()</a>, <a class="el" href="btsp_8h-source.html#l00046">arrow_btsp_fun::data</a>, <a class="el" href="structarrow__btsp__fun.html#6c66b7591252728aaa441139c623446a">arrow_btsp_fun::destruct</a>, <a class="el" href="structarrow__btsp__fun.html#98369e55806c13b3ba90c8c1cbe1f8a4">arrow_btsp_fun::feasible</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00022">cbtsp_basic_data::feasible_length</a>, <a class="el" href="structarrow__btsp__fun.html#ffc634f9d1a545f890b0b2007aff544d">arrow_btsp_fun::get_cost</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00021">cbtsp_basic_data::infinity</a>, <a class="el" href="structarrow__btsp__fun.html#c588686921bd526653a7e0d7816aee44">arrow_btsp_fun::initialize</a>, and <a class="el" href="btsp_8h-source.html#l00047">arrow_btsp_fun::shallow</a>.</p>
 
 <p>Referenced by <a class="el" href="cbtsp_8c-source.html#l00093">main()</a>.</p>
 
@@ -205,9 +205,9 @@ Constrained "Shake" BTSP to TSP function.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00152">152</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00156">156</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00269">cbtsp_shake_destruct()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00282">cbtsp_shake_feasible()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00230">cbtsp_shake_get_cost()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00250">cbtsp_shake_initialize()</a>, <a class="el" href="common_8h-source.html#l00465">arrow_problem_info::cost_list_length</a>, <a class="el" href="btsp_8h-source.html#l00045">arrow_btsp_fun::data</a>, <a class="el" href="structarrow__btsp__fun.html#6c66b7591252728aaa441139c623446a">arrow_btsp_fun::destruct</a>, <a class="el" href="structarrow__btsp__fun.html#39eb61a5ad9a5786e773cce4affd2150">arrow_btsp_fun::feasible</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00031">cbtsp_shake_data::feasible_length</a>, <a class="el" href="structarrow__btsp__fun.html#56eb57e90eae76571a024894bd0fe570">arrow_btsp_fun::get_cost</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00030">cbtsp_shake_data::infinity</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00032">cbtsp_shake_data::info</a>, <a class="el" href="structarrow__btsp__fun.html#c588686921bd526653a7e0d7816aee44">arrow_btsp_fun::initialize</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00035">cbtsp_shake_data::random_list</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00036">cbtsp_shake_data::random_list_length</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00034">cbtsp_shake_data::random_max</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00033">cbtsp_shake_data::random_min</a>, and <a class="el" href="btsp_8h-source.html#l00046">arrow_btsp_fun::shallow</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00015">arrow_util_create_int_array()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00273">cbtsp_shake_destruct()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00286">cbtsp_shake_feasible()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00234">cbtsp_shake_get_cost()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00254">cbtsp_shake_initialize()</a>, <a class="el" href="common_8h-source.html#l00467">arrow_problem_info::cost_list_length</a>, <a class="el" href="btsp_8h-source.html#l00046">arrow_btsp_fun::data</a>, <a class="el" href="structarrow__btsp__fun.html#6c66b7591252728aaa441139c623446a">arrow_btsp_fun::destruct</a>, <a class="el" href="structarrow__btsp__fun.html#98369e55806c13b3ba90c8c1cbe1f8a4">arrow_btsp_fun::feasible</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00031">cbtsp_shake_data::feasible_length</a>, <a class="el" href="structarrow__btsp__fun.html#ffc634f9d1a545f890b0b2007aff544d">arrow_btsp_fun::get_cost</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00030">cbtsp_shake_data::infinity</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00032">cbtsp_shake_data::info</a>, <a class="el" href="structarrow__btsp__fun.html#c588686921bd526653a7e0d7816aee44">arrow_btsp_fun::initialize</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00035">cbtsp_shake_data::random_list</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00036">cbtsp_shake_data::random_list_length</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00034">cbtsp_shake_data::random_max</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00033">cbtsp_shake_data::random_min</a>, and <a class="el" href="btsp_8h-source.html#l00047">arrow_btsp_fun::shallow</a>.</p>
 
 <p>Referenced by <a class="el" href="cbtsp_8c-source.html#l00093">main()</a>.</p>
 
@@ -238,15 +238,15 @@ Destructs the function data.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00212">212</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00216">216</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
 
-<p>References <a class="el" href="btsp_8h-source.html#l00045">arrow_btsp_fun::data</a>.</p>
+<p>References <a class="el" href="btsp_8h-source.html#l00046">arrow_btsp_fun::data</a>.</p>
 
-<p>Referenced by <a class="el" href="fun__cbtsp_8c-source.html#l00128">arrow_btsp_fun_cbtsp_basic()</a>.</p>
+<p>Referenced by <a class="el" href="fun__cbtsp_8c-source.html#l00132">arrow_btsp_fun_cbtsp_basic()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="00ff8d02e5fe8381dd404c4b7119ccca"></a><!-- doxytag: member="fun_cbtsp.c::cbtsp_basic_feasible" ref="00ff8d02e5fe8381dd404c4b7119ccca" args="(arrow_btsp_fun *fun, arrow_problem *base_problem, int delta, double tour_length, int *tour)" -->
+<a class="anchor" name="6a4df6f26171a0c5350b97d9d73d4907"></a><!-- doxytag: member="fun_cbtsp.c::cbtsp_basic_feasible" ref="6a4df6f26171a0c5350b97d9d73d4907" args="(arrow_btsp_fun *fun, arrow_problem *base_problem, int min_cost, int max_cost, double tour_length, int *tour)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -266,7 +266,13 @@ Destructs the function data.
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>delta</em>, </td>
+          <td class="paramname"> <em>min_cost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>max_cost</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -296,22 +302,23 @@ Determines if the given tour is feasible or not.
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>fun</em>&nbsp;</td><td>[in] function structure </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>base_problem</em>&nbsp;</td><td>[in] the problem to check against </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>delta</em>&nbsp;</td><td>[in] delta parameter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>min_cost</em>&nbsp;</td><td>[in] min_cost to consider for active edges </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>max_cost</em>&nbsp;</td><td>[in] max_cost to consider for active edges </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>tour_length</em>&nbsp;</td><td>[in] the length of the given tour </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>tour</em>&nbsp;</td><td>[in] the tour in node-node format </td></tr>
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>ARROW_TRUE if the tour is feasible, ARROW_FALSE if not </dd></dl>
 
-<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00222">222</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00226">226</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, and <a class="el" href="btsp_8h-source.html#l00045">arrow_btsp_fun::data</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, and <a class="el" href="btsp_8h-source.html#l00046">arrow_btsp_fun::data</a>.</p>
 
-<p>Referenced by <a class="el" href="fun__cbtsp_8c-source.html#l00128">arrow_btsp_fun_cbtsp_basic()</a>.</p>
+<p>Referenced by <a class="el" href="fun__cbtsp_8c-source.html#l00132">arrow_btsp_fun_cbtsp_basic()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="7812c70c58b22442f1bbb5ad70bffb3b"></a><!-- doxytag: member="fun_cbtsp.c::cbtsp_basic_get_cost" ref="7812c70c58b22442f1bbb5ad70bffb3b" args="(arrow_btsp_fun *fun, arrow_problem *base_problem, int delta, int i, int j)" -->
+<a class="anchor" name="10deffb59f4e212f4e8c5356c8311817"></a><!-- doxytag: member="fun_cbtsp.c::cbtsp_basic_get_cost" ref="10deffb59f4e212f4e8c5356c8311817" args="(arrow_btsp_fun *fun, arrow_problem *base_problem, int min_cost, int max_cost, int i, int j)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -331,7 +338,13 @@ Determines if the given tour is feasible or not.
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>delta</em>, </td>
+          <td class="paramname"> <em>min_cost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>max_cost</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -361,18 +374,19 @@ Retrieves cost between nodes i and j from the function.
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>fun</em>&nbsp;</td><td>[in] function structure </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>base_problem</em>&nbsp;</td><td>[in] problem structure </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>delta</em>&nbsp;</td><td>[in] delta parameter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>min_cost</em>&nbsp;</td><td>[in] min_cost to consider for active edges </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>max_cost</em>&nbsp;</td><td>[in] max_cost to consider for active edges </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>[in] id of start node </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>j</em>&nbsp;</td><td>[in] id of end node </td></tr>
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>cost between node i and node j </dd></dl>
 
-<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00193">193</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00197">197</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
 
-<p>References <a class="el" href="btsp_8h-source.html#l00045">arrow_btsp_fun::data</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, and <a class="el" href="fun__cbtsp_8c-source.html#l00021">cbtsp_basic_data::infinity</a>.</p>
+<p>References <a class="el" href="btsp_8h-source.html#l00046">arrow_btsp_fun::data</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, and <a class="el" href="fun__cbtsp_8c-source.html#l00021">cbtsp_basic_data::infinity</a>.</p>
 
-<p>Referenced by <a class="el" href="fun__cbtsp_8c-source.html#l00128">arrow_btsp_fun_cbtsp_basic()</a>.</p>
+<p>Referenced by <a class="el" href="fun__cbtsp_8c-source.html#l00132">arrow_btsp_fun_cbtsp_basic()</a>.</p>
 
 </div>
 </div><p>
@@ -401,11 +415,11 @@ Initializes the function data.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00206">206</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00210">210</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
 
 <p>References <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>.</p>
 
-<p>Referenced by <a class="el" href="fun__cbtsp_8c-source.html#l00128">arrow_btsp_fun_cbtsp_basic()</a>.</p>
+<p>Referenced by <a class="el" href="fun__cbtsp_8c-source.html#l00132">arrow_btsp_fun_cbtsp_basic()</a>.</p>
 
 </div>
 </div><p>
@@ -434,15 +448,15 @@ Destructs the function data.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00269">269</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00273">273</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
 
-<p>References <a class="el" href="btsp_8h-source.html#l00045">arrow_btsp_fun::data</a>, and <a class="el" href="fun__cbtsp_8c-source.html#l00035">cbtsp_shake_data::random_list</a>.</p>
+<p>References <a class="el" href="btsp_8h-source.html#l00046">arrow_btsp_fun::data</a>, and <a class="el" href="fun__cbtsp_8c-source.html#l00035">cbtsp_shake_data::random_list</a>.</p>
 
-<p>Referenced by <a class="el" href="fun__cbtsp_8c-source.html#l00152">arrow_btsp_fun_cbtsp_shake()</a>.</p>
+<p>Referenced by <a class="el" href="fun__cbtsp_8c-source.html#l00156">arrow_btsp_fun_cbtsp_shake()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="9af3257a6751785471e13609f41a6e21"></a><!-- doxytag: member="fun_cbtsp.c::cbtsp_shake_feasible" ref="9af3257a6751785471e13609f41a6e21" args="(arrow_btsp_fun *fun, arrow_problem *base_problem, int delta, double tour_length, int *tour)" -->
+<a class="anchor" name="f575207718c3a34144934879020b475a"></a><!-- doxytag: member="fun_cbtsp.c::cbtsp_shake_feasible" ref="f575207718c3a34144934879020b475a" args="(arrow_btsp_fun *fun, arrow_problem *base_problem, int min_cost, int max_cost, double tour_length, int *tour)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -462,7 +476,13 @@ Destructs the function data.
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>delta</em>, </td>
+          <td class="paramname"> <em>min_cost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>max_cost</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -492,22 +512,23 @@ Determines if the given tour is feasible or not.
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>fun</em>&nbsp;</td><td>[in] function structure </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>base_problem</em>&nbsp;</td><td>[in] the problem to check against </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>delta</em>&nbsp;</td><td>[in] delta parameter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>min_cost</em>&nbsp;</td><td>[in] min_cost to consider for active edges </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>max_cost</em>&nbsp;</td><td>[in] max_cost to consider for active edges </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>tour_length</em>&nbsp;</td><td>[in] the length of the given tour </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>tour</em>&nbsp;</td><td>[in] the tour in node-node format </td></tr>
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>ARROW_TRUE if the tour is feasible, ARROW_FALSE if not </dd></dl>
 
-<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00282">282</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00286">286</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="btsp_8h-source.html#l00045">arrow_btsp_fun::data</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00031">cbtsp_shake_data::feasible_length</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, and <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="btsp_8h-source.html#l00046">arrow_btsp_fun::data</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00031">cbtsp_shake_data::feasible_length</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, and <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>.</p>
 
-<p>Referenced by <a class="el" href="fun__cbtsp_8c-source.html#l00152">arrow_btsp_fun_cbtsp_shake()</a>.</p>
+<p>Referenced by <a class="el" href="fun__cbtsp_8c-source.html#l00156">arrow_btsp_fun_cbtsp_shake()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="3199482f634e211d36970ade8f948ea1"></a><!-- doxytag: member="fun_cbtsp.c::cbtsp_shake_get_cost" ref="3199482f634e211d36970ade8f948ea1" args="(arrow_btsp_fun *fun, arrow_problem *base_problem, int delta, int i, int j)" -->
+<a class="anchor" name="b0e23b21b0da3c1672bfbddc5f144524"></a><!-- doxytag: member="fun_cbtsp.c::cbtsp_shake_get_cost" ref="b0e23b21b0da3c1672bfbddc5f144524" args="(arrow_btsp_fun *fun, arrow_problem *base_problem, int min_cost, int max_cost, int i, int j)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -527,7 +548,13 @@ Determines if the given tour is feasible or not.
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>delta</em>, </td>
+          <td class="paramname"> <em>min_cost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>max_cost</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -557,18 +584,19 @@ Retrieves cost between nodes i and j from the function.
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>fun</em>&nbsp;</td><td>[in] function structure </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>base_problem</em>&nbsp;</td><td>[in] problem structure </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>delta</em>&nbsp;</td><td>[in] delta parameter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>min_cost</em>&nbsp;</td><td>[in] min_cost to consider for active edges </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>max_cost</em>&nbsp;</td><td>[in] max_cost to consider for active edges </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>[in] id of start node </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>j</em>&nbsp;</td><td>[in] id of end node </td></tr>
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>cost between node i and node j </dd></dl>
 
-<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00230">230</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00234">234</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="problem_8c-source.html#l00224">arrow_problem_info_cost_index()</a>, <a class="el" href="btsp_8h-source.html#l00045">arrow_btsp_fun::data</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00030">cbtsp_shake_data::infinity</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00032">cbtsp_shake_data::info</a>, and <a class="el" href="fun__cbtsp_8c-source.html#l00035">cbtsp_shake_data::random_list</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="problem_8c-source.html#l00247">arrow_problem_info_cost_index()</a>, <a class="el" href="btsp_8h-source.html#l00046">arrow_btsp_fun::data</a>, <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00030">cbtsp_shake_data::infinity</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00032">cbtsp_shake_data::info</a>, and <a class="el" href="fun__cbtsp_8c-source.html#l00035">cbtsp_shake_data::random_list</a>.</p>
 
-<p>Referenced by <a class="el" href="fun__cbtsp_8c-source.html#l00152">arrow_btsp_fun_cbtsp_shake()</a>.</p>
+<p>Referenced by <a class="el" href="fun__cbtsp_8c-source.html#l00156">arrow_btsp_fun_cbtsp_shake()</a>.</p>
 
 </div>
 </div><p>
@@ -597,16 +625,16 @@ Initializes the function data.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00250">250</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
+<p>Definition at line <a class="el" href="fun__cbtsp_8c-source.html#l00254">254</a> of file <a class="el" href="fun__cbtsp_8c-source.html">fun_cbtsp.c</a>.</p>
 
-<p>References <a class="el" href="bintree_8c-source.html#l00053">arrow_bintree_init()</a>, <a class="el" href="bintree_8c-source.html#l00067">arrow_bintree_insert()</a>, <a class="el" href="bintree_8c-source.html#l00087">arrow_bintree_to_array()</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00221">arrow_util_random_between()</a>, <a class="el" href="btsp_8h-source.html#l00045">arrow_btsp_fun::data</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00035">cbtsp_shake_data::random_list</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00036">cbtsp_shake_data::random_list_length</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00034">cbtsp_shake_data::random_max</a>, and <a class="el" href="fun__cbtsp_8c-source.html#l00033">cbtsp_shake_data::random_min</a>.</p>
+<p>References <a class="el" href="bintree_8c-source.html#l00053">arrow_bintree_init()</a>, <a class="el" href="bintree_8c-source.html#l00070">arrow_bintree_insert()</a>, <a class="el" href="bintree_8c-source.html#l00090">arrow_bintree_to_array()</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00221">arrow_util_random_between()</a>, <a class="el" href="btsp_8h-source.html#l00046">arrow_btsp_fun::data</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00035">cbtsp_shake_data::random_list</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00036">cbtsp_shake_data::random_list_length</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00034">cbtsp_shake_data::random_max</a>, and <a class="el" href="fun__cbtsp_8c-source.html#l00033">cbtsp_shake_data::random_min</a>.</p>
 
-<p>Referenced by <a class="el" href="fun__cbtsp_8c-source.html#l00152">arrow_btsp_fun_cbtsp_shake()</a>.</p>
+<p>Referenced by <a class="el" href="fun__cbtsp_8c-source.html#l00156">arrow_btsp_fun_cbtsp_shake()</a>.</p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 19 14:09:06 2009 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Apr 26 20:22:29 2010 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

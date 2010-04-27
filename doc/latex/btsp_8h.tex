@@ -31,16 +31,18 @@ struct \hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params}
 \item 
 int \hyperlink{btsp_8h_3c6427a5ad0c0f5157d2c1a903f823c4}{arrow\_\-btsp\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params} $\ast$params, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result)
 \begin{CompactList}\small\item\em Solves TSP with Concorde's exact solver. \item\end{CompactList}\item 
-int \hyperlink{btsp_8h_d9cf4e03bd60c7efc575dd29868456bf}{arrow\_\-btsp\_\-fun\_\-apply} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int delta, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
+int \hyperlink{btsp_8h_56402f1b03eb02ddd7e0846600e886ba}{arrow\_\-btsp\_\-feasible} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int num\_\-steps, \hyperlink{structarrow__btsp__solve__plan}{arrow\_\-btsp\_\-solve\_\-plan} $\ast$steps, int min\_\-cost, int max\_\-cost, int $\ast$feasible, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result)
+\begin{CompactList}\small\item\em Solves the feasibility problem which attempts to determine if there is a Hamiltonian cycle using min\_\-cost $<$= costs $<$= max\_\-cost. \item\end{CompactList}\item 
+int \hyperlink{btsp_8h_7e4caceb39f62e2f9e13ac888361a479}{arrow\_\-btsp\_\-fun\_\-apply} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int min\_\-cost, int max\_\-cost, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
 \begin{CompactList}\small\item\em Applies the given function to the given problem to create a new problem. \item\end{CompactList}\item 
 void \hyperlink{btsp_8h_f0b2cce4c9dced6fe48fbc29877bbd8d}{arrow\_\-btsp\_\-fun\_\-destruct} (\hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
 \begin{CompactList}\small\item\em Destructs a function structure. \item\end{CompactList}\item 
-int \hyperlink{btsp_8h_4b7ad8f9778197ef3f6b88ed6abf259a}{arrow\_\-btsp\_\-fun\_\-basic\_\-atsp} (int shallow, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
-\begin{CompactList}\small\item\em Basic BTSP to TSP function for asymmetric problem instances. \item\end{CompactList}\item 
 int \hyperlink{btsp_8h_a8030d26d0cc61ba064d0baedf766552}{arrow\_\-btsp\_\-fun\_\-basic} (int shallow, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
 \begin{CompactList}\small\item\em Basic BTSP to TSP function. \item\end{CompactList}\item 
-int \hyperlink{btsp_8h_95aafcfb17030e1aadf79fcc598ce30e}{arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1} (int shallow, int infinity, int random\_\-min, int random\_\-max, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+int \hyperlink{btsp_8h_b7860037a38eeee9fd7cc089050c5486}{arrow\_\-btsp\_\-fun\_\-shake\_\-1} (int shallow, int infinity, int random\_\-min, int random\_\-max, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
 \begin{CompactList}\small\item\em Controlled Type I Shake. \item\end{CompactList}\item 
+int \hyperlink{btsp_8h_4a7d47740817f02320cc43e1a4aef9ea}{arrow\_\-btsp\_\-fun\_\-asym\_\-shift} (int shallow, int shift, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
+\begin{CompactList}\small\item\em Shifts all costs by given amount; used to remove negative costs. \item\end{CompactList}\item 
 int \hyperlink{btsp_8h_ec30be80a8e806be7b889794a305cf0e}{arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic} (int shallow, double feasible\_\-length, int infinity, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
 \begin{CompactList}\small\item\em Constrained BTSP to TSP function. \item\end{CompactList}\item 
 int \hyperlink{btsp_8h_9a25b884af7fb5d314b624e446db91e2}{arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake} (int shallow, double feasible\_\-length, int infinity, int random\_\-min, int random\_\-max, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__fun}{arrow\_\-btsp\_\-fun} $\ast$fun)
@@ -103,11 +105,33 @@ Definition at line 21 of file btsp.h.\hypertarget{btsp_8h_a7f468f2633f855fbee81d
 Definition at line 22 of file btsp.h.
 
 \subsection{Function Documentation}
-\hypertarget{btsp_8h_d9cf4e03bd60c7efc575dd29868456bf}{
+\hypertarget{btsp_8h_56402f1b03eb02ddd7e0846600e886ba}{
+\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-feasible@{arrow\_\-btsp\_\-feasible}}
+\index{arrow\_\-btsp\_\-feasible@{arrow\_\-btsp\_\-feasible}!btsp.h@{btsp.h}}
+\subsubsection[{arrow\_\-btsp\_\-feasible}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-feasible ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em num\_\-steps}, \/  {\bf arrow\_\-btsp\_\-solve\_\-plan} $\ast$ {\em steps}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  int $\ast$ {\em feasible}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em result})}}
+\label{btsp_8h_56402f1b03eb02ddd7e0846600e886ba}
+
+
+Solves the feasibility problem which attempts to determine if there is a Hamiltonian cycle using min\_\-cost $<$= costs $<$= max\_\-cost. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em num\_\-steps}]\mbox{[}in\mbox{]} total number of steps in solve plan \item[{\em steps}]\mbox{[}in\mbox{]} solve plan step details \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em feasible}]\mbox{[}out\mbox{]} true if a feasible tour exists, false otherwise \item[{\em result}]\mbox{[}out\mbox{]} resulting BTSP tour found \end{description}
+\end{Desc}
+
+
+TODO: Find a better way of doing this upper bound update 
+
+Definition at line 16 of file feasible.c.
+
+References arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-problem\_\-destruct(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-tsp\_\-result\_\-destruct(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-tsp\_\-solve(), ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-btsp\_\-solve\_\-plan::attempts, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-solve\_\-plan::fun, arrow\_\-problem::get\_\-cost, arrow\_\-btsp\_\-result::max\_\-cost, arrow\_\-btsp\_\-result::min\_\-cost, arrow\_\-tsp\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-tsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, arrow\_\-tsp\_\-result::tour, arrow\_\-btsp\_\-result::tour\_\-length, arrow\_\-btsp\_\-solve\_\-plan::tsp\_\-params, and arrow\_\-btsp\_\-solve\_\-plan::tsp\_\-solver.
+
+Referenced by arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-dt2(), arrow\_\-balanced\_\-tsp\_\-ib2(), and arrow\_\-btsp\_\-solve().\hypertarget{btsp_8h_7e4caceb39f62e2f9e13ac888361a479}{
 \index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-fun\_\-apply@{arrow\_\-btsp\_\-fun\_\-apply}}
 \index{arrow\_\-btsp\_\-fun\_\-apply@{arrow\_\-btsp\_\-fun\_\-apply}!btsp.h@{btsp.h}}
-\subsubsection[{arrow\_\-btsp\_\-fun\_\-apply}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-apply ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em delta}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
-\label{btsp_8h_d9cf4e03bd60c7efc575dd29868456bf}
+\subsubsection[{arrow\_\-btsp\_\-fun\_\-apply}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-apply ({\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun}, \/  {\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
+\label{btsp_8h_7e4caceb39f62e2f9e13ac888361a479}
 
 
 Applies the given function to the given problem to create a new problem. 
@@ -115,15 +139,35 @@ Applies the given function to the given problem to create a new problem.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em old\_\-problem}]\mbox{[}in\mbox{]} existing problem \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter \item[{\em new\_\-problem}]\mbox{[}out\mbox{]} new problem to create \end{description}
+\item[{\em fun}]\mbox{[}in\mbox{]} function structure \item[{\em old\_\-problem}]\mbox{[}in\mbox{]} existing problem \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} min\_\-cost to consider for active edges \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} max\_\-cost to consider for active edges \item[{\em new\_\-problem}]\mbox{[}out\mbox{]} new problem to create \end{description}
 \end{Desc}
 
 
-Definition at line 90 of file fun.c.
+Definition at line 93 of file fun.c.
 
-References apply\_\-deep(), apply\_\-shallow(), ARROW\_\-FAILURE, arrow\_\-print\_\-error, arrow\_\-btsp\_\-fun::initialize, arrow\_\-problem::name, arrow\_\-btsp\_\-fun::shallow, arrow\_\-problem::shallow, arrow\_\-problem::size, and arrow\_\-problem::symmetric.
+References apply\_\-deep(), apply\_\-shallow(), ARROW\_\-FAILURE, arrow\_\-print\_\-error, arrow\_\-problem::fixed\_\-edges, arrow\_\-btsp\_\-fun::initialize, arrow\_\-problem::name, arrow\_\-btsp\_\-fun::shallow, arrow\_\-problem::shallow, arrow\_\-problem::size, and arrow\_\-problem::symmetric.
 
-Referenced by feasible().\hypertarget{btsp_8h_a8030d26d0cc61ba064d0baedf766552}{
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-balanced\_\-tsp\_\-lb(), arrow\_\-btsp\_\-feasible(), btsp\_\-bounds(), and main().\hypertarget{btsp_8h_4a7d47740817f02320cc43e1a4aef9ea}{
+\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-fun\_\-asym\_\-shift@{arrow\_\-btsp\_\-fun\_\-asym\_\-shift}}
+\index{arrow\_\-btsp\_\-fun\_\-asym\_\-shift@{arrow\_\-btsp\_\-fun\_\-asym\_\-shift}!btsp.h@{btsp.h}}
+\subsubsection[{arrow\_\-btsp\_\-fun\_\-asym\_\-shift}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-asym\_\-shift (int {\em shallow}, \/  int {\em shift}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{btsp_8h_4a7d47740817f02320cc43e1a4aef9ea}
+
+
+Shifts all costs by given amount; used to remove negative costs. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em shift}]\mbox{[}in\mbox{]} value to shift all costs by \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
+\end{Desc}
+
+
+Definition at line 191 of file fun\_\-btsp.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, btsp\_\-asym\_\-shift\_\-destruct(), btsp\_\-asym\_\-shift\_\-feasible(), btsp\_\-asym\_\-shift\_\-get\_\-cost(), btsp\_\-basic\_\-initialize(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, arrow\_\-btsp\_\-fun::initialize, and arrow\_\-btsp\_\-fun::shallow.
+
+Referenced by main().\hypertarget{btsp_8h_a8030d26d0cc61ba064d0baedf766552}{
 \index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-fun\_\-basic@{arrow\_\-btsp\_\-fun\_\-basic}}
 \index{arrow\_\-btsp\_\-fun\_\-basic@{arrow\_\-btsp\_\-fun\_\-basic}!btsp.h@{btsp.h}}
 \subsubsection[{arrow\_\-btsp\_\-fun\_\-basic}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-basic (int {\em shallow}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
@@ -139,29 +183,9 @@ Basic BTSP to TSP function.
 \end{Desc}
 
 
-Definition at line 105 of file fun\_\-sbtsp.c.
+Definition at line 143 of file fun\_\-btsp.c.
 
-References ARROW\_\-SUCCESS, arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, arrow\_\-btsp\_\-fun::initialize, sbtsp\_\-basic\_\-destruct(), sbtsp\_\-basic\_\-feasible(), sbtsp\_\-basic\_\-get\_\-cost(), sbtsp\_\-basic\_\-initialize(), and arrow\_\-btsp\_\-fun::shallow.
-
-Referenced by main().\hypertarget{btsp_8h_4b7ad8f9778197ef3f6b88ed6abf259a}{
-\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-fun\_\-basic\_\-atsp@{arrow\_\-btsp\_\-fun\_\-basic\_\-atsp}}
-\index{arrow\_\-btsp\_\-fun\_\-basic\_\-atsp@{arrow\_\-btsp\_\-fun\_\-basic\_\-atsp}!btsp.h@{btsp.h}}
-\subsubsection[{arrow\_\-btsp\_\-fun\_\-basic\_\-atsp}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-basic\_\-atsp (int {\em shallow}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
-\label{btsp_8h_4b7ad8f9778197ef3f6b88ed6abf259a}
-
-
-Basic BTSP to TSP function for asymmetric problem instances. 
-
-\begin{Desc}
-\item[Parameters:]
-\begin{description}
-\item[{\em shallow}]\mbox{[}in\mbox{]} ARROW\_\-TRUE for shallow copy, ARROW\_\-FALSE for deep \item[{\em fun}]\mbox{[}out\mbox{]} function structure \end{description}
-\end{Desc}
-
-
-Definition at line 61 of file fun\_\-abtsp.c.
-
-References ARROW\_\-SUCCESS, atsp\_\-basic\_\-destruct(), atsp\_\-basic\_\-feasible(), atsp\_\-basic\_\-get\_\-cost(), atsp\_\-basic\_\-initialize(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, arrow\_\-btsp\_\-fun::initialize, and arrow\_\-btsp\_\-fun::shallow.
+References ARROW\_\-SUCCESS, btsp\_\-basic\_\-destruct(), btsp\_\-basic\_\-feasible(), btsp\_\-basic\_\-get\_\-cost(), btsp\_\-basic\_\-initialize(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, arrow\_\-btsp\_\-fun::initialize, and arrow\_\-btsp\_\-fun::shallow.
 
 Referenced by main().\hypertarget{btsp_8h_ec30be80a8e806be7b889794a305cf0e}{
 \index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic@{arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic}}
@@ -179,7 +203,7 @@ Constrained BTSP to TSP function.
 \end{Desc}
 
 
-Definition at line 128 of file fun\_\-cbtsp.c.
+Definition at line 132 of file fun\_\-cbtsp.c.
 
 References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, cbtsp\_\-basic\_\-destruct(), cbtsp\_\-basic\_\-feasible(), cbtsp\_\-basic\_\-get\_\-cost(), cbtsp\_\-basic\_\-initialize(), arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, cbtsp\_\-basic\_\-data::feasible\_\-length, arrow\_\-btsp\_\-fun::get\_\-cost, cbtsp\_\-basic\_\-data::infinity, arrow\_\-btsp\_\-fun::initialize, and arrow\_\-btsp\_\-fun::shallow.
 
@@ -199,7 +223,7 @@ Constrained \char`\"{}Shake\char`\"{} BTSP to TSP function.
 \end{Desc}
 
 
-Definition at line 152 of file fun\_\-cbtsp.c.
+Definition at line 156 of file fun\_\-cbtsp.c.
 
 References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), cbtsp\_\-shake\_\-destruct(), cbtsp\_\-shake\_\-feasible(), cbtsp\_\-shake\_\-get\_\-cost(), cbtsp\_\-shake\_\-initialize(), arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, cbtsp\_\-shake\_\-data::feasible\_\-length, arrow\_\-btsp\_\-fun::get\_\-cost, cbtsp\_\-shake\_\-data::infinity, cbtsp\_\-shake\_\-data::info, arrow\_\-btsp\_\-fun::initialize, cbtsp\_\-shake\_\-data::random\_\-list, cbtsp\_\-shake\_\-data::random\_\-list\_\-length, cbtsp\_\-shake\_\-data::random\_\-max, cbtsp\_\-shake\_\-data::random\_\-min, and arrow\_\-btsp\_\-fun::shallow.
 
@@ -219,15 +243,15 @@ Destructs a function structure.
 \end{Desc}
 
 
-Definition at line 111 of file fun.c.
+Definition at line 115 of file fun.c.
 
 References arrow\_\-btsp\_\-fun::destruct.
 
-Referenced by arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), and main().\hypertarget{btsp_8h_95aafcfb17030e1aadf79fcc598ce30e}{
-\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1@{arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1}}
-\index{arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1@{arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1}!btsp.h@{btsp.h}}
-\subsubsection[{arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1 (int {\em shallow}, \/  int {\em infinity}, \/  int {\em random\_\-min}, \/  int {\em random\_\-max}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
-\label{btsp_8h_95aafcfb17030e1aadf79fcc598ce30e}
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-balanced\_\-tsp\_\-lb(), arrow\_\-btsp\_\-solve\_\-plan\_\-destruct(), btsp\_\-bounds(), and main().\hypertarget{btsp_8h_b7860037a38eeee9fd7cc089050c5486}{
+\index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-fun\_\-shake\_\-1@{arrow\_\-btsp\_\-fun\_\-shake\_\-1}}
+\index{arrow\_\-btsp\_\-fun\_\-shake\_\-1@{arrow\_\-btsp\_\-fun\_\-shake\_\-1}!btsp.h@{btsp.h}}
+\subsubsection[{arrow\_\-btsp\_\-fun\_\-shake\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-fun\_\-shake\_\-1 (int {\em shallow}, \/  int {\em infinity}, \/  int {\em random\_\-min}, \/  int {\em random\_\-max}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-btsp\_\-fun} $\ast$ {\em fun})}}
+\label{btsp_8h_b7860037a38eeee9fd7cc089050c5486}
 
 
 Controlled Type I Shake. 
@@ -239,9 +263,9 @@ Controlled Type I Shake.
 \end{Desc}
 
 
-Definition at line 117 of file fun\_\-sbtsp.c.
+Definition at line 155 of file fun\_\-btsp.c.
 
-References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, sbtsp\_\-shake\_\-1\_\-data::infinity, sbtsp\_\-shake\_\-1\_\-data::info, arrow\_\-btsp\_\-fun::initialize, sbtsp\_\-shake\_\-1\_\-data::random\_\-list, sbtsp\_\-shake\_\-1\_\-data::random\_\-list\_\-length, sbtsp\_\-shake\_\-1\_\-data::random\_\-max, sbtsp\_\-shake\_\-1\_\-data::random\_\-min, sbtsp\_\-basic\_\-feasible(), sbtsp\_\-shake\_\-1\_\-destruct(), sbtsp\_\-shake\_\-1\_\-get\_\-cost(), sbtsp\_\-shake\_\-1\_\-initialize(), and arrow\_\-btsp\_\-fun::shallow.
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), btsp\_\-basic\_\-feasible(), btsp\_\-shake\_\-1\_\-destruct(), btsp\_\-shake\_\-1\_\-get\_\-cost(), btsp\_\-shake\_\-1\_\-initialize(), arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-fun::data, arrow\_\-btsp\_\-fun::destruct, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-fun::get\_\-cost, btsp\_\-shake\_\-1\_\-data::infinity, btsp\_\-shake\_\-1\_\-data::info, arrow\_\-btsp\_\-fun::initialize, btsp\_\-shake\_\-1\_\-data::random\_\-list, btsp\_\-shake\_\-1\_\-data::random\_\-list\_\-length, btsp\_\-shake\_\-1\_\-data::random\_\-max, btsp\_\-shake\_\-1\_\-data::random\_\-min, and arrow\_\-btsp\_\-fun::shallow.
 
 Referenced by main().\hypertarget{btsp_8h_9ee14515eed23a56303e338258725b7c}{
 \index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-params\_\-init@{arrow\_\-btsp\_\-params\_\-init}}
@@ -279,11 +303,11 @@ Destructs a BTSP result structure.
 \end{Desc}
 
 
-Definition at line 40 of file result.c.
+Definition at line 41 of file result.c.
 
 References arrow\_\-btsp\_\-result::tour.
 
-Referenced by arrow\_\-btsp\_\-solve(), and main().\hypertarget{btsp_8h_b78b71959db64c692a9e16832df9c096}{
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-dt2(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-btsp\_\-solve(), and main().\hypertarget{btsp_8h_b78b71959db64c692a9e16832df9c096}{
 \index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-result\_\-init@{arrow\_\-btsp\_\-result\_\-init}}
 \index{arrow\_\-btsp\_\-result\_\-init@{arrow\_\-btsp\_\-result\_\-init}!btsp.h@{btsp.h}}
 \subsubsection[{arrow\_\-btsp\_\-result\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-btsp\_\-result\_\-init ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em result})}}
@@ -301,9 +325,9 @@ Initializes the BTSP result structure.
 
 Definition at line 16 of file result.c.
 
-References ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-SUCCESS, ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, and arrow\_\-btsp\_\-result::tour\_\-length.
+References ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-SUCCESS, ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-result::max\_\-cost, arrow\_\-btsp\_\-result::min\_\-cost, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, and arrow\_\-btsp\_\-result::tour\_\-length.
 
-Referenced by arrow\_\-btsp\_\-solve(), and main().\hypertarget{btsp_8h_0da381fd362478a3abbfd73cc3df460b}{
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-dt2(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-btsp\_\-solve(), and main().\hypertarget{btsp_8h_0da381fd362478a3abbfd73cc3df460b}{
 \index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-result\_\-print\_\-pretty@{arrow\_\-btsp\_\-result\_\-print\_\-pretty}}
 \index{arrow\_\-btsp\_\-result\_\-print\_\-pretty@{arrow\_\-btsp\_\-result\_\-print\_\-pretty}!btsp.h@{btsp.h}}
 \subsubsection[{arrow\_\-btsp\_\-result\_\-print\_\-pretty}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-result\_\-print\_\-pretty ({\bf arrow\_\-btsp\_\-result} $\ast$ {\em result}, \/  FILE $\ast$ {\em out})}}
@@ -319,9 +343,9 @@ Prints results out.
 \end{Desc}
 
 
-Definition at line 95 of file result.c.
+Definition at line 98 of file result.c.
 
-References ARROW\_\-TRUE, arrow\_\-tsp\_\-long\_\-name(), ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-btsp\_\-result::optimal, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-result::total\_\-time, and arrow\_\-btsp\_\-result::tour\_\-length.
+References ARROW\_\-TRUE, arrow\_\-tsp\_\-long\_\-name(), ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-result::max\_\-cost, arrow\_\-btsp\_\-result::min\_\-cost, arrow\_\-btsp\_\-result::optimal, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-result::total\_\-time, and arrow\_\-btsp\_\-result::tour\_\-length.
 
 Referenced by main().\hypertarget{btsp_8h_102ec7a76adc418a3381c3234a5f0207}{
 \index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-result\_\-print\_\-xml@{arrow\_\-btsp\_\-result\_\-print\_\-xml}}
@@ -339,9 +363,9 @@ Prints results out in XML format.
 \end{Desc}
 
 
-Definition at line 47 of file result.c.
+Definition at line 48 of file result.c.
 
-References arrow\_\-tsp\_\-short\_\-name(), ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-xml\_\-attribute\_\-end(), arrow\_\-xml\_\-attribute\_\-int(), arrow\_\-xml\_\-attribute\_\-start(), arrow\_\-xml\_\-element\_\-bool(), arrow\_\-xml\_\-element\_\-close(), arrow\_\-xml\_\-element\_\-double(), arrow\_\-xml\_\-element\_\-end(), arrow\_\-xml\_\-element\_\-int(), arrow\_\-xml\_\-element\_\-open(), arrow\_\-xml\_\-element\_\-start(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-btsp\_\-result::optimal, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-result::total\_\-time, and arrow\_\-btsp\_\-result::tour\_\-length.
+References arrow\_\-tsp\_\-short\_\-name(), ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-xml\_\-attribute\_\-end(), arrow\_\-xml\_\-attribute\_\-int(), arrow\_\-xml\_\-attribute\_\-start(), arrow\_\-xml\_\-element\_\-bool(), arrow\_\-xml\_\-element\_\-close(), arrow\_\-xml\_\-element\_\-double(), arrow\_\-xml\_\-element\_\-end(), arrow\_\-xml\_\-element\_\-int(), arrow\_\-xml\_\-element\_\-open(), arrow\_\-xml\_\-element\_\-start(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-result::max\_\-cost, arrow\_\-btsp\_\-result::min\_\-cost, arrow\_\-btsp\_\-result::optimal, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-result::total\_\-time, and arrow\_\-btsp\_\-result::tour\_\-length.
 
 Referenced by main().\hypertarget{btsp_8h_3c6427a5ad0c0f5157d2c1a903f823c4}{
 \index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-solve@{arrow\_\-btsp\_\-solve}}
@@ -359,11 +383,11 @@ Solves TSP with Concorde's exact solver.
 \end{Desc}
 
 
-Definition at line 34 of file btsp.c.
+Definition at line 16 of file btsp.c.
 
-References arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-SUCCESS, ARROW\_\-TRUE, ARROW\_\-TSP\_\-CC\_\-EXACT, ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-zeit(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-params::confirm\_\-plan, arrow\_\-btsp\_\-params::confirm\_\-sol, arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, feasible(), arrow\_\-btsp\_\-params::find\_\-short\_\-tour, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-params::lower\_\-bound, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-btsp\_\-result::optimal, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-params::steps, arrow\_\-btsp\_\-params::supress\_\-ebst, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, arrow\_\-btsp\_\-result::tour\_\-length, upper\_\-bound, and arrow\_\-btsp\_\-params::upper\_\-bound.
+References arrow\_\-btsp\_\-feasible(), arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-SUCCESS, ARROW\_\-TRUE, ARROW\_\-TSP\_\-CC\_\-EXACT, ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-zeit(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-params::confirm\_\-plan, arrow\_\-btsp\_\-params::confirm\_\-sol, arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-params::lower\_\-bound, arrow\_\-btsp\_\-result::max\_\-cost, arrow\_\-btsp\_\-result::min\_\-cost, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-btsp\_\-result::optimal, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-params::steps, arrow\_\-btsp\_\-params::supress\_\-ebst, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, arrow\_\-btsp\_\-result::tour\_\-length, arrow\_\-btsp\_\-params::upper\_\-bound, and upper\_\-bound.
 
-Referenced by main().\hypertarget{btsp_8h_e1d667017d467f926e8371a0823d9d7a}{
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), and main().\hypertarget{btsp_8h_e1d667017d467f926e8371a0823d9d7a}{
 \index{btsp.h@{btsp.h}!arrow\_\-btsp\_\-solve\_\-plan\_\-destruct@{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct}}
 \index{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct@{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct}!btsp.h@{btsp.h}}
 \subsubsection[{arrow\_\-btsp\_\-solve\_\-plan\_\-destruct}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-btsp\_\-solve\_\-plan\_\-destruct ({\bf arrow\_\-btsp\_\-solve\_\-plan} $\ast$ {\em plan})}}

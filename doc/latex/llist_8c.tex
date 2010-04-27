@@ -67,7 +67,7 @@ Definition at line 31 of file llist.c.
 
 References arrow\_\-llist\_\-remove\_\-head(), and arrow\_\-llist::size.
 
-Referenced by arrow\_\-tsp\_\-rai\_\-solve(), and improve\_\-tour().\hypertarget{llist_8c_cc0b379b2e15aa13462bf1e7675e8cf4}{
+Referenced by arrow\_\-tsp\_\-rai\_\-solve(), destruct\_\-tiers(), and improve\_\-tour().\hypertarget{llist_8c_cc0b379b2e15aa13462bf1e7675e8cf4}{
 \index{llist.c@{llist.c}!arrow\_\-llist\_\-init@{arrow\_\-llist\_\-init}}
 \index{arrow\_\-llist\_\-init@{arrow\_\-llist\_\-init}!llist.c@{llist.c}}
 \subsubsection[{arrow\_\-llist\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-init ({\bf arrow\_\-llist} $\ast$ {\em list})}}
@@ -87,7 +87,7 @@ Definition at line 23 of file llist.c.
 
 References arrow\_\-llist::head, arrow\_\-llist::size, and arrow\_\-llist::tail.
 
-Referenced by arrow\_\-tsp\_\-rai\_\-solve().\hypertarget{llist_8c_7c348a8af5422f6f4d1f6ded30677a70}{
+Referenced by arrow\_\-tsp\_\-rai\_\-solve(), and init\_\-tiers().\hypertarget{llist_8c_7c348a8af5422f6f4d1f6ded30677a70}{
 \index{llist.c@{llist.c}!arrow\_\-llist\_\-insert\_\-after@{arrow\_\-llist\_\-insert\_\-after}}
 \index{arrow\_\-llist\_\-insert\_\-after@{arrow\_\-llist\_\-insert\_\-after}!llist.c@{llist.c}}
 \subsubsection[{arrow\_\-llist\_\-insert\_\-after}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-llist\_\-insert\_\-after ({\bf arrow\_\-llist} $\ast$ {\em list}, \/  {\bf arrow\_\-llist\_\-item} $\ast$ {\em item}, \/  int {\em value})}}
@@ -145,7 +145,7 @@ Definition at line 78 of file llist.c.
 
 References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, construct\_\-item(), arrow\_\-llist::head, arrow\_\-llist\_\-item::next, arrow\_\-llist::size, and arrow\_\-llist::tail.
 
-Referenced by arrow\_\-llist\_\-insert\_\-after(), arrow\_\-tsp\_\-rai\_\-solve(), construct\_\-tour(), and improve\_\-tour().\hypertarget{llist_8c_9c558d27574d24be9dd6688dd4e8543d}{
+Referenced by arrow\_\-llist\_\-insert\_\-after(), arrow\_\-tsp\_\-rai\_\-solve(), construct\_\-tour(), fill\_\-tiers(), and improve\_\-tour().\hypertarget{llist_8c_9c558d27574d24be9dd6688dd4e8543d}{
 \index{llist.c@{llist.c}!arrow\_\-llist\_\-print@{arrow\_\-llist\_\-print}}
 \index{arrow\_\-llist\_\-print@{arrow\_\-llist\_\-print}!llist.c@{llist.c}}
 \subsubsection[{arrow\_\-llist\_\-print}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-print ({\bf arrow\_\-llist} $\ast$ {\em list})}}
@@ -201,7 +201,7 @@ Definition at line 128 of file llist.c.
 
 References arrow\_\-llist\_\-item::data, arrow\_\-llist::head, arrow\_\-llist\_\-item::next, arrow\_\-llist::size, and arrow\_\-llist::tail.
 
-Referenced by arrow\_\-llist\_\-destruct(), arrow\_\-llist\_\-remove\_\-after(), and arrow\_\-llist\_\-remove\_\-tail().\hypertarget{llist_8c_696e0c9f6adf3ab86287d50b84c471ce}{
+Referenced by arrow\_\-llist\_\-destruct(), arrow\_\-llist\_\-remove\_\-after(), arrow\_\-llist\_\-remove\_\-tail(), and find\_\-cost\_\-order().\hypertarget{llist_8c_696e0c9f6adf3ab86287d50b84c471ce}{
 \index{llist.c@{llist.c}!arrow\_\-llist\_\-remove\_\-tail@{arrow\_\-llist\_\-remove\_\-tail}}
 \index{arrow\_\-llist\_\-remove\_\-tail@{arrow\_\-llist\_\-remove\_\-tail}!llist.c@{llist.c}}
 \subsubsection[{arrow\_\-llist\_\-remove\_\-tail}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-remove\_\-tail ({\bf arrow\_\-llist} $\ast$ {\em list}, \/  int $\ast$ {\em value})}}

@@ -10,8 +10,6 @@ Bottleneck traveling salesman problem (BTSP) methods.
 \subsection*{Functions}
 \begin{CompactItemize}
 \item 
-int \hyperlink{lib_2btsp_2btsp_8c_7417d20bd67ed51ca272f145bf26b109}{feasible} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int num\_\-steps, \hyperlink{structarrow__btsp__solve__plan}{arrow\_\-btsp\_\-solve\_\-plan} $\ast$steps, int delta, int $\ast$feasible, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result)
-\begin{CompactList}\small\item\em Solves the feasibility problem which attempts to determine if there is a Hamiltonian cycle using costs $<$= delta. \item\end{CompactList}\item 
 int \hyperlink{lib_2btsp_2btsp_8c_3c6427a5ad0c0f5157d2c1a903f823c4}{arrow\_\-btsp\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__btsp__params}{arrow\_\-btsp\_\-params} $\ast$params, \hyperlink{structarrow__btsp__result}{arrow\_\-btsp\_\-result} $\ast$result)
 \begin{CompactList}\small\item\em Solves TSP with Concorde's exact solver. \item\end{CompactList}\end{CompactItemize}
 
@@ -44,30 +42,8 @@ Solves TSP with Concorde's exact solver.
 \end{Desc}
 
 
-Definition at line 34 of file btsp.c.
+Definition at line 16 of file btsp.c.
 
-References arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-SUCCESS, ARROW\_\-TRUE, ARROW\_\-TSP\_\-CC\_\-EXACT, ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-zeit(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-params::confirm\_\-plan, arrow\_\-btsp\_\-params::confirm\_\-sol, arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, feasible(), arrow\_\-btsp\_\-params::find\_\-short\_\-tour, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-params::lower\_\-bound, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-btsp\_\-result::optimal, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-params::steps, arrow\_\-btsp\_\-params::supress\_\-ebst, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, arrow\_\-btsp\_\-result::tour\_\-length, upper\_\-bound, and arrow\_\-btsp\_\-params::upper\_\-bound.
+References arrow\_\-btsp\_\-feasible(), arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-SUCCESS, ARROW\_\-TRUE, ARROW\_\-TSP\_\-CC\_\-EXACT, ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-zeit(), arrow\_\-btsp\_\-result::bin\_\-search\_\-steps, arrow\_\-btsp\_\-params::confirm\_\-plan, arrow\_\-btsp\_\-params::confirm\_\-sol, arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-params::lower\_\-bound, arrow\_\-btsp\_\-result::max\_\-cost, arrow\_\-btsp\_\-result::min\_\-cost, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-btsp\_\-result::optimal, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-btsp\_\-params::steps, arrow\_\-btsp\_\-params::supress\_\-ebst, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, arrow\_\-btsp\_\-result::tour\_\-length, arrow\_\-btsp\_\-params::upper\_\-bound, and upper\_\-bound.
 
-Referenced by main().\hypertarget{lib_2btsp_2btsp_8c_7417d20bd67ed51ca272f145bf26b109}{
-\index{lib/btsp/btsp.c@{lib/btsp/btsp.c}!feasible@{feasible}}
-\index{feasible@{feasible}!lib/btsp/btsp.c@{lib/btsp/btsp.c}}
-\subsubsection[{feasible}]{\setlength{\rightskip}{0pt plus 5cm}int feasible ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em num\_\-steps}, \/  {\bf arrow\_\-btsp\_\-solve\_\-plan} $\ast$ {\em steps}, \/  int {\em delta}, \/  int $\ast$ {\em feasible}, \/  {\bf arrow\_\-btsp\_\-result} $\ast$ {\em result})}}
-\label{lib_2btsp_2btsp_8c_7417d20bd67ed51ca272f145bf26b109}
-
-
-Solves the feasibility problem which attempts to determine if there is a Hamiltonian cycle using costs $<$= delta. 
-
-\begin{Desc}
-\item[Parameters:]
-\begin{description}
-\item[{\em problem}]\mbox{[}in\mbox{]} problem to solve \item[{\em num\_\-steps}]\mbox{[}in\mbox{]} total number of steps in solve plan \item[{\em steps}]\mbox{[}in\mbox{]} solve plan step details \item[{\em delta}]\mbox{[}in\mbox{]} delta parameter for feasibility problem. \item[{\em feasible}]\mbox{[}out\mbox{]} true if a feasible tour exists, false otherwise \item[{\em result}]\mbox{[}out\mbox{]} resulting BTSP tour found \end{description}
-\end{Desc}
-
-
-TODO: Find a better way of doing this upper bound update 
-
-Definition at line 257 of file btsp.c.
-
-References arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-debug, ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-problem\_\-destruct(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-tsp\_\-result\_\-destruct(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-tsp\_\-solve(), ARROW\_\-TSP\_\-SOLVER\_\-COUNT, arrow\_\-btsp\_\-solve\_\-plan::attempts, arrow\_\-btsp\_\-fun::feasible, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-btsp\_\-solve\_\-plan::fun, arrow\_\-problem::get\_\-cost, arrow\_\-tsp\_\-result::obj\_\-value, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-problem::size, arrow\_\-btsp\_\-result::solver\_\-attempts, arrow\_\-btsp\_\-result::solver\_\-time, arrow\_\-tsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, arrow\_\-tsp\_\-result::tour, arrow\_\-btsp\_\-result::tour\_\-length, arrow\_\-btsp\_\-solve\_\-plan::tsp\_\-params, and arrow\_\-btsp\_\-solve\_\-plan::tsp\_\-solver.
-
-Referenced by arrow\_\-btsp\_\-solve().
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), and main().

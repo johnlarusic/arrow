@@ -68,7 +68,7 @@ int \hyperlink{cbtsp_8c_d9059bc845096b2f05414a66c836b4ee}{random\_\-seed} = 0
 \item 
 char $\ast$ \hyperlink{cbtsp_8c_3aad16fd4bea1b9717f232ea75ad6449}{desc} = \char`\"{}Constarined bottleneck TSP solver\char`\"{}
 \item 
-char $\ast$ \hyperlink{cbtsp_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage} = \char`\"{}-i tsplib.tsp -L \hyperlink{bin_2cbst_8c_0c7f495d279d6f237d38be875e03f593}{max\_\-length} \mbox{[}\hyperlink{subprob_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{]}\char`\"{}
+char $\ast$ \hyperlink{cbtsp_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage} = \char`\"{}-i tsplib.tsp -L \hyperlink{bin_2cbst_8c_0c7f495d279d6f237d38be875e03f593}{max\_\-length} \mbox{[}\hyperlink{tourinfo_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{]}\char`\"{}
 \end{CompactItemize}
 
 
@@ -114,7 +114,7 @@ Definition at line 38 of file cbtsp.c.\hypertarget{cbtsp_8c_ceebcce8f411269df7b9
 
 Definition at line 93 of file cbtsp.c.
 
-References arrow\_\-bbssp\_\-solve(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-destruct(), arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-result\_\-print\_\-xml(), arrow\_\-btsp\_\-solve(), ARROW\_\-FAILURE, arrow\_\-options\_\-parse(), arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read(), ARROW\_\-TSP\_\-CC\_\-EXACT, ARROW\_\-TSP\_\-CC\_\-LK, arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct(), arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init(), arrow\_\-util\_\-print\_\-program\_\-args(), arrow\_\-util\_\-random\_\-seed(), arrow\_\-util\_\-write\_\-tour(), arrow\_\-util\_\-zeit(), basic\_\-attempts, arrow\_\-btsp\_\-params::confirm\_\-plan, confirm\_\-sol, arrow\_\-btsp\_\-params::confirm\_\-sol, arrow\_\-problem\_\-info::cost\_\-list\_\-length, deep\_\-copy, desc, edge\_\-infinity, find\_\-short\_\-tour, arrow\_\-btsp\_\-params::find\_\-short\_\-tour, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-problem::get\_\-cost, input\_\-file, arrow\_\-tsp\_\-cc\_\-lk\_\-params::kicks, kicks, length, arrow\_\-tsp\_\-cc\_\-lk\_\-params::length\_\-bound, arrow\_\-btsp\_\-params::lower\_\-bound, lower\_\-bound, arrow\_\-problem\_\-info::max\_\-cost, NUM\_\-OPTS, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-tsp\_\-cc\_\-lk\_\-params::random\_\-restarts, random\_\-restarts, random\_\-seed, shake\_\-attempts, shake\_\-rand\_\-max, shake\_\-rand\_\-min, arrow\_\-problem::size, SOLVE\_\-STEPS, arrow\_\-tsp\_\-cc\_\-lk\_\-params::stall\_\-count, stall\_\-count, arrow\_\-btsp\_\-params::steps, supress\_\-ebst, arrow\_\-btsp\_\-params::supress\_\-ebst, supress\_\-hash, arrow\_\-bound\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, tour\_\-file, arrow\_\-btsp\_\-result::tour\_\-length, upper\_\-bound, arrow\_\-btsp\_\-params::upper\_\-bound, usage, and xml\_\-file.
+References arrow\_\-bbssp\_\-solve(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-destruct(), arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-result\_\-print\_\-xml(), arrow\_\-btsp\_\-solve(), ARROW\_\-FAILURE, arrow\_\-options\_\-parse(), arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read(), ARROW\_\-TSP\_\-CC\_\-EXACT, ARROW\_\-TSP\_\-CC\_\-LK, arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-destruct(), arrow\_\-tsp\_\-cc\_\-lk\_\-params\_\-init(), arrow\_\-util\_\-print\_\-program\_\-args(), arrow\_\-util\_\-random\_\-seed(), arrow\_\-util\_\-write\_\-tour(), arrow\_\-util\_\-zeit(), basic\_\-attempts, arrow\_\-btsp\_\-params::confirm\_\-plan, confirm\_\-sol, arrow\_\-btsp\_\-params::confirm\_\-sol, arrow\_\-problem\_\-info::cost\_\-list\_\-length, deep\_\-copy, desc, edge\_\-infinity, find\_\-short\_\-tour, arrow\_\-btsp\_\-params::find\_\-short\_\-tour, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-problem::get\_\-cost, input\_\-file, arrow\_\-tsp\_\-cc\_\-lk\_\-params::kicks, kicks, length, arrow\_\-tsp\_\-cc\_\-lk\_\-params::length\_\-bound, arrow\_\-btsp\_\-params::lower\_\-bound, lower\_\-bound, arrow\_\-btsp\_\-result::max\_\-cost, arrow\_\-problem\_\-info::max\_\-cost, NUM\_\-OPTS, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-tsp\_\-cc\_\-lk\_\-params::random\_\-restarts, random\_\-restarts, random\_\-seed, shake\_\-attempts, shake\_\-rand\_\-max, shake\_\-rand\_\-min, arrow\_\-problem::size, SOLVE\_\-STEPS, arrow\_\-tsp\_\-cc\_\-lk\_\-params::stall\_\-count, stall\_\-count, arrow\_\-btsp\_\-params::steps, supress\_\-ebst, arrow\_\-btsp\_\-params::supress\_\-ebst, supress\_\-hash, arrow\_\-bound\_\-result::total\_\-time, arrow\_\-btsp\_\-result::tour, tour\_\-file, arrow\_\-btsp\_\-result::tour\_\-length, upper\_\-bound, arrow\_\-btsp\_\-params::upper\_\-bound, usage, and xml\_\-file.
 
 \subsection{Variable Documentation}
 \hypertarget{cbtsp_8c_227b7ec968925f365b96a92ace419c56}{
@@ -245,9 +245,7 @@ Definition at line 34 of file cbtsp.c.\hypertarget{cbtsp_8c_a4451667ac0b07bcf839
 
 
 
-Definition at line 31 of file cbtsp.c.
-
-Referenced by main().\hypertarget{cbtsp_8c_bcacd5fab89a9f3eaab5401c5001b4c5}{
+Definition at line 31 of file cbtsp.c.\hypertarget{cbtsp_8c_bcacd5fab89a9f3eaab5401c5001b4c5}{
 \index{cbtsp.c@{cbtsp.c}!shake\_\-rand\_\-max@{shake\_\-rand\_\-max}}
 \index{shake\_\-rand\_\-max@{shake\_\-rand\_\-max}!cbtsp.c@{cbtsp.c}}
 \subsubsection[{shake\_\-rand\_\-max}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf shake\_\-rand\_\-max} = -1}}
@@ -256,9 +254,7 @@ Referenced by main().\hypertarget{cbtsp_8c_bcacd5fab89a9f3eaab5401c5001b4c5}{
 
 
 
-Definition at line 33 of file cbtsp.c.
-
-Referenced by main().\hypertarget{cbtsp_8c_b7fc57ece1162e77f74b4803961b72cb}{
+Definition at line 33 of file cbtsp.c.\hypertarget{cbtsp_8c_b7fc57ece1162e77f74b4803961b72cb}{
 \index{cbtsp.c@{cbtsp.c}!shake\_\-rand\_\-min@{shake\_\-rand\_\-min}}
 \index{shake\_\-rand\_\-min@{shake\_\-rand\_\-min}!cbtsp.c@{cbtsp.c}}
 \subsubsection[{shake\_\-rand\_\-min}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf shake\_\-rand\_\-min} = 0}}
@@ -267,9 +263,7 @@ Referenced by main().\hypertarget{cbtsp_8c_b7fc57ece1162e77f74b4803961b72cb}{
 
 
 
-Definition at line 32 of file cbtsp.c.
-
-Referenced by main().\hypertarget{cbtsp_8c_a1641a28cf3ea572a56763e84518c17b}{
+Definition at line 32 of file cbtsp.c.\hypertarget{cbtsp_8c_a1641a28cf3ea572a56763e84518c17b}{
 \index{cbtsp.c@{cbtsp.c}!stall\_\-count@{stall\_\-count}}
 \index{stall\_\-count@{stall\_\-count}!cbtsp.c@{cbtsp.c}}
 \subsubsection[{stall\_\-count}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf stall\_\-count} = -1}}

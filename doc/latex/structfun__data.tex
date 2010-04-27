@@ -16,7 +16,9 @@ Collaboration diagram for fun\_\-data:\nopagebreak
 \item 
 \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$ \hyperlink{structfun__data_8975a7eed7c3a3fa00f7a15c54e1c80b}{base\_\-problem}
 \item 
-int \hyperlink{structfun__data_1d0479ab1ce43aa65ba7cac44874d414}{delta}
+int \hyperlink{structfun__data_7e1ccad6deed6f629864205a7c25794c}{min\_\-cost}
+\item 
+int \hyperlink{structfun__data_f149f55b8d22a020fcebd8f55325d1e5}{max\_\-cost}
 \end{CompactItemize}
 
 
@@ -37,17 +39,6 @@ base problem for function
 
 Definition at line 19 of file fun.c.
 
-Referenced by apply\_\-shallow(), and fun\_\-get\_\-cost().\hypertarget{structfun__data_1d0479ab1ce43aa65ba7cac44874d414}{
-\index{fun\_\-data@{fun\_\-data}!delta@{delta}}
-\index{delta@{delta}!fun_data@{fun\_\-data}}
-\subsubsection[{delta}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf fun\_\-data::delta}}}
-\label{structfun__data_1d0479ab1ce43aa65ba7cac44874d414}
-
-
-delta parameter 
-
-Definition at line 20 of file fun.c.
-
 Referenced by apply\_\-shallow(), and fun\_\-get\_\-cost().\hypertarget{structfun__data_a4103cadf3d844dc528d9e02884cfc98}{
 \index{fun\_\-data@{fun\_\-data}!fun@{fun}}
 \index{fun@{fun}!fun_data@{fun\_\-data}}
@@ -58,6 +49,28 @@ Referenced by apply\_\-shallow(), and fun\_\-get\_\-cost().\hypertarget{structfu
 cost matrix function 
 
 Definition at line 18 of file fun.c.
+
+Referenced by apply\_\-shallow(), and fun\_\-get\_\-cost().\hypertarget{structfun__data_f149f55b8d22a020fcebd8f55325d1e5}{
+\index{fun\_\-data@{fun\_\-data}!max\_\-cost@{max\_\-cost}}
+\index{max\_\-cost@{max\_\-cost}!fun_data@{fun\_\-data}}
+\subsubsection[{max\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf fun\_\-data::max\_\-cost}}}
+\label{structfun__data_f149f55b8d22a020fcebd8f55325d1e5}
+
+
+max cost to consider for active edges 
+
+Definition at line 21 of file fun.c.
+
+Referenced by apply\_\-shallow(), and fun\_\-get\_\-cost().\hypertarget{structfun__data_7e1ccad6deed6f629864205a7c25794c}{
+\index{fun\_\-data@{fun\_\-data}!min\_\-cost@{min\_\-cost}}
+\index{min\_\-cost@{min\_\-cost}!fun_data@{fun\_\-data}}
+\subsubsection[{min\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf fun\_\-data::min\_\-cost}}}
+\label{structfun__data_7e1ccad6deed6f629864205a7c25794c}
+
+
+min cost to consider for active edges 
+
+Definition at line 20 of file fun.c.
 
 Referenced by apply\_\-shallow(), and fun\_\-get\_\-cost().
 

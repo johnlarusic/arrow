@@ -14,9 +14,9 @@ int \hyperlink{lib_2lb_2cbap_8c_c9529085f74a03a541bdbb1c1202be70}{init\_\-data} 
 \item 
 void \hyperlink{lib_2lb_2cbap_8c_49170e8eae9b6170375a6e3c8fa0c3e6}{destruct\_\-data} (int $\ast$$\ast$x, int $\ast$$\ast$y, int $\ast$$\ast$pi, int $\ast$$\ast$d, int $\ast$$\ast$pred, int $\ast$$\ast$label, \hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
 \item 
-double \hyperlink{lib_2lb_2cbap_8c_99c7a8b71e6063f6bdc57a0adb920bd2}{lap} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int delta, int $\ast$x, int $\ast$y, int $\ast$pi, int $\ast$d, int $\ast$pred, int $\ast$label, \hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
+double \hyperlink{lib_2lb_2cbap_8c_99c7a8b71e6063f6bdc57a0adb920bd2}{lap} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int \hyperlink{delta-print_8c_1dfcb70b9229f2da17dd5922b87ecf2c}{delta}, int $\ast$x, int $\ast$y, int $\ast$pi, int $\ast$d, int $\ast$pred, int $\ast$label, \hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
 \item 
-void \hyperlink{lib_2lb_2cbap_8c_b086dfbdeea8fc31342b66704b7e0259}{dijkstra} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int delta, int $\ast$x, int $\ast$y, int $\ast$pi, int s, int $\ast$t, int $\ast$d, int $\ast$pred, int $\ast$label, \hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
+void \hyperlink{lib_2lb_2cbap_8c_b086dfbdeea8fc31342b66704b7e0259}{dijkstra} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int \hyperlink{delta-print_8c_1dfcb70b9229f2da17dd5922b87ecf2c}{delta}, int $\ast$x, int $\ast$y, int $\ast$pi, int s, int $\ast$t, int $\ast$d, int $\ast$pred, int $\ast$label, \hyperlink{structarrow__heap}{arrow\_\-heap} $\ast$heap)
 \item 
 void \hyperlink{lib_2lb_2cbap_8c_1ca0b562a9c0fb4ef4a3c82605690e90}{augment} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int s, int t, int $\ast$pred, int $\ast$x, int $\ast$y)
 \item 
@@ -78,7 +78,7 @@ Solves the constrained bottleneck assignment problem (CBAP).
 
 Definition at line 51 of file cbap.c.
 
-References arrow\_\-debug, ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-zeit(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, destruct\_\-data(), arrow\_\-problem::get\_\-cost, init\_\-data(), lap(), length, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, and arrow\_\-bound\_\-result::total\_\-time.
+References arrow\_\-debug, ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-zeit(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, delta, destruct\_\-data(), arrow\_\-problem::get\_\-cost, init\_\-data(), lap(), length, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::size, and arrow\_\-bound\_\-result::total\_\-time.
 
 Referenced by main().\hypertarget{lib_2lb_2cbap_8c_1ca0b562a9c0fb4ef4a3c82605690e90}{
 \index{lib/lb/cbap.c@{lib/lb/cbap.c}!augment@{augment}}

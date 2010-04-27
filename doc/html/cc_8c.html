@@ -105,7 +105,7 @@ Creates a copy of the user data.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="cc_8c-source.html#l00361">361</a> of file <a class="el" href="cc_8c-source.html">cc.c</a>.</p>
+<p>Definition at line <a class="el" href="cc_8c-source.html#l00366">366</a> of file <a class="el" href="cc_8c-source.html">cc.c</a>.</p>
 
 <p>Referenced by <a class="el" href="cc_8c-source.html#l00062">arrow_tsp_cc_exact_solve()</a>, and <a class="el" href="cc_8c-source.html#l00118">arrow_tsp_cc_lk_solve()</a>.</p>
 
@@ -153,7 +153,7 @@ Concorde edge length function for Arrow problem strutures.
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="cc_8c-source.html#l00354">354</a> of file <a class="el" href="cc_8c-source.html">cc.c</a>.</p>
+<p>Definition at line <a class="el" href="cc_8c-source.html#l00359">359</a> of file <a class="el" href="cc_8c-source.html">cc.c</a>.</p>
 
 <p>References <a class="el" href="structarrow__problem.html#4f1f4c9ef90f240b248e8f39360da769">arrow_problem::get_cost</a>.</p>
 
@@ -205,7 +205,7 @@ Solves TSP with Concorde's exact solver.
 
 <p>Definition at line <a class="el" href="cc_8c-source.html#l00062">62</a> of file <a class="el" href="cc_8c-source.html">cc.c</a>.</p>
 
-<p>References <a class="el" href="cc_8c-source.html#l00361">arrow_copy()</a>, <a class="el" href="common_8h-source.html#l00038">arrow_debug</a>, <a class="el" href="cc_8c-source.html#l00354">arrow_edgelen()</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00065">ARROW_PROBLEM_DATA_CONCORDE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="common_8h-source.html#l00439">arrow_problem::data</a>, <a class="el" href="tsp_8h-source.html#l00057">arrow_tsp_result::found_tour</a>, <a class="el" href="common_8h-source.html#l00438">arrow_problem::name</a>, <a class="el" href="tsp_8h-source.html#l00058">arrow_tsp_result::obj_value</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, <a class="el" href="tsp_8h-source.html#l00060">arrow_tsp_result::total_time</a>, <a class="el" href="tsp_8h-source.html#l00059">arrow_tsp_result::tour</a>, and <a class="el" href="common_8h-source.html#l00435">arrow_problem::type</a>.</p>
+<p>References <a class="el" href="cc_8c-source.html#l00366">arrow_copy()</a>, <a class="el" href="common_8h-source.html#l00038">arrow_debug</a>, <a class="el" href="cc_8c-source.html#l00359">arrow_edgelen()</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00065">ARROW_PROBLEM_DATA_CONCORDE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="common_8h-source.html#l00441">arrow_problem::data</a>, <a class="el" href="tsp_8h-source.html#l00057">arrow_tsp_result::found_tour</a>, <a class="el" href="common_8h-source.html#l00440">arrow_problem::name</a>, <a class="el" href="tsp_8h-source.html#l00058">arrow_tsp_result::obj_value</a>, <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>, <a class="el" href="tsp_8h-source.html#l00060">arrow_tsp_result::total_time</a>, <a class="el" href="tsp_8h-source.html#l00059">arrow_tsp_result::tour</a>, and <a class="el" href="common_8h-source.html#l00436">arrow_problem::type</a>.</p>
 
 <p>Referenced by <a class="el" href="lib_2tsp_2tsp_8c-source.html#l00020">arrow_tsp_solve()</a>, and <a class="el" href="bin_2tsp_8c-source.html#l00046">main()</a>.</p>
 
@@ -240,7 +240,7 @@ Destructs a LK parameters structure.
 
 <p>References <a class="el" href="tsp_8h-source.html#l00040">arrow_tsp_cc_lk_params::initial_tour</a>.</p>
 
-<p>Referenced by <a class="el" href="solve__plan_8c-source.html#l00022">arrow_btsp_solve_plan_destruct()</a>, <a class="el" href="cc_8c-source.html#l00118">arrow_tsp_cc_lk_solve()</a>, and <a class="el" href="abtsp_8c-source.html#l00074">main()</a>.</p>
+<p>Referenced by <a class="el" href="solve__plan_8c-source.html#l00022">arrow_btsp_solve_plan_destruct()</a>, <a class="el" href="cc_8c-source.html#l00118">arrow_tsp_cc_lk_solve()</a>, and <a class="el" href="bin_2baltsp-db_8c-source.html#l00087">main()</a>.</p>
 
 </div>
 </div><p>
@@ -283,9 +283,9 @@ Sets default parameters for Lin-Kernighan heuristic:<ul>
 
 <p>Definition at line <a class="el" href="cc_8c-source.html#l00042">42</a> of file <a class="el" href="cc_8c-source.html">cc.c</a>.</p>
 
-<p>References <a class="el" href="tsp_8h-source.html#l00040">arrow_tsp_cc_lk_params::initial_tour</a>, <a class="el" href="tsp_8h-source.html#l00033">arrow_tsp_cc_lk_params::kick_type</a>, <a class="el" href="tsp_8h-source.html#l00032">arrow_tsp_cc_lk_params::kicks</a>, <a class="el" href="tsp_8h-source.html#l00038">arrow_tsp_cc_lk_params::length_bound</a>, <a class="el" href="tsp_8h-source.html#l00029">arrow_tsp_cc_lk_params::random_restarts</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, <a class="el" href="tsp_8h-source.html#l00030">arrow_tsp_cc_lk_params::stall_count</a>, and <a class="el" href="tsp_8h-source.html#l00036">arrow_tsp_cc_lk_params::time_bound</a>.</p>
+<p>References <a class="el" href="tsp_8h-source.html#l00040">arrow_tsp_cc_lk_params::initial_tour</a>, <a class="el" href="tsp_8h-source.html#l00033">arrow_tsp_cc_lk_params::kick_type</a>, <a class="el" href="tsp_8h-source.html#l00032">arrow_tsp_cc_lk_params::kicks</a>, <a class="el" href="tsp_8h-source.html#l00038">arrow_tsp_cc_lk_params::length_bound</a>, <a class="el" href="tsp_8h-source.html#l00029">arrow_tsp_cc_lk_params::random_restarts</a>, <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>, <a class="el" href="tsp_8h-source.html#l00030">arrow_tsp_cc_lk_params::stall_count</a>, and <a class="el" href="tsp_8h-source.html#l00036">arrow_tsp_cc_lk_params::time_bound</a>.</p>
 
-<p>Referenced by <a class="el" href="cc_8c-source.html#l00118">arrow_tsp_cc_lk_solve()</a>, and <a class="el" href="abtsp_8c-source.html#l00074">main()</a>.</p>
+<p>Referenced by <a class="el" href="cc_8c-source.html#l00118">arrow_tsp_cc_lk_solve()</a>, and <a class="el" href="bin_2baltsp-db_8c-source.html#l00087">main()</a>.</p>
 
 </div>
 </div><p>
@@ -333,7 +333,7 @@ Solves TSP with Concorde's Lin-Kernighan heuristic.
 
 <p>Definition at line <a class="el" href="cc_8c-source.html#l00118">118</a> of file <a class="el" href="cc_8c-source.html">cc.c</a>.</p>
 
-<p>References <a class="el" href="cc_8c-source.html#l00361">arrow_copy()</a>, <a class="el" href="common_8h-source.html#l00038">arrow_debug</a>, <a class="el" href="cc_8c-source.html#l00354">arrow_edgelen()</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00065">ARROW_PROBLEM_DATA_CONCORDE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="cc_8c-source.html#l00055">arrow_tsp_cc_lk_params_destruct()</a>, <a class="el" href="cc_8c-source.html#l00042">arrow_tsp_cc_lk_params_init()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="cc_8c-source.html#l00312">build_initial_tour()</a>, <a class="el" href="common_8h-source.html#l00074">CONCORDE_FAILURE</a>, <a class="el" href="common_8h-source.html#l00439">arrow_problem::data</a>, <a class="el" href="tsp_8h-source.html#l00057">arrow_tsp_result::found_tour</a>, <a class="el" href="tsp_8h-source.html#l00040">arrow_tsp_cc_lk_params::initial_tour</a>, <a class="el" href="tsp_8h-source.html#l00033">arrow_tsp_cc_lk_params::kick_type</a>, <a class="el" href="tsp_8h-source.html#l00032">arrow_tsp_cc_lk_params::kicks</a>, <a class="el" href="tsp_8h-source.html#l00038">arrow_tsp_cc_lk_params::length_bound</a>, <a class="el" href="tsp_8h-source.html#l00058">arrow_tsp_result::obj_value</a>, <a class="el" href="tsp_8h-source.html#l00029">arrow_tsp_cc_lk_params::random_restarts</a>, <a class="el" href="common_8h-source.html#l00434">arrow_problem::size</a>, <a class="el" href="tsp_8h-source.html#l00030">arrow_tsp_cc_lk_params::stall_count</a>, <a class="el" href="tsp_8h-source.html#l00036">arrow_tsp_cc_lk_params::time_bound</a>, <a class="el" href="tsp_8h-source.html#l00060">arrow_tsp_result::total_time</a>, <a class="el" href="tsp_8h-source.html#l00059">arrow_tsp_result::tour</a>, and <a class="el" href="common_8h-source.html#l00435">arrow_problem::type</a>.</p>
+<p>References <a class="el" href="cc_8c-source.html#l00366">arrow_copy()</a>, <a class="el" href="common_8h-source.html#l00038">arrow_debug</a>, <a class="el" href="cc_8c-source.html#l00359">arrow_edgelen()</a>, <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00065">ARROW_PROBLEM_DATA_CONCORDE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="common_8h-source.html#l00059">ARROW_TRUE</a>, <a class="el" href="cc_8c-source.html#l00055">arrow_tsp_cc_lk_params_destruct()</a>, <a class="el" href="cc_8c-source.html#l00042">arrow_tsp_cc_lk_params_init()</a>, <a class="el" href="util_8c-source.html#l00063">arrow_util_zeit()</a>, <a class="el" href="cc_8c-source.html#l00317">build_initial_tour()</a>, <a class="el" href="common_8h-source.html#l00075">CONCORDE_FAILURE</a>, <a class="el" href="common_8h-source.html#l00441">arrow_problem::data</a>, <a class="el" href="tsp_8h-source.html#l00057">arrow_tsp_result::found_tour</a>, <a class="el" href="tsp_8h-source.html#l00040">arrow_tsp_cc_lk_params::initial_tour</a>, <a class="el" href="tsp_8h-source.html#l00033">arrow_tsp_cc_lk_params::kick_type</a>, <a class="el" href="tsp_8h-source.html#l00032">arrow_tsp_cc_lk_params::kicks</a>, <a class="el" href="tsp_8h-source.html#l00038">arrow_tsp_cc_lk_params::length_bound</a>, <a class="el" href="tsp_8h-source.html#l00058">arrow_tsp_result::obj_value</a>, <a class="el" href="tsp_8h-source.html#l00029">arrow_tsp_cc_lk_params::random_restarts</a>, <a class="el" href="common_8h-source.html#l00435">arrow_problem::size</a>, <a class="el" href="tsp_8h-source.html#l00030">arrow_tsp_cc_lk_params::stall_count</a>, <a class="el" href="tsp_8h-source.html#l00036">arrow_tsp_cc_lk_params::time_bound</a>, <a class="el" href="tsp_8h-source.html#l00060">arrow_tsp_result::total_time</a>, <a class="el" href="tsp_8h-source.html#l00059">arrow_tsp_result::tour</a>, and <a class="el" href="common_8h-source.html#l00436">arrow_problem::type</a>.</p>
 
 <p>Referenced by <a class="el" href="lib_2tsp_2tsp_8c-source.html#l00020">arrow_tsp_solve()</a>.</p>
 
@@ -384,16 +384,16 @@ Solves TSP with Concorde's Lin-Kernighan heuristic.
 
 <p>
 
-<p>Definition at line <a class="el" href="cc_8c-source.html#l00312">312</a> of file <a class="el" href="cc_8c-source.html">cc.c</a>.</p>
+<p>Definition at line <a class="el" href="cc_8c-source.html#l00317">317</a> of file <a class="el" href="cc_8c-source.html">cc.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, and <a class="el" href="common_8h-source.html#l00074">CONCORDE_FAILURE</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00060">ARROW_FALSE</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, and <a class="el" href="common_8h-source.html#l00075">CONCORDE_FAILURE</a>.</p>
 
 <p>Referenced by <a class="el" href="cc_8c-source.html#l00118">arrow_tsp_cc_lk_solve()</a>.</p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 19 14:09:06 2009 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Apr 26 20:22:29 2010 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

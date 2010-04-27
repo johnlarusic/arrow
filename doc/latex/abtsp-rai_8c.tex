@@ -46,7 +46,7 @@ int \hyperlink{abtsp-rai_8c_227b7ec968925f365b96a92ace419c56}{basic\_\-attempts}
 \item 
 char $\ast$ \hyperlink{abtsp-rai_8c_3aad16fd4bea1b9717f232ea75ad6449}{desc} = \char`\"{}Bottleneck traveling salesman problem (BTSP) solver\char`\"{}
 \item 
-char $\ast$ \hyperlink{abtsp-rai_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage} = \char`\"{}-i tsplib.tsp \mbox{[}\hyperlink{subprob_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{]}\char`\"{}
+char $\ast$ \hyperlink{abtsp-rai_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage} = \char`\"{}-i tsplib.tsp \mbox{[}\hyperlink{tourinfo_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{]}\char`\"{}
 \end{CompactItemize}
 
 
@@ -94,7 +94,7 @@ Referenced by main().
 
 Definition at line 56 of file abtsp-rai.c.
 
-References arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-destruct(), arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-result\_\-print\_\-xml(), arrow\_\-btsp\_\-solve(), ARROW\_\-FAILURE, arrow\_\-options\_\-parse(), arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, ARROW\_\-TSP\_\-RAI, arrow\_\-util\_\-print\_\-program\_\-args(), arrow\_\-util\_\-random\_\-seed(), arrow\_\-util\_\-write\_\-tour(), arrow\_\-util\_\-zeit(), basic\_\-attempts, arrow\_\-btsp\_\-params::confirm\_\-sol, arrow\_\-problem\_\-info::cost\_\-list\_\-length, desc, arrow\_\-btsp\_\-params::find\_\-short\_\-tour, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-problem::get\_\-cost, input\_\-file, arrow\_\-tsp\_\-rai\_\-params::iterations, iterations, arrow\_\-btsp\_\-params::lower\_\-bound, lower\_\-bound, arrow\_\-problem\_\-info::max\_\-cost, arrow\_\-problem\_\-info::min\_\-cost, NUM\_\-OPTS, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-btsp\_\-result::obj\_\-value, arrow\_\-problem::size, solve\_\-btsp, arrow\_\-tsp\_\-rai\_\-params::solve\_\-btsp, SOLVE\_\-STEPS, arrow\_\-btsp\_\-params::steps, supress\_\-ebst, arrow\_\-btsp\_\-params::supress\_\-ebst, arrow\_\-problem::symmetric, arrow\_\-btsp\_\-result::tour, tour\_\-file, arrow\_\-btsp\_\-result::tour\_\-length, arrow\_\-btsp\_\-params::upper\_\-bound, upper\_\-bound, usage, and xml\_\-file.
+References arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-destruct(), arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-result\_\-destruct(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-result\_\-print\_\-xml(), arrow\_\-btsp\_\-solve(), ARROW\_\-FAILURE, ARROW\_\-FALSE, arrow\_\-options\_\-parse(), arrow\_\-print\_\-error, arrow\_\-problem\_\-destruct(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, ARROW\_\-TSP\_\-RAI, arrow\_\-util\_\-print\_\-program\_\-args(), arrow\_\-util\_\-random\_\-seed(), arrow\_\-util\_\-write\_\-tour(), arrow\_\-util\_\-zeit(), basic\_\-attempts, arrow\_\-btsp\_\-params::confirm\_\-sol, arrow\_\-problem\_\-info::cost\_\-list\_\-length, desc, arrow\_\-btsp\_\-params::find\_\-short\_\-tour, arrow\_\-btsp\_\-result::found\_\-tour, arrow\_\-problem::get\_\-cost, input\_\-file, arrow\_\-tsp\_\-rai\_\-params::iterations, iterations, arrow\_\-btsp\_\-params::lower\_\-bound, lower\_\-bound, arrow\_\-btsp\_\-result::max\_\-cost, arrow\_\-problem\_\-info::max\_\-cost, arrow\_\-problem\_\-info::min\_\-cost, NUM\_\-OPTS, arrow\_\-btsp\_\-params::num\_\-steps, arrow\_\-problem::size, solve\_\-btsp, arrow\_\-tsp\_\-rai\_\-params::solve\_\-btsp, SOLVE\_\-STEPS, arrow\_\-btsp\_\-params::steps, supress\_\-ebst, arrow\_\-btsp\_\-params::supress\_\-ebst, arrow\_\-problem::symmetric, arrow\_\-btsp\_\-result::tour, tour\_\-file, arrow\_\-btsp\_\-result::tour\_\-length, arrow\_\-btsp\_\-params::upper\_\-bound, upper\_\-bound, usage, and xml\_\-file.
 
 \subsection{Variable Documentation}
 \hypertarget{abtsp-rai_8c_227b7ec968925f365b96a92ace419c56}{
@@ -218,7 +218,7 @@ Referenced by main().\hypertarget{abtsp-rai_8c_b818a82f867be75d7c4d92d792b0943e}
 
 Definition at line 17 of file abtsp-rai.c.
 
-Referenced by main(), and print\_\-xml\_\-output().\hypertarget{abtsp-rai_8c_f5a34eb1d01ffd792adcadc9627ffcb8}{
+Referenced by main().\hypertarget{abtsp-rai_8c_f5a34eb1d01ffd792adcadc9627ffcb8}{
 \index{abtsp-rai.c@{abtsp-rai.c}!upper\_\-bound@{upper\_\-bound}}
 \index{upper\_\-bound@{upper\_\-bound}!abtsp-rai.c@{abtsp-rai.c}}
 \subsubsection[{upper\_\-bound}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf upper\_\-bound} = INT\_\-MAX}}

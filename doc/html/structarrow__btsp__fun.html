@@ -34,22 +34,22 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__fun.html#1950686e4862a4b1bd68d1ada85e2c79">shallow</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__fun.html#56eb57e90eae76571a024894bd0fe570">get_cost</a> )(struct <a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *base_problem, int delta, int i, int j)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__fun.html#ffc634f9d1a545f890b0b2007aff544d">get_cost</a> )(struct <a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *base_problem, int min_cost, int max_cost, int i, int j)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieves cost between nodes i and j from the function.  <a href="#56eb57e90eae76571a024894bd0fe570"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieves cost between nodes i and j from the function.  <a href="#ffc634f9d1a545f890b0b2007aff544d"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__fun.html#c588686921bd526653a7e0d7816aee44">initialize</a> )(struct <a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initializes the function structure for a new problem.  <a href="#c588686921bd526653a7e0d7816aee44"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__fun.html#6c66b7591252728aaa441139c623446a">destruct</a> )(struct <a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructs the function structure.  <a href="#6c66b7591252728aaa441139c623446a"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__fun.html#39eb61a5ad9a5786e773cce4affd2150">feasible</a> )(struct <a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *base_problem, int delta, double tour_length, int *tour)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structarrow__btsp__fun.html#98369e55806c13b3ba90c8c1cbe1f8a4">feasible</a> )(struct <a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *base_problem, int min_cost, int max_cost, double tour_length, int *tour)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determines if the given tour is feasible or not.  <a href="#39eb61a5ad9a5786e773cce4affd2150"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determines if the given tour is feasible or not.  <a href="#98369e55806c13b3ba90c8c1cbe1f8a4"></a><br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 BTSP Cost matrix function definition. 
-<p>Definition at line <a class="el" href="btsp_8h-source.html#l00043">43</a> of file <a class="el" href="btsp_8h-source.html">btsp.h</a>.</p>
+<p>Definition at line <a class="el" href="btsp_8h-source.html#l00044">44</a> of file <a class="el" href="btsp_8h-source.html">btsp.h</a>.</p>
 <hr><h2>Field Documentation</h2>
 <a class="anchor" name="9c1a276685fb0cac372faef2dd2ba99a"></a><!-- doxytag: member="arrow_btsp_fun::data" ref="9c1a276685fb0cac372faef2dd2ba99a" args="" -->
 <div class="memitem">
@@ -64,9 +64,9 @@ BTSP Cost matrix function definition.
 
 <p>
 data required by function 
-<p>Definition at line <a class="el" href="btsp_8h-source.html#l00045">45</a> of file <a class="el" href="btsp_8h-source.html">btsp.h</a>.</p>
+<p>Definition at line <a class="el" href="btsp_8h-source.html#l00046">46</a> of file <a class="el" href="btsp_8h-source.html">btsp.h</a>.</p>
 
-<p>Referenced by <a class="el" href="fun__sbtsp_8c-source.html#l00105">arrow_btsp_fun_basic()</a>, <a class="el" href="fun__abtsp_8c-source.html#l00061">arrow_btsp_fun_basic_atsp()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00128">arrow_btsp_fun_cbtsp_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00152">arrow_btsp_fun_cbtsp_shake()</a>, <a class="el" href="fun__sbtsp_8c-source.html#l00117">arrow_btsp_fun_sbtsp_shake_1()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00212">cbtsp_basic_destruct()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00222">cbtsp_basic_feasible()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00193">cbtsp_basic_get_cost()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00269">cbtsp_shake_destruct()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00282">cbtsp_shake_feasible()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00230">cbtsp_shake_get_cost()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00250">cbtsp_shake_initialize()</a>, <a class="el" href="fun__sbtsp_8c-source.html#l00220">sbtsp_shake_1_destruct()</a>, <a class="el" href="fun__sbtsp_8c-source.html#l00181">sbtsp_shake_1_get_cost()</a>, and <a class="el" href="fun__sbtsp_8c-source.html#l00201">sbtsp_shake_1_initialize()</a>.</p>
+<p>Referenced by <a class="el" href="fun__baltsp_8c-source.html#l00206">arrow_baltsp_fun_basic()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00278">arrow_baltsp_fun_dt2()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00266">arrow_baltsp_fun_ib()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00230">arrow_baltsp_fun_shake()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00218">arrow_baltsp_fun_ut()</a>, <a class="el" href="fun__btsp_8c-source.html#l00191">arrow_btsp_fun_asym_shift()</a>, <a class="el" href="fun__btsp_8c-source.html#l00143">arrow_btsp_fun_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00132">arrow_btsp_fun_cbtsp_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00156">arrow_btsp_fun_cbtsp_shake()</a>, <a class="el" href="fun__btsp_8c-source.html#l00155">arrow_btsp_fun_shake_1()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00492">baltsp_dt2_feasible()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00441">baltsp_dt2_get_cost()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00466">baltsp_dt2_initialize()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00407">baltsp_shake_destruct()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00366">baltsp_shake_get_cost()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00387">baltsp_shake_initialize()</a>, <a class="el" href="fun__btsp_8c-source.html#l00349">btsp_asym_shift_destruct()</a>, <a class="el" href="fun__btsp_8c-source.html#l00359">btsp_asym_shift_feasible()</a>, <a class="el" href="fun__btsp_8c-source.html#l00334">btsp_asym_shift_get_cost()</a>, <a class="el" href="fun__btsp_8c-source.html#l00321">btsp_shake_1_destruct()</a>, <a class="el" href="fun__btsp_8c-source.html#l00278">btsp_shake_1_get_cost()</a>, <a class="el" href="fun__btsp_8c-source.html#l00301">btsp_shake_1_initialize()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00216">cbtsp_basic_destruct()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00226">cbtsp_basic_feasible()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00197">cbtsp_basic_get_cost()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00273">cbtsp_shake_destruct()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00286">cbtsp_shake_feasible()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00234">cbtsp_shake_get_cost()</a>, and <a class="el" href="fun__cbtsp_8c-source.html#l00254">cbtsp_shake_initialize()</a>.</p>
 
 </div>
 </div><p>
@@ -90,16 +90,16 @@ Destructs the function structure.
   </table>
 </dl>
 
-<p>Referenced by <a class="el" href="fun__sbtsp_8c-source.html#l00105">arrow_btsp_fun_basic()</a>, <a class="el" href="fun__abtsp_8c-source.html#l00061">arrow_btsp_fun_basic_atsp()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00128">arrow_btsp_fun_cbtsp_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00152">arrow_btsp_fun_cbtsp_shake()</a>, <a class="el" href="fun_8c-source.html#l00111">arrow_btsp_fun_destruct()</a>, and <a class="el" href="fun__sbtsp_8c-source.html#l00117">arrow_btsp_fun_sbtsp_shake_1()</a>.</p>
+<p>Referenced by <a class="el" href="fun__baltsp_8c-source.html#l00206">arrow_baltsp_fun_basic()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00278">arrow_baltsp_fun_dt2()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00266">arrow_baltsp_fun_ib()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00230">arrow_baltsp_fun_shake()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00218">arrow_baltsp_fun_ut()</a>, <a class="el" href="fun__btsp_8c-source.html#l00191">arrow_btsp_fun_asym_shift()</a>, <a class="el" href="fun__btsp_8c-source.html#l00143">arrow_btsp_fun_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00132">arrow_btsp_fun_cbtsp_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00156">arrow_btsp_fun_cbtsp_shake()</a>, <a class="el" href="fun_8c-source.html#l00115">arrow_btsp_fun_destruct()</a>, and <a class="el" href="fun__btsp_8c-source.html#l00155">arrow_btsp_fun_shake_1()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="39eb61a5ad9a5786e773cce4affd2150"></a><!-- doxytag: member="arrow_btsp_fun::feasible" ref="39eb61a5ad9a5786e773cce4affd2150" args=")(struct arrow_btsp_fun *fun, arrow_problem *base_problem, int delta, double tour_length, int *tour)" -->
+<a class="anchor" name="98369e55806c13b3ba90c8c1cbe1f8a4"></a><!-- doxytag: member="arrow_btsp_fun::feasible" ref="98369e55806c13b3ba90c8c1cbe1f8a4" args=")(struct arrow_btsp_fun *fun, arrow_problem *base_problem, int min_cost, int max_cost, double tour_length, int *tour)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* <a class="el" href="structarrow__btsp__fun.html#39eb61a5ad9a5786e773cce4affd2150">arrow_btsp_fun::feasible</a>)(struct <a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *base_problem, int delta, double tour_length, int *tour)          </td>
+          <td class="memname">int(* <a class="el" href="structarrow__btsp__fun.html#98369e55806c13b3ba90c8c1cbe1f8a4">arrow_btsp_fun::feasible</a>)(struct <a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *base_problem, int min_cost, int max_cost, double tour_length, int *tour)          </td>
         </tr>
       </table>
 </div>
@@ -112,23 +112,24 @@ Determines if the given tour is feasible or not.
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>fun</em>&nbsp;</td><td>[in] function structure </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] the problem to check against </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>delta</em>&nbsp;</td><td>[in] the delta parameter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>min_cost</em>&nbsp;</td><td>[in] min_cost to consider for active edges </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>max_cost</em>&nbsp;</td><td>[in] max_cost to consider for active edges </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>tour_length</em>&nbsp;</td><td>[in] the length of the given tour </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>tour</em>&nbsp;</td><td>[in] the tour in node-node format </td></tr>
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>ARROW_TRUE if the tour is feasible, ARROW_FALSE if not </dd></dl>
 
-<p>Referenced by <a class="el" href="fun__sbtsp_8c-source.html#l00105">arrow_btsp_fun_basic()</a>, <a class="el" href="fun__abtsp_8c-source.html#l00061">arrow_btsp_fun_basic_atsp()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00128">arrow_btsp_fun_cbtsp_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00152">arrow_btsp_fun_cbtsp_shake()</a>, <a class="el" href="fun__sbtsp_8c-source.html#l00117">arrow_btsp_fun_sbtsp_shake_1()</a>, and <a class="el" href="lib_2btsp_2btsp_8c-source.html#l00257">feasible()</a>.</p>
+<p>Referenced by <a class="el" href="fun__baltsp_8c-source.html#l00206">arrow_baltsp_fun_basic()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00278">arrow_baltsp_fun_dt2()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00266">arrow_baltsp_fun_ib()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00230">arrow_baltsp_fun_shake()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00218">arrow_baltsp_fun_ut()</a>, <a class="el" href="feasible_8c-source.html#l00016">arrow_btsp_feasible()</a>, <a class="el" href="fun__btsp_8c-source.html#l00191">arrow_btsp_fun_asym_shift()</a>, <a class="el" href="fun__btsp_8c-source.html#l00143">arrow_btsp_fun_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00132">arrow_btsp_fun_cbtsp_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00156">arrow_btsp_fun_cbtsp_shake()</a>, and <a class="el" href="fun__btsp_8c-source.html#l00155">arrow_btsp_fun_shake_1()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="56eb57e90eae76571a024894bd0fe570"></a><!-- doxytag: member="arrow_btsp_fun::get_cost" ref="56eb57e90eae76571a024894bd0fe570" args=")(struct arrow_btsp_fun *fun, arrow_problem *base_problem, int delta, int i, int j)" -->
+<a class="anchor" name="ffc634f9d1a545f890b0b2007aff544d"></a><!-- doxytag: member="arrow_btsp_fun::get_cost" ref="ffc634f9d1a545f890b0b2007aff544d" args=")(struct arrow_btsp_fun *fun, arrow_problem *base_problem, int min_cost, int max_cost, int i, int j)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* <a class="el" href="structarrow__btsp__fun.html#56eb57e90eae76571a024894bd0fe570">arrow_btsp_fun::get_cost</a>)(struct <a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *base_problem, int delta, int i, int j)          </td>
+          <td class="memname">int(* <a class="el" href="structarrow__btsp__fun.html#ffc634f9d1a545f890b0b2007aff544d">arrow_btsp_fun::get_cost</a>)(struct <a class="el" href="structarrow__btsp__fun.html">arrow_btsp_fun</a> *fun, <a class="el" href="structarrow__problem.html">arrow_problem</a> *base_problem, int min_cost, int max_cost, int i, int j)          </td>
         </tr>
       </table>
 </div>
@@ -141,14 +142,15 @@ Retrieves cost between nodes i and j from the function.
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>fun</em>&nbsp;</td><td>[in] function structure </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>problem</em>&nbsp;</td><td>[in] problem structure </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>delta</em>&nbsp;</td><td>[in] delta parameter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>min_cost</em>&nbsp;</td><td>[in] min_cost to consider for active edges </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>max_cost</em>&nbsp;</td><td>[in] max_cost to consider for active edges </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>[in] id of start node </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>j</em>&nbsp;</td><td>[in] id of end node </td></tr>
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>cost between node i and node j </dd></dl>
 
-<p>Referenced by <a class="el" href="fun_8c-source.html#l00144">apply_deep()</a>, <a class="el" href="fun__sbtsp_8c-source.html#l00105">arrow_btsp_fun_basic()</a>, <a class="el" href="fun__abtsp_8c-source.html#l00061">arrow_btsp_fun_basic_atsp()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00128">arrow_btsp_fun_cbtsp_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00152">arrow_btsp_fun_cbtsp_shake()</a>, <a class="el" href="fun__sbtsp_8c-source.html#l00117">arrow_btsp_fun_sbtsp_shake_1()</a>, and <a class="el" href="fun_8c-source.html#l00179">fun_get_cost()</a>.</p>
+<p>Referenced by <a class="el" href="fun_8c-source.html#l00149">apply_deep()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00206">arrow_baltsp_fun_basic()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00278">arrow_baltsp_fun_dt2()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00266">arrow_baltsp_fun_ib()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00230">arrow_baltsp_fun_shake()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00218">arrow_baltsp_fun_ut()</a>, <a class="el" href="fun__btsp_8c-source.html#l00191">arrow_btsp_fun_asym_shift()</a>, <a class="el" href="fun__btsp_8c-source.html#l00143">arrow_btsp_fun_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00132">arrow_btsp_fun_cbtsp_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00156">arrow_btsp_fun_cbtsp_shake()</a>, <a class="el" href="fun__btsp_8c-source.html#l00155">arrow_btsp_fun_shake_1()</a>, and <a class="el" href="fun_8c-source.html#l00185">fun_get_cost()</a>.</p>
 
 </div>
 </div><p>
@@ -172,7 +174,7 @@ Initializes the function structure for a new problem.
   </table>
 </dl>
 
-<p>Referenced by <a class="el" href="fun_8c-source.html#l00090">arrow_btsp_fun_apply()</a>, <a class="el" href="fun__sbtsp_8c-source.html#l00105">arrow_btsp_fun_basic()</a>, <a class="el" href="fun__abtsp_8c-source.html#l00061">arrow_btsp_fun_basic_atsp()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00128">arrow_btsp_fun_cbtsp_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00152">arrow_btsp_fun_cbtsp_shake()</a>, and <a class="el" href="fun__sbtsp_8c-source.html#l00117">arrow_btsp_fun_sbtsp_shake_1()</a>.</p>
+<p>Referenced by <a class="el" href="fun__baltsp_8c-source.html#l00206">arrow_baltsp_fun_basic()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00278">arrow_baltsp_fun_dt2()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00266">arrow_baltsp_fun_ib()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00230">arrow_baltsp_fun_shake()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00218">arrow_baltsp_fun_ut()</a>, <a class="el" href="fun_8c-source.html#l00093">arrow_btsp_fun_apply()</a>, <a class="el" href="fun__btsp_8c-source.html#l00191">arrow_btsp_fun_asym_shift()</a>, <a class="el" href="fun__btsp_8c-source.html#l00143">arrow_btsp_fun_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00132">arrow_btsp_fun_cbtsp_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00156">arrow_btsp_fun_cbtsp_shake()</a>, and <a class="el" href="fun__btsp_8c-source.html#l00155">arrow_btsp_fun_shake_1()</a>.</p>
 
 </div>
 </div><p>
@@ -189,16 +191,16 @@ Initializes the function structure for a new problem.
 
 <p>
 indicates use of shallow copy of data 
-<p>Definition at line <a class="el" href="btsp_8h-source.html#l00046">46</a> of file <a class="el" href="btsp_8h-source.html">btsp.h</a>.</p>
+<p>Definition at line <a class="el" href="btsp_8h-source.html#l00047">47</a> of file <a class="el" href="btsp_8h-source.html">btsp.h</a>.</p>
 
-<p>Referenced by <a class="el" href="fun_8c-source.html#l00090">arrow_btsp_fun_apply()</a>, <a class="el" href="fun__sbtsp_8c-source.html#l00105">arrow_btsp_fun_basic()</a>, <a class="el" href="fun__abtsp_8c-source.html#l00061">arrow_btsp_fun_basic_atsp()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00128">arrow_btsp_fun_cbtsp_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00152">arrow_btsp_fun_cbtsp_shake()</a>, and <a class="el" href="fun__sbtsp_8c-source.html#l00117">arrow_btsp_fun_sbtsp_shake_1()</a>.</p>
+<p>Referenced by <a class="el" href="fun__baltsp_8c-source.html#l00206">arrow_baltsp_fun_basic()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00278">arrow_baltsp_fun_dt2()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00266">arrow_baltsp_fun_ib()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00230">arrow_baltsp_fun_shake()</a>, <a class="el" href="fun__baltsp_8c-source.html#l00218">arrow_baltsp_fun_ut()</a>, <a class="el" href="fun_8c-source.html#l00093">arrow_btsp_fun_apply()</a>, <a class="el" href="fun__btsp_8c-source.html#l00191">arrow_btsp_fun_asym_shift()</a>, <a class="el" href="fun__btsp_8c-source.html#l00143">arrow_btsp_fun_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00132">arrow_btsp_fun_cbtsp_basic()</a>, <a class="el" href="fun__cbtsp_8c-source.html#l00156">arrow_btsp_fun_cbtsp_shake()</a>, and <a class="el" href="fun__btsp_8c-source.html#l00155">arrow_btsp_fun_shake_1()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this struct was generated from the following file:<ul>
 <li>include/<a class="el" href="btsp_8h-source.html">btsp.h</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 19 14:09:06 2009 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Apr 26 20:22:29 2010 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

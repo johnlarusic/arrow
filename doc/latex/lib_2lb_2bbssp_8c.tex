@@ -10,11 +10,11 @@ Bottleneck biconnected spanning subgraph problem implemenation.
 \subsection*{Functions}
 \begin{CompactItemize}
 \item 
-int \hyperlink{lib_2lb_2bbssp_8c_485f2a19b2a313bce3b255a845c8527d}{find\_\-art\_\-points} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int max\_\-cost, int node, int depth\_\-num, int root\_\-children, int $\ast$visited, int $\ast$depth, int $\ast$low, int $\ast$parent, int $\ast$art\_\-point)
+int \hyperlink{lib_2lb_2bbssp_8c_041acf4023cb7dbaad0cfa45c870692a}{find\_\-art\_\-points} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int min\_\-cost, int max\_\-cost, int node, int depth\_\-num, int root\_\-children, int $\ast$visited, int $\ast$depth, int $\ast$low, int $\ast$parent, int $\ast$art\_\-point)
 \begin{CompactList}\small\item\em Recursively searches for articulation points in the graph using only costs less than or equal to 'max\_\-cost' out from the given node. \item\end{CompactList}\item 
 int \hyperlink{lib_2lb_2bbssp_8c_ff7006ace4173927265facbe5f895cf0}{arrow\_\-bbssp\_\-solve} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, \hyperlink{structarrow__bound__result}{arrow\_\-bound\_\-result} $\ast$result)
 \begin{CompactList}\small\item\em Solves the bottleneck biconnected spanning subgraph problem (BBSSP) on the given problem. \item\end{CompactList}\item 
-int \hyperlink{lib_2lb_2bbssp_8c_727cb19dd9cfa6315e1155796daef833}{arrow\_\-bbssp\_\-biconnected} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int max\_\-cost, int $\ast$result)
+int \hyperlink{lib_2lb_2bbssp_8c_8db45f55426229d30241396020ae4c5a}{arrow\_\-bbssp\_\-biconnected} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int min\_\-cost, int max\_\-cost, int $\ast$result)
 \begin{CompactList}\small\item\em Determines if the graph is biconnected using only edges with costs less than or equal to the given value. \item\end{CompactList}\end{CompactItemize}
 
 
@@ -30,11 +30,11 @@ Implemenation of the bottleneck biconnected spanning subgraph problem (BBSSP) th
 Definition in file \hyperlink{lib_2lb_2bbssp_8c-source}{bbssp.c}.
 
 \subsection{Function Documentation}
-\hypertarget{lib_2lb_2bbssp_8c_727cb19dd9cfa6315e1155796daef833}{
+\hypertarget{lib_2lb_2bbssp_8c_8db45f55426229d30241396020ae4c5a}{
 \index{lib/lb/bbssp.c@{lib/lb/bbssp.c}!arrow\_\-bbssp\_\-biconnected@{arrow\_\-bbssp\_\-biconnected}}
 \index{arrow\_\-bbssp\_\-biconnected@{arrow\_\-bbssp\_\-biconnected}!lib/lb/bbssp.c@{lib/lb/bbssp.c}}
-\subsubsection[{arrow\_\-bbssp\_\-biconnected}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bbssp\_\-biconnected ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em max\_\-cost}, \/  int $\ast$ {\em result})}}
-\label{lib_2lb_2bbssp_8c_727cb19dd9cfa6315e1155796daef833}
+\subsubsection[{arrow\_\-bbssp\_\-biconnected}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bbssp\_\-biconnected ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  int $\ast$ {\em result})}}
+\label{lib_2lb_2bbssp_8c_8db45f55426229d30241396020ae4c5a}
 
 
 Determines if the graph is biconnected using only edges with costs less than or equal to the given value. 
@@ -42,15 +42,15 @@ Determines if the graph is biconnected using only edges with costs less than or 
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} value to check biconnectivity question against \item[{\em result}]\mbox{[}out\mbox{]} ARROW\_\-TRUE if biconnected, ARROW\_\-FALSE otherwise. \end{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} minimum cost to consider in problem \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} maximum cost to consider in problem \item[{\em result}]\mbox{[}out\mbox{]} ARROW\_\-TRUE if biconnected, ARROW\_\-FALSE otherwise. \end{description}
 \end{Desc}
 
 
-Definition at line 95 of file bbssp.c.
+Definition at line 94 of file bbssp.c.
 
 References ARROW\_\-FAILURE, ARROW\_\-FALSE, ARROW\_\-TRUE, arrow\_\-util\_\-create\_\-int\_\-array(), find\_\-art\_\-points(), parent(), and arrow\_\-problem::size.
 
-Referenced by arrow\_\-bbssp\_\-solve().\hypertarget{lib_2lb_2bbssp_8c_ff7006ace4173927265facbe5f895cf0}{
+Referenced by arrow\_\-bbssp\_\-solve(), balanced\_\-lb\_\-feasible(), and dt2\_\-lb\_\-feasible().\hypertarget{lib_2lb_2bbssp_8c_ff7006ace4173927265facbe5f895cf0}{
 \index{lib/lb/bbssp.c@{lib/lb/bbssp.c}!arrow\_\-bbssp\_\-solve@{arrow\_\-bbssp\_\-solve}}
 \index{arrow\_\-bbssp\_\-solve@{arrow\_\-bbssp\_\-solve}!lib/lb/bbssp.c@{lib/lb/bbssp.c}}
 \subsubsection[{arrow\_\-bbssp\_\-solve}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bbssp\_\-solve ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  {\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  {\bf arrow\_\-bound\_\-result} $\ast$ {\em result})}}
@@ -66,15 +66,15 @@ Solves the bottleneck biconnected spanning subgraph problem (BBSSP) on the given
 \end{Desc}
 
 
-Definition at line 45 of file bbssp.c.
+Definition at line 46 of file bbssp.c.
 
-References arrow\_\-bbssp\_\-biconnected(), ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-util\_\-zeit(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-bound\_\-result::obj\_\-value, arrow\_\-problem::symmetric, and arrow\_\-bound\_\-result::total\_\-time.
+References arrow\_\-bbssp\_\-biconnected(), ARROW\_\-FAILURE, ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-util\_\-zeit(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-problem\_\-info::max\_\-cost, arrow\_\-bound\_\-result::obj\_\-value, and arrow\_\-bound\_\-result::total\_\-time.
 
-Referenced by main().\hypertarget{lib_2lb_2bbssp_8c_485f2a19b2a313bce3b255a845c8527d}{
+Referenced by btsp\_\-lower\_\-bound(), and main().\hypertarget{lib_2lb_2bbssp_8c_041acf4023cb7dbaad0cfa45c870692a}{
 \index{lib/lb/bbssp.c@{lib/lb/bbssp.c}!find\_\-art\_\-points@{find\_\-art\_\-points}}
 \index{find\_\-art\_\-points@{find\_\-art\_\-points}!lib/lb/bbssp.c@{lib/lb/bbssp.c}}
-\subsubsection[{find\_\-art\_\-points}]{\setlength{\rightskip}{0pt plus 5cm}int find\_\-art\_\-points ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em max\_\-cost}, \/  int {\em node}, \/  int {\em depth\_\-num}, \/  int {\em root\_\-children}, \/  int $\ast$ {\em visited}, \/  int $\ast$ {\em depth}, \/  int $\ast$ {\em low}, \/  int $\ast$ {\em parent}, \/  int $\ast$ {\em art\_\-point})}}
-\label{lib_2lb_2bbssp_8c_485f2a19b2a313bce3b255a845c8527d}
+\subsubsection[{find\_\-art\_\-points}]{\setlength{\rightskip}{0pt plus 5cm}int find\_\-art\_\-points ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  int {\em min\_\-cost}, \/  int {\em max\_\-cost}, \/  int {\em node}, \/  int {\em depth\_\-num}, \/  int {\em root\_\-children}, \/  int $\ast$ {\em visited}, \/  int $\ast$ {\em depth}, \/  int $\ast$ {\em low}, \/  int $\ast$ {\em parent}, \/  int $\ast$ {\em art\_\-point})}}
+\label{lib_2lb_2bbssp_8c_041acf4023cb7dbaad0cfa45c870692a}
 
 
 Recursively searches for articulation points in the graph using only costs less than or equal to 'max\_\-cost' out from the given node. 
@@ -82,12 +82,12 @@ Recursively searches for articulation points in the graph using only costs less 
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em problem}]\mbox{[}in\mbox{]} problem data structure \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} the largest cost to consider as being in the graph \item[{\em node}]\mbox{[}in\mbox{]} the node to search outward from \item[{\em depth\_\-num}]\mbox{[}in\mbox{]} level at which the given node was first discovered \item[{\em root\_\-children}]\mbox{[}in\mbox{]} count of the number of children of the root \item[{\em visited}]\mbox{[}out\mbox{]} indicates if a node has been visited or not \item[{\em depth}]\mbox{[}out\mbox{]} indicates the discovery depth of a node \item[{\em low}]\mbox{[}out\mbox{]} indicates a back edge for some descendent of a node (e.g. the discovery depth of the node closest to the root and reachable from the given node by following zero or more edges downward and then at most one back edge) \item[{\em parent}]\mbox{[}out\mbox{]} indicates the closest \char`\"{}parent\char`\"{} of a node \item[{\em art\_\-point}]\mbox{[}out\mbox{]} indicates if the node is an articulation point \end{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data structure \item[{\em min\_\-cost}]\mbox{[}in\mbox{]} the smallest cost to consider as being in the graph \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} the largest cost to consider as being in the graph \item[{\em node}]\mbox{[}in\mbox{]} the node to search outward from \item[{\em depth\_\-num}]\mbox{[}in\mbox{]} level at which the given node was first discovered \item[{\em root\_\-children}]\mbox{[}in\mbox{]} count of the number of children of the root \item[{\em visited}]\mbox{[}out\mbox{]} indicates if a node has been visited or not \item[{\em depth}]\mbox{[}out\mbox{]} indicates the discovery depth of a node \item[{\em low}]\mbox{[}out\mbox{]} indicates a back edge for some descendent of a node (e.g. the discovery depth of the node closest to the root and reachable from the given node by following zero or more edges downward and then at most one back edge) \item[{\em parent}]\mbox{[}out\mbox{]} indicates the closest \char`\"{}parent\char`\"{} of a node \item[{\em art\_\-point}]\mbox{[}out\mbox{]} indicates if the node is an articulation point \end{description}
 \end{Desc}
 
 
-Definition at line 169 of file bbssp.c.
+Definition at line 166 of file bbssp.c.
 
-References ARROW\_\-SUCCESS, arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
+References ARROW\_\-SUCCESS, arrow\_\-problem::get\_\-cost, arrow\_\-problem::size, and arrow\_\-problem::symmetric.
 
 Referenced by arrow\_\-bbssp\_\-biconnected().

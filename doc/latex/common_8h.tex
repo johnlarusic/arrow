@@ -70,6 +70,8 @@ struct \hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info}
 \item 
 \#define \hyperlink{common_8h_fa7567a2c1435c3ad07261341f4d2a71}{ARROW\_\-PROBLEM\_\-ABTSP\_\-TO\_\-SBTSP}~4
 \item 
+\#define \hyperlink{common_8h_3ddc4cb65df06c1203cc9e11852616d3}{ARROW\_\-PROBLEM\_\-MSTSP\_\-TO\_\-BTSP}~5
+\item 
 \#define \hyperlink{common_8h_627f37797cc57afbe5bd43c2bc18ef0a}{ARROW\_\-OPTION\_\-INT}~1
 \item 
 \#define \hyperlink{common_8h_6ae7aa7a4dfd9359283ca22c51d40902}{ARROW\_\-OPTION\_\-DOUBLE}~2
@@ -141,7 +143,7 @@ void \hyperlink{common_8h_9c558d27574d24be9dd6688dd4e8543d}{arrow\_\-llist\_\-pr
 \begin{CompactList}\small\item\em Prints a list of items in the list. \item\end{CompactList}\item 
 void \hyperlink{common_8h_708a19244cf603819ed64bd34f93714e}{arrow\_\-llist\_\-to\_\-array} (\hyperlink{structarrow__llist}{arrow\_\-llist} $\ast$list, int $\ast$array)
 \begin{CompactList}\small\item\em Copys data from linked list into array. Assume array is big enough to handle linked list! \item\end{CompactList}\item 
-int \hyperlink{common_8h_e187e044872b9130dc8451a7cbfd3f8d}{arrow\_\-options\_\-parse} (int num\_\-opts, \hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{subprob_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{[}$\,$\mbox{]}, char $\ast$description, char $\ast$\hyperlink{subprob_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage}, int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, int $\ast$opt\_\-ind)
+int \hyperlink{common_8h_e187e044872b9130dc8451a7cbfd3f8d}{arrow\_\-options\_\-parse} (int num\_\-opts, \hyperlink{structarrow__option}{arrow\_\-option} \hyperlink{tourinfo_8c_cea6a9709d519c143f30db401a0d0c72}{options}\mbox{[}$\,$\mbox{]}, char $\ast$description, char $\ast$\hyperlink{tourinfo_8c_adebe2487a2c5240ab6cd02c83add0bf}{usage}, int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, int $\ast$opt\_\-ind)
 \begin{CompactList}\small\item\em Parses program options. \item\end{CompactList}\item 
 int \hyperlink{common_8h_b5b9bae9f92630983d3b3d39d86198f8}{arrow\_\-problem\_\-read} (char $\ast$file\_\-name, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem)
 \begin{CompactList}\small\item\em Reads a problem from a TSPLIB file. \item\end{CompactList}\item 
@@ -153,12 +155,16 @@ void \hyperlink{common_8h_09a5ba81556412e281fe6b863a6f08db}{arrow\_\-problem\_\-
 \begin{CompactList}\small\item\em Deallocates problem info data structure. \item\end{CompactList}\item 
 int \hyperlink{common_8h_30d8e2e252dc1e485c7be5767af0f65b}{arrow\_\-problem\_\-info\_\-cost\_\-index} (\hyperlink{structarrow__problem__info}{arrow\_\-problem\_\-info} $\ast$info, int cost, int $\ast$pos)
 \begin{CompactList}\small\item\em Finds the position of the given cost into the sorted list. \item\end{CompactList}\item 
+int \hyperlink{common_8h_3e6ced30595dbfe54f0e6ef138fef5aa}{arrow\_\-problem\_\-max\_\-cost} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem)
+\begin{CompactList}\small\item\em Finds the largest cost in a problem (cheaper than calling arrow\_\-problem\_\-info\_\-get). \item\end{CompactList}\item 
 void \hyperlink{common_8h_bf45d0065398894bdfb4b345d50363ea}{arrow\_\-problem\_\-print} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int pretty)
 \begin{CompactList}\small\item\em Prints out information about a problem. \item\end{CompactList}\item 
 int \hyperlink{common_8h_b0ae70bd19a75c7f3164b81e4ed092ad}{arrow\_\-problem\_\-read\_\-tour} (char $\ast$file\_\-name, int size, int $\ast$tour)
 \begin{CompactList}\small\item\em Reads a TSPLIB tour file. \item\end{CompactList}\item 
 int \hyperlink{common_8h_904b6a44113cf39377e1bfbed3b5aed8}{arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp} (int shallow, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int infinity, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
 \begin{CompactList}\small\item\em Transforms an asymmetric BTSP problem of n nodes into a symmetric BTSP problem with 2n nodes. \item\end{CompactList}\item 
+int \hyperlink{common_8h_a7e0d575194d77c3d8ae7dfe9dd14723}{arrow\_\-problem\_\-mstsp\_\-to\_\-btsp} (int shallow, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$old\_\-problem, int max\_\-cost, \hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$new\_\-problem)
+\begin{CompactList}\small\item\em Transforms a MSTSP problem into the equivalent BTSP problem. \item\end{CompactList}\item 
 int \hyperlink{common_8h_4aea68dfc908d08522baccb148251ae7}{arrow\_\-util\_\-create\_\-int\_\-array} (int size, int $\ast$$\ast$array)
 \begin{CompactList}\small\item\em Creates an integer array. \item\end{CompactList}\item 
 int \hyperlink{common_8h_2801c2cc414251180545168ba9abe911}{arrow\_\-util\_\-create\_\-int\_\-matrix} (int rows, int cols, int $\ast$$\ast$$\ast$matrix, int $\ast$$\ast$space)
@@ -190,9 +196,11 @@ int \hyperlink{common_8h_529c872ac72eaf0046ad149abf7b6179}{arrow\_\-util\_\-rand
 void \hyperlink{common_8h_4be50d1d9906ae44ddb69b1e8fb05153}{arrow\_\-util\_\-permute\_\-array} (int size, int $\ast$array)
 \begin{CompactList}\small\item\em Randomly permutes the elements of the given array. \item\end{CompactList}\item 
 void \hyperlink{common_8h_6921d887eca515c1ad59629e25a0c237}{arrow\_\-util\_\-write\_\-tour} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, char $\ast$comment, int $\ast$tour, FILE $\ast$out)
-\item 
+\begin{CompactList}\small\item\em Writes a tour in TSPLIB format. \item\end{CompactList}\item 
 void \hyperlink{common_8h_8a7327192a37674e2559d82448a565b1}{arrow\_\-util\_\-sbtsp\_\-to\_\-abstp\_\-tour} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, int $\ast$old\_\-tour, int $\ast$new\_\-tour)
-\item 
+\begin{CompactList}\small\item\em Converts a symmetric tour to an asymmetric tour. \item\end{CompactList}\item 
+void \hyperlink{common_8h_0541e6b62dd904dfdb630bf21aeef425}{arrow\_\-util\_\-write\_\-problem} (\hyperlink{structarrow__problem}{arrow\_\-problem} $\ast$problem, char $\ast$comment, FILE $\ast$out)
+\begin{CompactList}\small\item\em Writes a problem in TSPLIB format as a lower diagonal matrix. \item\end{CompactList}\item 
 void \hyperlink{common_8h_ac92580a7e7c1ebb1c72f68d7005fe68}{arrow\_\-xml\_\-element\_\-int} (char $\ast$name, int value, FILE $\ast$out)
 \begin{CompactList}\small\item\em Writes an XML tag out for an integer value. \item\end{CompactList}\item 
 void \hyperlink{common_8h_286f1861006d22d745bd3c2681ee7aab}{arrow\_\-xml\_\-element\_\-double} (char $\ast$name, double value, FILE $\ast$out)
@@ -242,7 +250,7 @@ Definition in file \hyperlink{common_8h-source}{common.h}.
 
 Definition at line 38 of file common.h.
 
-Referenced by arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), feasible(), improve\_\-tour(), read\_\-atsp(), and read\_\-stsp().\hypertarget{common_8h_3057840b0de9d217fdcedddc615295ad}{
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-dt2(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-balanced\_\-tsp\_\-lb(), arrow\_\-btsp\_\-feasible(), arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), btsp\_\-basic\_\-feasible(), btsp\_\-bounds(), btsp\_\-lower\_\-bound(), improve\_\-tour(), read\_\-atsp(), and read\_\-stsp().\hypertarget{common_8h_3057840b0de9d217fdcedddc615295ad}{
 \index{common.h@{common.h}!ARROW\_\-DEBUG@{ARROW\_\-DEBUG}}
 \index{ARROW\_\-DEBUG@{ARROW\_\-DEBUG}!common.h@{common.h}}
 \subsubsection[{ARROW\_\-DEBUG}]{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-DEBUG}}
@@ -273,7 +281,7 @@ Referenced by main().\hypertarget{common_8h_a50e8b8f74e48535271458079c7506cb}{
 
 Definition at line 58 of file common.h.
 
-Referenced by apply\_\-deep(), apply\_\-shallow(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-biconnected(), arrow\_\-bbssp\_\-solve(), arrow\_\-bintree\_\-to\_\-new\_\-array(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-lap(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-mst\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-heap\_\-init(), arrow\_\-heap\_\-insert(), arrow\_\-llist\_\-insert\_\-after(), arrow\_\-llist\_\-insert\_\-head(), arrow\_\-llist\_\-insert\_\-tail(), arrow\_\-options\_\-parse(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-info\_\-cost\_\-index(), arrow\_\-problem\_\-read(), arrow\_\-problem\_\-read\_\-tour(), arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-tsp\_\-solve(), arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix(), arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-create\_\-int\_\-matrix(), build\_\-initial\_\-tour(), construct\_\-item(), construct\_\-node(), feasible(), init\_\-data(), insert\_\-at(), main(), read\_\-atsp(), read\_\-stsp(), and strongly\_\-connected().\hypertarget{common_8h_518134a9986d0e6bf31ec2480116ac76}{
+Referenced by apply\_\-deep(), apply\_\-shallow(), arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-dt2(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-balanced\_\-tsp\_\-lb(), arrow\_\-baltsp\_\-fun\_\-dt2(), arrow\_\-baltsp\_\-fun\_\-shake(), arrow\_\-bap\_\-has\_\-assignment(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-biconnected(), arrow\_\-bbssp\_\-solve(), arrow\_\-bintree\_\-to\_\-new\_\-array(), arrow\_\-bscssp\_\-connected(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-feasible(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-asym\_\-shift(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-shake\_\-1(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-lap(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-mst\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-heap\_\-init(), arrow\_\-heap\_\-insert(), arrow\_\-llist\_\-insert\_\-after(), arrow\_\-llist\_\-insert\_\-head(), arrow\_\-llist\_\-insert\_\-tail(), arrow\_\-options\_\-parse(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-info\_\-cost\_\-index(), arrow\_\-problem\_\-mstsp\_\-to\_\-btsp(), arrow\_\-problem\_\-read(), arrow\_\-problem\_\-read\_\-tour(), arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-tsp\_\-solve(), arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix(), arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-create\_\-int\_\-matrix(), balanced\_\-lb\_\-feasible(), baltsp\_\-bounds\_\-tree(), baltsp\_\-dt2\_\-initialize(), btsp\_\-bounds(), btsp\_\-lower\_\-bound(), build\_\-initial\_\-tour(), construct\_\-item(), construct\_\-node(), dt2\_\-lb\_\-feasible(), find\_\-cost\_\-order(), init\_\-data(), init\_\-tiers(), insert\_\-at(), main(), read\_\-atsp(), and read\_\-stsp().\hypertarget{common_8h_518134a9986d0e6bf31ec2480116ac76}{
 \index{common.h@{common.h}!ARROW\_\-FALSE@{ARROW\_\-FALSE}}
 \index{ARROW\_\-FALSE@{ARROW\_\-FALSE}!common.h@{common.h}}
 \subsubsection[{ARROW\_\-FALSE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-FALSE~0}}
@@ -284,7 +292,7 @@ Referenced by apply\_\-deep(), apply\_\-shallow(), arrow\_\-bap\_\-solve(), arro
 
 Definition at line 60 of file common.h.
 
-Referenced by arrow\_\-bbssp\_\-biconnected(), arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), arrow\_\-heap\_\-in(), arrow\_\-options\_\-parse(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-util\_\-regex\_\-match(), atsp\_\-basic\_\-feasible(), build\_\-initial\_\-tour(), cbtsp\_\-basic\_\-feasible(), cbtsp\_\-shake\_\-feasible(), construct\_\-node(), feasible(), ford\_\-fulkerson\_\-labeling(), insert\_\-at(), is\_\-leaf(), main(), read\_\-atsp(), read\_\-stsp(), sbtsp\_\-basic\_\-feasible(), shortest\_\-augmenting\_\-path(), and strongly\_\-connected().\hypertarget{common_8h_b0d90b2c298f16738e37c85a79651025}{
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-dt2(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-baltsp\_\-params\_\-init(), arrow\_\-bap\_\-has\_\-assignment(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-biconnected(), arrow\_\-bscssp\_\-connected(), arrow\_\-btsp\_\-feasible(), arrow\_\-btsp\_\-params\_\-init(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), arrow\_\-heap\_\-in(), arrow\_\-options\_\-parse(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-util\_\-regex\_\-match(), balanced\_\-lb\_\-feasible(), baltsp\_\-basic\_\-feasible(), baltsp\_\-dt2\_\-feasible(), baltsp\_\-ib\_\-feasible(), baltsp\_\-ut\_\-feasible(), btsp\_\-basic\_\-feasible(), build\_\-initial\_\-tour(), cbtsp\_\-basic\_\-feasible(), cbtsp\_\-shake\_\-feasible(), construct\_\-node(), dt2\_\-lb\_\-feasible(), ford\_\-fulkerson\_\-labeling(), insert\_\-at(), is\_\-leaf(), main(), read\_\-atsp(), read\_\-stsp(), and shortest\_\-augmenting\_\-path().\hypertarget{common_8h_b0d90b2c298f16738e37c85a79651025}{
 \index{common.h@{common.h}!ARROW\_\-HASH\_\-BUFFER\_\-LENGTH@{ARROW\_\-HASH\_\-BUFFER\_\-LENGTH}}
 \index{ARROW\_\-HASH\_\-BUFFER\_\-LENGTH@{ARROW\_\-HASH\_\-BUFFER\_\-LENGTH}!common.h@{common.h}}
 \subsubsection[{ARROW\_\-HASH\_\-BUFFER\_\-LENGTH}]{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-HASH\_\-BUFFER\_\-LENGTH~16}}
@@ -304,7 +312,7 @@ Referenced by arrow\_\-hash\_\-cost\_\-list(), and arrow\_\-hash\_\-search().\hy
 
 
 
-Definition at line 70 of file common.h.
+Definition at line 71 of file common.h.
 
 Referenced by arrow\_\-options\_\-parse().\hypertarget{common_8h_627f37797cc57afbe5bd43c2bc18ef0a}{
 \index{common.h@{common.h}!ARROW\_\-OPTION\_\-INT@{ARROW\_\-OPTION\_\-INT}}
@@ -315,7 +323,7 @@ Referenced by arrow\_\-options\_\-parse().\hypertarget{common_8h_627f37797cc57af
 
 
 
-Definition at line 69 of file common.h.
+Definition at line 70 of file common.h.
 
 Referenced by arrow\_\-options\_\-parse().\hypertarget{common_8h_a5af4b3dd40c1687deb0e897317fac3d}{
 \index{common.h@{common.h}!ARROW\_\-OPTION\_\-STRING@{ARROW\_\-OPTION\_\-STRING}}
@@ -326,7 +334,7 @@ Referenced by arrow\_\-options\_\-parse().\hypertarget{common_8h_a5af4b3dd40c168
 
 
 
-Definition at line 71 of file common.h.
+Definition at line 72 of file common.h.
 
 Referenced by arrow\_\-options\_\-parse().\hypertarget{common_8h_c8a166e323227a8681ed32027ca1000a}{
 \index{common.h@{common.h}!arrow\_\-print\_\-error@{arrow\_\-print\_\-error}}
@@ -345,7 +353,7 @@ Referenced by arrow\_\-options\_\-parse().\hypertarget{common_8h_c8a166e323227a8
 
 Definition at line 47 of file common.h.
 
-Referenced by apply\_\-deep(), apply\_\-shallow(), arrow\_\-bbssp\_\-solve(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-mst\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-heap\_\-insert(), arrow\_\-llist\_\-insert\_\-after(), arrow\_\-options\_\-parse(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-info\_\-cost\_\-index(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-long\_\-name(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-short\_\-name(), arrow\_\-tsp\_\-solve(), arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix(), arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-create\_\-int\_\-matrix(), build\_\-initial\_\-tour(), cbtsp\_\-shake\_\-get\_\-cost(), construct\_\-item(), construct\_\-node(), dijkstra(), main(), read\_\-args(), read\_\-atsp(), read\_\-stsp(), and sbtsp\_\-shake\_\-1\_\-get\_\-cost().\hypertarget{common_8h_fa7567a2c1435c3ad07261341f4d2a71}{
+Referenced by apply\_\-deep(), apply\_\-shallow(), arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-dt2(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-balanced\_\-tsp\_\-lb(), arrow\_\-baltsp\_\-fun\_\-dt2(), arrow\_\-baltsp\_\-fun\_\-shake(), arrow\_\-btsp\_\-fun\_\-apply(), arrow\_\-btsp\_\-fun\_\-asym\_\-shift(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-shake\_\-1(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-mst\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-heap\_\-insert(), arrow\_\-llist\_\-insert\_\-after(), arrow\_\-options\_\-parse(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-info\_\-cost\_\-index(), arrow\_\-problem\_\-mstsp\_\-to\_\-btsp(), arrow\_\-problem\_\-read(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-long\_\-name(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-short\_\-name(), arrow\_\-tsp\_\-solve(), arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix(), arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-create\_\-int\_\-matrix(), balanced\_\-lb\_\-feasible(), baltsp\_\-bounds\_\-tree(), baltsp\_\-dt2\_\-get\_\-cost(), baltsp\_\-dt2\_\-initialize(), baltsp\_\-shake\_\-get\_\-cost(), btsp\_\-bounds(), btsp\_\-shake\_\-1\_\-get\_\-cost(), build\_\-initial\_\-tour(), cbtsp\_\-shake\_\-get\_\-cost(), construct\_\-item(), construct\_\-node(), dijkstra(), dt2\_\-lb\_\-feasible(), fill\_\-tiers(), find\_\-cost\_\-order(), init\_\-tiers(), main(), read\_\-args(), read\_\-atsp(), and read\_\-stsp().\hypertarget{common_8h_fa7567a2c1435c3ad07261341f4d2a71}{
 \index{common.h@{common.h}!ARROW\_\-PROBLEM\_\-ABTSP\_\-TO\_\-SBTSP@{ARROW\_\-PROBLEM\_\-ABTSP\_\-TO\_\-SBTSP}}
 \index{ARROW\_\-PROBLEM\_\-ABTSP\_\-TO\_\-SBTSP@{ARROW\_\-PROBLEM\_\-ABTSP\_\-TO\_\-SBTSP}!common.h@{common.h}}
 \subsubsection[{ARROW\_\-PROBLEM\_\-ABTSP\_\-TO\_\-SBTSP}]{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-PROBLEM\_\-ABTSP\_\-TO\_\-SBTSP~4}}
@@ -389,7 +397,18 @@ Referenced by apply\_\-deep(), arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-
 
 Definition at line 64 of file common.h.
 
-Referenced by read\_\-atsp().\hypertarget{common_8h_a4bb457eaf684bb6a1fee64800430478}{
+Referenced by read\_\-atsp().\hypertarget{common_8h_3ddc4cb65df06c1203cc9e11852616d3}{
+\index{common.h@{common.h}!ARROW\_\-PROBLEM\_\-MSTSP\_\-TO\_\-BTSP@{ARROW\_\-PROBLEM\_\-MSTSP\_\-TO\_\-BTSP}}
+\index{ARROW\_\-PROBLEM\_\-MSTSP\_\-TO\_\-BTSP@{ARROW\_\-PROBLEM\_\-MSTSP\_\-TO\_\-BTSP}!common.h@{common.h}}
+\subsubsection[{ARROW\_\-PROBLEM\_\-MSTSP\_\-TO\_\-BTSP}]{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-PROBLEM\_\-MSTSP\_\-TO\_\-BTSP~5}}
+\label{common_8h_3ddc4cb65df06c1203cc9e11852616d3}
+
+
+
+
+Definition at line 68 of file common.h.
+
+Referenced by arrow\_\-problem\_\-mstsp\_\-to\_\-btsp().\hypertarget{common_8h_a4bb457eaf684bb6a1fee64800430478}{
 \index{common.h@{common.h}!ARROW\_\-PROBLEM\_\-NAME\_\-LENGTH@{ARROW\_\-PROBLEM\_\-NAME\_\-LENGTH}}
 \index{ARROW\_\-PROBLEM\_\-NAME\_\-LENGTH@{ARROW\_\-PROBLEM\_\-NAME\_\-LENGTH}!common.h@{common.h}}
 \subsubsection[{ARROW\_\-PROBLEM\_\-NAME\_\-LENGTH}]{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-PROBLEM\_\-NAME\_\-LENGTH~64}}
@@ -409,7 +428,7 @@ Definition at line 61 of file common.h.\hypertarget{common_8h_21afcc3dc34f8488ad
 
 Definition at line 57 of file common.h.
 
-Referenced by apply\_\-deep(), apply\_\-shallow(), arrow\_\-2mb\_\-solve(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bintree\_\-to\_\-new\_\-array(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-basic\_\-atsp(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-lap(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-mst\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-hash\_\-cost\_\-list(), arrow\_\-heap\_\-init(), arrow\_\-heap\_\-insert(), arrow\_\-llist\_\-insert\_\-after(), arrow\_\-llist\_\-insert\_\-head(), arrow\_\-llist\_\-insert\_\-tail(), arrow\_\-options\_\-parse(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-info\_\-cost\_\-index(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-read\_\-tour(), arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix(), arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-create\_\-int\_\-matrix(), atsp\_\-basic\_\-initialize(), build\_\-initial\_\-tour(), cbtsp\_\-basic\_\-initialize(), cbtsp\_\-shake\_\-initialize(), construct\_\-item(), construct\_\-node(), feasible(), find\_\-art\_\-points(), init\_\-data(), insert\_\-at(), main(), read\_\-atsp(), read\_\-stsp(), sbtsp\_\-basic\_\-initialize(), sbtsp\_\-shake\_\-1\_\-initialize(), and strongly\_\-connected().\hypertarget{common_8h_42c447b913ad11889bf816691e423644}{
+Referenced by apply\_\-deep(), apply\_\-shallow(), arrow\_\-2mb\_\-solve(), arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-dt2(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-balanced\_\-tsp\_\-lb(), arrow\_\-baltsp\_\-fun\_\-basic(), arrow\_\-baltsp\_\-fun\_\-dt2(), arrow\_\-baltsp\_\-fun\_\-ib(), arrow\_\-baltsp\_\-fun\_\-shake(), arrow\_\-baltsp\_\-fun\_\-ut(), arrow\_\-bap\_\-has\_\-assignment(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bintree\_\-to\_\-new\_\-array(), arrow\_\-bscssp\_\-connected(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-feasible(), arrow\_\-btsp\_\-fun\_\-asym\_\-shift(), arrow\_\-btsp\_\-fun\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-basic(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-shake\_\-1(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-lap(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-mst\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-hash\_\-cost\_\-list(), arrow\_\-heap\_\-init(), arrow\_\-heap\_\-insert(), arrow\_\-llist\_\-insert\_\-after(), arrow\_\-llist\_\-insert\_\-head(), arrow\_\-llist\_\-insert\_\-tail(), arrow\_\-options\_\-parse(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-info\_\-cost\_\-index(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-mstsp\_\-to\_\-btsp(), arrow\_\-problem\_\-read\_\-tour(), arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-util\_\-binary\_\-search(), arrow\_\-util\_\-CCdatagroup\_\-init\_\-matrix(), arrow\_\-util\_\-create\_\-int\_\-array(), arrow\_\-util\_\-create\_\-int\_\-matrix(), balanced\_\-lb\_\-feasible(), baltsp\_\-basic\_\-initialize(), baltsp\_\-bounds\_\-tree(), baltsp\_\-dt2\_\-initialize(), baltsp\_\-shake\_\-initialize(), btsp\_\-basic\_\-initialize(), btsp\_\-bounds(), btsp\_\-lower\_\-bound(), btsp\_\-shake\_\-1\_\-initialize(), build\_\-initial\_\-tour(), cbtsp\_\-basic\_\-initialize(), cbtsp\_\-shake\_\-initialize(), construct\_\-item(), construct\_\-node(), dt2\_\-lb\_\-feasible(), fill\_\-tiers(), find\_\-art\_\-points(), find\_\-cost\_\-order(), init\_\-data(), init\_\-tiers(), insert\_\-at(), main(), read\_\-atsp(), and read\_\-stsp().\hypertarget{common_8h_42c447b913ad11889bf816691e423644}{
 \index{common.h@{common.h}!ARROW\_\-TRUE@{ARROW\_\-TRUE}}
 \index{ARROW\_\-TRUE@{ARROW\_\-TRUE}!common.h@{common.h}}
 \subsubsection[{ARROW\_\-TRUE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-TRUE~1}}
@@ -420,7 +439,7 @@ Referenced by apply\_\-deep(), apply\_\-shallow(), arrow\_\-2mb\_\-solve(), arro
 
 Definition at line 59 of file common.h.
 
-Referenced by arrow\_\-bbssp\_\-biconnected(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-solve(), arrow\_\-heap\_\-in(), arrow\_\-options\_\-parse(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-util\_\-regex\_\-match(), atsp\_\-basic\_\-feasible(), cbtsp\_\-basic\_\-feasible(), cbtsp\_\-shake\_\-feasible(), destruct\_\-node(), feasible(), ford\_\-fulkerson\_\-labeling(), insert\_\-at(), is\_\-leaf(), main(), read\_\-stsp(), sbtsp\_\-basic\_\-feasible(), shortest\_\-augmenting\_\-path(), strongly\_\-connected(), and strongly\_\-connected\_\-dfs().\hypertarget{common_8h_73a3fc48edc73ab8c510034d6c6dd2e1}{
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-dt2(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-balanced\_\-tsp\_\-lb(), arrow\_\-bap\_\-has\_\-assignment(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-biconnected(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-connected(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-feasible(), arrow\_\-btsp\_\-result\_\-print\_\-pretty(), arrow\_\-btsp\_\-solve(), arrow\_\-heap\_\-in(), arrow\_\-options\_\-parse(), arrow\_\-problem\_\-abtsp\_\-to\_\-sbtsp(), arrow\_\-problem\_\-info\_\-get(), arrow\_\-problem\_\-max\_\-cost(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-util\_\-regex\_\-match(), baltsp\_\-basic\_\-feasible(), baltsp\_\-dt2\_\-feasible(), baltsp\_\-ib\_\-feasible(), baltsp\_\-ut\_\-feasible(), btsp\_\-basic\_\-feasible(), btsp\_\-bounds(), cbtsp\_\-basic\_\-feasible(), cbtsp\_\-shake\_\-feasible(), destruct\_\-node(), ford\_\-fulkerson\_\-labeling(), insert\_\-at(), is\_\-leaf(), main(), read\_\-stsp(), shortest\_\-augmenting\_\-path(), and strongly\_\-connected\_\-dfs().\hypertarget{common_8h_73a3fc48edc73ab8c510034d6c6dd2e1}{
 \index{common.h@{common.h}!ARROW\_\-VERSION@{ARROW\_\-VERSION}}
 \index{ARROW\_\-VERSION@{ARROW\_\-VERSION}!common.h@{common.h}}
 \subsubsection[{ARROW\_\-VERSION}]{\setlength{\rightskip}{0pt plus 5cm}\#define ARROW\_\-VERSION~\char`\"{}1.0\char`\"{}}}
@@ -440,7 +459,7 @@ Referenced by print\_\-version().\hypertarget{common_8h_c85ff6ed8837999e4553ffde
 
 
 
-Definition at line 74 of file common.h.
+Definition at line 75 of file common.h.
 
 Referenced by arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), and build\_\-initial\_\-tour().\hypertarget{common_8h_5bc042a0d5e4aee532d2841342766d29}{
 \index{common.h@{common.h}!CONCORDE\_\-SUCCESS@{CONCORDE\_\-SUCCESS}}
@@ -451,7 +470,7 @@ Referenced by arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), and build\_\-initial\_\-tour(
 
 
 
-Definition at line 73 of file common.h.
+Definition at line 74 of file common.h.
 
 Referenced by arrow\_\-problem\_\-read\_\-tour().
 
@@ -476,7 +495,7 @@ Definition at line 60 of file bintree.c.
 
 References destruct\_\-node(), arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
 
-Referenced by arrow\_\-problem\_\-info\_\-get().\hypertarget{common_8h_b28bc6559b228f0aa65cc671f67b9a09}{
+Referenced by arrow\_\-problem\_\-info\_\-get(), baltsp\_\-bounds\_\-tree(), baltsp\_\-shake\_\-initialize(), btsp\_\-shake\_\-1\_\-initialize(), and find\_\-cost\_\-order().\hypertarget{common_8h_b28bc6559b228f0aa65cc671f67b9a09}{
 \index{common.h@{common.h}!arrow\_\-bintree\_\-init@{arrow\_\-bintree\_\-init}}
 \index{arrow\_\-bintree\_\-init@{arrow\_\-bintree\_\-init}!common.h@{common.h}}
 \subsubsection[{arrow\_\-bintree\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-bintree\_\-init ({\bf arrow\_\-bintree} $\ast$ {\em tree})}}
@@ -496,7 +515,7 @@ Definition at line 53 of file bintree.c.
 
 References arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
 
-Referenced by arrow\_\-problem\_\-info\_\-get(), cbtsp\_\-shake\_\-initialize(), and sbtsp\_\-shake\_\-1\_\-initialize().\hypertarget{common_8h_75b4ee03b9667bd0e13e6cc71043e0a9}{
+Referenced by arrow\_\-problem\_\-info\_\-get(), baltsp\_\-bounds\_\-tree(), baltsp\_\-shake\_\-initialize(), btsp\_\-shake\_\-1\_\-initialize(), and cbtsp\_\-shake\_\-initialize().\hypertarget{common_8h_75b4ee03b9667bd0e13e6cc71043e0a9}{
 \index{common.h@{common.h}!arrow\_\-bintree\_\-insert@{arrow\_\-bintree\_\-insert}}
 \index{arrow\_\-bintree\_\-insert@{arrow\_\-bintree\_\-insert}!common.h@{common.h}}
 \subsubsection[{arrow\_\-bintree\_\-insert}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bintree\_\-insert ({\bf arrow\_\-bintree} $\ast$ {\em tree}, \/  int {\em value})}}
@@ -512,11 +531,11 @@ Inserts a value into the binary tree.
 \end{Desc}
 
 
-Definition at line 67 of file bintree.c.
+Definition at line 70 of file bintree.c.
 
 References construct\_\-node(), insert\_\-at(), arrow\_\-bintree::root\_\-node, and arrow\_\-bintree::size.
 
-Referenced by arrow\_\-problem\_\-info\_\-get(), cbtsp\_\-shake\_\-initialize(), and sbtsp\_\-shake\_\-1\_\-initialize().\hypertarget{common_8h_3804a3bce6fc22ef6d5ea0ac5776a2bb}{
+Referenced by arrow\_\-problem\_\-info\_\-get(), baltsp\_\-bounds\_\-tree(), baltsp\_\-shake\_\-initialize(), btsp\_\-shake\_\-1\_\-initialize(), and cbtsp\_\-shake\_\-initialize().\hypertarget{common_8h_3804a3bce6fc22ef6d5ea0ac5776a2bb}{
 \index{common.h@{common.h}!arrow\_\-bintree\_\-print@{arrow\_\-bintree\_\-print}}
 \index{arrow\_\-bintree\_\-print@{arrow\_\-bintree\_\-print}!common.h@{common.h}}
 \subsubsection[{arrow\_\-bintree\_\-print}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-bintree\_\-print ({\bf arrow\_\-bintree} $\ast$ {\em tree})}}
@@ -546,11 +565,11 @@ Initializes the binary tree data structure into an existing array.
 \end{Desc}
 
 
-Definition at line 87 of file bintree.c.
+Definition at line 90 of file bintree.c.
 
 References fill\_\-array(), and arrow\_\-bintree::root\_\-node.
 
-Referenced by arrow\_\-bintree\_\-to\_\-new\_\-array(), cbtsp\_\-shake\_\-initialize(), and sbtsp\_\-shake\_\-1\_\-initialize().\hypertarget{common_8h_11a76a726dfdd109e12cac7046cb431c}{
+Referenced by arrow\_\-bintree\_\-to\_\-new\_\-array(), baltsp\_\-shake\_\-initialize(), btsp\_\-shake\_\-1\_\-initialize(), cbtsp\_\-shake\_\-initialize(), and find\_\-cost\_\-order().\hypertarget{common_8h_11a76a726dfdd109e12cac7046cb431c}{
 \index{common.h@{common.h}!arrow\_\-bintree\_\-to\_\-new\_\-array@{arrow\_\-bintree\_\-to\_\-new\_\-array}}
 \index{arrow\_\-bintree\_\-to\_\-new\_\-array@{arrow\_\-bintree\_\-to\_\-new\_\-array}!common.h@{common.h}}
 \subsubsection[{arrow\_\-bintree\_\-to\_\-new\_\-array}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-bintree\_\-to\_\-new\_\-array ({\bf arrow\_\-bintree} $\ast$ {\em tree}, \/  int $\ast$$\ast$ {\em array})}}
@@ -566,7 +585,7 @@ Initializes the binary tree data structure into a new array.
 \end{Desc}
 
 
-Definition at line 94 of file bintree.c.
+Definition at line 97 of file bintree.c.
 
 References arrow\_\-bintree\_\-to\_\-array(), ARROW\_\-FAILURE, ARROW\_\-SUCCESS, arrow\_\-util\_\-create\_\-int\_\-array(), and arrow\_\-bintree::size.
 
@@ -590,7 +609,7 @@ Definition at line 12 of file hash.c.
 
 References ARROW\_\-HASH\_\-BUFFER\_\-LENGTH, ARROW\_\-SUCCESS, arrow\_\-hash::data, arrow\_\-hash::num\_\-keys, arrow\_\-hash::source, arrow\_\-hash::vector, and arrow\_\-hash::vector\_\-space.
 
-Referenced by arrow\_\-problem\_\-info\_\-get().\hypertarget{common_8h_f7f552485d4a2c7dfbaa82156e264b4e}{
+Referenced by arrow\_\-problem\_\-info\_\-get(), and fill\_\-tiers().\hypertarget{common_8h_f7f552485d4a2c7dfbaa82156e264b4e}{
 \index{common.h@{common.h}!arrow\_\-hash\_\-destruct@{arrow\_\-hash\_\-destruct}}
 \index{arrow\_\-hash\_\-destruct@{arrow\_\-hash\_\-destruct}!common.h@{common.h}}
 \subsubsection[{arrow\_\-hash\_\-destruct}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-hash\_\-destruct ({\bf arrow\_\-hash} $\ast$ {\em hash})}}
@@ -610,7 +629,7 @@ Definition at line 40 of file hash.c.
 
 References arrow\_\-hash::data, arrow\_\-hash::num\_\-keys, arrow\_\-hash::source, arrow\_\-hash::vector, and arrow\_\-hash::vector\_\-space.
 
-Referenced by arrow\_\-problem\_\-info\_\-destruct().\hypertarget{common_8h_237811011cb0d4e84ec15972040b67d3}{
+Referenced by arrow\_\-problem\_\-info\_\-destruct(), and fill\_\-tiers().\hypertarget{common_8h_237811011cb0d4e84ec15972040b67d3}{
 \index{common.h@{common.h}!arrow\_\-hash\_\-search@{arrow\_\-hash\_\-search}}
 \index{arrow\_\-hash\_\-search@{arrow\_\-hash\_\-search}!common.h@{common.h}}
 \subsubsection[{arrow\_\-hash\_\-search}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int arrow\_\-hash\_\-search ({\bf arrow\_\-hash} $\ast$ {\em hash}, \/  int {\em key})}}
@@ -632,7 +651,7 @@ Definition at line 50 of file hash.c.
 
 References ARROW\_\-HASH\_\-BUFFER\_\-LENGTH, and arrow\_\-hash::data.
 
-Referenced by arrow\_\-problem\_\-info\_\-cost\_\-index(), and main().\hypertarget{common_8h_68ed30661f547d8249a5a3c6e3b2a268}{
+Referenced by arrow\_\-problem\_\-info\_\-cost\_\-index(), fill\_\-tiers(), and main().\hypertarget{common_8h_68ed30661f547d8249a5a3c6e3b2a268}{
 \index{common.h@{common.h}!arrow\_\-heap\_\-change\_\-key@{arrow\_\-heap\_\-change\_\-key}}
 \index{arrow\_\-heap\_\-change\_\-key@{arrow\_\-heap\_\-change\_\-key}!common.h@{common.h}}
 \subsubsection[{arrow\_\-heap\_\-change\_\-key}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-heap\_\-change\_\-key ({\bf arrow\_\-heap} $\ast$ {\em heap}, \/  int {\em key}, \/  int {\em value})}}
@@ -819,7 +838,7 @@ Definition at line 31 of file llist.c.
 
 References arrow\_\-llist\_\-remove\_\-head(), and arrow\_\-llist::size.
 
-Referenced by arrow\_\-tsp\_\-rai\_\-solve(), and improve\_\-tour().\hypertarget{common_8h_cc0b379b2e15aa13462bf1e7675e8cf4}{
+Referenced by arrow\_\-tsp\_\-rai\_\-solve(), destruct\_\-tiers(), and improve\_\-tour().\hypertarget{common_8h_cc0b379b2e15aa13462bf1e7675e8cf4}{
 \index{common.h@{common.h}!arrow\_\-llist\_\-init@{arrow\_\-llist\_\-init}}
 \index{arrow\_\-llist\_\-init@{arrow\_\-llist\_\-init}!common.h@{common.h}}
 \subsubsection[{arrow\_\-llist\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-init ({\bf arrow\_\-llist} $\ast$ {\em list})}}
@@ -839,7 +858,7 @@ Definition at line 23 of file llist.c.
 
 References arrow\_\-llist::head, arrow\_\-llist::size, and arrow\_\-llist::tail.
 
-Referenced by arrow\_\-tsp\_\-rai\_\-solve().\hypertarget{common_8h_7c348a8af5422f6f4d1f6ded30677a70}{
+Referenced by arrow\_\-tsp\_\-rai\_\-solve(), and init\_\-tiers().\hypertarget{common_8h_7c348a8af5422f6f4d1f6ded30677a70}{
 \index{common.h@{common.h}!arrow\_\-llist\_\-insert\_\-after@{arrow\_\-llist\_\-insert\_\-after}}
 \index{arrow\_\-llist\_\-insert\_\-after@{arrow\_\-llist\_\-insert\_\-after}!common.h@{common.h}}
 \subsubsection[{arrow\_\-llist\_\-insert\_\-after}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-llist\_\-insert\_\-after ({\bf arrow\_\-llist} $\ast$ {\em list}, \/  {\bf arrow\_\-llist\_\-item} $\ast$ {\em item}, \/  int {\em value})}}
@@ -897,7 +916,7 @@ Definition at line 78 of file llist.c.
 
 References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, construct\_\-item(), arrow\_\-llist::head, arrow\_\-llist\_\-item::next, arrow\_\-llist::size, and arrow\_\-llist::tail.
 
-Referenced by arrow\_\-llist\_\-insert\_\-after(), arrow\_\-tsp\_\-rai\_\-solve(), construct\_\-tour(), and improve\_\-tour().\hypertarget{common_8h_9c558d27574d24be9dd6688dd4e8543d}{
+Referenced by arrow\_\-llist\_\-insert\_\-after(), arrow\_\-tsp\_\-rai\_\-solve(), construct\_\-tour(), fill\_\-tiers(), and improve\_\-tour().\hypertarget{common_8h_9c558d27574d24be9dd6688dd4e8543d}{
 \index{common.h@{common.h}!arrow\_\-llist\_\-print@{arrow\_\-llist\_\-print}}
 \index{arrow\_\-llist\_\-print@{arrow\_\-llist\_\-print}!common.h@{common.h}}
 \subsubsection[{arrow\_\-llist\_\-print}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-print ({\bf arrow\_\-llist} $\ast$ {\em list})}}
@@ -953,7 +972,7 @@ Definition at line 128 of file llist.c.
 
 References arrow\_\-llist\_\-item::data, arrow\_\-llist::head, arrow\_\-llist\_\-item::next, arrow\_\-llist::size, and arrow\_\-llist::tail.
 
-Referenced by arrow\_\-llist\_\-destruct(), arrow\_\-llist\_\-remove\_\-after(), and arrow\_\-llist\_\-remove\_\-tail().\hypertarget{common_8h_696e0c9f6adf3ab86287d50b84c471ce}{
+Referenced by arrow\_\-llist\_\-destruct(), arrow\_\-llist\_\-remove\_\-after(), arrow\_\-llist\_\-remove\_\-tail(), and find\_\-cost\_\-order().\hypertarget{common_8h_696e0c9f6adf3ab86287d50b84c471ce}{
 \index{common.h@{common.h}!arrow\_\-llist\_\-remove\_\-tail@{arrow\_\-llist\_\-remove\_\-tail}}
 \index{arrow\_\-llist\_\-remove\_\-tail@{arrow\_\-llist\_\-remove\_\-tail}!common.h@{common.h}}
 \subsubsection[{arrow\_\-llist\_\-remove\_\-tail}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-llist\_\-remove\_\-tail ({\bf arrow\_\-llist} $\ast$ {\em list}, \/  int $\ast$ {\em value})}}
@@ -1047,11 +1066,11 @@ Transforms an asymmetric BTSP problem of n nodes into a symmetric BTSP problem w
 \end{Desc}
 
 
-Definition at line 333 of file problem.c.
+Definition at line 379 of file problem.c.
 
-References abtsp\_\-destruct(), abtsp\_\-get\_\-cost(), ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-PROBLEM\_\-ABTSP\_\-TO\_\-SBTSP, ARROW\_\-SUCCESS, ARROW\_\-TRUE, abtsp\_\-data::base, arrow\_\-problem::data, arrow\_\-problem::destruct, arrow\_\-problem::get\_\-cost, abtsp\_\-data::infinity, arrow\_\-problem::name, arrow\_\-problem::shallow, arrow\_\-problem::size, arrow\_\-problem::symmetric, and arrow\_\-problem::type.
+References abtsp\_\-destruct(), abtsp\_\-get\_\-cost(), ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-PROBLEM\_\-ABTSP\_\-TO\_\-SBTSP, ARROW\_\-SUCCESS, ARROW\_\-TRUE, abtsp\_\-data::base, arrow\_\-problem::data, arrow\_\-problem::destruct, arrow\_\-problem::fixed\_\-edges, arrow\_\-problem::get\_\-cost, abtsp\_\-data::infinity, arrow\_\-problem::name, arrow\_\-problem::shallow, arrow\_\-problem::size, arrow\_\-problem::symmetric, and arrow\_\-problem::type.
 
-Referenced by main().\hypertarget{common_8h_a702972ab510dcc6354d7679759611d1}{
+Referenced by arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-dt2(), and main().\hypertarget{common_8h_a702972ab510dcc6354d7679759611d1}{
 \index{common.h@{common.h}!arrow\_\-problem\_\-destruct@{arrow\_\-problem\_\-destruct}}
 \index{arrow\_\-problem\_\-destruct@{arrow\_\-problem\_\-destruct}!common.h@{common.h}}
 \subsubsection[{arrow\_\-problem\_\-destruct}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-problem\_\-destruct ({\bf arrow\_\-problem} $\ast$ {\em problem})}}
@@ -1067,11 +1086,11 @@ Deallocates problem data structure.
 \end{Desc}
 
 
-Definition at line 153 of file problem.c.
+Definition at line 176 of file problem.c.
 
 References arrow\_\-problem::data, and arrow\_\-problem::destruct.
 
-Referenced by feasible(), and main().\hypertarget{common_8h_30d8e2e252dc1e485c7be5767af0f65b}{
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-dt2(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-balanced\_\-tsp\_\-lb(), arrow\_\-btsp\_\-feasible(), btsp\_\-bounds(), and main().\hypertarget{common_8h_30d8e2e252dc1e485c7be5767af0f65b}{
 \index{common.h@{common.h}!arrow\_\-problem\_\-info\_\-cost\_\-index@{arrow\_\-problem\_\-info\_\-cost\_\-index}}
 \index{arrow\_\-problem\_\-info\_\-cost\_\-index@{arrow\_\-problem\_\-info\_\-cost\_\-index}!common.h@{common.h}}
 \subsubsection[{arrow\_\-problem\_\-info\_\-cost\_\-index}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-info\_\-cost\_\-index ({\bf arrow\_\-problem\_\-info} $\ast$ {\em info}, \/  int {\em cost}, \/  int $\ast$ {\em pos})}}
@@ -1087,11 +1106,11 @@ Finds the position of the given cost into the sorted list.
 \end{Desc}
 
 
-Definition at line 224 of file problem.c.
+Definition at line 247 of file problem.c.
 
 References ARROW\_\-FAILURE, arrow\_\-hash\_\-search(), arrow\_\-print\_\-error, ARROW\_\-SUCCESS, arrow\_\-util\_\-binary\_\-search(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-problem\_\-info::hash, and arrow\_\-hash::num\_\-keys.
 
-Referenced by cbtsp\_\-shake\_\-get\_\-cost(), and sbtsp\_\-shake\_\-1\_\-get\_\-cost().\hypertarget{common_8h_09a5ba81556412e281fe6b863a6f08db}{
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-dt2(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-balanced\_\-tsp\_\-lb(), baltsp\_\-dt2\_\-get\_\-cost(), baltsp\_\-shake\_\-get\_\-cost(), btsp\_\-shake\_\-1\_\-get\_\-cost(), cbtsp\_\-shake\_\-get\_\-cost(), and main().\hypertarget{common_8h_09a5ba81556412e281fe6b863a6f08db}{
 \index{common.h@{common.h}!arrow\_\-problem\_\-info\_\-destruct@{arrow\_\-problem\_\-info\_\-destruct}}
 \index{arrow\_\-problem\_\-info\_\-destruct@{arrow\_\-problem\_\-info\_\-destruct}!common.h@{common.h}}
 \subsubsection[{arrow\_\-problem\_\-info\_\-destruct}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-problem\_\-info\_\-destruct ({\bf arrow\_\-problem\_\-info} $\ast$ {\em info})}}
@@ -1107,7 +1126,7 @@ Deallocates problem info data structure.
 \end{Desc}
 
 
-Definition at line 215 of file problem.c.
+Definition at line 238 of file problem.c.
 
 References arrow\_\-hash\_\-destruct(), arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::hash, and arrow\_\-hash::num\_\-keys.
 
@@ -1127,9 +1146,51 @@ Builds ordered cost list and finds min/max cost in a problem.
 \end{Desc}
 
 
-Definition at line 163 of file problem.c.
+Definition at line 186 of file problem.c.
 
 References arrow\_\-bintree\_\-destruct(), arrow\_\-bintree\_\-init(), arrow\_\-bintree\_\-insert(), arrow\_\-bintree\_\-to\_\-new\_\-array(), arrow\_\-hash\_\-cost\_\-list(), ARROW\_\-SUCCESS, ARROW\_\-TRUE, arrow\_\-problem\_\-info::cost\_\-list, arrow\_\-problem\_\-info::cost\_\-list\_\-length, arrow\_\-problem::get\_\-cost, arrow\_\-problem\_\-info::hash, arrow\_\-problem\_\-info::max\_\-cost, arrow\_\-problem\_\-info::min\_\-cost, arrow\_\-hash::num\_\-keys, arrow\_\-bintree::size, arrow\_\-problem::size, and arrow\_\-problem::symmetric.
+
+Referenced by main().\hypertarget{common_8h_3e6ced30595dbfe54f0e6ef138fef5aa}{
+\index{common.h@{common.h}!arrow\_\-problem\_\-max\_\-cost@{arrow\_\-problem\_\-max\_\-cost}}
+\index{arrow\_\-problem\_\-max\_\-cost@{arrow\_\-problem\_\-max\_\-cost}!common.h@{common.h}}
+\subsubsection[{arrow\_\-problem\_\-max\_\-cost}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-max\_\-cost ({\bf arrow\_\-problem} $\ast$ {\em problem})}}
+\label{common_8h_3e6ced30595dbfe54f0e6ef138fef5aa}
+
+
+Finds the largest cost in a problem (cheaper than calling arrow\_\-problem\_\-info\_\-get). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem data structure \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]The largest cost in the problem. \end{Desc}
+
+
+Definition at line 272 of file problem.c.
+
+References ARROW\_\-TRUE, arrow\_\-problem::get\_\-cost, arrow\_\-problem::size, and arrow\_\-problem::symmetric.
+
+Referenced by main().\hypertarget{common_8h_a7e0d575194d77c3d8ae7dfe9dd14723}{
+\index{common.h@{common.h}!arrow\_\-problem\_\-mstsp\_\-to\_\-btsp@{arrow\_\-problem\_\-mstsp\_\-to\_\-btsp}}
+\index{arrow\_\-problem\_\-mstsp\_\-to\_\-btsp@{arrow\_\-problem\_\-mstsp\_\-to\_\-btsp}!common.h@{common.h}}
+\subsubsection[{arrow\_\-problem\_\-mstsp\_\-to\_\-btsp}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-problem\_\-mstsp\_\-to\_\-btsp (int {\em shallow}, \/  {\bf arrow\_\-problem} $\ast$ {\em old\_\-problem}, \/  int {\em max\_\-cost}, \/  {\bf arrow\_\-problem} $\ast$ {\em new\_\-problem})}}
+\label{common_8h_a7e0d575194d77c3d8ae7dfe9dd14723}
+
+
+Transforms a MSTSP problem into the equivalent BTSP problem. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em shallow}]\mbox{[}in\mbox{]} if true only a shallow copy of data will be created \item[{\em old\_\-problem}]\mbox{[}in\mbox{]} the MSTSP problem \item[{\em max\_\-cost}]\mbox{[}in\mbox{]} the maximum cost in old\_\-problem \item[{\em new\_\-problem}]\mbox{[}out\mbox{]} the new BTSP problem \end{description}
+\end{Desc}
+
+
+Definition at line 406 of file problem.c.
+
+References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-PROBLEM\_\-MSTSP\_\-TO\_\-BTSP, ARROW\_\-SUCCESS, mstsp\_\-data::base, arrow\_\-problem::data, arrow\_\-problem::destruct, arrow\_\-problem::fixed\_\-edges, arrow\_\-problem::get\_\-cost, mstsp\_\-data::max\_\-cost, mstsp\_\-destruct(), mstsp\_\-get\_\-cost(), arrow\_\-problem::name, arrow\_\-problem::shallow, arrow\_\-problem::size, arrow\_\-problem::symmetric, and arrow\_\-problem::type.
 
 Referenced by main().\hypertarget{common_8h_bf45d0065398894bdfb4b345d50363ea}{
 \index{common.h@{common.h}!arrow\_\-problem\_\-print@{arrow\_\-problem\_\-print}}
@@ -1147,7 +1208,7 @@ Prints out information about a problem.
 \end{Desc}
 
 
-Definition at line 249 of file problem.c.
+Definition at line 295 of file problem.c.
 
 References arrow\_\-problem::get\_\-cost, arrow\_\-problem::shallow, arrow\_\-problem::size, and arrow\_\-problem::symmetric.\hypertarget{common_8h_b5b9bae9f92630983d3b3d39d86198f8}{
 \index{common.h@{common.h}!arrow\_\-problem\_\-read@{arrow\_\-problem\_\-read}}
@@ -1165,7 +1226,7 @@ Reads a problem from a TSPLIB file.
 \end{Desc}
 
 
-Definition at line 118 of file problem.c.
+Definition at line 141 of file problem.c.
 
 References ARROW\_\-FAILURE, arrow\_\-print\_\-error, is\_\-asymmetric(), is\_\-symmetric(), arrow\_\-problem::name, read\_\-atsp(), and read\_\-stsp().
 
@@ -1185,7 +1246,7 @@ Reads a TSPLIB tour file.
 \end{Desc}
 
 
-Definition at line 324 of file problem.c.
+Definition at line 370 of file problem.c.
 
 References ARROW\_\-FAILURE, ARROW\_\-SUCCESS, and CONCORDE\_\-SUCCESS.
 
@@ -1265,7 +1326,7 @@ Definition at line 15 of file util.c.
 
 References ARROW\_\-FAILURE, arrow\_\-print\_\-error, and ARROW\_\-SUCCESS.
 
-Referenced by arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-biconnected(), arrow\_\-bintree\_\-to\_\-new\_\-array(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-sbtsp\_\-shake\_\-1(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-cbst\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-heap\_\-init(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-util\_\-create\_\-int\_\-matrix(), init\_\-data(), main(), and strongly\_\-connected().\hypertarget{common_8h_2801c2cc414251180545168ba9abe911}{
+Referenced by arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-baltsp\_\-fun\_\-dt2(), arrow\_\-baltsp\_\-fun\_\-shake(), arrow\_\-bap\_\-has\_\-assignment(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-biconnected(), arrow\_\-bintree\_\-to\_\-new\_\-array(), arrow\_\-bscssp\_\-connected(), arrow\_\-btsp\_\-fun\_\-cbtsp\_\-shake(), arrow\_\-btsp\_\-fun\_\-shake\_\-1(), arrow\_\-btsp\_\-result\_\-init(), arrow\_\-cbst\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-heap\_\-init(), arrow\_\-tsp\_\-rai\_\-solve(), arrow\_\-tsp\_\-result\_\-init(), arrow\_\-util\_\-create\_\-int\_\-matrix(), find\_\-cost\_\-order(), init\_\-data(), and main().\hypertarget{common_8h_2801c2cc414251180545168ba9abe911}{
 \index{common.h@{common.h}!arrow\_\-util\_\-create\_\-int\_\-matrix@{arrow\_\-util\_\-create\_\-int\_\-matrix}}
 \index{arrow\_\-util\_\-create\_\-int\_\-matrix@{arrow\_\-util\_\-create\_\-int\_\-matrix}!common.h@{common.h}}
 \subsubsection[{arrow\_\-util\_\-create\_\-int\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}int arrow\_\-util\_\-create\_\-int\_\-matrix (int {\em rows}, \/  int {\em cols}, \/  int $\ast$$\ast$$\ast$ {\em matrix}, \/  int $\ast$$\ast$ {\em space})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
@@ -1285,7 +1346,7 @@ Definition at line 27 of file util.c.
 
 References ARROW\_\-FAILURE, arrow\_\-print\_\-error, ARROW\_\-SUCCESS, and arrow\_\-util\_\-create\_\-int\_\-array().
 
-Referenced by arrow\_\-bap\_\-solve(), and arrow\_\-dcbpb\_\-solve().\hypertarget{common_8h_4be50d1d9906ae44ddb69b1e8fb05153}{
+Referenced by arrow\_\-bap\_\-has\_\-assignment(), arrow\_\-bap\_\-solve(), and arrow\_\-dcbpb\_\-solve().\hypertarget{common_8h_4be50d1d9906ae44ddb69b1e8fb05153}{
 \index{common.h@{common.h}!arrow\_\-util\_\-permute\_\-array@{arrow\_\-util\_\-permute\_\-array}}
 \index{arrow\_\-util\_\-permute\_\-array@{arrow\_\-util\_\-permute\_\-array}!common.h@{common.h}}
 \subsubsection[{arrow\_\-util\_\-permute\_\-array}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-permute\_\-array (int {\em size}, \/  int $\ast$ {\em array})}}
@@ -1372,7 +1433,7 @@ Returns a random number between min and max.
 
 Definition at line 221 of file util.c.
 
-Referenced by arrow\_\-util\_\-permute\_\-array(), cbtsp\_\-shake\_\-initialize(), construct\_\-tour(), improve\_\-tour(), and sbtsp\_\-shake\_\-1\_\-initialize().\hypertarget{common_8h_448b71093a175c0f40f9cbe612b1c709}{
+Referenced by arrow\_\-util\_\-permute\_\-array(), baltsp\_\-dt2\_\-get\_\-cost(), baltsp\_\-shake\_\-initialize(), btsp\_\-shake\_\-1\_\-initialize(), cbtsp\_\-shake\_\-initialize(), construct\_\-tour(), and improve\_\-tour().\hypertarget{common_8h_448b71093a175c0f40f9cbe612b1c709}{
 \index{common.h@{common.h}!arrow\_\-util\_\-random\_\-seed@{arrow\_\-util\_\-random\_\-seed}}
 \index{arrow\_\-util\_\-random\_\-seed@{arrow\_\-util\_\-random\_\-seed}!common.h@{common.h}}
 \subsubsection[{arrow\_\-util\_\-random\_\-seed}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-random\_\-seed (int {\em seed})}}
@@ -1455,11 +1516,38 @@ Referenced by main().\hypertarget{common_8h_8a7327192a37674e2559d82448a565b1}{
 \label{common_8h_8a7327192a37674e2559d82448a565b1}
 
 
+Converts a symmetric tour to an asymmetric tour. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem associated with tour. \item[{\em old\_\-tour}]\mbox{[}in\mbox{]} the symmetric tour. \item[{\em new\_\-tour}]\mbox{[}out\mbox{]} the asymmetric tour. \end{description}
+\end{Desc}
 
 
 Definition at line 260 of file util.c.
 
 References arrow\_\-problem::get\_\-cost, and arrow\_\-problem::size.
+
+Referenced by arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-dt2(), arrow\_\-balanced\_\-tsp\_\-ib2(), and main().\hypertarget{common_8h_0541e6b62dd904dfdb630bf21aeef425}{
+\index{common.h@{common.h}!arrow\_\-util\_\-write\_\-problem@{arrow\_\-util\_\-write\_\-problem}}
+\index{arrow\_\-util\_\-write\_\-problem@{arrow\_\-util\_\-write\_\-problem}!common.h@{common.h}}
+\subsubsection[{arrow\_\-util\_\-write\_\-problem}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-util\_\-write\_\-problem ({\bf arrow\_\-problem} $\ast$ {\em problem}, \/  char $\ast$ {\em comment}, \/  FILE $\ast$ {\em out})}}
+\label{common_8h_0541e6b62dd904dfdb630bf21aeef425}
+
+
+Writes a problem in TSPLIB format as a lower diagonal matrix. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem to print out. \item[{\em comment}]\mbox{[}in\mbox{]} additional comment (optional). \item[{\em out}]\mbox{[}out\mbox{]} the file descriptor id to print out to. \end{description}
+\end{Desc}
+
+
+Definition at line 277 of file util.c.
+
+References arrow\_\-problem::get\_\-cost, arrow\_\-problem::name, and arrow\_\-problem::size.
 
 Referenced by main().\hypertarget{common_8h_6921d887eca515c1ad59629e25a0c237}{
 \index{common.h@{common.h}!arrow\_\-util\_\-write\_\-tour@{arrow\_\-util\_\-write\_\-tour}}
@@ -1468,6 +1556,13 @@ Referenced by main().\hypertarget{common_8h_6921d887eca515c1ad59629e25a0c237}{
 \label{common_8h_6921d887eca515c1ad59629e25a0c237}
 
 
+Writes a tour in TSPLIB format. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em problem}]\mbox{[}in\mbox{]} problem associated with tour. \item[{\em comment}]\mbox{[}in\mbox{]} additional comment (optional). \item[{\em tour}]\mbox{[}in\mbox{]} the tour to print out. \item[{\em out}]\mbox{[}out\mbox{]} the file descriptor id to print out to. \end{description}
+\end{Desc}
 
 
 Definition at line 241 of file util.c.
@@ -1489,7 +1584,7 @@ Used to measure timings.
 
 Definition at line 63 of file util.c.
 
-Referenced by arrow\_\-2mb\_\-solve(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), and main().\hypertarget{common_8h_c1e8bb3469598aa8f1a77d01d234fbdc}{
+Referenced by arrow\_\-2mb\_\-solve(), arrow\_\-balanced\_\-tsp\_\-db(), arrow\_\-balanced\_\-tsp\_\-dt(), arrow\_\-balanced\_\-tsp\_\-dt2(), arrow\_\-balanced\_\-tsp\_\-ib(), arrow\_\-balanced\_\-tsp\_\-ib2(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_\-solve(), arrow\_\-bscssp\_\-solve(), arrow\_\-btsp\_\-solve(), arrow\_\-cbap\_\-solve(), arrow\_\-cbst\_\-solve(), arrow\_\-dcbpb\_\-solve(), arrow\_\-tsp\_\-cc\_\-exact\_\-solve(), arrow\_\-tsp\_\-cc\_\-lk\_\-solve(), arrow\_\-tsp\_\-rai\_\-solve(), btsp\_\-bounds(), and main().\hypertarget{common_8h_c1e8bb3469598aa8f1a77d01d234fbdc}{
 \index{common.h@{common.h}!arrow\_\-xml\_\-attribute\_\-end@{arrow\_\-xml\_\-attribute\_\-end}}
 \index{arrow\_\-xml\_\-attribute\_\-end@{arrow\_\-xml\_\-attribute\_\-end}!common.h@{common.h}}
 \subsubsection[{arrow\_\-xml\_\-attribute\_\-end}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-attribute\_\-end (FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
@@ -1500,7 +1595,7 @@ Referenced by arrow\_\-2mb\_\-solve(), arrow\_\-bap\_\-solve(), arrow\_\-bbssp\_
 
 Definition at line 81 of file xml.c.
 
-Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_ee90512e0cef8151422883d3598b5a4b}{
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml(), and main().\hypertarget{common_8h_ee90512e0cef8151422883d3598b5a4b}{
 \index{common.h@{common.h}!arrow\_\-xml\_\-attribute\_\-int@{arrow\_\-xml\_\-attribute\_\-int}}
 \index{arrow\_\-xml\_\-attribute\_\-int@{arrow\_\-xml\_\-attribute\_\-int}!common.h@{common.h}}
 \subsubsection[{arrow\_\-xml\_\-attribute\_\-int}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-attribute\_\-int (char $\ast$ {\em name}, \/  int {\em value}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
@@ -1511,7 +1606,7 @@ Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_e
 
 Definition at line 39 of file xml.c.
 
-Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_8c807a02bc67af49cd8ed343b0f43c03}{
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml(), and main().\hypertarget{common_8h_8c807a02bc67af49cd8ed343b0f43c03}{
 \index{common.h@{common.h}!arrow\_\-xml\_\-attribute\_\-start@{arrow\_\-xml\_\-attribute\_\-start}}
 \index{arrow\_\-xml\_\-attribute\_\-start@{arrow\_\-xml\_\-attribute\_\-start}!common.h@{common.h}}
 \subsubsection[{arrow\_\-xml\_\-attribute\_\-start}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-attribute\_\-start (char $\ast$ {\em name}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
@@ -1522,7 +1617,7 @@ Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_8
 
 Definition at line 75 of file xml.c.
 
-Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_5270de6c47898a14788a7b66a79fdf6c}{
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml(), and main().\hypertarget{common_8h_5270de6c47898a14788a7b66a79fdf6c}{
 \index{common.h@{common.h}!arrow\_\-xml\_\-attribute\_\-string@{arrow\_\-xml\_\-attribute\_\-string}}
 \index{arrow\_\-xml\_\-attribute\_\-string@{arrow\_\-xml\_\-attribute\_\-string}!common.h@{common.h}}
 \subsubsection[{arrow\_\-xml\_\-attribute\_\-string}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-attribute\_\-string (char $\ast$ {\em name}, \/  char $\ast$ {\em value}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
@@ -1549,7 +1644,7 @@ Writes an XML tag out for a boolean value.
 
 Definition at line 33 of file xml.c.
 
-Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_706aca3669fa276b37aebb5e0d74c542}{
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml(), and main().\hypertarget{common_8h_706aca3669fa276b37aebb5e0d74c542}{
 \index{common.h@{common.h}!arrow\_\-xml\_\-element\_\-close@{arrow\_\-xml\_\-element\_\-close}}
 \index{arrow\_\-xml\_\-element\_\-close@{arrow\_\-xml\_\-element\_\-close}!common.h@{common.h}}
 \subsubsection[{arrow\_\-xml\_\-element\_\-close}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-close (char $\ast$ {\em name}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
@@ -1560,7 +1655,7 @@ Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_7
 
 Definition at line 69 of file xml.c.
 
-Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_286f1861006d22d745bd3c2681ee7aab}{
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml(), and main().\hypertarget{common_8h_286f1861006d22d745bd3c2681ee7aab}{
 \index{common.h@{common.h}!arrow\_\-xml\_\-element\_\-double@{arrow\_\-xml\_\-element\_\-double}}
 \index{arrow\_\-xml\_\-element\_\-double@{arrow\_\-xml\_\-element\_\-double}!common.h@{common.h}}
 \subsubsection[{arrow\_\-xml\_\-element\_\-double}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-double (char $\ast$ {\em name}, \/  double {\em value}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
@@ -1578,7 +1673,7 @@ Writes an XML tag out for a double value.
 
 Definition at line 21 of file xml.c.
 
-Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_2a4cb1e33c581013142df340cbf007b1}{
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml(), and main().\hypertarget{common_8h_2a4cb1e33c581013142df340cbf007b1}{
 \index{common.h@{common.h}!arrow\_\-xml\_\-element\_\-end@{arrow\_\-xml\_\-element\_\-end}}
 \index{arrow\_\-xml\_\-element\_\-end@{arrow\_\-xml\_\-element\_\-end}!common.h@{common.h}}
 \subsubsection[{arrow\_\-xml\_\-element\_\-end}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-end (FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
@@ -1589,7 +1684,7 @@ Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_2
 
 Definition at line 57 of file xml.c.
 
-Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_ac92580a7e7c1ebb1c72f68d7005fe68}{
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml(), and main().\hypertarget{common_8h_ac92580a7e7c1ebb1c72f68d7005fe68}{
 \index{common.h@{common.h}!arrow\_\-xml\_\-element\_\-int@{arrow\_\-xml\_\-element\_\-int}}
 \index{arrow\_\-xml\_\-element\_\-int@{arrow\_\-xml\_\-element\_\-int}!common.h@{common.h}}
 \subsubsection[{arrow\_\-xml\_\-element\_\-int}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-int (char $\ast$ {\em name}, \/  int {\em value}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
@@ -1607,7 +1702,7 @@ Writes an XML tag out for an integer value.
 
 Definition at line 15 of file xml.c.
 
-Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_77af49c39afb3b1de9e757ae01f8f039}{
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml(), and main().\hypertarget{common_8h_77af49c39afb3b1de9e757ae01f8f039}{
 \index{common.h@{common.h}!arrow\_\-xml\_\-element\_\-open@{arrow\_\-xml\_\-element\_\-open}}
 \index{arrow\_\-xml\_\-element\_\-open@{arrow\_\-xml\_\-element\_\-open}!common.h@{common.h}}
 \subsubsection[{arrow\_\-xml\_\-element\_\-open}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-open (char $\ast$ {\em name}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
@@ -1618,7 +1713,7 @@ Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_7
 
 Definition at line 63 of file xml.c.
 
-Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_37c3860e01ae53d1c110671d080fa52f}{
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml(), and main().\hypertarget{common_8h_37c3860e01ae53d1c110671d080fa52f}{
 \index{common.h@{common.h}!arrow\_\-xml\_\-element\_\-start@{arrow\_\-xml\_\-element\_\-start}}
 \index{arrow\_\-xml\_\-element\_\-start@{arrow\_\-xml\_\-element\_\-start}!common.h@{common.h}}
 \subsubsection[{arrow\_\-xml\_\-element\_\-start}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-start (char $\ast$ {\em name}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
@@ -1629,7 +1724,7 @@ Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_3
 
 Definition at line 51 of file xml.c.
 
-Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml().\hypertarget{common_8h_aaf85f529d527d406914a61f9ed10901}{
+Referenced by arrow\_\-btsp\_\-result\_\-print\_\-xml(), and main().\hypertarget{common_8h_aaf85f529d527d406914a61f9ed10901}{
 \index{common.h@{common.h}!arrow\_\-xml\_\-element\_\-string@{arrow\_\-xml\_\-element\_\-string}}
 \index{arrow\_\-xml\_\-element\_\-string@{arrow\_\-xml\_\-element\_\-string}!common.h@{common.h}}
 \subsubsection[{arrow\_\-xml\_\-element\_\-string}]{\setlength{\rightskip}{0pt plus 5cm}void arrow\_\-xml\_\-element\_\-string (char $\ast$ {\em name}, \/  char $\ast$ {\em value}, \/  FILE $\ast$ {\em out})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}

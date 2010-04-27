@@ -103,9 +103,9 @@ Destructs contents of a linked list.
 
 <p>Definition at line <a class="el" href="llist_8c-source.html#l00031">31</a> of file <a class="el" href="llist_8c-source.html">llist.c</a>.</p>
 
-<p>References <a class="el" href="llist_8c-source.html#l00128">arrow_llist_remove_head()</a>, and <a class="el" href="common_8h-source.html#l00294">arrow_llist::size</a>.</p>
+<p>References <a class="el" href="llist_8c-source.html#l00128">arrow_llist_remove_head()</a>, and <a class="el" href="common_8h-source.html#l00295">arrow_llist::size</a>.</p>
 
-<p>Referenced by <a class="el" href="rai_8c-source.html#l00091">arrow_tsp_rai_solve()</a>, and <a class="el" href="rai_8c-source.html#l00177">improve_tour()</a>.</p>
+<p>Referenced by <a class="el" href="rai_8c-source.html#l00091">arrow_tsp_rai_solve()</a>, <a class="el" href="lib_2baltsp_2baltsp-db_8c-source.html#l00626">destruct_tiers()</a>, and <a class="el" href="rai_8c-source.html#l00177">improve_tour()</a>.</p>
 
 </div>
 </div><p>
@@ -136,9 +136,9 @@ Initializes a new linked list.
 
 <p>Definition at line <a class="el" href="llist_8c-source.html#l00023">23</a> of file <a class="el" href="llist_8c-source.html">llist.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00292">arrow_llist::head</a>, <a class="el" href="common_8h-source.html#l00294">arrow_llist::size</a>, and <a class="el" href="common_8h-source.html#l00293">arrow_llist::tail</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00293">arrow_llist::head</a>, <a class="el" href="common_8h-source.html#l00295">arrow_llist::size</a>, and <a class="el" href="common_8h-source.html#l00294">arrow_llist::tail</a>.</p>
 
-<p>Referenced by <a class="el" href="rai_8c-source.html#l00091">arrow_tsp_rai_solve()</a>.</p>
+<p>Referenced by <a class="el" href="rai_8c-source.html#l00091">arrow_tsp_rai_solve()</a>, and <a class="el" href="lib_2baltsp_2baltsp-db_8c-source.html#l00602">init_tiers()</a>.</p>
 
 </div>
 </div><p>
@@ -186,7 +186,7 @@ Inserts a new item after the given item in the list. NOTE: procedure makes no at
 
 <p>Definition at line <a class="el" href="llist_8c-source.html#l00101">101</a> of file <a class="el" href="llist_8c-source.html">llist.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="llist_8c-source.html#l00078">arrow_llist_insert_tail()</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="llist_8c-source.html#l00231">construct_item()</a>, <a class="el" href="common_8h-source.html#l00284">arrow_llist_item::next</a>, <a class="el" href="common_8h-source.html#l00294">arrow_llist::size</a>, and <a class="el" href="common_8h-source.html#l00293">arrow_llist::tail</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="llist_8c-source.html#l00078">arrow_llist_insert_tail()</a>, <a class="el" href="common_8h-source.html#l00047">arrow_print_error</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="llist_8c-source.html#l00231">construct_item()</a>, <a class="el" href="common_8h-source.html#l00285">arrow_llist_item::next</a>, <a class="el" href="common_8h-source.html#l00295">arrow_llist::size</a>, and <a class="el" href="common_8h-source.html#l00294">arrow_llist::tail</a>.</p>
 
 <p>Referenced by <a class="el" href="rai_8c-source.html#l00253">construct_tour()</a>.</p>
 
@@ -229,7 +229,7 @@ Inserts a new item at the head of the list.
 
 <p>Definition at line <a class="el" href="llist_8c-source.html#l00055">55</a> of file <a class="el" href="llist_8c-source.html">llist.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="llist_8c-source.html#l00231">construct_item()</a>, <a class="el" href="common_8h-source.html#l00292">arrow_llist::head</a>, <a class="el" href="common_8h-source.html#l00284">arrow_llist_item::next</a>, <a class="el" href="common_8h-source.html#l00294">arrow_llist::size</a>, and <a class="el" href="common_8h-source.html#l00293">arrow_llist::tail</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="llist_8c-source.html#l00231">construct_item()</a>, <a class="el" href="common_8h-source.html#l00293">arrow_llist::head</a>, <a class="el" href="common_8h-source.html#l00285">arrow_llist_item::next</a>, <a class="el" href="common_8h-source.html#l00295">arrow_llist::size</a>, and <a class="el" href="common_8h-source.html#l00294">arrow_llist::tail</a>.</p>
 
 </div>
 </div><p>
@@ -270,9 +270,9 @@ Inserts a new item at the tail of the list.
 
 <p>Definition at line <a class="el" href="llist_8c-source.html#l00078">78</a> of file <a class="el" href="llist_8c-source.html">llist.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="llist_8c-source.html#l00231">construct_item()</a>, <a class="el" href="common_8h-source.html#l00292">arrow_llist::head</a>, <a class="el" href="common_8h-source.html#l00284">arrow_llist_item::next</a>, <a class="el" href="common_8h-source.html#l00294">arrow_llist::size</a>, and <a class="el" href="common_8h-source.html#l00293">arrow_llist::tail</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00058">ARROW_FAILURE</a>, <a class="el" href="common_8h-source.html#l00057">ARROW_SUCCESS</a>, <a class="el" href="llist_8c-source.html#l00231">construct_item()</a>, <a class="el" href="common_8h-source.html#l00293">arrow_llist::head</a>, <a class="el" href="common_8h-source.html#l00285">arrow_llist_item::next</a>, <a class="el" href="common_8h-source.html#l00295">arrow_llist::size</a>, and <a class="el" href="common_8h-source.html#l00294">arrow_llist::tail</a>.</p>
 
-<p>Referenced by <a class="el" href="llist_8c-source.html#l00101">arrow_llist_insert_after()</a>, <a class="el" href="rai_8c-source.html#l00091">arrow_tsp_rai_solve()</a>, <a class="el" href="rai_8c-source.html#l00253">construct_tour()</a>, and <a class="el" href="rai_8c-source.html#l00177">improve_tour()</a>.</p>
+<p>Referenced by <a class="el" href="llist_8c-source.html#l00101">arrow_llist_insert_after()</a>, <a class="el" href="rai_8c-source.html#l00091">arrow_tsp_rai_solve()</a>, <a class="el" href="rai_8c-source.html#l00253">construct_tour()</a>, <a class="el" href="lib_2baltsp_2baltsp-db_8c-source.html#l00568">fill_tiers()</a>, and <a class="el" href="rai_8c-source.html#l00177">improve_tour()</a>.</p>
 
 </div>
 </div><p>
@@ -303,7 +303,7 @@ Prints a list of items in the list.
 
 <p>Definition at line <a class="el" href="llist_8c-source.html#l00201">201</a> of file <a class="el" href="llist_8c-source.html">llist.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00283">arrow_llist_item::data</a>, <a class="el" href="common_8h-source.html#l00292">arrow_llist::head</a>, <a class="el" href="common_8h-source.html#l00284">arrow_llist_item::next</a>, and <a class="el" href="common_8h-source.html#l00294">arrow_llist::size</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00284">arrow_llist_item::data</a>, <a class="el" href="common_8h-source.html#l00293">arrow_llist::head</a>, <a class="el" href="common_8h-source.html#l00285">arrow_llist_item::next</a>, and <a class="el" href="common_8h-source.html#l00295">arrow_llist::size</a>.</p>
 
 </div>
 </div><p>
@@ -351,7 +351,7 @@ Removes the item after the given one in the list. NOTE: procedure makes no attem
 
 <p>Definition at line <a class="el" href="llist_8c-source.html#l00179">179</a> of file <a class="el" href="llist_8c-source.html">llist.c</a>.</p>
 
-<p>References <a class="el" href="llist_8c-source.html#l00128">arrow_llist_remove_head()</a>, <a class="el" href="common_8h-source.html#l00283">arrow_llist_item::data</a>, <a class="el" href="common_8h-source.html#l00292">arrow_llist::head</a>, <a class="el" href="common_8h-source.html#l00284">arrow_llist_item::next</a>, <a class="el" href="common_8h-source.html#l00294">arrow_llist::size</a>, and <a class="el" href="common_8h-source.html#l00293">arrow_llist::tail</a>.</p>
+<p>References <a class="el" href="llist_8c-source.html#l00128">arrow_llist_remove_head()</a>, <a class="el" href="common_8h-source.html#l00284">arrow_llist_item::data</a>, <a class="el" href="common_8h-source.html#l00293">arrow_llist::head</a>, <a class="el" href="common_8h-source.html#l00285">arrow_llist_item::next</a>, <a class="el" href="common_8h-source.html#l00295">arrow_llist::size</a>, and <a class="el" href="common_8h-source.html#l00294">arrow_llist::tail</a>.</p>
 
 </div>
 </div><p>
@@ -392,9 +392,9 @@ Removes the head item in the list.
 
 <p>Definition at line <a class="el" href="llist_8c-source.html#l00128">128</a> of file <a class="el" href="llist_8c-source.html">llist.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00283">arrow_llist_item::data</a>, <a class="el" href="common_8h-source.html#l00292">arrow_llist::head</a>, <a class="el" href="common_8h-source.html#l00284">arrow_llist_item::next</a>, <a class="el" href="common_8h-source.html#l00294">arrow_llist::size</a>, and <a class="el" href="common_8h-source.html#l00293">arrow_llist::tail</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00284">arrow_llist_item::data</a>, <a class="el" href="common_8h-source.html#l00293">arrow_llist::head</a>, <a class="el" href="common_8h-source.html#l00285">arrow_llist_item::next</a>, <a class="el" href="common_8h-source.html#l00295">arrow_llist::size</a>, and <a class="el" href="common_8h-source.html#l00294">arrow_llist::tail</a>.</p>
 
-<p>Referenced by <a class="el" href="llist_8c-source.html#l00031">arrow_llist_destruct()</a>, <a class="el" href="llist_8c-source.html#l00179">arrow_llist_remove_after()</a>, and <a class="el" href="llist_8c-source.html#l00153">arrow_llist_remove_tail()</a>.</p>
+<p>Referenced by <a class="el" href="llist_8c-source.html#l00031">arrow_llist_destruct()</a>, <a class="el" href="llist_8c-source.html#l00179">arrow_llist_remove_after()</a>, <a class="el" href="llist_8c-source.html#l00153">arrow_llist_remove_tail()</a>, and <a class="el" href="lib_2baltsp_2baltsp-db_8c-source.html#l00643">find_cost_order()</a>.</p>
 
 </div>
 </div><p>
@@ -435,7 +435,7 @@ Removes the tail item in the list. NOTE: O(n) procedure!
 
 <p>Definition at line <a class="el" href="llist_8c-source.html#l00153">153</a> of file <a class="el" href="llist_8c-source.html">llist.c</a>.</p>
 
-<p>References <a class="el" href="llist_8c-source.html#l00128">arrow_llist_remove_head()</a>, <a class="el" href="common_8h-source.html#l00283">arrow_llist_item::data</a>, <a class="el" href="common_8h-source.html#l00292">arrow_llist::head</a>, <a class="el" href="common_8h-source.html#l00284">arrow_llist_item::next</a>, <a class="el" href="common_8h-source.html#l00294">arrow_llist::size</a>, and <a class="el" href="common_8h-source.html#l00293">arrow_llist::tail</a>.</p>
+<p>References <a class="el" href="llist_8c-source.html#l00128">arrow_llist_remove_head()</a>, <a class="el" href="common_8h-source.html#l00284">arrow_llist_item::data</a>, <a class="el" href="common_8h-source.html#l00293">arrow_llist::head</a>, <a class="el" href="common_8h-source.html#l00285">arrow_llist_item::next</a>, <a class="el" href="common_8h-source.html#l00295">arrow_llist::size</a>, and <a class="el" href="common_8h-source.html#l00294">arrow_llist::tail</a>.</p>
 
 </div>
 </div><p>
@@ -476,7 +476,7 @@ Swaps the two given lists.
 
 <p>Definition at line <a class="el" href="llist_8c-source.html#l00039">39</a> of file <a class="el" href="llist_8c-source.html">llist.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00292">arrow_llist::head</a>, <a class="el" href="common_8h-source.html#l00294">arrow_llist::size</a>, and <a class="el" href="common_8h-source.html#l00293">arrow_llist::tail</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00293">arrow_llist::head</a>, <a class="el" href="common_8h-source.html#l00295">arrow_llist::size</a>, and <a class="el" href="common_8h-source.html#l00294">arrow_llist::tail</a>.</p>
 
 <p>Referenced by <a class="el" href="rai_8c-source.html#l00177">improve_tour()</a>.</p>
 
@@ -519,7 +519,7 @@ Copys data from linked list into array. Assume array is big enough to handle lin
 
 <p>Definition at line <a class="el" href="llist_8c-source.html#l00214">214</a> of file <a class="el" href="llist_8c-source.html">llist.c</a>.</p>
 
-<p>References <a class="el" href="common_8h-source.html#l00283">arrow_llist_item::data</a>, <a class="el" href="common_8h-source.html#l00292">arrow_llist::head</a>, and <a class="el" href="common_8h-source.html#l00284">arrow_llist_item::next</a>.</p>
+<p>References <a class="el" href="common_8h-source.html#l00284">arrow_llist_item::data</a>, <a class="el" href="common_8h-source.html#l00293">arrow_llist::head</a>, and <a class="el" href="common_8h-source.html#l00285">arrow_llist_item::next</a>.</p>
 
 <p>Referenced by <a class="el" href="rai_8c-source.html#l00091">arrow_tsp_rai_solve()</a>.</p>
 
@@ -569,7 +569,7 @@ Constructs a new item structure with the given value.
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 19 14:09:06 2009 for Arrow by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Apr 26 20:22:29 2010 for Arrow by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>
